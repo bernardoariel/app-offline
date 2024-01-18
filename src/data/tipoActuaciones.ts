@@ -10,11 +10,14 @@ export const actuaciones:TipoActuaciones  = {
                 "titulo" : "Afectados",
                 "valor": [ 'Denunciante y Damnificado', 'Denunciante', 'Damnificado' ]
             },
+            "fecha":{
+                "titulo":"Fecha, Hora y Ubicacion",
+                "valor": null,
+            },
             "vinculados":{
                 "titulo" : "Vinculados",
                 "valor": [ 'Acusado','Detenido' ],
-            } ,
-            "fecha":"Fecha, Hora y Ubicacion",
+            },
             "efectos": {
                 "titulo" : "Vinculados",
                 "valor": [ 'Denunciado','Recuperado','Secuestrado' ],
@@ -29,7 +32,10 @@ export const actuaciones:TipoActuaciones  = {
                 "titulo" : "Afectados",
                 "valor": [ 'Denunciante y Damnificado', 'Denunciante', 'Damnificado', 'Orden Público' ],
             },
-            "fecha":"Fecha, Hora y Ubicacion",
+            "fecha":{
+                "titulo":"Fecha, Hora y Ubicacion",
+                "valor": null,
+            },
             "vinculados":{
                 "titulo" : "Vinculados",
                 "valor": [ 'Acusado','Detenido' ],
@@ -38,7 +44,10 @@ export const actuaciones:TipoActuaciones  = {
                 "titulo":"Efectos",
                 "valor": [ 'Denunciado','Recuperado','Secuestrado' ],
             },
-            "personalInterviniente": "Personal Interviniente"
+            "personalInterviniente":{
+                "titulo":"Personal Interviniente",
+                "valor": null,
+            },
         }
     },
     "expediente-denuncia":{
@@ -49,7 +58,10 @@ export const actuaciones:TipoActuaciones  = {
                 "titulo" : "Afectados",
                 "valor": [ 'Denunciante y Damnificado', 'Denunciante', 'Damnificado' ],
             },
-            "fecha":"Fecha, Hora y Ubicacion",
+            "fecha":{
+                "titulo":"Fecha, Hora y Ubicacion",
+                "valor": null,
+            },
             "vinculados":{
                 "titulo" : "Vinculados",
                 "valor":[ 'Acusado','Detenido' ],
@@ -68,7 +80,10 @@ export const actuaciones:TipoActuaciones  = {
                 "titulo" : "Afectados",
                 "valor": [ 'Denunciante y Damnificado', 'Denunciante', 'Damnificado' ,'Orden Público' ],
             },
-            "fecha":"Fecha, Hora y Ubicacion",
+            "fecha":{
+                "titulo":"Fecha, Hora y Ubicacion",
+                "valor": null,
+            },
             "vinculados":{
                 "titulo" : "Vinculados",
                 "valor":[ 'Acusado','Detenido' ],
@@ -77,7 +92,10 @@ export const actuaciones:TipoActuaciones  = {
                 "titulo":"Efectos",
                 "valor":[ 'Denunciado','Recuperado','Secuestrado' ],
             },
-            "personalInterviniente": "Personal Interviniente"
+            "personalInterviniente":{
+                "titulo":"Personal Interviniente",
+                "valor": null,
+            },
         }
     },
 }

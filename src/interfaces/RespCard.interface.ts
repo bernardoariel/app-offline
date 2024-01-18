@@ -1,4 +1,4 @@
-export interface Afectados {
+export interface RespCard {
     id?: string;
     name: string;
     type: string;

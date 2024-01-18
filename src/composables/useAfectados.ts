@@ -1,5 +1,5 @@
-import type { Afectados } from "@/interfaces/RespCard.interface"
-import { ref } from "vue"
+import type { RespCard } from "@/interfaces/RespCard.interface"
+import { ref, } from "vue"
 
 let data_api = [
     {
@@ -20,19 +20,31 @@ let data_api = [
         id: '1100',
         name: 'Juan Forengei',
         description: 'Stella 1211, CP:2100 - Mendoza, Las Heras, Argentina',
+        type: 'Damnificado'
+      
+    },
+    {
+        id: '1100',
+        name: 'Juan Forengei',
+        description: 'Stella 1211, CP:2100 - Mendoza, Las Heras, Argentina',
         type: 'Victima'
       
     },
 ]
+let afectados = ref<RespCard[]>(data_api);
+const agregarAfectado = (nuevoAfectado: RespCard) => {
+    afectados.value.push(nuevoAfectado);
+  };
+const useAfectados = () => {
 
-const useActuacion = ( actuacionName:string  ) =>{
-
-    let afectados = ref<Afectados[]>(data_api)
     
-    return{
+    return {
         afectados,
+        items: afectados,
+        agregar: agregarAfectado,
+    };
+};
 
-    }
-}
+export default useAfectados;
+  
 
-export default useActuacion

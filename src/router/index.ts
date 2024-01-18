@@ -19,7 +19,6 @@ const router = createRouter({
 
         return  { actuacion: route.params.actuacion }
 
-         
      }
     }
   ]

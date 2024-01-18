@@ -1,26 +1,26 @@
 <script lang="ts" setup>
-import DataViewCard from '@/components/DataViewCard.vue';
+import CardsActuacion from '@/components/CardsActuacion.vue';
+import  {actuaciones} from '@/data/tipoActuaciones';
+import type { Actuacion } from '@/interfaces/tipoActuaciones.interface';
 import { useRoute } from 'vue-router';
 
+
 const {params} = useRoute();
+const atributosActuacion: Actuacion | undefined = actuaciones[params.actuacion as string];
+const { tarjetas } = atributosActuacion;
+const tarjetasKeys: (keyof typeof tarjetas)[] = Object.keys(tarjetas);
+
+
+
+
 
 </script>
 
 <template>
   <div class="grid">
     <div class="col">
-      <Card class="p-fluid">
-        <template #title>
-          <div class="title-container">
-            <span>{{ params.actuacion }}</span>
-            <Button icon="pi pi-plus" severity="secondary" rounded outlined />
-          </div>
-        </template>
-        <template #content>
-          <!-- Contenido de tu componente -->
-          <DataViewCard />
-        </template>
-      </Card>
+      <CardsActuacion v-for="key in tarjetasKeys" :key="key" :tarjeta="tarjetas[key]" class="mb-2"/>
+
     </div>
 
     <div class="col">
@@ -29,10 +29,3 @@ const {params} = useRoute();
   </div>
 </template>
 
-<style scoped>
-.title-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-</style>

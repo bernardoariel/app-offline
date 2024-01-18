@@ -3,7 +3,6 @@
 import DataViewCard from '@/components/DataViewCard.vue';
 
 
-
 </script>
 <template>
     <div class="grid">

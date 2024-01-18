@@ -1,57 +1,14 @@
 
 <script setup lang="ts">
 
-import { ref } from "vue";
 import ButtonOptions from '@/components/ButtonOptions.vue'
+import useActuacion from '@/composables/useActuacion';
+import { getColorByAfectado } from '@/helpers/getColorByAfectado';
 import DataView from "primevue/dataview";
-
-interface Afectados {
-    id?: string;
-    name: string;
-    type: string;
-    description:string
-}
-let data_api = [
-                {
-                    id: '1000',
-                    name: 'Ariel Bernardo',
-                    description: 'MZA 82 CASA 2, CP:3600 - Formosa, Formosa, Argentina',
-                    type: 'Denunciante y Damnificado'
-                  
-                },
-                {
-                    id: '1100',
-                    name: 'Juan Forengei',
-                    description: 'Stella 1211, CP:2100 - Mendoza, Las Heras, Argentina',
-                    type: 'Damnificado'
-                  
-                },
-                {
-                    id: '1100',
-                    name: 'Juan Forengei',
-                    description: 'Stella 1211, CP:2100 - Mendoza, Las Heras, Argentina',
-                    type: 'Victima'
-                  
-                },
-                 ]
-let afectados = ref<Afectados[]>(data_api)
-
-
-const getSeverity = (afectados:Afectados) => {
-    switch (afectados.type) {
-        case 'Denunciante y Damnificado':
-            return 'success';
-
-        case 'Damnificado':
-            return 'warning';
-
-        case 'Victima':
-            return 'danger';
-
-        default:
-            return null;
-    }
-};
+import { useRoute } from 'vue-router';
+const {params} = useRoute();
+// let { afectados } = useActuacion( params.actuacion as string  )
+const afectados:any = []
 const editProduct = (productId) => {
     // Lógica para editar el producto con el ID proporcionado
 };
@@ -67,7 +24,7 @@ const copyProduct = (productId) => {
 
 <template>
     <div class="card">
-      <DataView :value="afectados">
+      <DataView :value="afectados" v-if="afectados.length > 0">
         <template #list="slotProps">
           <div class="grid grid-nogutter">
             <div v-for="(item, index) in slotProps.items" :key="index" class="col-12">
@@ -80,7 +37,7 @@ const copyProduct = (productId) => {
                 </div>
   
                 <!-- Tipo en un tag sin gap -->
-                <Tag :value="item.type" class="mt-3 pl-2 ml-5" :severity="getSeverity(item)"></Tag>
+                <Tag :value="item.type" class="mt-3 pl-2 ml-5" :severity="getColorByAfectado(item)"></Tag>
   
                 <!-- Icono de desbordamiento (ellipsis) -->
                 <div class="flex items-center ml-auto mt-1">
@@ -96,6 +53,9 @@ const copyProduct = (productId) => {
           </div>
         </template>
       </DataView>
+      <div v-else>
+  <p>No hay opciones disponibles.</p>
+</div>
     </div>
   </template>
   

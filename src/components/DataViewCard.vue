@@ -3,19 +3,15 @@ import DataView from "primevue/dataview";
 
 import { getColorByAfectado } from '@/helpers/getColorByAfectado';
 import ButtonOptions from '@/components/ButtonOptions.vue'
-import type { Afectados } from "@/interfaces/actuacion.interface";
-import useAfectados from "@/composables/useAfectados";
-import useVinculados from "@/composables/useVinculados";
-import useFecha from "@/composables/useFecha";
-import useEfectos from "@/composables/useEfectos";
-import useInterviniente from "@/composables/useInterviniente";
 
+import { getComposableForType } from "@/composables/composableFactory";
 
 interface Props {
   itemsCardValue: { titulo: string; valor: (string[] | null) };
   itemKey:string
 } 
-const getComposableForType = (type: string) => {
+/* const getComposableForType = (type: string) => {
+
   switch (type) {
     case 'afectados':
       return useAfectados;
@@ -28,15 +24,15 @@ const getComposableForType = (type: string) => {
     case 'personalInterviniente':
       return useInterviniente;
     default:
-      throw new Error(`Tipo de elemento desconocido: ${type}`);
+      throw new Error(`getComposableForType Tipo de elemento desconocido: ${type}`);
   }
-};
+}; */
 /* construccion del titulo */
 const {itemsCardValue,itemKey} = defineProps<Props>();
 
 
-  const composable = getComposableForType(itemKey);
-  const items = composable().items;
+const composable = getComposableForType(itemKey);
+const items = composable.items;
 // console.log('itemCardValue::: ', itemsCardValue);
 
 // let { afectados } = useActuacion( params.actuacion as string  )
@@ -55,6 +51,7 @@ const copyProduct = (productId) => {
 </script>
 
 <template>
+      <div v-if="items.length !==0">
       
       <DataView :value="items">
         <template #list="slotProps">
@@ -71,11 +68,11 @@ const copyProduct = (productId) => {
                 </div>
   
                 <!-- Tipo en un tag sin gap -->
-                <Tag :value="item.type" class="mt-3 pl-2 ml-5" :severity="getColorByAfectado(item.type)"></Tag>
+                <Tag :value="item.type" class="mt-3 ml-5" :severity="getColorByAfectado(item.type)"></Tag>
   
                 <!-- Icono de desbordamiento (ellipsis) -->
                 <div class="flex items-center ml-auto mt-1">
-                <ButtonOptions />
+                <ButtonOptions :tarjetaNombre="itemKey" :item="item"/>
               </div>
   
                 <!-- Descripción con margen izquierdo de 2 unidades sin gap -->
@@ -87,10 +84,10 @@ const copyProduct = (productId) => {
           </div>
         </template>
       </DataView>
-     
-      <!-- <div v-else class="flex justify-content-end">
+    </div>
+      <div v-else class="flex justify-content-end">
       <span class="text-right">No existen  nadda</span>
-      </div> -->
+      </div>
     
 </template>
   
@@ -104,4 +101,3 @@ const copyProduct = (productId) => {
   display: none;
 }
 </style>
-@/interfaces/RespCard.interface

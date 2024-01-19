@@ -1,5 +1,5 @@
 export interface RespCard {
-    id?: string;
+    id?: string | number;
     name: string;
     type: string;
     description:string

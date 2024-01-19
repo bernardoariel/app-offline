@@ -10,22 +10,22 @@ let data_api = [
       
     },
     {
-        id: '1100',
+        id: '1101',
         name: 'Juan Forengei',
         description: 'Stella 1211, CP:2100 - Mendoza, Las Heras, Argentina',
         type: 'Damnificado'
       
     },
     {
-        id: '1100',
-        name: 'Juan Forengei',
+        id: '1102',
+        name: 'Carlos Mancuso',
         description: 'Stella 1211, CP:2100 - Mendoza, Las Heras, Argentina',
         type: 'Damnificado'
       
     },
     {
-        id: '1100',
-        name: 'Juan Forengei',
+        id: '1103',
+        name: 'Marcela Santy',
         description: 'Stella 1211, CP:2100 - Mendoza, Las Heras, Argentina',
         type: 'Victima'
       
@@ -34,7 +34,12 @@ let data_api = [
 let afectados = ref<RespCard[]>(data_api);
 const agregarAfectado = (nuevoAfectado: RespCard) => {
     afectados.value.push(nuevoAfectado);
-  };
+};
+const eliminarAfectado = (id: string) => {
+   
+    afectados.value = afectados.value.filter(afectado => afectado.id !== id);
+};
+
 const useAfectados = () => {
 
     
@@ -42,6 +47,7 @@ const useAfectados = () => {
         afectados,
         items: afectados,
         agregar: agregarAfectado,
+        eliminar: eliminarAfectado,
     };
 };
 

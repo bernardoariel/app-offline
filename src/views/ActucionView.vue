@@ -13,6 +13,7 @@ const atributosActuacion: Actuacion | undefined = actuaciones[params.actuacion a
 const { tarjetas } = atributosActuacion;
 
 const tarjetasKeys: (keyof typeof tarjetas)[] = Object.keys(tarjetas);
+console.log('tarjetasKeys::: ', tarjetasKeys); 
 
 
 const nuevoItem = ref({
@@ -23,6 +24,7 @@ const nuevoItem = ref({
 });
 
 const agregarNuevoItem = (key: string) => {
+
   const composable = getComposableForType(key);
   composable.agregar(nuevoItem.value);
 };
@@ -32,7 +34,9 @@ const agregarNuevoItem = (key: string) => {
   <div class="grid">
     <div class="col-5">
       
-      <Card :pt="{ title: { class: 'custom-title' }, content: { style: 'padding: 0!important;' } }" class="p-fluid mb-2" v-for="key in tarjetasKeys" :key="key" :tarjeta="tarjetas[key]">
+      <Card v-for="key in tarjetasKeys" :key="key"
+        :pt="{ title: { class: 'custom-title' }, content: { style: 'padding: 0!important;' } }" 
+        class="p-fluid mb-2"  :tarjeta="tarjetas[key]">
         <template #title>
           <div class="title-container">
             <span class="custom-title">{{ tarjetas[key].titulo }}</span>

@@ -79,6 +79,7 @@ const copyProduct = (productId) => {
                 <div class="w-full" style="margin-top: -30px; margin-left: 55px">
                   <p class="text-xs">{{ item.description }}</p>
                 </div>
+                
               </div>
             </div>
           </div>

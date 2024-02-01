@@ -39,7 +39,7 @@ const agregarNuevoItem = (key: string) => {
         class="p-fluid mb-2"  :tarjeta="tarjetas[key]">
         <template #title>
           <div class="title-container">
-            <span class="custom-title">{{ tarjetas[key].titulo }}</span>
+            <span class="custom-title">{{ tarjetas[key]!.titulo }}</span>
             
             <Button icon="pi pi-plus" severity="secondary" rounded outlined @click="agregarNuevoItem(key)"/>
           </div>

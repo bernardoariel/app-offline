@@ -1,4 +1,12 @@
 {
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "types": ["vue", "jest"],
+    "esModuleInterop": true
+  },
   "files": [],
   "references": [
     {

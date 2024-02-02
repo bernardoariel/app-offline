@@ -5,7 +5,13 @@ import { RouterView } from 'vue-router'
 
 <template>
   
-  <RouterView />
+  <RouterView v-slot="{ Component, route }"> 
+
+    <keep-alive>
+      <component :is="Component" :key="route.name" />
+    </keep-alive>
+
+  </RouterView>
 
 </template>
 

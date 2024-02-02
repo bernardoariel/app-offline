@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { computed, ref, watch } from "vue";
+import { computed, ref, watch, watchEffect } from "vue";
 import useAfectadosForm from '@/composables/useAfectadosForm';
 import { getColorByAfectado } from '@/helpers/getColorByAfectado';
 import { getUpperCase } from "@/helpers/stringUtils";
 import { getTitleCase } from '../helpers/stringUtils';
+import useFieldState from "@/composables/useFiledsState";
 
 const { selectedPersona, eliminar,afectados } = useAfectadosForm();
-
+const { statePristineForm, isFormPristine } = useFieldState();
+console.log('statePristineForm::: ', statePristineForm);
 
 const items = computed(() => {
   return [
@@ -19,8 +21,6 @@ const items = computed(() => {
 const eliminarPersona = (personaId:string) => {
   eliminar(personaId)
 };
-
-
 
 </script>
 <template>
@@ -59,15 +59,22 @@ const eliminarPersona = (personaId:string) => {
                     aria-label="Agregar" 
                     outlined 
                     severity="primary" />
-            <Button v-else-if="selectedPersona === option.id" 
-                    icon="pi pi-trash" 
-                    severity="danger" 
-                    @click="eliminarPersona(option.id)" />
-            <Button v-else 
+            <div class="button-and-dot-container" v-else-if="selectedPersona === option.id">
+                <div v-if="!statePristineForm" class="uncommited-dot bg-blue-400"></div>
+                <Button icon="pi pi-trash" 
+                  severity="danger" 
+                  @click="eliminarPersona(option.id)" />
+              
+            </div>
+            <div class="button-and-dot-container" v-else >
+              <div class="uncommited-dot bg-blue-400" v-if="!statePristineForm"></div>
+              <Button 
                   icon="pi pi-trash" 
                   severity="danger" 
                   disabled 
                   />
+            </div>
+            <!-- <pre>  Estado Actual: {{ statePristineForm ? 'True' : 'False' }}</pre> -->
           </div>
         </div>
       </template>
@@ -93,10 +100,26 @@ const eliminarPersona = (personaId:string) => {
   flex-direction: column;
 }
 
-.text-row {
-  /* Estilos para la fila de texto */
+.right-column {
+  /* Estilos para la columna de botones, si es necesario */
+  flex-shrink: 0;
+  display: flex;
+  align-items: center; /* Centra el botón verticalmente */
 }
 
+.button-and-dot-container {
+  display: flex;
+  align-items: center; /* Alinea verticalmente el botón y el círculo */
+}
+
+.uncommited-dot {
+  width: 12px; /* Tamaño del círculo */
+  height: 12px; /* Tamaño del círculo */
+  /* Color del círculo */
+  border-radius: 50%; /* Hace que sea redondo */
+  margin-right:15px; /* Espacio entre el botón y el círculo */
+  
+}
 .tag-row {
   margin-top: 4px; /* Espacio arriba del tag */
 }

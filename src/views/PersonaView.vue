@@ -1,18 +1,20 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { ref, watch, watchEffect } from 'vue';
 import MyDropdown from '@/components/elementos/MyDropdown.vue';
 import MyInput from '@/components/elementos/MyInput.vue';
 import MyTextArea from '@/components/elementos/MyTextArea.vue';
 import useAfectadosForm from '@/composables/useAfectadosForm';
+import useFieldState from '../composables/useFiledsState';
 
 
-
+const isButtonDisabled = ref(true);
 const afectados = ['Denunciante y Damnificado', 'Denunciante', 'Damnificado'];
 const documentos = ['DNI', 'Pasaporte'];
 const sexo = ['Masculino', 'Femenino'];
 const nacionalidad = ['Argentina','Chile','Brasil','Paraguay']
 const estadoCivil = ['Casado/a','Divorciado/a','Separado/a','Soltero/a','Viudo/a']
 const instruccion = ['Sabe leer y sabe firmar','No sabe leer y no sabe firmar','No sabe leer y si sabe firmar']
+
 
 const mapToDropdownItems = (array:any) => {
   return array.map((item: any) => ({ name: item }));
@@ -30,7 +32,7 @@ const {
   agregar,
   editar
 } = useAfectadosForm();
-
+const { fieldStates, touchField, dirtyField, isFormPristine,resetFieldStates,handleInput  } = useFieldState();
 // Crear una referencia local para controlar si el botón debe decir "Agregar" o "Modificar"
 const isEditing = ref(!persona.value.id);
 watch(() => persona.value.id, (newId) => {
@@ -48,8 +50,18 @@ const modificarElemento = () =>{
     if( persona.value.apellido.length < 3 || persona.value.name.length < 3) return;
     editar(persona.value);
 }
+const handleModificarElemento = () => {
+    modificarElemento(); // Tu función existente para modificar
+    resetFieldStates(); // Restablecer los estados de los campos
+};
+const handleAgregarElemento = () => {
+    agregarElemento(); // Tu función existente para agregar
+    resetFieldStates(); // Restablecer los estados de los campos
+};
 
-
+watchEffect(() => {
+    isButtonDisabled.value = Object.values(fieldStates.value).every(field => field.pristine);
+});
 </script>
 <template>
    <Card>
@@ -74,7 +86,11 @@ const modificarElemento = () =>{
             </div>
             <div class="col-6">
                 <label for="dropdown" >Apellido</label>
-                <MyInput type="text" class="mt-2 lowercase" v-model="persona.apellido"/>
+                <MyInput 
+                    type="text" class="mt-2 uppercase" 
+                    v-model="persona.apellido"
+                    @blur="touchField('apellido')" 
+                    @input="handleInput('apellido')" />
             </div>
             <div class="col-6">
                 <label for="dropdown" >Nombre</label>
@@ -114,10 +130,22 @@ const modificarElemento = () =>{
             </div>
 
             <div class="ml-auto mt-2 p-0">
-                <Button label="Agregar" v-if="isEditing" @click="agregarElemento()"></Button>
-                <Button label="Modificar" v-else @click="modificarElemento()" severity="warning"></Button>
+                <Button label="Agregar" v-if="isEditing" @click="handleAgregarElemento()"></Button>
+                <Button 
+    
+    label="Guardar Cambios"
+    :disabled="isButtonDisabled"
+    v-else 
+    @click="handleModificarElemento()" 
+    severity="warning">
+</Button>
             </div>
         </div>
+        <!-- <pre>
+    <span v-for="(state, fieldName) in fieldStates" :key="fieldName">
+    <strong>{{ fieldName }}: </strong> <br>Pristine: {{ state.pristine }}, Touched: {{ state.touched }}
+    </span>
+  </pre> -->
     </template>
 </Card>
 </template>

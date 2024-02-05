@@ -6,7 +6,7 @@ import useAfectadosForm from '@/composables/useAfectadosForm';
 
 const { selectedPersona }= useAfectadosForm()
 const handleNuevoItem = () =>{
-    selectedPersona.value = { name: 'Nuevo', code: 'new-item' };
+    selectedPersona.value = null
 }
 </script>
 <template>

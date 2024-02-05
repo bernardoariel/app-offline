@@ -7,8 +7,8 @@ import { getTitleCase } from '../helpers/stringUtils';
 import useFieldState from "@/composables/useFiledsState";
 
 const { selectedPersona, eliminar,afectados } = useAfectadosForm();
-const { statePristineForm, isFormPristine } = useFieldState();
-console.log('statePristineForm::: ', statePristineForm);
+
+const statePristineForm = false
 
 const items = computed(() => {
   return [

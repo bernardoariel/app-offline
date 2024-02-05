@@ -37,6 +37,10 @@ const handleAgregarElemento = () => {
   
  
 };
+const getPristineById = (id: string) => {
+  const found = statesID.find((state) => state.id === id);
+  return found ? found.pristine : false;
+};
 const handleInputChange = (id: string) => {
   // Tu lógica para manejar el cambio en el input
   // ...
@@ -120,7 +124,7 @@ watch(() => persona.value.id, (newId) => {
                 <Button 
     
     label="Guardar Cambios"
-    :disabled="isEditing"
+    :disabled="getPristineById(persona.id)"
     v-else 
     @click="handleModificarElemento()" 
     severity="warning">

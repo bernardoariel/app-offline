@@ -7,7 +7,7 @@ import { getTitleCase } from '../helpers/stringUtils';
 import useFieldState from "@/composables/useFiledsState";
 
 const { selectedPersona, eliminar,afectados } = useAfectadosForm();
-
+const { statesID,setPristineById } = useFieldState();
 const statePristineForm = false
 
 const items = computed(() => {
@@ -17,7 +17,10 @@ const items = computed(() => {
   ];
 });
 
-
+const getPristineById = (id: string) => {
+  const found = statesID.find((state) => state.id === id);
+  return found ? found.pristine : false;
+};
 const eliminarPersona = (personaId:string) => {
   eliminar(personaId)
 };
@@ -54,26 +57,25 @@ const eliminarPersona = (personaId:string) => {
           <!-- Columna Derecha -->
           <div class="right-column">
             <Button v-if="option.code === 'new-item'" 
-                    icon="pi pi-plus" 
-                    rounded 
-                    aria-label="Agregar" 
-                    outlined 
-                    severity="primary" />
-            <div class="button-and-dot-container" v-else-if="selectedPersona === option.id">
-                <div v-if="!statePristineForm" class="uncommited-dot bg-blue-400"></div>
-                <Button icon="pi pi-trash" 
-                  severity="danger" 
-                  @click="eliminarPersona(option.id)" />
-              
-            </div>
-            <div class="button-and-dot-container" v-else >
-              <div class="uncommited-dot bg-blue-400" v-if="!statePristineForm"></div>
-              <Button 
-                  icon="pi pi-trash" 
-                  severity="danger" 
-                  disabled 
-                  />
-            </div>
+          icon="pi pi-plus" 
+          rounded 
+          aria-label="Agregar" 
+          outlined 
+          severity="primary" />
+  <div class="button-and-dot-container" v-else-if="selectedPersona === option.id">
+    <div v-if="!getPristineById(option.id)" class="uncommited-dot bg-blue-400"></div>
+    <Button icon="pi pi-trash" 
+      severity="danger" 
+      @click="eliminarPersona(option.id)" />
+  </div>
+  <div class="button-and-dot-container" v-else >
+    <div class="uncommited-dot bg-blue-400" v-if="!getPristineById(option.id)"></div>
+    <Button 
+        icon="pi pi-trash" 
+        severity="danger" 
+        disabled 
+    />
+  </div>
             <!-- <pre>  Estado Actual: {{ statePristineForm ? 'True' : 'False' }}</pre> -->
           </div>
         </div>

@@ -16,7 +16,7 @@ const nacionalidadDropdown = ref(mapToDropdownItems(nacionalidad));
 const estadoCivilDropdown = ref(mapToDropdownItems(estadoCivil));
 const instruccionDropdown = ref(mapToDropdownItems(instruccion));
 
-const { statesID } = useFieldState();
+const { statesID,setPristineById } = useFieldState();
 const { persona, agregar, editar } = useAfectadosForm();
 
 const isEditing = ref(!persona.value.id);
@@ -28,7 +28,8 @@ const modificarElemento = () =>{
 }
 const handleModificarElemento = () => {
     modificarElemento(); // Tu función existente para modificar
-
+    setPristineById(persona.value.id, true);
+  
 };
 const handleAgregarElemento = () => {
   if( persona.value.apellido.length < 3 || persona.value.name.length < 3) return;
@@ -36,7 +37,13 @@ const handleAgregarElemento = () => {
   
  
 };
+const handleInputChange = (id: string) => {
+  // Tu lógica para manejar el cambio en el input
+  // ...
 
+  // Luego, actualiza el estado pristine para el ID específico
+  setPristineById(id, false);
+};
 watch(() => persona.value.id, (newId) => {
   isEditing.value = !newId;
   
@@ -68,6 +75,7 @@ watch(() => persona.value.id, (newId) => {
                 <MyInput 
                     type="text" class="mt-2 uppercase" 
                     v-model="persona.apellido"
+                    @input="handleInputChange(persona.id)"
                      />
             </div>
             <div class="col-6">

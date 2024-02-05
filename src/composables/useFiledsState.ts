@@ -19,9 +19,15 @@ export default function useFieldState() {
     });
     console.log('statesID::: ', statesID);
   };
-
+  const setPristineById = (id: string, pristine: boolean) => {
+    const index = statesID.findIndex(state => state.id === id);
+    if (index !== -1) {
+      statesID[index].pristine = pristine;
+    }
+  };
   return {
     statesID,
     agregarIdState,
+    setPristineById
   };
 }

@@ -10,45 +10,43 @@ interface newItem{
 }
 let afectados = reactive<AfectadosForm[]>([]); // el array de todos los afectados
 const selectedPersona = ref<string | null>(null); // persona seleccionada si no hay tiene que ser null
-const personaNueva: AfectadosForm = {
-  id: '',
-  typeAfectado: '',
-  typeDocumento: '',
-  nroDocumento: 0,
-  typeSexo: '',
-  apellido: '',
-  name: '',
-  fecha: '',
-  nacionalidad: '',
-  estadoCivil: '',
-  domicilioResidencia: '',
-  telefono: '',
-  email: '',
-  profesion: '',
-  instruccion: ''
+
+const resetInput = () => {
+  return {
+    id: '',
+    typeAfectado: '',
+    typeDocumento: '',
+    nroDocumento: 0,
+    typeSexo: '',
+    apellido: '',
+    name: '',
+    fecha: '',
+    nacionalidad: '',
+    estadoCivil: '',
+    domicilioResidencia: '',
+    telefono: '',
+    email: '',
+    profesion: '',
+    instruccion: ''
+  };
 };
-const persona = ref({ ...personaNueva });
-const resetInput = () => personaNueva
-
+const persona = ref(resetInput()); 
 const cargarPersona = (personaId: string | null) => {
-
-  if (personaId && personaId?.length >=1 ) {
+  if (personaId && personaId.length >= 1) {
     const found = afectados.find(p => p.id === personaId);
     if (found) {
       return persona.value = { ...found };
     }
   }
-  return persona.value = resetInput() // cuando es null reseteo los inputs
- 
+  return persona.value = resetInput();
 };
-
 const agregarAfectado = (nuevoAfectado: AfectadosForm) => {
-
-  selectedPersona.value=  uuid()
-  afectados.push({ ...nuevoAfectado,id:selectedPersona.value });
+  selectedPersona.value = uuid();
+  afectados.push({ ...nuevoAfectado, id: selectedPersona.value });
   agregarIdState(selectedPersona.value);
-    
+  persona.value = resetInput(); // Resetear los datos después de agregar
 };
+
 
 const editarAfectado = (afectadoEditado: AfectadosForm) => {
 
@@ -75,7 +73,6 @@ const useAfectadosForm = () => {
     return {
         afectados,
         persona,
-        personaNueva,
         selectedPersona,
         agregar: agregarAfectado,
         editar: editarAfectado,

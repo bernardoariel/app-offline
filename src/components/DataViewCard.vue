@@ -5,6 +5,7 @@ import { getColorByAfectado } from '@/helpers/getColorByAfectado';
 import ButtonOptions from '@/components/ButtonOptions.vue'
 
 import { getComposableForType } from "@/composables/composableFactory";
+import { getTitleCase, getUpperCase } from "@/helpers/stringUtils";
 
 interface Props {
   itemsCardValue: { titulo: string; valor: (string[] | null) };
@@ -51,7 +52,7 @@ const copyProduct = (productId) => {
 </script>
 
 <template>
-      <div v-if="items.length !==0">
+      <div v-if="items && items.length !==0">
       
       <DataView :value="items">
         <template #list="slotProps">
@@ -64,12 +65,17 @@ const copyProduct = (productId) => {
                 <!-- Icono de lápiz y nombre centrados verticalmente sin gap -->
                 <div class="flex align-items-center">
                   <Button icon="pi pi-pencil" @click="editProduct(item.id)" text rounded style="font-size: 1rem"></Button>
-                  <p class="text-xl pl-2">{{ item.name }}</p>
+                  <span class="font-bold">{{ item.apellido ? getUpperCase(item.apellido) + ',' : '' }}</span>
+                  <span class="ml-2">{{ item.name ? getTitleCase(item.name) : 'Nuevo' }}</span>
+                  <span v-if="item.typeDocumento && item.nroDocumento" class="ml-5">
+                    <i>{{ item.typeDocumento.name + ': ' }}</i>
+                    <i>{{ item.nroDocumento }}</i>
+                  </span>
                 </div>
-  
                 <!-- Tipo en un tag sin gap -->
-                <Tag :value="item.type" class="mt-3 ml-5" :severity="getColorByAfectado(item.type)"></Tag>
-  
+                <span v-if="item.typeAfectado && item.typeAfectado.name" class="ml-5">
+                <Tag  :value="item.typeAfectado.name" class="mt-2 ml-5" :severity="getColorByAfectado(item.typeAfectado.name)"></Tag>
+                  </span>
                 <!-- Icono de desbordamiento (ellipsis) -->
                 <div class="flex items-center ml-auto mt-1">
                 <ButtonOptions :tarjetaNombre="itemKey" :item="item"/>
@@ -77,7 +83,7 @@ const copyProduct = (productId) => {
   
                 <!-- Descripción con margen izquierdo de 2 unidades sin gap -->
                 <div class="w-full" style="margin-top: -30px; margin-left: 55px">
-                  <p class="text-xs">{{ item.description }}</p>
+                  <p class="text-xs">{{ item.domicilioResidencia }}</p>
                 </div>
                 
               </div>

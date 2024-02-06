@@ -80,6 +80,7 @@ const useAfectadosForm = () => {
         persona,
         resetInput,
         selectedPersona,
+        items: afectados,
         agregar: agregarAfectado,
         editar: editarAfectado,
         eliminar: eliminarAfectado, 

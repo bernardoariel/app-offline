@@ -16,13 +16,20 @@ const router = createRouter({
     {
       path: '/actuacion/personas',
       name: 'persona',
-      component: FormActuacionVue
+      component: FormActuacionVue,
+      props: ( route ) => {
+        console.log('route::: ', route);
+
+    
+
+     }
     },
     {
       path: '/actuacion/:actuacion',
       name: 'actuacion',
       component: ActuacionView,
       props: ( route ) => {
+        console.log('route::: ', route);
 
         return  { actuacion: route.params.actuacion }
 

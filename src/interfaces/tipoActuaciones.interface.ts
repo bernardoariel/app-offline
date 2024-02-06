@@ -4,6 +4,7 @@ export interface Actuacion {
     titulo: string;
     tituloAlternativo: string;
     tarjetas: Tarjeta
+    segmentoUrl: string
   }
   
   export interface TipoActuaciones {

@@ -1,34 +1,15 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
-import { useRoute } from 'vue-router';
+
 import { useRouter } from 'vue-router';
-import  {actuaciones} from '@/data/tipoActuaciones';
-import type { Actuacion } from '@/interfaces/tipoActuaciones.interface';
+
 import DataViewCard from '@/components/DataViewCard.vue';
+import useActuacion from '@/composables/useActuacion';
 
-import { getComposableForType } from '@/composables/composableFactory';
 
-const { params } = useRoute();
-const atributosActuacion: Actuacion | undefined = actuaciones[params.actuacion as string];
-const { tarjetas } = atributosActuacion;
-
-const tarjetasKeys: (keyof typeof tarjetas)[] = Object.keys(tarjetas);
-console.log('tarjetasKeys::: ', tarjetasKeys); 
 const router = useRouter();
-
-const nuevoItem = ref({
-  id: '1200',
-  name: 'Nuevo Afectado',
-  description: 'Ubicación desconocida',
-  type: 'Desconocido', 
-});
-
-const agregarNuevoItem = (key: string) => {
-
-  /* const composable = getComposableForType(key);
-  composable.agregar(nuevoItem.value); */
-   router.push({ name: 'persona' });
-};
+const { tarjetas, tarjetasKeys, agregarNuevoItem } = useActuacion();
+console.log('tarjetasKeys::: ', tarjetasKeys);
 </script>
 
 <template>

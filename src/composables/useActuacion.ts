@@ -1,38 +1,42 @@
-import type { Afectados } from "@/interfaces/RespCard.interface"
+import type { Actuacion } from '@/interfaces/tipoActuaciones.interface';
 import { ref } from "vue"
+import { useRoute } from 'vue-router';
+import { useRouter } from 'vue-router';
+import  { actuaciones } from '@/data/tipoActuaciones';
 
-let data_api = [
-    {
-        id: '1000',
-        name: 'Ariel Bernardo',
-        description: 'MZA 82 CASA 2, CP:3600 - Formosa, Formosa, Argentina',
-        type: 'Denunciante y Damnificado'
-      
-    },
-    {
-        id: '1100',
-        name: 'Juan Forengei',
-        description: 'Stella 1211, CP:2100 - Mendoza, Las Heras, Argentina',
-        type: 'Damnificado'
-      
-    },
-    {
-        id: '1100',
-        name: 'Juan Forengei',
-        description: 'Stella 1211, CP:2100 - Mendoza, Las Heras, Argentina',
-        type: 'Victima'
-      
-    },
-]
 
-const useActuacion = ( actuacionName:string  ) =>{
+const useActuacion = () => {
+    const route = useRoute();
+    const actuacionParam = route.params.actuacion as string;
+  
+    const atributosActuacion: Actuacion | undefined = actuaciones[actuacionParam];
+  
+    // Verifica si atributosActuacion es undefined y asigna un valor por defecto si lo es
+    const atributosActuacionRef = ref(atributosActuacion || { segmentoUrl: '' });
 
-    let afectados = ref<Afectados[]>(data_api)
-    
-    return{
-        afectados,
+    const router = useRouter();
+  
+    const tarjetas = atributosActuacionRef.value.tarjetas || {};
+    const tarjetasKeys: (keyof typeof tarjetas)[] = Object.keys(tarjetas);
+    const nuevoItem = ref({
+      id: '1200',
+      name: 'Nuevo Afectado',
+      description: 'Ubicación desconocida',
+      type: 'Desconocido', 
+    });
 
-    }
+    const agregarNuevoItem = (key: string) => {
+      /* const composable = getComposableForType(key);
+      composable.agregar(nuevoItem.value); */
+       router.push({ name: 'persona' });
+    };
+
+    return {
+        atributosActuacion: atributosActuacionRef,
+        tarjetas,
+        tarjetasKeys,
+        nuevoItem,
+        agregarNuevoItem
+    };
 }
-
-export default useActuacion
+export default useActuacion;

@@ -4,6 +4,7 @@ import { reactive, ref, watch } from 'vue';
 import { v4 as uuid } from 'uuid';
 
 const { agregarIdState } = useFieldState()
+
 interface newItem{
   name: string; 
   code: string
@@ -35,16 +36,18 @@ const cargarPersona = (personaId: string | null) => {
   if (personaId && personaId.length >= 1) {
     const found = afectados.find(p => p.id === personaId);
     if (found) {
-      return persona.value = { ...found };
+      persona.value = { ...found };
     }
+  } else {
+    persona.value = resetInput();
   }
-  return persona.value = resetInput();
 };
 const agregarAfectado = (nuevoAfectado: AfectadosForm) => {
-  selectedPersona.value = uuid();
-  afectados.push({ ...nuevoAfectado, id: selectedPersona.value });
-  agregarIdState(selectedPersona.value);
-  persona.value = resetInput(); // Resetear los datos después de agregar
+  const id = uuid(); // Genera el nuevo uuid directamente
+  afectados.push({ ...nuevoAfectado, id });
+  console.log('nuevoAfectado::: ', nuevoAfectado);
+  agregarIdState(id,{}); // Pasa el nuevo id directamente
+  persona.value = resetInput();
 };
 
 
@@ -65,14 +68,17 @@ const eliminarAfectado = (idPersona: string) => {
   }
 };
 
-watch(selectedPersona, (newId) => {
-  cargarPersona(newId);
+watch(() => selectedPersona.value, (newId) => {
+
+    cargarPersona(newId);
+ 
 });
 
 const useAfectadosForm = () => {
     return {
         afectados,
         persona,
+        resetInput,
         selectedPersona,
         agregar: agregarAfectado,
         editar: editarAfectado,

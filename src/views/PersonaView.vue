@@ -16,41 +16,58 @@ const nacionalidadDropdown = ref(mapToDropdownItems(nacionalidad));
 const estadoCivilDropdown = ref(mapToDropdownItems(estadoCivil));
 const instruccionDropdown = ref(mapToDropdownItems(instruccion));
 
-const { statesID,setPristineById } = useFieldState();
-const { persona, agregar, editar } = useAfectadosForm();
+const { statesID, setPristineById, setModifiedData, guardarModificaciones } = useFieldState();
+const { persona, agregar, editar, selectedPersona,resetInput } = useAfectadosForm();
 
 const isEditing = ref(!persona.value.id);
-
-
-const modificarElemento = () =>{
-    if( persona.value.apellido.length < 3 || persona.value.name.length < 3) return;
-    editar(persona.value);
-}
+const modificarElemento = () => {
+//   if (persona.value.apellido.length < 3 || persona.value.name.length < 3) return;
+  editar(persona.value);
+};
+const handleBlur = (campo: string) => {
+  const valor = getInputValue(campo);
+  // Guarda las modificaciones al perder el foco
+//   guardarModificaciones(selectedPersona.value!);
+  // También puedes usar el valor del campo si lo necesitas
+  console.log(`Campo: ${campo}, Valor: ${valor}`);
+  // Llama a la función setModifiedData
+  setModifiedData(selectedPersona.value!, campo, valor);
+};
 const handleModificarElemento = () => {
-    modificarElemento(); // Tu función existente para modificar
-    setPristineById(persona.value.id, true);
-  
+  modificarElemento();
+  guardarModificaciones(selectedPersona.value!);
+};
+const getInputValue = (campo: string) => {
+  const modifiedData = statesID.find((state) => state.id === selectedPersona.value)?.modifiedData;
+  return modifiedData && modifiedData[campo] !== undefined ? modifiedData[campo] : persona.value[campo];
 };
 const handleAgregarElemento = () => {
-  if( persona.value.apellido.length < 3 || persona.value.name.length < 3) return;
-  agregar(persona.value);
-  
- 
+  const modifiedData = { ...persona.value };
+  agregar(modifiedData);
+  persona.value = resetInput();
+  setPristineById(selectedPersona.value!, true);
 };
+
+
 const getPristineById = (id: string) => {
   const found = statesID.find((state) => state.id === id);
   return found ? found.pristine : false;
 };
-const handleInputChange = (id: string) => {
-  // Tu lógica para manejar el cambio en el input
-  // ...
 
-  // Luego, actualiza el estado pristine para el ID específico
-  setPristineById(id, false);
+const handleInputChange = (campo: string, event: Event) => {
+  const valor = (event.target as HTMLInputElement).value;
+  persona.value = { ...persona.value, [campo]: valor };
+
+  // Actualiza el estado pristine para el ID específico
+  setPristineById(persona.value.id, false);
+
+  // Llama a la función setModifiedData
+  setModifiedData(persona.value.id, campo, valor);
 };
+
+// Watcher para manejar cambios en el ID seleccionado
 watch(() => persona.value.id, (newId) => {
   isEditing.value = !newId;
-  
 });
 </script>
 <template>
@@ -77,14 +94,15 @@ watch(() => persona.value.id, (newId) => {
             <div class="col-6">
                 <label for="dropdown" >Apellido</label>
                 <MyInput 
-                    type="text" class="mt-2 uppercase" 
-                    v-model="persona.apellido"
-                    @input="handleInputChange(persona.id)"
-                     />
+        type="text" class="mt-2 uppercase" 
+        :value="getInputValue('apellido')"
+        @input="handleInputChange('apellido', $event)"
+        @blur="() => handleBlur('apellido')"
+      />
             </div>
             <div class="col-6">
                 <label for="dropdown" >Nombre</label>
-                <MyInput type="text" class="mt-2" v-model="persona.name" />
+                <MyInput type="text" class="mt-2" v-model="persona.name"  @input="handleInputChange('name', $event)"/>
             </div>
             <div class="col-3">
                 <label for="dropdown" >Fecha de nac.</label>
@@ -121,14 +139,21 @@ watch(() => persona.value.id, (newId) => {
 
             <div class="ml-auto mt-2 p-0">
                 <Button label="Agregar" v-if="isEditing" @click="handleAgregarElemento()"></Button>
-                <Button 
-    
-    label="Guardar Cambios"
-    :disabled="getPristineById(persona.id)"
-    v-else 
-    @click="handleModificarElemento()" 
-    severity="warning">
-</Button>
+                <div v-else>
+                
+                    <Button 
+                    :disabled="selectedPersona ? getPristineById(selectedPersona) : false" label="Cancelar"
+                     icon="pi pi-times" severity="secondary" outlined aria-label="Cancel" class="mr-3"
+                     @click="guardarModificaciones(persona.id)"
+                     ></Button>        
+                    <Button
+                        label="Guardar Cambios"
+                        :disabled="selectedPersona ? getPristineById(selectedPersona) : false"
+                        @click="handleModificarElemento()"
+                        severity="warning"
+                      ></Button>        </div>
+      
+      
             </div>
         </div>
         <pre>

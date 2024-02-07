@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
+
 import Dexie from 'dexie';
 const db = new Dexie('my_database');
 db.version(1).stores({

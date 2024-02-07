@@ -8,26 +8,10 @@ import { getComposableForType } from "@/composables/composableFactory";
 import { getTitleCase, getUpperCase } from "@/helpers/stringUtils";
 
 interface Props {
-  itemsCardValue: { titulo: string; valor: (string[] | null) };
-  itemKey:string
-} 
-/* const getComposableForType = (type: string) => {
+  itemsCardValue: { titulo: string; valor: string[] | null };
+  itemKey: string;
+}
 
-  switch (type) {
-    case 'afectados':
-      return useAfectados;
-    case 'vinculados':
-      return useVinculados;
-    case 'fecha':
-      return useFecha;
-    case 'efectos':
-      return useEfectos;
-    case 'personalInterviniente':
-      return useInterviniente;
-    default:
-      throw new Error(`getComposableForType Tipo de elemento desconocido: ${type}`);
-  }
-}; */
 /* construccion del titulo */
 const {itemsCardValue,itemKey} = defineProps<Props>();
 
@@ -38,15 +22,15 @@ const items = composable.items;
 
 // let { afectados } = useActuacion( params.actuacion as string  )
 // let itemsCardValue:any[] = [];
-const editProduct = (productId) => {
+const editProduct = (productId:any) => {
     // Lógica para editar el producto con el ID proporcionado
 };
 
-const deleteProduct = (productId) => {
+const deleteProduct = (productId:any) => {
     // Lógica para eliminar el producto con el ID proporcionado
 };
 
-const copyProduct = (productId) => {
+const copyProduct = (productId:any) => {
     // Lógica para copiar el producto con el ID proporcionado
 };
 </script>

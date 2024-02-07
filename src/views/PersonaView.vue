@@ -1,4 +1,5 @@
 <script setup lang="ts">
+//PersonaView
 import { ref, watch } from 'vue';
 import MyDropdown from '@/components/elementos/MyDropdown.vue';
 import MyInput from '@/components/elementos/MyInput.vue';
@@ -20,6 +21,16 @@ const { statesID, setPristineById, setModifiedData, guardarModificaciones } = us
 const { persona, agregar, editar, selectedPersona,resetInput } = useAfectadosForm();
 
 const isEditing = ref(!persona.value.id);
+
+const getInputValue = (campo: string) => {
+  if (campo in persona.value) {
+    const modifiedData = statesID.find((state) => state.id === selectedPersona.value)?.modifiedData;
+    return modifiedData && modifiedData[campo] !== undefined ? modifiedData[campo] : persona.value[campo];
+  } else {
+    console.error(`Campo "${campo}" no es una propiedad válida en AfectadosForm.`);
+    return null; // O cualquier otro valor por defecto que desees devolver en este caso
+  }
+};
 const modificarElemento = () => {
 //   if (persona.value.apellido.length < 3 || persona.value.name.length < 3) return;
   editar(persona.value);
@@ -37,10 +48,7 @@ const handleModificarElemento = () => {
   modificarElemento();
   guardarModificaciones(selectedPersona.value!);
 };
-const getInputValue = (campo: string) => {
-  const modifiedData = statesID.find((state) => state.id === selectedPersona.value)?.modifiedData;
-  return modifiedData && modifiedData[campo] !== undefined ? modifiedData[campo] : persona.value[campo];
-};
+
 const handleAgregarElemento = () => {
   const modifiedData = { ...persona.value };
   agregar(modifiedData);
@@ -157,7 +165,7 @@ watch(() => persona.value.id, (newId) => {
             </div>
         </div>
         <pre>
-          <span v-for="(id, pristine) in statesID" :key="id">
+          <span v-for="(id, pristine) in statesID" key="id">
 
       ID: {{id}}, Pristine: {{ pristine }}
     </span>

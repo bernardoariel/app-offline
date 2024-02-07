@@ -1,3 +1,4 @@
+//afectadosFormInterface
 export interface AfectadosForm{
     id: string
     typeAfectado: string,
@@ -13,5 +14,6 @@ export interface AfectadosForm{
     telefono: string,
     email: string,
     profesion: string,
-    instruccion: string
+    instruccion: string,
+    [key: string]: string | number;
 }

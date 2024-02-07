@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-
+//ActuacionView.vue
 import Dexie from 'dexie';
 const db = new Dexie('my_database');
 db.version(1).stores({
@@ -46,6 +46,11 @@ const guardarDatosClick = async () => {
     console.error('Error al guardar los datos:', error);
   }
 }
+const normalizedTarjetas = tarjetasKeys.map(key => ({
+  titulo: tarjetas[key]!.titulo,
+  valor: Array.isArray(tarjetas[key]!.valor) ? tarjetas[key]!.valor : [tarjetas[key]!.valor],
+}));
+
 </script>
 
 <template>
@@ -63,7 +68,7 @@ const guardarDatosClick = async () => {
           </div>
         </template>
         <template #content >
-           <DataViewCard  :itemsCardValue="tarjetas[key]" :itemKey="key" />
+           <DataViewCard  :itemsCardValue="normalizedTarjetas[key]" :itemKey="key" />
         </template>
       </Card>
     </div>

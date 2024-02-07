@@ -1,6 +1,7 @@
+//useAfectadosForm
 import type { AfectadosForm } from "@/interfaces/afectadosForm.interface";
 import useFieldState from './useFiledsState';
-import { reactive, ref, watch } from 'vue';
+import { reactive, ref, watch, type Ref } from 'vue';
 import { v4 as uuid } from 'uuid';
 
 const { agregarIdState } = useFieldState()
@@ -31,7 +32,8 @@ const resetInput = () => {
     instruccion: ''
   };
 };
-const persona = ref(resetInput()); 
+
+const persona: Ref<AfectadosForm> = ref(resetInput());
 const cargarPersona = (personaId: string | null) => {
   if (personaId && personaId.length >= 1) {
     const found = afectados.find(p => p.id === personaId);

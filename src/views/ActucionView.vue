@@ -1,15 +1,51 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
-
+import Dexie from 'dexie';
+const db = new Dexie('my_database');
+db.version(1).stores({
+    afectados: '++id, typeAfectado, typeDocumento, nroDocumento, typeSexo, apellido, name, fecha, nacionalidad, estadoCivil, domicilioResidencia, telefono, email, profesion, instruccion'
+});
 import { useRouter } from 'vue-router';
 
 import DataViewCard from '@/components/DataViewCard.vue';
 import useActuacion from '@/composables/useActuacion';
-
+const guardarDatos = async () => {
+  try {
+    // Aquí puedes realizar las operaciones necesarias para guardar los datos en tu base de datos Dexie.js
+    // Por ejemplo, puedes agregar un nuevo registro a la tabla 'afectados'
+    await db.afectados.add({
+      typeAfectado: 'Tipo de afectado',
+      typeDocumento: 'Tipo de documento',
+      nroDocumento: 123456789,
+      typeSexo: 'Sexo',
+      apellido: 'Apellido',
+      name: 'Nombre',
+      fecha: '01/01/2022',
+      nacionalidad: 'Nacionalidad',
+      estadoCivil: 'Estado civil',
+      domicilioResidencia: 'Domicilio',
+      telefono: '123456789',
+      email: 'correo@example.com',
+      profesion: 'Profesión',
+      instruccion: 'Instrucción'
+    });
+    console.log('Datos guardados correctamente');
+  } catch (error) {
+    console.error('Error al guardar los datos:', error);
+    throw error; // Relanza el error para que el componente pueda manejarlo si es necesario
+  }
+};
 
 const router = useRouter();
 const { tarjetas, tarjetasKeys, agregarNuevoItem } = useActuacion();
-console.log('tarjetasKeys::: ', tarjetasKeys);
+const guardarDatosClick = async () => {
+  try {
+    await guardarDatos();
+    console.log('Datos guardados correctamente');
+  } catch (error) {
+    console.error('Error al guardar los datos:', error);
+  }
+}
 </script>
 
 <template>
@@ -33,7 +69,10 @@ console.log('tarjetasKeys::: ', tarjetasKeys);
     </div>
 
     <div class="col">
-      <div class="text-center p-3 border-round-sm bg-primary font-bold">3</div>
+      <div class="text-center p-3 border-round-sm bg-primary font-bold">
+        <Button label="Guardar datos" severity="danger" @click="guardarDatosClick" />
+
+      </div>
     </div>
   </div>
 </template>

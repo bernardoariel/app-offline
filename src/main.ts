@@ -18,6 +18,7 @@ import Toolbar from 'primevue/toolbar';
 
 import App from './App.vue'
 import router from './router'
+
 import 'primeflex/primeflex.css';
 import 'primevue/resources/themes/lara-light-blue/theme.css'
 import 'primeicons/primeicons.css';
@@ -37,4 +38,13 @@ app.component('Textarea', Textarea);
 app.component('Listbox', Listbox);
 app.component('Toolbar', Toolbar);
 
+
+
+/* const db = new Dexie('my_database');
+db.version(1).stores({
+    afectados: '++id, typeAfectado, typeDocumento, nroDocumento, typeSexo, apellido, name, fecha, nacionalidad, estadoCivil, domicilioResidencia, telefono, email, profesion, instruccion'
+});
+ */
 app.mount('#app')
+console.log('Nombre de la base de datos:', db.name);
+console.log('Versión de la base de datos:', db.verno);

@@ -46,5 +46,5 @@ db.version(1).stores({
 });
  */
 app.mount('#app')
-console.log('Nombre de la base de datos:', db.name);
-console.log('Versión de la base de datos:', db.verno);
+/* console.log('Nombre de la base de datos:', db.name);
+console.log('Versión de la base de datos:', db.verno); */

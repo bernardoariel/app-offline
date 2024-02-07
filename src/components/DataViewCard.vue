@@ -38,7 +38,7 @@ const copyProduct = (productId:any) => {
 <template>
       <div v-if="items && items.length !==0">
       
-      <DataView :value="items">
+      <DataView :value="items" dataKey="id">
         <template #list="slotProps">
           <div class="grid grid-nogutter">
             <div v-for="(item, index) in slotProps.items" :key="index" class="col-12">

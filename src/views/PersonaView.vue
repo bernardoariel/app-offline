@@ -1,10 +1,14 @@
 <script setup lang="ts">
 //PersonaView
-import { ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
+import useAfectadosForm from '@/composables/useAfectadosForm';
+import useVinculadosForm from '@/composables/useVinculadosForm';
+
 import MyDropdown from '@/components/elementos/MyDropdown.vue';
 import MyInput from '@/components/elementos/MyInput.vue';
 import MyTextArea from '@/components/elementos/MyTextArea.vue';
-import useAfectadosForm from '@/composables/useAfectadosForm';
+
 import useFieldState from '../composables/useFiledsState';
 import { mapToDropdownItems } from '@/helpers/dropUtils';
 import { afectados, documentos, sexo, nacionalidad, estadoCivil, instruccion } from '@/data/actuacionNew';
@@ -18,10 +22,23 @@ const estadoCivilDropdown = ref(mapToDropdownItems(estadoCivil));
 const instruccionDropdown = ref(mapToDropdownItems(instruccion));
 
 const { statesID, setPristineById, setModifiedData, guardarModificaciones } = useFieldState();
-const { persona, agregar, editar, selectedPersona,resetInput } = useAfectadosForm();
+const { persona, agregar, editar, selectedPersona, resetInput } = useAfectadosForm();
 
 const isEditing = ref(!persona.value.id);
 
+const route = useRoute();
+const tipo  = ref(route.params.tipo); // Ejemplo: 'afectados' o 'vinculados'
+
+const composablesMap = {
+  afectados: useAfectadosForm,
+  vinculados: useVinculadosForm,
+  // Puedes agregar más aquí según sea necesario
+};
+// Selecciona dinámicamente el composable basado en el tipo
+const composableDinamico = computed(() => {
+  const composable = composablesMap[tipo.value as keyof typeof composablesMap];
+  return composable ? composable() : null;
+});
 const getInputValue = (campo: string) => {
   if (campo in persona.value) {
     const modifiedData = statesID.find((state) => state.id === selectedPersona.value)?.modifiedData;
@@ -52,7 +69,7 @@ const handleModificarElemento = () => {
 const handleAgregarElemento = () => {
   const modifiedData = { ...persona.value };
   agregar(modifiedData);
-  persona.value = resetInput();
+  resetInput();
   setPristineById(selectedPersona.value!, true);
 };
 
@@ -76,6 +93,9 @@ const handleInputChange = (campo: string, event: Event) => {
 // Watcher para manejar cambios en el ID seleccionado
 watch(() => persona.value.id, (newId) => {
   isEditing.value = !newId;
+});
+watch(() => route.params.tipo, (nuevoTipo) => {
+  tipo.value = nuevoTipo;
 });
 </script>
 <template>

@@ -13,12 +13,10 @@ const router = createRouter({
       redirect: '/actuacion/sumario-oficio'
     },
     {
-      path: '/actuacion/personas',
+      path: '/actuacion/personas/:tipo',
       name: 'persona',
       component: FormActuacionVue,
-      props: ( route ) => {
-        console.log('route::: ', route);
-     }
+      props: true  
     },
     {
       path: '/actuacion/:actuacion',

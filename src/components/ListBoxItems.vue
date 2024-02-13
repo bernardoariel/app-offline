@@ -12,7 +12,7 @@ const statePristineForm = false
 
 const items = computed(() => {
   return [
-    ...afectados,
+    ...afectados.value,
     // { name: 'Nuevo',code: 'new-item'}
   ];
 });
@@ -57,25 +57,25 @@ const eliminarPersona = (personaId:string) => {
           <!-- Columna Derecha -->
           <div class="right-column">
             <Button v-if="option.code === 'new-item'" 
-          icon="pi pi-plus" 
-          rounded 
-          aria-label="Agregar" 
-          outlined 
-          severity="primary" />
-  <div class="button-and-dot-container" v-else-if="selectedPersona === option.id">
-    <div v-if="!getPristineById(option.id)" class="uncommited-dot bg-blue-400"></div>
-    <Button icon="pi pi-trash" 
-      severity="danger" 
-      @click="eliminarPersona(option.id)" />
-  </div>
-  <div class="button-and-dot-container" v-else >
-    <div class="uncommited-dot bg-blue-400" v-if="!getPristineById(option.id)"></div>
-    <Button 
-        icon="pi pi-trash" 
-        severity="danger" 
-        disabled 
-    />
-  </div>
+              icon="pi pi-plus" 
+              rounded 
+              aria-label="Agregar" 
+              outlined 
+              severity="primary" />
+          <div class="button-and-dot-container" v-else-if="selectedPersona === option.id">
+            <div v-if="!getPristineById(option.id)" class="uncommited-dot bg-blue-400"></div>
+            <Button icon="pi pi-trash" 
+              severity="danger" 
+              @click="eliminarPersona(option.id)" />
+          </div>
+          <div class="button-and-dot-container" v-else >
+            <div class="uncommited-dot bg-blue-400" v-if="!getPristineById(option.id)"></div>
+            <Button 
+                icon="pi pi-trash" 
+                severity="danger" 
+                disabled 
+            />
+          </div>
             <!-- <pre>  Estado Actual: {{ statePristineForm ? 'True' : 'False' }}</pre> -->
           </div>
         </div>

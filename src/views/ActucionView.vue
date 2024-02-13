@@ -40,7 +40,7 @@ const guardarDatos = async () => {
 
 const router = useRouter();
 
-const {   agregarNuevoItem } = useActuacion();
+const { agregarNuevoItem } = useActuacion();
 // Obtener las claves válidas de Tarjeta
 const tarjetas = {
     afectados: { titulo: 'Afectados', valor: [] },

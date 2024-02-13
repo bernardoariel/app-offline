@@ -1,20 +1,50 @@
-//useAfectadosForm
-import type { AfectadosForm } from "@/interfaces/afectadosForm.interface";
-import useFieldState from './useFiledsState';
 import { reactive, ref, watch, type Ref } from 'vue';
 import { v4 as uuid } from 'uuid';
+import type { AfectadosForm } from "@/interfaces/afectadosForm.interface";
+import useFieldState from './useFiledsState';
 
-const { agregarIdState } = useFieldState()
 
-interface newItem{
+// Interfaces para los elementos de los afectados y el composable
+interface newItem {
   name: string; 
-  code: string
+  code: string;
 }
-let afectados = reactive<AfectadosForm[]>([]); // el array de todos los afectados
-const selectedPersona = ref<string | null>(null); // persona seleccionada si no hay tiene que ser null
+
+interface UseAfectadosForm {
+  afectados: Ref<AfectadosForm[]>;
+  persona: Ref<AfectadosForm>;
+  resetInput: () => void;
+  selectedPersona: Ref<string | null>;
+  items: Ref<AfectadosForm[]>;
+  agregar: (nuevoAfectado: AfectadosForm) => void;
+  editar: (afectadoEditado: AfectadosForm) => void;
+  eliminar: (idPersona: string) => void;
+}
+
+// Estado reactivo y funciones para el manejo de los afectados
+const afectados = reactive<AfectadosForm[]>([]);
+const selectedPersona = ref<string | null>(null);
+const persona: Ref<AfectadosForm> = ref({
+  id: '',
+  typeAfectado: '',
+  typeDocumento: '',
+  nroDocumento: 0,
+  typeSexo: '',
+  apellido: '',
+  name: '',
+  fecha: '',
+  nacionalidad: '',
+  estadoCivil: '',
+  domicilioResidencia: '',
+  telefono: '',
+  email: '',
+  profesion: '',
+  instruccion: ''
+});
+
 
 const resetInput = () => {
-  return {
+  persona.value = {
     id: '',
     typeAfectado: '',
     typeDocumento: '',
@@ -33,60 +63,50 @@ const resetInput = () => {
   };
 };
 
-const persona: Ref<AfectadosForm> = ref(resetInput());
 const cargarPersona = (personaId: string | null) => {
-  if (personaId && personaId.length >= 1) {
+  if (personaId) {
     const found = afectados.find(p => p.id === personaId);
-    if (found) {
-      persona.value = { ...found };
-    }
+    if (found) persona.value = found;
   } else {
-    persona.value = resetInput();
+    resetInput();
   }
 };
-const agregarAfectado = (nuevoAfectado: AfectadosForm) => {
-  const id = uuid(); // Genera el nuevo uuid directamente
-  afectados.push({ ...nuevoAfectado, id });
-  console.log('nuevoAfectado::: ', nuevoAfectado);
-  agregarIdState(id,{}); // Pasa el nuevo id directamente
-  persona.value = resetInput();
-};
 
+// Se define agregarIdState para manejar el estado de los campos
+const { agregarIdState } = useFieldState();
+
+const agregarAfectado = (nuevoAfectado: AfectadosForm) => {
+  const id = uuid();
+  afectados.push({ ...nuevoAfectado, id });
+  agregarIdState(id,{});
+  resetInput();
+};
 
 const editarAfectado = (afectadoEditado: AfectadosForm) => {
-
   const index = afectados.findIndex(p => p.id === afectadoEditado.id);
-
-  if (index !== -1) {
-    afectados[index] = { ...afectadoEditado };
-    selectedPersona.value = afectadoEditado.id; // Mantén seleccionado el ítem editado
-  }
+  if (index !== -1) afectados[index] = afectadoEditado;
 };
 
 const eliminarAfectado = (idPersona: string) => {
-    const index = afectados.findIndex(afectado => afectado.id === idPersona);
-     if (index !== -1) {
-    afectados.splice(index, 1); // Elimina 1 elemento en la posición encontrada
-  }
+  const index = afectados.findIndex(p => p.id === idPersona);
+  if (index !== -1) afectados.splice(index, 1);
 };
 
-watch(() => selectedPersona.value, (newId) => {
+// Observadores
+watch(selectedPersona, cargarPersona);
 
-    cargarPersona(newId);
- 
-});
-
-const useAfectadosForm = () => {
-    return {
-        afectados,
-        persona,
-        resetInput,
-        selectedPersona,
-        items: afectados,
-        agregar: agregarAfectado,
-        editar: editarAfectado,
-        eliminar: eliminarAfectado, 
-    };
+// Composable expuesto
+const useAfectadosForm = (): UseAfectadosForm => {
+  return {
+    afectados: ref(afectados),
+    persona,
+    resetInput,
+    selectedPersona,
+    items: ref(afectados), // Asumiendo que items es una referencia a afectados
+    agregar: agregarAfectado,
+    editar: editarAfectado,
+    eliminar: eliminarAfectado,
+  };
 };
 
 export default useAfectadosForm;

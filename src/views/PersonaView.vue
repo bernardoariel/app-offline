@@ -1,15 +1,72 @@
 <script setup lang="ts">
+import { ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
+
+import MyDropdown from '@/components/elementos/MyDropdown.vue';
+import MyInput from '@/components/elementos/MyInput.vue';
+import MyTextArea from '@/components/elementos/MyTextArea.vue';
+
+import useFieldState from '@/composables/useFiledsState';
 import useNewActuacion from '@/composables/useNewActuacion';
 import { afectadosDropdown,documentosDropdown,sexoDropdown,nacionalidadDropdown,estadoCivilDropdown,instruccionDropdown } from '@/helpers/getDropItems';
 
-const { item } = useNewActuacion()
+const { item ,selectedItem ,editar, agregar, resetInput } = useNewActuacion()
+const { statesID, setPristineById, setModifiedData, guardarModificaciones } = useFieldState();
 
-const handleInputChange = (campo:string, event:HTMLElement) => {
-  const newValue = { ...item.value, [campo]: event.target.value };
-  if(composableActual.value) {
-    composableActual.value.updatePersona(newValue);
+const isEditing = ref(!item.value.id);
+const route = useRoute();
+const tipo  = ref(route.params.tipo);
+
+const getInputValue = (campo: string) => {
+  if (campo in item.value) {
+    const modifiedData = statesID.find((state) => state.id === selectedItem.value)?.modifiedData;
+    return modifiedData && modifiedData[campo] !== undefined ? modifiedData[campo] : item.value[campo];
+  } else {
+    console.error(`Campo "${campo}" no es una propiedad válida en AfectadosForm.`);
+    return null; // O cualquier otro valor por defecto que desees devolver en este caso
   }
 };
+const handleBlur = (campo: string) => {
+  const valor = getInputValue(campo);
+  // Guarda las modificaciones al perder el foco
+//   guardarModificaciones(selectedPersona.value!);
+  // También puedes usar el valor del campo si lo necesitas
+  console.log(`Campo: ${campo}, Valor: ${valor}`);
+  // Llama a la función setModifiedData
+  setModifiedData(selectedItem.value!, campo, valor);
+};
+
+const handleModificarElemento = () => {
+  editar(item.value!,tipo.value as string);
+  // guardarModificaciones(selectedItem.value!);
+};
+const handleInputChange = (campo: string, event: Event) => {
+  const valor = (event.target as HTMLInputElement).value;
+  item.value = { ...item.value, [campo]: valor };
+
+  // Actualiza el estado pristine para el ID específico
+  setPristineById(item.value.id, false);
+
+  // Llama a la función setModifiedData
+  setModifiedData(item.value.id, campo, valor);
+};
+const handleAgregarElemento = () => {
+  const modifiedData = { ...item.value };
+  agregar(modifiedData,tipo.value as string);
+  resetInput();
+  setPristineById(selectedItem.value!, true);
+};
+const getPristineById = (id: string) => {
+  const found = statesID.find((state) => state.id === id);
+  return found ? found.pristine : false;
+};
+// Watcher para manejar cambios en el ID seleccionado
+watch(() => item.value.id, (newId) => {
+  isEditing.value = !newId;
+});
+watch(() => route.params.tipo, (nuevoTipo) => {
+  tipo.value = nuevoTipo;
+});
 </script>
 <template>
    <Card>
@@ -81,28 +138,26 @@ const handleInputChange = (campo:string, event:HTMLElement) => {
             <div class="ml-auto mt-2 p-0">
                 <Button label="Agregar" v-if="isEditing" @click="handleAgregarElemento()"></Button>
                 <div v-else>
-                
-                    <Button 
-                    :disabled="selectedPersona ? getPristineById(selectedPersona) : false" label="Cancelar"
+                  <Button 
+                    :disabled="selectedItem ? getPristineById(selectedItem) : false" label="Cancelar"
                      icon="pi pi-times" severity="secondary" outlined aria-label="Cancel" class="mr-3"
-                     @click="guardarModificaciones(persona.id)"
+                     @click="guardarModificaciones(item.id)"
                      ></Button>        
                     <Button
                         label="Guardar Cambios"
-                        :disabled="selectedPersona ? getPristineById(selectedPersona) : false"
+                        :disabled="selectedItem ? getPristineById(selectedItem) : false"
                         @click="handleModificarElemento()"
                         severity="warning"
-                      ></Button>        </div>
-      
-      
+                      ></Button>
+                </div>
+
             </div>
         </div>
         <pre>
           <span v-for="(id, pristine) in statesID" key="id">
-
-      ID: {{id}}, Pristine: {{ pristine }}
-    </span>
-  </pre>
+            ID: {{id}}, Pristine: {{ pristine }}
+          </span>
+        </pre>
     </template>
 </Card>
 </template>

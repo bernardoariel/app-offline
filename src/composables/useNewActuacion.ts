@@ -55,8 +55,11 @@ const cargarItem = (itemId: string | null) => {
 const { agregarIdState } = useFieldState();
 
 const agregar = (item: AfectadosForm,tipo:string) => {
+    console.log('tipo::: ', tipo);
+    console.log('item::: ', item);
 
     let lista = tipo === 'afectados' ? afectados : vinculados;
+    
     const id = uuid();
    
     lista.value.push({ ...item, id })
@@ -64,6 +67,8 @@ const agregar = (item: AfectadosForm,tipo:string) => {
     agregarIdState(id,{});
     resetInput();
     actualizarEstado(lista.value);
+    
+    
 };
 const editar = (item: AfectadosForm, tipo: string) => {
     let lista = tipo === 'afectados' ? afectados : vinculados;
@@ -86,6 +91,8 @@ const actualizarEstado = (lista: AfectadosForm[]) => {
     // Actualiza el estado aquí, por ejemplo, si estás usando Vue o React
     console.log('actualizado')
     items.value = lista
+    console.log('vinculados::: ', vinculados.value);
+    console.log('afectados::: ', afectados.value);
 };
 
 // Observadores

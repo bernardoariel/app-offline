@@ -10,8 +10,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: SumarioOficio
+      redirect: '/actuacion/sumario-oficio'
     },
     {
       path: '/actuacion/personas',
@@ -19,9 +18,6 @@ const router = createRouter({
       component: FormActuacionVue,
       props: ( route ) => {
         console.log('route::: ', route);
-
-    
-
      }
     },
     {
@@ -30,9 +26,7 @@ const router = createRouter({
       component: ActuacionView,
       props: ( route ) => {
         console.log('route::: ', route);
-
         return  { actuacion: route.params.actuacion }
-
      }
     }
   ]

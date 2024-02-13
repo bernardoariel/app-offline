@@ -17,7 +17,7 @@ const useActuacion = () => {
     const router = useRouter();
   
     const tarjetas = atributosActuacionRef.value.tarjetas || {};
-    const tarjetasKeys: (keyof typeof tarjetas)[] = Object.keys(tarjetas);
+    // const tarjetasKeys: (keyof typeof tarjetas)[] = Object.keys(tarjetas);
     const nuevoItem = ref({
       id: '1200',
       name: 'Nuevo Afectado',
@@ -34,7 +34,7 @@ const useActuacion = () => {
     return {
         atributosActuacion: atributosActuacionRef,
         tarjetas,
-        tarjetasKeys,
+        // tarjetasKeys,
         nuevoItem,
         agregarNuevoItem
     };

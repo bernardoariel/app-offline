@@ -3,8 +3,15 @@ import { ref, watch } from "vue";
 import { v4 as uuid } from 'uuid';
 import useFieldState from "./useFiledsState";
 
+
 const afectados = ref<AfectadosForm[]>([]);
 const vinculados = ref<AfectadosForm[]>([]);
+const fecha = ref<AfectadosForm[]>([]);
+const efectos = ref<AfectadosForm[]>([]);
+const personalInterviniente = ref<AfectadosForm[]>([]);
+
+
+
 const selectedItem = ref<string | null>(null);
 const items = ref<AfectadosForm[]>([]);
 const item = ref({
@@ -94,6 +101,11 @@ const actualizarEstado = (lista: AfectadosForm[]) => {
     console.log('vinculados::: ', vinculados.value);
     console.log('afectados::: ', afectados.value);
 };
+// Dentro de useNewActuacion
+const cargarItemsPorTipo = (tipo: string) => {
+  items.value = tipo === 'afectados' ? afectados.value : vinculados.value;
+};
+
 
 // Observadores
 watch(selectedItem, cargarItem);
@@ -102,6 +114,9 @@ const useNewActuacion = () => {
     return {
       afectados,
       vinculados,
+      fecha,
+      efectos,
+      personalInterviniente,
       item, // persona
       resetInput, // 
       selectedItem, // select persona
@@ -109,6 +124,7 @@ const useNewActuacion = () => {
       agregar,
       editar,
       eliminar,
+      
     };
   };
   

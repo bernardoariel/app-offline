@@ -9,8 +9,7 @@ import { useRouter } from 'vue-router';
 
 import DataViewCard from '@/components/DataViewCard.vue';
 import useActuacion from '@/composables/useActuacion';
-import type { Tarjeta } from '@/interfaces/tipoTarjetas.interface';
-import { ref } from 'vue';
+
 const guardarDatos = async () => {
   try {
     // Aquí puedes realizar las operaciones necesarias para guardar los datos en tu base de datos Dexie.js

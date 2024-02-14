@@ -1,89 +1,64 @@
 <script setup lang="ts">
+//listBoxItems
 import { computed, ref, watch, watchEffect } from "vue";
-import useAfectadosForm from '@/composables/useAfectadosForm';
+
 import { getColorByAfectado } from '@/helpers/getColorByAfectado';
-import { getUpperCase } from "@/helpers/stringUtils";
-import { getTitleCase } from '../helpers/stringUtils';
-import useFieldState from "@/composables/useFiledsState";
+import { getUpperCase, getTitleCase } from "@/helpers/stringUtils";
+import useNewActuacion from "@/composables/useNewActuacion";
+import { useRoute } from "vue-router";
+import type { AfectadosForm } from '../interfaces/afectadosForm.interface';
 
-const { selectedPersona, eliminar,afectados } = useAfectadosForm();
-const { statesID,setPristineById } = useFieldState();
-const statePristineForm = false
+const route = useRoute();
+const tipo  = ref(route.params.tipo);
 
-const items = computed(() => {
-  return [
-    ...afectados.value,
-    // { name: 'Nuevo',code: 'new-item'}
-  ];
+// Usando useNewActuacion en lugar de useAfectadosForm
+const { items, selectedItem, eliminar,afectados, vinculados } = useNewActuacion();
+const statePristineForm = false;
+// Computa los items basados en el tipo de la ruta
+const itemsComputados = computed(() => {
+  return tipo.value === 'afectados' ? afectados.value : vinculados.value;
 });
+// Asumiendo que "afectados" es la lista que quieres mostrar
+// const items = computed(() => afectados.value);
 
-const getPristineById = (id: string) => {
-  const found = statesID.find((state) => state.id === id);
-  return found ? found.pristine : false;
+const eliminarItem = (itemId: AfectadosForm) => {
+  eliminar( itemId , tipo.value as string); // Asumiendo que necesitas especificar el 'tipo'
 };
-const eliminarPersona = (personaId:string) => {
-  eliminar(personaId)
-};
+watch(() => route.params.tipo, (nuevoTipo) => {
+  tipo.value = nuevoTipo;
+  
+});
 
 </script>
 <template>
   <div class="card flex flex-column justify-content-center">
-
-    <!-- Listbox principal -->
     <Listbox
-      v-model="selectedPersona"
-      :options="items"
+      v-model="selectedItem"
+      :options="itemsComputados"
       optionLabel="name" optionValue="id"
       class="w-full listbox-lower">
-    
+      
       <template #option="{ option }">
         <div class="listbox-item fixed-height">
-          <!-- Columna Izquierda -->
           <div class="left-column">
-            <!-- Fila de Texto -->
             <div class="text-row">
               <span class="font-bold">{{ option.apellido ? getUpperCase(option.apellido) + ',' : '' }}</span>
               <span class="ml-2">{{ option.name ? getTitleCase(option.name) : 'Nuevo' }}</span>
-              <span v-if="option.typeDocumento && option.nroDocumento" class="ml-5">
-                <i>{{ option.typeDocumento.name + ': ' }}</i>
-                <i>{{ option.nroDocumento }}</i>
-              </span>
+              <!-- Agregar condicionales según tu modelo de datos -->
             </div>
-            <!-- Fila de Tag -->
             <div class="tag-row">
-              <Tag  v-if="option.code !== 'new-item'" :value="option.typeAfectado.name" :severity="getColorByAfectado(option.typeAfectado.name)" />
+              <Tag :value="option.typeAfectado.name" :severity="getColorByAfectado(option.typeAfectado.name)" />
             </div>
           </div>
-          <!-- Columna Derecha -->
           <div class="right-column">
-            <Button v-if="option.code === 'new-item'" 
-              icon="pi pi-plus" 
-              rounded 
-              aria-label="Agregar" 
-              outlined 
-              severity="primary" />
-          <div class="button-and-dot-container" v-else-if="selectedPersona === option.id">
-            <div v-if="!getPristineById(option.id)" class="uncommited-dot bg-blue-400"></div>
-            <Button icon="pi pi-trash" 
-              severity="danger" 
-              @click="eliminarPersona(option.id)" />
-          </div>
-          <div class="button-and-dot-container" v-else >
-            <div class="uncommited-dot bg-blue-400" v-if="!getPristineById(option.id)"></div>
-            <Button 
-                icon="pi pi-trash" 
-                severity="danger" 
-                disabled 
-            />
-          </div>
-            <!-- <pre>  Estado Actual: {{ statePristineForm ? 'True' : 'False' }}</pre> -->
+            <Button icon="pi pi-trash" severity="danger" @click="eliminarItem(option.id)" />
           </div>
         </div>
       </template>
-    
     </Listbox>
   </div>
 </template>
+
 
 <style scoped>
 .fixed-height {

@@ -4,20 +4,21 @@ import DataView from "primevue/dataview";
 import { getColorByAfectado } from '@/helpers/getColorByAfectado';
 import ButtonOptions from '@/components/ButtonOptions.vue'
 
-import { getComposableForType } from "@/composables/composableFactory";
-import { getTitleCase, getUpperCase } from "@/helpers/stringUtils";
 
-interface Props {
+import { getTitleCase, getUpperCase } from "@/helpers/stringUtils";
+import useNewActuacion from "@/composables/useNewActuacion";
+import { computed } from "vue";
+import type { AfectadosForm } from "@/interfaces/afectadosForm.interface";
+
+const props = defineProps<{
   itemsCardValue: { titulo: string; valor: string[] | null };
   itemKey: string;
-}
+}>();
 
-/* construccion del titulo */
-const {itemsCardValue,itemKey} = defineProps<Props>();
+const { afectados, vinculados,fecha,efectos,personalInterviniente, } = useNewActuacion();
 
-
-const composable = getComposableForType(itemKey);
-const items = composable.items;
+/* const composable = getComposableForType(itemKey);
+const items = composable.items; */
 // console.log('itemCardValue::: ', itemsCardValue);
 
 // let { afectados } = useActuacion( params.actuacion as string  )
@@ -33,10 +34,24 @@ const deleteProduct = (productId:any) => {
 const copyProduct = (productId:any) => {
     // Lógica para copiar el producto con el ID proporcionado
 };
+type MapeoDeItems = Record<string, AfectadosForm[]>;
+  const mapping: MapeoDeItems = {
+  vinculados: vinculados.value,
+  afectados: afectados.value,
+  fecha: fecha.value,
+  efectos: efectos.value,
+  personalInterviniente: personalInterviniente.value,
+};
+const items = computed(() => {
+  if (props.itemKey in mapping) {
+    return mapping[props.itemKey as keyof MapeoDeItems] || [];
+  }
+  return []; // Retorna un array vacío si la clave no existe
+});
 </script>
 
 <template>
-      <div v-if="items && items.length !==0">
+      <div v-if="items && items.length !== 0">
       
       <DataView :value="items" dataKey="id">
         <template #list="slotProps">

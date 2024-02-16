@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { onActivated, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 
 import MyDropdown from '@/components/elementos/MyDropdown.vue';
@@ -67,7 +67,9 @@ watch(() => item.value.id, (newId) => {
 watch(() => route.params.tipo, (nuevoTipo) => {
   tipo.value = nuevoTipo;
 });
-prepararNuevoItem()
+onActivated(() => {
+  prepararNuevoItem();
+});
 </script>
 <template>
    <Card>
@@ -92,7 +94,7 @@ prepararNuevoItem()
             </div>
             <div class="col-6">
                 <label for="dropdown" >Apellido</label>
-                <MyInput 
+               <MyInput 
                     type="text" class="mt-2 uppercase" 
                     :value="getInputValue('apellido')"
                     @input="handleInputChange('apellido', $event)"

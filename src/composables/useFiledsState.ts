@@ -22,19 +22,23 @@ export default function useFieldState() {
     });
    
   };
+
   const setPristineById = (id: string, pristine: boolean) => {
     const index = statesID.findIndex((state) => state.id === id);
     if (index !== -1) {
       statesID[index].pristine = pristine;
     }
   };
+
   const setModifiedData = (id: string, campo: string, valor: any) => {
     const index = statesID.findIndex((state) => state.id === id);
     if (index !== -1) {
       statesID[index].modifiedData[campo] = valor;
     }
   };
+
   const guardarModificaciones = (id: string) => {
+    console.log('id::: ', id);
     
     const index = statesID.findIndex((state) => state.id === id);
   

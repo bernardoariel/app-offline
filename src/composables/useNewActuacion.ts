@@ -74,7 +74,7 @@ const cargarItem = (itemId: string | null) => {
    resetInput();
 };
 // Se define agregarIdState para manejar el estado de los campos
-const { agregarIdState } = useFieldState();
+const { agregarIdState , guardarModificaciones} = useFieldState();
 
 const agregar = (item: AfectadosForm,tipo:string) => {
     console.log('tipo::: ', tipo);
@@ -93,14 +93,17 @@ const agregar = (item: AfectadosForm,tipo:string) => {
     
 };
 const editar = (item: AfectadosForm, tipo: string) => {
+  console.log('item::: ', item);
     let lista = tipo === 'afectados' ? afectados : vinculados;
     const index = lista.value.findIndex(p => p.id === item.id);
     if (index !== -1) lista.value[index] = { ...item };
     // Suponiendo que necesites actualizar el estado después de editar
     actualizarEstado(lista.value);
+    guardarModificaciones(item.id)
 };
 
 const eliminar = (item: AfectadosForm, tipo: string) => {
+  console.log('item::: ', item);
     let lista = tipo === 'afectados' ? afectados : vinculados;
     const index = lista.value.findIndex(p => p.id === item.id);
     if (index !== -1) lista.value.splice(index, 1);
@@ -110,11 +113,9 @@ const eliminar = (item: AfectadosForm, tipo: string) => {
 
 // Función para actualizar el estado (ejemplo, ajusta según tu caso)
 const actualizarEstado = (lista: AfectadosForm[]) => {
-    // Actualiza el estado aquí, por ejemplo, si estás usando Vue o React
-    console.log('actualizado')
+   
     items.value = lista
-    console.log('vinculados::: ', vinculados.value);
-    console.log('afectados::: ', afectados.value);
+    
 };
 // Dentro de useNewActuacion
 const cargarItemsPorTipo = (tipo: string) => {

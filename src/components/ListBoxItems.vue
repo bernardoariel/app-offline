@@ -7,12 +7,14 @@ import { getUpperCase, getTitleCase } from "@/helpers/stringUtils";
 import useNewActuacion from "@/composables/useNewActuacion";
 import { useRoute } from "vue-router";
 import type { AfectadosForm } from '../interfaces/afectadosForm.interface';
+import useFieldState from "@/composables/useFiledsState";
 
 const route = useRoute();
 const tipo  = ref(route.params.tipo);
 
 // Usando useNewActuacion en lugar de useAfectadosForm
 const { items, selectedItem, eliminar,afectados, vinculados } = useNewActuacion();
+const { statesID,setPristineById } = useFieldState();
 const statePristineForm = false;
 // Computa los items basados en el tipo de la ruta
 const itemsComputados = computed(() => {
@@ -20,7 +22,10 @@ const itemsComputados = computed(() => {
 });
 // Asumiendo que "afectados" es la lista que quieres mostrar
 // const items = computed(() => afectados.value);
-
+const getPristineById = (id: string) => {
+  const found = statesID.find((state) => state.id === id);
+  return found ? found.pristine : false;
+};
 const eliminarItem = (itemId: AfectadosForm) => {
   eliminar( itemId , tipo.value as string); // Asumiendo que necesitas especificar el 'tipo'
 };
@@ -44,14 +49,37 @@ watch(() => route.params.tipo, (nuevoTipo) => {
             <div class="text-row">
               <span class="font-bold">{{ option.apellido ? getUpperCase(option.apellido) + ',' : '' }}</span>
               <span class="ml-2">{{ option.name ? getTitleCase(option.name) : 'Nuevo' }}</span>
-              <!-- Agregar condicionales según tu modelo de datos -->
+              <span v-if="option.typeDocumento && option.nroDocumento" class="ml-5">
+                <i>{{ option.typeDocumento.name + ': ' }}</i>
+                <i>{{ option.nroDocumento }}</i>
+              </span>
             </div>
             <div class="tag-row">
               <Tag :value="option.typeAfectado.name" :severity="getColorByAfectado(option.typeAfectado.name)" />
             </div>
           </div>
           <div class="right-column">
-            <Button icon="pi pi-trash" severity="danger" @click="eliminarItem(option.id)" />
+            <!-- <Button icon="pi pi-trash" severity="danger" @click="eliminarItem(option.id)" /> -->
+            <Button v-if="option.code === 'new-item'" 
+              icon="pi pi-plus" 
+              rounded 
+              aria-label="Agregar" 
+              outlined 
+              severity="primary" />
+          <div class="button-and-dot-container" v-else-if="selectedItem === option.id">
+            <div v-if="!getPristineById(option.id)" class="uncommited-dot bg-blue-400"></div>
+            <Button icon="pi pi-trash" 
+              severity="danger" 
+              @click="eliminarItem(option.id)" />
+          </div>
+          <div class="button-and-dot-container" v-else >
+            <div class="uncommited-dot bg-blue-400" v-if="!getPristineById(option.id)"></div>
+            <Button 
+                icon="pi pi-trash" 
+                severity="danger" 
+                disabled 
+            />
+          </div>
           </div>
         </div>
       </template>

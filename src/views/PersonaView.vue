@@ -10,7 +10,7 @@ import useFieldState from '@/composables/useFiledsState';
 import useNewActuacion from '@/composables/useNewActuacion';
 import { afectadosDropdown,documentosDropdown,sexoDropdown,nacionalidadDropdown,estadoCivilDropdown,instruccionDropdown } from '@/helpers/getDropItems';
 
-const { item ,selectedItem ,editar, agregar, resetInput } = useNewActuacion()
+const { item ,selectedItem ,editar, agregar, resetInput, prepararNuevoItem } = useNewActuacion()
 const { statesID, setPristineById, setModifiedData, guardarModificaciones } = useFieldState();
 
 const isEditing = ref(!item.value.id);
@@ -67,6 +67,7 @@ watch(() => item.value.id, (newId) => {
 watch(() => route.params.tipo, (nuevoTipo) => {
   tipo.value = nuevoTipo;
 });
+prepararNuevoItem()
 </script>
 <template>
    <Card>

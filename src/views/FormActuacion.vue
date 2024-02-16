@@ -4,37 +4,40 @@ import PersonaView from './PersonaView.vue';
 import ListBoxItems from '@/components/ListBoxItems.vue';
 
 import useAfectadosForm from '@/composables/useAfectadosForm';
+import useNewActuacion from '@/composables/useNewActuacion';
 import useVinculadosForm from '@/composables/useVinculadosForm';
 import { computed, ref, watch } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 
-interface ComposablesMap {
+const {prepararNuevoItem} = useNewActuacion()
+/* interface ComposablesMap {
   afectados: () => ReturnType<typeof useAfectadosForm>;
   vinculados: () => ReturnType<typeof useVinculadosForm>;
   // Añade aquí el resto de tus composables
 }
-
-const composablesMap: ComposablesMap = {
+ */
+/* const composablesMap: ComposablesMap = {
   afectados: useAfectadosForm,
   vinculados: useVinculadosForm,
   // Inicializa el resto de tus composables aquí
 };
-
+ */
 const route = useRoute();
 const router = useRouter()
 const tipo = ref(route.params.tipo);
 
 // Usando un método computado para acceder de forma segura a los composables
-const composableDinamico = computed(() => {
+/* const composableDinamico = computed(() => {
   // Verifica que la clave existe en composablesMap antes de acceder a ella
   const composableFunc = composablesMap[tipo.value as keyof ComposablesMap];
   return composableFunc ? composableFunc() : undefined;
 });
-
+ */
 const handleNuevoItem = () => {
-  if (composableDinamico.value && 'selectedPersona' in composableDinamico.value) {
+  /* if (composableDinamico.value && 'selectedPersona' in composableDinamico.value) {
     composableDinamico.value.selectedPersona.value = null;
-  }
+  } */
+  prepararNuevoItem();
 };
 const handleVolver = () => {
     router.go(-1); // Navega hacia atrás en el historial

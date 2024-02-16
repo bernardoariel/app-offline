@@ -50,6 +50,11 @@ const resetInput = () => {
       instruccion: ''
     };
 };
+const prepararNuevoItem = () => {
+  selectedItem.value = null ;
+  // Restablecer cualquier otro estado relevante para un nuevo ítem
+  resetInput();
+};
 const cargarItem = (itemId: string | null) => {
     
   if (!itemId) {
@@ -129,12 +134,12 @@ const useNewActuacion = () => {
       personalInterviniente,
       item, // persona
       resetInput, // 
-      selectedItem, // select persona
       items, // Asumiendo que items es una referencia a afectados
       agregar,
       editar,
       eliminar,
-      
+      selectedItem,
+      prepararNuevoItem
     };
   };
   

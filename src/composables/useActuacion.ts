@@ -26,6 +26,8 @@ const useActuacion = () => {
     });
 
     const agregarNuevoItem = (key: string) => {
+      console.log('key::: ', key);
+      
       /* const composable = getComposableForType(key);
       composable.agregar(nuevoItem.value); */
        router.push({ name: 'persona', params: { tipo: key } });

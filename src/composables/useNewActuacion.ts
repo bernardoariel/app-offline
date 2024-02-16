@@ -51,12 +51,22 @@ const resetInput = () => {
     };
 };
 const cargarItem = (itemId: string | null) => {
-    if (itemId) {
-      const found = afectados.value.find(item => item.id === itemId);
-      if (found) item.value = found;
-    } else {
+    
+  if (!itemId) {
       resetInput();
+      return;
+  }
+  const listas = [afectados, vinculados, fecha, efectos, personalInterviniente];
+
+  for (const lista of listas) {
+    const found = lista.value.find(item => item.id === itemId);
+    if (found) {
+        item.value = found;
+        return; // Detener la búsqueda una vez encontrado el ítem
     }
+  }
+   // Si el ítem no se encuentra en ninguna lista, opcionalmente puedes resetear item.value
+   resetInput();
 };
 // Se define agregarIdState para manejar el estado de los campos
 const { agregarIdState } = useFieldState();

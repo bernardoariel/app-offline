@@ -15,11 +15,13 @@ const { statesID, setPristineById, setModifiedData, guardarModificaciones } = us
 
 const isEditing = ref(!item.value.id);
 const route = useRoute();
-const tipo  = ref(route.params.tipo);
+const tipo = ref(route.params.tipo);
 
 const getInputValue = (campo: string) => {
   if (campo in item.value) {
+
     const modifiedData = statesID.find((state) => state.id === selectedItem.value)?.modifiedData;
+
     return modifiedData && modifiedData[campo] !== undefined ? modifiedData[campo] : item.value[campo];
   } else {
     console.error(`Campo "${campo}" no es una propiedad válida en AfectadosForm.`);
@@ -29,17 +31,21 @@ const getInputValue = (campo: string) => {
 const handleBlur = (campo: string) => {
   const valor = getInputValue(campo);
   // Guarda las modificaciones al perder el foco
-//   guardarModificaciones(selectedPersona.value!);
-  // También puedes usar el valor del campo si lo necesitas
+
   console.log(`Campo: ${campo}, Valor: ${valor}`);
-  // Llama a la función setModifiedData
+
   setModifiedData(selectedItem.value!, campo, valor);
 };
 
 const handleModificarElemento = () => {
-  editar(item.value!,tipo.value as string);
-  // guardarModificaciones(selectedItem.value!);
+  let itemStateEncontrado = guardarModificaciones(selectedItem.value!);
+  let itemAEditar = {
+      ...item.value,
+      ...itemStateEncontrado
+    };
+  editar(itemAEditar,tipo.value as string);
 };
+type TipoLista = 'afectados' | 'vinculados' | 'fecha' | 'efectos' | 'personalInterviniente';
 const handleInputChange = (campo: string, event: Event) => {
   const valor = (event.target as HTMLInputElement).value;
   item.value = { ...item.value, [campo]: valor };
@@ -52,7 +58,7 @@ const handleInputChange = (campo: string, event: Event) => {
 };
 const handleAgregarElemento = () => {
   const modifiedData = { ...item.value };
-  agregar(modifiedData,tipo.value as string);
+  agregar(modifiedData,tipo.value as TipoLista);
   resetInput();
   setPristineById(selectedItem.value!, true);
 };
@@ -99,7 +105,8 @@ onActivated(() => {
                     :value="getInputValue('apellido')"
                     @input="handleInputChange('apellido', $event)"
                     @blur="() => handleBlur('apellido')"
-                  />
+                />
+                
             </div>
             <div class="col-6">
                 <label for="dropdown" >Nombre</label>

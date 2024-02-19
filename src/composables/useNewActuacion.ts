@@ -10,7 +10,7 @@ const fecha = ref<AfectadosForm[]>([]);
 const efectos = ref<AfectadosForm[]>([]);
 const personalInterviniente = ref<AfectadosForm[]>([]);
 
-
+type TipoLista = 'afectados' | 'vinculados' | 'fecha' | 'efectos' | 'personalInterviniente';
 
 const selectedItem = ref<string | null>(null);
 const items = ref<AfectadosForm[]>([]);
@@ -74,41 +74,61 @@ const cargarItem = (itemId: string | null) => {
    resetInput();
 };
 // Se define agregarIdState para manejar el estado de los campos
-const { agregarIdState , guardarModificaciones} = useFieldState();
+const { agregarIdState, setPristineById, setModifiedData, guardarModificaciones } = useFieldState();
 
-const agregar = (item: AfectadosForm,tipo:string) => {
-    console.log('tipo::: ', tipo);
-    console.log('item::: ', item);
 
-    let lista = tipo === 'afectados' ? afectados : vinculados;
-    
-    const id = uuid();
-   
-    lista.value.push({ ...item, id })
-    
-    agregarIdState(id,{});
-    resetInput();
-    actualizarEstado(lista.value);
-    
+const agregar = (item: AfectadosForm,tipo:TipoLista) => {
+
+  const listas = {
+    afectados: afectados,
+    vinculados: vinculados,
+    fecha: fecha,
+    efectos: efectos,
+    personalInterviniente: personalInterviniente,
+  };
+  
+  if (!listas[tipo]) {
+    console.error(`El tipo "${tipo}" no corresponde a una lista válida.`);
+    return;
+  }
+   // Accede a la lista correcta usando el tipo
+  const lista = listas[tipo];
+
+  // Genera un nuevo ID para el ítem
+  const id = uuid();
+  
+  // Agrega el nuevo ítem a la lista
+  lista.value.push({ ...item, id });
+  
+  // Agrega el estado del ítem
+  agregarIdState(id, {});
+
+  // Resetea el input si es necesario
+  resetInput();
+
+  // Actualiza el estado general o la UI si es necesario
+  // (esta función debe ser definida por ti)
+  actualizarEstado(lista.value);
     
 };
+
 const editar = (item: AfectadosForm, tipo: string) => {
-  console.log('item::: ', item);
-    let lista = tipo === 'afectados' ? afectados : vinculados;
-    const index = lista.value.findIndex(p => p.id === item.id);
-    if (index !== -1) lista.value[index] = { ...item };
-    // Suponiendo que necesites actualizar el estado después de editar
-    actualizarEstado(lista.value);
-    guardarModificaciones(item.id)
+ 
+  let lista = tipo === 'afectados' ? afectados : vinculados;
+  const index = lista.value.findIndex(p => p.id === item.id);
+  if (index !== -1) lista.value[index] = { ...item };
+  // Suponiendo que necesites actualizar el estado después de editar
+  actualizarEstado(lista.value)
+  guardarModificaciones(item.id)
 };
 
 const eliminar = (item: AfectadosForm, tipo: string) => {
-  console.log('item::: ', item);
-    let lista = tipo === 'afectados' ? afectados : vinculados;
-    const index = lista.value.findIndex(p => p.id === item.id);
-    if (index !== -1) lista.value.splice(index, 1);
-    // Suponiendo que necesites actualizar el estado después de eliminar
-    actualizarEstado(lista.value);
+  
+  let lista = tipo === 'afectados' ? afectados : vinculados;
+  const index = lista.value.findIndex(p => p.id === item.id);
+  if (index !== -1) lista.value.splice(index, 1);
+  // Suponiendo que necesites actualizar el estado después de eliminar
+  actualizarEstado(lista.value);
 };
 
 // Función para actualizar el estado (ejemplo, ajusta según tu caso)
@@ -125,7 +145,6 @@ const cargarItemsPorTipo = (tipo: string) => {
 
 // Observadores
 watch(selectedItem, cargarItem);
-
 const useNewActuacion = () => {
     return {
       afectados,

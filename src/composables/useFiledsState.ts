@@ -1,4 +1,4 @@
-import { reactive, toRefs } from 'vue';
+import { reactive } from 'vue';
 
 interface FieldState {
   id: string;
@@ -8,13 +8,12 @@ interface FieldState {
 
 const statesID =reactive<FieldState[]>([])
 
-
 export default function useFieldState() {
  
   const agregarIdState = (id: string,data: Record<string, any>) => {
     
-    // console.log('id::: ', id);
     if(!id) return
+
     statesID.push({
       id: id,
       modifiedData: { ...data },
@@ -31,6 +30,9 @@ export default function useFieldState() {
   };
 
   const setModifiedData = (id: string, campo: string, valor: any) => {
+
+    if (!id ) return
+
     const index = statesID.findIndex((state) => state.id === id);
     if (index !== -1) {
       statesID[index].modifiedData[campo] = valor;
@@ -38,21 +40,18 @@ export default function useFieldState() {
   };
 
   const guardarModificaciones = (id: string) => {
-    console.log('id::: ', id);
-    
     const index = statesID.findIndex((state) => state.id === id);
-  
     if (index !== -1) {
-      // Aplica las modificaciones a los afectados
-      // statesID[index].modifiedData contiene los cambios realizados
-      // Implementa la lógica para guardar los cambios en tu array de afectados
+      const modifiedData = statesID[index].modifiedData;
   
-      // Limpia modifiedData después de guardar
+      // Opcional: Limpia modifiedData después de "guardar"
       statesID[index].modifiedData = {};
-  
-      // Actualiza el estado pristine a true después de guardar
       statesID[index].pristine = true;
+  
+      // Devuelve los datos modificados
+      return modifiedData;
     }
+    return null; // Devuelve null si no se encuentra el ítem
   };
   return {
     statesID,

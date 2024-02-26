@@ -15,7 +15,6 @@ import Textarea from 'primevue/textarea';
 import Listbox from 'primevue/listbox';
 import Toolbar from 'primevue/toolbar';
 
-
 import App from './App.vue'
 import router from './router'
 
@@ -25,8 +24,10 @@ import 'primeicons/primeicons.css';
 const app = createApp(App)
 
 app.use(createPinia())
-app.use(router)
 app.use(PrimeVue)
+app.use(router)
+
+
 app.component('Button', Button);
 app.component('Card', Card);
 app.component('DataView', DataView);
@@ -37,6 +38,7 @@ app.component('InputText', InputText);
 app.component('Textarea', Textarea);
 app.component('Listbox', Listbox);
 app.component('Toolbar', Toolbar);
+
 
 
 

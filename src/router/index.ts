@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import SumarioOficio from '@/views/SumarioOficio.vue'
 import ActuacionView from '@/views/ActucionView.vue'
-import PersonaView from '@/views/PersonaView.vue'
 import FormActuacionVue from '@/views/FormActuacion.vue'
-// import ButtonOptions from '@/components/ButtonOptions.vue'
+
+import isSavedChanges from '@/guards/isSavedChanges';
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -29,5 +29,10 @@ const router = createRouter({
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+ 
+  isSavedChanges(to, from, next); // Llamada al guard isSavedChanges en cada navegación
+});
 
 export default router

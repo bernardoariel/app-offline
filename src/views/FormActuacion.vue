@@ -10,6 +10,7 @@ import { computed, ref, watch } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import PersonalInterviniente from './PersonalInterviniente.vue';
 import EfectosView from './EfectosView.vue';
+import FechaUbicacionView from './FechaUbicacionView.vue';
 
 const {prepararNuevoItem} = useNewActuacion()
 /* interface ComposablesMap {
@@ -75,7 +76,8 @@ watch(() => route.params.tipo, (newTipo) => {
         <div class="col">
             <!-- <PersonaView /> -->
             <!-- <PersonalInterviniente/> -->
-            <EfectosView/>
+            <!-- <EfectosView /> -->
+            <FechaUbicacionView />
         </div>
     </div>
 </template>

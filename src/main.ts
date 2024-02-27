@@ -14,6 +14,7 @@ import InputText from 'primevue/inputtext';
 import Textarea from 'primevue/textarea';
 import Listbox from 'primevue/listbox';
 import Toolbar from 'primevue/toolbar';
+import Calendar from 'primevue/calendar';
 
 import App from './App.vue'
 import router from './router'
@@ -38,9 +39,7 @@ app.component('InputText', InputText);
 app.component('Textarea', Textarea);
 app.component('Listbox', Listbox);
 app.component('Toolbar', Toolbar);
-
-
-
+app.component('Calendar', Calendar);
 
 /* const db = new Dexie('my_database');
 db.version(1).stores({

@@ -21,7 +21,6 @@ const getInputValue = (campo: string) => {
   if (campo in item.value) {
 
     const modifiedData = statesID.find((state) => state.id === selectedItem.value)?.modifiedData;
-
     return modifiedData && modifiedData[campo] !== undefined ? modifiedData[campo] : item.value[campo];
   } else {
     console.error(`Campo "${campo}" no es una propiedad válida en AfectadosForm.`);

@@ -8,6 +8,8 @@ import useNewActuacion from '@/composables/useNewActuacion';
 import useVinculadosForm from '@/composables/useVinculadosForm';
 import { computed, ref, watch } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
+import PersonalInterviniente from './PersonalInterviniente.vue';
+import EfectosView from './EfectosView.vue';
 
 const {prepararNuevoItem} = useNewActuacion()
 /* interface ComposablesMap {
@@ -71,7 +73,9 @@ watch(() => route.params.tipo, (newTipo) => {
             <ListBoxItems />
         </div>
         <div class="col">
-            <PersonaView />
+            <!-- <PersonaView /> -->
+            <!-- <PersonalInterviniente/> -->
+            <EfectosView/>
         </div>
     </div>
 </template>

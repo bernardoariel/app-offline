@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import useAfectados from "@/composables/useAfectados";
+
 import { ref, watch } from "vue";
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
 } 
 
 const { item, tarjetaNombre } = defineProps<Props>();
-const { eliminar } = useAfectados();
+
 
 const menu = ref();
 const items = ref([
@@ -32,7 +32,8 @@ const items = ref([
 ]);
 
 const eliminarItem = (id: string) => {
-  eliminar(id);
+  console.log('id::: ', id);
+  
   
 };
 

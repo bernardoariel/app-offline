@@ -1,32 +1,30 @@
 
-import type { RespCard } from "@/interfaces/RespCard.interface";
-import { ref } from "vue"
+import { ref, } from "vue"
 
-let data_api = [
-    {
-        id: '1000',
-        name: 'Entre 18/1/2024 20:21 y 18/1/2024 20:21',
-        description: 'las heras 155 sin numero, 25 DE MAYO',
-        type: 'Sin Ubicacion '
-      
-    },
-]
-let fecha = ref<RespCard[]>(data_api);
-const agregarFecha = (nuevoAfectado: RespCard) => {
+
+let fechaUbicacion = ref();
+
+const useAfectados = () => {
     
-    fecha.value =[]
-    fecha.value.push(nuevoAfectado);
-   
+    const agregarFechaUbicacion = (fechaUbicacion: any) => {
+    
+    };
+    const editarFechaUbicacion = (fechaUbicacion: any) => {
+    
+    };
+    const eliminarFechaUbicacion = (id: string) => {
+       
+        fechaUbicacion.value = fechaUbicacion.value.filter((item:any) => item.id !== id);
+    };
+       
+    return {
+        fechaUbicacion,
+        agregar: agregarFechaUbicacion,
+        eliminar: eliminarFechaUbicacion,
+        editar: editarFechaUbicacion,
+    };
 };
-const useFecha = () =>{
 
+export default useAfectados;
+  
 
-    
-    return{
-        fecha,
-        items: fecha,
-        agregar: agregarFecha,
-    }
-}
-
-export default useFecha

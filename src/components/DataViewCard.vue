@@ -92,7 +92,7 @@ const items = computed(() => {
       </DataView>
     </div>
       <div v-else class="flex justify-content-end">
-      <span class="text-right">No existen  nadda</span>
+      <span class="text-right">Sin Registros</span>
       </div>
     
 </template>

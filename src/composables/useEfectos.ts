@@ -1,44 +1,32 @@
-import type { RespCard } from "@/interfaces/RespCard.interface"
-import { ref, } from "vue"
+import { ref } from "vue"
+let efectos = ref();
 
-let data_api = [
-    {
-        id: '1000',
-        name: 'Cuatriciclo Honda',
-        description: '',
-        type: 'Recuperado'
-      
-    },
-    {
-        id: '1100',
-        name: 'Fiat Palio',
-        description: 'dddd1133',
-        type: 'Denunciado'
-      
-    },
-    {
-        id: '1100',
-        name: 'Arma Blanca',
-        description: 'filosa',
-        type: 'Secuestrado'
-      
-    },
-   
-]
-let efectos = ref<RespCard[]>(data_api);
-const agregarEfectos = (nuevoAfectado: RespCard) => {
-  efectos.value.push(nuevoAfectado);
-};
 const useEfectos = () => {
+    
+    const agregarEfecto = (efecto: any) => {
+    
+    };
+    const editarEfecto = (efecto: any) => {
+    
+    };
+    const eliminarEfecto = (id: string) => {
+       
+      efectos.value = efectos.value.filter((efecto:any) => efecto.id !== id);
+    };
+    const selecccionarEfecto = (id: string) => {
+       
+    };    
 
-  return {
-    efectos,
-    items: efectos,
-    agregar: agregarEfectos,
-  };
+    return {
+        efectos,
+        items: efectos,
+        agregar: agregarEfecto,
+        eliminar: eliminarEfecto,
+        editar: editarEfecto,
+        seleccionar:selecccionarEfecto
+    };
 };
 
 export default useEfectos;
   
-
 

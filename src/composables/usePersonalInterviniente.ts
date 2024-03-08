@@ -1,9 +1,10 @@
 import type { PersonalInterviniente, PersonalIntervinienteForm } from "@/interfaces/personalInterviniente";
 import { ref } from "vue"
+import type { DropDownInterface } from '../interfaces/dropdown.interface';
 
 const  intervinientes = ref<PersonalInterviniente[]>([]);
-const selectedJerarquiaDrop = ref()
-const selectedDependenciaDrop = ref()
+const selectedJerarquiaDrop:DropDownInterface = ref()
+const selectedDependenciaDrop:DropDownInterface = ref()
 
 const initialValues: PersonalIntervinienteForm = {
   apellido: '',

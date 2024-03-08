@@ -4,52 +4,32 @@ import { ref } from 'vue';
 import MyInput from '@/components/elementos/MyInput.vue';
 import MyDropdown from '@/components/elementos/MyDropdown.vue';
 
+import useNewActuacion from '@/composables/useNewActuacion';
+import type { FechaUbicacion } from '@/interfaces/fecha.interface';
+
 import { municipiosDropdown } from '@/helpers/getDropItems';
-import type { FechaUbicacionForm, FechaUbicacion } from '../interfaces/fecha.interface';
-import useFecha from '@/composables/useFecha';
+
+
+const fechaUbicacion = ref<FechaUbicacion>({
+  desdeFechaHora: new Date(),
+  hastaFechaHora: new Date(),
+  calle: '',
+  numero: '',
+  departamento: '',
+  ubicacion: ''
+});
+const { fecha } = useNewActuacion();
+
+
 interface CalendarComponent {
   overlayVisible?: boolean;
   value: Date;
 }
-const {initialValues,agregar,fechaUbicacion,selectedMunicipioDrop} = useFecha()
-
-const formData = ref<FechaUbicacionForm>({...initialValues.value});
-  const desdeFechaHoraRef = ref<CalendarComponent | null>(null);
+const desdeFechaHoraRef = ref<CalendarComponent | null>(null);
 const hastaFechaHoraRef = ref<CalendarComponent | null>(null);
-const getInputValue = (campo: keyof FechaUbicacionForm) => {
-  return formData.value[campo];
-};
-const handleInputChange = (campo: keyof FechaUbicacionForm, event: Event) => {
-  const value = (event.target as HTMLInputElement).value;
-
-  // Verificar si el campo es 'jerarquia' o 'dependencia'
- if (campo === 'departamento') {
-    // Asegurarse de que formData.value[campo] sea del tipo adecuado
-    const field = formData.value[campo] as { name: string };
-    field.name = value;
-   } else {
-    // Si no es 'jerarquia' ni 'dependencia', asignar directamente el valor
-    formData.value[campo] = value;
-  } 
-};
-
-const handleBlur = (campo: string) => {
-  // Aquí podrías hacer algo adicional si lo necesitas
-};
-
-const handleAgregarElemento = () => {
-
-    const nuevoItem: FechaUbicacion = {
-      desdeFechaHora: formData.value.desdeFechaHora,
-      hastaFechaHora: formData.value.hastaFechaHora,
-      calle: formData.value.calle,
-      numero: formData.value.numero,
-      departamento: selectedMunicipioDrop.value.name
-    };
-
-    agregar(nuevoItem)
-
-};
+const agregarFechaUbicacion = ()=>{
+  console.log('agregando fecha')
+}
 function closeCalendar(calendarRef: CalendarComponent | null) {
   if (calendarRef && 'overlayVisible' in calendarRef) {
     calendarRef.overlayVisible = false;
@@ -57,18 +37,20 @@ function closeCalendar(calendarRef: CalendarComponent | null) {
 }
 
 function setToNow(nameInput: 'desdeFechaHora' | 'hastaFechaHora') {
-  formData.value[nameInput] = new Date();
+  fechaUbicacion.value[nameInput] = new Date();
 }
+const time = ref();
+
 </script>
 <template>
     <Card>
         <template #content>
-          <div class="grid">
+          <div class="grid" v-if="fechaUbicacion">
             <div class="col-6">
               <label for="desdeFechaHoraRef">Desde</label>
                 <Calendar 
                   ref="desdeFechaHoraRef"
-                  v-model="formData.desdeFechaHora" 
+                  v-model="fechaUbicacion.desdeFechaHora" 
                   :manualInput="false" 
                   showTime 
                   showIcon>
@@ -99,7 +81,7 @@ function setToNow(nameInput: 'desdeFechaHora' | 'hastaFechaHora') {
                 <label for="hastaFechaHoraRef">Hasta</label>
                 <Calendar 
                   ref="hastaFechaHoraRef"
-                  v-model="formData.hastaFechaHora" 
+                  v-model="fechaUbicacion.hastaFechaHora" 
                   :manualInput="false" 
                   showTime 
                   showIcon>
@@ -132,32 +114,28 @@ function setToNow(nameInput: 'desdeFechaHora' | 'hastaFechaHora') {
                 </div>
                 <div class="col-4">
                 <label for="calle">Calle</label>
-                <MyInput type="text" class="mt-2" v-model="formData.calle" />
+                <MyInput type="text" class="mt-2" v-model="fechaUbicacion.calle" />
                 </div>
                 <div class="col-4">
                 <label for="numero">Número</label>
-                <MyInput type="text" class="mt-2" v-model="formData.numero" />
+                <MyInput type="text" class="mt-2" v-model="fechaUbicacion.numero" />
                 </div>
                 <div class="col-4">
                 <label for="departamento">Departamento</label>
 
-                <MyDropdown
-                  class="mt-2"
-                  :items="municipiosDropdown"
-                  v-model="selectedMunicipioDrop"
-                  placeholder="Seleccione un departamento" />
+                <MyDropdown class="mt-2" :items="municipiosDropdown" v-model="fechaUbicacion.departamento" placeholder="Seleccione un departamento" />
                 
               </div>
                 <!-- Botones para acciones -->
                 <div class="ml-auto mt-2 p-0">
-                  <Button label="Agregar"  @click="handleAgregarElemento()"></Button>
+                  <Button label="Agregar"  @click="agregarFechaUbicacion()"></Button>
                 <!-- Botón para agregar o editar elementos -->
                 <!-- <Button label="Agregar" v-if="isEditing" @click="handleAgregarElemento"></Button>
                 <Button label="Guardar Cambios" v-else @click="handleModificarElemento"></Button> -->
                 </div>
             </div>
         </template>
-    </Card>
+        </Card>
 </template>
 
   

@@ -1,152 +1,137 @@
 <script setup lang="ts">
-import { onActivated, ref, watch } from 'vue';
-import { useRoute } from 'vue-router';
-
+import { ref } from 'vue';
 import MyDropdown from '@/components/elementos/MyDropdown.vue';
+
+import { afectadosDropdown, documentosDropdown, estadoCivilDropdown, instruccionDropdown, nacionalidadDropdown, sexoDropdown } from '@/helpers/getDropItems';
+
+import useVinculados from '@/composables/useVinculados';
+import type { Vinculados, VinculadosForm } from '@/interfaces/vinculado.interface';
 import MyInput from '@/components/elementos/MyInput.vue';
 import MyTextArea from '@/components/elementos/MyTextArea.vue';
+import { Afectados } from '../interfaces/afectado.interface';
 
-import useFieldState from '@/composables/useFiledsState';
-import useNewActuacion from '@/composables/useNewActuacion';
-import { afectadosDropdown,documentosDropdown,sexoDropdown,nacionalidadDropdown,estadoCivilDropdown,instruccionDropdown } from '@/helpers/getDropItems';
 
-const { item ,selectedItem ,editar, agregar, resetInput, prepararNuevoItem } = useNewActuacion()
-const { statesID, setPristineById, setModifiedData, guardarModificaciones } = useFieldState();
+const { 
+  vinculados,
+  agregar, 
+  efectos, 
+  initialValues,
+  selectedType,
+  selectedDocumento,
+  selectedSexo,
+  selectedNacionalidad,
+  selectedEstadoCivil,
+  selectedInstruccion } = useVinculados()
 
-const isEditing = ref(!item.value.id);
-const route = useRoute();
-const tipo = ref(route.params.tipo);
+const formData = ref<VinculadosForm>({ ...initialValues.value });
 
-const getInputValue = (campo: string) => {
-  if (campo in item.value) {
-
-    const modifiedData = statesID.find((state) => state.id === selectedItem.value)?.modifiedData;
-    return modifiedData && modifiedData[campo] !== undefined ? modifiedData[campo] : item.value[campo];
-  } else {
-    console.error(`Campo "${campo}" no es una propiedad válida en AfectadosForm.`);
-    return null; // O cualquier otro valor por defecto que desees devolver en este caso
-  }
+const getInputValue = (campo: keyof VinculadosForm) => {
+  return formData.value[campo];
 };
+const handleInputChange = (campo: keyof VinculadosForm, event: Event) => {
+  const value = (event.target as HTMLInputElement).value;
+  const field = formData.value[campo] as { name: string };
+  field.name = value;
+};
+
 const handleBlur = (campo: string) => {
-  const valor = getInputValue(campo);
-  // Guarda las modificaciones al perder el foco
-
-  console.log(`Campo: ${campo}, Valor: ${valor}`);
-
-  setModifiedData(selectedItem.value!, campo, valor);
+  // Aquí podrías hacer algo adicional si lo necesitas
 };
 
-const handleModificarElemento = () => {
-  let itemStateEncontrado = guardarModificaciones(selectedItem.value!);
-  let itemAEditar = {
-      ...item.value,
-      ...itemStateEncontrado
-    };
-  editar(itemAEditar,tipo.value as string);
-};
-type TipoLista = 'afectados' | 'vinculados' | 'fecha' | 'efectos' | 'personalInterviniente';
-const handleInputChange = (campo: string, event: Event) => {
-  const valor = (event.target as HTMLInputElement).value;
-  item.value = { ...item.value, [campo]: valor };
-
-  // Actualiza el estado pristine para el ID específico
-  setPristineById(item.value.id, false);
-
-  // Llama a la función setModifiedData
-  setModifiedData(item.value.id, campo, valor);
-};
 const handleAgregarElemento = () => {
-  const modifiedData = { ...item.value };
-  agregar(modifiedData,tipo.value as TipoLista);
-  resetInput();
-  setPristineById(selectedItem.value!, true);
+
+    const nuevoItem: Vinculados = {
+        apodo: formData.value.apodo,
+        nroDocumento: formData.value.nroDocumento,
+        apellido: formData.value.apellido,
+        name: formData.value.name,
+        fecha: formData.value.fecha,
+        domicilioResidencia: formData.value.domicilioResidencia,
+        telefono: formData.value.telefono,
+        profesion: formData.value.profesion,
+        typeAfectado: selectedType.value.name,
+        typeDocumento: selectedDocumento.value.name,
+        typeSexo: selectedSexo.value.name,
+        nacionalidad: selectedNacionalidad.value.name ,
+        estadoCivil: selectedEstadoCivil.value.name,
+        instruccion: selectedInstruccion.value.name
+    };
+
+    agregar(nuevoItem)
+
 };
-const getPristineById = (id: string) => {
-  const found = statesID.find((state) => state.id === id);
-  return found ? found.pristine : false;
-};
-// Watcher para manejar cambios en el ID seleccionado
-watch(() => item.value.id, (newId) => {
-  isEditing.value = !newId;
-});
-watch(() => route.params.tipo, (nuevoTipo) => {
-  tipo.value = nuevoTipo;
-});
-onActivated(() => {
-  prepararNuevoItem();
-});
+
 </script>
 <template>
    <Card>
     <!-- <template #title> Afectados </template> -->
     <template #content>
-        <div class="grid">
+      <div class="grid">
             <div class="col-12">
                <label for="dropdown" >Seleccione tipo de Denunciante</label>
-               <MyDropdown class="mt-2" :items="afectadosDropdown" v-model="item.typeAfectado" placeholder="Seleccione tipo de Denunciante" />
+               <MyDropdown class="mt-2" :items="afectadosDropdown" v-model="selectedType" placeholder="Seleccione tipo de Denunciante" />
             </div>
             <div class="col-4">
                <label for="dropdown" >Tipo de doc.</label>
-               <MyDropdown class="mt-2" :items="documentosDropdown" v-model="item.typeDocumento" placeholder="Tipo de doc." />
+               <MyDropdown class="mt-2" :items="documentosDropdown" v-model="selectedDocumento" placeholder="Tipo de doc." />
             </div>
             <div class="col-4">
                 <label for="dropdown" >N° de doc.</label>
-                <MyInput type="number" class="mt-2" v-model="item.nroDocumento"  />
+                <MyInput type="number" class="mt-2" v-model="formData.nroDocumento"  />
             </div>
             <div class="col-4">
                <label for="dropdown" >Sexo</label>
-               <MyDropdown class="mt-2" :items="sexoDropdown" v-model="item.typeSexo"  placeholder="Sexo" />
+               <MyDropdown class="mt-2" :items="sexoDropdown" v-model="selectedSexo"  placeholder="Sexo" />
             </div>
             <div class="col-6">
                 <label for="dropdown" >Apellido</label>
                <MyInput 
                     type="text" class="mt-2 uppercase" 
-                    :value="getInputValue('apellido')"
-                    @input="handleInputChange('apellido', $event)"
-                    @blur="() => handleBlur('apellido')"
+                    v-model="formData.apellido" 
                 />
                 
             </div>
             <div class="col-6">
                 <label for="dropdown" >Nombre</label>
-                <MyInput type="text" class="mt-2" v-model="item.name"  @input="handleInputChange('name', $event)"/>
+                <MyInput type="text" class="mt-2" v-model="formData.name"  />
             </div>
             <div class="col-3">
                 <label for="dropdown" >Fecha de nac.</label>
-                <MyInput type="text" class="mt-2" v-model="item.fecha" />
+                <MyInput type="text" class="mt-2" v-model="formData.fecha" />
             </div>
             <div class="col-3">
                <label for="dropdown" >Nacionalidad</label>
-               <MyDropdown class="mt-2" :items="nacionalidadDropdown" placeholder="Nacionalidad" v-model="item.nacionalidad"/>
+               <MyDropdown class="mt-2" :items="nacionalidadDropdown"
+                placeholder="Nacionalidad" v-model="selectedNacionalidad"/>
             </div>
             <div class="col-3">
                <label for="dropdown" >Estado Civil</label>
-               <MyDropdown class="mt-2" :items="estadoCivilDropdown" placeholder="Estado Civil" v-model="item.estadoCivil" />
+               <MyDropdown class="mt-2" :items="estadoCivilDropdown" placeholder="Estado Civil" v-model="selectedEstadoCivil" />
             </div>
             <div class="col-12">
                 <label for="dropdown" >Domicilio de residencia</label>
-                <MyTextArea class="mt-2 w-full" placeholder="Domicilio de residencia" v-model="item.domicilioResidencia" />
+                <MyTextArea class="mt-2 w-full" placeholder="Domicilio de residencia" v-model="formData.domicilioResidencia" />
             </div>
             <div class="col-3">
                 <label for="dropdown">Teléfono</label>
-                <MyInput type="text" class="mt-2" placeholder="Teléfono" v-model="item.telefono"/>
+                <MyInput type="text" class="mt-2" placeholder="Teléfono" v-model="formData.telefono"/>
             </div>
-            <div class="col-3">
-                <label for="dropdown">Email</label>
-                <MyInput type="text" class="mt-2" placeholder="Email" v-model="item.email"/>
-            </div>
+
             <div class="col-3">
                 <label for="dropdown">Profesión</label>
-                <MyInput type="text" class="mt-2" placeholder="Profesión" v-model="item.profesion"/>
+                <MyInput type="text" class="mt-2" placeholder="Profesión" v-model="formData.profesion"/>
             </div>
             <div class="col-3">
                 <label for="dropdown" >Instrucción</label>
-               <MyDropdown class="mt-2" :items="instruccionDropdown" placeholder="Instrucción" v-model="item.instruccion" />
+               <MyDropdown class="mt-2" :items="instruccionDropdown" placeholder="Instrucción" v-model="selectedInstruccion" />
             </div>
-
+            <div class="col-3">
+                <label for="dropdown">Apodo</label>
+                <MyInput type="text" class="mt-2" placeholder="Apodo" v-model="formData.apodo"/>
+            </div>
             <div class="ml-auto mt-2 p-0">
-                <Button label="Agregar" v-if="isEditing" @click="handleAgregarElemento()"></Button>
-                <div v-else>
+                <Button label="Agregar" @click="handleAgregarElemento()"></Button>
+                <!-- <div v-else>
                   <Button 
                     :disabled="selectedItem ? getPristineById(selectedItem) : false" label="Cancelar"
                      icon="pi pi-times" severity="secondary" outlined aria-label="Cancel" class="mr-3"
@@ -158,15 +143,15 @@ onActivated(() => {
                         @click="handleModificarElemento()"
                         severity="warning"
                       ></Button>
-                </div>
+                </div> -->
 
             </div>
         </div>
-        <pre>
+        <!-- <pre>
           <span v-for="(id, pristine) in statesID" key="id">
             ID: {{id}}, Pristine: {{ pristine }}
           </span>
-        </pre>
+        </pre> -->
     </template>
 </Card>
 </template>

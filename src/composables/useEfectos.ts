@@ -1,17 +1,33 @@
 import { ref } from "vue"
-let efectos = ref();
+import type { Efectos, EfectosForm } from "@/interfaces/efecto.interface";
+import type { DropDownInterface } from '../interfaces/dropdown.interface';
 
+let efectos = ref<Efectos[]>([]);
+let selectedCategoria:DropDownInterface = ref()
+let selectedSubcategoria:DropDownInterface = ref()
+let selectedTipo:DropDownInterface = ref()
+let selectedMarca:DropDownInterface = ref()
+let selectedModelo:DropDownInterface = ref()
+
+const initialValues: EfectosForm = {
+    categoria:{ name: '' },
+    marca:{ name: '' },
+    modelo:{ name: '' },
+    subcategoria:{ name: '' },
+    tipo:{ name: '' }
+};
 const useEfectos = () => {
     
-    const agregarEfecto = (efecto: any) => {
-    
+    const agregarEfecto = (item: Efectos) => {
+      if(!item) return 
+      efectos.value?.push(item)
     };
-    const editarEfecto = (efecto: any) => {
+    const editarEfecto = (item: any) => {
     
     };
     const eliminarEfecto = (id: string) => {
        
-      efectos.value = efectos.value.filter((efecto:any) => efecto.id !== id);
+      // efectos.value = efectos.value.filter((efecto:any) => efecto.id !== id);
     };
     const selecccionarEfecto = (id: string) => {
        
@@ -19,6 +35,12 @@ const useEfectos = () => {
 
     return {
         efectos,
+        selectedCategoria,
+        selectedSubcategoria,
+        selectedTipo,
+        selectedMarca,
+        selectedModelo,
+        initialValues,
         items: efectos,
         agregar: agregarEfecto,
         eliminar: eliminarEfecto,

@@ -4,7 +4,7 @@ import type { FechaUbicacion, FechaUbicacionForm } from '../interfaces/fecha.int
 import type { DropDownInterface } from '../interfaces/dropdown.interface';
 
 let fechaUbicacion = ref<FechaUbicacion>();
-const selectedMunicipioDrop:DropDownInterface = ref()
+const selectedMunicipioDrop = ref<DropDownInterface>()
 
 const initialValues = ref<FechaUbicacionForm>({
     desdeFechaHora: new Date(),
@@ -14,7 +14,7 @@ const initialValues = ref<FechaUbicacionForm>({
     departamento: { name:'' }
 });
 
-const useAfectados = () => {
+const useFecha = () => {
     
     const agregarFechaUbicacion = (item: FechaUbicacion) => {
         if(!item) return 
@@ -38,6 +38,6 @@ const useAfectados = () => {
     };
 };
 
-export default useAfectados;
+export default useFecha;
   
 

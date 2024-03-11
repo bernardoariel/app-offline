@@ -5,12 +5,12 @@ import type { DropDownInterface } from '../interfaces/dropdown.interface';
 
 
 let afectados = ref<Afectados[]>([]);
-let selectedType:DropDownInterface = ref()
-let selectedDocumento:DropDownInterface = ref()
-let selectedSexo:DropDownInterface = ref()
-let selectedNacionalidad:DropDownInterface = ref()
-let selectedEstadoCivil:DropDownInterface = ref()
-let selectedInstruccion:DropDownInterface = ref()
+let selectedType = ref<DropDownInterface>()
+let selectedDocumento = ref<DropDownInterface>()
+let selectedSexo = ref<DropDownInterface>()
+let selectedNacionalidad = ref<DropDownInterface>()
+let selectedEstadoCivil = ref<DropDownInterface>()
+let selectedInstruccion = ref<DropDownInterface>()
 
 
 const initialValues: AfectadosForm = {

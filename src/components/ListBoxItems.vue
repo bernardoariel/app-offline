@@ -1,61 +1,71 @@
 <script setup lang="ts">
 //listBoxItems
-import { computed, ref, watch, watchEffect } from "vue";
+import { computed, ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
 
-import { getColorByAfectado } from '@/helpers/getColorByAfectado';
 import { getUpperCase, getTitleCase } from "@/helpers/stringUtils";
-import useNewActuacion from "@/composables/useNewActuacion";
-import { useRoute } from "vue-router";
-import type { AfectadosForm } from '../interfaces/afectadosForm.interface';
-import useFieldState from "@/composables/useFiledsState";
+import { getColorByAfectado } from '@/helpers/getColorByAfectado';
+import useItem from '@/composables/useItems';
 
 const route = useRoute();
-const tipo  = ref(route.params.tipo);
+const tipo = ref(route.params.tipo); // Asume que la ruta tiene un parámetro "tipo"
 
-// Usando useNewActuacion en lugar de useAfectadosForm
-const { items, selectedItem, eliminar,afectados, vinculados } = useNewActuacion();
-const { statesID,setPristineById } = useFieldState();
-const statePristineForm = false;
-// Computa los items basados en el tipo de la ruta
+const { afectados, vinculados, fechaUbicacion, efectos, intervinientes } = useItem();
+const cargando = ref(true);
+
 const itemsComputados = computed(() => {
-  return tipo.value === 'afectados' ? afectados.value : vinculados.value;
+  cargando.value = true; // Comienza a cargar
+  // Aquí deberías implementar la lógica para cargar los datos de manera asíncrona y luego...
+  let data: any[];
+  switch (tipo.value) {
+    case 'afectados':
+      data = afectados.value;
+      break;
+    case 'vinculados':
+      data = vinculados.value;
+      break;
+    case 'fecha':
+      data = [fechaUbicacion.value]; // Convierte el objeto en un array
+      break;
+    case 'efectos':
+      data = efectos.value;
+      break;
+    case 'personalInterviniente':
+      data = intervinientes.value;
+      break;
+    default:
+      data = [];
+  }
+  cargando.value = false; // Finaliza la carga
+  return data;
 });
-// Asumiendo que "afectados" es la lista que quieres mostrar
-// const items = computed(() => afectados.value);
-const getPristineById = (id: string) => {
-  const found = statesID.find((state) => state.id === id);
-  return found ? found.pristine : false;
-};
-const eliminarItem = (itemId: AfectadosForm) => {
-  eliminar( itemId , tipo.value as string); // Asumiendo que necesitas especificar el 'tipo'
-};
+const selectedItem = ref(null); // Asume un v-model para el Listbox
+
 watch(() => route.params.tipo, (nuevoTipo) => {
   tipo.value = nuevoTipo;
-  
 });
-
 </script>
 <template>
   <div class="card flex flex-column justify-content-center">
     <Listbox
       v-model="selectedItem"
       :options="itemsComputados"
-      optionLabel="name" optionValue="id"
+      optionLabel="name"
+      optionValue="id"
       class="w-full listbox-lower">
-      
       <template #option="{ option }">
         <div class="listbox-item fixed-height">
           <div class="left-column">
             <div class="text-row">
-              <span class="font-bold">{{ option.apellido ? getUpperCase(option.apellido) + ',' : '' }}</span>
-              <span class="ml-2">{{ option.name ? getTitleCase(option.name) : 'Nuevo' }}</span>
-              <span v-if="option.typeDocumento && option.nroDocumento" class="ml-5">
-                <i>{{ option.typeDocumento.name + ': ' }}</i>
-                <i>{{ option.nroDocumento }}</i>
-              </span>
-            </div>
+                <span class="font-bold">{{ option.apellido ? getUpperCase(option.apellido) + ',' : '' }}</span>
+                <span class="ml-2">{{ option.name ? getTitleCase(option.name) : 'Nuevo' }}</span>
+                <span v-if="option.typeDocumento && option.nroDocumento" class="ml-5">
+                  <i>{{ option.typeDocumento.name + ': ' }}</i>
+                  <i>{{ option.nroDocumento }}</i>
+                </span>
+              </div>
             <div class="tag-row">
-              <Tag :value="option.typeAfectado.name" :severity="getColorByAfectado(option.typeAfectado.name)" />
+                <Tag :value="option.typeAfectado?.name" :severity="getColorByAfectado(option.typeAfectado?.name)" />
             </div>
           </div>
           <div class="right-column">
@@ -67,18 +77,18 @@ watch(() => route.params.tipo, (nuevoTipo) => {
               outlined 
               severity="primary" />
           <div class="button-and-dot-container" v-else-if="selectedItem === option.id">
-            <div v-if="!getPristineById(option.id)" class="uncommited-dot bg-blue-400"></div>
-            <Button icon="pi pi-trash" 
+            <!-- <div v-if="!getPristineById(option.id)" class="uncommited-dot bg-blue-400"></div> -->
+            <!-- <Button icon="pi pi-trash" 
               severity="danger" 
-              @click="eliminarItem(option.id)" />
+              @click="eliminarItem(option.id)" /> -->
           </div>
           <div class="button-and-dot-container" v-else >
-            <div class="uncommited-dot bg-blue-400" v-if="!getPristineById(option.id)"></div>
+           <!--  <div class="uncommited-dot bg-blue-400" v-if="!getPristineById(option.id)"></div>
             <Button 
                 icon="pi pi-trash" 
                 severity="danger" 
                 disabled 
-            />
+            /> -->
           </div>
           </div>
         </div>

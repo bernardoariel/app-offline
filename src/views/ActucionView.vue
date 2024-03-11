@@ -5,10 +5,10 @@ const db = new Dexie('my_database');
 db.version(1).stores({
     afectados: '++id, typeAfectado, typeDocumento, nroDocumento, typeSexo, apellido, name, fecha, nacionalidad, estadoCivil, domicilioResidencia, telefono, email, profesion, instruccion'
 });
-import { useRouter } from 'vue-router';
 
 import DataViewCard from '@/components/DataViewCard.vue';
 import useActuacion from '@/composables/useActuacion';
+import useCardInformation from '@/composables/useCardInformation';
 
 const guardarDatos = async () => {
   try {
@@ -37,53 +37,32 @@ const guardarDatos = async () => {
   }
 };
 
-const router = useRouter();
-
 const { agregarNuevoItem } = useActuacion();
-// Obtener las claves válidas de Tarjeta
-const tarjetas = {
-    afectados: { titulo: 'Afectados', valor: [] },
-    vinculados: { titulo: 'Vinculados', valor: [] },
-    fecha: { titulo: 'Fecha', valor: null },
-    efectos: { titulo: 'Efectos', valor: [] },
-    personalInterviniente: { titulo: 'Personal Interviniente', valor: null },
-};
-
-const tarjetasKeys: (keyof typeof tarjetas)[] = Object.keys(tarjetas) as (keyof typeof tarjetas)[];
-
-const guardarDatosClick = async () => {
-  try {
-    await guardarDatos();
-    console.log('Datos guardados correctamente');
-  } catch (error) {
-    console.error('Error al guardar los datos:', error);
-  }
-}
+const { cardInformationKeys,cardInformation } = useCardInformation()
 
 </script>
 
 <template>
   <div class="grid">
     <div class="col-5">
-      <Card v-for="key in tarjetasKeys" :key="key"
-        :pt="{ title: { class: 'custom-title' }, content: { style: 'padding: 0!important;' } }" 
-        class="p-fluid mb-2"  :tarjeta="tarjetas[key]">
+      <Card v-for="key in cardInformationKeys" :key="key" class="p-fluid mb-2">
         <template #title>
           <div class="title-container">
-            <span class="custom-title">{{ tarjetas[key]!.titulo }}</span>
-            <Button icon="pi pi-plus" severity="secondary" rounded outlined @click="agregarNuevoItem(key)"/>
+            <span class="custom-title">{{ cardInformation[key].titulo }}</span>
+            <Button icon="pi pi-plus" severity="secondary" rounded outlined @click="agregarNuevoItem(key)" />
           </div>
         </template>
-        <template #content >
-           <DataViewCard :itemsCardValue="tarjetas[key]" :itemKey="key" />
-           
+        <template #content>
+           <DataViewCard :itemsCardValue="cardInformation[key]" />
         </template>
       </Card>
     </div>
     <div class="col">
-      <div class="text-center p-3 border-round-sm bg-primary font-bold">
-        <Button label="Guardar datos" severity="danger" @click="guardarDatosClick" />
-      </div>
+      <Button
+            label="Guardar datos"
+            severity="danger"
+            @click="guardarDatos"
+            class="text-center p-3 border-round-sm bg-primary font-bold" /> 
     </div>
   </div>
 </template>

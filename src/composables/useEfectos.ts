@@ -3,11 +3,11 @@ import type { Efectos, EfectosForm } from "@/interfaces/efecto.interface";
 import type { DropDownInterface } from '../interfaces/dropdown.interface';
 
 let efectos = ref<Efectos[]>([]);
-let selectedCategoria:DropDownInterface = ref()
-let selectedSubcategoria:DropDownInterface = ref()
-let selectedTipo:DropDownInterface = ref()
-let selectedMarca:DropDownInterface = ref()
-let selectedModelo:DropDownInterface = ref()
+let selectedCategoria = ref<DropDownInterface>()
+let selectedSubcategoria = ref<DropDownInterface>()
+let selectedTipo = ref<DropDownInterface>()
+let selectedMarca = ref<DropDownInterface>()
+let selectedModelo = ref<DropDownInterface>()
 
 const initialValues: EfectosForm = {
     categoria:{ name: '' },

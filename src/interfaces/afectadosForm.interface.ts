@@ -1,4 +1,4 @@
-interface PrimaryAttributes{
+/* interface PrimaryAttributes{
     id?: string,
     nroDocumento: number,
     apellido: string,
@@ -30,4 +30,4 @@ export interface AfectadosForm{
     
     
     [key: string]: string | number;
-}
+} */

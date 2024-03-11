@@ -31,7 +31,6 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
- 
   isSavedChanges(to, from, next); // Llamada al guard isSavedChanges en cada navegación
 });
 

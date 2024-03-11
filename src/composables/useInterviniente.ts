@@ -1,4 +1,4 @@
-import type { RespCard } from "@/interfaces/RespCard.interface"
+/* import type { RespCard } from "@/interfaces/RespCard.interface"
 import { ref } from "vue"
 
 let data_api = [
@@ -25,4 +25,4 @@ const useInterviniente = () =>{
     }
 }
 
-export default useInterviniente
+export default useInterviniente */

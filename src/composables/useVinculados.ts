@@ -6,12 +6,12 @@ import type { DropDownInterface } from '../interfaces/dropdown.interface';
 
 let vinculados = ref<Vinculados[]>([]);
 
-let selectedType:DropDownInterface = ref()
-let selectedDocumento:DropDownInterface = ref()
-let selectedSexo:DropDownInterface = ref()
-let selectedNacionalidad:DropDownInterface = ref()
-let selectedEstadoCivil:DropDownInterface = ref()
-let selectedInstruccion:DropDownInterface = ref()
+let selectedType = ref<DropDownInterface>()
+let selectedDocumento = ref<DropDownInterface>()
+let selectedSexo = ref<DropDownInterface>()
+let selectedNacionalidad = ref<DropDownInterface>()
+let selectedEstadoCivil = ref<DropDownInterface>()
+let selectedInstruccion = ref<DropDownInterface>()
 
 const initialValues: VinculadosForm = {
     nroDocumento: 0,
@@ -20,7 +20,6 @@ const initialValues: VinculadosForm = {
     fecha: '',
     domicilioResidencia: '',
     telefono: '',
-    email: '',
     profesion: '',
     apodo:'',
     typeAfectado: { name: '' },

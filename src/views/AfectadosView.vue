@@ -10,8 +10,7 @@ import type { AfectadosForm, Afectados } from '../interfaces/afectado.interface'
 
 const { 
     afectados,
-    agregar, 
-    efectos, 
+    agregar,  
     initialValues,
     selectedType,
     selectedDocumento,

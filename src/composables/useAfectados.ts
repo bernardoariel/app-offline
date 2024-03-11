@@ -22,7 +22,6 @@ const initialValues: AfectadosForm = {
     telefono: '',
     email: '',
     profesion: '',
-    apodo:'',
     typeAfectado: { name: '' },
     typeDocumento: { name: '' },
     typeSexo: { name: '' },

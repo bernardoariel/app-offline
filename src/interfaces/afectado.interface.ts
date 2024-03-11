@@ -8,7 +8,6 @@ interface PrimaryAttributes{
     telefono: string,
     email: string,
     profesion: string,
-    apodo:string
 }
 
 

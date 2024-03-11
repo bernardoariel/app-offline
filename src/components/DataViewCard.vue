@@ -24,7 +24,7 @@ const deleteProduct = (productId:any) => {
 const copyProduct = (productId:any) => {
     // Lógica para copiar el producto con el ID proporcionado
 };
-
+// console.log(props.itemsCardValue)
 </script>
 
 <template>
@@ -44,13 +44,13 @@ const copyProduct = (productId:any) => {
                   <span class="font-bold">{{ item.apellido ? getUpperCase(item.apellido) + ',' : '' }}</span>
                   <span class="ml-2">{{ item.name ? getTitleCase(item.name) : 'Nuevo' }}</span>
                   <span v-if="item.typeDocumento && item.nroDocumento" class="ml-5">
-                    <i>{{ item.typeDocumento.name + ': ' }}</i>
+                    <i>{{ item.typeDocumento + ': ' }}</i>
                     <i>{{ item.nroDocumento }}</i>
                   </span>
                 </div>
                 <!-- Tipo en un tag sin gap -->
-                <span v-if="item.typeAfectado && item.typeAfectado.name" class="ml-5">
-                <Tag  :value="item.typeAfectado.name" class="mt-2 ml-5" :severity="getColorByAfectado(item.typeAfectado.name)"></Tag>
+                <span v-if="item.typeAfectado && item.typeAfectado" class="ml-5">
+                <Tag  :value="item.typeAfectado" class="mt-2 ml-5" :severity="getColorByAfectado(item.typeAfectado)"></Tag>
                   </span>
                 <!-- Icono de desbordamiento (ellipsis) -->
                 <div class="flex items-center ml-auto mt-1">

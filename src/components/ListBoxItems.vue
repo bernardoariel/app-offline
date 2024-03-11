@@ -6,18 +6,18 @@ import { useRoute } from 'vue-router';
 import { getUpperCase, getTitleCase } from "@/helpers/stringUtils";
 import { getColorByAfectado } from '@/helpers/getColorByAfectado';
 import useItem from '@/composables/useItems';
+import useRouteType from '@/composables/useRouteType';
 
-const route = useRoute();
-const tipo = ref(route.params.tipo); // Asume que la ruta tiene un parámetro "tipo"
 
 const { afectados, vinculados, fechaUbicacion, efectos, intervinientes } = useItem();
+const { routeType } = useRouteType()
 const cargando = ref(true);
 
 const itemsComputados = computed(() => {
   cargando.value = true; // Comienza a cargar
   // Aquí deberías implementar la lógica para cargar los datos de manera asíncrona y luego...
   let data: any[];
-  switch (tipo.value) {
+  switch (routeType.value) {
     case 'afectados':
       data = afectados.value;
       break;
@@ -36,14 +36,13 @@ const itemsComputados = computed(() => {
     default:
       data = [];
   }
+  console.log('adata',data);
   cargando.value = false; // Finaliza la carga
   return data;
 });
 const selectedItem = ref(null); // Asume un v-model para el Listbox
 
-watch(() => route.params.tipo, (nuevoTipo) => {
-  tipo.value = nuevoTipo;
-});
+
 </script>
 <template>
   <div class="card flex flex-column justify-content-center">
@@ -59,13 +58,13 @@ watch(() => route.params.tipo, (nuevoTipo) => {
             <div class="text-row">
                 <span class="font-bold">{{ option.apellido ? getUpperCase(option.apellido) + ',' : '' }}</span>
                 <span class="ml-2">{{ option.name ? getTitleCase(option.name) : 'Nuevo' }}</span>
-                <span v-if="option.typeDocumento && option.nroDocumento" class="ml-5">
-                  <i>{{ option.typeDocumento.name + ': ' }}</i>
+                <span class="ml-5">
+                  <i>{{ option.typeDocumento + ': ' }}</i>
                   <i>{{ option.nroDocumento }}</i>
                 </span>
               </div>
             <div class="tag-row">
-                <Tag :value="option.typeAfectado?.name" :severity="getColorByAfectado(option.typeAfectado?.name)" />
+                <Tag :value="option.typeAfectado" :severity="getColorByAfectado(option.typeAfectado)" />
             </div>
           </div>
           <div class="right-column">

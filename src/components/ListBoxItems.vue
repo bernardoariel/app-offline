@@ -1,45 +1,15 @@
 <script setup lang="ts">
 //listBoxItems
-import { computed, ref, watch } from 'vue';
-import { useRoute } from 'vue-router';
+import { computed, ref } from 'vue';
 
 import { getUpperCase, getTitleCase } from "@/helpers/stringUtils";
 import { getColorByAfectado } from '@/helpers/getColorByAfectado';
-import useItem from '@/composables/useItems';
-import useRouteType from '@/composables/useRouteType';
 
+import { formatFecha } from '@/helpers/getFormatFecha';
+import useItemsComputados from '@/composables/useItemsComputados';
 
-const { afectados, vinculados, fechaUbicacion, efectos, intervinientes } = useItem();
-const { routeType } = useRouteType()
-const cargando = ref(true);
+const { itemsComputados, cargando, routeType } = useItemsComputados();
 
-const itemsComputados = computed(() => {
-  cargando.value = true; // Comienza a cargar
-  // Aquí deberías implementar la lógica para cargar los datos de manera asíncrona y luego...
-  let data: any[];
-  switch (routeType.value) {
-    case 'afectados':
-      data = afectados.value;
-      break;
-    case 'vinculados':
-      data = vinculados.value;
-      break;
-    case 'fecha':
-      data = [fechaUbicacion.value]; // Convierte el objeto en un array
-      break;
-    case 'efectos':
-      data = efectos.value;
-      break;
-    case 'personalInterviniente':
-      data = intervinientes.value;
-      break;
-    default:
-      data = [];
-  }
-  console.log('adata',data);
-  cargando.value = false; // Finaliza la carga
-  return data;
-});
 const selectedItem = ref(null); // Asume un v-model para el Listbox
 
 
@@ -52,10 +22,15 @@ const selectedItem = ref(null); // Asume un v-model para el Listbox
       optionLabel="name"
       optionValue="id"
       class="w-full listbox-lower">
+
       <template #option="{ option }">
+
         <div class="listbox-item fixed-height">
+
           <div class="left-column">
-            <div class="text-row">
+            <!-- Afectados y vinculados -->
+            <div v-if="routeType === 'afectados' || routeType === 'vinculados'">
+              <div class="text-row">
                 <span class="font-bold">{{ option.apellido ? getUpperCase(option.apellido) + ',' : '' }}</span>
                 <span class="ml-2">{{ option.name ? getTitleCase(option.name) : 'Nuevo' }}</span>
                 <span class="ml-5">
@@ -63,19 +38,58 @@ const selectedItem = ref(null); // Asume un v-model para el Listbox
                   <i>{{ option.nroDocumento }}</i>
                 </span>
               </div>
-            <div class="tag-row">
+              <div class="tag-row">
                 <Tag :value="option.typeAfectado" :severity="getColorByAfectado(option.typeAfectado)" />
+              </div>
             </div>
+
+            <!-- fecha -->
+            <div v-if=" routeType === 'fecha'">
+              <div class="text-row">
+                <span class="font-bold">Entre </span><span>{{ option.desdeFechaHora? formatFecha(option.desdeFechaHora): '' }} y {{ option.desdeFechaHora? formatFecha(option.hastaFechaHora):'' }}</span>
+              </div>
+              <div class="tag-row">
+                <Tag :value="option.departamento" :severity="getColorByAfectado(option.departamento)" />
+              </div>
+            </div>
+            <!-- personal interviniente -->
+            <div v-else-if="routeType === 'personalInterviniente'">
+              <div class="text-row">
+                <span class="font-bold">{{ option.apellido ? getUpperCase(option.apellido) + ',' : '' }}</span>
+                <span class="ml-2">{{ option.nombre ? getTitleCase(option.nombre) : '-' }}</span>
+              </div>
+              <div class="tag-row">
+                <Tag :value="option.jerarquia" :severity="getColorByAfectado(option.jerarquia)" />
+              </div>
+              <div class="w-full" style="margin-top: -30px; margin-left: 55px">
+                  <p class="ml-5 text-xs">{{ option.dependencia }}</p>
+              </div>
+            </div>
+            <div v-else-if="routeType === 'efectos'">
+              <div class="text-row">
+                <span class="font-bold">{{ option.subcategoria ? getUpperCase(option.subcategoria) + ' ' : '' }}</span>
+                <span class="font-bold">{{ option.categoria ? getUpperCase(option.categoria) + ',' : '' }}</span>
+                <span class="ml-2">{{ option.marca ? getTitleCase(option.marca) : '-' }}</span>
+                <span class="ml-2">{{ option.modelo ? getTitleCase(option.modelo) : '-' }}</span>
+                <br>
+                <span>{{ option.tipo ? getTitleCase(option.tipo) : '-' }}</span>
+              </div>
+             
+              <div class="w-full" style="margin-top: -30px; margin-left: 55px">
+                  <p class="ml-5 text-xs">{{ option.dependencia }}</p>
+              </div>
+            </div>
+          
           </div>
           <div class="right-column">
             <!-- <Button icon="pi pi-trash" severity="danger" @click="eliminarItem(option.id)" /> -->
-            <Button v-if="option.code === 'new-item'" 
+            <Button v-if="option && option.code === 'new-item'" 
               icon="pi pi-plus" 
               rounded 
               aria-label="Agregar" 
               outlined 
               severity="primary" />
-          <div class="button-and-dot-container" v-else-if="selectedItem === option.id">
+          <div class="button-and-dot-container" v-else-if="selectedItem === option && option.id">
             <!-- <div v-if="!getPristineById(option.id)" class="uncommited-dot bg-blue-400"></div> -->
             <!-- <Button icon="pi pi-trash" 
               severity="danger" 

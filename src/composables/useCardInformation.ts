@@ -9,7 +9,7 @@ const useCardInformation = () => {
     const cardInformation: CardInformation = reactive({
       afectados: { titulo: 'Afectados', items: itemsCollection.afectados }, // asume que es un array
       vinculados: { titulo: 'Vinculados', items: itemsCollection.vinculados }, // asume que es un array
-      fecha: { titulo: 'Fecha', item: itemsCollection.fechaUbicacion }, // nota el cambio a "item"
+      fecha: { titulo: 'Fecha', items: itemsCollection.fechaUbicacion }, // nota el cambio a "item"
       efectos: { titulo: 'Efectos', items: itemsCollection.efectos }, // asume que es un array
       personalInterviniente: { titulo: 'Personal Interviniente', items: itemsCollection.intervinientes }, // asume que es un array
     });

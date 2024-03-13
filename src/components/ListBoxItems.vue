@@ -37,6 +37,7 @@ const selectedItem = ref(null); // Asume un v-model para el Listbox
                   <i>{{ option.typeDocumento + ': ' }}</i>
                   <i>{{ option.nroDocumento }}</i>
                 </span>
+                
               </div>
               <div class="tag-row">
                 <Tag :value="option.typeAfectado" :severity="getColorByAfectado(option.typeAfectado)" />
@@ -44,7 +45,7 @@ const selectedItem = ref(null); // Asume un v-model para el Listbox
             </div>
 
             <!-- fecha -->
-            <div v-if=" routeType === 'fecha'">
+            <div v-if="option && routeType === 'fecha'">
               <div class="text-row">
                 <span class="font-bold">Entre </span><span>{{ option.desdeFechaHora? formatFecha(option.desdeFechaHora): '' }} y {{ option.desdeFechaHora? formatFecha(option.hastaFechaHora):'' }}</span>
               </div>

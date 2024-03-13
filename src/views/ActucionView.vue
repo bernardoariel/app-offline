@@ -53,7 +53,7 @@ const { cardInformationKeys,cardInformation } = useCardInformation()
           </div>
         </template>
         <template #content>
-           <DataViewCard :itemsCardValue="cardInformation[key]" />
+           <DataViewCard :itemsCardValue="cardInformation[key]" :data-key="key"/>
         </template>
       </Card>
     </div>

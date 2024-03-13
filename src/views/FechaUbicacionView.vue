@@ -11,10 +11,10 @@ interface CalendarComponent {
   overlayVisible?: boolean;
   value: Date;
 }
-const {initialValues,agregar,fechaUbicacion,selectedMunicipioDrop} = useFecha()
+const {initialValues,agregar,selectedMunicipioDrop} = useFecha()
 
 const formData = ref<FechaUbicacionForm>({...initialValues.value});
-  const desdeFechaHoraRef = ref<CalendarComponent | null>(null);
+const desdeFechaHoraRef = ref<CalendarComponent | null>(null);
 const hastaFechaHoraRef = ref<CalendarComponent | null>(null);
 const getInputValue = (campo: keyof FechaUbicacionForm) => {
   return formData.value[campo];
@@ -23,14 +23,8 @@ const handleInputChange = (campo: keyof FechaUbicacionForm, event: Event) => {
   const value = (event.target as HTMLInputElement).value;
 
   // Verificar si el campo es 'jerarquia' o 'dependencia'
- if (campo === 'departamento') {
-    // Asegurarse de que formData.value[campo] sea del tipo adecuado
-    const field = formData.value[campo] as { name: string };
+  const field = formData.value[campo] as { name: string };
     field.name = value;
-   } else {
-    // Si no es 'jerarquia' ni 'dependencia', asignar directamente el valor
-    formData.value[campo] = value;
-  } 
 };
 
 const handleBlur = (campo: string) => {

@@ -1,18 +1,26 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import DataView from "primevue/dataview";
 
-import { getColorByAfectado } from '@/helpers/getColorByAfectado';
 import ButtonOptions from '@/components/ButtonOptions.vue'
-
+import { getColorByAfectado } from '@/helpers/getColorByAfectado';
 import { getTitleCase, getUpperCase } from "@/helpers/stringUtils";
+import { formatFecha } from "@/helpers/getFormatFecha";
 
-import { computed } from "vue";
 
 const props = defineProps<{
   itemsCardValue: { titulo: string; items: any[] };
+  dataKey: string; 
 }>();
 
-const items = computed(() => props.itemsCardValue.items);
+const condicion:boolean = false;
+const items = computed(() => {
+  console.log('Items:', props.itemsCardValue.items); // Inspecciona todos los items
+  if (props.dataKey === 'fecha') {
+    console.log('Items de Fecha:', props.itemsCardValue.items); // Inspecciona específicamente los items de 'fecha'
+  }
+  return props.itemsCardValue.items;
+});
 const editProduct = (productId:any) => {
     // Lógica para editar el producto con el ID proporcionado
 };
@@ -25,62 +33,170 @@ const copyProduct = (productId:any) => {
     // Lógica para copiar el producto con el ID proporcionado
 };
 // console.log(props.itemsCardValue)
+
 </script>
 
 <template>
-      <div v-if="items && items.length !== 0">
+  
+  <div v-if="items && items.length !== 0">   
+    
+    <DataView :value="items" dataKey="id">
       
-      <DataView :value="items" dataKey="id">
-        <template #list="slotProps">
-          <div class="grid grid-nogutter">
-            <div v-for="(item, index) in slotProps.items" :key="index" class="col-12">
-              <div 
-                class="flex flex-column xl:flex-row xl:align-items-start p-1 flex-wrap" 
-                :class="{ 'border-top-1 surface-border': index !== 0 }">
-  
-                <div class="flex align-items-center">
+      <template #list="slotProps">
+    
+            <div v-for="(item, index) in items" :key="index">
+              <!-- Afectados y Vinculados -->
+              <div v-if="dataKey=='afectados' || dataKey=='vinculados'">
                 
-                  <Button icon="pi pi-pencil" @click="editProduct(item.id)" text rounded style="font-size: 1rem"></Button>
-                  <span class="font-bold">{{ item.apellido ? getUpperCase(item.apellido) + ',' : '' }}</span>
-                  <span class="ml-2">{{ item.name ? getTitleCase(item.name) : 'Nuevo' }}</span>
-                  <span v-if="item.typeDocumento && item.nroDocumento" class="ml-5">
-                    <i>{{ item.typeDocumento + ': ' }}</i>
-                    <i>{{ item.nroDocumento }}</i>
-                  </span>
-                </div>
-                <!-- Tipo en un tag sin gap -->
-                <span v-if="item.typeAfectado && item.typeAfectado" class="ml-5">
-                <Tag  :value="item.typeAfectado" class="mt-2 ml-5" :severity="getColorByAfectado(item.typeAfectado)"></Tag>
-                  </span>
-                <!-- Icono de desbordamiento (ellipsis) -->
-                <div class="flex items-center ml-auto mt-1">
-                <ButtonOptions :tarjetaNombre="item.title" :item="item"/>
-              </div>
-  
-                <!-- Descripción con margen izquierdo de 2 unidades sin gap -->
-                <div class="w-full" style="margin-top: -30px; margin-left: 55px">
+                <div class="flex-container"  :class="{ 'border-top-1 surface-border': index !== 0 }">
+
+                  <div class="flex-items">
+                    <Button icon="pi pi-pencil" @click="editProduct(item.id)" text rounded style="font-size: 1rem"></Button>
+                  </div>
+
+                  <div class="flex-items">
+                    <span class="font-bold">{{ item.apellido ? getUpperCase(item.apellido) + ',' : '' }}</span>
+                    <span class="ml-2">{{ item.name ? getTitleCase(item.name) : 'Nuevo' }}</span>
+                    <span v-if="item.typeDocumento && item.nroDocumento" class="ml-5">
+                      <i>{{ item.typeDocumento + ': ' }}</i>
+                      <i>{{ item.nroDocumento }}</i>
+                    </span>
+                    <span v-if="item.typeAfectado && item.typeAfectado" >
+                      <Tag :value="item.typeAfectado" class="ml-5" :severity="getColorByAfectado(item.typeAfectado)"></Tag>
+                    </span>
+                  </div>
+
+                  <div class="flex-items">
+                    <ButtonOptions :tarjetaNombre="item.title" :item="item"/>
+                  </div>
+
+                </div> 
+                <div class="linea-2"> 
                   <p class="text-xs">{{ item.domicilioResidencia }}</p>
                 </div>
-                
               </div>
+              <!-- personal Interviniente -->  
+              <div v-else-if="dataKey=='personalInterviniente'">
+                
+                <div class="flex-container"  :class="{ 'border-top-1 surface-border': index !== 0 }">
+
+                  <div class="flex-items">
+                    <Button icon="pi pi-pencil" @click="editProduct(item.id)" text rounded style="font-size: 1rem"></Button>
+                  </div>
+
+                  <div class="flex-items">
+                    <span class="font-bold">{{ item.apellido ? getUpperCase(item.apellido) + ',' : '' }}</span>
+                    <span class="ml-2">{{ item.nombre ? getTitleCase(item.nombre) : 'Nuevo' }}</span>
+                    
+                    <span v-if="item.jerarquia && item.jerarquia" >
+                      <Tag :value="item.jerarquia" class="ml-5" :severity="getColorByAfectado(item.jerarquia)"></Tag>
+                    </span>
+                  </div>
+
+                  <div class="flex-items">
+                    <ButtonOptions :tarjetaNombre="item.title" :item="item"/>
+                  </div>
+
+                </div> 
+                <div class="linea-2"> 
+                  <p class="text-xs">{{ item.dependencia }}</p>
+                </div>
+              </div>
+              <!-- Fecha -->
+              <div v-else-if="dataKey=='fecha'">
+                <div class="flex-container"  :class="{ 'border-top-1 surface-border': index !== 0 }">
+
+                  <div class="flex-items">
+                    <Button icon="pi pi-pencil" @click="editProduct(item.id)" text rounded style="font-size: 1rem"></Button>
+                  </div>
+
+                  <div class="flex-items">
+                    
+                    <span class="font-bold">Entre </span>
+                    <span>{{ formatFecha(item.desdeFechaHora) }}</span>
+                    <span class="font-bold"> Y </span>
+                    <span>{{ formatFecha(item.hastaFechaHora) }}</span>
+                    <i class="pi pi-map-marker ml-5" :style="{ color: 'red', opacity: condicion ? 1 : 0.3 }"></i>
+
+
+                    <span v-if="item.departamento && item.departamento" >
+                      <Tag :value="item.departamento" class="ml-2" :severity="getColorByAfectado(item.departamento)"></Tag>
+                    </span>
+
+                  </div>
+
+                  <div class="flex-items">
+                    <ButtonOptions :tarjetaNombre="item.title" :item="item"/>
+                  </div>
+
+                </div> 
+                <div class="linea-2"> 
+                  <p class="text-xs">{{ item.calle +' '+ item.numero }}</p>
+                </div>
+              </div>
+             <!-- personal Interviniente -->  
+             <div v-else-if="dataKey=='efectos'">
+                
+                <div class="flex-container"  :class="{ 'border-top-1 surface-border': index !== 0 }">
+
+                  <div class="flex-items">
+                    <Button icon="pi pi-pencil" @click="editProduct(item.id)" text rounded style="font-size: 1rem"></Button>
+                  </div>
+
+                  <div class="flex-items">
+                    <span class="font-bold">{{ getUpperCase(item.subcategoria)  }}</span>
+                    <span class="ml-2">{{ getTitleCase(item.tipo) }}-{{getTitleCase(item.marca)}}-{{ getTitleCase(item.modelo) }}</span>
+                    
+                    <span v-if="item.categoria" >
+                      <Tag :value="item.categoria" class="ml-5" :severity="getColorByAfectado(item.categoria)"></Tag>
+                    </span>
+                  </div>
+
+                  <div class="flex-items">
+                    <ButtonOptions :tarjetaNombre="item.title" :item="item"/>
+                  </div>
+
+                </div> 
+                <div class="linea-2"> 
+                  <p class="text-xs">{{ item.dependencia }}</p>
+                </div>
+              </div>
+
             </div>
-          </div>
-        </template>
-      </DataView>
-    </div>
-      <div v-else class="flex justify-content-end">
-      <span class="text-right">Sin Registros</span>
-      </div>
+          
+   
+      </template>
+      
+    </DataView>
+  
+  </div>
+  <div v-else class="flex justify-content-end">
+    <span class="text-right">Sin Registros</span>
+  </div>
     
 </template>
   
 <style scoped>
-.card {
+.flex-container {
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   justify-content: space-between;
+  align-items: center; /* Centra los elementos verticalmente */
+  align-content: normal;
+  margin-bottom: 8px;
 }
 
-.hidden-card {
-  display: none;
+.flex-items:nth-child(1), .flex-items:nth-child(3) {
+  flex: 0 1 auto;
+}
+
+.flex-items:nth-child(2) {
+  flex: 1 1 auto;
+  align-self: center;
+}
+.linea-2 {
+  margin-top: -20px; 
+  margin-left: 50px;
 }
 </style>

@@ -11,7 +11,6 @@ const useItemsComputados = ()=> {
   const itemsComputados = computed(() => {
     cargando.value = true; // Indica que comienza la carga
     let data:any = [];
-
     switch (routeType.value) {
       case 'afectados':
         data = afectados.value;
@@ -21,7 +20,7 @@ const useItemsComputados = ()=> {
         break;
       case 'fecha':
         // Asumiendo que 'fechaUbicacion' es un objeto y quieres tratarlo como un array de un solo elemento
-        data = fechaUbicacion.value ? [fechaUbicacion.value] : [];
+        data = fechaUbicacion.value;
         break;
       case 'efectos':
         data = efectos.value;

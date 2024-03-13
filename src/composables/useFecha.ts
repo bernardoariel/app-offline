@@ -3,7 +3,7 @@ import { ref, } from "vue"
 import type { FechaUbicacion, FechaUbicacionForm } from '../interfaces/fecha.interface';
 import type { DropDownInterface } from '../interfaces/dropdown.interface';
 
-let fechaUbicacion = ref<FechaUbicacion>();
+let fechaUbicacion = ref<FechaUbicacion[]>([]);
 const selectedMunicipioDrop = ref<DropDownInterface>()
 
 const initialValues = ref<FechaUbicacionForm>({
@@ -18,7 +18,8 @@ const useFecha = () => {
     
     const agregarFechaUbicacion = (item: FechaUbicacion) => {
         if(!item) return 
-        fechaUbicacion.value = item
+        fechaUbicacion.value?.push(item)
+    
     };
     const editarFechaUbicacion = (fechaUbicacion: any) => {
     
@@ -32,6 +33,7 @@ const useFecha = () => {
         fechaUbicacion,
         selectedMunicipioDrop,
         initialValues,
+        items:fechaUbicacion,
         agregar: agregarFechaUbicacion,
         eliminar: eliminarFechaUbicacion,
         editar: editarFechaUbicacion,

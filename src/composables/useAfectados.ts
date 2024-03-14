@@ -1,7 +1,10 @@
 
 import { ref } from "vue"
+import { v4 as uuid } from 'uuid';
+
 import type { Afectados, AfectadosForm } from '../interfaces/afectado.interface';
-import type { DropDownInterface } from '../interfaces/dropdown.interface';
+import type { DropDownInterface } from "@/interfaces/dropdown.interface";
+
 
 
 let afectados = ref<Afectados[]>([]);
@@ -32,9 +35,13 @@ const initialValues: AfectadosForm = {
 const useAfectados = () => {
    
     const agregarAfectado = (item: Afectados) => {
+        
         if(!item) return 
-        afectados.value?.push(item)
+        const id = uuid();
+
+        afectados.value?.push({...item, id})
     };
+
     const editarAfectado = (item: any) => {
     
     };

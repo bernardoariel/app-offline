@@ -1,5 +1,7 @@
-import type { PersonalInterviniente, PersonalIntervinienteForm } from "@/interfaces/personalInterviniente";
 import { ref } from "vue"
+import { v4 as uuid } from 'uuid';
+
+import type { PersonalInterviniente, PersonalIntervinienteForm } from "@/interfaces/personalInterviniente";
 import type { DropDownInterface } from '../interfaces/dropdown.interface';
 
 const  intervinientes = ref<PersonalInterviniente[]>([]);
@@ -15,9 +17,11 @@ const initialValues: PersonalIntervinienteForm = {
 const usePersonalInterviniente = () => {
     
     const agregarPersonalInterviniente = (item: PersonalInterviniente) => {
-  
+      
       if(!item) return 
-      intervinientes.value?.push(item)
+      const id = uuid();
+      intervinientes.value?.push({...item, id})
+
 
     };
     const editarPersonalInterviniente = (item: PersonalInterviniente) => {

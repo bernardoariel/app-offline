@@ -1,5 +1,5 @@
 interface PrimaryAttributes{
- 
+ id?:string
 }
 
 export interface EfectosForm extends PrimaryAttributes{

@@ -1,4 +1,6 @@
 import { ref } from "vue"
+import { v4 as uuid } from 'uuid';
+
 import type { Efectos, EfectosForm } from "@/interfaces/efecto.interface";
 import type { DropDownInterface } from '../interfaces/dropdown.interface';
 
@@ -19,8 +21,10 @@ const initialValues: EfectosForm = {
 const useEfectos = () => {
     
     const agregarEfecto = (item: Efectos) => {
+      
       if(!item) return 
-      efectos.value?.push(item)
+      const id = uuid();
+      efectos.value?.push({...item, id})
     };
     const editarEfecto = (item: any) => {
     

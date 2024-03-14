@@ -1,5 +1,6 @@
 
 import { ref, } from "vue"
+import { v4 as uuid } from 'uuid';
 import type { FechaUbicacion, FechaUbicacionForm } from '../interfaces/fecha.interface';
 import type { DropDownInterface } from '../interfaces/dropdown.interface';
 
@@ -17,9 +18,11 @@ const initialValues = ref<FechaUbicacionForm>({
 const useFecha = () => {
     
     const agregarFechaUbicacion = (item: FechaUbicacion) => {
+        
         if(!item) return 
-        fechaUbicacion.value?.push(item)
-    
+        const id = uuid();
+        
+        fechaUbicacion.value?.push({...item, id})
     };
     const editarFechaUbicacion = (fechaUbicacion: any) => {
     

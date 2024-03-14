@@ -9,6 +9,8 @@ import type { Vinculados, VinculadosForm } from '@/interfaces/vinculado.interfac
 import MyInput from '@/components/elementos/MyInput.vue';
 import MyTextArea from '@/components/elementos/MyTextArea.vue';
 import { Afectados } from '../interfaces/afectado.interface';
+import MyInputMask from '@/components/elementos/MyInputMask.vue';
+import MyInputNumber from '@/components/elementos/MyInputNumber.vue';
 
 
 const { 
@@ -77,7 +79,8 @@ const handleAgregarElemento = () => {
             </div>
             <div class="col-4">
                 <label for="dropdown" >N° de doc.</label>
-                <MyInput type="number" class="mt-2" v-model="formData.nroDocumento"  />
+                <MyInputNumber type="number" class="mt-2" v-model="formData.nroDocumento" />
+
             </div>
             <div class="col-4">
                <label for="dropdown" >Sexo</label>
@@ -97,7 +100,8 @@ const handleAgregarElemento = () => {
             </div>
             <div class="col-3">
                 <label for="dropdown" >Fecha de nac.</label>
-                <MyInput type="text" class="mt-2" v-model="formData.fecha" />
+                <MyInputMask type="text" class="mt-2" v-model="formData.fecha" />
+                
             </div>
             <div class="col-3">
                <label for="dropdown" >Nacionalidad</label>

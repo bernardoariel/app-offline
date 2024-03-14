@@ -3,10 +3,12 @@ import { ref } from 'vue';
 import useAfectados from '../composables/useAfectados';
 import MyDropdown from '@/components/elementos/MyDropdown.vue';
 import MyInput from '@/components/elementos/MyInput.vue';
+import MyInputMask from '@/components/elementos/MyInputMask.vue';
 import MyTextArea from '@/components/elementos/MyTextArea.vue';
 import { afectadosDropdown } from '../helpers/getDropItems';
 import { documentosDropdown, sexoDropdown, nacionalidadDropdown, estadoCivilDropdown, instruccionDropdown } from '@/helpers/getDropItems';
 import type { AfectadosForm, Afectados } from '../interfaces/afectado.interface';
+import MyInputNumber from '@/components/elementos/MyInputNumber.vue';
 
 const { 
     afectados,
@@ -82,7 +84,7 @@ const handleAgregarElemento = () => {
             </div>
             <div class="col-4">
                 <label for="dropdown" >N° de doc.</label>
-                <MyInput type="number" class="mt-2" v-model="formData.nroDocumento"  />
+                <MyInputNumber type="number" class="mt-2" v-model="formData.nroDocumento" />
             </div>
             <div class="col-4">
                <label for="dropdown" >Sexo</label>
@@ -99,7 +101,7 @@ const handleAgregarElemento = () => {
             </div>
             <div class="col-3">
                 <label for="dropdown" >Fecha de nac.</label>
-                <MyInput type="text" class="mt-2" v-model="formData.fecha" />
+                <MyInputMask type="text" class="mt-2" v-model="formData.fecha" />
             </div>
             <div class="col-3">
                <label for="dropdown" >Nacionalidad</label>

@@ -1,4 +1,5 @@
 interface PrimaryAttributes{
+    id?:string;
     desdeFechaHora: string | Date,
     hastaFechaHora: string | Date,
     calle?: string,

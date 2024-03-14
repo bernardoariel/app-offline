@@ -1,5 +1,6 @@
-import type { VinculadosForm, Vinculados } from "@/interfaces/vinculado.interface";
 import { ref, } from "vue"
+import { v4 as uuid } from 'uuid';
+import type { VinculadosForm, Vinculados } from "@/interfaces/vinculado.interface";
 import type { DropDownInterface } from '../interfaces/dropdown.interface';
 
 
@@ -34,11 +35,11 @@ const initialValues: VinculadosForm = {
 const useVinculados = () => {
     
     const agregarVinculado = (item: Vinculados) => {
-        console.log('item::: ', item);
         
-        // if(!item) return 
-        vinculados.value?.push(item)
+        if(!item) return 
+        const id = uuid();
 
+        vinculados.value?.push({...item, id})
     };
 
     const editarVinculado = (item: any) => {

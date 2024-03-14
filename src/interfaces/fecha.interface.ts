@@ -3,6 +3,7 @@ interface PrimaryAttributes{
     desdeFechaHora: string | Date,
     hastaFechaHora: string | Date,
     calle?: string,
+    nombre?:string;
     numero?: string,
     /* si hay internet */
     ubicacion?: string,

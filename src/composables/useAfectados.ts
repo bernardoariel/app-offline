@@ -19,7 +19,7 @@ let selectedInstruccion = ref<DropDownInterface>()
 const initialValues: AfectadosForm = {
     nroDocumento: 0,
     apellido: '',
-    name: '',
+    nombre: '',
     fecha: '',
     domicilioResidencia: '',
     telefono: '',

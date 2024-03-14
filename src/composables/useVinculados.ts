@@ -17,7 +17,7 @@ let selectedInstruccion = ref<DropDownInterface>()
 const initialValues: VinculadosForm = {
     nroDocumento: 0,
     apellido: '',
-    name: '',
+    nombre: '',
     fecha: '',
     domicilioResidencia: '',
     telefono: '',

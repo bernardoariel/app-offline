@@ -13,6 +13,7 @@ const initialValues: PersonalIntervinienteForm = {
   nombre: '',
   jerarquia: { name: '' },
   dependencia: { name: '' },
+  id: ""
 };
 const usePersonalInterviniente = () => {
     

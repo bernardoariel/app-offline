@@ -2,7 +2,7 @@ interface PrimaryAttributes{
     id?: string,
     nroDocumento: number,
     apellido: string,
-    name: string,
+    nombre: string,
     fecha: string,
     domicilioResidencia: string,
     telefono: string,

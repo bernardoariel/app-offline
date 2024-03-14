@@ -1,5 +1,6 @@
 interface PrimaryAttributes{
- id?:string
+ id?:string;
+ nombre?:string;
 }
 
 export interface EfectosForm extends PrimaryAttributes{

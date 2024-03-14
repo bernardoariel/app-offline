@@ -56,7 +56,7 @@ const copyProduct = (productId:any) => {
 
                   <div class="flex-items">
                     <span class="font-bold">{{ item.apellido ? getUpperCase(item.apellido) + ',' : '' }}</span>
-                    <span class="ml-2">{{ item.name ? getTitleCase(item.name) : 'Nuevo' }}</span>
+                    <span class="ml-2">{{ item.nombre ? getTitleCase(item.nombre) : 'Nuevo' }}</span>
                     <span v-if="item.typeDocumento && item.nroDocumento" class="ml-5">
                       <i>{{ item.typeDocumento + ': ' }}</i>
                       <i>{{ item.nroDocumento }}</i>

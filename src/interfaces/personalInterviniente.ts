@@ -1,5 +1,5 @@
 interface PrimaryAttributes{
-  id:string;
+  id?:string;
   apellido: string;
   nombre: string;
 }

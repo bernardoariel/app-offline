@@ -12,13 +12,13 @@ const { itemsComputados, cargando, routeType } = useItemsComputados();
 
 const selectedItem = ref(null); // Asume un v-model para el Listbox
 
-const itemsComputadosModificados = computed(() => {
+/* const itemsComputadosModificados = computed(() => {
   return itemsComputados.value.map((item:any) => ({
     ...item,
     fullName: getUpperCase(item.apellido) + ', ' + getTitleCase(item.nombre), // Asumiendo que quieras el apellido en mayúsculas y el nombre capitalizado
     id: item.id // Asegúrate de que cada item tenga un ID único
   }));
-});
+}); */
 
 
 </script>
@@ -27,7 +27,7 @@ const itemsComputadosModificados = computed(() => {
     <Listbox
       v-model="selectedItem"
       :options="itemsComputados"
-      optionLabel="fullName"
+      optionLabel="nombre"
       class="w-full listbox-lower">
 
       <template #option="{ option }">

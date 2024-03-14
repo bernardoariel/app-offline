@@ -1,6 +1,6 @@
 <script setup lang="ts">
 //listBoxItems
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 
 import { getUpperCase, getTitleCase } from "@/helpers/stringUtils";
 import { getColorByAfectado } from '@/helpers/getColorByAfectado';
@@ -12,6 +12,14 @@ const { itemsComputados, cargando, routeType } = useItemsComputados();
 
 const selectedItem = ref(null); // Asume un v-model para el Listbox
 
+const itemsComputadosModificados = computed(() => {
+  return itemsComputados.value.map((item:any) => ({
+    ...item,
+    fullName: getUpperCase(item.apellido) + ', ' + getTitleCase(item.nombre), // Asumiendo que quieras el apellido en mayúsculas y el nombre capitalizado
+    id: item.id // Asegúrate de que cada item tenga un ID único
+  }));
+});
+
 
 </script>
 <template>
@@ -19,8 +27,7 @@ const selectedItem = ref(null); // Asume un v-model para el Listbox
     <Listbox
       v-model="selectedItem"
       :options="itemsComputados"
-      optionLabel="name"
-      optionValue="id"
+      optionLabel="fullName"
       class="w-full listbox-lower">
 
       <template #option="{ option }">

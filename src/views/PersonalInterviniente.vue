@@ -1,10 +1,11 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import MyDropdown from '@/components/elementos/MyDropdown.vue';
 import MyInput from '@/components/elementos/MyInput.vue';
 import { dependenciaDropdown, jerarquiaDropdown } from '@/helpers/getDropItems';
 import type { PersonalInterviniente, PersonalIntervinienteForm } from '../interfaces/personalInterviniente';
 import usePersonalInterviniente from '@/composables/usePersonalInterviniente';
+import useItemValue from '@/composables/useItemValue';
 
 const { 
   intervinientes,
@@ -13,8 +14,7 @@ const {
   selectedDependenciaDrop,
   initialValues
  } = usePersonalInterviniente();
-
-
+ const { selectedItem } = useItemValue()
 const formData = ref<PersonalIntervinienteForm>({ ...initialValues });
 
 const getInputValue = (campo: keyof PersonalInterviniente) => {
@@ -52,7 +52,13 @@ const handleAgregarElemento = () => {
   agregar(nuevoPersonalInterviniente)
   
 };
-
+watch(selectedItem, (newVal:any) => {
+    
+    if (!newVal)  formData.value = ({ ...initialValues })
+    formData.value = ({...newVal})
+    
+   
+ });
 </script>
 
 <template>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import useAfectados from '../composables/useAfectados';
 import MyDropdown from '@/components/elementos/MyDropdown.vue';
 import MyInput from '@/components/elementos/MyInput.vue';
@@ -9,6 +9,8 @@ import { afectadosDropdown } from '../helpers/getDropItems';
 import { documentosDropdown, sexoDropdown, nacionalidadDropdown, estadoCivilDropdown, instruccionDropdown } from '@/helpers/getDropItems';
 import type { AfectadosForm, Afectados } from '../interfaces/afectado.interface';
 import MyInputNumber from '@/components/elementos/MyInputNumber.vue';
+
+import useItemValue from '@/composables/useItemValue';
 
 const { 
     afectados,
@@ -20,8 +22,9 @@ const {
     selectedNacionalidad,
     selectedEstadoCivil,
     selectedInstruccion } = useAfectados()
+const { selectedItem } = useItemValue()
 
-const formData = ref<AfectadosForm>({ ...initialValues });
+let formData = ref<AfectadosForm>({ ...initialValues });
 
 const getInputValue = (campo: keyof AfectadosForm) => {
   return formData.value[campo];
@@ -29,15 +32,9 @@ const getInputValue = (campo: keyof AfectadosForm) => {
 const handleInputChange = (campo: keyof AfectadosForm, event: Event) => {
   const value = (event.target as HTMLInputElement).value;
 
-  // Verificar si el campo es 'jerarquia' o 'dependencia'
-//   if (campo === 'jerarquia' || campo === 'dependencia') {
-    // Asegurarse de que formData.value[campo] sea del tipo adecuado
     const field = formData.value[campo] as { name: string };
     field.name = value;
- /*  } else {
-    // Si no es 'jerarquia' ni 'dependencia', asignar directamente el valor
-    formData.value[campo] = value;
-  } */
+ 
 };
 
 const handleBlur = (campo: string) => {
@@ -49,7 +46,7 @@ const handleAgregarElemento = () => {
     const nuevoItem: Afectados = {
         nroDocumento: formData.value.nroDocumento,
         apellido: formData.value.apellido,
-        name: formData.value.name,
+        nombre: formData.value.nombre,
         fecha: formData.value.fecha,
         domicilioResidencia: formData.value.domicilioResidencia,
         telefono: formData.value.telefono,
@@ -65,8 +62,16 @@ const handleAgregarElemento = () => {
 
     agregar(nuevoItem)
 
+    formData.value = ({ ...initialValues });
+    
 };
-
+watch(selectedItem, (newVal:any) => {
+    
+   if (!newVal)  formData.value = ({ ...initialValues })
+   formData.value = ({...newVal})
+   
+  
+});
 
 </script>
 <template>
@@ -97,7 +102,7 @@ const handleAgregarElemento = () => {
             </div>
             <div class="col-6">
                 <label for="dropdown" >Nombre</label>
-                <MyInput type="text" class="mt-2" v-model="formData.name"/>
+                <MyInput type="text" class="mt-2" v-model="formData.nombre"/>
             </div>
             <div class="col-3">
                 <label for="dropdown" >Fecha de nac.</label>

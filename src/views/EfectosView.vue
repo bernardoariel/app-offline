@@ -1,14 +1,15 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import MyDropdown from '@/components/elementos/MyDropdown.vue';
 
 import { categoriasDropdown, marcasCategoriasDropdown, modelosCategoriasDropdown, subcategoriasDropdown, tipoCategoriasDropdown } from '@/helpers/getDropItems';
 import type { EfectosForm } from '../interfaces/efecto.interface';
 import type{ Efectos } from '../interfaces/efecto.interface';
 import useEfectos from '@/composables/useEfectos';
+import useItemValue from '@/composables/useItemValue';
 
 const { agregar,efectos,initialValues,selectedCategoria,selectedMarca,selectedModelo,selectedSubcategoria,selectedTipo} = useEfectos()
-
+const { selectedItem } = useItemValue()
 const formData = ref<EfectosForm>({ ...initialValues });
 
 const getInputValue = (campo: keyof EfectosForm) => {
@@ -43,8 +44,15 @@ const handleAgregarElemento = () => {
     };
 
     agregar(nuevoEfecto)
-
 };
+
+watch(selectedItem, (newVal:any) => {
+    
+    if (!newVal)  formData.value = ({ ...initialValues })
+    formData.value = ({...newVal})
+    
+   
+ });
 </script>
 <template>
     <Card>

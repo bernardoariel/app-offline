@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import MyDropdown from '@/components/elementos/MyDropdown.vue';
 
 import { afectadosDropdown, documentosDropdown, estadoCivilDropdown, instruccionDropdown, nacionalidadDropdown, sexoDropdown } from '@/helpers/getDropItems';
@@ -8,15 +8,15 @@ import useVinculados from '@/composables/useVinculados';
 import type { Vinculados, VinculadosForm } from '@/interfaces/vinculado.interface';
 import MyInput from '@/components/elementos/MyInput.vue';
 import MyTextArea from '@/components/elementos/MyTextArea.vue';
-import { Afectados } from '../interfaces/afectado.interface';
+import type { Afectados } from '../interfaces/afectado.interface';
 import MyInputMask from '@/components/elementos/MyInputMask.vue';
 import MyInputNumber from '@/components/elementos/MyInputNumber.vue';
+import useItemValue from '@/composables/useItemValue';
 
 
 const { 
   vinculados,
   agregar, 
-  efectos, 
   initialValues,
   selectedType,
   selectedDocumento,
@@ -24,8 +24,8 @@ const {
   selectedNacionalidad,
   selectedEstadoCivil,
   selectedInstruccion } = useVinculados()
-
-const formData = ref<VinculadosForm>({ ...initialValues.value });
+  const { selectedItem } = useItemValue()
+const formData = ref<VinculadosForm>({ ...initialValues });
 
 const getInputValue = (campo: keyof VinculadosForm) => {
   return formData.value[campo];
@@ -46,7 +46,7 @@ const handleAgregarElemento = () => {
         apodo: formData.value.apodo,
         nroDocumento: formData.value.nroDocumento,
         apellido: formData.value.apellido,
-        name: formData.value.name,
+        nombre: formData.value.nombre,
         fecha: formData.value.fecha,
         domicilioResidencia: formData.value.domicilioResidencia,
         telefono: formData.value.telefono,
@@ -62,7 +62,13 @@ const handleAgregarElemento = () => {
     agregar(nuevoItem)
 
 };
-
+watch(selectedItem, (newVal:any) => {
+    
+    if (!newVal)  formData.value = ({ ...initialValues })
+    formData.value = ({...newVal})
+    
+   
+ });
 </script>
 <template>
    <Card>
@@ -96,7 +102,7 @@ const handleAgregarElemento = () => {
             </div>
             <div class="col-6">
                 <label for="dropdown" >Nombre</label>
-                <MyInput type="text" class="mt-2" v-model="formData.name"  />
+                <MyInput type="text" class="mt-2" v-model="formData.nombre"  />
             </div>
             <div class="col-3">
                 <label for="dropdown" >Fecha de nac.</label>

@@ -1,9 +1,12 @@
 // useItemsComputados.js
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import useItem from './useItems'; // Asume que este composable ya existe y exporta lo que necesitas
 import useRouteType from './useRouteType'; // Composable para obtener el tipo de ruta actual
 
+const selectedItem = ref(null); 
+
 const useItemsComputados = ()=> {
+
   const { routeType } = useRouteType(); // Obtiene el tipo de ruta actual
   const { afectados, vinculados, fechaUbicacion, efectos, intervinientes } = useItem();
   const cargando = ref(true);
@@ -19,7 +22,6 @@ const useItemsComputados = ()=> {
         data = vinculados.value;
         break;
       case 'fecha':
-        // Asumiendo que 'fechaUbicacion' es un objeto y quieres tratarlo como un array de un solo elemento
         data = fechaUbicacion.value;
         break;
       case 'efectos':
@@ -36,11 +38,14 @@ const useItemsComputados = ()=> {
     cargando.value = false; // Indica que la carga ha terminado
     return data;
   });
-
+  watch(selectedItem, (newVal) => {
+    console.log("SelectedItem ha cambiado:", newVal);
+});
   return {
     itemsComputados,
     cargando,
-    routeType
+    routeType,
+    selectedItem
   };
 }
 

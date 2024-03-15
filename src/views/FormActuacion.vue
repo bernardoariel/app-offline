@@ -14,9 +14,10 @@ import FechaUbicacionView from './FechaUbicacionView.vue';
 import VinculadosView from './VinculadosView.vue';
 import AfectadosView from './AfectadosView.vue';
 import PersonalInterviniente from './PersonalInterviniente.vue';
+import useItemValue from '@/composables/useItemValue';
 
 
-const { prepararNuevoItem } = useNewActuacion()
+const { prepararNuevoItem } = useItemValue()
 
 const route = useRoute();
 const router = useRouter()

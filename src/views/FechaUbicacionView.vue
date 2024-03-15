@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 
 import MyInput from '@/components/elementos/MyInput.vue';
 import MyDropdown from '@/components/elementos/MyDropdown.vue';
@@ -7,11 +7,13 @@ import MyDropdown from '@/components/elementos/MyDropdown.vue';
 import { municipiosDropdown } from '@/helpers/getDropItems';
 import type { FechaUbicacionForm, FechaUbicacion } from '../interfaces/fecha.interface';
 import useFecha from '@/composables/useFecha';
+import useItemValue from '@/composables/useItemValue';
 interface CalendarComponent {
   overlayVisible?: boolean;
   value: Date;
 }
 const {initialValues,agregar,selectedMunicipioDrop} = useFecha()
+const { selectedItem } = useItemValue()
 
 const formData = ref<FechaUbicacionForm>({...initialValues.value});
 const desdeFechaHoraRef = ref<CalendarComponent | null>(null);
@@ -53,6 +55,13 @@ function closeCalendar(calendarRef: CalendarComponent | null) {
 function setToNow(nameInput: 'desdeFechaHora' | 'hastaFechaHora') {
   formData.value[nameInput] = new Date();
 }
+watch(selectedItem, (newVal:any) => {
+    
+    if (!newVal)  formData.value = ({ ...initialValues.value })
+    formData.value = ({...newVal})
+    
+   
+});
 </script>
 <template>
     <Card>

@@ -7,10 +7,12 @@ import { getColorByAfectado } from '@/helpers/getColorByAfectado';
 
 import { formatFecha } from '@/helpers/getFormatFecha';
 import useItemsComputados from '@/composables/useItemsComputados';
+import useItemValue from '@/composables/useItemValue';
 
 const { itemsComputados, cargando, routeType } = useItemsComputados();
+const {selectedItem} = useItemValue()
 
-const selectedItem = ref(null); // Asume un v-model para el Listbox
+// Asume un v-model para el Listbox
 
 /* const itemsComputadosModificados = computed(() => {
   return itemsComputados.value.map((item:any) => ({

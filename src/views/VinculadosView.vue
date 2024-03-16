@@ -12,8 +12,9 @@ import type { Afectados } from '../interfaces/afectado.interface';
 import MyInputMask from '@/components/elementos/MyInputMask.vue';
 import MyInputNumber from '@/components/elementos/MyInputNumber.vue';
 import useItemValue from '@/composables/useItemValue';
+import useFieldState from '@/composables/useFiledsState';
 
-
+const { statesID, setPristineById, setModifiedData, guardarModificaciones } = useFieldState();
 const { 
   vinculados,
   agregar, 
@@ -157,11 +158,11 @@ watch(selectedItem, (newVal:any) => {
 
             </div>
         </div>
-        <!-- <pre>
+        <pre>
           <span v-for="(id, pristine) in statesID" key="id">
             ID: {{id}}, Pristine: {{ pristine }}
           </span>
-        </pre> -->
+        </pre>
     </template>
 </Card>
 </template>

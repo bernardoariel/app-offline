@@ -7,9 +7,11 @@ import type { EfectosForm } from '../interfaces/efecto.interface';
 import type{ Efectos } from '../interfaces/efecto.interface';
 import useEfectos from '@/composables/useEfectos';
 import useItemValue from '@/composables/useItemValue';
+import useFieldState from '@/composables/useFiledsState';
 
 const { agregar,efectos,initialValues,selectedCategoria,selectedMarca,selectedModelo,selectedSubcategoria,selectedTipo} = useEfectos()
 const { selectedItem } = useItemValue()
+const { statesID, setPristineById, setModifiedData, guardarModificaciones } = useFieldState();
 const formData = ref<EfectosForm>({ ...initialValues });
 
 const getInputValue = (campo: keyof EfectosForm) => {
@@ -104,8 +106,10 @@ watch(selectedItem, (newVal:any) => {
                 </div>
             </div>
             <pre>
-             
-            </pre>
+          <span v-for="(id, pristine) in statesID" key="id">
+            ID: {{id}}, Pristine: {{ pristine }}
+          </span>
+        </pre>
         </template>
     </Card>
 </template>

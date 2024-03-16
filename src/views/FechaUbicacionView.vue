@@ -8,26 +8,31 @@ import { municipiosDropdown } from '@/helpers/getDropItems';
 import type { FechaUbicacionForm, FechaUbicacion } from '../interfaces/fecha.interface';
 import useFecha from '@/composables/useFecha';
 import useItemValue from '@/composables/useItemValue';
+import useFieldState from '@/composables/useFiledsState';
 interface CalendarComponent {
   overlayVisible?: boolean;
   value: Date;
 }
 const {initialValues,agregar,selectedMunicipioDrop} = useFecha()
 const { selectedItem } = useItemValue()
+const { agregarIdState, setPristineById, setModifiedData, guardarModificaciones } = useFieldState();
 
 const formData = ref<FechaUbicacionForm>({...initialValues.value});
 const desdeFechaHoraRef = ref<CalendarComponent | null>(null);
 const hastaFechaHoraRef = ref<CalendarComponent | null>(null);
+
 const getInputValue = (campo: keyof FechaUbicacionForm) => {
   return formData.value[campo];
 };
+
 const handleInputChange = (campo: keyof FechaUbicacionForm, event: Event) => {
   const value = (event.target as HTMLInputElement).value;
 
   // Verificar si el campo es 'jerarquia' o 'dependencia'
   const field = formData.value[campo] as { name: string };
-    field.name = value;
+  field.name = value;
 };
+const { statesID } = useFieldState();
 
 const handleBlur = (campo: string) => {
   // Aquí podrías hacer algo adicional si lo necesitas
@@ -159,6 +164,11 @@ watch(selectedItem, (newVal:any) => {
                 <Button label="Guardar Cambios" v-else @click="handleModificarElemento"></Button> -->
                 </div>
             </div>
+            <pre>
+          <span v-for="(id, pristine) in statesID" key="id">
+            ID: {{id}}, Pristine: {{ pristine }}
+          </span>
+        </pre>
         </template>
     </Card>
 </template>

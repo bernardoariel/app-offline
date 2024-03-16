@@ -2,9 +2,10 @@ import { ref, } from "vue"
 import { v4 as uuid } from 'uuid';
 import type { VinculadosForm, Vinculados } from "@/interfaces/vinculado.interface";
 import type { DropDownInterface } from '../interfaces/dropdown.interface';
+import useFieldState from "./useFiledsState";
 
 
-
+const { agregarIdState, setPristineById, setModifiedData, guardarModificaciones } = useFieldState();
 let vinculados = ref<Vinculados[]>([]);
 
 let selectedType = ref<DropDownInterface>()
@@ -40,6 +41,8 @@ const useVinculados = () => {
         const id = uuid();
 
         vinculados.value?.push({...item, id})
+        // Agrega el estado del ítem
+        agregarIdState(id, {});
     };
 
     const editarVinculado = (item: any) => {

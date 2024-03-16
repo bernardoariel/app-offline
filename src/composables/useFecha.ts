@@ -3,7 +3,8 @@ import { ref, } from "vue"
 import { v4 as uuid } from 'uuid';
 import type { FechaUbicacion, FechaUbicacionForm } from '../interfaces/fecha.interface';
 import type { DropDownInterface } from '../interfaces/dropdown.interface';
-
+import useFieldState from "./useFiledsState";
+const { agregarIdState, setPristineById, setModifiedData, guardarModificaciones } = useFieldState();
 let fechaUbicacion = ref<FechaUbicacion[]>([]);
 const selectedMunicipioDrop = ref<DropDownInterface>()
 
@@ -23,6 +24,8 @@ const useFecha = () => {
         const id = uuid();
         
         fechaUbicacion.value?.push({...item, id})
+        // Agrega el estado del ítem
+        agregarIdState(id, {});
     };
     const editarFechaUbicacion = (fechaUbicacion: any) => {
     

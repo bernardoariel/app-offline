@@ -11,6 +11,7 @@ import type { AfectadosForm, Afectados } from '../interfaces/afectado.interface'
 import MyInputNumber from '@/components/elementos/MyInputNumber.vue';
 
 import useItemValue from '@/composables/useItemValue';
+import useFieldState from '@/composables/useFiledsState';
 
 const { 
     afectados,
@@ -23,6 +24,7 @@ const {
     selectedEstadoCivil,
     selectedInstruccion } = useAfectados()
 const { selectedItem } = useItemValue()
+const { statesID, setPristineById, setModifiedData, guardarModificaciones } = useFieldState();
 
 let formData = ref<AfectadosForm>({ ...initialValues });
 
@@ -30,19 +32,19 @@ const getInputValue = (campo: keyof AfectadosForm) => {
   return formData.value[campo];
 };
 const handleInputChange = (campo: keyof AfectadosForm, event: Event) => {
-  const value = (event.target as HTMLInputElement).value;
+    const value = (event.target as HTMLInputElement).value;
 
     const field = formData.value[campo] as { name: string };
     field.name = value;
- 
 };
 
 const handleBlur = (campo: string) => {
   // Aquí podrías hacer algo adicional si lo necesitas
 };
+type TipoLista = 'afectados' | 'vinculados' | 'fecha' | 'efectos' | 'personalInterviniente';
 
 const handleAgregarElemento = () => {
-
+    const modifiedData = { ...formData.value };
     const nuevoItem: Afectados = {
         nroDocumento: formData.value.nroDocumento,
         apellido: formData.value.apellido,
@@ -61,7 +63,7 @@ const handleAgregarElemento = () => {
     };
 
     agregar(nuevoItem)
-
+    // setPristineById(selectedItem.value!, true);
     formData.value = ({ ...initialValues });
     
 };

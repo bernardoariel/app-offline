@@ -6,6 +6,7 @@ import { dependenciaDropdown, jerarquiaDropdown } from '@/helpers/getDropItems';
 import type { PersonalInterviniente, PersonalIntervinienteForm } from '../interfaces/personalInterviniente';
 import usePersonalInterviniente from '@/composables/usePersonalInterviniente';
 import useItemValue from '@/composables/useItemValue';
+import useFieldState from '@/composables/useFiledsState';
 
 const { 
   intervinientes,
@@ -15,6 +16,7 @@ const {
   initialValues
  } = usePersonalInterviniente();
  const { selectedItem } = useItemValue()
+ const { statesID, setPristineById, setModifiedData, guardarModificaciones } = useFieldState();
 const formData = ref<PersonalIntervinienteForm>({ ...initialValues });
 
 const getInputValue = (campo: keyof PersonalInterviniente) => {
@@ -104,7 +106,10 @@ watch(selectedItem, (newVal:any) => {
         </div>
       </div>
       <pre>
-      </pre>
+          <span v-for="(id, pristine) in statesID" key="id">
+            ID: {{id}}, Pristine: {{ pristine }}
+          </span>
+        </pre>
     </template>
   </Card>
 </template>

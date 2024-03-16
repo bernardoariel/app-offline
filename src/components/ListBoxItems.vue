@@ -9,18 +9,8 @@ import { formatFecha } from '@/helpers/getFormatFecha';
 import useItemsComputados from '@/composables/useItemsComputados';
 import useItemValue from '@/composables/useItemValue';
 
-const { itemsComputados, cargando, routeType } = useItemsComputados();
+const { itemsComputados, routeType } = useItemsComputados();
 const {selectedItem} = useItemValue()
-
-// Asume un v-model para el Listbox
-
-/* const itemsComputadosModificados = computed(() => {
-  return itemsComputados.value.map((item:any) => ({
-    ...item,
-    fullName: getUpperCase(item.apellido) + ', ' + getTitleCase(item.nombre), // Asumiendo que quieras el apellido en mayúsculas y el nombre capitalizado
-    id: item.id // Asegúrate de que cada item tenga un ID único
-  }));
-}); */
 
 
 </script>

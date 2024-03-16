@@ -4,8 +4,9 @@ import { v4 as uuid } from 'uuid';
 
 import type { Afectados, AfectadosForm } from '../interfaces/afectado.interface';
 import type { DropDownInterface } from "@/interfaces/dropdown.interface";
+import useFieldState from "./useFiledsState";
 
-
+const { agregarIdState, setPristineById, setModifiedData, guardarModificaciones } = useFieldState();
 
 let afectados = ref<Afectados[]>([]);
 let selectedType = ref<DropDownInterface>()
@@ -40,6 +41,8 @@ const useAfectados = () => {
         const id = uuid();
 
         afectados.value?.push({...item, id})
+        // Agrega el estado del ítem
+        agregarIdState(id, {});
     };
 
     const editarAfectado = (item: any) => {

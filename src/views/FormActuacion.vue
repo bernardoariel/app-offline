@@ -1,21 +1,14 @@
 <script setup lang="ts">
-
-
-import ListBoxItems from '@/components/ListBoxItems.vue';
-
-import useAfectadosForm from '@/composables/useAfectadosForm';
-import useNewActuacion from '@/composables/useNewActuacion';
-
 import {  ref, watch } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 
+import ListBoxItems from '@/components/ListBoxItems.vue';
 import EfectosView from './EfectosView.vue';
 import FechaUbicacionView from './FechaUbicacionView.vue';
 import VinculadosView from './VinculadosView.vue';
 import AfectadosView from './AfectadosView.vue';
 import PersonalInterviniente from './PersonalInterviniente.vue';
 import useItemValue from '@/composables/useItemValue';
-
 
 const { prepararNuevoItem } = useItemValue()
 
@@ -24,18 +17,14 @@ const router = useRouter()
 const tipo = ref(route.params.tipo);
 
 
-const handleNuevoItem = () => {
-
-  prepararNuevoItem();
-};
-const handleVolver = () => {
-    router.go(-1); 
-}
+const handleNuevoItem = () => prepararNuevoItem()
+const handleVolver = () => router.go(-1)
 
 watch(() => route.params.tipo, (newTipo) => {
-  if (newTipo !== tipo.value) {
-    tipo.value = newTipo; 
-  }
+    
+  if (newTipo === tipo.value) return 
+  tipo.value = newTipo; 
+  
 });
 
 </script>

@@ -31,7 +31,7 @@ const {selectedItem} = useItemValue()
             <div v-if="routeType === 'afectados' || routeType === 'vinculados'">
               <div class="text-row">
                 <span class="font-bold">{{ option.apellido ? getUpperCase(option.apellido) + ',' : '' }}</span>
-                <span class="ml-2">{{ option.name ? getTitleCase(option.name) : 'Nuevo' }}</span>
+                <span class="ml-2">{{ option.nombre ? getTitleCase(option.nombre) : '' }}</span>
                 <span class="ml-5">
                   <i>{{ option.typeDocumento + ': ' }}</i>
                   <i>{{ option.nroDocumento }}</i>

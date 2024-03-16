@@ -68,11 +68,11 @@ const handleAgregarElemento = () => {
     
 };
 watch(selectedItem, (newVal:any) => {
-    
-   if (!newVal)  formData.value = ({ ...initialValues })
-   formData.value = ({...newVal})
-   
-  
+   if (!newVal) {
+       formData.value = ({ ...initialValues });
+   } else {
+       formData.value = ({...newVal});
+   }
 });
 
 </script>

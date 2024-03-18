@@ -45,13 +45,17 @@ const useAfectados = () => {
         agregarIdState(id, {});
     };
 
-    const editarAfectado = (item: AfectadosForm, tipo: string) => {
-
-      /*   const index = lista.value.findIndex(p => p.id === item.id);
-        if (index !== -1) lista.value[index] = { ...item };
-        // Suponiendo que necesites actualizar el estado después de editar
-        actualizarEstado(lista.value)
-        guardarModificaciones(item.id) */
+    const editarAfectado = (item: Afectados) => {
+        if(!item.id) return
+        const index = afectados.value.findIndex(afectado => afectado.id === item.id);
+        if (index !== -1) {
+            afectados.value[index] = item;
+        }
+        // actualizarEstado(afectados.value)
+        guardarModificaciones(item.id)
+        /* actualizarEstado(lista.value)
+        guardarModificaciones(item.id)  */ 
+        
     };
     const eliminarAfectado = (id: string) => {
        

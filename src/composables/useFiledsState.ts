@@ -53,11 +53,21 @@ export default function useFieldState() {
     }
     return null; // Devuelve null si no se encuentra el ítem
   };
+  const isEditing = (id: string | null) => {
+    console.log('null::: ', null);
+    console.log('id::: ', id);
+    if (!id) return false
+    const state = statesID.find(state => state.id === id);
+    
+    return state ? state.pristine : false;
+  };
+
   return {
     statesID,
     agregarIdState,
     setPristineById,
     setModifiedData,
     guardarModificaciones,
+    isEditing
   };
 }

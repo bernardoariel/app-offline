@@ -15,6 +15,7 @@ import useFieldState from '@/composables/useFiledsState';
 
 const { 
       afectados,
+      editar,
       agregar,  
       initialValues,
       selectedType,
@@ -26,9 +27,8 @@ const {
 
 const { selectedItem } = useItemValue()
 
-const { statesID, setPristineById, setModifiedData, guardarModificaciones } = useFieldState();
+const { statesID, setPristineById, setModifiedData, guardarModificaciones,isEditing } = useFieldState();
 let formData = ref<AfectadosForm>({ ...initialValues });
-let isEditing = false
 
 const getInputValue = (campo: keyof AfectadosForm) => {
   // Asegurarse de que 'campo' existe dentro de formData.value antes de intentar acceder a él.
@@ -93,9 +93,16 @@ const handleModificarElemento = () => {
   let itemStateEncontrado = guardarModificaciones(selectedItem.value!.id);
   let itemAEditar = {
       ...formData.value,
+      typeAfectado: selectedType.value!.name,
+      typeDocumento: selectedDocumento.value!.name,
+      typeSexo: selectedSexo.value!.name,
+      nacionalidad: selectedNacionalidad.value!.name,
+      estadoCivil: selectedEstadoCivil.value!.name,
+      instruccion: selectedInstruccion.value!.name,
       ...itemStateEncontrado
     };
-  // editar(itemAEditar,tipo.value as string);
+  editar(itemAEditar);
+
 };
 watch(selectedItem, (newVal:any) => {
    if (!newVal) {
@@ -176,16 +183,20 @@ watch(selectedItem, (newVal:any) => {
             </div>
 
             <div class="ml-auto mt-2 p-0">
-                <Button label="Agregar" v-if="!isEditing" @click="handleAgregarElemento()"></Button>
-                <div v-else>
+              <Button
+                label="Agregar"
+                v-if="!selectedItem"
+                @click="handleAgregarElemento()">
+              </Button>                
+              <div v-else>
                   <Button 
-                    :disabled="selectedItem ? getPristineById(selectedItem.id) : false" label="Cancelar"
-                     icon="pi pi-times" severity="secondary" outlined aria-label="Cancel" class="mr-3"
-                     @click="guardarModificaciones(formData.id!)"
-                     ></Button>        
+                    :disabled="isEditing(selectedItem!.id)" label="Cancelar"
+                    icon="pi pi-times" severity="secondary" outlined aria-label="Cancel" class="mr-3"
+                    @click="guardarModificaciones(formData.id!)"
+                    ></Button>        
                     <Button
                         label="Guardar Cambios"
-                        :disabled="selectedItem ? getPristineById(selectedItem.id) : false"
+                        :disabled="isEditing(selectedItem!.id)"
                         @click="handleModificarElemento()"
                         severity="warning"
                       ></Button>
@@ -203,5 +214,6 @@ watch(selectedItem, (newVal:any) => {
 
 
 <style scoped>
+
 
 </style>

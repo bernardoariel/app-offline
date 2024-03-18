@@ -45,8 +45,13 @@ const useAfectados = () => {
         agregarIdState(id, {});
     };
 
-    const editarAfectado = (item: any) => {
-    
+    const editarAfectado = (item: AfectadosForm, tipo: string) => {
+
+      /*   const index = lista.value.findIndex(p => p.id === item.id);
+        if (index !== -1) lista.value[index] = { ...item };
+        // Suponiendo que necesites actualizar el estado después de editar
+        actualizarEstado(lista.value)
+        guardarModificaciones(item.id) */
     };
     const eliminarAfectado = (id: string) => {
        
@@ -56,7 +61,10 @@ const useAfectados = () => {
       
         
     };    
+  
+      
     return {
+        initialValues,
         afectados,
         selectedType,
         selectedDocumento,

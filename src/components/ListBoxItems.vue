@@ -8,10 +8,19 @@ import { getColorByAfectado } from '@/helpers/getColorByAfectado';
 import { formatFecha } from '@/helpers/getFormatFecha';
 import useItemsComputados from '@/composables/useItemsComputados';
 import useItemValue from '@/composables/useItemValue';
+import useFieldState from '@/composables/useFiledsState';
+import type { AfectadosForm } from '@/interfaces/afectado.interface';
 
 const { itemsComputados, routeType } = useItemsComputados();
 const {selectedItem} = useItemValue()
-
+const { statesID,setPristineById } = useFieldState();
+const getPristineById = (id: string) => {
+  const found = statesID.find((state) => state.id === id);
+  return found ? found.pristine : false;
+};
+const eliminarItem = (itemId: AfectadosForm) => {
+  //eliminar( itemId , tipo.value as string); // Asumiendo que necesitas especificar el 'tipo'
+};
 
 </script>
 <template>
@@ -90,18 +99,18 @@ const {selectedItem} = useItemValue()
               outlined 
               severity="primary" />
           <div class="button-and-dot-container" v-else-if="selectedItem === option && option.id">
-            <!-- <div v-if="!getPristineById(option.id)" class="uncommited-dot bg-blue-400"></div> -->
-            <!-- <Button icon="pi pi-trash" 
+            <div v-if="!getPristineById(option.id)" class="uncommited-dot bg-blue-400"></div>
+            <Button icon="pi pi-trash" 
               severity="danger" 
-              @click="eliminarItem(option.id)" /> -->
+              @click="eliminarItem(option.id)" />
           </div>
           <div class="button-and-dot-container" v-else >
-           <!--  <div class="uncommited-dot bg-blue-400" v-if="!getPristineById(option.id)"></div>
+          <div class="uncommited-dot bg-blue-400" v-if="!getPristineById(option.id)"></div>
             <Button 
                 icon="pi pi-trash" 
                 severity="danger" 
                 disabled 
-            /> -->
+            />
           </div>
           </div>
         </div>

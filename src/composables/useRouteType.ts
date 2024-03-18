@@ -8,7 +8,7 @@ const useRouteType = ()=>{
   watch(() => route.params.tipo, (nuevoTipo) => {
     routeType.value = nuevoTipo;
   });
-
+  
   return {
     routeType 
   };

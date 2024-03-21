@@ -2,51 +2,60 @@
 import { computed, ref, watch } from 'vue';
 import useItem from './useItems'; // Asume que este composable ya existe y exporta lo que necesitas
 import useRouteType from './useRouteType'; // Composable para obtener el tipo de ruta actual
+import useAfectados from './useAfectados';
+import useVinculados from './useVinculados';
+import useEfectos from './useEfectos';
+import useFecha from './useFecha';
+import usePersonalInterviniente from './usePersonalInterviniente';
 
 const selectedItem = ref(null); 
+type RouteTypeKey = 'afectados' | 'vinculados' | 'fecha' | 'efectos' | 'personalInterviniente';
 
 const useItemsComputados = ()=> {
 
   const { routeType } = useRouteType(); // Obtiene el tipo de ruta actual
-  const { afectados, vinculados, fechaUbicacion, efectos, intervinientes } = useItem();
-  const cargando = ref(true);
+  const  composables: Record<RouteTypeKey, any> = {
+    afectados: useAfectados(),
+    vinculados: useVinculados(),
+    fecha: useFecha(),
+    efectos: useEfectos(),
+    personalInterviniente: usePersonalInterviniente(),
+  };
 
+  const cargando = ref(true);
+  const eliminarItem = (id: string) => {
+    const composableActual = composables[routeType.value as RouteTypeKey];
+    if (composableActual && composableActual.eliminar) {
+      composableActual.eliminar(id);
+    } else {
+      console.error("Método eliminar no definido para el tipo de ruta actual");
+    }
+  };
   const itemsComputados = computed(() => {
-    cargando.value = true; // Indica que comienza la carga
+    cargando.value = true;
     let data:any = [];
-    switch (routeType.value) {
-      case 'afectados':
-        data = afectados.value;
-        break;
-      case 'vinculados':
-        data = vinculados.value;
-        break;
-      case 'fecha':
-        data = fechaUbicacion.value;
-        break;
-      case 'efectos':
-        data = efectos.value;
-        break;
-      case 'personalInterviniente':
-        data = intervinientes.value;
-        break;
-      default:
-        data = [];
-        break;
+    const composableActual = composables[routeType.value as RouteTypeKey];
+
+    if (composableActual) {
+      data = composableActual.items.value; // Aquí asumimos que cada composable tiene una propiedad 'items' que es reactiva
+    } else {
+      console.error("Composable no definido para el tipo de ruta actual");
     }
 
-    cargando.value = false; // Indica que la carga ha terminado
+    cargando.value = false;
     return data;
   });
   watch(selectedItem, (newVal) => {
     console.log("SelectedItem ha cambiado:", newVal);
-});
+  });
   return {
     itemsComputados,
     cargando,
     routeType,
+    eliminarItem,
     selectedItem
   };
 }
 
 export default useItemsComputados;
+

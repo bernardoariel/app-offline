@@ -13,7 +13,6 @@ export default function useFieldState() {
   const agregarIdState = (id: string,data: Record<string, any>) => {
     
     if(!id) return
-
     statesID.push({
       id: id,
       modifiedData: { ...data },
@@ -29,45 +28,68 @@ export default function useFieldState() {
     }
   };
 
-  const setModifiedData = (id: string, campo: string, valor: any) => {
+  const setModifiedData = (id: string | number, campo: string, valor: any) => {
 
     if (!id ) return
-
     const index = statesID.findIndex((state) => state.id === id);
     if (index !== -1) {
       statesID[index].modifiedData[campo] = valor;
     }
   };
 
-  const guardarModificaciones = (id: string) => {
+  const findById = (id:string) =>{
     const index = statesID.findIndex((state) => state.id === id);
-    if (index !== -1) {
-      const modifiedData = statesID[index].modifiedData;
-  
+    return {
+      index,
+      item: index !== -1 ? statesID[index] : null,
+    };
+  }
+
+  const guardarModificaciones = (id: string) => {
+    const { item } = findById(id);
+    if (item) {
+      const modifiedData = item.modifiedData;
+    
       // Opcional: Limpia modifiedData después de "guardar"
-      statesID[index].modifiedData = {};
-      statesID[index].pristine = true;
-  
+      item.modifiedData = {};
+      item.pristine = true;
+    
       // Devuelve los datos modificados
       return modifiedData;
     }
     return null; // Devuelve null si no se encuentra el ítem
   };
-  const isEditing = (id: string | null) => {
-    console.log('null::: ', null);
-    console.log('id::: ', id);
-    if (!id) return false
-    const state = statesID.find(state => state.id === id);
-    
-    return state ? state.pristine : false;
+
+  const cancelarModificaciones = (id: string) => {
+    const { item } = findById(id);
+    if (item) {
+      // Limpia modifiedData y lo marca como pristine para realmente "cancelar" las modificaciones
+      item.modifiedData = {};
+      item.pristine = true;
+    }
   };
 
+  const isEditing = (id: string | null) => {
+   
+    if (!id) return false
+    const state = statesID.find(state => state.id === id);
+    return state ? state.pristine : false;
+  };
+  const eliminarIdState = (id: string) => {
+    const { index } = findById(id);
+    if (index !== -1) {
+      statesID.splice(index, 1); 
+    }
+  };
+  
   return {
     statesID,
     agregarIdState,
     setPristineById,
     setModifiedData,
     guardarModificaciones,
-    isEditing
+    cancelarModificaciones,
+    isEditing,
+    eliminarIdState
   };
 }

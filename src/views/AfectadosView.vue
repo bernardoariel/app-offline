@@ -1,20 +1,19 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import useAfectados from '../composables/useAfectados';
+import useItemValue from '@/composables/useItemValue';
+import useFieldState from '@/composables/useFiledsState';
+
 import MyDropdown from '@/components/elementos/MyDropdown.vue';
 import MyInput from '@/components/elementos/MyInput.vue';
 import MyInputMask from '@/components/elementos/MyInputMask.vue';
 import MyTextArea from '@/components/elementos/MyTextArea.vue';
-import { afectadosDropdown } from '../helpers/getDropItems';
-import { documentosDropdown, sexoDropdown, nacionalidadDropdown, estadoCivilDropdown, instruccionDropdown } from '@/helpers/getDropItems';
-import type { AfectadosForm, Afectados } from '../interfaces/afectado.interface';
 import MyInputNumber from '@/components/elementos/MyInputNumber.vue';
 
-import useItemValue from '@/composables/useItemValue';
-import useFieldState from '@/composables/useFiledsState';
+import type { AfectadosForm, Afectados } from '../interfaces/afectado.interface';
+import { documentosDropdown, sexoDropdown, nacionalidadDropdown, estadoCivilDropdown, instruccionDropdown,afectadosDropdown } from '@/helpers/getDropItems';
 
 const { 
-      afectados,
       editar,
       agregar,  
       initialValues,
@@ -23,48 +22,64 @@ const {
       selectedSexo,
       selectedNacionalidad,
       selectedEstadoCivil,
-      selectedInstruccion } = useAfectados()
+      selectedInstruccion } = useAfectados()  
 
 const { selectedItem } = useItemValue()
 
-const { statesID, setPristineById, setModifiedData, guardarModificaciones,isEditing } = useFieldState();
+const { statesID, setPristineById, setModifiedData, guardarModificaciones,isEditing, cancelarModificaciones } = useFieldState();
 let formData = ref<AfectadosForm>({ ...initialValues });
 
-const getInputValue = (campo: keyof AfectadosForm) => {
-  // Asegurarse de que 'campo' existe dentro de formData.value antes de intentar acceder a él.
-  
-  if (campo in formData.value) {
-    // Intenta encontrar un registro en statesID que coincida con el ID del selectedItem actual.
-    // Aquí, se asume que selectedItem.value podría ser nulo, por lo que se usa el operador de encadenamiento opcional (?) para evitar errores.
-    const modifiedData = statesID.find((state) => state.id === selectedItem.value?.id)?.modifiedData;
+const handleDropdownChange = (
+  campo: keyof AfectadosForm, 
+  newValue: { value: any;name:string }
+  ) => {
 
-    // Si existe modifiedData para este campo, devuelve ese valor; si no, devuelve el valor actual del campo en formData.
+  const name = newValue.value.name
+
+  if (campo in formData.value) {
+    // Actualizar formData para que el campo específico tenga un objeto con la propiedad 'name' actualizada
+    formData.value = { 
+      ...formData.value, 
+      [campo]: { name } // Asigna un objeto con 'name' a campo
+    };
+
+    const itemId = formData.value.id!;
+    if (itemId) { 
+      setPristineById(itemId, false);
+      setModifiedData(itemId, campo,  name );
+    }
+  }
+};
+
+const getInputValue = (campo: keyof AfectadosForm) => {
+  if (campo in formData.value) {
+    const modifiedData = statesID.find((state) => state.id === selectedItem.value?.id)?.modifiedData;
     return modifiedData && modifiedData[campo] !== undefined ? modifiedData[campo] : formData.value[campo];
   } 
 };
-const handleInputChange = (campo: string, event: Event) => {
+
+const handleInputChange = (campo: string | number, event: Event) => {
   const valor = (event.target as HTMLInputElement).value;
   formData.value = { ...formData.value, [campo]: valor };
 
-  // Actualiza el estado pristine para el ID específico
-  setPristineById(formData.value.id!, false);
-  // Llama a la función setModifiedData
-  setModifiedData(formData.value.id!, campo, valor);
+  const itemId = formData.value.id!;
+  setPristineById(itemId, false);
+  
+  const campoStr = typeof campo === 'number' ? campo.toString() : campo;
+  setModifiedData(itemId, campoStr, valor);
 };
-const getPristineById = (id: string) => {
-  const found = statesID.find((state) => state.id === id);
-  return found ? found.pristine : false;
-};
+
 const handleBlur = (campo: keyof AfectadosForm) => {
   const valor = getInputValue(campo);
   if (!selectedItem.value) return 
 
   setModifiedData(selectedItem.value!.id, campo, valor);
 };
-type TipoLista = 'afectados' | 'vinculados' | 'fecha' | 'efectos' | 'personalInterviniente';
+
 
 const handleAgregarElemento = () => {
-    // const modifiedData = { ...formData.value };
+
+  console.log('formData.value.fecha::: ', formData.value.fecha);
     if(!formData.value) return 
     const nuevoItem: Afectados = {
         nroDocumento: formData.value.nroDocumento,
@@ -85,10 +100,14 @@ const handleAgregarElemento = () => {
 
     agregar(nuevoItem)
     formData.value = ({ ...initialValues });
-
-    // setPristineById(selectedItem.value!.id, true);
-    
 };
+
+const handleCancelar = () => {
+  if (!selectedItem.value) return;
+  cancelarModificaciones(selectedItem.value.id);
+  formData.value = formData.value = { ...initialValues, ...selectedItem.value };
+};
+
 const handleModificarElemento = () => {
   let itemStateEncontrado = guardarModificaciones(selectedItem.value!.id);
   let itemAEditar = {
@@ -104,6 +123,7 @@ const handleModificarElemento = () => {
   editar(itemAEditar);
 
 };
+
 watch(selectedItem, (newVal:any) => {
    if (!newVal) {
        formData.value = ({ ...initialValues });
@@ -119,19 +139,41 @@ watch(selectedItem, (newVal:any) => {
         <div class="grid">
             <div class="col-12">
                <label for="dropdown" >Seleccione tipo de Denunciante</label>
-               <MyDropdown class="mt-2" :items="afectadosDropdown" v-model="selectedType" placeholder="Seleccione tipo de Denunciante" />
+               <MyDropdown
+                  class="mt-2"
+                  :items="afectadosDropdown"
+                  v-model="selectedType"
+                  @change="(newValue) => handleDropdownChange('typeAfectado', newValue)"
+                  placeholder="Seleccione tipo de Denunciante" />
             </div>
             <div class="col-4">
                <label for="dropdown" >Tipo de doc.</label>
-               <MyDropdown class="mt-2" :items="documentosDropdown" v-model="selectedDocumento" placeholder="Tipo de doc." />
+               <MyDropdown
+                 class="mt-2"
+                 :items="documentosDropdown"
+                 v-model="selectedDocumento"
+                 @change="(newValue) => handleDropdownChange('typeDocumento', newValue)"
+                 placeholder="Tipo de doc." />
             </div>
             <div class="col-4">
                 <label for="dropdown" >N° de doc.</label>
-                <MyInputNumber type="number" class="mt-2" v-model="formData.nroDocumento" />
+                <!-- <MyInputNumber -->
+                  <MyInput
+                  type="number"
+                  class="mt-2"
+                  :value="getInputValue('nroDocumento')"
+                  @input="handleInputChange('nroDocumento', $event)"
+                  @blur="() => handleBlur('nroDocumento')"
+                  />
             </div>
             <div class="col-4">
-               <label for="dropdown" >Sexo</label>
-               <MyDropdown class="mt-2" :items="sexoDropdown" v-model="selectedSexo"  placeholder="Sexo" />
+               <label for="dropdown">Sexo</label>
+               <MyDropdown
+                 class="mt-2"
+                 :items="sexoDropdown"
+                 v-model="selectedSexo"
+                 placeholder="Sexo" 
+                 @change="(newValue) => handleDropdownChange('typeSexo', newValue)"/>
             </div>
             <div class="col-6">
                 <label for="dropdown" >Apellido</label>
@@ -145,41 +187,95 @@ watch(selectedItem, (newVal:any) => {
                 
             </div>
             <div class="col-6">
-                <label for="dropdown" >Nombre</label>
-                <MyInput type="text" class="mt-2" v-model="formData.nombre"/>
+              <label for="dropdown" >Nombre</label>
+              <MyInput
+                type="text"
+                class="mt-2"
+                :value="getInputValue('nombre')"
+                @input="handleInputChange('nombre', $event)"
+                @blur="() => handleBlur('nombre')"
+              />
             </div>
             <div class="col-3">
                 <label for="dropdown" >Fecha de nac.</label>
-                <MyInputMask type="text" class="mt-2" v-model="formData.fecha" />
+                <MyInput
+                  type="text"
+                  class="mt-2"
+                  :value="getInputValue('fecha')"
+                  @input="handleInputChange('fecha', $event)"
+                  @blur="() => handleBlur('fecha')"
+                  />
             </div>
             <div class="col-3">
                <label for="dropdown" >Nacionalidad</label>
-               <MyDropdown class="mt-2" :items="nacionalidadDropdown" placeholder="Nacionalidad"
-                v-model="selectedNacionalidad"/>
+               <MyDropdown
+                 class="mt-2"
+                 :items="nacionalidadDropdown"
+                 placeholder="Nacionalidad"
+                 @change="(newValue) => handleDropdownChange('nacionalidad', newValue)"
+                 v-model="selectedNacionalidad" />
             </div>
             <div class="col-3">
                <label for="dropdown" >Estado Civil</label>
-               <MyDropdown class="mt-2" :items="estadoCivilDropdown" placeholder="Estado Civil" v-model="selectedEstadoCivil" />
-            </div>
+               <MyDropdown
+                class="mt-2"
+                :items="estadoCivilDropdown"
+                placeholder="Estado Civil"
+                @change="(newValue) => handleDropdownChange('estadoCivil', newValue)"
+                v-model="selectedEstadoCivil" />
+              </div>
             <div class="col-12">
                 <label for="dropdown" >Domicilio de residencia</label>
-                <MyTextArea class="mt-2 w-full" placeholder="Domicilio de residencia" v-model="formData.domicilioResidencia" />
+                <MyTextArea
+                  class="mt-2 w-full"
+                  placeholder="Domicilio de residencia"
+                  :value="getInputValue('domicilioResidencia')"
+                  @input="handleInputChange('domicilioResidencia', $event)"
+                  @blur="() => handleBlur('domicilioResidencia')"
+                   />
             </div>
             <div class="col-3">
                 <label for="dropdown">Teléfono</label>
-                <MyInput type="text" class="mt-2" placeholder="Teléfono" v-model="formData.telefono"/>
+                <MyInput
+                  type="text"
+                  class="mt-2"
+                  placeholder="Teléfono"
+                  :value="getInputValue('telefono')"
+                  @input="handleInputChange('telefono', $event)"
+                  @blur="() => handleBlur('telefono')"
+                  />
             </div>
             <div class="col-3">
                 <label for="dropdown">Email</label>
-                <MyInput type="text" class="mt-2" placeholder="Email" v-model="formData.email"/>
+                <MyInput
+                  type="text"
+                  class="mt-2"
+                  placeholder="Email"
+                  :value="getInputValue('email')"
+                  @input="handleInputChange('email', $event)"
+                  @blur="() => handleBlur('email')"
+                   />
             </div>
             <div class="col-3">
                 <label for="dropdown">Profesión</label>
-                <MyInput type="text" class="mt-2" placeholder="Profesión" v-model="formData.profesion"/>
+                <MyInput
+                  type="text"
+                  class="mt-2"
+                  placeholder="Profesión"
+                  :value="getInputValue('profesion')"
+                  @input="handleInputChange('profesion', $event)"
+                  @blur="() => handleBlur('profesion')"
+                  />
             </div>
             <div class="col-3">
-                <label for="dropdown" >Instrucción</label>
-               <MyDropdown class="mt-2" :items="instruccionDropdown" placeholder="Instrucción" v-model="selectedInstruccion" />
+              <label for="dropdown" >Instrucción</label>
+              <MyDropdown
+                class="mt-2"
+                :items="instruccionDropdown"
+                placeholder="Instrucción"
+                @change="(newValue) => handleDropdownChange('instruccion', newValue)"
+                v-model="selectedInstruccion" />
+            
             </div>
 
             <div class="ml-auto mt-2 p-0">
@@ -192,7 +288,7 @@ watch(selectedItem, (newVal:any) => {
                   <Button 
                     :disabled="isEditing(selectedItem!.id)" label="Cancelar"
                     icon="pi pi-times" severity="secondary" outlined aria-label="Cancel" class="mr-3"
-                    @click="guardarModificaciones(formData.id!)"
+                    @click="handleCancelar"
                     ></Button>        
                     <Button
                         label="Guardar Cambios"
@@ -212,8 +308,3 @@ watch(selectedItem, (newVal:any) => {
 </Card>
 </template>
 
-
-<style scoped>
-
-
-</style>

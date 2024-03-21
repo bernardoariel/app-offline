@@ -6,7 +6,7 @@ import type { Afectados, AfectadosForm } from '../interfaces/afectado.interface'
 import type { DropDownInterface } from "@/interfaces/dropdown.interface";
 import useFieldState from "./useFiledsState";
 
-const { agregarIdState, setPristineById, setModifiedData, guardarModificaciones } = useFieldState();
+const { agregarIdState, guardarModificaciones, eliminarIdState } = useFieldState();
 
 let afectados = ref<Afectados[]>([]);
 let selectedType = ref<DropDownInterface>()
@@ -38,34 +38,41 @@ const useAfectados = () => {
     const agregarAfectado = (item: Afectados) => {
         
         if(!item) return 
+    
         const id = uuid();
 
         afectados.value?.push({...item, id})
+        console.log('afectados.value::: ', afectados.value);
         // Agrega el estado del ítem
         agregarIdState(id, {});
     };
 
     const editarAfectado = (item: Afectados) => {
         if(!item.id) return
-        const index = afectados.value.findIndex(afectado => afectado.id === item.id);
-        if (index !== -1) {
+        const itemExistente = findById(item.id);
+        if (itemExistente) {
+            const index = afectados.value.indexOf(itemExistente);
             afectados.value[index] = item;
+            guardarModificaciones(item.id);
         }
-        // actualizarEstado(afectados.value)
-        guardarModificaciones(item.id)
-        /* actualizarEstado(lista.value)
-        guardarModificaciones(item.id)  */ 
-        
+      
     };
     const eliminarAfectado = (id: string) => {
-       
-        // afectados.value = afectados.value.filter((afectado:any) => afectado.id !== id);
-    };
-    const selecccionarAfectado = (id: string) => {
-      
         
-    };    
-  
+        const afectadoExistente = findById(id);
+        if (afectadoExistente) {
+            const index = afectados.value.indexOf(afectadoExistente);
+            if (index !== -1) {
+                afectados.value.splice(index, 1);
+                eliminarIdState(id);
+            }
+        }
+    };
+    
+    const findById = (id: string) => {
+        return afectados.value.find(afectado => afectado.id === id);
+    };
+    
       
     return {
         initialValues,
@@ -80,7 +87,6 @@ const useAfectados = () => {
         agregar: agregarAfectado,
         eliminar: eliminarAfectado,
         editar: editarAfectado,
-        seleccionar:selecccionarAfectado
     };
 };
 

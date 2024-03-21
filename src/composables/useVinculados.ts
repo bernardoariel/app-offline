@@ -5,7 +5,7 @@ import type { DropDownInterface } from '../interfaces/dropdown.interface';
 import useFieldState from "./useFiledsState";
 
 
-const { agregarIdState, setPristineById, setModifiedData, guardarModificaciones } = useFieldState();
+const { agregarIdState, guardarModificaciones, eliminarIdState } = useFieldState();
 let vinculados = ref<Vinculados[]>([]);
 
 let selectedType = ref<DropDownInterface>()
@@ -45,17 +45,32 @@ const useVinculados = () => {
         agregarIdState(id, {});
     };
 
-    const editarVinculado = (item: any) => {
-    
+    const editarVinculado = (item: Vinculados) => {
+        if(!item.id) return
+        const itemExistente = findById(item.id);
+        if (itemExistente) {
+            const index = vinculados.value.indexOf(itemExistente);
+            vinculados.value[index] = item;
+            guardarModificaciones(item.id);
+        }
     };
     const eliminarVinculado = (id: string) => {
-       
-        // vinculados.value = vinculados.value.filter((vinculado:any) => vinculado.id !== id);
+        const itemExistente = findById(id);
+        if (itemExistente) {
+            const index = vinculados.value.indexOf(itemExistente);
+            if (index !== -1) {
+                vinculados.value.splice(index, 1);
+                eliminarIdState(id);
+            }
+        }
     };
     const selecccionarVinculado = (id: string) => {
        
     
-    };    
+    };   
+    const findById = (id: string) => {
+        return vinculados.value.find(vinculado => vinculado.id === id);
+    }; 
     return {
         vinculados,
         selectedType,

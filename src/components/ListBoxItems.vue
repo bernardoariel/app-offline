@@ -9,18 +9,17 @@ import { formatFecha } from '@/helpers/getFormatFecha';
 import useItemsComputados from '@/composables/useItemsComputados';
 import useItemValue from '@/composables/useItemValue';
 import useFieldState from '@/composables/useFiledsState';
-import type { AfectadosForm } from '@/interfaces/afectado.interface';
 
-const { itemsComputados, routeType } = useItemsComputados();
-const {selectedItem} = useItemValue()
-const { statesID,setPristineById } = useFieldState();
+
+const { itemsComputados, routeType ,eliminarItem} = useItemsComputados();
+const { selectedItem } = useItemValue()
+const { statesID } = useFieldState();
+
 const getPristineById = (id: string) => {
   const found = statesID.find((state) => state.id === id);
   return found ? found.pristine : false;
 };
-const eliminarItem = (itemId: AfectadosForm) => {
-  //eliminar( itemId , tipo.value as string); // Asumiendo que necesitas especificar el 'tipo'
-};
+
 
 </script>
 <template>

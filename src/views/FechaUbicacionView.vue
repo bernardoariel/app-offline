@@ -1,54 +1,108 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { onActivated, ref, watch } from 'vue';
+import useFecha from '@/composables/useFecha';
+import useItemValue from '@/composables/useItemValue';
+import useFieldState from '@/composables/useFiledsState';
 
 import MyInput from '@/components/elementos/MyInput.vue';
 import MyDropdown from '@/components/elementos/MyDropdown.vue';
 
-import { municipiosDropdown } from '@/helpers/getDropItems';
 import type { FechaUbicacionForm, FechaUbicacion } from '../interfaces/fecha.interface';
-import useFecha from '@/composables/useFecha';
-import useItemValue from '@/composables/useItemValue';
-import useFieldState from '@/composables/useFiledsState';
+import { municipiosDropdown } from '@/helpers/getDropItems';
 interface CalendarComponent {
   overlayVisible?: boolean;
   value: Date;
 }
-const {initialValues,agregar,selectedMunicipioDrop} = useFecha()
-const { selectedItem } = useItemValue()
-const { agregarIdState, setPristineById, setModifiedData, guardarModificaciones } = useFieldState();
+const {
+  agregar,
+  editar,
+  initialValues,
+  selectedMunicipioDrop } = useFecha()
 
-const formData = ref<FechaUbicacionForm>({...initialValues.value});
+const { selectedItem } = useItemValue()
+const { statesID, setPristineById, setModifiedData, guardarModificaciones,isEditing, cancelarModificaciones } = useFieldState();
+let formData = ref<FechaUbicacionForm>({ ...initialValues });
 const desdeFechaHoraRef = ref<CalendarComponent | null>(null);
 const hastaFechaHoraRef = ref<CalendarComponent | null>(null);
 
+onActivated(() => {
+  selectedItem.value= null
+});
+
+const handleDropdownChange = (
+  campo: keyof FechaUbicacionForm, 
+  newValue: { value: any;name:string }
+  ) => {
+
+  const name = newValue.value.name
+
+  if (campo in formData.value) {
+    // Actualizar formData para que el campo específico tenga un objeto con la propiedad 'name' actualizada
+    formData.value = { 
+      ...formData.value, 
+      [campo]: { name } // Asigna un objeto con 'name' a campo
+    };
+
+    const itemId = formData.value.id!;
+    if (itemId) { 
+      setPristineById(itemId, false);
+      setModifiedData(itemId, campo,  name );
+    }
+  }
+};
+
 const getInputValue = (campo: keyof FechaUbicacionForm) => {
-  return formData.value[campo];
+  if (campo in formData.value) {
+    const modifiedData = statesID.find((state) => state.id === selectedItem.value?.id)?.modifiedData;
+    return modifiedData && modifiedData[campo] !== undefined ? modifiedData[campo] : formData.value[campo];
+  }
 };
 
-const handleInputChange = (campo: keyof FechaUbicacionForm, event: Event) => {
-  const value = (event.target as HTMLInputElement).value;
+const handleInputChange = (campo: string | number, event: Event) => {
+  const valor = (event.target as HTMLInputElement).value;
+  formData.value = { ...formData.value, [campo]: valor };
 
-  // Verificar si el campo es 'jerarquia' o 'dependencia'
-  const field = formData.value[campo] as { name: string };
-  field.name = value;
+  const itemId = formData.value.id!;
+  setPristineById(itemId, false);
+  
+  const campoStr = typeof campo === 'number' ? campo.toString() : campo;
+  setModifiedData(itemId, campoStr, valor);
 };
-const { statesID } = useFieldState();
 
-const handleBlur = (campo: string) => {
-  // Aquí podrías hacer algo adicional si lo necesitas
+const handleBlur = (campo: keyof FechaUbicacionForm) => {
+  const valor = getInputValue(campo);
+  if (!selectedItem.value) return 
+
+  setModifiedData(selectedItem.value!.id, campo, valor);
 };
 
 const handleAgregarElemento = () => {
 
-    const nuevoItem: FechaUbicacion = {
-      desdeFechaHora: formData.value.desdeFechaHora,
-      hastaFechaHora: formData.value.hastaFechaHora,
-      calle: formData.value.calle,
-      numero: formData.value.numero,
-      departamento: selectedMunicipioDrop.value.name
-    };
+  if(!formData.value) return 
+  const nuevoItem: FechaUbicacion = {
+    desdeFechaHora: formData.value.desdeFechaHora,
+    hastaFechaHora: formData.value.hastaFechaHora,
+    calle: formData.value.calle,
+    numero: formData.value.numero,
+    departamento: selectedMunicipioDrop.value!.name
+  };
 
-    agregar(nuevoItem)
+  agregar(nuevoItem)
+  formData.value = ({ ...initialValues });
+};
+const handleCancelar = () => {
+  if (!selectedItem.value) return;
+  cancelarModificaciones(selectedItem.value.id);
+  formData.value = formData.value = { ...initialValues, ...selectedItem.value };
+};
+const handleModificarElemento = () => {
+  let itemStateEncontrado = guardarModificaciones(selectedItem.value!.id);
+  let itemAEditar = {
+      ...formData.value,
+      departamento: selectedMunicipioDrop.value!.name,
+      ...itemStateEncontrado
+    };
+  editar(itemAEditar);
 
 };
 function closeCalendar(calendarRef: CalendarComponent | null) {
@@ -60,12 +114,13 @@ function closeCalendar(calendarRef: CalendarComponent | null) {
 function setToNow(nameInput: 'desdeFechaHora' | 'hastaFechaHora') {
   formData.value[nameInput] = new Date();
 }
+
 watch(selectedItem, (newVal:any) => {
-    
-    if (!newVal)  formData.value = ({ ...initialValues.value })
-    formData.value = ({...newVal})
-    
-   
+  if (!newVal) {
+       formData.value = ({ ...initialValues });
+   } else {
+       formData.value = ({...newVal});
+   }
 });
 </script>
 <template>
@@ -139,13 +194,23 @@ watch(selectedItem, (newVal:any) => {
                 </Calendar>
                 </div>
                 <div class="col-4">
-                <label for="calle">Calle</label>
-                <MyInput type="text" class="mt-2" v-model="formData.calle" />
-                </div>
+                  <label for="calle">Calle</label>
+                  <MyInput
+                    type="text"
+                    class="mt-2"
+                    :value="getInputValue('calle')"
+                    @input="handleInputChange('calle', $event)"
+                    @blur="() => handleBlur('calle')"/>
+                  </div>
                 <div class="col-4">
                 <label for="numero">Número</label>
-                <MyInput type="text" class="mt-2" v-model="formData.numero" />
-                </div>
+                <MyInput
+                  type="text"
+                  class="mt-2"
+                  :value="getInputValue('numero')"
+                  @input="handleInputChange('numero', $event)"
+                  @blur="() => handleBlur('numero')"/>
+                  </div>
                 <div class="col-4">
                 <label for="departamento">Departamento</label>
 
@@ -153,16 +218,31 @@ watch(selectedItem, (newVal:any) => {
                   class="mt-2"
                   :items="municipiosDropdown"
                   v-model="selectedMunicipioDrop"
+                  @change="(newValue) => handleDropdownChange('departamento', newValue)"
                   placeholder="Seleccione un departamento" />
                 
               </div>
                 <!-- Botones para acciones -->
                 <div class="ml-auto mt-2 p-0">
-                  <Button label="Agregar"  @click="handleAgregarElemento()"></Button>
-                <!-- Botón para agregar o editar elementos -->
-                <!-- <Button label="Agregar" v-if="isEditing" @click="handleAgregarElemento"></Button>
-                <Button label="Guardar Cambios" v-else @click="handleModificarElemento"></Button> -->
+              <Button
+                label="Agregar"
+                v-if="!selectedItem"
+                @click="handleAgregarElemento()">
+              </Button>                
+              <div v-else>
+                  <Button 
+                    :disabled="isEditing(selectedItem!.id)" label="Cancelar"
+                    icon="pi pi-times" severity="secondary" outlined aria-label="Cancel" class="mr-3"
+                    @click="handleCancelar"
+                    ></Button>        
+                    <Button
+                        label="Guardar Cambios"
+                        :disabled="isEditing(selectedItem!.id)"
+                        @click="handleModificarElemento()"
+                        severity="warning"
+                      ></Button>
                 </div>
+            </div>
             </div>
             <pre>
           <span v-for="(id, pristine) in statesID" key="id">

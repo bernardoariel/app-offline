@@ -1,65 +1,115 @@
 <script lang="ts" setup>
-import { ref, watch } from 'vue';
-import MyDropdown from '@/components/elementos/MyDropdown.vue';
-import MyInput from '@/components/elementos/MyInput.vue';
-import { dependenciaDropdown, jerarquiaDropdown } from '@/helpers/getDropItems';
-import type { PersonalInterviniente, PersonalIntervinienteForm } from '../interfaces/personalInterviniente';
+import { onActivated, ref, watch } from 'vue';
 import usePersonalInterviniente from '@/composables/usePersonalInterviniente';
 import useItemValue from '@/composables/useItemValue';
 import useFieldState from '@/composables/useFiledsState';
 
+import MyDropdown from '@/components/elementos/MyDropdown.vue';
+import MyInput from '@/components/elementos/MyInput.vue';
+
+import type { PersonalInterviniente, PersonalIntervinienteForm } from '../interfaces/personalInterviniente';
+import { dependenciaDropdown, jerarquiaDropdown } from '@/helpers/getDropItems';
+
 const { 
-  intervinientes,
+  editar,
   agregar,
+  initialValues,
   selectedJerarquiaDrop,
-  selectedDependenciaDrop,
-  initialValues
- } = usePersonalInterviniente();
- const { selectedItem } = useItemValue()
- const { statesID, setPristineById, setModifiedData, guardarModificaciones } = useFieldState();
-const formData = ref<PersonalIntervinienteForm>({ ...initialValues });
+  selectedDependenciaDrop } = usePersonalInterviniente();
 
-const getInputValue = (campo: keyof PersonalInterviniente) => {
-  return formData.value[campo];
-};
+const { selectedItem } = useItemValue()
 
-const handleInputChange = (campo: keyof PersonalIntervinienteForm, event: Event) => {
-  const value = (event.target as HTMLInputElement).value;
+const { statesID, setPristineById, setModifiedData, guardarModificaciones,isEditing, cancelarModificaciones } = useFieldState();
+let formData = ref<PersonalIntervinienteForm>({ ...initialValues });
 
-  // Verificar si el campo es 'jerarquia' o 'dependencia'
-  if (campo === 'jerarquia' || campo === 'dependencia') {
-    // Asegurarse de que formData.value[campo] sea del tipo adecuado
-    const field = formData.value[campo] as { name: string };
-    field.name = value;
-  } else {
-    // Si no es 'jerarquia' ni 'dependencia', asignar directamente el valor
-    formData.value[campo] = value;
+onActivated(() => {
+  selectedItem.value= null
+});
+
+const handleDropdownChange = (
+  campo: keyof PersonalIntervinienteForm, 
+  newValue: { value: any;name:string }
+  ) => {
+
+  const name = newValue.value.name
+
+  if (campo in formData.value) {
+    // Actualizar formData para que el campo específico tenga un objeto con la propiedad 'name' actualizada
+    formData.value = { 
+      ...formData.value, 
+      [campo]: { name } // Asigna un objeto con 'name' a campo
+    };
+
+    const itemId = formData.value.id!;
+    if (itemId) { 
+      setPristineById(itemId, false);
+      setModifiedData(itemId, campo,  name );
+    }
   }
 };
 
-const handleBlur = (campo: string) => {
-  // Aquí podrías hacer algo adicional si lo necesitas
+const getInputValue = (campo: keyof PersonalIntervinienteForm) => {
+  if (campo in formData.value) {
+    const modifiedData = statesID.find((state) => state.id === selectedItem.value?.id)?.modifiedData;
+    return modifiedData && modifiedData[campo] !== undefined ? modifiedData[campo] : formData.value[campo];
+  } 
+};
+
+const handleInputChange = (campo: string | number, event: Event) => {
+  const valor = (event.target as HTMLInputElement).value;
+  formData.value = { ...formData.value, [campo]: valor };
+
+  const itemId = formData.value.id!;
+  setPristineById(itemId, false);
+  
+  const campoStr = typeof campo === 'number' ? campo.toString() : campo;
+  setModifiedData(itemId, campoStr, valor);
+};
+
+const handleBlur = (campo: keyof PersonalIntervinienteForm) => {
+  const valor = getInputValue(campo);
+  if (!selectedItem.value) return 
+
+  setModifiedData(selectedItem.value!.id, campo, valor);
 };
 
 const handleAgregarElemento = () => {
 
+  if(!formData.value) return 
   const nuevoPersonalInterviniente: PersonalInterviniente = {
     apellido: formData.value.apellido,
     nombre: formData.value.nombre,
-    jerarquia: selectedJerarquiaDrop.value.name,
-    dependencia: selectedDependenciaDrop.value.name,
+    jerarquia: selectedJerarquiaDrop.value!.name,
+    dependencia: selectedDependenciaDrop.value!.name,
   };
 
-
   agregar(nuevoPersonalInterviniente)
-  
+  formData.value = ({ ...initialValues });
+};
+
+const handleCancelar = () => {
+  if (!selectedItem.value) return;
+  cancelarModificaciones(selectedItem.value.id);
+  formData.value = formData.value = { ...initialValues, ...selectedItem.value };
+};
+
+const handleModificarElemento = () => {
+  let itemStateEncontrado = guardarModificaciones(selectedItem.value!.id);
+  let itemAEditar = {
+      ...formData.value,
+      jerarquia: selectedJerarquiaDrop.value!.name,
+    dependencia: selectedDependenciaDrop.value!.name,
+      ...itemStateEncontrado
+  };
+  editar(itemAEditar);
+
 };
 watch(selectedItem, (newVal:any) => {
-    
-    if (!newVal)  formData.value = ({ ...initialValues })
-    formData.value = ({...newVal})
-    
-   
+  if (!newVal) {
+      formData.value = ({ ...initialValues });
+  } else {
+      formData.value = ({...newVal});
+  }
  });
 </script>
 
@@ -70,7 +120,7 @@ watch(selectedItem, (newVal:any) => {
         <div class="col-6">
           <label for="dropdown">Apellido</label>
           <MyInput 
-              type="text" class="mt-2 uppercase" 
+              type="text" class="mt-2" 
               :value="getInputValue('apellido')"
               @input="handleInputChange('apellido', $event)"
               @blur="() => handleBlur('apellido')"
@@ -91,6 +141,7 @@ watch(selectedItem, (newVal:any) => {
             class="mt-2"
             :items="jerarquiaDropdown"
             v-model="selectedJerarquiaDrop"
+            @change="(newValue) => handleDropdownChange('jerarquia', newValue)"
             placeholder="Seleccione la Jerarquia" />
         </div>
         <div class="col-6">
@@ -99,11 +150,29 @@ watch(selectedItem, (newVal:any) => {
             class="mt-2"
             :items="dependenciaDropdown"
             v-model="selectedDependenciaDrop"
+            @change="(newValue) => handleDropdownChange('dependencia', newValue)"
             placeholder="Seleccione la Dependencia" />
         </div>
         <div class="ml-auto mt-2 p-0">
-          <Button label="Agregar" @click="handleAgregarElemento"></Button>
-        </div>
+              <Button
+                label="Agregar"
+                v-if="!selectedItem"
+                @click="handleAgregarElemento()">
+              </Button>                
+              <div v-else>
+                  <Button 
+                    :disabled="isEditing(selectedItem!.id)" label="Cancelar"
+                    icon="pi pi-times" severity="secondary" outlined aria-label="Cancel" class="mr-3"
+                    @click="handleCancelar"
+                    ></Button>        
+                    <Button
+                        label="Guardar Cambios"
+                        :disabled="isEditing(selectedItem!.id)"
+                        @click="handleModificarElemento()"
+                        severity="warning"
+                      ></Button>
+                </div>
+            </div>
       </div>
       <pre>
           <span v-for="(id, pristine) in statesID" key="id">

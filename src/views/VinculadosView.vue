@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { onActivated, ref, watch } from 'vue';
 import useVinculados from '@/composables/useVinculados';
 import useItemValue from '@/composables/useItemValue';
 import useFieldState from '@/composables/useFiledsState';
@@ -29,6 +29,9 @@ const { selectedItem } = useItemValue()
 const { statesID, setPristineById, setModifiedData, guardarModificaciones,isEditing, cancelarModificaciones } = useFieldState();
 let formData = ref<VinculadosForm>({ ...initialValues });
 
+onActivated(() => {
+  selectedItem.value= null
+});
 const handleDropdownChange = (
   campo: keyof VinculadosForm, 
   newValue: { value: any;name:string }

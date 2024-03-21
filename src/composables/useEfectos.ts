@@ -1,18 +1,19 @@
 import { ref } from "vue"
 import { v4 as uuid } from 'uuid';
-
 import type { Efectos, EfectosForm } from "@/interfaces/efecto.interface";
 import type { DropDownInterface } from '../interfaces/dropdown.interface';
 import useFieldState from "./useFiledsState";
 
+
+const { agregarIdState, guardarModificaciones, eliminarIdState } = useFieldState();
 let efectos = ref<Efectos[]>([]);
+
 let selectedCategoria = ref<DropDownInterface>()
 let selectedSubcategoria = ref<DropDownInterface>()
 let selectedTipo = ref<DropDownInterface>()
 let selectedMarca = ref<DropDownInterface>()
 let selectedModelo = ref<DropDownInterface>()
 
-const { agregarIdState, setPristineById, setModifiedData, guardarModificaciones } = useFieldState();
 const initialValues: EfectosForm = {
     categoria:{ name: '' },
     marca:{ name: '' },
@@ -30,17 +31,34 @@ const useEfectos = () => {
       // Agrega el estado del ítem
       agregarIdState(id, {});
     };
-    const editarEfecto = (item: any) => {
+    const editarEfecto = (item: Efectos) => {
+
+      if(!item.id) return
+      const itemExistente = findById(item.id);
+      if (itemExistente) {
+          const index = efectos.value.indexOf(itemExistente);
+          efectos.value[index] = item;
+          guardarModificaciones(item.id);
+      }
     
     };
     const eliminarEfecto = (id: string) => {
-       
-      // efectos.value = efectos.value.filter((efecto:any) => efecto.id !== id);
+      const itemExistente = findById(id);
+      if (itemExistente) {
+          const index = efectos.value.indexOf(itemExistente);
+          if (index !== -1) {
+              efectos.value.splice(index, 1);
+              eliminarIdState(id);
+          }
+      }       
     };
     const selecccionarEfecto = (id: string) => {
        
     };    
 
+    const findById = (id: string) => {
+      return efectos.value.find(item => item.id === id);
+    }; 
     return {
         efectos,
         selectedCategoria,

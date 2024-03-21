@@ -70,7 +70,7 @@ const useAfectados = () => {
     };
     
     const findById = (id: string) => {
-        return afectados.value.find(afectado => afectado.id === id);
+        return afectados.value.find(item => item.id === id);
     };
     
       

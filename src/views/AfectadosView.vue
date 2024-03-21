@@ -1,34 +1,37 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { onActivated, ref, watch } from 'vue';
 import useAfectados from '../composables/useAfectados';
 import useItemValue from '@/composables/useItemValue';
 import useFieldState from '@/composables/useFiledsState';
 
 import MyDropdown from '@/components/elementos/MyDropdown.vue';
 import MyInput from '@/components/elementos/MyInput.vue';
-import MyInputMask from '@/components/elementos/MyInputMask.vue';
 import MyTextArea from '@/components/elementos/MyTextArea.vue';
+import MyInputMask from '@/components/elementos/MyInputMask.vue';
 import MyInputNumber from '@/components/elementos/MyInputNumber.vue';
 
 import type { AfectadosForm, Afectados } from '../interfaces/afectado.interface';
 import { documentosDropdown, sexoDropdown, nacionalidadDropdown, estadoCivilDropdown, instruccionDropdown,afectadosDropdown } from '@/helpers/getDropItems';
 
 const { 
-      editar,
-      agregar,  
-      initialValues,
-      selectedType,
-      selectedDocumento,
-      selectedSexo,
-      selectedNacionalidad,
-      selectedEstadoCivil,
-      selectedInstruccion } = useAfectados()  
+  editar,
+  agregar,  
+  initialValues,
+  selectedType,
+  selectedDocumento,
+  selectedSexo,
+  selectedNacionalidad,
+  selectedEstadoCivil,
+  selectedInstruccion } = useAfectados()  
 
 const { selectedItem } = useItemValue()
 
 const { statesID, setPristineById, setModifiedData, guardarModificaciones,isEditing, cancelarModificaciones } = useFieldState();
 let formData = ref<AfectadosForm>({ ...initialValues });
 
+onActivated(() => {
+  selectedItem.value= null
+});
 const handleDropdownChange = (
   campo: keyof AfectadosForm, 
   newValue: { value: any;name:string }
@@ -79,27 +82,26 @@ const handleBlur = (campo: keyof AfectadosForm) => {
 
 const handleAgregarElemento = () => {
 
-  console.log('formData.value.fecha::: ', formData.value.fecha);
-    if(!formData.value) return 
-    const nuevoItem: Afectados = {
-        nroDocumento: formData.value.nroDocumento,
-        apellido: formData.value.apellido,
-        nombre: formData.value.nombre,
-        fecha: formData.value.fecha,
-        domicilioResidencia: formData.value.domicilioResidencia,
-        telefono: formData.value.telefono,
-        email: formData.value.email,
-        profesion: formData.value.profesion,
-        typeAfectado: selectedType.value!.name,
-        typeDocumento: selectedDocumento.value!.name,
-        typeSexo: selectedSexo.value!.name,
-        nacionalidad: selectedNacionalidad.value!.name,
-        estadoCivil: selectedEstadoCivil.value!.name,
-        instruccion: selectedInstruccion.value!.name
-    };
+  if(!formData.value) return 
+  const nuevoItem: Afectados = {
+      nroDocumento: formData.value.nroDocumento,
+      apellido: formData.value.apellido,
+      nombre: formData.value.nombre,
+      fecha: formData.value.fecha,
+      domicilioResidencia: formData.value.domicilioResidencia,
+      telefono: formData.value.telefono,
+      email: formData.value.email,
+      profesion: formData.value.profesion,
+      typeAfectado: selectedType.value!.name,
+      typeDocumento: selectedDocumento.value!.name,
+      typeSexo: selectedSexo.value!.name,
+      nacionalidad: selectedNacionalidad.value!.name,
+      estadoCivil: selectedEstadoCivil.value!.name,
+      instruccion: selectedInstruccion.value!.name
+  };
 
-    agregar(nuevoItem)
-    formData.value = ({ ...initialValues });
+  agregar(nuevoItem)
+  formData.value = ({ ...initialValues });
 };
 
 const handleCancelar = () => {
@@ -125,11 +127,11 @@ const handleModificarElemento = () => {
 };
 
 watch(selectedItem, (newVal:any) => {
-   if (!newVal) {
-       formData.value = ({ ...initialValues });
-   } else {
-       formData.value = ({...newVal});
-   }
+  if (!newVal) {
+      formData.value = ({ ...initialValues });
+  } else {
+      formData.value = ({...newVal});
+  }
 });
 
 </script>

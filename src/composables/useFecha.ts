@@ -1,20 +1,21 @@
-
 import { ref, } from "vue"
 import { v4 as uuid } from 'uuid';
 import type { FechaUbicacion, FechaUbicacionForm } from '../interfaces/fecha.interface';
 import type { DropDownInterface } from '../interfaces/dropdown.interface';
 import useFieldState from "./useFiledsState";
-const { agregarIdState, setPristineById, setModifiedData, guardarModificaciones } = useFieldState();
+
+const { agregarIdState, guardarModificaciones, eliminarIdState } = useFieldState();
 let fechaUbicacion = ref<FechaUbicacion[]>([]);
+
 const selectedMunicipioDrop = ref<DropDownInterface>()
 
-const initialValues = ref<FechaUbicacionForm>({
+const initialValues: FechaUbicacionForm ={
     desdeFechaHora: new Date(),
     hastaFechaHora: new Date(),
     calle: '',
     numero: '',
     departamento: { name:'' }
-});
+};
 
 const useFecha = () => {
     
@@ -27,13 +28,31 @@ const useFecha = () => {
         // Agrega el estado del ítem
         agregarIdState(id, {});
     };
-    const editarFechaUbicacion = (fechaUbicacion: any) => {
     
+    const editarFechaUbicacion = (item: FechaUbicacion) => {
+        if(!item.id) return
+        const itemExistente = findById(item.id);
+        if (itemExistente) {
+            const index = fechaUbicacion.value.indexOf(itemExistente);
+            fechaUbicacion.value[index] = item;
+            guardarModificaciones(item.id);
+        }
     };
     const eliminarFechaUbicacion = (id: string) => {
        
-        // fechaUbicacion.value = fechaUbicacion.value.filter((item:any) => item.id !== id);
+        const afectadoExistente = findById(id);
+        if (afectadoExistente) {
+            const index = fechaUbicacion.value.indexOf(afectadoExistente);
+            if (index !== -1) {
+                fechaUbicacion.value.splice(index, 1);
+                eliminarIdState(id);
+            }
+        }
     };
+    const findById = (id: string) => {
+        return fechaUbicacion.value.find(item => item.id === id);
+    };
+    
        
     return {
         fechaUbicacion,

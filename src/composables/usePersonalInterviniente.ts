@@ -1,11 +1,13 @@
 import { ref } from "vue"
 import { v4 as uuid } from 'uuid';
+import useFieldState from "./useFiledsState";
 
 import type { PersonalInterviniente, PersonalIntervinienteForm } from "@/interfaces/personalInterviniente";
 import type { DropDownInterface } from '../interfaces/dropdown.interface';
-import useFieldState from "./useFiledsState";
-const { agregarIdState, setPristineById, setModifiedData, guardarModificaciones } = useFieldState();
+
+const { agregarIdState, guardarModificaciones, eliminarIdState } = useFieldState();
 const  intervinientes = ref<PersonalInterviniente[]>([]);
+
 const selectedJerarquiaDrop = ref<DropDownInterface>()
 const selectedDependenciaDrop = ref<DropDownInterface>()
 
@@ -28,16 +30,33 @@ const usePersonalInterviniente = () => {
       agregarIdState(id, {});
     };
     const editarPersonalInterviniente = (item: PersonalInterviniente) => {
-    
+      if(!item.id) return
+        const itemExistente = findById(item.id);
+        if (itemExistente) {
+            const index = intervinientes.value.indexOf(itemExistente);
+            intervinientes.value[index] = item;
+            guardarModificaciones(item.id);
+        }
     };
     const eliminarPersonalInterviniente = (id: string) => {
        
-      //personalIntervinientes.value = personalIntervinientes.value.filter((personalInterviniente:any) => personalInterviniente.id !== id);
+      const afectadoExistente = findById(id);
+      if (afectadoExistente) {
+          const index = intervinientes.value.indexOf(afectadoExistente);
+          if (index !== -1) {
+              intervinientes.value.splice(index, 1);
+              eliminarIdState(id);
+          }
+      }    
     };
     const selecccionarPersonalInterviniente = (id: string) => {
        
     };    
 
+    const findById = (id: string) => {
+      return intervinientes.value.find(item => item.id === id);
+    };
+    
     return {
       intervinientes,
       selectedJerarquiaDrop,

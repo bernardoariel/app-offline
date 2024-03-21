@@ -69,7 +69,7 @@ const useVinculados = () => {
     
     };   
     const findById = (id: string) => {
-        return vinculados.value.find(vinculado => vinculado.id === id);
+        return vinculados.value.find(item => item.id === id);
     }; 
     return {
         vinculados,

@@ -23,7 +23,6 @@ const router = createRouter({
       name: 'actuacion',
       component: ActuacionView,
       props: ( route ) => {
-        console.log('route::: ', route);
         return  { actuacion: route.params.actuacion }
      }
     }

@@ -10,7 +10,7 @@ export const diligencias:DatosLegales[] = [
     {
         id:'sumario-oficio',
         titulo: 'Acta de Inicio',
-        header: `--- En la provincia de San Juan, @dependencia,@departamento @fechaactuacion, el Funcionario de Policía que suscribe, Jefe Titular de esta Dependencia, con intervención del Secretario de Actuaciones que Refrenda, a los fines legales HACE CONSTAR: Que en la fecha y hora indicada, se hace presente @intervinientes , informando que`,
+        header: `--- En la provincia de San Juan, @dependencia,@departamento @fechaactuacion, el Funcionario de Policía que suscribe, Jefe Titular de esta Dependencia, con intervención del Secretario de Actuaciones que Refrenda, a los fines legales HACE CONSTAR: Que en la fecha y hora indicada, se hace presente @intervinientes Informando que`,
         footer: `En virtud de ello el suscripto DISPONE: Iniciar las actuaciones sumariales correspondientes. Agregar a continuación Declaración testimonial del funcionario policial y acta labrada en el lugar, en calidad de una foja útil. Designar como Secretario de actuaciones al Oficial que firma al pie, como prueba de su conformidad y aceptación al cargo conferido. Llevar adelante toda medida legal de interés, en los presentes actuados. CERTIFICO.-`
     }
 ]

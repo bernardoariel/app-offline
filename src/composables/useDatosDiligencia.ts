@@ -6,10 +6,10 @@ import type { DatosLegales } from '@/interfaces/datosLegales.interface';
 import { getTitleCase, getUpperCase } from '@/helpers/stringUtils';
 import { getAge } from '@/helpers/getAge';
 
-const useDatosDiligencia = () => {
-  const { afectados } = useItem();
+const useDatosDiligencia = (actuacion:string) => {
+  const { afectados, intervinientes } = useItem();
   
-  const diligenciaSeleccionada = diligencias.find((d:DatosLegales) => d.id === 'sumario-denuncia');
+  const diligenciaSeleccionada = diligencias.find((d:DatosLegales) => d.id === actuacion);
 
   const wordStrong = ['HACE CONSTAR', 'DISPONE', 'CERTIFICO', 'CERTIFICA', 'DECLARO'];
 
@@ -36,15 +36,24 @@ const useDatosDiligencia = () => {
         ${getStyle('con domicilio en ' + a.domicilioResidencia)}${separator}`;
     }).join(' '); 
   });
-  
-  const processedVinculados = computed(() => afectados.value.map(a => `${getStyle(a.nombre)} con jerarquía ${getStyle(a.apellido)} de la dependencia ${getStyle(a.nacionalidad)}`).join(', '));
+  const processedIntervinientes = computed(() => {
+    
+    return intervinientes.value.map((item, index) => {
+      const isLast = index === intervinientes.value.length - 1; 
+      const separator = isLast ? '.' : ',';
+      
+      return `${getStyle(getTitleCase(item.jerarquia)+ ' ' + getUpperCase(item.apellido) +getTitleCase(item.nombre))}
+        ${getStyle(' adscripto/s a numerario de  ' + item.dependencia)}${separator}`
+
+    }).join(' '); 
+  });
 
   const processedText = computed(() => {
     let header = diligenciaSeleccionada?.header.replace('@dependencia', getStyle(dependencia))
       .replace('@departamento', getStyle(departamento))
       .replace('@fechaactuacion', getStyle(fechaActuacion))
       .replace('@afectados', processedAfectados.value)
-      .replace('@vinculados', processedVinculados.value);
+      .replace('@intervinientes', processedIntervinientes.value);
 
     let footer = diligenciaSeleccionada?.footer;
 
@@ -60,6 +69,8 @@ const useDatosDiligencia = () => {
   return {
     processedText,
     processedAfectados, // Si necesitas acceder directamente a los afectados procesados
+    processedIntervinientes,
+    primeradiligencia:diligenciaSeleccionada
   };
 }
 export default useDatosDiligencia;

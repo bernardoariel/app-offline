@@ -17,7 +17,7 @@ const condicion:boolean = false;
 const items = computed(() => {
   console.log('Items:', props.itemsCardValue.items); // Inspecciona todos los items
   if (props.dataKey === 'fecha') {
-    console.log('Items de Fecha:', props.itemsCardValue.items); // Inspecciona específicamente los items de 'fecha'
+    console.log('Items de Fessscha:', props.itemsCardValue.items); // Inspecciona específicamente los items de 'fecha'
   }
   return props.itemsCardValue.items;
 });
@@ -33,7 +33,7 @@ const copyProduct = (productId:any) => {
     // Lógica para copiar el producto con el ID proporcionado
 };
 // console.log(props.itemsCardValue)
-
+let hasPersonalInterviniente = false
 </script>
 
 <template>
@@ -76,8 +76,9 @@ const copyProduct = (productId:any) => {
                 </div>
               </div>
               <!-- personal Interviniente -->  
-              <div v-else-if="dataKey=='personalInterviniente'">
-                
+             
+              <!-- <div v-else-if="hasPersonalInterviniente && dataKey === 'personalInterviniente'">
+
                 <div class="flex-container"  :class="{ 'border-top-1 surface-border': index !== 0 }">
 
                   <div class="flex-items">
@@ -101,7 +102,7 @@ const copyProduct = (productId:any) => {
                 <div class="linea-2"> 
                   <p class="text-xs">{{ item.dependencia }}</p>
                 </div>
-              </div>
+              </div> -->
               <!-- Fecha -->
               <div v-else-if="dataKey=='fecha'">
                 <div class="flex-container"  :class="{ 'border-top-1 surface-border': index !== 0 }">
@@ -134,7 +135,7 @@ const copyProduct = (productId:any) => {
                   <p class="text-xs">{{ item.calle +' '+ item.numero }}</p>
                 </div>
               </div>
-             <!-- personal Interviniente -->  
+            
              <div v-else-if="dataKey=='efectos'">
                 
                 <div class="flex-container"  :class="{ 'border-top-1 surface-border': index !== 0 }">

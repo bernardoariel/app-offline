@@ -10,7 +10,7 @@ const { cardInformationKeys,cardInformation } = useCardInformation()
 
 
 const active = ref(0);
-import DataViewCard from '@/components/DataViewCard.vue';
+// import DataViewCard from '@/components/DataViewCard.vue';
 import useActuacion from '@/composables/useActuacion';
 import useCardInformation from '@/composables/useCardInformation';
 
@@ -19,7 +19,10 @@ import DatosLegalesView from './DatosLegalesView.vue';
 import { ref } from 'vue';
 import DiligenciaView from './DiligenciaView.vue';
 
-
+interface Props{
+  actuacion:string;
+}
+defineProps<Props>()
 
 /* const getVariables = () => {
   const nombreActuacion = ' Prevencional por Denuncia'
@@ -85,7 +88,7 @@ import DiligenciaView from './DiligenciaView.vue';
       <Card>
         <template #title>
           <div class="title-container">
-            <span class="custom-title">Ingreso de datos</span>
+            <span class="custom-title">Ingreso de datos {{ $props.actuacion }}</span>
             <div class="buttons-container">
               <Button @click="active = 0" rounded label="1" class="button" :outlined="active !== 0" />
               <Button @click="active = 1" rounded label="2" class="button" :outlined="active !== 1" />
@@ -103,7 +106,7 @@ import DiligenciaView from './DiligenciaView.vue';
                   </div>
                 </template>
                 <template #content>
-                  <DataViewCard :itemsCardValue="cardInformation[key]" :data-key="key"/>
+                  <!-- <DataViewCard :itemsCardValue="cardInformation[key]" :data-key="key"/> -->
                 </template>
               </Card>
             </TabPanel>
@@ -116,8 +119,7 @@ import DiligenciaView from './DiligenciaView.vue';
       </Card>
     </div>
     <div class="col">
-     
-      <DiligenciaView />
+      <DiligenciaView :actuacion="actuacion" />
     </div>
   </div>
 </template>

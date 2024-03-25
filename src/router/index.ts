@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import ActuacionView from '@/views/ActucionView.vue'
+import ActuacionView from '@/views/ActuacionView.vue'
 import FormActuacionVue from '@/views/FormActuacion.vue'
 
 import isSavedChanges from '@/guards/isSavedChanges';

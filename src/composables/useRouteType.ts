@@ -1,14 +1,13 @@
-import { ref, watch } from 'vue';
+import { ref, watch, watchEffect } from 'vue';
 import { useRoute } from 'vue-router';
 
 const useRouteType = ()=>{
   const route = useRoute();
   const routeType  = ref(route.params.tipo);
 
-  watch(() => route.params.tipo, (nuevoTipo) => {
-    routeType.value = nuevoTipo;
-  });
-  
+  watch(route, (newRoute) => {
+    routeType.value = newRoute.params.tipo;
+  }, { deep: true });
   return {
     routeType 
   };

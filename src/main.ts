@@ -17,6 +17,9 @@ import Toolbar from 'primevue/toolbar';
 import Calendar from 'primevue/calendar';
 import InputMask from 'primevue/inputmask';
 import InputNumber from 'primevue/inputnumber';
+import TabView from 'primevue/tabview';
+import TabPanel from 'primevue/tabpanel';
+import Panel from 'primevue/panel';
 
 import App from './App.vue'
 import router from './router'
@@ -44,6 +47,9 @@ app.component('Toolbar', Toolbar);
 app.component('Calendar', Calendar);
 app.component('InputMask', InputMask);
 app.component('InputNumber', InputNumber);
+app.component('TabView', TabView);
+app.component('TabPanel', TabPanel);
+app.component('Panel', Panel);
 
 /* const db = new Dexie('my_database');
 db.version(1).stores({

@@ -108,8 +108,8 @@ export const vinculadosFake = [
 
 export const fechaUbicacioFake = [
   {
-    "desdeFechaHora":"[native Date Thu Mar 28 2024 08:09:59 GMT-0300 (hora estándar de Argentina)]",
-    "hastaFechaHora":"[native Date Fri Mar 29 2024 11:54:50 GMT-0300 (hora estándar de Argentina)]",
+    "desdeFechaHora":"Sat Mar 30 2024 12:00:22 GMT-0300 (hora estándar de Argentina)",
+    "hastaFechaHora":"Sat Mar 30 2024 12:15:22 GMT-0300 (hora estándar de Argentina)",
     "calle":"Belgrano",
     "numero":"678",
     "departamento":"Jáchal",

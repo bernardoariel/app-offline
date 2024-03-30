@@ -1,94 +1,42 @@
 <script lang="ts" setup>
-//ActuacionView.vue
-/* import Dexie from 'dexie';
-const db = new Dexie('my_database');
-db.version(1).stores({
-    afectados: '++id, typeAfectado, typeDocumento, nroDocumento, typeSexo, apellido, name, fecha, nacionalidad, estadoCivil, domicilioResidencia, telefono, email, profesion, instruccion'
-}); */
-const { agregarNuevoItem } = useActuacion();
-const { cardInformationKeys,cardInformation } = useCardInformation()
+import { ref, watch } from 'vue';
+import DataViewCard from '@/components/DataViewCard.vue';
+import DatosLegalesView from './DatosLegalesView.vue';
+import DiligenciaView from './DiligenciaView.vue';
 
-
-const active = ref(0);
-// import DataViewCard from '@/components/DataViewCard.vue';
 import useActuacion from '@/composables/useActuacion';
 import useCardInformation from '@/composables/useCardInformation';
-
-import DatosLegalesView from './DatosLegalesView.vue';
-
-import { ref } from 'vue';
-import DiligenciaView from './DiligenciaView.vue';
+import useAfectados from '@/composables/useAfectados';
+import useItem from '../composables/useItems';
 
 interface Props{
   actuacion:string;
 }
-defineProps<Props>()
-
-/* const getVariables = () => {
-  const nombreActuacion = ' Prevencional por Denuncia'
-  const nombreDiligencia = 'Denuncia Penal'
-  const fechaActuacion = 'a los 22 días del mes de Marzo del año Dos Mil Veinticuatro, siendo las 12:44 horas'
-  const departamento = 'RAWSON';
-  const dependencia = 'SUB COMISARIA E3';
-  const intervinientes = [
-    {nombre: 'Ariel Bernardo', jerarquia: 'Agente', dependencia: 'Comisaria 4ta Desamparados'},
-    {nombre: 'Viviana', jerarquia: 'Cabo Primero', dependencia: 'Primero viviana'},
-  ];
-  const afectados = [
-    {nombre: 'Ariel Bernardo', jerarquia: 'Agente', dependencia: 'Comisaria 4ta Desamparados'},
-    {nombre: 'Viviana', jerarquia: 'Cabo Primero', dependencia: 'Primero viviana'},
-  ];
-  
-  const header = `--- En la provincia de San Juan, Departamento ${ getStyle(departamento) }, sede de ${ getStyle(dependencia) }, ${ getStyle(fechaActuacion) }; el funcionario de Policía que suscribe y Secretario de actuaciones que refrenda, a los fines legales HACE CONSTAR: : Que en la fecha y hora precitada, comparece ante esta Instrucción la persona mencionada precedentemente a fin de poner en conocimiento la supuesta Comisión de un hecho de carácter delictivo, que da lugar a la intervención de esta Autoridad Policial, acto seguido y luego de ser impuesto del contenido del Art. 245° del Código Penal (falsa denuncia), a continuación, se le pregunta por sus nombres apellidos y demás circunstancias personales manifestó llamarse: ${afectados} . Con relación al hecho que viene a denunciar DECLARO: Que se presenta ante esta autoridad policial a fin de manifestar que`;
-  
-  const footer = `Lo que solicita es que se tomen las medidas legales de rigor. No siendo para más la presente acta la que leída y ratificada en todo su contenido se firma al pie por ante mí que lo CERTIFICA. --------`;
-
-  return { intervinientes, header, footer,fechaActuacion,departamento,dependencia,afectados };
-}; */
-
-
-/* const variables = ref(getVariables()); */
-
-
-
-
-/* const guardarDatos = async () => {
-  try {
-    // Aquí puedes realizar las operaciones necesarias para guardar los datos en tu base de datos Dexie.js
-    // Por ejemplo, puedes agregar un nuevo registro a la tabla 'afectados'
-    await db.table('afectados').add({
-      typeAfectado: 'Tipo de afectado',
-      typeDocumento: 'Tipo de documento',
-      nroDocumento: 123456789,
-      typeSexo: 'Sexo',
-      apellido: 'Apellido',
-      name: 'Nombre',
-      fecha: '01/01/2022',
-      nacionalidad: 'Nacionalidad',
-      estadoCivil: 'Estado civil',
-      domicilioResidencia: 'Domicilio',
-      telefono: '123456789',
-      email: 'correo@example.com',
-      profesion: 'Profesión',
-      instruccion: 'Instrucción'
-    });
-    console.log('Datos guardados correctamente');
-  } catch (error) {
-    console.error('Error al guardar los datos:', error);
-    throw error; // Relanza el error para que el componente pueda manejarlo si es necesario
+const props = defineProps<Props>()
+const actuacionRef = ref(props.actuacion);
+const active = ref(0);
+const { agregarNuevoItem } = useActuacion();
+const { setAll } = useItem()
+const { cardInformationKeys,cardInformation } = useCardInformation(actuacionRef)
+const handleClick = (event: { ctrlKey: any; altKey: any; }) =>{
+  if (event.ctrlKey && event.altKey) {
+        console.log(`Ctrl + Alt + Click detectado: ${actuacionRef}`);
+        setAll()
   }
-}; */
-
-
+}
+watch(() => props.actuacion, (newValue) => {
+  actuacionRef.value = newValue;
+});
 </script>
 
 <template>
   <div class="grid">
+    
     <div class="col-5">
       <Card>
         <template #title>
           <div class="title-container">
-            <span class="custom-title">Ingreso de datos {{ $props.actuacion }}</span>
+            <span class="custom-title"  @click="handleClick">Ingreso de datos {{ $props.actuacion }}</span>
             <div class="buttons-container">
               <Button @click="active = 0" rounded label="1" class="button" :outlined="active !== 0" />
               <Button @click="active = 1" rounded label="2" class="button" :outlined="active !== 1" />
@@ -102,11 +50,11 @@ defineProps<Props>()
                 <template #title>
                   <div class="title-container">
                     <span class="custom-title text-3x1 ">{{ cardInformation[key].titulo }}</span>
-                    <Button icon="pi pi-plus" severity="secondary" rounded outlined @click="agregarNuevoItem(key)" />
+                    <Button icon="pi pi-plus" severity="secondary" rounded outlined @click="agregarNuevoItem(key as string)" />
                   </div>
                 </template>
                 <template #content>
-                  <!-- <DataViewCard :itemsCardValue="cardInformation[key]" :data-key="key"/> -->
+                 <DataViewCard :itemsCardValue="cardInformation[key]" :data-key="key"/>
                 </template>
               </Card>
             </TabPanel>

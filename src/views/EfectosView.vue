@@ -10,9 +10,6 @@ import type{ Efectos } from '../interfaces/efecto.interface';
 import type { EfectosForm } from '../interfaces/efecto.interface';
 import { categoriasDropdown, marcasCategoriasDropdown, modelosCategoriasDropdown, subcategoriasDropdown, tipoCategoriasDropdown } from '@/helpers/getDropItems';
 
-
-
-
 const { 
   editar,
   agregar,

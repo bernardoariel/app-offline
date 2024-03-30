@@ -30,7 +30,7 @@ const useActuacion = () => {
       
       /* const composable = getComposableForType(key);
       composable.agregar(nuevoItem.value); */
-       router.push({ name: 'persona', params: { tipo: key } });
+       router.push({ name: 'formulario', params: { tipo: key } });
     };
 
     return {

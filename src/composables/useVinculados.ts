@@ -3,7 +3,7 @@ import { v4 as uuid } from 'uuid';
 import type { VinculadosForm, Vinculados } from "@/interfaces/vinculado.interface";
 import type { DropDownInterface } from '../interfaces/dropdown.interface';
 import useFieldState from "./useFiledsState";
-
+import { vinculadosFake as itemsFake } from '@/data/mock/datosActuacion'
 
 const { agregarIdState, guardarModificaciones, eliminarIdState } = useFieldState();
 let vinculados = ref<Vinculados[]>([]);
@@ -71,6 +71,20 @@ const useVinculados = () => {
     const findById = (id: string) => {
         return vinculados.value.find(item => item.id === id);
     }; 
+
+    const resetAllDropdown = () =>{
+        selectedType.value = null;
+        selectedDocumento.value = null;
+        selectedSexo.value = null;
+        selectedNacionalidad.value = null;
+        selectedEstadoCivil.value = null;
+        selectedInstruccion.value = null;
+    }
+    const reset = () => {
+        vinculados.value = [];
+        resetAllDropdown()
+    };
+   
     return {
         vinculados,
         selectedType,
@@ -80,6 +94,9 @@ const useVinculados = () => {
         selectedEstadoCivil,
         selectedInstruccion,
         initialValues,
+        reset,
+        set: ()=> vinculados.value = [...itemsFake],
+        resetAllDropdown,
         items: vinculados,
         agregar: agregarVinculado,
         eliminar: eliminarVinculado,

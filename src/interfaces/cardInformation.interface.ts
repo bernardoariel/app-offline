@@ -1,8 +1,14 @@
+import type { Afectados } from "./afectado.interface";
+import type { Efectos } from "./efecto.interface";
+import type { FechaUbicacion } from "./fecha.interface";
+import type { PersonalInterviniente } from "./personalInterviniente";
+import type { Vinculados } from "./vinculado.interface";
 
-// Define un tipo para los elementos que son arrays
+type Item = Afectados | Vinculados | PersonalInterviniente |FechaUbicacion | Efectos;
+
 interface CardInformationArrayItem {
     titulo: string;
-    items: any[]; // Cambiar "any[]" por el tipo específico según corresponda
+    items: Item[]; // Cambiar "any[]" por el tipo específico según corresponda
   }
   
   // Define un tipo para el elemento que es un objeto único

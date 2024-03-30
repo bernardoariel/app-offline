@@ -1,7 +1,7 @@
 import { ref } from "vue"
 import { v4 as uuid } from 'uuid';
 import useFieldState from "./useFiledsState";
-
+import { intervinientesFake as itemsFake } from '@/data/mock/datosActuacion'
 import type { PersonalInterviniente, PersonalIntervinienteForm } from "@/interfaces/personalInterviniente";
 import type { DropDownInterface } from '../interfaces/dropdown.interface';
 
@@ -21,6 +21,7 @@ const initialValues: PersonalIntervinienteForm = {
 const usePersonalInterviniente = () => {
     
     const agregarPersonalInterviniente = (item: PersonalInterviniente) => {
+      
       if(!item) return 
       const id = uuid();
 
@@ -56,12 +57,29 @@ const usePersonalInterviniente = () => {
     const findById = (id: string) => {
       return intervinientes.value.find(item => item.id === id);
     };
-    
+
+    const resetAllDropdown = () =>{
+      selectedJerarquiaDrop.value = null;
+      selectedDependenciaDrop.value = null;
+    }
+    const reset = () => {
+      intervinientes.value = [];
+      resetAllDropdown()
+    };
+    const set = () => {
+       
+      intervinientes.value = [...itemsFake];
+      console.log('intervinientes.value::: ', intervinientes.value);
+    };
+   
     return {
       intervinientes,
       selectedJerarquiaDrop,
       selectedDependenciaDrop,
       initialValues,
+      reset,
+      resetAllDropdown,
+      set,
       items: intervinientes,
       agregar: agregarPersonalInterviniente,
       eliminar: eliminarPersonalInterviniente,

@@ -3,6 +3,7 @@ import { v4 as uuid } from 'uuid';
 import type { FechaUbicacion, FechaUbicacionForm } from '../interfaces/fecha.interface';
 import type { DropDownInterface } from '../interfaces/dropdown.interface';
 import useFieldState from "./useFiledsState";
+import { fechaUbicacioFake as itemsFake} from '@/data/mock/datosActuacion'
 
 const { agregarIdState, guardarModificaciones, eliminarIdState } = useFieldState();
 let fechaUbicacion = ref<FechaUbicacion[]>([]);
@@ -52,12 +53,22 @@ const useFecha = () => {
     const findById = (id: string) => {
         return fechaUbicacion.value.find(item => item.id === id);
     };
-    
-       
+
+    const resetAllDropdown = () =>{
+        selectedMunicipioDrop.value = null;
+    }
+    const reset = () => {
+        fechaUbicacion.value = [];
+        resetAllDropdown()
+    };
+   
     return {
         fechaUbicacion,
         selectedMunicipioDrop,
         initialValues,
+        reset,
+        resetAllDropdown,
+        set: () => fechaUbicacion.value = [...itemsFake],
         items:fechaUbicacion,
         agregar: agregarFechaUbicacion,
         eliminar: eliminarFechaUbicacion,

@@ -15,9 +15,9 @@ const props = defineProps<{
 
 const condicion:boolean = false;
 const items = computed(() => {
-  console.log('Items:', props.itemsCardValue.items); // Inspecciona todos los items
-  if (props.dataKey === 'fecha') {
-    console.log('Items de Fessscha:', props.itemsCardValue.items); // Inspecciona específicamente los items de 'fecha'
+
+  if (props.dataKey === 'personalInterviniente') {
+    console.log('Items de personalInterviniente:', props.itemsCardValue.items); // Inspecciona específicamente los items de 'fecha'
   }
   return props.itemsCardValue.items;
 });
@@ -32,8 +32,7 @@ const deleteProduct = (productId:any) => {
 const copyProduct = (productId:any) => {
     // Lógica para copiar el producto con el ID proporcionado
 };
-// console.log(props.itemsCardValue)
-let hasPersonalInterviniente = false
+
 </script>
 
 <template>
@@ -67,7 +66,7 @@ let hasPersonalInterviniente = false
                   </div>
 
                   <div class="flex-items">
-                    <ButtonOptions :tarjetaNombre="item.title" :item="item"/>
+                    <ButtonOptions v-if="item.title" :tarjetaNombre="item.title " :item="item"/>
                   </div>
 
                 </div> 
@@ -77,7 +76,7 @@ let hasPersonalInterviniente = false
               </div>
               <!-- personal Interviniente -->  
              
-              <!-- <div v-else-if="hasPersonalInterviniente && dataKey === 'personalInterviniente'">
+              <div v-else-if="dataKey === 'personalInterviniente'">
 
                 <div class="flex-container"  :class="{ 'border-top-1 surface-border': index !== 0 }">
 
@@ -102,7 +101,7 @@ let hasPersonalInterviniente = false
                 <div class="linea-2"> 
                   <p class="text-xs">{{ item.dependencia }}</p>
                 </div>
-              </div> -->
+              </div>
               <!-- Fecha -->
               <div v-else-if="dataKey=='fecha'">
                 <div class="flex-container"  :class="{ 'border-top-1 surface-border': index !== 0 }">
@@ -161,7 +160,7 @@ let hasPersonalInterviniente = false
                 <div class="linea-2"> 
                   <p class="text-xs">{{ item.dependencia }}</p>
                 </div>
-              </div>
+             </div>
 
             </div>
           

@@ -6,11 +6,14 @@ import type { DatosLegales } from '@/interfaces/datosLegales.interface';
 import { getTitleCase, getUpperCase } from '@/helpers/stringUtils';
 import { getAge } from '@/helpers/getAge';
 
-const useDatosDiligencia = (actuacion:string) => {
+const useDatosDiligencia = (actuacion) => {
+
   const { afectados, intervinientes } = useItem();
   
-  const diligenciaSeleccionada = diligencias.find((d:DatosLegales) => d.id === actuacion);
-
+  // Usamos computed para hacer que diligenciaSeleccionada sea reactiva
+  const diligenciaSeleccionada = computed(() => {
+    return diligencias.find((d: DatosLegales) => d.id === actuacion.value);
+  });
   const wordStrong = ['HACE CONSTAR', 'DISPONE', 'CERTIFICO', 'CERTIFICA', 'DECLARO'];
 
   const getStyle = (value: string) => {
@@ -42,30 +45,36 @@ const useDatosDiligencia = (actuacion:string) => {
       const isLast = index === intervinientes.value.length - 1; 
       const separator = isLast ? '.' : ',';
       
-      return `${getStyle(getTitleCase(item.jerarquia)+ ' ' + getUpperCase(item.apellido) +getTitleCase(item.nombre))}
+      return `${getStyle(getTitleCase(item.jerarquia)+ ' ' + getUpperCase(item.apellido) + + ' ' + getTitleCase(item.nombre))}
         ${getStyle(' adscripto/s a numerario de  ' + item.dependencia)}${separator}`
 
     }).join(' '); 
   });
 
   const processedText = computed(() => {
-    let header = diligenciaSeleccionada?.header.replace('@dependencia', getStyle(dependencia))
-      .replace('@departamento', getStyle(departamento))
-      .replace('@fechaactuacion', getStyle(fechaActuacion))
-      .replace('@afectados', processedAfectados.value)
-      .replace('@intervinientes', processedIntervinientes.value);
-
-    let footer = diligenciaSeleccionada?.footer;
-
-     wordStrong.forEach(word => {
+    let header = "";
+    let footer = "";
+  
+    // Verificar que diligenciaSeleccionada no es undefined antes de intentar acceder a sus propiedades
+    if (diligenciaSeleccionada.value) {
+      header = diligenciaSeleccionada.value.header.replace('@dependencia', getStyle(dependencia))
+        .replace('@departamento', getStyle(departamento))
+        .replace('@fechaactuacion', getStyle(fechaActuacion))
+        .replace('@afectados', processedAfectados.value)
+        .replace('@intervinientes', processedIntervinientes.value);
+  
+      footer = diligenciaSeleccionada.value.footer;
+  
+      wordStrong.forEach(word => {
         const replacement = `<span style="font-weight: bold; text-decoration: underline;">${word}</span>`;
-        if(header) header = header.replace(new RegExp(word, 'g'), replacement);
-        if(footer) footer = footer.replace(new RegExp(word, 'g'), replacement);
-    });
-
+        header = header.replace(new RegExp(word, 'g'), replacement);
+        footer = footer.replace(new RegExp(word, 'g'), replacement);
+      });
+    }
+  
     return { header, footer };
   });
-
+  
   return {
     processedText,
     processedAfectados, // Si necesitas acceder directamente a los afectados procesados

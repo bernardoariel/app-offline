@@ -32,6 +32,7 @@ let formData = ref<VinculadosForm>({ ...initialValues });
 onActivated(() => {
   selectedItem.value= null
 });
+
 const handleDropdownChange = (
   campo: keyof VinculadosForm, 
   newValue: { value: any;name:string }

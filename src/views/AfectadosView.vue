@@ -16,6 +16,7 @@ import { documentosDropdown, sexoDropdown, nacionalidadDropdown, estadoCivilDrop
 const { 
   editar,
   agregar,  
+  resetAllDropdown,
   initialValues,
   selectedType,
   selectedDocumento,
@@ -102,6 +103,7 @@ const handleAgregarElemento = () => {
 
   agregar(nuevoItem)
   formData.value = ({ ...initialValues });
+  resetAllDropdown()
 };
 
 const handleCancelar = () => {

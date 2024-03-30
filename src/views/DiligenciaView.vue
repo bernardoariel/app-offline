@@ -1,14 +1,19 @@
 <script lang="ts" setup>
 import useDatosDiligencia from '@/composables/useDatosDiligencia';
 import { getUpperCase } from '@/helpers/stringUtils';
+import { ref, watch } from 'vue';
 
 
 interface Props{
   actuacion:string;
 }
 const props = defineProps<Props>()
-const { processedText,primeradiligencia } = useDatosDiligencia(props.actuacion);
-
+const actuacionRef = ref(props.actuacion);
+const { processedText,primeradiligencia } = useDatosDiligencia(actuacionRef);
+watch(() => props.actuacion, (newValue) => {
+  console.log('newValue::: ', newValue);
+  actuacionRef.value = newValue;
+});
 </script>
 <template>
     <div class="surface-section px-2 py-5 md:px-6 lg:px-8 w-full">

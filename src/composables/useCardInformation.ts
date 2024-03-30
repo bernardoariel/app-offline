@@ -1,25 +1,53 @@
-import { reactive, ref } from "vue"
+import { reactive, ref, watch } from "vue"
 import type { CardInformation } from "@/interfaces/cardInformation.interface";
 import useItems from "./useItems";
+const actuacionesRequierenInterviniente = [
+  'sumario-oficio',
+  'expediente-oficio',
+  'ufi-flagrancia',
+  'ufi-generica-oficio',
+  'ufi-propiedad-oficio',
+  'ufi-informatica-oficio',
+  'ufi-cavig',
+  'ufi-anivi'
+]
+const useCardInformation = (actuacionRef) => {
+  const itemsCollection = useItems();
 
-const useCardInformation = () => {
-    
-    const itemsCollection = useItems();
+  const cardInformation: CardInformation = reactive({
+    afectados: { titulo: 'Afectados', items: itemsCollection.afectados },
+    vinculados: { titulo: 'Vinculados', items: itemsCollection.vinculados },
+    fecha: { titulo: 'Fecha', items: itemsCollection.fechaUbicacion },
+    efectos: { titulo: 'Efectos', items: itemsCollection.efectos },
+  });
 
-    const cardInformation: CardInformation = reactive({
-      afectados: { titulo: 'Afectados', items: itemsCollection.afectados }, // asume que es un array
-      vinculados: { titulo: 'Vinculados', items: itemsCollection.vinculados }, // asume que es un array
-      fecha: { titulo: 'Fecha', items: itemsCollection.fechaUbicacion }, // nota el cambio a "item"
-      efectos: { titulo: 'Efectos', items: itemsCollection.efectos }, // asume que es un array
-      personalInterviniente: { titulo: 'Personal Interviniente', items: itemsCollection.intervinientes }, // asume que es un array
-    });
-    const cardInformationKeys = Object.keys(cardInformation) as (keyof typeof cardInformation)[];
-    
-    return {
-        cardInformationKeys,
-        cardInformation
-    };
+  const updatePersonalInterviniente = (actuacion) => {
+    if (actuacionesRequierenInterviniente.includes(actuacion)) {
+      cardInformation.personalInterviniente = { titulo: 'Personal Interviniente', items: itemsCollection.intervinientes };
+    } else {
+      delete cardInformation.personalInterviniente;
+    }
+  };
+
+  // Llamada inicial
+  updatePersonalInterviniente(actuacionRef.value);
+
+  // Observar cambios
+  watch(actuacionRef, (newActuacion) => {
+    updatePersonalInterviniente(newActuacion);
+  });
+
+  const cardInformationKeys = ref(Object.keys(cardInformation) as (keyof typeof cardInformation)[]);
+
+  // Actualizar cardInformationKeys cuando cardInformation cambia
+  watch(cardInformation, () => {
+    cardInformationKeys.value = Object.keys(cardInformation) as (keyof typeof cardInformation)[];
+  });
+
+  return {
+    cardInformationKeys,
+    cardInformation
+  };
 };
 
 export default useCardInformation;
-  

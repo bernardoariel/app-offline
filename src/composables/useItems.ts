@@ -6,12 +6,26 @@ import usePersonalInterviniente from '@/composables/usePersonalInterviniente';
 
 export const useItem = () => {
     // Acceder a la lógica y datos de cada composable
-    const { afectados } = useAfectados();
-    const { vinculados } = useVinculados();
-    const { fechaUbicacion } = useFecha();
-    const { efectos } = useEfectos();
-    const { intervinientes } = usePersonalInterviniente();
+    const { afectados,set:setAfectado,reset:resetAfectado } = useAfectados();
+    const { vinculados,set:setVinculado,reset:resetVinculado } = useVinculados();
+    const { fechaUbicacion,set:setFechaUbicacion,reset:resetFechaUbicacion } = useFecha();
+    const { efectos,set:setEfecto,reset:resetEfecto} = useEfectos();
+    const { intervinientes,set:setInterviniente,reset:resetInterviniente } = usePersonalInterviniente();
 
+    const resetAll = () => {
+        resetAfectado()
+        resetVinculado()
+        resetFechaUbicacion()
+        resetEfecto()
+        resetInterviniente()
+    };
+    const setAll = () => {
+        setAfectado()
+        setVinculado()
+        setFechaUbicacion()
+        setEfecto()
+        setInterviniente()
+    };
     // Devolver todos los datos y métodos combinados
     return {
         afectados,
@@ -19,6 +33,8 @@ export const useItem = () => {
         fechaUbicacion,
         efectos,
         intervinientes,
+        resetAll,
+        setAll
     };
 };
 

@@ -3,7 +3,7 @@ import { v4 as uuid } from 'uuid';
 import type { Efectos, EfectosForm } from "@/interfaces/efecto.interface";
 import type { DropDownInterface } from '../interfaces/dropdown.interface';
 import useFieldState from "./useFiledsState";
-
+import { efectosFake as itemsFake} from '@/data/mock/datosActuacion'
 
 const { agregarIdState, guardarModificaciones, eliminarIdState } = useFieldState();
 let efectos = ref<Efectos[]>([]);
@@ -59,6 +59,21 @@ const useEfectos = () => {
     const findById = (id: string) => {
       return efectos.value.find(item => item.id === id);
     }; 
+
+    const resetAllDropdown = () =>{
+      selectedCategoria.value = null;
+      selectedSubcategoria.value = null;
+      selectedTipo.value = null;
+      selectedMarca.value = null;
+      selectedModelo.value = null;
+    }
+
+    const reset = () => {
+      efectos.value = [];
+      resetAllDropdown()
+    };
+
+     
     return {
         efectos,
         selectedCategoria,
@@ -67,6 +82,9 @@ const useEfectos = () => {
         selectedMarca,
         selectedModelo,
         initialValues,
+        reset,
+        set: () => efectos.value = [...itemsFake],
+        resetAllDropdown,
         items: efectos,
         agregar: agregarEfecto,
         eliminar: eliminarEfecto,

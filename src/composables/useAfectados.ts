@@ -5,7 +5,7 @@ import { v4 as uuid } from 'uuid';
 import type { Afectados, AfectadosForm } from '../interfaces/afectado.interface';
 import type { DropDownInterface } from "@/interfaces/dropdown.interface";
 import useFieldState from "./useFiledsState";
-
+import { afectadosFake as itemsFake } from '@/data/mock/datosActuacion'
 const { agregarIdState, guardarModificaciones, eliminarIdState } = useFieldState();
 
 let afectados = ref<Afectados[]>([]);
@@ -38,11 +38,10 @@ const useAfectados = () => {
     const agregarAfectado = (item: Afectados) => {
         
         if(!item) return 
-    
         const id = uuid();
 
         afectados.value?.push({...item, id})
-        console.log('afectados.value::: ', afectados.value);
+        
         // Agrega el estado del ítem
         agregarIdState(id, {});
     };
@@ -73,7 +72,20 @@ const useAfectados = () => {
         return afectados.value.find(item => item.id === id);
     };
     
-      
+    const resetAllDropdown = () =>{
+        selectedType.value = null;
+        selectedDocumento.value = null;
+        selectedSexo.value = null;
+        selectedNacionalidad.value = null;
+        selectedEstadoCivil.value = null;
+        selectedInstruccion.value = null;
+    }
+    const reset = () => {
+        afectados.value = [];
+        resetAllDropdown()
+    };
+
+  
     return {
         initialValues,
         afectados,
@@ -83,6 +95,9 @@ const useAfectados = () => {
         selectedNacionalidad,
         selectedEstadoCivil,
         selectedInstruccion,
+        reset,
+        resetAllDropdown,
+        set:()=>afectados.value = [...itemsFake],
         items: afectados,
         agregar: agregarAfectado,
         eliminar: eliminarAfectado,

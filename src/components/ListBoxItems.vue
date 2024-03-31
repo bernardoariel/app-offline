@@ -11,16 +11,12 @@ import useFieldState from '@/composables/useFiledsState';
 
 
 const { itemsComputados, routeType ,eliminarItem} = useItemsComputados();
-console.log('itemsComputados::: ', itemsComputados.value);
 const { selectedItem } = useItemValue()
 const { statesID } = useFieldState();
-console.log('statesID::: ', statesID);
+
 
 const getPristineById = (id: string) => {
-  console.log('id::: ', id);
   const found = statesID.find((state) => state.id === id);
-  console.log('found::: ', found);
-  console.log('statesID::: ', statesID);
   return found ? found.pristine : false;
 };
 
@@ -35,6 +31,7 @@ const getPristineById = (id: string) => {
       class="w-full listbox-lower">
 
       <template #option="{ option }">
+        
 
         <div class="listbox-item fixed-height">
 

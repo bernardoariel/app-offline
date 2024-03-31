@@ -9,7 +9,8 @@ export const getUpperCase = (word:string) => {
   };
   
   // Transforma una cadena a formato título
-  export const getTitleCase = (word:string) => {
+  export const getTitleCase = (word: string | undefined) => {
+    if (!word) return '';
     return word.replace(
       /\w\S*/g,
       (txt) => {

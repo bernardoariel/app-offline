@@ -1,6 +1,5 @@
 <script setup lang="ts">
 //listBoxItems
-import { computed, ref, watch } from 'vue';
 
 import { getUpperCase, getTitleCase } from "@/helpers/stringUtils";
 import { getColorByAfectado } from '@/helpers/getColorByAfectado';
@@ -12,11 +11,16 @@ import useFieldState from '@/composables/useFiledsState';
 
 
 const { itemsComputados, routeType ,eliminarItem} = useItemsComputados();
+console.log('itemsComputados::: ', itemsComputados.value);
 const { selectedItem } = useItemValue()
 const { statesID } = useFieldState();
+console.log('statesID::: ', statesID);
 
 const getPristineById = (id: string) => {
+  console.log('id::: ', id);
   const found = statesID.find((state) => state.id === id);
+  console.log('found::: ', found);
+  console.log('statesID::: ', statesID);
   return found ? found.pristine : false;
 };
 
@@ -24,7 +28,7 @@ const getPristineById = (id: string) => {
 </script>
 <template>
   <div class="card flex flex-column justify-content-center">
-    <Listbox
+    <Listbox  v-if="itemsComputados.length > 0"
       v-model="selectedItem"
       :options="itemsComputados"
       optionLabel="nombre"
@@ -44,7 +48,7 @@ const getPristineById = (id: string) => {
                   <i>{{ option.typeDocumento + ': ' }}</i>
                   <i>{{ option.nroDocumento }}</i>
                 </span>
-                
+                       
               </div>
               <div class="tag-row">
                 <Tag :value="option.typeAfectado" :severity="getColorByAfectado(option.typeAfectado)" />
@@ -60,6 +64,7 @@ const getPristineById = (id: string) => {
                 <Tag :value="option.departamento" :severity="getColorByAfectado(option.departamento)" />
               </div>
             </div>
+
             <!-- personal interviniente -->
             <div v-else-if="routeType === 'personalInterviniente'">
               <div class="text-row">
@@ -73,6 +78,7 @@ const getPristineById = (id: string) => {
                   <p class="ml-5 text-xs">{{ option.dependencia }}</p>
               </div>
             </div>
+
             <div v-else-if="routeType === 'efectos'">
               <div class="text-row">
                 <span class="font-bold">{{ option.subcategoria ? getUpperCase(option.subcategoria) + ' ' : '' }}</span>
@@ -89,6 +95,7 @@ const getPristineById = (id: string) => {
             </div>
           
           </div>
+
           <div class="right-column">
             <!-- <Button icon="pi pi-trash" severity="danger" @click="eliminarItem(option.id)" /> -->
             <Button v-if="option && option.code === 'new-item'" 
@@ -98,6 +105,7 @@ const getPristineById = (id: string) => {
               outlined 
               severity="primary" />
           <div class="button-and-dot-container" v-else-if="selectedItem === option && option.id">
+            
             <div v-if="!getPristineById(option.id)" class="uncommited-dot bg-blue-400"></div>
             <Button icon="pi pi-trash" 
               severity="danger" 
@@ -115,6 +123,7 @@ const getPristineById = (id: string) => {
         </div>
       </template>
     </Listbox>
+    
   </div>
 </template>
 

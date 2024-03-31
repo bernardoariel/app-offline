@@ -130,7 +130,8 @@ watch(selectedItem, (newVal:any) => {
                       :items="categoriasDropdown"
                       v-model="selectedCategoria"
                       @change="(newValue) => handleDropdownChange('categoria', newValue)"
-                      placeholder="Seleccione Categoría" />
+                      placeholder="Seleccione Categoría"
+                      :color="!!selectedItem" />
                 </div>
                 <div class="col-6">
                     <label for="subcategoriaDropdown">Seleccione Sub-Categoría</label>
@@ -139,7 +140,8 @@ watch(selectedItem, (newVal:any) => {
                       :items="subcategoriasDropdown"
                       v-model="selectedSubcategoria"
                       @change="(newValue) => handleDropdownChange('marca', newValue)"
-                      placeholder="Seleccione Sub-Categoría" />
+                      placeholder="Seleccione Sub-Categoría"
+                      :color="!!selectedItem" />
                 </div>
                 <div class="col-6">
                     <label for="tipoDropdown">Seleccione Tipo</label>
@@ -148,7 +150,8 @@ watch(selectedItem, (newVal:any) => {
                       :items="tipoCategoriasDropdown"
                       v-model="selectedTipo"
                       @change="(newValue) => handleDropdownChange('modelo', newValue)"
-                      placeholder="Seleccione Tipo" />
+                      placeholder="Seleccione Tipo" 
+                      :color="!!selectedItem"/>
                 </div>
                 <div class="col-6">
                     <label for="marcaDropdown">Seleccione Marca</label>
@@ -157,7 +160,8 @@ watch(selectedItem, (newVal:any) => {
                       :items="marcasCategoriasDropdown"
                       v-model="selectedMarca"
                       @change="(newValue) => handleDropdownChange('subcategoria', newValue)"
-                      placeholder="Seleccione Marca" />
+                      placeholder="Seleccione Marca"
+                      :color="!!selectedItem" />
                 </div>
                 <div class="col-6">
                     <label for="modeloDropdown">Seleccione Modelo</label>
@@ -167,6 +171,7 @@ watch(selectedItem, (newVal:any) => {
                       v-model="selectedModelo"
                       @change="(newValue) => handleDropdownChange('tipo', newValue)"
                       placeholder="Seleccione Modelo"
+                      :color="!!selectedItem"
                       />
                 </div>
                 <div class="ml-auto mt-2 p-0">

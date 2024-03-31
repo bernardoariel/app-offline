@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import DataTableExpansion from '@/components/DataTableExpansion.vue';
 
-
 </script>
 <template>
 

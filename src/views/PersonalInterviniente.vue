@@ -124,6 +124,7 @@ watch(selectedItem, (newVal:any) => {
               :value="getInputValue('apellido')"
               @input="handleInputChange('apellido', $event)"
               @blur="() => handleBlur('apellido')"
+              :color="!!selectedItem"
           />
         </div>
         <div class="col-6">
@@ -133,7 +134,8 @@ watch(selectedItem, (newVal:any) => {
             class="mt-2"
             :value="getInputValue('nombre')"
             @input="handleInputChange('nombre', $event)"
-            @blur="() => handleBlur('nombre')" />
+            @blur="() => handleBlur('nombre')"
+            :color="!!selectedItem" />
         </div>  
         <div class="col-6">
           <label for="dropdown">Seleccione Jerarquia</label>
@@ -142,7 +144,8 @@ watch(selectedItem, (newVal:any) => {
             :items="jerarquiaDropdown"
             v-model="selectedJerarquiaDrop"
             @change="(newValue) => handleDropdownChange('jerarquia', newValue)"
-            placeholder="Seleccione la Jerarquia" />
+            placeholder="Seleccione la Jerarquia" 
+            :color="!!selectedItem"/>
         </div>
         <div class="col-6">
           <label for="dropdown">Seleccione Dependencia</label>
@@ -151,7 +154,8 @@ watch(selectedItem, (newVal:any) => {
             :items="dependenciaDropdown"
             v-model="selectedDependenciaDrop"
             @change="(newValue) => handleDropdownChange('dependencia', newValue)"
-            placeholder="Seleccione la Dependencia" />
+            placeholder="Seleccione la Dependencia"
+            :color="!!selectedItem" />
         </div>
         <div class="ml-auto mt-2 p-0">
               <Button

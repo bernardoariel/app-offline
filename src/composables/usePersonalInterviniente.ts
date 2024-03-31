@@ -5,7 +5,7 @@ import { intervinientesFake as itemsFake } from '@/data/mock/datosActuacion'
 import type { PersonalInterviniente, PersonalIntervinienteForm } from "@/interfaces/personalInterviniente";
 import type { DropDownInterface } from '../interfaces/dropdown.interface';
 
-const { agregarIdState, guardarModificaciones, eliminarIdState } = useFieldState();
+const { agregarIdState, guardarModificaciones, eliminarIdState,resetStates } = useFieldState();
 const  intervinientes = ref<PersonalInterviniente[]>([]);
 
 const selectedJerarquiaDrop = ref<DropDownInterface>()
@@ -66,12 +66,14 @@ const usePersonalInterviniente = () => {
       intervinientes.value = [];
       resetAllDropdown()
     };
-    const set = () => {
-       
-      intervinientes.value = [...itemsFake];
-      console.log('intervinientes.value::: ', intervinientes.value);
-    };
-   
+    
+    const set = ()=>{
+     
+      intervinientes.value = [...itemsFake]
+      itemsFake.forEach(item => {
+          agregarIdState(item.id, {}); // Llama a agregarIdState con el id de cada ítem
+      });
+    }
     return {
       intervinientes,
       selectedJerarquiaDrop,

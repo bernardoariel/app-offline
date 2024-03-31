@@ -8,6 +8,7 @@ interface FieldState {
 
 const statesID =reactive<FieldState[]>([])
 
+
 export default function useFieldState() {
  
   const agregarIdState = (id: string,data: Record<string, any>) => {
@@ -90,6 +91,7 @@ export default function useFieldState() {
     guardarModificaciones,
     cancelarModificaciones,
     isEditing,
-    eliminarIdState
+    eliminarIdState,
+    resetStates:()=> statesID.splice(0, statesID.length)
   };
 }

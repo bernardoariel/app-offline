@@ -9,6 +9,7 @@ import VinculadosView from './VinculadosView.vue';
 import AfectadosView from './AfectadosView.vue';
 import PersonalInterviniente from './PersonalInterviniente.vue';
 import useItemValue from '@/composables/useItemValue';
+import { getTitleCase } from '@/helpers/stringUtils';
 
 const { prepararNuevoItem } = useItemValue()
 
@@ -37,11 +38,10 @@ watch(() => route.params.tipo, (newTipo) => {
                         <Button icon="pi pi-arrow-left" title="Volver"  rounded @click="handleVolver"></Button>
                     </template>
                     <template #center> 
-                        <h3>{{tipo}}</h3>
+                        <h3>{{(tipo!='personalInterviniente')?getTitleCase(tipo as string):getTitleCase('Personal Interviniente')}}</h3>
                     </template>
                     <template #end> 
                         <Button icon="pi pi-plus" title="Nuevo Item" outlined rounded class="ml-3" @click="handleNuevoItem"></Button>
-                        
                     </template>
                 </Toolbar>
             </div>  

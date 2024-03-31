@@ -144,6 +144,7 @@ watch(selectedItem, (newVal:any) => {
                         icon="pi pi-check"
                         class="p-button-text"
                         @click="setToNow('desdeFechaHora')"
+
                       />
                       <div class="flex-grow-1"></div>
              
@@ -200,7 +201,8 @@ watch(selectedItem, (newVal:any) => {
                     class="mt-2"
                     :value="getInputValue('calle')"
                     @input="handleInputChange('calle', $event)"
-                    @blur="() => handleBlur('calle')"/>
+                    @blur="() => handleBlur('calle')" 
+                    :color="!!selectedItem"/>
                   </div>
                 <div class="col-4">
                 <label for="numero">Número</label>
@@ -209,7 +211,8 @@ watch(selectedItem, (newVal:any) => {
                   class="mt-2"
                   :value="getInputValue('numero')"
                   @input="handleInputChange('numero', $event)"
-                  @blur="() => handleBlur('numero')"/>
+                  @blur="() => handleBlur('numero')"
+                  :color="!!selectedItem"/>
                   </div>
                 <div class="col-4">
                 <label for="departamento">Departamento</label>
@@ -219,7 +222,7 @@ watch(selectedItem, (newVal:any) => {
                   :items="municipiosDropdown"
                   v-model="selectedMunicipioDrop"
                   @change="(newValue) => handleDropdownChange('departamento', newValue)"
-                  placeholder="Seleccione un departamento" />
+                  placeholder="Seleccione un departamento" :color="!!selectedItem" />
                 
               </div>
                 <!-- Botones para acciones -->

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-const props = defineProps(["items", "placeholder"]);
+const props = defineProps(["items", "placeholder","color"]);
 
 const selectedItem = ref<any>(null);
 </script>
@@ -12,6 +12,7 @@ const selectedItem = ref<any>(null);
     filter
     optionLabel="name"
     :placeholder="placeholder"
+    :class="{'surface-100': props.color}"
     class="w-full border-round-sm"
   >
     <template #value="{ value, placeholder }">

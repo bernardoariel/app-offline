@@ -5,7 +5,7 @@ import type { DropDownInterface } from '../interfaces/dropdown.interface';
 import useFieldState from "./useFiledsState";
 import { fechaUbicacioFake as itemsFake} from '@/data/mock/datosActuacion'
 
-const { agregarIdState, guardarModificaciones, eliminarIdState } = useFieldState();
+const { agregarIdState, guardarModificaciones, eliminarIdState,resetStates } = useFieldState();
 let fechaUbicacion = ref<FechaUbicacion[]>([]);
 
 const selectedMunicipioDrop = ref<DropDownInterface>()
@@ -61,14 +61,19 @@ const useFecha = () => {
         fechaUbicacion.value = [];
         resetAllDropdown()
     };
-   
+    const set = ()=>{
+        fechaUbicacion.value = [...itemsFake]
+        itemsFake.forEach(item => {
+            agregarIdState(item.id, {}); // Llama a agregarIdState con el id de cada ítem
+        });
+    }
     return {
         fechaUbicacion,
         selectedMunicipioDrop,
         initialValues,
         reset,
         resetAllDropdown,
-        set: () => fechaUbicacion.value = [...itemsFake],
+        set,
         items:fechaUbicacion,
         agregar: agregarFechaUbicacion,
         eliminar: eliminarFechaUbicacion,

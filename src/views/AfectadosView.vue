@@ -148,7 +148,8 @@ watch(selectedItem, (newVal:any) => {
                   :items="afectadosDropdown"
                   v-model="selectedType"
                   @change="(newValue) => handleDropdownChange('typeAfectado', newValue)"
-                  placeholder="Seleccione tipo de Denunciante" />
+                  placeholder="Seleccione tipo de Denunciante"
+                  :color="!!selectedItem" />
             </div>
             <div class="col-4">
                <label for="dropdown" >Tipo de doc.</label>
@@ -157,17 +158,19 @@ watch(selectedItem, (newVal:any) => {
                  :items="documentosDropdown"
                  v-model="selectedDocumento"
                  @change="(newValue) => handleDropdownChange('typeDocumento', newValue)"
-                 placeholder="Tipo de doc." />
+                 placeholder="Tipo de doc."
+                 :color="!!selectedItem" />
             </div>
             <div class="col-4">
                 <label for="dropdown" >N° de doc.</label>
                 <!-- <MyInputNumber -->
-                  <MyInput
+                <MyInput
                   type="number"
                   class="mt-2"
                   :value="getInputValue('nroDocumento')"
                   @input="handleInputChange('nroDocumento', $event)"
                   @blur="() => handleBlur('nroDocumento')"
+                  :color="!!selectedItem"
                   />
             </div>
             <div class="col-4">
@@ -177,7 +180,8 @@ watch(selectedItem, (newVal:any) => {
                  :items="sexoDropdown"
                  v-model="selectedSexo"
                  placeholder="Sexo" 
-                 @change="(newValue) => handleDropdownChange('typeSexo', newValue)"/>
+                 @change="(newValue) => handleDropdownChange('typeSexo', newValue)"
+                 :color="!!selectedItem"/>
             </div>
             <div class="col-6">
                 <label for="dropdown" >Apellido</label>
@@ -187,6 +191,7 @@ watch(selectedItem, (newVal:any) => {
                     :value="getInputValue('apellido')"
                     @input="handleInputChange('apellido', $event)"
                     @blur="() => handleBlur('apellido')"
+                    :color="!!selectedItem"
                 />
                 
             </div>
@@ -198,6 +203,7 @@ watch(selectedItem, (newVal:any) => {
                 :value="getInputValue('nombre')"
                 @input="handleInputChange('nombre', $event)"
                 @blur="() => handleBlur('nombre')"
+                :color="!!selectedItem"
               />
             </div>
             <div class="col-3">
@@ -208,6 +214,7 @@ watch(selectedItem, (newVal:any) => {
                   :value="getInputValue('fecha')"
                   @input="handleInputChange('fecha', $event)"
                   @blur="() => handleBlur('fecha')"
+                  :color="!!selectedItem"
                   />
             </div>
             <div class="col-3">
@@ -217,7 +224,8 @@ watch(selectedItem, (newVal:any) => {
                  :items="nacionalidadDropdown"
                  placeholder="Nacionalidad"
                  @change="(newValue) => handleDropdownChange('nacionalidad', newValue)"
-                 v-model="selectedNacionalidad" />
+                 v-model="selectedNacionalidad" 
+                 :color="!!selectedItem"/>
             </div>
             <div class="col-3">
                <label for="dropdown" >Estado Civil</label>
@@ -226,7 +234,8 @@ watch(selectedItem, (newVal:any) => {
                 :items="estadoCivilDropdown"
                 placeholder="Estado Civil"
                 @change="(newValue) => handleDropdownChange('estadoCivil', newValue)"
-                v-model="selectedEstadoCivil" />
+                v-model="selectedEstadoCivil"
+                :color="!!selectedItem" />
               </div>
             <div class="col-12">
                 <label for="dropdown" >Domicilio de residencia</label>
@@ -236,6 +245,7 @@ watch(selectedItem, (newVal:any) => {
                   :value="getInputValue('domicilioResidencia')"
                   @input="handleInputChange('domicilioResidencia', $event)"
                   @blur="() => handleBlur('domicilioResidencia')"
+                  :color="!!selectedItem"
                    />
             </div>
             <div class="col-3">
@@ -247,6 +257,7 @@ watch(selectedItem, (newVal:any) => {
                   :value="getInputValue('telefono')"
                   @input="handleInputChange('telefono', $event)"
                   @blur="() => handleBlur('telefono')"
+                  :color="!!selectedItem"
                   />
             </div>
             <div class="col-3">
@@ -258,6 +269,7 @@ watch(selectedItem, (newVal:any) => {
                   :value="getInputValue('email')"
                   @input="handleInputChange('email', $event)"
                   @blur="() => handleBlur('email')"
+                  :color="!!selectedItem"
                    />
             </div>
             <div class="col-3">
@@ -269,6 +281,7 @@ watch(selectedItem, (newVal:any) => {
                   :value="getInputValue('profesion')"
                   @input="handleInputChange('profesion', $event)"
                   @blur="() => handleBlur('profesion')"
+                  :color="!!selectedItem"
                   />
             </div>
             <div class="col-3">
@@ -278,7 +291,9 @@ watch(selectedItem, (newVal:any) => {
                 :items="instruccionDropdown"
                 placeholder="Instrucción"
                 @change="(newValue) => handleDropdownChange('instruccion', newValue)"
-                v-model="selectedInstruccion" />
+                v-model="selectedInstruccion"
+                :color="!!selectedItem"
+                 />
             
             </div>
 

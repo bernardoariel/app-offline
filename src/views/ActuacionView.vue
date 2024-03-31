@@ -8,6 +8,7 @@ import useActuacion from '@/composables/useActuacion';
 import useCardInformation from '@/composables/useCardInformation';
 import useAfectados from '@/composables/useAfectados';
 import useItem from '../composables/useItems';
+import useFieldState from '@/composables/useFiledsState';
 
 interface Props{
   actuacion:string;
@@ -17,10 +18,12 @@ const actuacionRef = ref(props.actuacion);
 const active = ref(0);
 const { agregarNuevoItem } = useActuacion();
 const { setAll } = useItem()
+const { resetStates } = useFieldState()
 const { cardInformationKeys,cardInformation } = useCardInformation(actuacionRef)
 const handleClick = (event: { ctrlKey: any; altKey: any; }) =>{
   if (event.ctrlKey && event.altKey) {
         console.log(`Ctrl + Alt + Click detectado: ${actuacionRef}`);
+        resetStates()
         setAll()
   }
 }

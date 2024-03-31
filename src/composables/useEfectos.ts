@@ -72,7 +72,13 @@ const useEfectos = () => {
       efectos.value = [];
       resetAllDropdown()
     };
-
+    const set = ()=>{
+     
+      efectos.value = [...itemsFake]
+      itemsFake.forEach(item => {
+          agregarIdState(item.id, {}); // Llama a agregarIdState con el id de cada ítem
+      });
+    }
      
     return {
         efectos,
@@ -83,7 +89,7 @@ const useEfectos = () => {
         selectedModelo,
         initialValues,
         reset,
-        set: () => efectos.value = [...itemsFake],
+        set,
         resetAllDropdown,
         items: efectos,
         agregar: agregarEfecto,

@@ -5,7 +5,7 @@ import type { DropDownInterface } from '../interfaces/dropdown.interface';
 import useFieldState from "./useFiledsState";
 import { vinculadosFake as itemsFake } from '@/data/mock/datosActuacion'
 
-const { agregarIdState, guardarModificaciones, eliminarIdState } = useFieldState();
+const { agregarIdState, guardarModificaciones, eliminarIdState,resetStates } = useFieldState();
 let vinculados = ref<Vinculados[]>([]);
 
 let selectedType = ref<DropDownInterface>()
@@ -84,6 +84,13 @@ const useVinculados = () => {
         vinculados.value = [];
         resetAllDropdown()
     };
+    const set = ()=>{
+        
+        vinculados.value = [...itemsFake]
+        itemsFake.forEach(item => {
+            agregarIdState(item.id, {}); // Llama a agregarIdState con el id de cada ítem
+        });
+      }
    
     return {
         vinculados,
@@ -95,7 +102,7 @@ const useVinculados = () => {
         selectedInstruccion,
         initialValues,
         reset,
-        set: ()=> vinculados.value = [...itemsFake],
+        set,
         resetAllDropdown,
         items: vinculados,
         agregar: agregarVinculado,

@@ -17,9 +17,8 @@ interface UseDatosDiligenciaReturn {
   processedIntervinientes: any; // Tipo de processedIntervinientes
   primeradiligencia: DatosLegales | undefined; // Propiedad primeradiligencia
   isEditHeader: Ref<boolean>; // Ref<boolean> para controlar la edición del encabezado
-  isEditingTextarea: Ref<boolean>; // R  changeEditar: (elemento: string) => void;
+  changeEditar: (elemento: string) => void;
   processedHeaderText: ComputedRef<string>; // Tipo de processedHeaderText
-
 }
 
 const useDatosDiligencia = (actuacion: Ref<string>): UseDatosDiligenciaReturn => {

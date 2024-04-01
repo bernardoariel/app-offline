@@ -3,7 +3,10 @@ interface Props{
     type:string,
     color: boolean
 }
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(),{
+    type:'text',
+    color:false
+})
 </script>
 <template>
    <InputText

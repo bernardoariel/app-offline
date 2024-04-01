@@ -18,3 +18,7 @@ export const getUpperCase = (word:string) => {
       }
     );
   };
+  // funcion para recibir una horacion, y colocar siempre la primera letra mayuscula y todas las demas minusculas
+  export const getHour = (hour: string) => {
+    return hour.charAt(0).toUpperCase() + hour.slice(1).toLowerCase();
+  }

@@ -1,7 +1,17 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-const props = defineProps(["items", "placeholder","color"]);
+interface Props{
+    items: any[],
+    placeholder:string,
+    color: boolean,
+    filter:boolean
+}
+const props = withDefaults(defineProps<Props>(),{
+    color:false,
+    filter:true
+})
+
 
 const selectedItem = ref<any>(null);
 </script>
@@ -9,7 +19,7 @@ const selectedItem = ref<any>(null);
   <Dropdown
     v-model="selectedItem"
     :options="items"
-    filter
+    :filter
     optionLabel="name"
     :placeholder="placeholder"
     :class="{'surface-100': props.color}"

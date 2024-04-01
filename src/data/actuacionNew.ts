@@ -11859,3 +11859,1834 @@ export const modelosCategorias = [
         "subcategorias": "Celulares y Tel\u00e9fono "
     }
 ]
+
+export const sitios = [
+    {
+        "TipoSitioID": "sitio-id-0102",
+        "FechaCreacion": "2023-08-30 18:34:19",
+        "FechaEliminacion": null,
+        "Nombre": "Museo",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0103",
+        "FechaCreacion": "2023-08-30 18:34:20",
+        "FechaEliminacion": null,
+        "Nombre": "Negocio",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0104",
+        "FechaCreacion": "2023-08-30 18:34:20",
+        "FechaEliminacion": null,
+        "Nombre": "Obra en Construcci\u00f3n",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0105",
+        "FechaCreacion": "2023-08-30 18:34:21",
+        "FechaEliminacion": null,
+        "Nombre": "Obra Social",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0106",
+        "FechaCreacion": "2023-08-30 18:34:22",
+        "FechaEliminacion": null,
+        "Nombre": "Obrador Central",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0107",
+        "FechaCreacion": "2023-08-30 18:34:22",
+        "FechaEliminacion": null,
+        "Nombre": "Observatorio F\u00e9lix Aguilar",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0108",
+        "FechaCreacion": "2023-08-30 18:34:23",
+        "FechaEliminacion": null,
+        "Nombre": "Oficina",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0109",
+        "FechaCreacion": "2023-08-30 18:34:23",
+        "FechaEliminacion": null,
+        "Nombre": "Pared",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0110",
+        "FechaCreacion": "2023-08-30 18:34:24",
+        "FechaEliminacion": null,
+        "Nombre": "Parque de Chimbas",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0111",
+        "FechaCreacion": "2023-08-30 18:34:24",
+        "FechaEliminacion": null,
+        "Nombre": "Parque de la Ciudad",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0112",
+        "FechaCreacion": "2023-08-30 18:34:25",
+        "FechaEliminacion": null,
+        "Nombre": "Parque de Rawson",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0113",
+        "FechaCreacion": "2023-08-30 18:34:25",
+        "FechaEliminacion": null,
+        "Nombre": "Parque de Rivadavia",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0114",
+        "FechaCreacion": "2023-08-30 18:34:26",
+        "FechaEliminacion": null,
+        "Nombre": "Planta Verificadora",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0115",
+        "FechaCreacion": "2023-08-30 18:34:26",
+        "FechaEliminacion": null,
+        "Nombre": "Plaza",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0116",
+        "FechaCreacion": "2023-08-30 18:34:27",
+        "FechaEliminacion": null,
+        "Nombre": "Predio Ferial",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0117",
+        "FechaCreacion": "2023-08-30 18:34:28",
+        "FechaEliminacion": null,
+        "Nombre": "Residencial",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0118",
+        "FechaCreacion": "2023-08-30 18:34:28",
+        "FechaEliminacion": null,
+        "Nombre": "Restaurant",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0119",
+        "FechaCreacion": "2023-08-30 18:34:29",
+        "FechaEliminacion": null,
+        "Nombre": "Salidera Bancaria",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0120",
+        "FechaCreacion": "2023-08-30 18:34:29",
+        "FechaEliminacion": null,
+        "Nombre": "Sanatorio",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0121",
+        "FechaCreacion": "2023-08-30 18:34:30",
+        "FechaEliminacion": null,
+        "Nombre": "Servicio Penitenciario",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0122",
+        "FechaCreacion": "2023-08-30 18:34:30",
+        "FechaEliminacion": null,
+        "Nombre": "Taller",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0123",
+        "FechaCreacion": "2023-08-30 18:34:31",
+        "FechaEliminacion": null,
+        "Nombre": "Terminal",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0124",
+        "FechaCreacion": "2023-08-30 18:34:32",
+        "FechaEliminacion": null,
+        "Nombre": "Terreno",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0125",
+        "FechaCreacion": "2023-08-30 18:34:32",
+        "FechaEliminacion": null,
+        "Nombre": "Tractor",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0126",
+        "FechaCreacion": "2023-08-30 18:34:33",
+        "FechaEliminacion": null,
+        "Nombre": "Tren",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0127",
+        "FechaCreacion": "2023-08-30 18:34:33",
+        "FechaEliminacion": null,
+        "Nombre": "Uni\u00f3n Vecinal",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0128",
+        "FechaCreacion": "2023-08-30 18:34:34",
+        "FechaEliminacion": null,
+        "Nombre": "Universidad",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0129",
+        "FechaCreacion": "2023-08-30 18:34:34",
+        "FechaEliminacion": null,
+        "Nombre": "V\u00eda P\u00fablica",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0130",
+        "FechaCreacion": "2023-08-30 18:34:35",
+        "FechaEliminacion": null,
+        "Nombre": "Video Club",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0131",
+        "FechaCreacion": "2023-08-30 18:34:35",
+        "FechaEliminacion": null,
+        "Nombre": "Vivero",
+        "Descripcion": null
+    }
+]
+
+export const modusOperandi = [
+    {
+        "TipomodusoperandiID": "19ccdc90-7c11-11ed-9b80-0e87116d214b",
+        "Descripcion": null,
+        "Nombre": "ROBO EN GDO. DE TVA. CON LA PART. DE UN MENOR "
+    },
+    {
+        "TipomodusoperandiID": "19eb4857-2593-11ed-8709-0e085dd00fab",
+        "Descripcion": null,
+        "Nombre": "hallazgo "
+    },
+    {
+        "TipomodusoperandiID": "1ca5004c-ce39-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": null,
+        "Nombre": "Delito Rural"
+    },
+    {
+        "TipomodusoperandiID": "1d993b04-259f-11ed-8709-0e085dd00fab",
+        "Descripcion": null,
+        "Nombre": "apropiaci\u00f3n indebida de un lugar "
+    },
+    {
+        "TipomodusoperandiID": "36844f89-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": "",
+        "Nombre": "ABORTO"
+    },
+    {
+        "TipomodusoperandiID": "37a244eb-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "ABUSO SEXUAL"
+    },
+    {
+        "TipomodusoperandiID": "396e1d33-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "ACCESO CARNAL"
+    },
+    {
+        "TipomodusoperandiID": "3a89a100-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "ACCIDENTE DE TRANSITO"
+    },
+    {
+        "TipomodusoperandiID": "3ba775a1-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "AHORCAMIENTO"
+    },
+    {
+        "TipomodusoperandiID": "3d70693f-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "ALLANAMIENTO"
+    },
+    {
+        "TipomodusoperandiID": "3e8b32bc-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "AMENAZAS"
+    },
+    {
+        "TipomodusoperandiID": "3fa53540-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "ARREBATO"
+    },
+    {
+        "TipomodusoperandiID": "417195bf-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "ARROJO PIEDRA"
+    },
+    {
+        "TipomodusoperandiID": "4286e071-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "ASALTO C\/ARMA BLANCA"
+    },
+    {
+        "TipomodusoperandiID": "4334f093-b603-11ec-8878-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "ACTUACIONES POR DENUNCIA "
+    },
+    {
+        "TipomodusoperandiID": "439b8182-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "ASALTO C\/ARMA DE FUEGO"
+    },
+    {
+        "TipomodusoperandiID": "455f3094-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "ASALTO C\/VIOLENCIAS"
+    },
+    {
+        "TipomodusoperandiID": "459f9bf9-ce39-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": null,
+        "Nombre": "Exhibiciones Obscenas"
+    },
+    {
+        "TipomodusoperandiID": "467a24b7-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "ASALTO E\/CONTUNDENTE"
+    },
+    {
+        "TipomodusoperandiID": "4796105c-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "ASALTO M\/ARMADA"
+    },
+    {
+        "TipomodusoperandiID": "496cf61d-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "CUATREROS"
+    },
+    {
+        "TipomodusoperandiID": "4a63252d-b603-11ec-8878-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "ACTUACIONES INVESTIGATIVAS"
+    },
+    {
+        "TipomodusoperandiID": "4a7e9f7b-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "CUENTO DEL TIO"
+    },
+    {
+        "TipomodusoperandiID": "4b9c017e-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "DA\u00d1O"
+    },
+    {
+        "TipomodusoperandiID": "4d6928f6-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "EN BANDA"
+    },
+    {
+        "TipomodusoperandiID": "4e90b9b6-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "ESCALAMIENTO"
+    },
+    {
+        "TipomodusoperandiID": "4fadfe6b-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "EXHIBICIONES OBSCENAS"
+    },
+    {
+        "TipomodusoperandiID": "516d70c7-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "IN FRAGANTI"
+    },
+    {
+        "TipomodusoperandiID": "5287bd0e-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "INGESTA MEDICAMENTOSA"
+    },
+    {
+        "TipomodusoperandiID": "53c15bc7-ce39-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": null,
+        "Nombre": "Fallecimiento Sin Asistencia"
+    },
+    {
+        "TipomodusoperandiID": "53c1d441-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "INGESTA S\/TOXICA"
+    },
+    {
+        "TipomodusoperandiID": "558a4ab4-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "INGRESO S\/VIOLENCIA"
+    },
+    {
+        "TipomodusoperandiID": "56a846aa-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "INMERCION"
+    },
+    {
+        "TipomodusoperandiID": "57abab87-1044-11ee-ba93-0e3a1e34687f",
+        "Descripcion": "Tentativa Suicidio",
+        "Nombre": "Tentativa Suicidio"
+    },
+    {
+        "TipomodusoperandiID": "57c451a2-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "LESIONES"
+    },
+    {
+        "TipomodusoperandiID": "59892f94-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "LLAVE FALSA O GANZUA"
+    },
+    {
+        "TipomodusoperandiID": "5aa64740-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "MANOSEO"
+    },
+    {
+        "TipomodusoperandiID": "5bc74d1e-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "MECHERA"
+    },
+    {
+        "TipomodusoperandiID": "5d8fef2c-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "OPORTUNISTA"
+    },
+    {
+        "TipomodusoperandiID": "5eadd7d1-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "OTROS"
+    },
+    {
+        "TipomodusoperandiID": "5fd3c0b8-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "PEDIDO DE SECUESTRO"
+    },
+    {
+        "TipomodusoperandiID": "60a443f3-ce31-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": "Arrojamiento  de Piedra",
+        "Nombre": "Arrojamiento  de Piedra"
+    },
+    {
+        "TipomodusoperandiID": "6130e65e-1043-11ee-ba93-0e3a1e34687f",
+        "Descripcion": "Con Violencia",
+        "Nombre": "Con Violencia"
+    },
+    {
+        "TipomodusoperandiID": "61e2c9fb-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "PUNGUISTA"
+    },
+    {
+        "TipomodusoperandiID": "62f99d35-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "ROBO C\/FZA FISICA"
+    },
+    {
+        "TipomodusoperandiID": "64323247-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "ROTURA CANDADO"
+    },
+    {
+        "TipomodusoperandiID": "66024b1a-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "ROTURA CERRADURA"
+    },
+    {
+        "TipomodusoperandiID": "67211f01-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "ROTURA PERIMETRO"
+    },
+    {
+        "TipomodusoperandiID": "683e2e7b-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "ROTURA PUERTA"
+    },
+    {
+        "TipomodusoperandiID": "691b50d8-ce39-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": null,
+        "Nombre": "Flagrante"
+    },
+    {
+        "TipomodusoperandiID": "69fd111e-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "ROTURA PUERTA AUTO"
+    },
+    {
+        "TipomodusoperandiID": "6a390c36-24d4-11ed-bb82-0eb8b69eb347",
+        "Descripcion": null,
+        "Nombre": "TENTATIVA DE ROBO"
+    },
+    {
+        "TipomodusoperandiID": "6b13d8e1-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "ROTURA TECHO"
+    },
+    {
+        "TipomodusoperandiID": "6c329e35-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "ROTURA VENTANA"
+    },
+    {
+        "TipomodusoperandiID": "6df1bdef-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "ROTURA VIDRIERA"
+    },
+    {
+        "TipomodusoperandiID": "6ed0d0d7-e534-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": "Tenencia Ilegitima de Arma de Fuego",
+        "Nombre": "Tenencia Ilegitima de Arma de Fuego"
+    },
+    {
+        "TipomodusoperandiID": "6f0ac763-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "ROTURA VIDRIO   "
+    },
+    {
+        "TipomodusoperandiID": "702423a0-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "ROTURA VIDRIO AUTO"
+    },
+    {
+        "TipomodusoperandiID": "71edc5dc-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "ROTURA VIDRIO MOVIL POLICIAL "
+    },
+    {
+        "TipomodusoperandiID": "7211144a-ce31-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": "Asalto a mano armada",
+        "Nombre": "Asalto a mano armada"
+    },
+    {
+        "TipomodusoperandiID": "7309e943-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "ROTURA\/VIOLENCIA"
+    },
+    {
+        "TipomodusoperandiID": "7426b668-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "ROTURAS DE PERIMETRO"
+    },
+    {
+        "TipomodusoperandiID": "75f0a942-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "ROTURAS VARIAS"
+    },
+    {
+        "TipomodusoperandiID": "770fe440-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "SIN ESPECIFICAR"
+    },
+    {
+        "TipomodusoperandiID": "782a5397-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "SIN VIOLENCIA"
+    },
+    {
+        "TipomodusoperandiID": "79c3b9c2-3d1b-11ee-ba93-0e3a1e34687f",
+        "Descripcion": "SAQUEO",
+        "Nombre": "SAQUEO"
+    },
+    {
+        "TipomodusoperandiID": "7a05556c-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "USO TIJERA Y OTROS"
+    },
+    {
+        "TipomodusoperandiID": "7aac3924-ce31-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": "Asalto con arma blanca",
+        "Nombre": "Asalto con arma blanca"
+    },
+    {
+        "TipomodusoperandiID": "7b2036ba-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "VIA CARTA O NOTA"
+    },
+    {
+        "TipomodusoperandiID": "7c585895-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "VIA INTERNET (RED SOCIAL, ETC)"
+    },
+    {
+        "TipomodusoperandiID": "7dc8e193-ce39-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": null,
+        "Nombre": "Incendio"
+    },
+    {
+        "TipomodusoperandiID": "7e1d615e-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "VIA TELEFONICA"
+    },
+    {
+        "TipomodusoperandiID": "7f3b09cf-a3c5-11ec-816d-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "VIOLACION DE DOCUMENTACION"
+    },
+    {
+        "TipomodusoperandiID": "81efa5d0-1043-11ee-ba93-0e3a1e34687f",
+        "Descripcion": "Exhibiciones Obcenas",
+        "Nombre": "Exhibiciones Obcenas"
+    },
+    {
+        "TipomodusoperandiID": "82548e62-ce39-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": null,
+        "Nombre": "Infraganti"
+    },
+    {
+        "TipomodusoperandiID": "8464fd20-ce31-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": "Asalto con Elemento Contundente",
+        "Nombre": "Asalto con Elemento Contundente"
+    },
+    {
+        "TipomodusoperandiID": "8b7e5b15-ce39-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": null,
+        "Nombre": "Ingesta Sustancia T\u00f3xica"
+    },
+    {
+        "TipomodusoperandiID": "8f05e33f-ce31-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": "Coacci\u00f3n",
+        "Nombre": "Coacci\u00f3n"
+    },
+    {
+        "TipomodusoperandiID": "928bb49e-ce39-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": null,
+        "Nombre": "Ingreso sin Violencia"
+    },
+    {
+        "TipomodusoperandiID": "93e0a75b-ce31-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": "Con Arma Blanca",
+        "Nombre": "Con Arma Blanca"
+    },
+    {
+        "TipomodusoperandiID": "9d246f8b-ce31-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": null,
+        "Nombre": "Con Arma de Fuego"
+    },
+    {
+        "TipomodusoperandiID": "a0d43a3d-ce39-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": null,
+        "Nombre": "Ley 26485"
+    },
+    {
+        "TipomodusoperandiID": "a5ff5534-ce39-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": null,
+        "Nombre": "Llave Falsa o Ganz\u00b7a"
+    },
+    {
+        "TipomodusoperandiID": "abd6cf0c-ce39-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": null,
+        "Nombre": "Manoseos"
+    },
+    {
+        "TipomodusoperandiID": "b5d8a88d-ce3b-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": null,
+        "Nombre": "Rotura de V\u00eddrio"
+    },
+    {
+        "TipomodusoperandiID": "bac10eb3-ce39-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": null,
+        "Nombre": "Medio Electr\u00f3nico"
+    },
+    {
+        "TipomodusoperandiID": "c2410c81-ce39-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": null,
+        "Nombre": "Mordedura De Perro"
+    },
+    {
+        "TipomodusoperandiID": "cb633c3e-ce39-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": null,
+        "Nombre": "Oportunismo"
+    },
+    {
+        "TipomodusoperandiID": "d051b73f-bf6d-11ec-8878-16c2a030bb97",
+        "Descripcion": null,
+        "Nombre": "ESTAFA VIRTUAL"
+    },
+    {
+        "TipomodusoperandiID": "d6063f45-1043-11ee-ba93-0e3a1e34687f",
+        "Descripcion": "Medio Digital",
+        "Nombre": "Medio Digital"
+    },
+    {
+        "TipomodusoperandiID": "dfd4e870-ce3b-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": null,
+        "Nombre": "Suicidio"
+    },
+    {
+        "TipomodusoperandiID": "e4413ebb-ce39-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": null,
+        "Nombre": "Rotura de Techo"
+    },
+    {
+        "TipomodusoperandiID": "e4653e0f-ce3b-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": null,
+        "Nombre": "Ttva. Suicidio"
+    },
+    {
+        "TipomodusoperandiID": "e711f38e-a5e7-11ec-816d-16c2a030bb97",
+        "Descripcion": "AAAA",
+        "Nombre": "ROBO EN GRADO DE TENTATIVA CON ARMA DE FUEGO"
+    },
+    {
+        "TipomodusoperandiID": "e8e7b6c1-16ab-11ed-bb82-0eb8b69eb347",
+        "Descripcion": null,
+        "Nombre": "ROBO EN GRADO ED TENTATIVA CON ARMA BLANCA "
+    },
+    {
+        "TipomodusoperandiID": "e95ac165-1043-11ee-ba93-0e3a1e34687f",
+        "Descripcion": "Mordedura De Can",
+        "Nombre": "Mordedura De Can"
+    },
+    {
+        "TipomodusoperandiID": "e9df65d6-ce3b-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": null,
+        "Nombre": "Uso Tijera u Otros"
+    },
+    {
+        "TipomodusoperandiID": "ea66c783-ce39-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": null,
+        "Nombre": "Rotura de Vidriera"
+    },
+    {
+        "TipomodusoperandiID": "eabdae2b-7c10-11ed-9b80-0e87116d214b",
+        "Descripcion": null,
+        "Nombre": "ROBO ARREBATO EN GRADO DE TENTATIVA "
+    },
+    {
+        "TipomodusoperandiID": "ef99ce93-ce3b-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": null,
+        "Nombre": "Violaci\u00f3n"
+    },
+    {
+        "TipomodusoperandiID": "f6553d49-ce3b-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": null,
+        "Nombre": "Vuelco"
+    }
+]
+
+export const causaCaratula = [
+    {
+        "TipocausacaratulaID": "b41735b3-da24-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "TENT. SUSTRACION MENORES",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "abd718dd-da24-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "TENT. HURTO",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "e0cb2626-7ade-11ed-9b80-0e87116d214b",
+        "Descripcion": null,
+        "Nombre": "Tenencia ileg\u00edtima de arma de fuego",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "4ffb5ac8-d8b5-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "Siniestro vial",
+        "Nombre": "Siniestro vial",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "452392ea-7adc-11ed-9b80-0e87116d214b",
+        "Descripcion": "Robo Simple en Grado de Tentativa ",
+        "Nombre": "Robo Simple en Grado de Tentativa ",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "d3ba8907-da24-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "ROBO CON ARMA BLANCA",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "b8bd07bb-1112-11ee-ba93-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "ROBO ARREBATO",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "d451f431-7adb-11ed-9b80-0e87116d214b",
+        "Descripcion": "Robo agravado por ser en poblado y en banda con participaci\u00f3n de menores",
+        "Nombre": "Robo agravado por ser en poblado y en banda con participaci\u00f3n de menores",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "eb21e7be-7adb-11ed-9b80-0e87116d214b",
+        "Descripcion": "Robo Agravado por escalamiento con la participaci\u00f3n de menores",
+        "Nombre": "Robo Agravado por escalamiento con la participaci\u00f3n de menores",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "aef74fd0-7adc-11ed-9b80-0e87116d214b",
+        "Descripcion": null,
+        "Nombre": "Robo Agravado por escalamiento ",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "59aa54e9-7adc-11ed-9b80-0e87116d214b",
+        "Descripcion": null,
+        "Nombre": "ROBO AGRAVADO POR EL USO DE ARMA DE FUEGO Y POR HABERSE COMETIDO EN BANDA",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "880ab227-da27-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "Robo Agravado Por Efracci\u00f3n",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "a6c64dda-642f-11ed-9b80-0e87116d214b",
+        "Descripcion": "Robo Agravado Por la  Participaci\u00f3n de un Menor de Edad",
+        "Nombre": "Robo Agravado Part. de un Menor Edad",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "98fdaa53-642f-11ed-9b80-0e87116d214b",
+        "Descripcion": "Robo Agravado",
+        "Nombre": "Robo Agravado",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "61ebb2e7-8dc2-11ed-9b80-0e87116d214b",
+        "Descripcion": null,
+        "Nombre": "Robo",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "fa5c9d19-7adb-11ed-9b80-0e87116d214b",
+        "Descripcion": "Privaci\u00f3n Ileg\u00edtima de la libertad ",
+        "Nombre": "Privaci\u00f3n Ileg\u00edtima de la libertad ",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "0b13dc8e-7adc-11ed-9b80-0e87116d214b",
+        "Descripcion": "Lesiones leves agravadas por violencia intrafamiliar y de genero ",
+        "Nombre": "Lesiones leves agravadas por violencia intrafamiliar y de genero ",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "cff6e5f1-7ade-11ed-9b80-0e87116d214b",
+        "Descripcion": null,
+        "Nombre": "Lesiones leves agravadas por ser en contexto de violencia intrafamiliar",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "732d90d7-da20-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "Lesiones Graves en Prejuicio",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "56309ff3-da27-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "LESIONES EN RI\u00d1A",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "5b419f2d-da27-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "LESIONES ART.92",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "4c222a02-da27-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "LESIONES ART. 94 (MALA PRAXIS)",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "610cb74f-da27-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "LESIONES ART. 94",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "6719cb61-da27-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "LESIONES ART. 91",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "6d1f8e60-da27-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "LESIONES ART. 89",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "986fa7e9-7adb-11ed-9b80-0e87116d214b",
+        "Descripcion": "Lesiones 89\u00b0 en contexto de violencia intrafamiliar y da\u00f1o",
+        "Nombre": "Lesiones 89\u00b0 en contexto de violencia intrafamiliar y da\u00f1o",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "46873a79-da27-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "LESIONES 89 (VIOLENCIA FLIAR)",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "af54ec28-7adb-11ed-9b80-0e87116d214b",
+        "Descripcion": "Hurto Simple",
+        "Nombre": "Hurto Simple",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "6dee3781-6425-11ed-9b80-0e87116d214b",
+        "Descripcion": "Hurto en Grado  de Tentativa",
+        "Nombre": "Hurto en Grado  de Tentativa",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "6ca2ac95-7adc-11ed-9b80-0e87116d214b",
+        "Descripcion": null,
+        "Nombre": "Hurto Calificado por Escalamiento ",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "1f8f88af-da27-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "HURTO CALIFICADO",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "70dc2d2a-da21-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "Hurto Calificado",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "2a59f720-c29a-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": "Homicidio Culposo",
+        "Nombre": "Homicidio Culposo",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "2a9ed224-da27-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "HOMICIDIO ART. 84",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "2f9ef7bd-da27-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "HOMICIDIO ART. 80 AGRAVADO",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "3581ed27-da27-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "HOMICIDIO ART. 79",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "3bb99083-da27-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "HOMICIDIO ART 80",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "89c46fd7-da26-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "FALTA AL DEBER FUNC PUB",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "f4753b09-7ade-11ed-9b80-0e87116d214b",
+        "Descripcion": null,
+        "Nombre": "Falsificaci\u00f3n de documento",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "8f6d728b-da26-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "FALLECIMIENTO SIN ASIST.",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "9731f92d-da26-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "EXTORSION",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "9d926cb2-da26-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "EXHIBICIONES OBSCENAS",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "823bd33b-da26-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "EVASION",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "ae99267b-edca-11ee-8df7-0e3a1e34687f",
+        "Descripcion": ".",
+        "Nombre": "ESTAFA RN GRADO DE TENTATIVA ",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "cd713f8e-8762-11ed-9b80-0e87116d214b",
+        "Descripcion": null,
+        "Nombre": "Estafa",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "7bff2f8c-9e46-11ed-9b80-0e87116d214b",
+        "Descripcion": "Establecer Paradero",
+        "Nombre": "Establecer Paradero",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "785482c3-7adc-11ed-9b80-0e87116d214b",
+        "Descripcion": null,
+        "Nombre": "Desobediencia a una orden judicial ",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "e8964826-e165-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": null,
+        "Nombre": "Desobediencia a uan orden judicial y da\u00f1\u00f3 agravado en concurso real ",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "eaa977df-7ade-11ed-9b80-0e87116d214b",
+        "Descripcion": null,
+        "Nombre": "Da\u00f1o agravado, resistencia a la Autoridad y violaci\u00f3n de domicilio",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "b692c36b-7adb-11ed-9b80-0e87116d214b",
+        "Descripcion": "Da\u00f1o",
+        "Nombre": "Da\u00f1o",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "79b4889a-da26-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "COHECHO",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "e3f3011e-c2a8-11ee-8df7-0e3a1e34687f",
+        "Descripcion": ".",
+        "Nombre": "COACCION",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "7a1daad2-da20-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "Caida Casual",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "6ba3b439-da26-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "AMENAZAS Y LESIONES 89",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "6542bc46-16e0-11ee-ba93-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "AMENAZAS",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "5eca6397-da26-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "Actuaciones por hallazgo",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "8952ebb5-9e46-11ed-9b80-0e87116d214b",
+        "Descripcion": "Actuaciones por fuga",
+        "Nombre": "Actuaciones por fuga",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "4444cb49-da26-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "ACTUACIONES POR DENUNCIA",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "f76c3037-f449-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": null,
+        "Nombre": "Actuaciones por Denuncia ",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "4ac9dc6e-da26-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "ACT.POR FALLECIMIENTO",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "c8176028-7adc-11ed-9b80-0e87116d214b",
+        "Descripcion": null,
+        "Nombre": "Abuso sexual con acceso carnal agravado por el vinculo ",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "2c02fcda-da26-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "ABORTO",
+        "TipoCaratula": "Delito"
+    }
+]
+
+export const juzgadoInterviniente = [
+    {
+        "JuzgadoID": "0e0f2e62-d26b-11ee-8df7-0e3a1e34687f",
+        "Fechainivig": "2024-02-23 13:46:13",
+        "Fechafinvig": null,
+        "Nombre": "UNIDAD FISCAL PRUEBA",
+        "Telefono": "0000000",
+        "Domicilio": "DOMICILIO DE PRUEBA"
+    },
+    {
+        "JuzgadoID": "18462de6-cc9a-11e4-8df1-0090f58f4f32",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "TERCER JUZGADO EN LO CORRECCIONAL",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "184802fa-cc9a-11e4-8df1-0090f58f4f32",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "CUARTO JUZGADO EN LO CORRECCIONAL",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "210e0b50-cc9a-11e4-8df1-0090f58f4f32",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "QUINTO JUZGADO EN LO CORRECCIONAL",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "277b768c-651d-11ee-ba93-0e3a1e34687f",
+        "Fechainivig": "2023-10-07 11:23:58",
+        "Fechafinvig": null,
+        "Nombre": " OF. JUD. PENAL DE NI\u00d1EZ Y ADOL DE SEGUNDA NOM.",
+        "Telefono": "",
+        "Domicilio": ""
+    },
+    {
+        "JuzgadoID": "3783ba3f-9d62-11ec-816d-16c2a030bb97",
+        "Fechainivig": "2022-03-06 15:29:30",
+        "Fechafinvig": null,
+        "Nombre": "JUZGADO DE FALTAS DE TERCERA NOMINACI\u00d3N",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "3cd1471a-cca0-11e4-8df1-0090f58f4f32",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "JUZGADO DE PAZ 9 DE JULIO",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "3ce380be-cca0-11e4-8df1-0090f58f4f32",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "JUZGADO DE PAZ ALBARDON",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "3cf350a9-cca0-11e4-8df1-0090f58f4f32",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "JUZGADO DE PAZ ANGACO",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "3d014627-cca0-11e4-8df1-0090f58f4f32",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "JUZGADO DE PAZ CALINGASTA",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "3d190f26-cca0-11e4-8df1-0090f58f4f32",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "JUZGADO DE PAZ CAUCETE",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "3d26daf5-cca0-11e4-8df1-0090f58f4f32",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "JUZGADO DE PAZ CHIMBAS",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "3d3283de-cca0-11e4-8df1-0090f58f4f32",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "JUZGADO DE PAZ IGLESIA",
+        "Telefono": "",
+        "Domicilio": ""
+    },
+    {
+        "JuzgadoID": "3d3e65cb-cca0-11e4-8df1-0090f58f4f32",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "JUZGADO DE PAZ JACHAL",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "3d4c2572-cca0-11e4-8df1-0090f58f4f32",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "JUZGADO DE PAZ POCITO",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "3d57ea72-cca0-11e4-8df1-0090f58f4f32",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "JUZGADO DE PAZ RAWSON",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "3d63bd45-cca0-11e4-8df1-0090f58f4f32",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "JUZGADO DE PAZ RIVADAVIA",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "3d715383-cca0-11e4-8df1-0090f58f4f32",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "JUZGADO DE PAZ SAN MARTIN",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "3d7d41dc-cca0-11e4-8df1-0090f58f4f32",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "JUZGADO DE PAZ SARMIENTO",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "3d8cb5a0-cca0-11e4-8df1-0090f58f4f32",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "JUZGADO DE PAZ SANTA LUCIA",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "3d9872cc-cca0-11e4-8df1-0090f58f4f32",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "JUZGADO DE PAZ ULLUM",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "3da4314a-cca0-11e4-8df1-0090f58f4f32",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "JUZGADO DE PAZ VALLE FERTIL",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "3db1cda6-cca0-11e4-8df1-0090f58f4f32",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "JUZGADO DE PAZ ZONDA",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "421ae295-7bbb-11e4-9c26-0025d318e182",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "PRIMER JUZGADO EN LO CORRECCIONAL",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "4e2500da-b6fa-11ec-8878-16c2a030bb97",
+        "Fechainivig": "2022-04-08 05:11:11",
+        "Fechafinvig": null,
+        "Nombre": "PRIMER JUZGADO PENAL DE NI\u00d1EZ Y ADOLESCENCIA",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "4e7c604d-cca0-11e4-8df1-0090f58f4f32",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "JUZGADO DE PAZ 25 DE MAYO",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "4fc9bcf0-9d62-11ec-816d-16c2a030bb97",
+        "Fechainivig": "2022-03-06 15:30:11",
+        "Fechafinvig": null,
+        "Nombre": "JUZGADO DE FALTAS DE SEGUNDA NOMINACI\u00d3N",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "64225b93-c649-11ec-8878-16c2a030bb97",
+        "Fechainivig": "2022-04-27 13:45:05",
+        "Fechafinvig": null,
+        "Nombre": "JUZGADO DE MENORES JACHAL",
+        "Telefono": null,
+        "Domicilio": " DE LA SEGUNDA CIRCUNSCRIPCI\u00d3N JUDICIAL"
+    },
+    {
+        "JuzgadoID": "693f2f95-b6fa-11ec-8878-16c2a030bb97",
+        "Fechainivig": "2022-04-08 05:11:56",
+        "Fechafinvig": null,
+        "Nombre": "SEGUNDO JUZGADO PENAL DE NI\u00d1EZ Y ADOLESCENCIA",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "8507eda2-c649-11ec-8878-16c2a030bb97",
+        "Fechainivig": "2022-04-27 13:46:00",
+        "Fechafinvig": null,
+        "Nombre": "JUEZ DE INSTRUCCI\u00d3N JACHAL",
+        "Telefono": null,
+        "Domicilio": "DE LA SEGUNDA CIRCUNSCRIPCI\u00d3N JUDICIAL"
+    },
+    {
+        "JuzgadoID": "88a3dd7d-1f29-11e5-8d32-c46e1f155593",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "PRIMER JUZGADO DE PAZ LETRADO CAPITAL",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "88a3dd99-1f29-11e5-8d32-c46e1f155593",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "SEGUNDO JUZGADO DE PAZ LETRADO CAPITAL",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "88a3dda4-1f29-11e5-8d32-c46e1f155593",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "TERCER JUZGADO DE PAZ LETRADO CAPITAL",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "88a3ddae-1f29-11e5-8d32-c46e1f155593",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "CUARTO JUZGADO DE PAZ LETRADO CAPITAL",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "88a3ddb8-1f29-11e5-8d32-c46e1f155593",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "QUINTO JUZGADO DE PAZ LETRADO CAPITAL",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "88a3ddc2-1f29-11e5-8d32-c46e1f155593",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "SEXTO JUZGADO DE PAZ LETRADO CAPITAL",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "94270716-c6f7-11ec-8878-16c2a030bb97",
+        "Fechainivig": "2022-04-28 10:31:58",
+        "Fechafinvig": null,
+        "Nombre": "JUZGADO DE CRIMEN DE JACHAL - IGLESIA",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "96910068-c649-11ec-8878-16c2a030bb97",
+        "Fechainivig": "2022-04-27 13:46:30",
+        "Fechafinvig": null,
+        "Nombre": "JUEZ DE CORRECCIONAL JACHAL ",
+        "Telefono": null,
+        "Domicilio": "DE LA SEGUNDA CIRCUNSCRIPCI\u00d3N JUDICIAL"
+    },
+    {
+        "JuzgadoID": "a34d323a-c649-11ec-8878-16c2a030bb97",
+        "Fechainivig": "2022-04-27 13:46:51",
+        "Fechafinvig": null,
+        "Nombre": "JUZGADO DE PAZ DE J\u00c1CHAL",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "ac83ec27-26e7-11ed-8709-0e085dd00fab",
+        "Fechainivig": "2022-08-28 12:39:59",
+        "Fechafinvig": null,
+        "Nombre": "PRIMER JUZGADO DE FAMILIA",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "acc16d30-651c-11ee-ba93-0e3a1e34687f",
+        "Fechainivig": "2023-10-07 11:20:32",
+        "Fechafinvig": null,
+        "Nombre": " OF. JUD. PENAL DE NI\u00d1EZ Y ADOL DE PRIMERA NOM.",
+        "Telefono": "",
+        "Domicilio": ""
+    },
+    {
+        "JuzgadoID": "b0a29aa8-1f35-11e5-8d32-c46e1f155593",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "SEGUNDO JUZGADO DE MENORES",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "b62a80c7-26e7-11ed-8709-0e085dd00fab",
+        "Fechainivig": "2022-08-28 12:40:15",
+        "Fechafinvig": null,
+        "Nombre": "SEGUNDO JUZGADO DE FAMILIA",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "bca1bb35-26e7-11ed-8709-0e085dd00fab",
+        "Fechainivig": "2022-08-28 12:40:26",
+        "Fechafinvig": null,
+        "Nombre": "TERCER JUZGADO DE FAMILIA",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "ce75f78d-253b-11ed-bb82-0eb8b69eb347",
+        "Fechainivig": "2022-08-26 09:37:11",
+        "Fechafinvig": null,
+        "Nombre": "JUZGADO FEDERAL N\u00b02 SECRETARIA PENAL N\u00b0 5",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "d3ae9c3d-d3b5-11e4-8640-0090f58f4f32",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "PRIMER JUZGADO DE MENORES",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "dcfe7d31-cc9b-11e4-8df1-0090f58f4f32",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "PRIMER JUZGADO DE INSTRUCCION",
+        "Telefono": "--",
+        "Domicilio": "---"
+    },
+    {
+        "JuzgadoID": "dcfff42e-cc9b-11e4-8df1-0090f58f4f32",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "SEGUNDO JUZGADO DE INSTRUCCION",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "dd015ecc-cc9b-11e4-8df1-0090f58f4f32",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "TERCER JUZGADO DE INSTRUCCION",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "dd02f1dc-cc9b-11e4-8df1-0090f58f4f32",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "CUARTO JUZGADO DE INSTRUCCION",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "dd045f20-cc9b-11e4-8df1-0090f58f4f32",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "QUINTO JUZGADO DE INSTRUCCION\"",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "e17ea7dc-7bbb-11e4-9c26-0025d318e182",
+        "Fechainivig": "2021-12-23 00:00:00",
+        "Fechafinvig": null,
+        "Nombre": "SEGUNDO JUZGADO EN LO CORRECCIONAL",
+        "Telefono": null,
+        "Domicilio": null
+    },
+    {
+        "JuzgadoID": "ff29d9c7-8db0-11ec-816d-16c2a030bb97",
+        "Fechainivig": "2022-02-14 16:13:07",
+        "Fechafinvig": null,
+        "Nombre": "JUZGADO DE FALTAS DE PRIMERA NOMINACI\u00d3N",
+        "Telefono": "123",
+        "Domicilio": "DOMICILIO"
+    }
+]
+
+export const articulos = [
+    {
+        "ArticulosID": "01671da7-cc69-11ec-acbc-16c2a030bb97",
+        "Numeroarticulo": "195\u00b0 Merodeo",
+        "Codigo": "LEY N\u00b0 941-R"
+    },
+    {
+        "ArticulosID": "048288b9-0cdd-11ed-bb82-0eb8b69eb347",
+        "Numeroarticulo": "11\u00b0",
+        "Codigo": "Art. 11\u00b0 Intervenci\u00f3n del Juez de Menores."
+    },
+    {
+        "ArticulosID": "06cb4728-cf1e-11ec-acbc-16c2a030bb97",
+        "Numeroarticulo": "ART 77\u00b0 de la ley 24449",
+        "Codigo": "TR\u00c1NSITO"
+    },
+    {
+        "ArticulosID": "0afc85b7-b60f-11ec-8878-16c2a030bb97",
+        "Numeroarticulo": "98\u00b0 Inobservancia de disposiciones legales ",
+        "Codigo": "LEY N\u00b0  941-R "
+    },
+    {
+        "ArticulosID": "0bfcf202-b5f7-11ec-8878-16c2a030bb97",
+        "Numeroarticulo": "108\u00b0 Discriminaci\u00f3n ",
+        "Codigo": "Ley N\u00b0 941-R"
+    },
+    {
+        "ArticulosID": "117e7578-1ff0-11ee-ba93-0e3a1e34687f",
+        "Numeroarticulo": "170\u00b0 Animales Peligrosos o Sueltos",
+        "Codigo": "Ley N\u00b0 941-R"
+    },
+    {
+        "ArticulosID": "12110411-9d53-11ec-816d-16c2a030bb97",
+        "Numeroarticulo": "134\u00ba Estado de ebriedad",
+        "Codigo": "Ley N\u00ba 941-R"
+    },
+    {
+        "ArticulosID": "14c9dd3c-cb50-11ee-8df7-0e3a1e34687f",
+        "Numeroarticulo": "Art181\u00b0 Inc. de Normas sobre edificacion",
+        "Codigo": "Art181\u00b0 Inc. de Normas sobre edificacion"
+    },
+    {
+        "ArticulosID": "19182a34-2a52-11ed-8709-0e085dd00fab",
+        "Numeroarticulo": "Art 23\u00b0",
+        "Codigo": "687-p"
+    },
+    {
+        "ArticulosID": "2132ead1-9d53-11ec-816d-16c2a030bb97",
+        "Numeroarticulo": "135\u00ba Prohibici\u00f3n de beber en la v\u00eda publica",
+        "Codigo": "Ley N \u00ba 941-R"
+    },
+    {
+        "ArticulosID": "216690a0-aade-11ed-9f0f-0e3a1e34687f",
+        "Numeroarticulo": "162\u00b0",
+        "Codigo": "941-R"
+    },
+    {
+        "ArticulosID": "246908ca-28bc-11ed-8709-0e085dd00fab",
+        "Numeroarticulo": "Articulo 65 ",
+        "Codigo": "Ley 24449 "
+    },
+    {
+        "ArticulosID": "26ef62c9-8f2f-11ec-816d-16c2a030bb97",
+        "Numeroarticulo": "157\u00ba Operaciones de cambio",
+        "Codigo": "Ley N\u00ba 941-R"
+    },
+    {
+        "ArticulosID": "2b658c3e-c104-11ec-8878-16c2a030bb97",
+        "Numeroarticulo": "113\u00b0 - inc C ",
+        "Codigo": "LEY N\u00b0 941-R"
+    },
+    {
+        "ArticulosID": "337344d9-b5f7-11ec-8878-16c2a030bb97",
+        "Numeroarticulo": "111\u00b0 Patota ",
+        "Codigo": "Ley N\u00b0 941 -R"
+    },
+    {
+        "ArticulosID": "3d204e62-3521-11ee-ba93-0e3a1e34687f",
+        "Numeroarticulo": "109\u00b0",
+        "Codigo": "Ley 941-R"
+    },
+    {
+        "ArticulosID": "44b1228c-8e67-11ec-816d-16c2a030bb97",
+        "Numeroarticulo": "100 \u00b0 Negaci\u00f3n de Datos",
+        "Codigo": "Ley N\u00ba 941-R"
+    },
+    {
+        "ArticulosID": "463c3be8-5957-11ed-9b80-0e87116d214b",
+        "Numeroarticulo": "99",
+        "Codigo": "Arti 99 cod de falta"
+    },
+    {
+        "ArticulosID": "49a5c84f-bbe8-11ec-8878-16c2a030bb97",
+        "Numeroarticulo": "178\u00b0 Portacion de arma blanca o contundente. ",
+        "Codigo": "Ley N\u00b0 941-R "
+    },
+    {
+        "ArticulosID": "4e5c8b5e-f7fc-11ed-9f0f-0e3a1e34687f",
+        "Numeroarticulo": "Art 192 aprovechamiento malicioso de credito",
+        "Codigo": "Art 192 aprovechamiento malicioso de credito"
+    },
+    {
+        "ArticulosID": "5ce767ca-a5e9-11ee-8df7-0e3a1e34687f",
+        "Numeroarticulo": "INFRACCION DEL ART. 109",
+        "Codigo": "DE LEY 941-R"
+    },
+    {
+        "ArticulosID": "633dbae1-08f9-11ed-bb82-0eb8b69eb347",
+        "Numeroarticulo": "Art 11\u00b0 Responsabilidad de los padres",
+        "Codigo": "art 11"
+    },
+    {
+        "ArticulosID": "648a5e7a-c4a0-11ec-8878-16c2a030bb97",
+        "Numeroarticulo": "194 Intromisi\u00f3n indebida en campo o pro. ajena",
+        "Codigo": "LEY 941-R"
+    },
+    {
+        "ArticulosID": "6a6a49e6-6c2d-11ee-ba93-0e3a1e34687f",
+        "Numeroarticulo": "142\u00b0 Expedido de bebidas alcoh\u00f3licas ",
+        "Codigo": "Ley 941-R"
+    },
+    {
+        "ArticulosID": "72980292-cb32-11ec-acbc-16c2a030bb97",
+        "Numeroarticulo": "LEY 2005-L",
+        "Codigo": "LEY 2005-L"
+    },
+    {
+        "ArticulosID": "751f9e89-1426-11ee-ba93-0e3a1e34687f",
+        "Numeroarticulo": "188\u00b0 Tenencia injustificada ",
+        "Codigo": "188\u00b0"
+    },
+    {
+        "ArticulosID": "772b4818-e5d4-11ed-9f0f-0e3a1e34687f",
+        "Numeroarticulo": "210",
+        "Codigo": "941-R"
+    },
+    {
+        "ArticulosID": "78449ed0-a0cc-11ec-816d-16c2a030bb97",
+        "Numeroarticulo": "202\u00b0 Falta de Custodia de Alineados",
+        "Codigo": "LEY N\u00ba 941-R"
+    },
+    {
+        "ArticulosID": "7930fa1d-ff7a-11ec-bb82-0eb8b69eb347",
+        "Numeroarticulo": "Art. 209 ",
+        "Codigo": "Poda,tala. erradicaci\u00f3n de arbolado publico"
+    },
+    {
+        "ArticulosID": "7c18e7f3-ddc9-11ec-acbc-16c2a030bb97",
+        "Numeroarticulo": "ART\u00cdCULO 104\u00b0 LEY 941-R",
+        "Codigo": "LEY 941-R"
+    },
+    {
+        "ArticulosID": "7cc83b4f-cb32-11ec-acbc-16c2a030bb97",
+        "Numeroarticulo": "LEY 2190-L",
+        "Codigo": "LEY 2190-L"
+    },
+    {
+        "ArticulosID": "860ab24e-8ffa-11ec-816d-16c2a030bb97",
+        "Numeroarticulo": "127 \u00ba Actos  de prostituci\u00f3n u oferta sexual",
+        "Codigo": "Ley N\u00ba 941-R"
+    },
+    {
+        "ArticulosID": "9c4da043-150e-11ed-bb82-0eb8b69eb347",
+        "Numeroarticulo": "196\u00b0 Reventa de entradas",
+        "Codigo": "ley 941-R"
+    },
+    {
+        "ArticulosID": "9d452ffa-a21c-11ec-816d-16c2a030bb97",
+        "Numeroarticulo": " 109\u00b0 Hostigamiento. Maltrato. Amenazas. Golpes ",
+        "Codigo": "LEY N\u00b0 941-R"
+    },
+    {
+        "ArticulosID": "a5619481-1fe4-11ee-ba93-0e3a1e34687f",
+        "Numeroarticulo": "206\u00b0 Destruccion de Faunas ",
+        "Codigo": "Ley 941-R"
+    },
+    {
+        "ArticulosID": "a6790e73-843a-11ec-816d-16c2a030bb97",
+        "Numeroarticulo": "169\u00ba Arrojamiento de residuos, gases, fuego",
+        "Codigo": "LEY N\u00ba 941-R"
+    },
+    {
+        "ArticulosID": "b1130ed1-4047-11ed-8709-0e085dd00fab",
+        "Numeroarticulo": " Art\u00edculo 197. Aprovechamiento abusivo de aguas",
+        "Codigo": "codigo de faltas de la provincia de San Juan "
+    },
+    {
+        "ArticulosID": "b40a5e0b-843a-11ec-816d-16c2a030bb97",
+        "Numeroarticulo": "137\u00ba Abuso de sustancias estupefacientes ",
+        "Codigo": "LEY N\u00ba 941-R"
+    },
+    {
+        "ArticulosID": "b54bf5f1-8df3-11ec-816d-16c2a030bb97",
+        "Numeroarticulo": "113\u00ba Actos turbatorios y des\u00f3rdenes",
+        "Codigo": "LEY N\u00ba 941-R"
+    },
+    {
+        "ArticulosID": "be514a11-9fc6-11ec-816d-16c2a030bb97",
+        "Numeroarticulo": "187\u00b0 Perjuicio a la propiedad p\u00fablica o privada",
+        "Codigo": "LEY N\u00b0 941- R"
+    },
+    {
+        "ArticulosID": "bede71a9-15ad-11ee-ba93-0e3a1e34687f",
+        "Numeroarticulo": "Art. 182\u00b0",
+        "Codigo": "."
+    },
+    {
+        "ArticulosID": "c1c6b445-28b5-11ed-8709-0e085dd00fab",
+        "Numeroarticulo": "124\u00b0 Prostituci\u00f3n escandalosa",
+        "Codigo": "LEY N\u00b0 941-R"
+    },
+    {
+        "ArticulosID": "c2dd6572-2310-11ed-bb82-0eb8b69eb347",
+        "Numeroarticulo": "Art. 204\u00b0 Uso indebido de agua ",
+        "Codigo": "Ley 941-r "
+    },
+    {
+        "ArticulosID": "c4663c60-0203-11ee-9f0f-0e3a1e34687f",
+        "Numeroarticulo": "Art 172\u00b0 Entorpecimiento de servicios esenciales",
+        "Codigo": "Art 172\u00b0 Entorpecimiento de servicios esenciales"
+    },
+    {
+        "ArticulosID": "c5799baa-b771-11ec-8878-16c2a030bb97",
+        "Numeroarticulo": "72\u00b0 BIS. Animales Sueltos. Medidas preventivas ",
+        "Codigo": "LEY N\u00b0 941-R"
+    },
+    {
+        "ArticulosID": "c92df587-9d51-11ec-816d-16c2a030bb97",
+        "Numeroarticulo": "117\u00ba Ofensas a la moral p\u00fablica",
+        "Codigo": "LEY N\u00ba 941-R"
+    },
+    {
+        "ArticulosID": "c93a47c7-8ea1-11ec-816d-16c2a030bb97",
+        "Numeroarticulo": "115\u00ba - Juegos deportivos en la v\u00eda p\u00fablica",
+        "Codigo": "LEY N\u00ba 941-R"
+    },
+    {
+        "ArticulosID": "d0917e3e-39fb-11ed-8709-0e085dd00fab",
+        "Numeroarticulo": "Art 89 lesiones  y resistencia a la autoridad ",
+        "Codigo": "CPA"
+    },
+    {
+        "ArticulosID": "d6824861-6c2c-11ee-ba93-0e3a1e34687f",
+        "Numeroarticulo": "139\u00b0 Incumpliendo de la legislaci\u00f3n especial",
+        "Codigo": " Ley 941-R"
+    },
+    {
+        "ArticulosID": "d8750046-8e71-11ec-816d-16c2a030bb97",
+        "Numeroarticulo": "138\u00ba Ebriedad habitual y toxicoman\u00eda",
+        "Codigo": "LEY N\u00ba 941-R"
+    },
+    {
+        "ArticulosID": "df141665-a8d1-11ed-9b80-0e87116d214b",
+        "Numeroarticulo": "183\u00ba ",
+        "Codigo": "941-R"
+    },
+    {
+        "ArticulosID": "df809960-1ef4-11ed-bb82-0eb8b69eb347",
+        "Numeroarticulo": "Actuaciones por Denuncia ",
+        "Codigo": "941-r"
+    },
+    {
+        "ArticulosID": "e0607d61-499e-11ed-9b80-0e87116d214b",
+        "Numeroarticulo": "Art 197\u00b0 Aprovechamiento abusivo de aguas",
+        "Codigo": "ley 941-R"
+    },
+    {
+        "ArticulosID": "e1d9a615-a23d-11ed-9b80-0e87116d214b",
+        "Numeroarticulo": "146\u00b0",
+        "Codigo": "LR-941"
+    },
+    {
+        "ArticulosID": "e55b7a27-2b20-11ed-8709-0e085dd00fab",
+        "Numeroarticulo": "Art. 131",
+        "Codigo": "C.P.A"
+    },
+    {
+        "ArticulosID": "e7abdbff-a21c-11ec-816d-16c2a030bb97",
+        "Numeroarticulo": "110\u00b0 Ri\u00f1a",
+        "Codigo": "LEY N\u00b0 941-R"
+    },
+    {
+        "ArticulosID": "ebb9c4e0-9d52-11ec-816d-16c2a030bb97",
+        "Numeroarticulo": "118\u00ba Esc\u00e1ndalo p\u00fablico",
+        "Codigo": "LEY N\u00ba 941-R"
+    },
+    {
+        "ArticulosID": "f30b77c7-7757-11ee-ba93-0e3a1e34687f",
+        "Numeroarticulo": "ART. 26 - CLAUSURA ",
+        "Codigo": "ley 941 - r"
+    },
+    {
+        "ArticulosID": "f43fc7ca-6d9d-11ed-9b80-0e87116d214b",
+        "Numeroarticulo": "168\u00b0 Destrucci\u00f3n o deterioro de se\u00f1ales",
+        "Codigo": "Ley 941-R"
+    },
+    {
+        "ArticulosID": "f95fed0b-481d-11ed-9b80-0e87116d214b",
+        "Numeroarticulo": "Art 32\u00b0",
+        "Codigo": "Ley 687-p"
+    },
+    {
+        "ArticulosID": "facc9e97-9d6a-11ec-816d-16c2a030bb97",
+        "Numeroarticulo": "117\u00ba BIS Difunda a trav\u00e9s de medios electr\u00f3nicos",
+        "Codigo": "LEY N\u00ba 941-R"
+    }
+]

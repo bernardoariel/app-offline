@@ -1,9 +1,9 @@
 import { afectados, documentos, sexo, nacionalidad, estadoCivil, instruccion, jerarquia, categorias, tipoCategorias, marcasCategorias, modelosCategorias } from "@/data/actuacionNew";
 import { ref } from "vue";
-import { mapToDropDownEfectos, mapToDropdownItems } from "./dropUtils";
+import { mapToDropDownEfectos, mapToDropdownItems } from './dropUtils';
 import { departamentosDropdown } from "@/data/municipios";
 import { dependencias } from "@/data/dependencia";
-import { subcategorias } from '../data/actuacionNew';
+import { subcategorias, sitios, modusOperandi, causaCaratula, articulos, juzgadoInterviniente } from '../data/actuacionNew';
 
 
 export const afectadosDropdown = ref(mapToDropdownItems(afectados));
@@ -20,3 +20,9 @@ export const subcategoriasDropdown = ref(mapToDropDownEfectos(subcategorias))
 export const tipoCategoriasDropdown = ref(mapToDropDownEfectos(tipoCategorias))
 export const marcasCategoriasDropdown = ref(mapToDropDownEfectos(marcasCategorias))
 export const modelosCategoriasDropdown = ref(mapToDropDownEfectos(modelosCategorias))
+
+export const sitiosDropdwown = ref(mapToDropDownEfectos(sitios))
+export const modusOperandiDropdwown = ref(mapToDropDownEfectos(modusOperandi))
+export const causaCaratulaDropdwown = ref(mapToDropDownEfectos(causaCaratula))
+export const articulosDropdwown = ref(mapToDropDownEfectos(articulos))
+export const juzgadoIntervinienteDropdwown = ref(mapToDropDownEfectos(juzgadoInterviniente))

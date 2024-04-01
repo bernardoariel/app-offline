@@ -17,7 +17,7 @@ let selectedCausaCaratulaList = ref(null)
     
 let yearsActuacion:string[] = getYearsDrop()
 let itemsCausaCaratula = ref<any[]>([])
-    
+
 watch(selectedCausaCaratula, () => {
 
     if(!selectedCausaCaratula.value) return

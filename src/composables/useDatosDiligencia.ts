@@ -1,31 +1,40 @@
+// useDatosDiligencia.ts
 import { diligencias } from '@/data/datosDiligencia';
-
 import { computed, ref } from 'vue';
 import useItem from '@/composables/useItems';
 import type { DatosLegales } from '@/interfaces/datosLegales.interface';
 import { getTitleCase, getUpperCase } from '@/helpers/stringUtils';
 import { getAge } from '@/helpers/getAge';
 
-const useDatosDiligencia = (actuacion) => {
+interface ProcessedText {
+  header: string;
+  footer: string;
+}
 
+interface UseDatosDiligenciaReturn {
+  processedText: { header: string; footer: string };
+  processedAfectados: any; // Tipo de processedAfectados
+  processedIntervinientes: any; // Tipo de processedIntervinientes
+  primeradiligencia: DatosLegales | undefined; // Propiedad primeradiligencia
+  isEditHeader: Ref<boolean>; // Ref<boolean> para controlar la edición del encabezado
+  isEditingTextarea: Ref<boolean>; // R  changeEditar: (elemento: string) => void;
+  processedHeaderText: ComputedRef<string>; // Tipo de processedHeaderText
+
+}
+
+const useDatosDiligencia = (actuacion: Ref<string>): UseDatosDiligenciaReturn => {
   const { afectados, intervinientes } = useItem();
-  
-  // Usamos computed para hacer que diligenciaSeleccionada sea reactiva
+  const isEditHeader = ref<boolean>(false);
+
   const diligenciaSeleccionada = computed(() => {
     return diligencias.find((d: DatosLegales) => d.id === actuacion.value);
   });
-  const wordStrong = ['HACE CONSTAR', 'DISPONE', 'CERTIFICO', 'CERTIFICA', 'DECLARO'];
 
-  const getStyle = (value: string) => {
-      return `<span class="text-primary font-medium"><i>${value}</i></span>`;
+  const getStyle = (value: string): string => {
+    return `<span class="text-primary font-medium"><i>${value}</i></span>`;
   };
 
-  const departamento = 'RAWSON';
-  const dependencia = 'SUB COMISARIA E3';
-  const fechaActuacion = 'a los 22 días del mes de Marzo del año Dos Mil Veinticuatro, siendo las 12:44 horas';
-
   const processedAfectados = computed(() => {
-    
     return afectados.value.map((a, index) => {
       const isLast = index === afectados.value.length - 1; 
       const separator = isLast ? '.' : ',';
@@ -39,8 +48,8 @@ const useDatosDiligencia = (actuacion) => {
         ${getStyle('con domicilio en ' + a.domicilioResidencia)}${separator}`;
     }).join(' '); 
   });
+
   const processedIntervinientes = computed(() => {
-    
     return intervinientes.value.map((item, index) => {
       const isLast = index === intervinientes.value.length - 1; 
       const separator = isLast ? '.' : ',';
@@ -49,37 +58,52 @@ const useDatosDiligencia = (actuacion) => {
         ${getStyle(' adscripto/s a numerario de  ' + item.dependencia)}${separator}`
 
     }).join(' '); 
+
   });
 
-  const processedText = computed(() => {
-    let header = "";
-    let footer = "";
-  
-    // Verificar que diligenciaSeleccionada no es undefined antes de intentar acceder a sus propiedades
+  const processedText = computed<ProcessedText>(() => {
+    let header = '';
+    let footer = '';
+
     if (diligenciaSeleccionada.value) {
-      header = diligenciaSeleccionada.value.header.replace('@dependencia', getStyle(dependencia))
-        .replace('@departamento', getStyle(departamento))
-        .replace('@fechaactuacion', getStyle(fechaActuacion))
+      header = diligenciaSeleccionada.value.header
+        .replace('@dependencia', getStyle('SUB COMISARIA E3'))
+        .replace('@departamento', getStyle('RAWSON'))
+        .replace('@fechaactuacion', getStyle('a los 22 días del mes de Marzo del año Dos Mil Veinticuatro, siendo las 12:44 horas'))
         .replace('@afectados', processedAfectados.value)
         .replace('@intervinientes', processedIntervinientes.value);
-  
+
       footer = diligenciaSeleccionada.value.footer;
-  
-      wordStrong.forEach(word => {
+
+      // Reemplazar palabras claves con estilos especiales
+      ['HACE CONSTAR', 'DISPONE', 'CERTIFICO', 'CERTIFICA', 'DECLARO'].forEach((word) => {
         const replacement = `<span style="font-weight: bold; text-decoration: underline;">${word}</span>`;
         header = header.replace(new RegExp(word, 'g'), replacement);
         footer = footer.replace(new RegExp(word, 'g'), replacement);
       });
     }
-  
+
     return { header, footer };
   });
-  
+
+  const editableHeader = computed(() => processedText.value.header);
+
+  const changeEditar = (elemento: string): void => {
+    if (elemento === 'header') isEditHeader.value = !isEditHeader.value;
+  };
+  const processedHeaderText = computed(() => {
+    return processedText.value.header.replace(/<\/?[^>]+(>|$)/g, "");
+  });
+
   return {
     processedText,
-    processedAfectados, // Si necesitas acceder directamente a los afectados procesados
+    processedAfectados,
     processedIntervinientes,
-    primeradiligencia:diligenciaSeleccionada
+    primeradiligencia: diligenciaSeleccionada.value, // Asignación de la propiedad primeradiligencia
+    isEditHeader,
+    changeEditar,
+    processedHeaderText
   };
-}
+};
+
 export default useDatosDiligencia;

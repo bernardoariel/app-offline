@@ -9,11 +9,12 @@ interface Props{
 }
 const props = defineProps<Props>()
 const actuacionRef = ref(props.actuacion);
-const { processedText, primeradiligencia,processedHeaderText} = useDatosDiligencia(actuacionRef);
+const { processedText, primeradiligencia,processedHeaderText, isEditingHeader,
+    isEditedHeader,
+    headerContainer,
+    headerTextComputed} = useDatosDiligencia(actuacionRef);
 
-const isEditingHeader = ref<boolean>(false);
-const isEditedHeader = ref<boolean>(false);
-const headerContainer = ref<string>('')
+
 
 const toggleHeader = () => {
   if (isEditingHeader.value) {
@@ -29,18 +30,7 @@ const toggleHeader = () => {
   isEditingHeader.value = !isEditingHeader.value;
 };
 
-const headerTextComputed = computed({
-  get() {
-   
-    console.log('isEditingHeader.value::: ', isEditingHeader.value);
-    return isEditingHeader.value ? headerContainer.value : processedHeaderText.value;
-  },
-  set(newValue) {
-    console.log('newValue::: ', newValue,isEditedHeader.value);
-    // Directamente actualiza headerContainer con lo que se edite en el textarea
-     headerContainer.value = newValue;
-  }
-});
+
 
 watch(() => props.actuacion, (newValue) => {
   console.log('newValue::: ', newValue);

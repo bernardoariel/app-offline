@@ -11,20 +11,14 @@ interface ProcessedText {
   footer: string;
 }
 
-interface UseDatosDiligenciaReturn {
-  processedText: { header: string; footer: string };
-  processedAfectados: any; // Tipo de processedAfectados
-  processedIntervinientes: any; // Tipo de processedIntervinientes
-  primeradiligencia: DatosLegales | undefined; // Propiedad primeradiligencia
-  changeEditar: (elemento: string) => void;
-  processedHeaderText: ComputedRef<string>; // Tipo de processedHeaderText
-}
 
 
-const useDatosDiligencia = (actuacion: Ref<string>): UseDatosDiligenciaReturn => {
+const useDatosDiligencia = (actuacion: Ref<string>) => {
   const { afectados, intervinientes } = useItem();
   
-
+  const isEditingHeader = ref<boolean>(false);
+  const isEditedHeader = ref<boolean>(false);
+  const headerContainer = ref<string>('')
   const diligenciaSeleccionada = computed(() => {
     return diligencias.find((d: DatosLegales) => d.id === actuacion.value);
   });
@@ -93,13 +87,28 @@ const useDatosDiligencia = (actuacion: Ref<string>): UseDatosDiligenciaReturn =>
   const processedHeaderText = computed(() => {
     return processedText.value.header.replace(/<\/?[^>]+(>|$)/g, "");
   });
-
+  const headerTextComputed = computed({
+    get() {
+     
+      console.log('isEditingHeader.value::: ', isEditingHeader.value);
+      return isEditingHeader.value ? headerContainer.value : processedHeaderText.value;
+    },
+    set(newValue) {
+      console.log('newValue::: ', newValue,isEditedHeader.value);
+      // Directamente actualiza headerContainer con lo que se edite en el textarea
+       headerContainer.value = newValue;
+    }
+  });
   return {
     processedText,
     processedAfectados,
     processedIntervinientes,
     primeradiligencia: diligenciaSeleccionada.value, // Asignación de la propiedad primeradiligencia
-    processedHeaderText
+    processedHeaderText,
+    isEditingHeader,
+    isEditedHeader,
+    headerContainer,
+    headerTextComputed
   };
 };
 

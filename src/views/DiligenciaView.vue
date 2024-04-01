@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import useDatosDiligencia from '@/composables/useDatosDiligencia';
 import { getUpperCase } from '@/helpers/stringUtils';
-import { ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 
 
 interface Props{
@@ -9,9 +9,38 @@ interface Props{
 }
 const props = defineProps<Props>()
 const actuacionRef = ref(props.actuacion);
-const { processedText, primeradiligencia, isEditHeader, changeEditar, processedHeaderText} = useDatosDiligencia(actuacionRef);
+const { processedText, primeradiligencia,processedHeaderText} = useDatosDiligencia(actuacionRef);
 
+const isEditingHeader = ref<boolean>(false);
+const isEditedHeader = ref<boolean>(false);
+const headerContainer = ref<string>('')
 
+const toggleHeader = () => {
+  if (isEditingHeader.value) {
+    // Guardar
+    console.log('Guardamos');
+    headerContainer.value = headerTextComputed.value; // Usar headerTextComputed permite reflejar los cambios
+    isEditedHeader.value = true; // Se mueve aquí para reflejar que ahora hay un valor editado
+  }else{
+    if (headerContainer.value === '') {
+      headerContainer.value = processedHeaderText.value;
+    }
+  }
+  isEditingHeader.value = !isEditingHeader.value;
+};
+
+const headerTextComputed = computed({
+  get() {
+   
+    console.log('isEditingHeader.value::: ', isEditingHeader.value);
+    return isEditingHeader.value ? headerContainer.value : processedHeaderText.value;
+  },
+  set(newValue) {
+    console.log('newValue::: ', newValue,isEditedHeader.value);
+    // Directamente actualiza headerContainer con lo que se edite en el textarea
+     headerContainer.value = newValue;
+  }
+});
 
 watch(() => props.actuacion, (newValue) => {
   console.log('newValue::: ', newValue);
@@ -32,10 +61,16 @@ watch(() => props.actuacion, (newValue) => {
         <div class="text-500 mb-3">Este diligencia es ....</div>
         <ul class="list-none p-0 m-0 w-full">
           <li class="flex align-items-center py-3 px-2 border-top-1 surface-border" style="justify-content: space-between;">
-            <div v-if="!isEditHeader" v-html="processedText.header"></div>
-            <Textarea v-else v-model="processedHeaderText" autoResize class="w-full" />
+            <div v-if="!isEditingHeader && !isEditedHeader" v-html="processedText.header"></div>
+            <div v-else-if="!isEditingHeader && isEditedHeader" >aa{{ headerContainer }}</div>
+            <Textarea v-if="isEditingHeader" v-model="headerTextComputed" autoResize class="w-full" />
+
             <div>
-              <Button class="ml-3"  icon="pi pi-pencil" rounded @click="changeEditar('header')"></Button>
+              <Button
+                :class="{'ml-3': true, 'p-button-rounded': true, 'p-button-warning': isEditingHeader, 'p-button-help': !isEditingHeader}"
+                :icon="isEditingHeader ? 'pi pi-check' : 'pi pi-pencil'"
+                @click="toggleHeader"
+              ></Button>
             </div>
           </li>
           <li class="py-3 px-2 border-top-1 surface-border">

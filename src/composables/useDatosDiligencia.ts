@@ -16,14 +16,14 @@ interface UseDatosDiligenciaReturn {
   processedAfectados: any; // Tipo de processedAfectados
   processedIntervinientes: any; // Tipo de processedIntervinientes
   primeradiligencia: DatosLegales | undefined; // Propiedad primeradiligencia
-  isEditHeader: Ref<boolean>; // Ref<boolean> para controlar la edición del encabezado
   changeEditar: (elemento: string) => void;
   processedHeaderText: ComputedRef<string>; // Tipo de processedHeaderText
 }
 
+
 const useDatosDiligencia = (actuacion: Ref<string>): UseDatosDiligenciaReturn => {
   const { afectados, intervinientes } = useItem();
-  const isEditHeader = ref<boolean>(false);
+  
 
   const diligenciaSeleccionada = computed(() => {
     return diligencias.find((d: DatosLegales) => d.id === actuacion.value);
@@ -87,9 +87,9 @@ const useDatosDiligencia = (actuacion: Ref<string>): UseDatosDiligenciaReturn =>
 
   const editableHeader = computed(() => processedText.value.header);
 
-  const changeEditar = (elemento: string): void => {
+  /* const changeEditar = (elemento: string): void => {
     if (elemento === 'header') isEditHeader.value = !isEditHeader.value;
-  };
+  }; */
   const processedHeaderText = computed(() => {
     return processedText.value.header.replace(/<\/?[^>]+(>|$)/g, "");
   });
@@ -99,8 +99,6 @@ const useDatosDiligencia = (actuacion: Ref<string>): UseDatosDiligenciaReturn =>
     processedAfectados,
     processedIntervinientes,
     primeradiligencia: diligenciaSeleccionada.value, // Asignación de la propiedad primeradiligencia
-    isEditHeader,
-    changeEditar,
     processedHeaderText
   };
 };

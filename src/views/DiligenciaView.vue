@@ -2,6 +2,7 @@
 import useDatosDiligencia from '@/composables/useDatosDiligencia';
 import { getUpperCase } from '@/helpers/stringUtils';
 import { computed, ref, watch } from 'vue';
+import useNewActuacion from '../composables/useNewActuacion';
 
 
 interface Props{
@@ -10,9 +11,9 @@ interface Props{
 const props = defineProps<Props>()
 const actuacionRef = ref(props.actuacion);
 const { processedText, primeradiligencia,processedHeaderText, isEditingHeader,
-    isEditedHeader,
     headerContainer,
     headerTextComputed} = useDatosDiligencia(actuacionRef);
+const {isEditedHeader} = useNewActuacion()
 
 
 

@@ -6,6 +6,9 @@ import type { Afectados, AfectadosForm } from '../interfaces/afectado.interface'
 import type { DropDownInterface } from "@/interfaces/dropdown.interface";
 import useFieldState from "./useFiledsState";
 import {afectadosFake as itemsFake} from '@/data/mock/datosActuacion'
+import useActuacion from './useActuacion';
+import useNewActuacion from './useNewActuacion';
+
 const { agregarIdState, guardarModificaciones, eliminarIdState,resetStates, statesID} = useFieldState();
 
 let afectados = ref<Afectados[]>([]);
@@ -15,6 +18,7 @@ let selectedSexo = ref<DropDownInterface>()
 let selectedNacionalidad = ref<DropDownInterface>()
 let selectedEstadoCivil = ref<DropDownInterface>()
 let selectedInstruccion = ref<DropDownInterface>()
+
 
 
 const initialValues: AfectadosForm = {
@@ -44,6 +48,8 @@ const useAfectados = () => {
         
         // Agrega el estado del ítem
         agregarIdState(id, {});
+
+        
     };
 
     const editarAfectado = (item: Afectados) => {

@@ -12,6 +12,8 @@ import MyInputNumber from '@/components/elementos/MyInputNumber.vue';
 
 import type { AfectadosForm, Afectados } from '../interfaces/afectado.interface';
 import { documentosDropdown, sexoDropdown, nacionalidadDropdown, estadoCivilDropdown, instruccionDropdown,afectadosDropdown } from '@/helpers/getDropItems';
+import useDatosDiligencia from '../composables/useDatosDiligencia';
+import useNewActuacion from '@/composables/useNewActuacion';
 
 const { 
   editar,
@@ -26,12 +28,14 @@ const {
   selectedInstruccion } = useAfectados()  
 
 const { selectedItem } = useItemValue()
+const { resetIsEditedHeader} = useNewActuacion()
 
 const { statesID, setPristineById, setModifiedData, guardarModificaciones,isEditing, cancelarModificaciones } = useFieldState();
 let formData = ref<AfectadosForm>({ ...initialValues });
 
 onActivated(() => {
   selectedItem.value= null
+  
 });
 const handleDropdownChange = (
   campo: keyof AfectadosForm, 
@@ -104,6 +108,7 @@ const handleAgregarElemento = () => {
   agregar(nuevoItem)
   formData.value = ({ ...initialValues });
   resetAllDropdown()
+  resetIsEditedHeader()
 };
 
 const handleCancelar = () => {

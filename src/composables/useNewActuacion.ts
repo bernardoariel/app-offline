@@ -9,7 +9,7 @@ const vinculados = ref<AfectadosForm[]>([]);
 const fecha = ref<AfectadosForm[]>([]);
 const efectos = ref<AfectadosForm[]>([]);
 const personalInterviniente = ref<AfectadosForm[]>([]);
-
+const isEditedHeader = ref<boolean>(false);
 type TipoLista = 'afectados' | 'vinculados' | 'fecha' | 'efectos' | 'personalInterviniente';
 
 const selectedItem = ref<string | null>(null);
@@ -159,7 +159,9 @@ const useNewActuacion = () => {
       editar,
       eliminar,
       selectedItem,
-      prepararNuevoItem
+      prepararNuevoItem,
+      isEditedHeader,
+      resetIsEditedHeader: () => isEditedHeader.value = false
     };
   };
   

@@ -8,7 +8,7 @@ import  { actuaciones } from '@/data/tipoActuaciones';
 const useActuacion = () => {
     const route = useRoute();
     const actuacionParam = route.params.actuacion as string;
-  
+   
     const atributosActuacion: Actuacion | undefined = actuaciones[actuacionParam];
   
     // Verifica si atributosActuacion es undefined y asigna un valor por defecto si lo es
@@ -38,7 +38,8 @@ const useActuacion = () => {
         tarjetas,
         // tarjetasKeys,
         nuevoItem,
-        agregarNuevoItem
+        agregarNuevoItem,
+       
     };
 }
 export default useActuacion;

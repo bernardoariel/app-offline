@@ -5,19 +5,20 @@ import useItem from '@/composables/useItems';
 import type { DatosLegales } from '@/interfaces/datosLegales.interface';
 import { getTitleCase, getUpperCase } from '@/helpers/stringUtils';
 import { getAge } from '@/helpers/getAge';
+import useNewActuacion from './useNewActuacion';
 
 interface ProcessedText {
   header: string;
   footer: string;
 }
 
-
+const { isEditedHeader } = useNewActuacion()
 
 const useDatosDiligencia = (actuacion: Ref<string>) => {
   const { afectados, intervinientes } = useItem();
   
   const isEditingHeader = ref<boolean>(false);
-  const isEditedHeader = ref<boolean>(false);
+ 
   const headerContainer = ref<string>('')
   const diligenciaSeleccionada = computed(() => {
     return diligencias.find((d: DatosLegales) => d.id === actuacion.value);
@@ -81,9 +82,6 @@ const useDatosDiligencia = (actuacion: Ref<string>) => {
 
   const editableHeader = computed(() => processedText.value.header);
 
-  /* const changeEditar = (elemento: string): void => {
-    if (elemento === 'header') isEditHeader.value = !isEditHeader.value;
-  }; */
   const processedHeaderText = computed(() => {
     return processedText.value.header.replace(/<\/?[^>]+(>|$)/g, "");
   });
@@ -106,9 +104,8 @@ const useDatosDiligencia = (actuacion: Ref<string>) => {
     primeradiligencia: diligenciaSeleccionada.value, // Asignación de la propiedad primeradiligencia
     processedHeaderText,
     isEditingHeader,
-    isEditedHeader,
     headerContainer,
-    headerTextComputed
+    headerTextComputed,
   };
 };
 

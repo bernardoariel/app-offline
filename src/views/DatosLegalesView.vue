@@ -46,12 +46,13 @@ const eliminarItem = (name:string)=>{
         </div>
         <div class="col-3">
             <label for="dropdown">Año</label>
-            <Dropdown
+            <MyDropdown
+                class="w-full mt-2"
+                :items="mapToDropdownItems(yearsActuacion)"
                 v-model="selectedYear"
-                :options="mapToDropdownItems(yearsActuacion)"
                 :placeholder="yearsActuacion[0]"
                 optionLabel="name"
-                class="w-full mt-2" />
+                />
         </div>    
         <!-- Sitio -->
         <div class="col-12">

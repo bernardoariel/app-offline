@@ -18,9 +18,9 @@ const visible = ref(false);
         <h2>Sumario por Oficio</h2>
       </template>
 
-   <!--    <template #end>
-        <SidebarMenu  icono="pi-wrench" position="right" color-icono="primary"/>
-      </template> -->
+    <template #end>
+        <SidebarMenu  icono="pi-cog" position="right" color-icono="primary"/>
+      </template>
     </Toolbar>
   </div>
   <div class="router-view-container">

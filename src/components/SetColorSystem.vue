@@ -9,6 +9,7 @@ const toggleTheme = (newThemeName: string) => {
  
   PrimeVue.changeTheme(currentTheme.value.name, newThemeName, 'theme-link', () => {
     console.log("Tema cambiado a:", newThemeName);
+    console.log("currentTheme", currentTheme.value);
   });
    // Luego actualiza el estado global de tu tema en la aplicación.
    changeThemeCurrent(newThemeName);

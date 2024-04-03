@@ -40,8 +40,8 @@ const props = defineProps<Props>();
 
                     <SetScaleSystem class="mt-5 px-2"/>
 
+                    <SetColorMode class="px-2" />          
                     <SetColorSystem class="px-2" />
-                    <!-- <SetColorMode class="px-2" /> -->
                     
                 </div>
             </template>

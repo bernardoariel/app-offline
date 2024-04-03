@@ -33,11 +33,7 @@ const groupedLinks = computed(() => {
   return grouped;
 });
 
-
-
-
 </script>
-
 
 <template>
     <div class="card flex justify-content-center">

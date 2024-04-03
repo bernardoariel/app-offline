@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { RouterView } from 'vue-router'
+import SidebarRight from './components/SidebarRight.vue';
 import SidebarMenu from './components/SidebarMenu.vue';
 const visible = ref(false);
 
@@ -10,8 +11,7 @@ const visible = ref(false);
   <div class="toolbar-container">
     <Toolbar>
       <template #start>
-        <SidebarMenu  icono="pi-microsoft" position="left" color-icono="warning" />
-        <!-- <SidebarMenu  icono="pi-microsoft" position="left" color-icono="warning"/> -->
+        <SidebarMenu  icono="pi-microsoft" position="left" color-icono="primary" />
       </template>
 
       <template #center>
@@ -19,7 +19,7 @@ const visible = ref(false);
       </template>
 
     <template #end>
-        <SidebarMenu  icono="pi-cog" position="right" color-icono="primary"/>
+        <SidebarRight  icono="pi-bars" position="right" color-icono="secondary"/>
       </template>
     </Toolbar>
   </div>

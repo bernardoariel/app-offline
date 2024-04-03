@@ -32,7 +32,8 @@ const useItemsComputados = ()=> {
     }
   };
   const itemsComputados = computed(() => {
-    console.log('routeType.value::: ', routeType.value);
+    if(!routeType.value ) return
+ 
     cargando.value = true;
     let data:any = [];
     const composableActual = composables[routeType.value as RouteTypeKey];

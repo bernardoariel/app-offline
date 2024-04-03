@@ -24,7 +24,7 @@ const getPristineById = (id: string) => {
 </script>
 <template>
   <div class="card flex flex-column justify-content-center">
-    <Listbox  v-if="itemsComputados.length > 0"
+    <Listbox  v-if="itemsComputados && itemsComputados.length > 0"
       v-model="selectedItem"
       :options="itemsComputados"
       optionLabel="nombre"

@@ -28,6 +28,7 @@ import router from './router'
 import Avatar from 'primevue/avatar';
 import StyleClass from 'primevue/styleclass';
 import ToastService from 'primevue/toastservice';
+import InputSwitch from 'primevue/inputswitch';
 
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
@@ -37,7 +38,7 @@ import Toast from 'primevue/toast';
 
 
 import 'primeflex/primeflex.css';
-import 'primevue/resources/themes/lara-light-blue/theme.css'
+// import 'primevue/resources/themes/lara-light-blue/theme.css'
 import 'primeicons/primeicons.css';
 const app = createApp(App)
 
@@ -70,6 +71,7 @@ app.component('Column', Column);
 app.component('ColumnGroup', ColumnGroup);
 app.component('Row', Row);
 app.component('Toast', Toast);
+app.component('InputSwitch', InputSwitch);
 
 app.directive('ripple', Ripple);
 app.directive('styleclass', StyleClass);

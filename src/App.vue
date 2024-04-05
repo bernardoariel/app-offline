@@ -18,7 +18,6 @@ onMounted(() => {
 
   // Aplicar el tema utilizando PrimeVue.changeTheme
   PrimeVue.changeTheme('lara-light-blue', themeName, 'theme-link', () => {
-    console.log('Tema cambiado a:', themeName);
     isLoading.value = false;  // Marcar que la carga ha finalizado
     changeThemeCurrent(themeName);
   });

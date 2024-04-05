@@ -21,6 +21,7 @@ const toggleTheme = (newThemeName: string) => {
 <template>
    <section class="theme-selector">
     <span class="title">Colores</span>
+    <small>{{ currentTheme.name }}</small>
     <div class="theme-row">
       
       <button 

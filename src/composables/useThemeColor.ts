@@ -1,5 +1,4 @@
 import { ref, watch, watchEffect } from 'vue';
-
 import { themes } from '../data/colorSistems';
 interface Theme{
   light:string,
@@ -7,10 +6,13 @@ interface Theme{
   color?:string,
   name?: string; 
 }
+interface SelectedTheme{
+  name:string,
+  isDark:boolean,
+  hasModeDark:boolean
+}
 
-
-const defaultDarkMode:null|string = 'lara-dark-blue';
-const currentTheme = ref({ name: 'lara-light-blue', isDark:false, hasModeDark: true })
+const currentTheme = ref<SelectedTheme>({ name: 'lara-light-blue', isDark:false, hasModeDark: true })
 
 const useThemeColor = ()=>{
 
@@ -22,27 +24,37 @@ const useThemeColor = ()=>{
       currentTheme.value = { name: theme.dark, isDark:true, hasModeDark: true };
     }else{
       const hasModeDark = !theme.dark ? false:true
-      console.log('theme::: ', theme);
-      console.log('hasModeDark::: ', hasModeDark);
+
       
       currentTheme.value = { name: theme.light, isDark:false,hasModeDark:hasModeDark };
     }
 
   };
+  const saveThemeToLocalStorage = () => {
+    localStorage.setItem('currentTheme', JSON.stringify(currentTheme.value));
+  };
+  const loadThemeFromLocalStorage = () => {
+    const savedTheme = localStorage.getItem('currentTheme');
 
-  // quiero devolver themes solo con la propiedad light
-  const themesLight = themes.map((theme:Theme)=>{
-  return {
-  name:theme.light,
-  color:theme.color
-  }
-  })
+    if (savedTheme) {
+      currentTheme.value = JSON.parse(savedTheme);
+    }
+  };
+  
+  watch(currentTheme, saveThemeToLocalStorage, { deep: true });
 
+  const themesLight = themes.map((theme: Theme) => {
     return {
-      currentTheme,
-      changeThemeCurrent,
-      themesLight,
-      themes
+      name: theme.light,
+      color: theme.color
     };
+  });
+  
+  return {
+    currentTheme,
+    changeThemeCurrent,
+    themesLight,
+    themes
+  };
 }
 export default useThemeColor

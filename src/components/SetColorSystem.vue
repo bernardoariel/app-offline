@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import { usePrimeVue } from 'primevue/config';
 import useThemeColor from '@/composables/useThemeColor';
 
@@ -7,12 +6,13 @@ const PrimeVue = usePrimeVue();
 const { themesLight,currentTheme,changeThemeCurrent } = useThemeColor()
 const toggleTheme = (newThemeName: string) => {
  
+  console.log('currentTheme.value.name::: ', currentTheme.value.name);
   PrimeVue.changeTheme(currentTheme.value.name, newThemeName, 'theme-link', () => {
     console.log("Tema cambiado a:", newThemeName);
     console.log("currentTheme", currentTheme.value);
   });
-   // Luego actualiza el estado global de tu tema en la aplicación.
-   changeThemeCurrent(newThemeName);
+
+  changeThemeCurrent(newThemeName);
 }
 
 

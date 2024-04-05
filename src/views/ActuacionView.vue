@@ -39,7 +39,9 @@ watch(() => props.actuacion, (newValue) => {
       <Card>
         <template #title>
           <div class="title-container">
-            <span class="custom-title"  @click="handleClick">Ingreso de datos {{ $props.actuacion }}</span>
+            
+            <div class="font-medium text-3xl text-900" @click="handleClick">Ingreso de datos {{ $props.actuacion }}</div>
+
             <div class="buttons-container">
               <Button @click="active = 0" rounded label="1" class="button" :outlined="active !== 0" />
               <Button @click="active = 1" rounded label="2" class="button" :outlined="active !== 1" />
@@ -52,7 +54,8 @@ watch(() => props.actuacion, (newValue) => {
               <Card v-for="key in cardInformationKeys" :key="key" class="p-fluid mb-2 color-border-top">
                 <template #title>
                   <div class="title-container">
-                    <span class="custom-title text-3x1 ">{{ cardInformation[key].titulo }}</span>
+                    <div class="font-medium text-3xl text-900">{{ cardInformation[key].titulo }}</div>
+                  
                     <Button icon="pi pi-plus" severity="secondary" rounded outlined @click="agregarNuevoItem(key as string)" />
                   </div>
                 </template>

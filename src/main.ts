@@ -29,23 +29,26 @@ import Avatar from 'primevue/avatar';
 import StyleClass from 'primevue/styleclass';
 import ToastService from 'primevue/toastservice';
 import InputSwitch from 'primevue/inputswitch';
+import ProgressSpinner from 'primevue/progressspinner';
 
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import ColumnGroup from 'primevue/columngroup';   // optional
 import Row from 'primevue/row';                   // optional
 import Toast from 'primevue/toast';
-
-
 import 'primeflex/primeflex.css';
 // import 'primevue/resources/themes/lara-light-blue/theme.css'
 import 'primeicons/primeicons.css';
+import useThemeColor from './composables/useThemeColor';
+const { currentTheme } = useThemeColor()
 const app = createApp(App)
 
 app.use(createPinia())
 app.use(PrimeVue)
+app.use(ToastService);     
+
+
 app.use(router)
-app.use(ToastService);
 
 app.component('Button', Button);
 app.component('Card', Card);
@@ -72,6 +75,7 @@ app.component('ColumnGroup', ColumnGroup);
 app.component('Row', Row);
 app.component('Toast', Toast);
 app.component('InputSwitch', InputSwitch);
+app.component('ProgressSpinner', ProgressSpinner);
 
 app.directive('ripple', Ripple);
 app.directive('styleclass', StyleClass);
@@ -80,6 +84,7 @@ db.version(1).stores({
     afectados: '++id, typeAfectado, typeDocumento, nroDocumento, typeSexo, apellido, name, fecha, nacionalidad, estadoCivil, domicilioResidencia, telefono, email, profesion, instruccion'
 });
  */
+
 app.mount('#app')
 
 

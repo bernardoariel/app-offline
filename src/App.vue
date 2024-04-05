@@ -1,36 +1,49 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { RouterView } from 'vue-router'
-import SidebarRight from './components/SidebarRight.vue';
-import SidebarMenu from './components/SidebarMenu.vue';
-const visible = ref(false);
 
+import { usePrimeVue } from 'primevue/config';
+import ToolbarComponent from './components/ToolbarComponent.vue';
+import useThemeColor from './composables/useThemeColor';
+
+const PrimeVue = usePrimeVue();
+const { changeThemeCurrent } = useThemeColor()
+const isLoading = ref(true); // Estado de carga
+onMounted(() => {
+  // Cargar el nombre del tema del almacenamiento local
+  const savedTheme = localStorage.getItem('currentTheme');
+
+  const themeName = savedTheme ? JSON.parse(savedTheme).name : 'lara-light-blue';
+  
+
+  // Aplicar el tema utilizando PrimeVue.changeTheme
+  PrimeVue.changeTheme('lara-light-blue', themeName, 'theme-link', () => {
+    console.log('Tema cambiado a:', themeName);
+    isLoading.value = false;  // Marcar que la carga ha finalizado
+    changeThemeCurrent(themeName);
+  });
+});
 </script>
 
 <template>
-  <div class="toolbar-container">
-    <Toolbar>
-      <template #start>
-        <SidebarMenu  icono="pi-microsoft" position="left" color-icono="primary" />
-      </template>
-
-      <template #center>
-        <h2>Sumario por Oficio</h2>
-      </template>
-
-    <template #end>
-        <SidebarRight  icono="pi-bars" position="right" color-icono="secondary"/>
-      </template>
-    </Toolbar>
+  <div v-if="!isLoading">
+    <div class="toolbar-container">
+      <ToolbarComponent />
+    </div>
+    <div class="router-view-container">
+      <RouterView v-slot="{ Component, route }"> 
+          <keep-alive>
+            <component :is="Component" :key="route.name" />
+          </keep-alive>
+      </RouterView>
+    </div>
   </div>
-  <div class="router-view-container">
-    <RouterView v-slot="{ Component, route }"> 
-        <keep-alive>
-          <component :is="Component" :key="route.name" />
-        </keep-alive>
-
-    </RouterView>
-</div>
+  
+  <div v-else class="loader-container">
+    <ProgressSpinner style="width:100px; height: 100px" strokeWidth="5" fill="var(--surface-ground)"
+      animationDuration=".5s" aria-label="Custom ProgressSpinner" />
+      <h1 class="loading-message">Iniciando sistema offline...</h1>
+  </div>
 </template>
 <style>
 html {
@@ -82,6 +95,24 @@ p {
 .p-button.p-button-icon-only.p-button-rounded {
     border-radius: 50%;
     height: auto;
+}
+
+/* Estilos para el loader */
+.loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.7); /* Fondo semitransparente */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-message {
+  margin-top: 1rem;
 }
 </style>
 

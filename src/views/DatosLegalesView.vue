@@ -42,6 +42,7 @@ const eliminarItem = (name:string)=>{
             <MyInput
                 type="text"
                 class="mt-2"
+                color
              />
         </div>
         <div class="col-3">
@@ -50,8 +51,10 @@ const eliminarItem = (name:string)=>{
                 class="w-full mt-2"
                 :items="mapToDropdownItems(yearsActuacion)"
                 v-model="selectedYear"
-                :placeholder="yearsActuacion[0]"
+                :placeholder="yearsActuacion[0].toString()"
                 optionLabel="name"
+                filter
+                color
                 />
         </div>    
         <!-- Sitio -->
@@ -62,6 +65,8 @@ const eliminarItem = (name:string)=>{
                 v-model="selectedSitio"
                 placeholder="Seleccione un sitio"
                 optionLabel="name"
+                filter
+                color
                 class="w-full mt-2" />
         </div>
         <!-- Modus Operandi -->
@@ -72,6 +77,8 @@ const eliminarItem = (name:string)=>{
                 v-model="selectedModusOperandi"
                 placeholder="Seleccione Modus Operandi"
                 optionLabel="name"
+                filter
+                color
                 class="w-full mt-2" />
         </div>
         <!-- Modus Operandi -->
@@ -82,6 +89,8 @@ const eliminarItem = (name:string)=>{
                 v-model="selectedCausaCaratula"
                 placeholder="Seleccione Causa Caratula"
                 optionLabel="name"
+                filter
+                color
                 class="w-full mt-2" />
         </div>
         <div class="col-12">
@@ -113,6 +122,8 @@ const eliminarItem = (name:string)=>{
                 v-model="selectedJuzgadoInterviniente"
                 placeholder="Seleccione Juzgado Interviniente"
                 optionLabel="name"
+                filter
+                color
                 class="w-full mt-2" />
         </div>
     

@@ -3,11 +3,11 @@
 import { ref, watch } from "vue";
 
 interface Props {
-  tarjetaNombre: string;
+  tarjetaNombre?: string;
   item: any;
 } 
 
-const { item, tarjetaNombre } = defineProps<Props>();
+const { item, tarjetaNombre = '' } = defineProps<Props>();
 
 
 const menu = ref();

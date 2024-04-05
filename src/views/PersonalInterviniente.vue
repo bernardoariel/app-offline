@@ -145,6 +145,7 @@ watch(selectedItem, (newVal:any) => {
             v-model="selectedJerarquiaDrop"
             @change="(newValue) => handleDropdownChange('jerarquia', newValue)"
             placeholder="Seleccione la Jerarquia" 
+            filter
             :color="!!selectedItem"/>
         </div>
         <div class="col-6">
@@ -155,6 +156,7 @@ watch(selectedItem, (newVal:any) => {
             v-model="selectedDependenciaDrop"
             @change="(newValue) => handleDropdownChange('dependencia', newValue)"
             placeholder="Seleccione la Dependencia"
+            filter
             :color="!!selectedItem" />
         </div>
         <div class="ml-auto mt-2 p-0">

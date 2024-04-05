@@ -131,6 +131,7 @@ watch(selectedItem, (newVal:any) => {
                       v-model="selectedCategoria"
                       @change="(newValue) => handleDropdownChange('categoria', newValue)"
                       placeholder="Seleccione Categoría"
+                      filter
                       :color="!!selectedItem" />
                 </div>
                 <div class="col-6">
@@ -141,6 +142,7 @@ watch(selectedItem, (newVal:any) => {
                       v-model="selectedSubcategoria"
                       @change="(newValue) => handleDropdownChange('marca', newValue)"
                       placeholder="Seleccione Sub-Categoría"
+                      filter
                       :color="!!selectedItem" />
                 </div>
                 <div class="col-6">
@@ -151,6 +153,7 @@ watch(selectedItem, (newVal:any) => {
                       v-model="selectedTipo"
                       @change="(newValue) => handleDropdownChange('modelo', newValue)"
                       placeholder="Seleccione Tipo" 
+                      filter
                       :color="!!selectedItem"/>
                 </div>
                 <div class="col-6">
@@ -161,6 +164,7 @@ watch(selectedItem, (newVal:any) => {
                       v-model="selectedMarca"
                       @change="(newValue) => handleDropdownChange('subcategoria', newValue)"
                       placeholder="Seleccione Marca"
+                      filter
                       :color="!!selectedItem" />
                 </div>
                 <div class="col-6">
@@ -172,6 +176,7 @@ watch(selectedItem, (newVal:any) => {
                       @change="(newValue) => handleDropdownChange('tipo', newValue)"
                       placeholder="Seleccione Modelo"
                       :color="!!selectedItem"
+                      filter
                       />
                 </div>
                 <div class="ml-auto mt-2 p-0">

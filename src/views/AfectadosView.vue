@@ -119,6 +119,7 @@ const handleCancelar = () => {
 
 const handleModificarElemento = () => {
   let itemStateEncontrado = guardarModificaciones(selectedItem.value!.id);
+  console.log('itemStateEncontrado::: ', itemStateEncontrado);
   let itemAEditar = {
       ...formData.value,
       typeAfectado: selectedType.value!.name,
@@ -134,6 +135,8 @@ const handleModificarElemento = () => {
 };
 
 watch(selectedItem, (newVal:any) => {
+  console.log('newVal::: ', newVal);
+  
   if (!newVal) {
       formData.value = ({ ...initialValues });
   } else {
@@ -154,6 +157,7 @@ watch(selectedItem, (newVal:any) => {
                   v-model="selectedType"
                   @change="(newValue) => handleDropdownChange('typeAfectado', newValue)"
                   placeholder="Seleccione tipo de Denunciante"
+                  filter
                   :color="!!selectedItem" />
             </div>
             <div class="col-4">
@@ -164,6 +168,7 @@ watch(selectedItem, (newVal:any) => {
                  v-model="selectedDocumento"
                  @change="(newValue) => handleDropdownChange('typeDocumento', newValue)"
                  placeholder="Tipo de doc."
+                 filter
                  :color="!!selectedItem" />
             </div>
             <div class="col-4">
@@ -186,6 +191,7 @@ watch(selectedItem, (newVal:any) => {
                  v-model="selectedSexo"
                  placeholder="Sexo" 
                  @change="(newValue) => handleDropdownChange('typeSexo', newValue)"
+                 filter
                  :color="!!selectedItem"/>
             </div>
             <div class="col-6">
@@ -230,6 +236,7 @@ watch(selectedItem, (newVal:any) => {
                  placeholder="Nacionalidad"
                  @change="(newValue) => handleDropdownChange('nacionalidad', newValue)"
                  v-model="selectedNacionalidad" 
+                 filter
                  :color="!!selectedItem"/>
             </div>
             <div class="col-3">
@@ -240,6 +247,7 @@ watch(selectedItem, (newVal:any) => {
                 placeholder="Estado Civil"
                 @change="(newValue) => handleDropdownChange('estadoCivil', newValue)"
                 v-model="selectedEstadoCivil"
+                filter
                 :color="!!selectedItem" />
               </div>
             <div class="col-12">
@@ -298,6 +306,7 @@ watch(selectedItem, (newVal:any) => {
                 @change="(newValue) => handleDropdownChange('instruccion', newValue)"
                 v-model="selectedInstruccion"
                 :color="!!selectedItem"
+                filter
                  />
             
             </div>

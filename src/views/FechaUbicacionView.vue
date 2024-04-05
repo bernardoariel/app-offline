@@ -222,6 +222,7 @@ watch(selectedItem, (newVal:any) => {
                   :items="municipiosDropdown"
                   v-model="selectedMunicipioDrop"
                   @change="(newValue) => handleDropdownChange('departamento', newValue)"
+                  filter
                   placeholder="Seleccione un departamento" :color="!!selectedItem" />
                 
               </div>

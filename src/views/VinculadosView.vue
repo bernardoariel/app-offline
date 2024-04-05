@@ -158,6 +158,7 @@ watch(selectedItem, (newVal:any) => {
                  v-model="selectedDocumento"
                  @change="(newValue) => handleDropdownChange('typeDocumento', newValue)"
                  placeholder="Tipo de doc." 
+                 filter
                  :color="!!selectedItem"/>
             </div>
             <div class="col-4">
@@ -169,6 +170,7 @@ watch(selectedItem, (newVal:any) => {
                   :value="getInputValue('nroDocumento')"
                   @input="handleInputChange('nroDocumento', $event)"
                   @blur="() => handleBlur('nroDocumento')"
+                  filter
                   :color="!!selectedItem" />
             </div>
             <div class="col-4">
@@ -179,6 +181,7 @@ watch(selectedItem, (newVal:any) => {
                  v-model="selectedSexo"
                  @change="(newValue) => handleDropdownChange('typeSexo', newValue)"
                  placeholder="Sexo"
+                 filter
                  :color="!!selectedItem" />
             </div>
             <div class="col-6">
@@ -222,6 +225,7 @@ watch(selectedItem, (newVal:any) => {
                  placeholder="Nacionalidad"
                  @change="(newValue) => handleDropdownChange('nacionalidad', newValue)"
                  v-model="selectedNacionalidad" 
+                 filter
                  :color="!!selectedItem"/>
             </div>
             <div class="col-3">
@@ -232,6 +236,7 @@ watch(selectedItem, (newVal:any) => {
                 placeholder="Estado Civil"
                 @change="(newValue) => handleDropdownChange('estadoCivil', newValue)"
                 v-model="selectedEstadoCivil" 
+                filter
                 :color="!!selectedItem"/>
             </div>
             <div class="col-12">
@@ -278,6 +283,7 @@ watch(selectedItem, (newVal:any) => {
                 placeholder="Instrucción"
                 @change="(newValue) => handleDropdownChange('instruccion', newValue)"
                 v-model="selectedInstruccion" 
+                filter
                 :color="!!selectedItem"/>
             </div>
             <div class="col-3">

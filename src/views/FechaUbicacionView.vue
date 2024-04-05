@@ -99,7 +99,7 @@ const handleModificarElemento = () => {
   let itemStateEncontrado = guardarModificaciones(selectedItem.value!.id);
   let itemAEditar = {
       ...formData.value,
-      departamento: selectedMunicipioDrop.value!.name,
+      departamento: selectedMunicipioDrop.value?.name || '',
       ...itemStateEncontrado
     };
   editar(itemAEditar);

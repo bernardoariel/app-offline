@@ -97,8 +97,8 @@ const handleModificarElemento = () => {
   let itemStateEncontrado = guardarModificaciones(selectedItem.value!.id);
   let itemAEditar = {
       ...formData.value,
-      jerarquia: selectedJerarquiaDrop.value!.name,
-    dependencia: selectedDependenciaDrop.value!.name,
+      jerarquia: selectedJerarquiaDrop.value?.name || '',
+      dependencia: selectedDependenciaDrop.value?.name || '',
       ...itemStateEncontrado
   };
   editar(itemAEditar);

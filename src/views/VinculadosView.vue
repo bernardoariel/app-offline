@@ -116,12 +116,12 @@ const handleModificarElemento = () => {
   let itemStateEncontrado = guardarModificaciones(selectedItem.value!.id);
   let itemAEditar = {
       ...formData.value,
-      typeAfectado: selectedType.value!.name,
-      typeDocumento: selectedDocumento.value!.name,
-      typeSexo: selectedSexo.value!.name,
-      nacionalidad: selectedNacionalidad.value!.name,
-      estadoCivil: selectedEstadoCivil.value!.name,
-      instruccion: selectedInstruccion.value!.name,
+      typeAfectado: selectedType.value?.name || '',
+      typeDocumento: selectedDocumento.value?.name || '',
+      typeSexo: selectedSexo.value?.name || '',
+      nacionalidad: selectedNacionalidad.value?.name || '',
+      estadoCivil: selectedEstadoCivil.value?.name || '',
+      instruccion: selectedInstruccion.value?.name || '',
       ...itemStateEncontrado
     };
   editar(itemAEditar);

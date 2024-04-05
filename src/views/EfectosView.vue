@@ -101,11 +101,11 @@ const handleModificarElemento = () => {
   let itemStateEncontrado = guardarModificaciones(selectedItem.value!.id);
   let itemAEditar = {
       ...formData.value,
-      categoria: selectedCategoria.value!.name,
-      marca: selectedMarca.value!.name,
-      modelo: selectedModelo.value!.name,
-      subcategoria: selectedSubcategoria.value!.name,
-      tipo: selectedTipo.value!.name,
+      categoria: selectedCategoria.value?.name || '',
+      marca: selectedMarca.value?.name || '',
+      modelo: selectedModelo.value?.name || '',
+      subcategoria: selectedSubcategoria.value?.name || '',
+      tipo: selectedTipo.value?.name || '',
       ...itemStateEncontrado
     };
   editar(itemAEditar);

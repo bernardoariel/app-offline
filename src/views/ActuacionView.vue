@@ -6,7 +6,7 @@ import DiligenciaView from './DiligenciaView.vue';
 
 import useActuacion from '@/composables/useActuacion';
 import useCardInformation from '@/composables/useCardInformation';
-import useAfectados from '@/composables/useAfectados';
+
 import useItem from '../composables/useItems';
 import useFieldState from '@/composables/useFiledsState';
 

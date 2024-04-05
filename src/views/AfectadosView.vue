@@ -122,12 +122,12 @@ const handleModificarElemento = () => {
   console.log('itemStateEncontrado::: ', itemStateEncontrado);
   let itemAEditar = {
       ...formData.value,
-      typeAfectado: selectedType.value!.name,
-      typeDocumento: selectedDocumento.value!.name,
-      typeSexo: selectedSexo.value!.name,
-      nacionalidad: selectedNacionalidad.value!.name,
-      estadoCivil: selectedEstadoCivil.value!.name,
-      instruccion: selectedInstruccion.value!.name,
+      typeAfectado: selectedType.value?.name || '', // Si selectedType.value es null o undefined, asigna una cadena vacía como valor predeterminado
+      typeDocumento: selectedDocumento.value?.name || '',
+      typeSexo: selectedSexo.value?.name || '',
+      nacionalidad: selectedNacionalidad.value?.name || '',
+      estadoCivil: selectedEstadoCivil.value?.name || '',
+      instruccion: selectedInstruccion.value?.name || '',
       ...itemStateEncontrado
     };
   editar(itemAEditar);
@@ -135,8 +135,7 @@ const handleModificarElemento = () => {
 };
 
 watch(selectedItem, (newVal:any) => {
-  console.log('newVal::: ', newVal);
-  
+
   if (!newVal) {
       formData.value = ({ ...initialValues });
   } else {

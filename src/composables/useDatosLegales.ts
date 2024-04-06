@@ -20,7 +20,7 @@ const useDatosLegales = () => {
         selectedJuzgadoInterviniente,
         selectedCausaCaratulaList,
         nroLegajo
-    };
+    }
 };
 
 export default useDatosLegales;

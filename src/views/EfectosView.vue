@@ -115,7 +115,13 @@ watch(selectedItem, (newVal:any) => {
   if (!newVal) {
        formData.value = ({ ...initialValues });
    } else {
-       formData.value = ({...newVal});
+
+    selectedCategoria.value = { name: newVal.categoria}
+    selectedMarca.value = { name: newVal.marca}
+    selectedModelo.value = { name: newVal.modelo}
+    selectedSubcategoria.value = { name: newVal.subcategoria}
+    selectedTipo.value = { name: newVal.tipo}
+    formData.value = ({...newVal});
    }
  });
 </script>

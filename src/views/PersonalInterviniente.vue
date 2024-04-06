@@ -108,7 +108,9 @@ watch(selectedItem, (newVal:any) => {
   if (!newVal) {
       formData.value = ({ ...initialValues });
   } else {
-      formData.value = ({...newVal});
+    selectedJerarquiaDrop.value = { name: newVal.jerarquia}
+    selectedDependenciaDrop.value = { name: newVal.dependencia}
+    formData.value = ({...newVal});
   }
  });
 </script>

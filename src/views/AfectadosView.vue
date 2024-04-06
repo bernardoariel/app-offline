@@ -15,6 +15,7 @@ import { documentosDropdown, sexoDropdown, nacionalidadDropdown, estadoCivilDrop
 import useDatosDiligencia from '../composables/useDatosDiligencia';
 import useNewActuacion from '@/composables/useNewActuacion';
 
+
 const { 
   editar,
   agregar,  
@@ -139,7 +140,15 @@ watch(selectedItem, (newVal:any) => {
   if (!newVal) {
       formData.value = ({ ...initialValues });
   } else {
-      formData.value = ({...newVal});
+
+    selectedType.value = { name: newVal.typeAfectado}
+    selectedDocumento.value = { name: newVal.typeDocumento}
+    selectedSexo.value = { name: newVal.typeSexo}
+    selectedNacionalidad.value = { name: newVal.nacionalidad}
+    selectedEstadoCivil.value = { name: newVal.estadoCivil}
+    selectedInstruccion.value = { name: newVal.instruccion}
+    
+    formData.value = ({...newVal});
   }
 });
 

@@ -120,6 +120,8 @@ watch(selectedItem, (newVal:any) => {
        formData.value = ({ ...initialValues });
    } else {
        formData.value = ({...newVal});
+       selectedMunicipioDrop.value = { name: newVal.departamento}
+       
    }
 });
 </script>

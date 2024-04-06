@@ -3,6 +3,7 @@ import useDatosDiligencia from '@/composables/useDatosDiligencia';
 import { getUpperCase } from '@/helpers/stringUtils';
 import { computed, ref, watch } from 'vue';
 import useNewActuacion from '../composables/useNewActuacion';
+import useDatosLegales from '../composables/useDatosLegales';
 
 
 interface Props{
@@ -10,12 +11,27 @@ interface Props{
 }
 const props = defineProps<Props>()
 const actuacionRef = ref(props.actuacion);
-const { processedText, primeradiligencia,processedHeaderText, isEditingHeader,
-    headerContainer,
-    headerTextComputed} = useDatosDiligencia(actuacionRef);
+
+const { 
+  processedText, 
+  primeradiligencia,
+  processedHeaderText,
+  isEditingHeader,
+  headerContainer,
+  headerTextComputed
+} = useDatosDiligencia(actuacionRef);
+
 const {isEditedHeader} = useNewActuacion()
 
-
+const { 
+    selectedYear,
+    selectedSitio,
+    selectedModusOperandi,
+    selectedCausaCaratula,
+    selectedJuzgadoInterviniente,
+    selectedCausaCaratulaList,
+    nroLegajo
+} = useDatosLegales()
 
 const toggleHeader = () => {
   if (isEditingHeader.value) {
@@ -34,7 +50,6 @@ const toggleHeader = () => {
 
 
 watch(() => props.actuacion, (newValue) => {
-  console.log('newValue::: ', newValue);
   actuacionRef.value = newValue;
 });
 </script>

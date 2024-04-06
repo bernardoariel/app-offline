@@ -7,14 +7,19 @@ import type { DropDownInterface } from '@/interfaces/dropdown.interface';
 import { ref, watch } from 'vue';
 import { sitiosDropdwown, modusOperandiDropdwown, causaCaratulaDropdwown, juzgadoIntervinienteDropdwown } from '../helpers/getDropItems';
 import { getUpperCase } from '@/helpers/stringUtils';
+import useDatosLegales from '../composables/useDatosLegales';
 
-let selectedYear = ref<DropDownInterface>()
-let selectedSitio = ref<DropDownInterface>()
-let selectedModusOperandi = ref<DropDownInterface>()
-let selectedCausaCaratula = ref<DropDownInterface>()
-let selectedJuzgadoInterviniente = ref<DropDownInterface>()
-let selectedCausaCaratulaList = ref(null)
-    
+
+const { 
+    selectedYear,
+    selectedSitio,
+    selectedModusOperandi,
+    selectedCausaCaratula,
+    selectedJuzgadoInterviniente,
+    selectedCausaCaratulaList,
+    nroLegajo
+} = useDatosLegales()
+
 let yearsActuacion:string[] = getYearsDrop()
 let itemsCausaCaratula = ref<any[]>([])
 
@@ -42,6 +47,7 @@ const eliminarItem = (name:string)=>{
             <MyInput
                 type="text"
                 class="mt-2"
+                v-model="nroLegajo"
                 color
              />
         </div>

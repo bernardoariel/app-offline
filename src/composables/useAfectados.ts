@@ -19,8 +19,6 @@ let selectedNacionalidad = ref<DropDownInterface>()
 let selectedEstadoCivil = ref<DropDownInterface>()
 let selectedInstruccion = ref<DropDownInterface>()
 
-
-
 const initialValues: AfectadosForm = {
     nroDocumento: 0,
     apellido: '',

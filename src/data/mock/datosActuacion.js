@@ -151,3 +151,9 @@ export const intervinientesFake = [
     "id":"07798405-883a-4eb2-9955-253bda2db8c6"
   }
 ]
+
+export const datosLegales = [
+  {
+    
+  }
+] 

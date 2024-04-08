@@ -18,8 +18,6 @@ const closeSidebar = () => {
 };
 const props = defineProps<Props>();
 
-
-
 </script>
 
 <template>

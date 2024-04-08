@@ -1,3 +1,70 @@
+<script lang="ts" setup>
+import { ref, onMounted, reactive } from 'vue';
+import { useToast } from 'primevue/usetoast';
+import { ProductService } from '@/service/ProductService';
+import { getColorByAfectado } from '@/helpers/getColorByAfectado';
+import useSaveData from '../composables/useSaveData';
+
+const products = ref();
+const expandedRows = ref([]);
+const toast = useToast();
+const detailExpansionState = reactive({});
+const selectedOption = ref('afectados');
+const {fetchActuaciones}= useSaveData()
+onMounted(async () => {
+    const actuaciones = await fetchActuaciones();
+    console.log(actuaciones); // Aquí deberías ver los resultados
+
+    ProductService.getProductsWithOrdersSmall().then((data: any) => (products.value = data));
+})
+
+const onRowExpand = (event: { data: { name: any; }; }) => {
+    toast.add({ severity: 'info', summary: 'Item Expandidos', detail: event.data.name, life: 3000 });
+};
+const onRowCollapse = (event: { data: { name: any; }; }) => {
+    toast.add({ severity: 'success', summary: 'Items Colapsados', detail: event.data.name, life: 3000 });
+};
+const expandAll = () => {
+    expandedRows.value = products.value.reduce((acc: { [x: string]: boolean; }, p: { id: string | number; }) => (acc[p.id] = true) && acc, {});
+};
+const collapseAll = () => {
+    expandedRows.value = [];
+};
+
+const getSeverity = (product: { statusActuacion: any; }) => {
+    switch (product.statusActuacion) {
+        case 'EN CURSO':
+            return 'success';
+
+        case 'VENCIDA':
+            return 'warning';
+
+        case 'FINALIZADA':
+            return 'danger';
+
+        default:
+            return null;
+    }
+};
+const getOrderSeverity = (order:any) => {
+    switch (order.status) {
+        case 'DELIVERED':
+            return 'success';
+
+        case 'CANCELLED':
+            return 'danger';
+
+        case 'PENDING':
+            return 'warning';
+
+        case 'RETURNED':
+            return 'info';
+
+        default:
+            return null;
+    }
+};
+</script>
 <template>
      <div class="card">
         <DataTable 
@@ -119,74 +186,9 @@
                 </div>
             </template>
         </DataTable>
-
-    
         <Toast />
     </div>
 </template>
-
-<script lang="ts" setup>
-import { ref, onMounted, reactive } from 'vue';
-import { useToast } from 'primevue/usetoast';
-import { ProductService } from '@/service/ProductService';
-import { getColorByAfectado } from '@/helpers/getColorByAfectado';
-
-const products = ref();
-const expandedRows = ref([]);
-const toast = useToast();
-const detailExpansionState = reactive({});
-const selectedOption = ref('afectados');
-onMounted(() => {
-    ProductService.getProductsWithOrdersSmall().then((data: any) => (products.value = data));
-});
-
-const onRowExpand = (event: { data: { name: any; }; }) => {
-    toast.add({ severity: 'info', summary: 'Item Expandidos', detail: event.data.name, life: 3000 });
-};
-const onRowCollapse = (event: { data: { name: any; }; }) => {
-    toast.add({ severity: 'success', summary: 'Items Colapsados', detail: event.data.name, life: 3000 });
-};
-const expandAll = () => {
-    expandedRows.value = products.value.reduce((acc: { [x: string]: boolean; }, p: { id: string | number; }) => (acc[p.id] = true) && acc, {});
-};
-const collapseAll = () => {
-    expandedRows.value = [];
-};
-
-const getSeverity = (product: { statusActuacion: any; }) => {
-    switch (product.statusActuacion) {
-        case 'EN CURSO':
-            return 'success';
-
-        case 'VENCIDA':
-            return 'warning';
-
-        case 'FINALIZADA':
-            return 'danger';
-
-        default:
-            return null;
-    }
-};
-const getOrderSeverity = (order:any) => {
-    switch (order.status) {
-        case 'DELIVERED':
-            return 'success';
-
-        case 'CANCELLED':
-            return 'danger';
-
-        case 'PENDING':
-            return 'warning';
-
-        case 'RETURNED':
-            return 'info';
-
-        default:
-            return null;
-    }
-};
-</script>
 
 <style scoped>
 .card {

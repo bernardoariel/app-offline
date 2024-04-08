@@ -51,9 +51,11 @@ const useSaveData = () => {
         }
     };
     const fetchActuaciones = async () => {
+        console.log('fetchActuaciones!!!');
         try {
             await db.open();
             const actuacionesArray = await db.actuaciones.toArray();
+            console.log('actuacionesArray::: ', actuacionesArray);
             
             // Deserializar cada actuación individualmente
             const deserializedData = actuacionesArray.map(actuacion => {

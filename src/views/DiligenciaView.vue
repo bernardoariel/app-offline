@@ -7,8 +7,6 @@ import useSaveData from '../composables/useSaveData';
 import useItem from '@/composables/useItems';
 
 
-
-
 interface Props{
   actuacion:string;
 }

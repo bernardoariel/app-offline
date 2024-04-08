@@ -1,110 +1,174 @@
 <template>
      <div class="card">
-        <DataTable v-model:expandedRows="expandedRows" :value="products" dataKey="id"
-                @rowExpand="onRowExpand" @rowCollapse="onRowCollapse" tableStyle="min-width: 60rem">
+        <DataTable 
+            class="my-custom-datatable"    
+            v-model:expandedRows="expandedRows" :value="products" dataKey="id"
+            @rowExpand="onRowExpand" @rowCollapse="onRowCollapse" tableStyle="min-width: 60rem">
             <template #header>
                 <div class="flex flex-wrap justify-content-end gap-2">
-                    <Button text icon="pi pi-plus" label="Expand All" @click="expandAll" />
-                    <Button text icon="pi pi-minus" label="Collapse All" @click="collapseAll" />
+                    <Button text icon="pi pi-plus" label="Expandir Todos" @click="expandAll" />
+                    <Button text icon="pi pi-minus" label="Colapsar Todos" @click="collapseAll" />
                 </div>
             </template>
             <Column expander style="width: 5rem" />
-            <Column field="name" header="Name"></Column>
-            <Column header="Image">
+            <Column field="fechaCreacion" header="Fecha"></Column>
+            <Column field="nroLegajo" header="Nro de Actuación"></Column>
+            <Column field="nombreActuacion" header="Actuaciones"></Column>
+            <Column field="juzgado" header="Juzgado"></Column>
+            
+            <Column header="Estado">
                 <template #body="slotProps">
-                    <img :src="`https://primefaces.org/cdn/primevue/images/product/${slotProps.data.image}`" :alt="slotProps.data.image" class="shadow-4" width="64" />
-                </template>
-            </Column>
-            <Column field="price" header="Price">
-                <template #body="slotProps">
-                    {{ formatCurrency(slotProps.data.price) }}
-                </template>
-            </Column>
-            <Column field="category" header="Category"></Column>
-            <Column field="rating" header="Reviews">
-                <template #body="slotProps">
-                    <Rating :modelValue="slotProps.data.rating" readonly :cancel="false" />
-                </template>
-            </Column>
-            <Column header="Status">
-                <template #body="slotProps">
-                    <Tag :value="slotProps.data.inventoryStatus" :severity="getSeverity(slotProps.data)" />
+                    <Tag :value="slotProps.data.statusActuacion" :severity="getSeverity(slotProps.data) as string" />
                 </template>
             </Column>
             <template #expansion="slotProps">
                 <div class="p-3">
-                    <h5>Orders for {{ slotProps.data.name }}</h5>
-                    <DataTable :value="slotProps.data.orders">
-                        <Column field="id" header="Id" sortable></Column>
-                        <Column field="customer" header="Customer" sortable></Column>
-                        <Column field="date" header="Date" sortable></Column>
-                        <Column field="amount" header="Amount" sortable>
-                            <template #body="slotProps">
-                                {{ formatCurrency(slotProps.data.amount) }}
-                            </template>
-                        </Column>
-                        <Column field="status" header="Status" sortable>
-                            <template #body="slotProps">
-                                <Tag :value="slotProps.data.status.toLowerCase()" :severity="getOrderSeverity(slotProps.data)" />
-                            </template>
-                        </Column>
-                        <Column headerStyle="width:4rem">
-                            <template #body>
-                                <Button icon="pi pi-search" />
-                            </template>
-                        </Column>
-                    </DataTable>
+                    
+                    <div class="flex flex-wrap gap-3">
+                        <div class="flex align-items-center">
+                            <RadioButton v-model="selectedOption" inputId="optionAfectados" name="options" value="afectados" />
+                            <label for="afectados" class="ml-2">Afectados</label>
+                        </div>
+                        <div class="flex align-items-center">
+                            <RadioButton v-model="selectedOption" inputId="optionVinculados" name="options" value="vinculados" />
+                            <label for="vinculados" class="ml-2">Vinculados</label>
+                        </div> 
+                        <div class="flex align-items-center">
+                            <RadioButton v-model="selectedOption" inputId="optionFechaUbicacion" name="options" value="fechaUbicacion" />
+                            <label for="fechaUbicacion" class="ml-2">Fecha y Ubicación</label>
+                        </div> 
+                        <div class="flex align-items-center">
+                            <RadioButton v-model="selectedOption" inputId="optionEfectos" name="options" value="efectos" />
+                            <label for="fechaEfectos" class="ml-2">Efectos</label>
+                        </div> 
+                        <div class="flex align-items-center">
+                            <RadioButton v-model="selectedOption" inputId="optionIntervinientes" name="options" value="intervinientes" />
+                            <label for="intervinientes" class="ml-2">Intervinientes</label>
+                        </div> 
+                    </div>
+                    <div v-if="selectedOption === 'afectados'">
+                        
+                        <div class="flex justify-content-center">
+                            <h2 class="uppercase">Afectados</h2>
+                        </div>
+                        <DataTable :value="slotProps.data.afectados">
+                            <Column field="nombre" header="nombre" sortable></Column>
+                            <Column field="apellido" header="apellido" sortable></Column>
+                            <Column field="documento" header="documento" sortable></Column>
+                            <Column field="telefono" header="telefono" sortable></Column>
+                            <Column header="Estado">
+                                <template #body="slotProps">
+                                    <Tag :value="slotProps.data.tipo" :severity="getColorByAfectado(slotProps.data.tipo)" />
+                                </template>
+                            </Column>
+                        </DataTable>
+                    </div>
+                    <div v-if="selectedOption === 'vinculados'">
+                        <div class="flex justify-content-center">
+                            <h2 class="uppercase">Vinculados</h2>
+                        </div>
+                        <DataTable :value="slotProps.data.vinculados">
+                            <Column field="id" header="Id" sortable></Column>
+                            <Column field="nombre" header="nombre" sortable></Column>
+                            <Column field="apellido" header="apellido" sortable></Column>
+                            <Column field="documento" header="documento" documento></Column>
+                            <Column field="telefono" header="telefono" sortable></Column>
+                            <Column field="apodo" header="apodo" sortable></Column>
+                            <Column header="Estado">
+                                <template #body="slotProps">
+                                    <Tag :value="slotProps.data.tipo" :severity="getColorByAfectado(slotProps.data.tipo)" />
+                                </template>
+                            </Column>
+                        </DataTable>
+                    </div>
+                    <div v-if="selectedOption === 'fechaUbicacion'">
+                        <div class="flex justify-content-center">
+                            <h2 class="uppercase">Fecha Ubicacion</h2>
+                        </div>
+                        <DataTable :value="slotProps.data.fechaUbicacion">
+                            <Column field="desdeFechaHora" header="Fecha desde"></Column>
+                            <Column field="hastaFechaHora" header="Fecha hasta"></Column>
+                            <Column field="calle" header="Calle"></Column>
+                            <Column field="numero" header="Número"></Column>
+                            <Column field="departamento" header="Departamento"></Column>
+                        </DataTable>
+                    </div>
+                    <div v-if="selectedOption === 'efectos'">
+                        <div class="flex justify-content-center">
+                            <h2 class="uppercase">Efectos</h2>
+                        </div>
+                        <DataTable :value="slotProps.data.efectos">
+                            <Column field="categoria" header="Categoria" sortable></Column>
+                            <Column field="marca" header="Marca" sortable></Column>
+                            <Column field="modelo" header="Modelo" sortable></Column>
+                            <Column field="subcategoria" header="Subcategoria" documento></Column>
+                            <Column field="tipo" header="Tipo" sortable></Column>
+                        </DataTable>
+                    </div>
+                    <div v-if="selectedOption === 'intervinientes'">
+                        <div class="flex justify-content-center">
+                            <h2 class="uppercase">Intervinientes</h2>
+                        </div>
+                        <DataTable :value="slotProps.data.intervinientes">
+                            <Column field="apellido" header="Apellido"></Column>
+                            <Column field="nombre" header="Nombre"></Column>
+                            <Column field="jerarquia" header="Jerarquia"></Column>
+                            <Column field="dependencia" header="Dependencia"></Column>
+                        </DataTable>
+                    </div>
                 </div>
             </template>
         </DataTable>
+
+    
         <Toast />
     </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, reactive } from 'vue';
 import { useToast } from 'primevue/usetoast';
 import { ProductService } from '@/service/ProductService';
+import { getColorByAfectado } from '@/helpers/getColorByAfectado';
 
 const products = ref();
 const expandedRows = ref([]);
 const toast = useToast();
-
+const detailExpansionState = reactive({});
+const selectedOption = ref('afectados');
 onMounted(() => {
-    ProductService.getProductsWithOrdersSmall().then((data) => (products.value = data));
+    ProductService.getProductsWithOrdersSmall().then((data: any) => (products.value = data));
 });
 
-const onRowExpand = (event) => {
-    toast.add({ severity: 'info', summary: 'Product Expanded', detail: event.data.name, life: 3000 });
+const onRowExpand = (event: { data: { name: any; }; }) => {
+    toast.add({ severity: 'info', summary: 'Item Expandidos', detail: event.data.name, life: 3000 });
 };
-const onRowCollapse = (event) => {
-    toast.add({ severity: 'success', summary: 'Product Collapsed', detail: event.data.name, life: 3000 });
+const onRowCollapse = (event: { data: { name: any; }; }) => {
+    toast.add({ severity: 'success', summary: 'Items Colapsados', detail: event.data.name, life: 3000 });
 };
 const expandAll = () => {
-    expandedRows.value = products.value.reduce((acc, p) => (acc[p.id] = true) && acc, {});
+    expandedRows.value = products.value.reduce((acc: { [x: string]: boolean; }, p: { id: string | number; }) => (acc[p.id] = true) && acc, {});
 };
 const collapseAll = () => {
-    expandedRows.value = null;
+    expandedRows.value = [];
 };
-const formatCurrency = (value) => {
-    return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-};
-const getSeverity = (product) => {
-    switch (product.inventoryStatus) {
-        case 'INSTOCK':
+
+const getSeverity = (product: { statusActuacion: any; }) => {
+    switch (product.statusActuacion) {
+        case 'EN CURSO':
             return 'success';
 
-        case 'LOWSTOCK':
+        case 'VENCIDA':
             return 'warning';
 
-        case 'OUTOFSTOCK':
+        case 'FINALIZADA':
             return 'danger';
 
         default:
             return null;
     }
 };
-const getOrderSeverity = (order) => {
+const getOrderSeverity = (order:any) => {
     switch (order.status) {
         case 'DELIVERED':
             return 'success';
@@ -131,4 +195,5 @@ const getOrderSeverity = (order) => {
     border-radius: 10px;
     margin-bottom: 1rem;
 }
+
 </style>

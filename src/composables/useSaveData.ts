@@ -9,6 +9,7 @@ import type { PersonalInterviniente } from '../interfaces/personalInterviniente'
 
 export interface dataActuacionForSave {
     id?: number;
+    nroLegajoCompleto:string,
     datosRequeridos: {
         afectados:Afectados[],
         vinculados:Vinculados[],
@@ -33,9 +34,9 @@ const useSaveData = () => {
 
         try {
             await db.open();
-             // Serializar los arrays a JSON antes de almacenarlos
               // Ajustar las claves aquí
               await db.actuaciones.add({
+                nroLegajoCompleto: data.nroLegajoCompleto,
                 afectados: JSON.stringify(data.datosRequeridos.afectados),
                 vinculados: JSON.stringify(data.datosRequeridos.vinculados),
                 fechaUbicacion: JSON.stringify(data.datosRequeridos.fechaUbicacion),
@@ -52,18 +53,23 @@ const useSaveData = () => {
     const fetchActuaciones = async () => {
         try {
             await db.open();
-            const data = await db.actuaciones.toArray();
-            // Deserializar los arrays
-            const serializedData = {
-                datosRequeridos: {
-                    afectado: JSON.stringify(data.datosRequeridos.afectados), // Cambiado de 'afectados' a 'afectado'
-                    vinculados: JSON.stringify(data.datosRequeridos.vinculados),
-                    fechaUbicacion: JSON.stringify(data.datosRequeridos.fechaUbicacion),
-                    efectos: JSON.stringify(data.datosRequeridos.efectos),
-                    personalInterviniente: JSON.stringify(data.datosRequeridos.personalInterviniente)
-                }
-            };
+            const actuacionesArray = await db.actuaciones.toArray();
             
+            // Deserializar cada actuación individualmente
+            const deserializedData = actuacionesArray.map(actuacion => {
+                return {
+                    id: actuacion.id,
+                    nroLegajoCompleto: actuacion.nroLegajoCompleto,
+                    datosRequeridos: {
+                        afectados: JSON.parse(actuacion.afectados),
+                        vinculados: JSON.parse(actuacion.vinculados),
+                        fechaUbicacion: JSON.parse(actuacion.fechaUbicacion),
+                        efectos: JSON.parse(actuacion.efectos),
+                        personalInterviniente: JSON.parse(actuacion.personalInterviniente)
+                    }
+                };
+            });
+    
             return deserializedData;
         } catch (err) {
             console.error('Error al recuperar datos:', err);
@@ -73,7 +79,8 @@ const useSaveData = () => {
     return {
         saveData,
         error,
-        success
+        success,
+        fetchActuaciones
     };
 };
 

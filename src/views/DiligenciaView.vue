@@ -44,6 +44,7 @@ const toggleHeader = () => {
 };
 const handleSave = ()=>{
   const data={
+    nroLegajoCompleto: '102/2024',
     datosRequeridos: {
         afectados:afectados.value,
         vinculados:vinculados.value,

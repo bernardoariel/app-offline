@@ -13,7 +13,6 @@ const selectedOption = ref('afectados');
 const {fetchActuaciones}= useSaveData()
 onMounted(async () => {
     const actuaciones = await fetchActuaciones();
-    console.log(actuaciones); // Aquí deberías ver los resultados
 
     ProductService.getProductsWithOrdersSmall().then((data: any) => (products.value = data));
 })

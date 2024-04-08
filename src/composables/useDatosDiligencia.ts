@@ -32,14 +32,14 @@ const useDatosDiligencia = (actuacion: Ref<string>) => {
     return afectados.value.map((a, index) => {
       const isLast = index === afectados.value.length - 1; 
       const separator = isLast ? '.' : ',';
-      
-      return `${getStyle(getUpperCase(a.apellido) + ', '  + getTitleCase(a.nombre))}
-        ${getStyle('con ' + a.typeDocumento + ' Nº ' + String(a.nroDocumento))}
-        ${getStyle('de nacionalidad ' + a.nacionalidad)}
-        ${getStyle('de ' + getAge(a.fecha) + ' años de edad. ')}
-        ${getStyle(a.instruccion + ', ')} 
-        ${getStyle('de profesion ' + a.profesion + ', ')} 
-        ${getStyle('con domicilio en ' + a.domicilioResidencia)}${separator}`;
+      const apellidoNombre = getUpperCase(a.apellido) + ', ' + getTitleCase(a.nombre);
+      const documento = 'con ' + a.typeDocumento + ' Nº ' + String(a.nroDocumento);
+      const nacionalidad = 'de nacionalidad ' + a.nacionalidad;
+      const edad = 'de ' + getAge(a.fecha) + ' años de edad.';
+      const instruccion = a.instruccion + ',';
+      const profesion = 'de profesion ' + a.profesion + ',';
+      const domicilio = 'con domicilio en ' + a.domicilioResidencia;
+      return `${getStyle(apellidoNombre)} ${getStyle(documento)} ${getStyle(nacionalidad)} ${getStyle(edad)} ${getStyle(instruccion)} ${getStyle(profesion)} ${getStyle(domicilio, isLast)}`;
     }).join(' '); 
   });
 

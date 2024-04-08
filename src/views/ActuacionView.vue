@@ -9,6 +9,8 @@ import useCardInformation from '@/composables/useCardInformation';
 
 import useItem from '../composables/useItems';
 import useFieldState from '@/composables/useFiledsState';
+import useDatosLegales from '../composables/useDatosLegales';
+import useDatosDiligencia from '@/composables/useDatosDiligencia';
 
 interface Props{
   actuacion:string;
@@ -19,16 +21,24 @@ const active = ref(0);
 const { agregarNuevoItem } = useActuacion();
 const { setAll } = useItem()
 const { resetStates } = useFieldState()
+const { relato } = useDatosDiligencia(props.actuacion)
+const { 
+  addDataFake
+} = useDatosLegales()
 const { cardInformationKeys,cardInformation } = useCardInformation(actuacionRef)
 const handleClick = (event: { ctrlKey: any; altKey: any; }) =>{
   if (event.ctrlKey && event.altKey) {
         console.log(`Ctrl + Alt + Click detectado: ${actuacionRef}`);
         resetStates()
         setAll()
+        addDataFake()
+        relato.value = 'esto es una prueba del relato'
+
   }
 }
 watch(() => props.actuacion, (newValue) => {
   actuacionRef.value = newValue;
+  
 });
 </script>
 

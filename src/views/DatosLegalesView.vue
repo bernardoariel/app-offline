@@ -17,11 +17,13 @@ const {
     selectedCausaCaratula,
     selectedJuzgadoInterviniente,
     selectedCausaCaratulaList,
-    nroLegajo
+    nroLegajo,
+    itemsCausaCaratula
 } = useDatosLegales()
 
+
 let yearsActuacion:string[] = getYearsDrop()
-let itemsCausaCaratula = ref<any[]>([])
+
 
 watch(selectedCausaCaratula, () => {
 
@@ -31,18 +33,20 @@ watch(selectedCausaCaratula, () => {
     if (!itemExists) itemsCausaCaratula.value.push(selectedCausaCaratula.value);
     
     selectedCausaCaratula.value = undefined
-    
+    console.log('selectedYear::: ', selectedYear.value);
 });
 const eliminarItem = (name:string)=>{
     if (itemsCausaCaratula.value === undefined) return
     itemsCausaCaratula.value = itemsCausaCaratula.value.filter(item => item.name !== name);
 
 }
+
 </script>
 <template>
     <div class="grid">
                 
         <div class="col-9">
+
             <label for="dropdown" >Legajo N° / N° de extracto</label>
             <MyInput
                 type="text"
@@ -59,7 +63,7 @@ const eliminarItem = (name:string)=>{
                 v-model="selectedYear"
                 :placeholder="yearsActuacion[0].toString()"
                 optionLabel="name"
-                filter
+                :filter=false
                 color
                 />
         </div>    

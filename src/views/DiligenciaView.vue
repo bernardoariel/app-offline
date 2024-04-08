@@ -3,7 +3,6 @@ import useDatosDiligencia from '@/composables/useDatosDiligencia';
 import { getUpperCase } from '@/helpers/stringUtils';
 import { computed, ref, watch } from 'vue';
 import useNewActuacion from '../composables/useNewActuacion';
-import useDatosLegales from '../composables/useDatosLegales';
 
 
 interface Props{
@@ -18,20 +17,13 @@ const {
   processedHeaderText,
   isEditingHeader,
   headerContainer,
-  headerTextComputed
+  headerTextComputed,
+  relato
 } = useDatosDiligencia(actuacionRef);
 
 const {isEditedHeader} = useNewActuacion()
 
-const { 
-    selectedYear,
-    selectedSitio,
-    selectedModusOperandi,
-    selectedCausaCaratula,
-    selectedJuzgadoInterviniente,
-    selectedCausaCaratulaList,
-    nroLegajo
-} = useDatosLegales()
+
 
 const toggleHeader = () => {
   if (isEditingHeader.value) {
@@ -47,11 +39,10 @@ const toggleHeader = () => {
   isEditingHeader.value = !isEditingHeader.value;
 };
 
-
-
 watch(() => props.actuacion, (newValue) => {
   actuacionRef.value = newValue;
 });
+
 </script>
 <template>
     <div class="surface-section px-2 py-5 md:px-6 lg:px-8 w-full">
@@ -82,7 +73,7 @@ watch(() => props.actuacion, (newValue) => {
           <li class="py-3 px-2 border-top-1 surface-border">
             <div class="text-500 font-medium mb-2">Relato</div>
             <div> 
-              <Textarea rows="10" class="w-full"/>
+              <Textarea rows="10" class="w-full" v-model="relato"/>
             </div>
           </li>
           <li class="flex align-items-center py-3 px-2 border-top-1 surface-border" style="justify-content: space-between;">

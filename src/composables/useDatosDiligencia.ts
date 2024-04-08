@@ -13,7 +13,7 @@ interface ProcessedText {
 }
 
 const { isEditedHeader } = useNewActuacion()
-
+const relato = ref<string>('')
 const useDatosDiligencia = (actuacion: Ref<string>) => {
   const { afectados, intervinientes } = useItem();
   
@@ -106,6 +106,7 @@ const useDatosDiligencia = (actuacion: Ref<string>) => {
     isEditingHeader,
     headerContainer,
     headerTextComputed,
+    relato
   };
 };
 

@@ -3,6 +3,10 @@ import useDatosDiligencia from '@/composables/useDatosDiligencia';
 import { getUpperCase } from '@/helpers/stringUtils';
 import { computed, ref, watch } from 'vue';
 import useNewActuacion from '../composables/useNewActuacion';
+import useSaveData from '../composables/useSaveData';
+import useItem from '@/composables/useItems';
+
+
 
 
 interface Props{
@@ -23,8 +27,8 @@ const {
 
 const {isEditedHeader} = useNewActuacion()
 
-
-
+const { saveData} = useSaveData()
+const {afectados,efectos,fechaUbicacion,intervinientes,vinculados} = useItem()
 const toggleHeader = () => {
   if (isEditingHeader.value) {
     // Guardar
@@ -38,7 +42,20 @@ const toggleHeader = () => {
   }
   isEditingHeader.value = !isEditingHeader.value;
 };
+const handleSave = ()=>{
+  const data={
+    datosRequeridos: {
+        afectados:afectados.value,
+        vinculados:vinculados.value,
+        fechaUbicacion:fechaUbicacion.value,
+        efectos:efectos.value,
+        personalInterviniente:intervinientes.value
+    }
+    
 
+  }
+  saveData(data)
+}
 watch(() => props.actuacion, (newValue) => {
   actuacionRef.value = newValue;
 });
@@ -51,7 +68,7 @@ watch(() => props.actuacion, (newValue) => {
           <div class="font-medium text-3xl text-900">{{ primeradiligencia ? getUpperCase(primeradiligencia.titulo) : '' }}</div>
           <div>
             <Button label="Previsualizar" class="p-button-rounded mr-2" />
-            <Button label="Registrar" class="p-button-rounded " severity="warning"/>
+            <Button label="Registrar" class="p-button-rounded " @click="handleSave" severity="warning"/>
           </div>
         </div>
 
@@ -59,7 +76,7 @@ watch(() => props.actuacion, (newValue) => {
         <ul class="list-none p-0 m-0 w-full">
           <li class="flex align-items-center py-3 px-2 border-top-1 surface-border" style="justify-content: space-between;">
             <div v-if="!isEditingHeader && !isEditedHeader" v-html="processedText.header"></div>
-            <div v-else-if="!isEditingHeader && isEditedHeader" >aa{{ headerContainer }}</div>
+            <div v-else-if="!isEditingHeader && isEditedHeader" >{{ headerContainer }}</div>
             <Textarea v-if="isEditingHeader" v-model="headerTextComputed" autoResize class="w-full" />
 
             <div>

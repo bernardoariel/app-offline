@@ -1,0 +1,12 @@
+- Actualizar fechacreacion desde el calendario del toolbar con 5 días para atras
+- fontsize que se almacene en localstorage
+- tomar el fontsize del localstorage
+- modo dark mejorar "cuando es dark y el item no tiene dark hay un error"
+- mejorar el tema de la fecha y la hora en el toolbar
+- inicializar las variables globales *nombreActuacion *fechaCreacion
+- Al editar el head de la diligencia mostrar un alert 
+- hacer la logica del footer para que sea editado
+- convertir la fecha en formato dd/mm/yyyy usando el helper formatFecha
+- agregar mas items en efectos
+- los items del personal interviniente si la actuacion no los posee no mostrarlos
+- 

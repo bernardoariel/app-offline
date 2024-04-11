@@ -1,0 +1,16 @@
+@startuml CaseUseGeneral
+left to right direction
+actor Usuario as user
+
+rectangle "Sistema de Actuaciones" {
+  (Ver Actuaciones CU-1) as (CU1)
+  (Crear Actuacion CU-2) as (CU2)
+  (Eliminar Actuacion CU-3) as (CU3)
+  (Editar Actuacion CU-4) as (CU4)
+}
+
+user -- (CU1)
+user -- (CU2)
+user -- (CU3)
+user -- (CU4)
+@enduml

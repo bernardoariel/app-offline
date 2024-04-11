@@ -9,6 +9,7 @@ let selectedCausaCaratula = ref<DropDownInterface>()
 let selectedJuzgadoInterviniente = ref<DropDownInterface>()
 let selectedCausaCaratulaList = ref(null)
 let itemsCausaCaratula = ref<any[]>([])
+let nombreActuacion = ref<string>('Sumario por denuncia')
 const useDatosLegales = () => {
     
     const fakeValues = {
@@ -37,7 +38,8 @@ const useDatosLegales = () => {
         selectedCausaCaratulaList,
         nroLegajo,
         itemsCausaCaratula,
-        addDataFake
+        addDataFake,
+        nombreActuacion
     }
 };
 

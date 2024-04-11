@@ -16,7 +16,7 @@ const router = createRouter({
     },
     {
       path: '/actuaciones/list',
-      name: 'Actuaciones',
+      name: 'actuaciones',
       component: ActuacionesView
     },
     {

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, onMounted, reactive } from 'vue';
+import { ref, onMounted, reactive, onActivated } from 'vue';
 import { useToast } from 'primevue/usetoast';
 import { ProductService } from '@/service/ProductService';
 import { getColorByAfectado } from '@/helpers/getColorByAfectado';
@@ -8,15 +8,19 @@ import useSaveData from '../composables/useSaveData';
 const products = ref();
 const expandedRows = ref([]);
 const toast = useToast();
-const detailExpansionState = reactive({});
+
 const selectedOption = ref('afectados');
 const {fetchActuaciones}= useSaveData()
-onMounted(async () => {
-    const actuaciones = await fetchActuaciones();
-
-    ProductService.getProductsWithOrdersSmall().then((data: any) => (products.value = data));
+let actuaciones:any 
+/* onMounted(async () => {
+    actuaciones = await fetchActuaciones();
+    products.value = actuaciones
+    // ProductService.getProductsWithOrdersSmall().then((data: any) => (products.value = data));
+}) */
+onActivated(async()=>{
+    actuaciones = await fetchActuaciones();
+    products.value = actuaciones
 })
-
 const onRowExpand = (event: { data: { name: any; }; }) => {
     toast.add({ severity: 'info', summary: 'Item Expandidos', detail: event.data.name, life: 3000 });
 };
@@ -70,23 +74,23 @@ const getOrderSeverity = (order:any) => {
             class="my-custom-datatable"    
             v-model:expandedRows="expandedRows" :value="products" dataKey="id"
             @rowExpand="onRowExpand" @rowCollapse="onRowCollapse" tableStyle="min-width: 60rem">
-            <template #header>
+            <!-- <template #header >
                 <div class="flex flex-wrap justify-content-end gap-2">
-                    <Button text icon="pi pi-plus" label="Expandir Todos" @click="expandAll" />
-                    <Button text icon="pi pi-minus" label="Colapsar Todos" @click="collapseAll" />
+                    <Button text icon="pi pi-plus"  @click="expandAll" style="font-size: 0.1rem;"/>
+                    <Button text icon="pi pi-minus" @click="collapseAll" />
                 </div>
-            </template>
+            </template> -->
             <Column expander style="width: 5rem" />
             <Column field="fechaCreacion" header="Fecha"></Column>
-            <Column field="nroLegajo" header="Nro de Actuación"></Column>
+            <Column field="nroLegajoCompleto" header="Nro.de Actuación"></Column>
             <Column field="nombreActuacion" header="Actuaciones"></Column>
-            <Column field="juzgado" header="Juzgado"></Column>
+            <Column field="juzgadoInterviniente" header="Juzgado"></Column>
             
-            <Column header="Estado">
+            <!-- <Column header="Estado">
                 <template #body="slotProps">
                     <Tag :value="slotProps.data.statusActuacion" :severity="getSeverity(slotProps.data) as string" />
                 </template>
-            </Column>
+            </Column> -->
             <template #expansion="slotProps">
                 <div class="p-3">
                     
@@ -118,13 +122,13 @@ const getOrderSeverity = (order:any) => {
                             <h2 class="uppercase">Afectados</h2>
                         </div>
                         <DataTable :value="slotProps.data.afectados">
-                            <Column field="nombre" header="nombre" sortable></Column>
-                            <Column field="apellido" header="apellido" sortable></Column>
-                            <Column field="documento" header="documento" sortable></Column>
-                            <Column field="telefono" header="telefono" sortable></Column>
-                            <Column header="Estado">
+                            <Column field="nombre" header="Nombre" sortable></Column>
+                            <Column field="apellido" header="Apellido" sortable></Column>
+                            <Column field="nroDocumento" header="Nro.Documento" sortable></Column>
+                            <Column field="telefono" header="Teléfono" sortable></Column>
+                            <Column header="Tipo de Afectado">
                                 <template #body="slotProps">
-                                    <Tag :value="slotProps.data.tipo" :severity="getColorByAfectado(slotProps.data.tipo)" />
+                                    <Tag :value="slotProps.data.typeAfectado" :severity="getColorByAfectado(slotProps.data.typeAfectado)" />
                                 </template>
                             </Column>
                         </DataTable>
@@ -134,15 +138,14 @@ const getOrderSeverity = (order:any) => {
                             <h2 class="uppercase">Vinculados</h2>
                         </div>
                         <DataTable :value="slotProps.data.vinculados">
-                            <Column field="id" header="Id" sortable></Column>
-                            <Column field="nombre" header="nombre" sortable></Column>
-                            <Column field="apellido" header="apellido" sortable></Column>
-                            <Column field="documento" header="documento" documento></Column>
-                            <Column field="telefono" header="telefono" sortable></Column>
-                            <Column field="apodo" header="apodo" sortable></Column>
-                            <Column header="Estado">
+                            <Column field="nombre" header="Nombre" sortable></Column>
+                            <Column field="apellido" header="Apellido" sortable></Column>
+                            <Column field="nroDocumento" header="Nro.Documento" documento></Column>
+                            <Column field="telefono" header="Teléfono" sortable></Column>
+                            <Column field="apodo" header="Apodo" sortable></Column>
+                            <Column header="Tipo de Vinculado">
                                 <template #body="slotProps">
-                                    <Tag :value="slotProps.data.tipo" :severity="getColorByAfectado(slotProps.data.tipo)" />
+                                    <Tag :value="slotProps.data.typeAfectado" :severity="getColorByAfectado(slotProps.data.typeAfectado)" />
                                 </template>
                             </Column>
                         </DataTable>
@@ -164,10 +167,10 @@ const getOrderSeverity = (order:any) => {
                             <h2 class="uppercase">Efectos</h2>
                         </div>
                         <DataTable :value="slotProps.data.efectos">
-                            <Column field="categoria" header="Categoria" sortable></Column>
+                            <Column field="categoria" header="Categoría" sortable></Column>
                             <Column field="marca" header="Marca" sortable></Column>
                             <Column field="modelo" header="Modelo" sortable></Column>
-                            <Column field="subcategoria" header="Subcategoria" documento></Column>
+                            <Column field="subcategoria" header="Subcategoría" documento></Column>
                             <Column field="tipo" header="Tipo" sortable></Column>
                         </DataTable>
                     </div>
@@ -178,7 +181,7 @@ const getOrderSeverity = (order:any) => {
                         <DataTable :value="slotProps.data.intervinientes">
                             <Column field="apellido" header="Apellido"></Column>
                             <Column field="nombre" header="Nombre"></Column>
-                            <Column field="jerarquia" header="Jerarquia"></Column>
+                            <Column field="jerarquia" header="Jerarquía"></Column>
                             <Column field="dependencia" header="Dependencia"></Column>
                         </DataTable>
                     </div>

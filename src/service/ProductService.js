@@ -18,7 +18,6 @@ export const ProductService = {
                         apellido: 'González',
                         documento: 251623012,
                         telefono: 37046047,
-                        customer: 'Laura Smith',
                         tipo: 'Denunciante y Damnificado'
                     },
                     {
@@ -27,7 +26,6 @@ export const ProductService = {
                         apellido: 'López',
                         documento: 289561232,
                         telefono: 37046048,
-                        customer: 'John Doe',
                         tipo: 'Denunciante'
                     },
                     {
@@ -36,7 +34,6 @@ export const ProductService = {
                         apellido: 'Martínez',
                         documento: 227856342,
                         telefono: 37046049,
-                        customer: 'Emma Wilson',
                         tipo: 'Damnificado'
                     }
                 ],
@@ -47,7 +44,6 @@ export const ProductService = {
                         apellido: 'Morales',
                         documento: 264890456,
                         telefono: 37046056,
-                        customer: 'Nathan Wright',
                         tipo: 'Acusado',
                         apodo: 'La Gata'
                     },
@@ -57,7 +53,6 @@ export const ProductService = {
                         apellido: 'Sánchez',
                         documento: 278901234,
                         telefono: 37046057,
-                        customer: 'Lily King',
                         tipo: 'Detenido',
                         apodo: 'El Rápido'
                     }
@@ -131,7 +126,6 @@ export const ProductService = {
                         apellido: 'Navarro',
                         documento: 302561940,
                         telefono: 37046050,
-                        customer: 'Sofia Parker',
                         tipo: 'Damnificado'
                     },
                     {
@@ -140,7 +134,6 @@ export const ProductService = {
                         apellido: 'Ruiz',
                         documento: 212345678,
                         telefono: 37046051,
-                        customer: 'Michael Brown',
                         tipo: 'Denunciante y Damnificado'
                     },
                     {
@@ -149,7 +142,6 @@ export const ProductService = {
                         apellido: 'Torres',
                         documento: 298765432,
                         telefono: 37046052,
-                        customer: 'Rachel Green',
                         tipo: 'Denunciante'
                     }
                 ],
@@ -160,7 +152,6 @@ export const ProductService = {
                         apellido: 'Díaz',
                         documento: 289076543,
                         telefono: 37046058,
-                        customer: 'Emma Stone',
                         tipo: 'Acusado',
                         apodo: 'El Rayo'
                     },
@@ -170,7 +161,6 @@ export const ProductService = {
                         apellido: 'García',
                         documento: 297654321,
                         telefono: 37046059,
-                        customer: 'Olivia Jones',
                         tipo: 'Detenido',
                         apodo: 'Norteño'
                     },
@@ -180,7 +170,6 @@ export const ProductService = {
                         apellido: 'López',
                         documento: 300112233,
                         telefono: 37046060,
-                        customer: 'James Smith',
                         tipo: 'Acusado',
                         apodo: 'La Maestra'
                     }
@@ -235,7 +224,6 @@ export const ProductService = {
                     apellido: 'García',
                     documento: 297654321,
                     telefono: 37046059,
-                    customer: 'Olivia Jones',
                     tipo: 'Detenido',
                     apodo: 'Norteño'}
                 ],
@@ -246,7 +234,6 @@ export const ProductService = {
                         apellido: 'Vega',
                         documento: 312345678,
                         telefono: 37046061,
-                        customer: 'Sophia Wilson',
                         tipo: 'Detenido',
                         apodo: 'El Silencioso'
                     }
@@ -327,7 +314,6 @@ export const ProductService = {
                         apellido: 'Fernández',
                         documento: 267890321,
                         telefono: 37046053,
-                        customer: 'Oliver Martinez',
                         tipo: 'Denunciante y Damnificado'
                     },
                     {
@@ -336,7 +322,6 @@ export const ProductService = {
                         apellido: 'Ramírez',
                         documento: 234567890,
                         telefono: 37046054,
-                        customer: 'Alice Johnson',
                         tipo: 'Damnificado'
                     }
                     
@@ -348,7 +333,6 @@ export const ProductService = {
                         apellido: 'Quintana',
                         documento: 325678901,
                         telefono: 37046062,
-                        customer: 'George Harris',
                         tipo: 'Acusado',
                         apodo: 'La Sombra'
                     },
@@ -358,7 +342,6 @@ export const ProductService = {
                         apellido: 'Miranda',
                         documento: 334567890,
                         telefono: 37046063,
-                        customer: 'Diane Rose',
                         tipo: 'Detenido',
                         apodo: 'El Fantasma'
                     },
@@ -368,7 +351,6 @@ export const ProductService = {
                         apellido: 'Campos',
                         documento: 343678901,
                         telefono: 37046064,
-                        customer: 'Adam Turner',
                         tipo: 'Acusado',
                         apodo: 'Centella'
                     },
@@ -378,7 +360,6 @@ export const ProductService = {
                         apellido: 'Rojas',
                         documento: 352789012,
                         telefono: 37046065,
-                        customer: 'Mia White',
                         tipo: 'Detenido',
                         apodo: 'El Mudo'
                     }
@@ -425,7 +406,6 @@ export const ProductService = {
                         apellido: 'Reyes',
                         documento: 255678345,
                         telefono: 37046055,
-                        customer: 'Jason Clark',
                         tipo: 'Denunciante'
                     }
                 ],
@@ -436,7 +416,6 @@ export const ProductService = {
                         apellido: 'Hernández',
                         documento: 361890123,
                         telefono: 37046066,
-                        customer: 'Leo Barnett',
                         tipo: 'Acusado',
                         apodo: 'La Intrépida'
                     },
@@ -446,7 +425,6 @@ export const ProductService = {
                         apellido: 'Martínez',
                         documento: 370901234,
                         telefono: 37046067,
-                        customer: 'Harper Collins',
                         tipo: 'Detenido',
                         apodo: 'El Tintero'
                     }

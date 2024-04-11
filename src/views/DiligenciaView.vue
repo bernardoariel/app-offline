@@ -5,14 +5,14 @@ import { computed, ref, watch } from 'vue';
 import useNewActuacion from '../composables/useNewActuacion';
 import useSaveData from '../composables/useSaveData';
 import useItem from '@/composables/useItems';
-
+import { useRouter } from 'vue-router';
 
 interface Props{
   actuacion:string;
 }
 const props = defineProps<Props>()
 const actuacionRef = ref(props.actuacion);
-
+const router = useRouter()
 const { 
   processedText, 
   primeradiligencia,
@@ -29,8 +29,7 @@ const { saveData} = useSaveData()
 const {afectados,efectos,fechaUbicacion,intervinientes,vinculados} = useItem()
 const toggleHeader = () => {
   if (isEditingHeader.value) {
-    // Guardar
-    console.log('Guardamos');
+    
     headerContainer.value = headerTextComputed.value; // Usar headerTextComputed permite reflejar los cambios
     isEditedHeader.value = true; // Se mueve aquí para reflejar que ahora hay un valor editado
   }else{
@@ -42,18 +41,15 @@ const toggleHeader = () => {
 };
 const handleSave = ()=>{
   const data={
-    nroLegajoCompleto: '102/2024',
-    datosRequeridos: {
-        afectados:afectados.value,
-        vinculados:vinculados.value,
-        fechaUbicacion:fechaUbicacion.value,
-        efectos:efectos.value,
-        personalInterviniente:intervinientes.value
-    }
-    
-
+    afectados:afectados.value,
+    vinculados:vinculados.value,
+    fechaUbicacion:fechaUbicacion.value,
+    efectos:efectos.value,
+    personalInterviniente:intervinientes.value ?? []
   }
   saveData(data)
+  /* tengo que resetear todo */
+  router.push({ name: 'actuaciones' });
 }
 watch(() => props.actuacion, (newValue) => {
   actuacionRef.value = newValue;

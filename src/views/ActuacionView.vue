@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, watch } from 'vue';
+import { ref, watch, onMounted } from 'vue';
 import DataViewCard from '@/components/DataViewCard.vue';
 import DatosLegalesView from './DatosLegalesView.vue';
 import DiligenciaView from './DiligenciaView.vue';
@@ -18,7 +18,9 @@ interface Props{
 const props = defineProps<Props>()
 const actuacionRef = ref(props.actuacion);
 const active = ref(0);
-const { agregarNuevoItem } = useActuacion();
+const { agregarNuevoItem,toogleDateActuacion } = useActuacion();
+
+onMounted(()=>toogleDateActuacion())
 const { setAll } = useItem()
 const { resetStates } = useFieldState()
 const { relato } = useDatosDiligencia(props.actuacion)
@@ -46,6 +48,7 @@ watch(() => props.actuacion, (newValue) => {
   <div class="grid">
     
     <div class="col-5">
+      
       <Card>
         <template #title>
           <div class="title-container">

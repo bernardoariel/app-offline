@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 import DataTableExpansion from '@/components/DataTableExpansion.vue';
+import useActuacion from '../composables/useActuacion';
+
+const { toogleDateActuacion } = useActuacion()
 
 </script>
 <template>
@@ -7,7 +10,6 @@ import DataTableExpansion from '@/components/DataTableExpansion.vue';
    <DataTableExpansion />
 
 </template>
-
 
 <style scoped>
 

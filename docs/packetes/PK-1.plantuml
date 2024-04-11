@@ -1,0 +1,20 @@
+@startuml
+left to right direction
+actor Usuario as user
+
+package "Sistema de Actuaciones" {
+  rectangle "Ver Actuaciones CU-1" as VA {
+    [ActuacionesView] as AV
+    [DataTableExpansion] as DTE
+    database "useActuacion Composable" as UA
+  }
+  rectangle "Crear Actuaciones CU-2" as CA
+}
+
+user --> AV : selecciona "Ver Actuaciones"
+AV --> DTE : muestra tabla de actuaciones
+DTE --> UA : consulta datos de actuación
+UA --> DTE : devuelve datos de actuación
+DTE --> AV : muestra detalles en expansión
+
+@enduml

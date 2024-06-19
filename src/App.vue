@@ -9,19 +9,40 @@ import useThemeColor from './composables/useThemeColor';
 const PrimeVue = usePrimeVue();
 const { changeThemeCurrent } = useThemeColor()
 const isLoading = ref(true); // Estado de carga
-onMounted(() => {
-  // Cargar el nombre del tema del almacenamiento local
-  const savedTheme = localStorage.getItem('currentTheme');
+const themeLink = document.querySelector('link#theme-link');
+if (themeLink) {
+    // Verificar si el atributo href está presente y no está vacío
+    const themeHref = themeLink.getAttribute('href');
 
-  const themeName = savedTheme ? JSON.parse(savedTheme).name : 'lara-light-blue';
+    if (themeHref) {
+        // El CSS del tema se ha cargado correctamente
+        console.log('El tema se ha cargado correctamente:', themeHref);
+    } else {
+        console.error('El atributo href del enlace del tema está vacío.');
+    }
+} else {
+    console.error('No se encontró el enlace del tema en el DOM.');
+}
+onMounted(() => {
+
+  // Cargar el nombre del tema del almacenamiento local
+   const savedTheme = localStorage.getItem('currentTheme');
   
 
+  const themeName = savedTheme ? JSON.parse(savedTheme).name : 'lara-light-blue';
+  console.log('themeName::: ', themeName);
+
+  
+ 
   // Aplicar el tema utilizando PrimeVue.changeTheme
-  PrimeVue.changeTheme('lara-light-blue', themeName, 'theme-link', () => {
+  PrimeVue.changeTheme('lara-light-blue', 'arya-blue', 'theme-link', () => {
+
     isLoading.value = false;  // Marcar que la carga ha finalizado
     changeThemeCurrent(themeName);
-  });
+  }); 
 });
+
+
 </script>
 
 <template>

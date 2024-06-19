@@ -5,19 +5,19 @@ import ActuacionesView from '@/views/ActuacionesView.vue'
 
 import isSavedChanges from '@/guards/isSavedChanges';
 // import useItem from '../composables/useItems';
-
+// GUARDS
 // const { resetAll } =useItem()
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      redirect: '/actuaciones/list'
+      redirect: '/actuaciones/list',
     },
     {
       path: '/actuaciones/list',
       name: 'actuaciones',
-      component: ActuacionesView
+      component: ActuacionesView,
     },
     {
       path: '/actuacion/personas/:tipo',

@@ -1,4 +1,4 @@
-@startuml CaseUseGeneral
+@startuml CaseUseActuaciones
 left to right direction
 actor Usuario as user
 

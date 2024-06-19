@@ -5,7 +5,9 @@
 Version | Fecha       | Descripción de Cambios
 --------|------------|-----------------------
 1.00     | 2024-04-10 | Versión inicial del caso de uso.
-1.01     | 2024-04-11 | Agregando un nuevo HeaderName y Botones a la tabla principal.
+1.01     | 2024-04-11 | Agregando un nuevo HeaderName "Acciones" a la tabla Principal
+1.02     | 2024-04-11 | Añadido botones de "Eliminar" y "Editar" en la columna "Acciones" con íconos y colores específicos.
+
 
 ## Identificador
 UC1
@@ -24,7 +26,9 @@ Usuario final
 ## Flujo Principal
 1. El usuario accede a la sección de "Actuaciones" en la aplicación.
 2. La aplicación consulta la base de datos local del navegador para obtener las actuaciones almacenadas.
-3. La aplicación muestra las actuaciones en una tabla expansible. Las columnas son las siguientes: "Fecha", "Nro.de Actuación", "Actuaciones","Juzgado", "Acciones"
+3. La aplicación muestra las actuaciones en una tabla expansible. Las columnas son las siguientes: "Fecha", "Nro. de Actuación", "Actuaciones", "Juzgado", "Acciones". En la columna "Acciones", cada fila contiene dos botones: 
+   - Un botón de "Eliminar" con un icono de basura, redondo y de color rojo (danger) para indicar una acción potencialmente destructiva.
+   - Un botón de "Editar" con un icono de lápiz, redondo y de color amarillo (warning) para editar la actuación.
 4. El usuario puede expandir una actuación para ver más detalles.
 5. Al expandir una actuación, la fila se queda fija y las filas siguientes se mueven dando espacio a un selector de opciones y una nueva tabla que muestra datos adicionales de la actuación y sobre la tabla se reflejará un titulo segun la opcion seleccionada.
 6. Las opciones para seleccionar son: "Afectados","Vinculados","Fecha y Ubicación","Efectos","Intervinientes", siendo esta opcion visible segun el tipo de actuación.

@@ -41,7 +41,7 @@ import 'primeflex/primeflex.css';
 // import 'primevue/resources/themes/lara-light-blue/theme.css'
 import 'primeicons/primeicons.css';
 import useThemeColor from './composables/useThemeColor';
-const { currentTheme } = useThemeColor()
+
 const app = createApp(App)
 
 app.use(createPinia())
@@ -86,7 +86,7 @@ db.version(1).stores({
     afectados: '++id, typeAfectado, typeDocumento, nroDocumento, typeSexo, apellido, name, fecha, nacionalidad, estadoCivil, domicilioResidencia, telefono, email, profesion, instruccion'
 });
  */
-
+const { currentTheme } = useThemeColor()
 app.mount('#app')
 
 

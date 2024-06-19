@@ -38,6 +38,8 @@ const useThemeColor = ()=>{
 
     if (savedTheme) {
       currentTheme.value = JSON.parse(savedTheme);
+    }else{
+      currentTheme.value = { name: 'lara-light-blue', isDark:false, hasModeDark: true }
     }
   };
   

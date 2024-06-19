@@ -20,7 +20,8 @@ export interface dataActuacionForSave {
     efectos:Efectos[],
     personalInterviniente:PersonalInterviniente[]
 }
-const { fechaCreacion } = useActuacion()  
+/* const { fechaCreacion } = useActuacion()   */
+const fechaCreacion = ref('24/08/1974')
 const { nombreActuacion,nroLegajo,selectedJuzgadoInterviniente } = useDatosLegales()
 const db = new Dexie('Siis');
 

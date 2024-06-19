@@ -67,6 +67,9 @@ const getOrderSeverity = (order:any) => {
             return null;
     }
 };
+const editActuacion = (event) => {
+    console.log('Editar actuación', event);
+};
 </script>
 <template>
      <div class="card">
@@ -85,7 +88,11 @@ const getOrderSeverity = (order:any) => {
             <Column field="nroLegajoCompleto" header="Nro.de Actuación"></Column>
             <Column field="nombreActuacion" header="Actuaciones"></Column>
             <Column field="juzgadoInterviniente" header="Juzgado"></Column>
-            
+            <Column header="Acciones">
+                <template #body="slotProps">
+                    <Button icon="pi pi-pencil" @click="editActuacion($event)" class="p-button-rounded p-button-text" />
+                </template>
+            </Column>
             <!-- <Column header="Estado">
                 <template #body="slotProps">
                     <Tag :value="slotProps.data.statusActuacion" :severity="getSeverity(slotProps.data) as string" />

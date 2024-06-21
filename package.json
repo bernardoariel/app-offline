@@ -9,10 +9,11 @@
 		"build-only": "vite build",
 		"type-check": "vue-tsc --build --force",
 		"test:unit": "vitest",
-    	"test": "vitest --watch=false"
+		"test": "vitest --watch=false"
 	},
 	"dependencies": {
 		"dexie": "^3.2.4",
+		"pdfmake": "^0.2.10",
 		"pinia": "^2.1.7",
 		"pouchdb": "^8.0.1",
 		"primeflex": "^3.3.1",

@@ -6,6 +6,7 @@ import useNewActuacion from '../composables/useNewActuacion';
 import useSaveData from '../composables/useSaveData';
 import useItem from '@/composables/useItems';
 import { useRouter } from 'vue-router';
+import { useViewPdf } from '../composables/useViewPdf';
 
 interface Props{
   actuacion:string;
@@ -13,6 +14,7 @@ interface Props{
 const props = defineProps<Props>()
 const actuacionRef = ref(props.actuacion);
 const router = useRouter()
+const { generatePdf } = useViewPdf();
 const { 
   processedText, 
   primeradiligencia,
@@ -62,7 +64,7 @@ watch(() => props.actuacion, (newValue) => {
         <div class="flex justify-content-between align-items-center mb-5">
           <div class="font-medium text-3xl text-900">{{ primeradiligencia ? getUpperCase(primeradiligencia.titulo) : '' }}</div>
           <div>
-            <Button label="Previsualizar" class="p-button-rounded mr-2" />
+            <Button label="Previsualizar" class="p-button-rounded mr-2" @click="generatePdf"/>
             <Button label="Registrar" class="p-button-rounded " @click="handleSave" severity="warning"/>
           </div>
         </div>

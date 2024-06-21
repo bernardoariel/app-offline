@@ -15,6 +15,13 @@ const props = defineProps<Props>()
 const actuacionRef = ref(props.actuacion);
 const router = useRouter()
 const { generatePdf } = useViewPdf();
+const generarPdf = async () => {
+  try {
+    await generatePdf();
+  } catch (error) {
+    console.error('Error generating PDF:', error);
+  }
+};
 const { 
   processedText, 
   primeradiligencia,
@@ -64,7 +71,7 @@ watch(() => props.actuacion, (newValue) => {
         <div class="flex justify-content-between align-items-center mb-5">
           <div class="font-medium text-3xl text-900">{{ primeradiligencia ? getUpperCase(primeradiligencia.titulo) : '' }}</div>
           <div>
-            <Button label="Previsualizar" class="p-button-rounded mr-2" @click="generatePdf"/>
+            <Button label="Previsualizar" class="p-button-rounded mr-2" @click="generarPdf"/>
             <Button label="Registrar" class="p-button-rounded " @click="handleSave" severity="warning"/>
           </div>
         </div>

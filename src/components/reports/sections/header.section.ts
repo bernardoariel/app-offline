@@ -8,34 +8,41 @@ export const headerSection = async () => {
         return {
             columns: [
                 {
-                    image: logoPolicia,
-                    fit: [150, 150],
-                    alignment: 'left',
-                    margin: [0, 0, 0, 0],
+                    width: '75%',
+                    stack:[
+                        {
+                            image: logoPolicia,
+                            fit: [150, 150],
+                            alignment: 'left',
+                            margin: [0, 0, 0, 0],
+                        },
+                        {
+                            text: 'COMISARIA QUINTA STA LUCIA - TELEFONO: 4250040',
+                            alignment: 'left',
+                            fontSize: 8,
+                        }
+                    ]
                 },
-                {
-                    width: '*',
-                    text: ''
-                },
+              
                 {
                     stack: [
                         {
                             image: logoSeguridad,
-                            fit: [100, 100],
+                            fit: [80, 80],
                             alignment: 'left',
-                            margin: [-15, -25, 10, 0],
+                            margin: [-15, 0, 10, 0],
                         },
                         {
-                            canvas: [{ type: 'line', x1: 0, y1: 0, x2: 0, y2: 90, lineWidth: 1 }],
-                            margin: [60, -95, 10, 0],
+                            canvas: [{ type: 'line', x1: 0, y1: 0, x2: 0, y2: 65, lineWidth: 0.75 }],
+                            margin: [50, -75, 10, 0],
                         },
                         {
                             stack: [
-                                { text: 'SEGURIDAD', alignment: 'left' },
-                                { text: 'PREVENCIÓN', alignment: 'left', margin: [0, 5, 0, 5] },
-                                { text: 'PROTECCIÓN', alignment: 'left' },
+                                { text: 'SEGURIDAD\n', alignment: 'left',fontSize: 9 },
+                                { text: 'PREVENCIÓN\n', alignment: 'left',fontSize: 9 },
+                                { text: 'PROTECCIÓN', alignment: 'left' ,fontSize: 9},
                             ],
-                            margin: [100, -70, 0, 0],
+                            margin: [70, -52, 0, 0],
                         }
                     ],
                     alignment: 'right'

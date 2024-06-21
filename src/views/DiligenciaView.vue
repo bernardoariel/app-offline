@@ -38,9 +38,8 @@ const { saveData} = useSaveData()
 const {afectados,efectos,fechaUbicacion,intervinientes,vinculados} = useItem()
 const toggleHeader = () => {
   if (isEditingHeader.value) {
-    
-    headerContainer.value = headerTextComputed.value; // Usar headerTextComputed permite reflejar los cambios
-    isEditedHeader.value = true; // Se mueve aquí para reflejar que ahora hay un valor editado
+    headerContainer.value = headerTextComputed.value; 
+    isEditedHeader.value = true;
   }else{
     if (headerContainer.value === '') {
       headerContainer.value = processedHeaderText.value;

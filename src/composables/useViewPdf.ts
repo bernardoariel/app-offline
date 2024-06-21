@@ -27,6 +27,7 @@ const style: StyleDictionary = {
     font: 'TimesNewRoman',
     bold: true,
     alignment: 'center',
+    margin: [0, 20, 0, 10],
   },
   body: {
     fontSize: 12,
@@ -52,6 +53,7 @@ export const useViewPdf = () => {
         defaultStyle: {
           font: 'TimesNewRoman',
         },
+        pageMargins: [40, 60, 40, 60] 
       };
 
       const pdfDocGenerator = pdfMake.createPdf(docDefinition, null, fonts);

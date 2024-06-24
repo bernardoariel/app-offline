@@ -1,7 +1,18 @@
 import { getBase64ImageFromURL } from '../../../helpers/getBase64Image';
+import { useStorageData } from '../../../composables/useStorageData';
 
 export const headerSection = async () => {
     try {
+        const { obtenerDatos } = useStorageData();
+        obtenerDatos();
+        
+        // Obtener los datos de dependencia desde localStorage
+        const dependenciaGuardada = localStorage.getItem('dependencia');
+        let dependencia = {};
+
+        if (dependenciaGuardada) {
+            dependencia = JSON.parse(dependenciaGuardada);
+        }
         const logoPolicia = await getBase64ImageFromURL('src/assets/logo-policia-de-san-juan.png');
         const logoSeguridad = await getBase64ImageFromURL('src/assets/police.png');
 
@@ -17,7 +28,7 @@ export const headerSection = async () => {
                             margin: [0, 0, 0, 0],
                         },
                         {
-                            text: 'COMISARIA QUINTA STA LUCIA - TELEFONO: 4250040',
+                            text: `${dependencia.nombre} - TELEFONO: ${dependencia.telefonos}`,
                             alignment: 'left',
                             fontSize: 8,
                         }

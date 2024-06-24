@@ -28,9 +28,9 @@ export const headerSection = async () => {
                             margin: [0, 0, 0, 0],
                         },
                         {
-                            text: `${dependencia.nombre} - TELEFONO: ${dependencia.telefonos}`,
+                            text: `${dependencia.nombre.toUpperCase()} - TELEFONO: ${dependencia.telefonos}`,
                             alignment: 'left',
-                            fontSize: 8,
+                            fontSize: 10,
                         }
                     ]
                 },

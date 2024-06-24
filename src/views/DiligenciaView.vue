@@ -36,16 +36,27 @@ const {isEditedHeader} = useNewActuacion()
 
 const { saveData} = useSaveData()
 const {afectados,efectos,fechaUbicacion,intervinientes,vinculados} = useItem()
-const toggleHeader = () => {
-  if (isEditingHeader.value) {
-    headerContainer.value = headerTextComputed.value; 
-    isEditedHeader.value = true;
-  }else{
-    if (headerContainer.value === '') {
-      headerContainer.value = processedHeaderText.value;
-    }
+const setHeaderFromComputed = () => {
+  headerContainer.value = headerTextComputed.value;
+  isEditedHeader.value = true;
+};
+
+const setHeaderFromProcessedIfEmpty = () => {
+  if (headerContainer.value === '') {
+    headerContainer.value = processedHeaderText.value;
   }
+};
+const toggleHeader = () => {
+
+  if (isEditingHeader.value) {
+    setHeaderFromComputed();
+    isEditingHeader.value = !isEditingHeader.value;
+    return;
+  }
+  
+  setHeaderFromProcessedIfEmpty();
   isEditingHeader.value = !isEditingHeader.value;
+  
 };
 const handleSave = ()=>{
   const data={

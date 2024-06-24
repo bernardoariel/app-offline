@@ -41,6 +41,7 @@ import 'primeflex/primeflex.css';
 // import 'primevue/resources/themes/lara-light-blue/theme.css'
 import 'primeicons/primeicons.css';
 import useThemeColor from './composables/useThemeColor';
+import { useStorageData } from './composables/useStorageData';
 
 const app = createApp(App)
 
@@ -86,6 +87,8 @@ db.version(1).stores({
     afectados: '++id, typeAfectado, typeDocumento, nroDocumento, typeSexo, apellido, name, fecha, nacionalidad, estadoCivil, domicilioResidencia, telefono, email, profesion, instruccion'
 });
  */
+const { guardarDatosAleatorios } = useStorageData()
+guardarDatosAleatorios()
 const { currentTheme } = useThemeColor()
 app.mount('#app')
 

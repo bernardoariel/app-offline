@@ -18,10 +18,9 @@ const {
 
 // Exported function to get the body section
 export const bodySection = () => {
-  const head = headerContainer.value;
+  const head = headerContainer.value || processedHeaderText.value
   const body = relato.value
   const foot = footerText.value.replace(/<\/?[^>]+(>|$)/g, "");
-
 
   return {
     text: head + ' ' + body + ' ' + foot,

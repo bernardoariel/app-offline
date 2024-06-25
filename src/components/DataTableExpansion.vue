@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { ref, onMounted, reactive, onActivated } from 'vue';
 import { useToast } from 'primevue/usetoast';
-import { ProductService } from '@/service/ProductService';
 import { getColorByAfectado } from '@/helpers/getColorByAfectado';
 import useSaveData from '../composables/useSaveData';
 
@@ -10,7 +9,7 @@ const expandedRows = ref([]);
 const toast = useToast();
 
 const selectedOption = ref('afectados');
-const {fetchActuaciones}= useSaveData()
+const {fetchActuaciones, deleteActuacion}= useSaveData()
 let actuaciones:any 
 /* onMounted(async () => {
     actuaciones = await fetchActuaciones();
@@ -34,37 +33,14 @@ const collapseAll = () => {
     expandedRows.value = [];
 };
 
-const getSeverity = (product: { statusActuacion: any; }) => {
-    switch (product.statusActuacion) {
-        case 'EN CURSO':
-            return 'success';
-
-        case 'VENCIDA':
-            return 'warning';
-
-        case 'FINALIZADA':
-            return 'danger';
-
-        default:
-            return null;
-    }
-};
-const getOrderSeverity = (order:any) => {
-    switch (order.status) {
-        case 'DELIVERED':
-            return 'success';
-
-        case 'CANCELLED':
-            return 'danger';
-
-        case 'PENDING':
-            return 'warning';
-
-        case 'RETURNED':
-            return 'info';
-
-        default:
-            return null;
+const handleDelete = async (id: string) => {
+    try {
+        await deleteActuacion(id);
+        toast.add({ severity: 'success', summary: 'Actuación eliminada', life: 3000 });
+        actuaciones = await fetchActuaciones();
+        products.value = actuaciones;
+    } catch (error) {
+        toast.add({ severity: 'error', summary: 'Error', detail: `Error al eliminar actuación con ID ${id}`, life: 3000 });
     }
 };
 </script>
@@ -74,23 +50,19 @@ const getOrderSeverity = (order:any) => {
             class="my-custom-datatable"    
             v-model:expandedRows="expandedRows" :value="products" dataKey="id"
             @rowExpand="onRowExpand" @rowCollapse="onRowCollapse" tableStyle="min-width: 60rem">
-            <!-- <template #header >
-                <div class="flex flex-wrap justify-content-end gap-2">
-                    <Button text icon="pi pi-plus"  @click="expandAll" style="font-size: 0.1rem;"/>
-                    <Button text icon="pi pi-minus" @click="collapseAll" />
-                </div>
-            </template> -->
+
             <Column expander style="width: 5rem" />
             <Column field="fechaCreacion" header="Fecha"></Column>
             <Column field="nroLegajoCompleto" header="Nro.de Actuación"></Column>
             <Column field="nombreActuacion" header="Actuaciones"></Column>
             <Column field="juzgadoInterviniente" header="Juzgado"></Column>
             <Column header="Acciones">
-                <template #body="slotProps">
+                <template #body="{ data }">
                     <div class="flex gap-2">
-                        <Button icon="pi pi-search" @click="" square severity="success"></Button>
+                        <Button icon="pi pi-file-pdf" square @click="" severity="success"  ></Button>
                         <Button icon="pi pi-pencil" @click="" square severity="warning"></Button>
-                        <Button icon="pi pi-trash" @click="" square severity="danger"></Button>
+                        <Button icon="pi pi-trash" @click="() => handleDelete(data.id)" square severity="danger"></Button>
+                        <span></span>
                     </div>
                 </template>
             </Column>

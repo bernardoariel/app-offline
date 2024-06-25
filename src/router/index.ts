@@ -23,15 +23,23 @@ const router = createRouter({
       path: '/actuacion/personas/:tipo',
       name: 'formulario',
       component: FormActuacionVue,
-      props: true  
+      props: true
     },
     {
       path: '/actuaciones/new/:actuacion/initial',
       name: 'actuacion',
       component: ActuacionView,
-      props: ( route ) => {
-        return  { actuacion: route.params.actuacion }
-     }
+      props: (route) => {
+        return { actuacion: route.params.actuacion }
+      }
+    },
+    {
+      path: '/actuaciones/edit/:actuacion/:id/initial/',
+      name: 'editActuacion',
+      component: ActuacionView,
+      props: (route) => {
+        return { id: route.params.id, actuacion: route.params.actuacion }
+      }
     }
   ]
 })
@@ -40,7 +48,7 @@ router.beforeEach((to, from, next) => {
   if (to.name === 'actuacion' || from.name === 'actuacion') {
 /*     resetAll
  */    next()
-  }else{
+  } else {
     isSavedChanges(to, from, next); // Llamada al guard isSavedChanges en cada navegación
   }
 });

@@ -1,16 +1,24 @@
 <script lang="ts" setup>
 import { ref, onMounted, reactive, onActivated } from 'vue';
+import {useRouter } from 'vue-router'
 import { useToast } from 'primevue/usetoast';
 import { ProductService } from '@/service/ProductService';
 import { getColorByAfectado } from '@/helpers/getColorByAfectado';
-import useSaveData from '../composables/useSaveData';
+
+import useSaveData from '@/composables/useSaveData';
+import useFieldState from '@/composables/useFiledsState';
+import useDatosLegales from '@/composables/useDatosLegales';
+import useItem from '@/composables/useItems';
 
 const products = ref();
 const expandedRows = ref([]);
-const toast = useToast();
-
 const selectedOption = ref('afectados');
+
+const toast = useToast();
 const {fetchActuaciones}= useSaveData()
+const { resetStates } = useFieldState()
+const router = useRouter()
+
 let actuaciones:any 
 /* onMounted(async () => {
     actuaciones = await fetchActuaciones();
@@ -33,6 +41,10 @@ const expandAll = () => {
 const collapseAll = () => {
     expandedRows.value = [];
 };
+const onEditActuacion = (id:number, nombreActuacion:string) => {
+    resetStates()
+    router.push({name: 'editActuacion', params: { id, actuacion:nombreActuacion }})
+}
 
 const getSeverity = (product: { statusActuacion: any; }) => {
     switch (product.statusActuacion) {
@@ -88,9 +100,9 @@ const getOrderSeverity = (order:any) => {
             <Column header="Acciones">
                 <template #body="slotProps">
                     <div class="flex gap-2">
-                        <Button icon="pi pi-search" @click="editActuacion" severity="success" square ></Button>
-                        <Button icon="pi pi-pencil" @click="editActuacion" square severity="warning"></Button>
-                        <Button icon="pi pi-trash" @click="editActuacion" square severity="danger"></Button>
+                        <Button icon="pi pi-search" severity="success" square ></Button>
+                        <Button icon="pi pi-pencil" @click="onEditActuacion(slotProps.data.id, slotProps.data.nombreActuacion)" square severity="warning"></Button>
+                        <Button icon="pi pi-trash"  square severity="danger"></Button>
                     </div>
                 </template>
             </Column>

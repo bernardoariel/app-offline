@@ -11,23 +11,42 @@ import useItem from '../composables/useItems';
 import useFieldState from '@/composables/useFiledsState';
 import useDatosLegales from '../composables/useDatosLegales';
 import useDatosDiligencia from '@/composables/useDatosDiligencia';
+import useSaveData from '@/composables/useSaveData';
 
 interface Props{
-  actuacion:string;
+  actuacion?: string;
+  id?: string
 }
 const props = defineProps<Props>()
+
 const actuacionRef = ref(props.actuacion);
 const active = ref(0);
 const { agregarNuevoItem,toogleDateActuacion } = useActuacion();
+const {fetchActuacionById} = useSaveData()
 
-onMounted(()=>toogleDateActuacion())
+const getActuacion = async () => {
+  const actuacion = await fetchActuacionById(Number(props.id))
+  addRealData(actuacion)
+  console.log('actuacionRef',actuacionRef.value); //aca tengo la actuacion a editar
+  actuacionRef.value = actuacion
+}
+
+onMounted(()=>{
+  toogleDateActuacion()
+  if(props.id){
+    resetStates()
+    getActuacion() //si hay id cuando montamos el componente busca la actuacion en la db
+  }
+})
+
 const { setAll } = useItem()
 const { resetStates } = useFieldState()
 const { relato } = useDatosDiligencia(props.actuacion)
 const { 
-  addDataFake
+  addDataFake, addRealData
 } = useDatosLegales()
 const { cardInformationKeys,cardInformation } = useCardInformation(actuacionRef)
+
 const handleClick = (event: { ctrlKey: any; altKey: any; }) =>{
   if (event.ctrlKey && event.altKey) {
         console.log(`Ctrl + Alt + Click detectado: ${actuacionRef}`);
@@ -35,13 +54,14 @@ const handleClick = (event: { ctrlKey: any; altKey: any; }) =>{
         setAll()
         addDataFake()
         relato.value = 'esto es una prueba del relato'
-
   }
 }
+
 watch(() => props.actuacion, (newValue) => {
   actuacionRef.value = newValue;
   
 });
+
 </script>
 
 <template>

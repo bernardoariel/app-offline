@@ -90,7 +90,6 @@ const useSaveData = () => {
         try {
             await db.open();
             const actuacion = await db.actuaciones.get({ id });
-            console.log('actuacion', actuacion);
             return actuacion;
         } catch (err) {
             console.error('Error al recuperar datos:', err);

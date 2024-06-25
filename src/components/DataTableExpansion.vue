@@ -10,7 +10,7 @@ const expandedRows = ref([]);
 const toast = useToast();
 
 const selectedOption = ref('afectados');
-const {fetchActuaciones}= useSaveData()
+const {fetchActuaciones, deleteActuacion}= useSaveData()
 let actuaciones:any 
 /* onMounted(async () => {
     actuaciones = await fetchActuaciones();
@@ -67,6 +67,17 @@ const getOrderSeverity = (order:any) => {
             return null;
     }
 };
+
+const handleDelete = async (id: string) => {
+    try {
+        await deleteActuacion(id);
+        toast.add({ severity: 'success', summary: 'Actuación eliminada', life: 3000 });
+        actuaciones = await fetchActuaciones();
+        products.value = actuaciones;
+    } catch (error) {
+        toast.add({ severity: 'error', summary: 'Error', detail: `Error al eliminar actuación con ID ${id}`, life: 3000 });
+    }
+};
 </script>
 <template>
      <div class="card">
@@ -90,7 +101,8 @@ const getOrderSeverity = (order:any) => {
                     <div class="flex gap-2">
                         <Button icon="pi pi-search" @click="editActuacion" severity="success" square ></Button>
                         <Button icon="pi pi-pencil" @click="editActuacion" square severity="warning"></Button>
-                        <Button icon="pi pi-trash" @click="editActuacion" square severity="danger"></Button>
+                        <Button icon="pi pi-trash" @click="() => handleDelete(slotProps.data.id)" square severity="danger"></Button>
+                        <span></span>
                     </div>
                 </template>
             </Column>

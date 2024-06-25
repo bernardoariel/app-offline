@@ -1,13 +1,14 @@
 <script lang="ts" setup>
 import useDatosDiligencia from '@/composables/useDatosDiligencia';
 import { getUpperCase } from '@/helpers/stringUtils';
-import { computed, ref, watch } from 'vue';
+import { computed, ref, watch, onActivated } from 'vue';
 import useNewActuacion from '../composables/useNewActuacion';
 import useSaveData from '../composables/useSaveData';
 import useItem from '@/composables/useItems';
 import { useRouter } from 'vue-router';
 import { useViewPdf } from '../composables/useViewPdf';
 import PdfViewer from '@/components/reports/PdfViewer.vue';
+import { usePdfState } from '@/composables/usePdfState';
 
 interface Props{
   actuacion:string;
@@ -15,15 +16,25 @@ interface Props{
 const props = defineProps<Props>()
 const actuacionRef = ref(props.actuacion);
 const router = useRouter()
-const checkedViewPdf = ref(false);
+
 const { generatePdf } = useViewPdf();
+const { checkedViewPdf, setPdfView } = usePdfState();
+const isVisible = ref<boolean>(false)
+/* 
 const generarPdf = async () => {
   try {
     await generatePdf();
   } catch (error) {
     console.error('Error generating PDF:', error);
   }
-};
+}; 
+*/
+
+
+onActivated(() => {
+  isVisible.value = checkedViewPdf.value;
+});
+
 const { 
   processedText, 
   primeradiligencia,
@@ -60,6 +71,9 @@ const toggleHeader = () => {
   isEditingHeader.value = !isEditingHeader.value;
   
 };
+const togglePdfView = () => {
+  setPdfView(isVisible.value);
+};
 const handleSave = ()=>{
   const data={
     afectados:afectados.value,
@@ -69,6 +83,7 @@ const handleSave = ()=>{
     personalInterviniente:intervinientes.value ?? []
   }
   saveData(data)
+  setPdfView(false); 
   /* tengo que resetear todo */
   router.push({ name: 'actuaciones' });
 }
@@ -85,15 +100,15 @@ watch(() => props.actuacion, (newValue) => {
           <div class="font-medium text-3xl text-900">{{ primeradiligencia ? getUpperCase(primeradiligencia.titulo) : '' }}</div>
           <div>
             <!-- <Button label="Previsualizar" class="p-button-rounded mr-2" @click="generarPdf"/> -->
-            <ToggleButton v-model="checkedViewPdf" class="p-button-rounded mr-2" onLabel="Ocultar Pdf" offLabel="Ver Pdf" />
+            <ToggleButton v-model="isVisible" class="p-button-rounded mr-2" onLabel="Ocultar Pdf" offLabel="Ver Pdf" @change="togglePdfView"/>
             <Button label="Registrar" class="p-button-rounded " @click="handleSave" severity="warning"/>
           </div>
         </div>
 
         <div class="text-500 mb-3">Este diligencia es ....</div>
-          <div v-if="checkedViewPdf">
-            <PdfViewer />
-          </div>
+        <div v-if="isVisible">
+          <PdfViewer />
+        </div>
           <ul v-else class="list-none p-0 m-0 w-full">
             <li class="flex align-items-center py-3 px-2 border-top-1 surface-border" style="justify-content: space-between;">
               <div v-if="!isEditingHeader && !isEditedHeader" v-html="processedText.header"></div>

@@ -88,9 +88,9 @@ const getOrderSeverity = (order:any) => {
             <Column header="Acciones">
                 <template #body="slotProps">
                     <div class="flex gap-2">
-                        <Button icon="pi pi-search" @click="editActuacion" severity="success" square ></Button>
-                        <Button icon="pi pi-pencil" @click="editActuacion" square severity="warning"></Button>
-                        <Button icon="pi pi-trash" @click="editActuacion" square severity="danger"></Button>
+                        <Button icon="pi pi-search" @click="" square severity="success"></Button>
+                        <Button icon="pi pi-pencil" @click="" square severity="warning"></Button>
+                        <Button icon="pi pi-trash" @click="" square severity="danger"></Button>
                     </div>
                 </template>
             </Column>

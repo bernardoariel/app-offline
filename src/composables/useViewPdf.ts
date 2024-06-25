@@ -4,12 +4,14 @@ import { customFonts } from '../components/reports/fonts/customFonts.ts';
 import type { StyleDictionary, TDocumentDefinitions } from '../components/reports/interfaces/pdfmake';
 import { headerSection, bodySection } from '../components/reports/sections/index';
 import { ref } from 'vue';
+import { usePdfState } from './usePdfState';
 
 // Register custom fonts with pdfMake
 pdfMake.vfs = {
   ...pdfMake.vfs,
   ...customFonts,
 };
+
 const pdfUrl = ref('');
 // Definir las fuentes
 const fonts = {
@@ -39,6 +41,8 @@ const style: StyleDictionary = {
 
 // Función para generar el PDF
 export const useViewPdf = () => {
+ 
+
   const generatePdf = async () => {
     try {
       const header = await headerSection();
@@ -57,11 +61,10 @@ export const useViewPdf = () => {
         pageMargins: [40, 60, 40, 60] 
       };
 
-      /* const pdfDocGenerator = pdfMake.createPdf(docDefinition, null, fonts);
-      pdfDocGenerator.open(); */
       pdfMake.createPdf(docDefinition, null, fonts).getBlob((blob) => {
         const url = URL.createObjectURL(blob);
         pdfUrl.value = url;
+        //setPdfView(true);  // Set to true after PDF is generated
       });
     } catch (error) {
       console.error('Error generating PDF:', error);
@@ -70,6 +73,6 @@ export const useViewPdf = () => {
 
   return {
     generatePdf,
-    pdfUrl
+    pdfUrl,
   };
 };

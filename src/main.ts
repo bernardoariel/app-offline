@@ -31,7 +31,7 @@ import ToastService from 'primevue/toastservice';
 import InputSwitch from 'primevue/inputswitch';
 import ProgressSpinner from 'primevue/progressspinner';
 import RadioButton from 'primevue/radiobutton';
-
+import ToggleButton from 'primevue/togglebutton';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import ColumnGroup from 'primevue/columngroup';   // optional
@@ -79,6 +79,7 @@ app.component('Toast', Toast);
 app.component('InputSwitch', InputSwitch);
 app.component('ProgressSpinner', ProgressSpinner);
 app.component('RadioButton', RadioButton);
+app.component('ToggleButton', ToggleButton);
 
 app.directive('ripple', Ripple);
 app.directive('styleclass', StyleClass);

@@ -3,13 +3,14 @@ import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { customFonts } from '../components/reports/fonts/customFonts.ts';
 import type { StyleDictionary, TDocumentDefinitions } from '../components/reports/interfaces/pdfmake';
 import { headerSection, bodySection } from '../components/reports/sections/index';
+import { ref } from 'vue';
 
 // Register custom fonts with pdfMake
 pdfMake.vfs = {
   ...pdfMake.vfs,
   ...customFonts,
 };
-
+const pdfUrl = ref('');
 // Definir las fuentes
 const fonts = {
   TimesNewRoman: {
@@ -56,8 +57,12 @@ export const useViewPdf = () => {
         pageMargins: [40, 60, 40, 60] 
       };
 
-      const pdfDocGenerator = pdfMake.createPdf(docDefinition, null, fonts);
-      pdfDocGenerator.open();
+      /* const pdfDocGenerator = pdfMake.createPdf(docDefinition, null, fonts);
+      pdfDocGenerator.open(); */
+      pdfMake.createPdf(docDefinition, null, fonts).getBlob((blob) => {
+        const url = URL.createObjectURL(blob);
+        pdfUrl.value = url;
+      });
     } catch (error) {
       console.error('Error generating PDF:', error);
     }
@@ -65,5 +70,6 @@ export const useViewPdf = () => {
 
   return {
     generatePdf,
+    pdfUrl
   };
 };

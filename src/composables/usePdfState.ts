@@ -1,4 +1,4 @@
-// src/composables/usePdfState.ts
+// usePdfState.ts
 import { ref } from 'vue';
 
 const checkedViewPdf = ref(false);

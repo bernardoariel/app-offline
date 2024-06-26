@@ -18,13 +18,17 @@ export function useStorageData() {
     const dependenciaAleatoria = obtenerDatoAleatorio('dependencias');
     const usuarioAleatorio = obtenerDatoAleatorio('usuarios');
 
-    // Convertir los objetos a JSON
-    const dependenciaJSON = JSON.stringify(dependenciaAleatoria);
-    const usuarioJSON = JSON.stringify(usuarioAleatorio);
+    // Crear un objeto que contenga tanto la dependencia como el usuario
+    const data = {
+      dependencia: dependenciaAleatoria,
+      usuario: usuarioAleatorio
+    };
+
+    // Convertir el objeto a JSON
+    const dataJSON = JSON.stringify(data);
 
     // Guardar en localStorage
-    localStorage.setItem("dependencia", dependenciaJSON);
-    localStorage.setItem("usuario", usuarioJSON);
+    localStorage.setItem("siisOffLineData", dataJSON);
 
     // Actualizar los refs
     dependencia.value = dependenciaAleatoria;
@@ -32,17 +36,14 @@ export function useStorageData() {
   };
 
   const obtenerDatos = () => {
-    // Obtener los JSON desde localStorage
-    const dependenciaGuardada = localStorage.getItem("dependencia");
-    const usuarioGuardado = localStorage.getItem("usuario");
+    // Obtener los datos desde localStorage
+    const dataGuardada = localStorage.getItem("siisOffLineData");
 
-    // Convertir de JSON a objetos y actualizar los refs
-    if (dependenciaGuardada) {
-      dependencia.value = JSON.parse(dependenciaGuardada);
-    }
-
-    if (usuarioGuardado) {
-      usuario.value = JSON.parse(usuarioGuardado);
+    // Convertir de JSON a objeto y actualizar los refs
+    if (dataGuardada) {
+      const data = JSON.parse(dataGuardada);
+      dependencia.value = data.dependencia;
+      usuario.value = data.usuario;
     }
   };
 

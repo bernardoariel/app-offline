@@ -13,6 +13,8 @@ pdfMake.vfs = {
 };
 
 const pdfUrl = ref('');
+const { setPdfView } = usePdfState();
+
 // Definir las fuentes
 const fonts = {
   TimesNewRoman: {
@@ -39,10 +41,7 @@ const style: StyleDictionary = {
   },
 };
 
-// Función para generar el PDF
 export const useViewPdf = () => {
- 
-
   const generatePdf = async () => {
     try {
       const header = await headerSection();
@@ -64,7 +63,7 @@ export const useViewPdf = () => {
       pdfMake.createPdf(docDefinition, null, fonts).getBlob((blob) => {
         const url = URL.createObjectURL(blob);
         pdfUrl.value = url;
-        //setPdfView(true);  // Set to true after PDF is generated
+        setPdfView(true);  // Set to true after PDF is generated
       });
     } catch (error) {
       console.error('Error generating PDF:', error);

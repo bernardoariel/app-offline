@@ -6,12 +6,13 @@ export const headerSection = async () => {
         const { obtenerDatos } = useStorageData();
         obtenerDatos();
         
-        // Obtener los datos de dependencia desde localStorage
-        const dependenciaGuardada = localStorage.getItem('dependencia');
+        // Obtener los datos desde localStorage
+        const dataGuardada = localStorage.getItem('siisOffLineData');
         let dependencia = {};
 
-        if (dependenciaGuardada) {
-            dependencia = JSON.parse(dependenciaGuardada);
+        if (dataGuardada) {
+            const data = JSON.parse(dataGuardada);
+            dependencia = data.dependencia;
         }
         const logoPolicia = await getBase64ImageFromURL('src/assets/logo-policia-de-san-juan.png');
         const logoSeguridad = await getBase64ImageFromURL('src/assets/police.png');

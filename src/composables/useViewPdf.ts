@@ -4,7 +4,7 @@ import { customFonts } from '../components/reports/fonts/customFonts.ts';
 import type { StyleDictionary, TDocumentDefinitions } from '../components/reports/interfaces/pdfmake';
 import { headerSection, bodySection } from '../components/reports/sections/index';
 import { ref } from 'vue';
-import { usePdfState } from './usePdfState';
+
 
 // Register custom fonts with pdfMake
 pdfMake.vfs = {
@@ -13,7 +13,7 @@ pdfMake.vfs = {
 };
 
 const pdfUrl = ref('');
-const { setPdfView } = usePdfState();
+
 
 // Definir las fuentes
 const fonts = {
@@ -63,7 +63,7 @@ export const useViewPdf = () => {
       pdfMake.createPdf(docDefinition, null, fonts).getBlob((blob) => {
         const url = URL.createObjectURL(blob);
         pdfUrl.value = url;
-        setPdfView(true);  // Set to true after PDF is generated
+        
       });
     } catch (error) {
       console.error('Error generating PDF:', error);

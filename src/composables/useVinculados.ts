@@ -5,7 +5,7 @@ import type { DropDownInterface } from '../interfaces/dropdown.interface';
 import useFieldState from "./useFiledsState";
 import { vinculadosFake as itemsFake } from '@/data/mock/datosActuacion'
 
-const { agregarIdState, guardarModificaciones, eliminarIdState,resetStates } = useFieldState();
+const { agregarIdState, guardarModificaciones, eliminarIdState, resetStates } = useFieldState();
 let vinculados = ref<Vinculados[]>([]);
 
 let selectedType = ref<DropDownInterface>()
@@ -23,7 +23,7 @@ const initialValues: VinculadosForm = {
     domicilioResidencia: '',
     telefono: '',
     profesion: '',
-    apodo:'',
+    apodo: '',
     typeAfectado: { name: '' },
     typeDocumento: { name: '' },
     typeSexo: { name: '' },
@@ -34,19 +34,19 @@ const initialValues: VinculadosForm = {
 
 
 const useVinculados = () => {
-    
+
     const agregarVinculado = (item: Vinculados) => {
-        
-        if(!item) return 
+
+        if (!item) return
         const id = uuid();
 
-        vinculados.value?.push({...item, id})
+        vinculados.value?.push({ ...item, id })
         // Agrega el estado del ítem
         agregarIdState(id, {});
     };
 
     const editarVinculado = (item: Vinculados) => {
-        if(!item.id) return
+        if (!item.id) return
         const itemExistente = findById(item.id);
         if (itemExistente) {
             const index = vinculados.value.indexOf(itemExistente);
@@ -65,14 +65,14 @@ const useVinculados = () => {
         }
     };
     const selecccionarVinculado = (id: string) => {
-       
-    
-    };   
+
+
+    };
     const findById = (id: string) => {
         return vinculados.value.find(item => item.id === id);
-    }; 
+    };
 
-    const resetAllDropdown = () =>{
+    const resetAllDropdown = () => {
         selectedType.value = null;
         selectedDocumento.value = null;
         selectedSexo.value = null;
@@ -84,14 +84,20 @@ const useVinculados = () => {
         vinculados.value = [];
         resetAllDropdown()
     };
-    const set = ()=>{
-        
-        vinculados.value = [...itemsFake]
-        itemsFake.forEach(item => {
-            agregarIdState(item.id, {}); // Llama a agregarIdState con el id de cada ítem
+
+    const set = (vinculadosItem?: string) => {
+        let items = itemsFake;
+
+        if (vinculadosItem) {
+            items = JSON.parse(vinculadosItem);
+        }
+
+        vinculados.value = [...items];
+        items.forEach(item => {
+            agregarIdState(item.id, {});
         });
-      }
-   
+    };
+
     return {
         vinculados,
         selectedType,
@@ -108,10 +114,10 @@ const useVinculados = () => {
         agregar: agregarVinculado,
         eliminar: eliminarVinculado,
         editar: editarVinculado,
-        seleccionar:selecccionarVinculado
+        seleccionar: selecccionarVinculado
     };
 };
 
 export default useVinculados;
-  
+
 

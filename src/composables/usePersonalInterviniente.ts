@@ -5,8 +5,8 @@ import { intervinientesFake as itemsFake } from '@/data/mock/datosActuacion'
 import type { PersonalInterviniente, PersonalIntervinienteForm } from "@/interfaces/personalInterviniente";
 import type { DropDownInterface } from '../interfaces/dropdown.interface';
 
-const { agregarIdState, guardarModificaciones, eliminarIdState,resetStates } = useFieldState();
-const  intervinientes = ref<PersonalInterviniente[]>([]);
+const { agregarIdState, guardarModificaciones, eliminarIdState, resetStates } = useFieldState();
+const intervinientes = ref<PersonalInterviniente[]>([]);
 
 const selectedJerarquiaDrop = ref<DropDownInterface>()
 const selectedDependenciaDrop = ref<DropDownInterface>()
@@ -19,77 +19,83 @@ const initialValues: PersonalIntervinienteForm = {
   id: ""
 };
 const usePersonalInterviniente = () => {
-    
-    const agregarPersonalInterviniente = (item: PersonalInterviniente) => {
-      
-      if(!item) return 
-      const id = uuid();
 
-      intervinientes.value?.push({...item, id})
+  const agregarPersonalInterviniente = (item: PersonalInterviniente) => {
 
-      // Agrega el estado del ítem
-      agregarIdState(id, {});
-    };
-    const editarPersonalInterviniente = (item: PersonalInterviniente) => {
-      if(!item.id) return
-        const itemExistente = findById(item.id);
-        if (itemExistente) {
-            const index = intervinientes.value.indexOf(itemExistente);
-            intervinientes.value[index] = item;
-            guardarModificaciones(item.id);
-        }
-    };
-    const eliminarPersonalInterviniente = (id: string) => {
-       
-      const afectadoExistente = findById(id);
-      if (afectadoExistente) {
-          const index = intervinientes.value.indexOf(afectadoExistente);
-          if (index !== -1) {
-              intervinientes.value.splice(index, 1);
-              eliminarIdState(id);
-          }
-      }    
-    };
-    const selecccionarPersonalInterviniente = (id: string) => {
-       
-    };    
+    if (!item) return
+    const id = uuid();
 
-    const findById = (id: string) => {
-      return intervinientes.value.find(item => item.id === id);
-    };
+    intervinientes.value?.push({ ...item, id })
 
-    const resetAllDropdown = () =>{
-      selectedJerarquiaDrop.value = null;
-      selectedDependenciaDrop.value = null;
+    // Agrega el estado del ítem
+    agregarIdState(id, {});
+  };
+  const editarPersonalInterviniente = (item: PersonalInterviniente) => {
+    if (!item.id) return
+    const itemExistente = findById(item.id);
+    if (itemExistente) {
+      const index = intervinientes.value.indexOf(itemExistente);
+      intervinientes.value[index] = item;
+      guardarModificaciones(item.id);
     }
-    const reset = () => {
-      intervinientes.value = [];
-      resetAllDropdown()
-    };
-    
-    const set = ()=>{
-     
-      intervinientes.value = [...itemsFake]
-      itemsFake.forEach(item => {
-          agregarIdState(item.id, {}); // Llama a agregarIdState con el id de cada ítem
-      });
+  };
+  const eliminarPersonalInterviniente = (id: string) => {
+
+    const afectadoExistente = findById(id);
+    if (afectadoExistente) {
+      const index = intervinientes.value.indexOf(afectadoExistente);
+      if (index !== -1) {
+        intervinientes.value.splice(index, 1);
+        eliminarIdState(id);
+      }
     }
-    return {
-      intervinientes,
-      selectedJerarquiaDrop,
-      selectedDependenciaDrop,
-      initialValues,
-      reset,
-      resetAllDropdown,
-      set,
-      items: intervinientes,
-      agregar: agregarPersonalInterviniente,
-      eliminar: eliminarPersonalInterviniente,
-      editar: editarPersonalInterviniente,
-      seleccionar:selecccionarPersonalInterviniente
-    };
+  };
+  const selecccionarPersonalInterviniente = (id: string) => {
+
+  };
+
+  const findById = (id: string) => {
+    return intervinientes.value.find(item => item.id === id);
+  };
+
+  const resetAllDropdown = () => {
+    selectedJerarquiaDrop.value = null;
+    selectedDependenciaDrop.value = null;
+  }
+  const reset = () => {
+    intervinientes.value = [];
+    resetAllDropdown()
+  };
+
+  const set = (intervinientesItem?: string) => {
+    let items = itemsFake;
+
+    if (intervinientesItem) {
+      items = JSON.parse(intervinientesItem);
+    }
+
+    intervinientes.value = [...items];
+    items.forEach(item => {
+      agregarIdState(item.id, {});
+    });
+  };
+
+  return {
+    intervinientes,
+    selectedJerarquiaDrop,
+    selectedDependenciaDrop,
+    initialValues,
+    reset,
+    resetAllDropdown,
+    set,
+    items: intervinientes,
+    agregar: agregarPersonalInterviniente,
+    eliminar: eliminarPersonalInterviniente,
+    editar: editarPersonalInterviniente,
+    seleccionar: selecccionarPersonalInterviniente
+  };
 };
 
 export default usePersonalInterviniente;
-  
+
 

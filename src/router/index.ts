@@ -27,18 +27,18 @@ const router = createRouter({
     },
     {
       path: '/actuaciones/new/:actuacion/initial',
-      name: 'actuacion',
+      name: 'newActuacion',
       component: ActuacionView,
       props: (route) => {
         return { actuacion: route.params.actuacion }
       }
     },
     {
-      path: '/actuaciones/edit/:actuacion/:id/initial/',
+      path: '/actuaciones/edit/initial/:id',
       name: 'editActuacion',
       component: ActuacionView,
       props: (route) => {
-        return { id: route.params.id, actuacion: route.params.actuacion }
+        return { id: route.params.id }
       }
     }
   ]

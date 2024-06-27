@@ -3,35 +3,35 @@ import { v4 as uuid } from 'uuid';
 import type { FechaUbicacion, FechaUbicacionForm } from '../interfaces/fecha.interface';
 import type { DropDownInterface } from '../interfaces/dropdown.interface';
 import useFieldState from "./useFiledsState";
-import { fechaUbicacioFake as itemsFake} from '@/data/mock/datosActuacion'
+import { fechaUbicacioFake as itemsFake } from '@/data/mock/datosActuacion'
 
-const { agregarIdState, guardarModificaciones, eliminarIdState,resetStates } = useFieldState();
+const { agregarIdState, guardarModificaciones, eliminarIdState, resetStates } = useFieldState();
 let fechaUbicacion = ref<FechaUbicacion[]>([]);
 
 const selectedMunicipioDrop = ref<DropDownInterface>()
 
-const initialValues: FechaUbicacionForm ={
+const initialValues: FechaUbicacionForm = {
     desdeFechaHora: new Date(),
     hastaFechaHora: new Date(),
     calle: '',
     numero: '',
-    departamento: { name:'' }
+    departamento: { name: '' }
 };
 
 const useFecha = () => {
-    
+
     const agregarFechaUbicacion = (item: FechaUbicacion) => {
-        
-        if(!item) return 
+
+        if (!item) return
         const id = uuid();
-        
-        fechaUbicacion.value?.push({...item, id})
+
+        fechaUbicacion.value?.push({ ...item, id })
         // Agrega el estado del ítem
         agregarIdState(id, {});
     };
-    
+
     const editarFechaUbicacion = (item: FechaUbicacion) => {
-        if(!item.id) return
+        if (!item.id) return
         const itemExistente = findById(item.id);
         if (itemExistente) {
             const index = fechaUbicacion.value.indexOf(itemExistente);
@@ -40,7 +40,7 @@ const useFecha = () => {
         }
     };
     const eliminarFechaUbicacion = (id: string) => {
-       
+
         const afectadoExistente = findById(id);
         if (afectadoExistente) {
             const index = fechaUbicacion.value.indexOf(afectadoExistente);
@@ -54,19 +54,25 @@ const useFecha = () => {
         return fechaUbicacion.value.find(item => item.id === id);
     };
 
-    const resetAllDropdown = () =>{
+    const resetAllDropdown = () => {
         selectedMunicipioDrop.value = null;
     }
     const reset = () => {
         fechaUbicacion.value = [];
         resetAllDropdown()
     };
-    const set = ()=>{
-        fechaUbicacion.value = [...itemsFake]
-        itemsFake.forEach(item => {
-            agregarIdState(item.id, {}); // Llama a agregarIdState con el id de cada ítem
+    const set = (fechaUbicacionItem?: string) => {
+        let items = itemsFake;
+
+        if (fechaUbicacionItem) {
+            items = JSON.parse(fechaUbicacionItem);
+        }
+
+        fechaUbicacion.value = [...items];
+        items.forEach(item => {
+            agregarIdState(item.id, {});
         });
-    }
+    };
     return {
         fechaUbicacion,
         selectedMunicipioDrop,
@@ -74,7 +80,7 @@ const useFecha = () => {
         reset,
         resetAllDropdown,
         set,
-        items:fechaUbicacion,
+        items: fechaUbicacion,
         agregar: agregarFechaUbicacion,
         eliminar: eliminarFechaUbicacion,
         editar: editarFechaUbicacion,
@@ -82,5 +88,5 @@ const useFecha = () => {
 };
 
 export default useFecha;
-  
+
 

@@ -15,15 +15,12 @@ interface ProcessedText {
 const { isEditedHeader, isEditedFooter } = useNewActuacion()
 const relato = ref<string>('')
 const headerContainer = ref<string>('')
+const footerContainer = ref<string>('')
 const useDatosDiligencia = (actuacion: ref<string>) => {
   const { afectados, intervinientes } = useItem();
 
   const isEditingHeader = ref<boolean>(false);
   const isEditingFooter = ref<boolean>(false);
-
-  const headerContainer = ref<string>('')
-  const footerContainer = ref<string>('')
-
 
   const diligenciaSeleccionada = computed(() => {
     return diligencias.find((d: DatosLegales) => d.id === actuacion.value);

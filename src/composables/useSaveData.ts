@@ -18,7 +18,8 @@ export interface dataActuacionForSave {
     vinculados: Vinculados[],
     fechaUbicacion: FechaUbicacion,
     efectos: Efectos[],
-    personalInterviniente: PersonalInterviniente[]
+    personalInterviniente: PersonalInterviniente[],
+    viewPdf?: string
 }
 /* const { fechaCreacion } = useActuacion()   */
 const fechaCreacion = ref('24/08/1974')
@@ -49,7 +50,8 @@ const useSaveData = () => {
                 vinculados: JSON.stringify(data.vinculados),
                 fechaUbicacion: JSON.stringify(data.fechaUbicacion),
                 efectos: JSON.stringify(data.efectos),
-                personalInterviniente: JSON.stringify(data.personalInterviniente)
+                personalInterviniente: JSON.stringify(data.personalInterviniente),
+                viewPdf:JSON.stringify(data.viewPdf)
             });
             success.value = true;
 
@@ -75,7 +77,8 @@ const useSaveData = () => {
                     vinculados: JSON.parse(actuacion.vinculados),
                     fechaUbicacion: JSON.parse(actuacion.fechaUbicacion),
                     efectos: JSON.parse(actuacion.efectos),
-                    personalInterviniente: JSON.parse(actuacion.personalInterviniente)
+                    personalInterviniente: JSON.parse(actuacion.personalInterviniente),
+                    viewPdf:JSON.parse(actuacion.viewPdf)
                 };
             });
 

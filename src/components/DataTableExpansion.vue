@@ -3,12 +3,14 @@ import { ref, onMounted, reactive, onActivated } from 'vue';
 import { useToast } from 'primevue/usetoast';
 import { getColorByAfectado } from '@/helpers/getColorByAfectado';
 import useSaveData from '../composables/useSaveData';
+import { useViewPdf } from '@/composables/useViewPdf';
 
 const products = ref();
 const expandedRows = ref([]);
 const toast = useToast();
 
 const selectedOption = ref('afectados');
+const { generatePdf, pdfUrl } = useViewPdf();
 const {fetchActuaciones, deleteActuacion}= useSaveData()
 let actuaciones:any 
 /* onMounted(async () => {
@@ -16,6 +18,7 @@ let actuaciones:any
     products.value = actuaciones
     // ProductService.getProductsWithOrdersSmall().then((data: any) => (products.value = data));
 }) */
+
 onActivated(async()=>{
     actuaciones = await fetchActuaciones();
     products.value = actuaciones
@@ -32,7 +35,10 @@ const expandAll = () => {
 const collapseAll = () => {
     expandedRows.value = [];
 };
-
+const viewPdf = async (id: string) => {
+  await generatePdf();
+  window.open(pdfUrl.value, '_blank');
+};
 const handleDelete = async (id: string) => {
     try {
         await deleteActuacion(id);
@@ -59,7 +65,7 @@ const handleDelete = async (id: string) => {
             <Column header="Acciones">
                 <template #body="{ data }">
                     <div class="flex gap-2">
-                        <Button icon="pi pi-file-pdf" square @click="" severity="success"  ></Button>
+                        <Button icon="pi pi-file-pdf" square @click="viewPdf(data.id)" severity="success"  ></Button>
                         <Button icon="pi pi-pencil" @click="" square severity="warning"></Button>
                         <Button icon="pi pi-trash" @click="() => handleDelete(data.id)" square severity="danger"></Button>
                         <span></span>

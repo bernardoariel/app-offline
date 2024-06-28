@@ -8,7 +8,7 @@ import type { Vinculado } from "./vinculado.interface";
 export interface Tarjeta{
    
     afectados: Afectado;
-    vinculados: Vinculado;
+    vinculados?: Vinculado;
     fecha: Fecha;
     efectos: Efecto;
     personalInterviniente?:Interviniente

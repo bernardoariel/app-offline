@@ -12,14 +12,16 @@ interface ProcessedText {
   footer: string;
 }
 
-const { isEditedHeader } = useNewActuacion()
+const { isEditedHeader, isEditedFooter } = useNewActuacion()
 const relato = ref<string>('')
-const useDatosDiligencia = (actuacion: Ref<string>) => {
+const headerContainer = ref<string>('')
+const footerContainer = ref<string>('')
+const useDatosDiligencia = (actuacion: ref<string>) => {
   const { afectados, intervinientes } = useItem();
-  
+
   const isEditingHeader = ref<boolean>(false);
- 
-  const headerContainer = ref<string>('')
+  const isEditingFooter = ref<boolean>(false);
+
   const diligenciaSeleccionada = computed(() => {
     return diligencias.find((d: DatosLegales) => d.id === actuacion.value);
   });
@@ -30,7 +32,7 @@ const useDatosDiligencia = (actuacion: Ref<string>) => {
 
   const processedAfectados = computed(() => {
     return afectados.value.map((a, index) => {
-      const isLast = index === afectados.value.length - 1; 
+      const isLast = index === afectados.value.length - 1;
       const separator = isLast ? '.' : ',';
       const apellidoNombre = getUpperCase(a.apellido) + ', ' + getTitleCase(a.nombre);
       const documento = 'con ' + a.typeDocumento + ' Nº ' + String(a.nroDocumento);
@@ -40,18 +42,18 @@ const useDatosDiligencia = (actuacion: Ref<string>) => {
       const profesion = 'de profesion ' + a.profesion + ',';
       const domicilio = 'con domicilio en ' + a.domicilioResidencia;
       return `${getStyle(apellidoNombre)} ${getStyle(documento)} ${getStyle(nacionalidad)} ${getStyle(edad)} ${getStyle(instruccion)} ${getStyle(profesion)} ${getStyle(domicilio, isLast)}`;
-    }).join(' '); 
+    }).join(' ');
   });
 
   const processedIntervinientes = computed(() => {
     return intervinientes.value.map((item, index) => {
-      const isLast = index === intervinientes.value.length - 1; 
+      const isLast = index === intervinientes.value.length - 1;
       const separator = isLast ? '.' : ',';
-      
-      return `${getStyle(getTitleCase(item.jerarquia)+ ' ' + getUpperCase(item.apellido) + + ' ' + getTitleCase(item.nombre))}
+
+      return `${getStyle(getTitleCase(item.jerarquia) + ' ' + getUpperCase(item.apellido) + + ' ' + getTitleCase(item.nombre))}
         ${getStyle(' adscripto/s a numerario de  ' + item.dependencia)}${separator}`
 
-    }).join(' '); 
+    }).join(' ');
 
   });
 
@@ -85,16 +87,31 @@ const useDatosDiligencia = (actuacion: Ref<string>) => {
   const processedHeaderText = computed(() => {
     return processedText.value.header.replace(/<\/?[^>]+(>|$)/g, "");
   });
+  const processedFooterText = computed(() => {
+    return processedText.value.footer.replace(/<\/?[^>]+(>|$)/g, "");
+  });
   const headerTextComputed = computed({
     get() {
-     
+
       console.log('isEditingHeader.value::: ', isEditingHeader.value);
       return isEditingHeader.value ? headerContainer.value : processedHeaderText.value;
     },
     set(newValue) {
-      console.log('newValue::: ', newValue,isEditedHeader.value);
+      console.log('newValue::: ', newValue, isEditedHeader.value);
       // Directamente actualiza headerContainer con lo que se edite en el textarea
-       headerContainer.value = newValue;
+      headerContainer.value = newValue;
+    }
+  });
+  const footerTextComputed = computed({
+    get() {
+
+      console.log('isEditingFooter.value::: ', isEditingFooter.value);
+      return isEditingFooter.value ? footerContainer.value : processedFooterText.value;
+    },
+    set(newValue) {
+      console.log('newValue::: ', newValue, isEditedFooter.value);
+      // Directamente actualiza footerContainer con lo que se edite en el textarea
+      footerContainer.value = newValue;
     }
   });
   return {
@@ -106,7 +123,12 @@ const useDatosDiligencia = (actuacion: Ref<string>) => {
     isEditingHeader,
     headerContainer,
     headerTextComputed,
-    relato
+    processedFooterText,
+    isEditingFooter,
+    footerContainer,
+    footerTextComputed,
+    relato,
+    footerText: computed(() => processedText.value.footer)
   };
 };
 

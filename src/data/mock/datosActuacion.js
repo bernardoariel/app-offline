@@ -157,3 +157,198 @@ export const datosLegales = [
     
   }
 ] 
+
+export const userDataSiis = {
+  usuarios: [
+    {
+      nombreUsuario: "userDependencia03",
+      tipoUsuario: "TipoUsuarioOficialSumariante",
+    },
+    {
+      nombreUsuario: "UsEnOtraDep",
+      tipoUsuario: "TipoUsuarioJefeDeDependencia",
+    },
+    {
+      nombreUsuario: "UserTesterE3",
+      tipoUsuario: "UserTester",
+    },
+    {
+      nombreUsuario: "noropel",
+      tipoUsuario: "TipoUsuarioOficialSumariante",
+    },
+    {
+      nombreUsuario: "MayTest",
+      tipoUsuario: "TipoUsuarioOficialSumariante",
+    },
+    {
+      nombreUsuario: "LeoTestDeveloper",
+      tipoUsuario: "TipoUsuarioJefeDeDependencia",
+    },
+    {
+      nombreUsuario: "UsuarioPlaneamiento",
+      tipoUsuario: "TipoUsuarioDptoPlaneamiento",
+    },
+    {
+      nombreUsuario: "PruebaSuperUser",
+      tipoUsuario: "SuperUser",
+    },
+    {
+      nombreUsuario: "pruebaPlaneamiento",
+      tipoUsuario: "TipoUsuarioDptoPlaneamiento",
+    },
+    {
+      nombreUsuario: "PruebaDeposito",
+      tipoUsuario: "TipoUsuarioOficialSumariante",
+    },
+    {
+      nombreUsuario: "noropeltest",
+      tipoUsuario: "TipoUsuarioOficialSumariante",
+    },
+    {
+      nombreUsuario: "JefeDependenciaPrueba",
+      tipoUsuario: "TipoUsuarioJefeDeDependencia",
+    },
+    {
+      nombreUsuario: "pruebaControl",
+      tipoUsuario: "TipoUsuarioControldeGestion",
+    },
+    {
+      nombreUsuario: "pruebaJefeDeSumario",
+      tipoUsuario: "TipoUsuarioJefeDeSumario",
+    },
+    {
+      nombreUsuario: "ezequielF",
+      tipoUsuario: "TipoUsuarioOficialSumariante",
+    },
+    {
+      nombreUsuario: "nombre de usuario",
+      tipoUsuario: "SuperUser",
+    },
+    {
+      nombreUsuario: "OficialSumariantePrueba",
+      tipoUsuario: "TipoUsuarioOficialSumariante",
+    },
+    {
+      nombreUsuario: "JefeSumarioPrueba",
+      tipoUsuario: "TipoUsuarioJefeDeSumario",
+    },
+    {
+      nombreUsuario: "pruebaOficialSumariante",
+      tipoUsuario: "TipoUsuarioOficialSumariante",
+    },
+  ],
+  dependencias: [
+    {
+      nombre: "Unidad Operativa B° Municipal",
+      telefonos: "264381154",
+      dependenciaLetra: "Comisaria Decimo sexta",
+      domicilio: "Mendoza Pasando calle 18 Pocito",
+      departamento: "CAPITAL",
+    },
+    {
+      nombre: "Comisaria 16ta Calingasta",
+      telefonos: "02648-421022",
+      dependenciaLetra: "Ptp Policial Tamberias Calingasta",
+      domicilio: "Av. Argentina s/n Calingasta",
+      departamento: "CALINGASTA",
+    },
+    {
+      nombre: "Ptp Policial Tamberias Calingasta",
+      telefonos: "02648492010",
+      dependenciaLetra: "Ptp Policial Tamberias Calingasta",
+      domicilio: "Ruta Prov. s/n Tamberias Calingasta",
+      departamento: "CALINGASTA",
+    },
+    {
+      nombre: "Unidad Operativa Chimbas Sur",
+      telefonos: "4313253",
+      dependenciaLetra: "Unidad Operativa Chimbas Sur",
+      domicilio: "B° Udap Chimbas",
+      departamento: "CHIMBAS",
+    },
+    {
+      nombre: "Comisaria 8va -Sarmiento",
+      telefonos: "4941009",
+      dependenciaLetra: "Comisaria Octava",
+      domicilio: "c/Rivadavia s/n Media Agua Sarmiento",
+      departamento: "SARMIENTO",
+    },
+    {
+      nombre: "Comisaria 33ra Barreal",
+      telefonos: "02648-441022",
+      dependenciaLetra: "Comisaria Trigésima Tercera",
+      domicilio: "av. Presidente Roca s/n Barreal",
+      departamento: "BARREAL",
+    },
+    {
+      nombre: "Comisaria 4ta Desamparados",
+      telefonos: "4-231880",
+      dependenciaLetra: "COMISARIA CUARTA",
+      domicilio: "Av. Libertador y P. A. Sarmiento",
+      departamento: "CAPITAL",
+    },
+    {
+      nombre: "Comisaría 2da Concepción",
+      telefonos: "4-212526",
+      dependenciaLetra: "COMISARIA SEGUNDA",
+      domicilio: "c/Rivadavia s/n V° San Agustín",
+      departamento: "CONCEPCIÓN",
+    },
+    {
+      nombre: "Comisaria 12da Valle Fértil",
+      telefonos: "02646-420100",
+      dependenciaLetra: "Comisaria Decimo Segunda",
+      domicilio: "c/Rivadavia s/n V° San Agustín",
+      departamento: "VALLE FÉRTIL",
+    },
+    {
+      nombre: "Unidad Operativa Republica del libano",
+      telefonos: "N/A",
+      dependenciaLetra: "Unidad Operativa Republica del libano",
+      domicilio: "Unidad Operativa Republica del libano",
+      departamento: "CAPITAL",
+    },
+    {
+      nombre: "Comisaria 5ta Sta Lucia",
+      telefonos: "4-250040",
+      dependenciaLetra: "COMISARIA QUINTA",
+      domicilio: "COMISARIA QUINTA STA LUCIA",
+      departamento: "SANTA LUCIA",
+    },
+    {
+      nombre: "Cuerpo De Prevención y Seguridad Ciudadana",
+      telefonos: "4274679",
+      dependenciaLetra: "Cuerpo De Prevención y Seguridad Ciudadana",
+      domicilio: "B° Clemente Sarmiento Capital",
+      departamento: "SARMIENTO",
+    },
+    {
+      nombre: "Comisaria 36ta",
+      telefonos: "02644845346",
+      dependenciaLetra: "Comisaria Trigésimo Sexta",
+      domicilio: "c/Balmaceda y Progreso Rawson",
+      departamento: "RAWSON",
+    },
+    {
+      nombre: "MOTORIZADA N° 4",
+      telefonos: "4333927",
+      dependenciaLetra: "MOTORIZADA N° 4",
+      domicilio: "Av Libertador y Soldado Argentino Rivadavia",
+      departamento: "RIVADAVIA",
+    },
+    {
+      nombre: "Comisaria 25ta Rawson",
+      telefonos: "4-341720",
+      dependenciaLetra: "COMISARIA VIGÉSIMO QUINTA",
+      domicilio: "COMISARIA VIGÉSIMO QUINTA RAWSON",
+      departamento: "RAWSON",
+    },
+    {
+      nombre: "Comisaria 18va Albardon",
+      telefonos: "4-911024",
+      dependenciaLetra: "COMISARIA DECIMOCTAVA",
+      domicilio: "COMISARIA DECIMOCTAVA ALBARDON",
+      departamento: "ALBARDON",
+    },
+  ],
+};

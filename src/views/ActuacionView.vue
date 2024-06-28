@@ -12,6 +12,7 @@ import useFieldState from '@/composables/useFiledsState';
 import useDatosLegales from '../composables/useDatosLegales';
 import useDatosDiligencia from '@/composables/useDatosDiligencia';
 
+
 interface Props{
   actuacion:string;
 }

@@ -126,12 +126,16 @@ const toggleFooter = () => {
 }
 
 const handleSave = () => {
+  const head = headerContainer.value || processedHeaderText.value
+  const body = relato.value
+  const foot = footerContainer.value || processedFooterText.value
   const data = {
     afectados: afectados.value,
     vinculados: vinculados.value,
     fechaUbicacion: fechaUbicacion.value,
     efectos: efectos.value,
     personalInterviniente: intervinientes.value ?? [],
+    viewPdf:head + ' ' + body + ' ' + foot,
   };
   saveData(data);
   isVisible.value = false;

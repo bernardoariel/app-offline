@@ -5,7 +5,6 @@ import type { StyleDictionary, TDocumentDefinitions } from '../components/report
 import { headerSection, bodySection } from '../components/reports/sections/index';
 import { ref } from 'vue';
 
-
 // Register custom fonts with pdfMake
 pdfMake.vfs = {
   ...pdfMake.vfs,
@@ -13,7 +12,6 @@ pdfMake.vfs = {
 };
 
 const pdfUrl = ref('');
-
 
 // Definir las fuentes
 const fonts = {
@@ -45,28 +43,33 @@ export const useViewPdf = () => {
   const generatePdf = async () => {
     try {
       const header = await headerSection();
+      console.log('header::: ', header);
       const body = bodySection();
+      console.log('body::: ', body);
 
-      const docDefinition: TDocumentDefinitions = {
-        content: [
-          header,
-          { text: 'ACTA DE INICIO', style: 'title' },
-          body,
-        ],
-        styles: style,
-        defaultStyle: {
-          font: 'TimesNewRoman',
-        },
-        pageMargins: [40, 60, 40, 60] 
-      };
+      return new Promise((resolve) => {
+        const docDefinition: TDocumentDefinitions = {
+          content: [
+            header,
+            { text: 'ACTA DE INICIO', style: 'title' },
+            body,
+          ],
+          styles: style,
+          defaultStyle: {
+            font: 'TimesNewRoman',
+          },
+          pageMargins: [40, 60, 40, 60] 
+        };
 
-      pdfMake.createPdf(docDefinition, null, fonts).getBlob((blob) => {
-        const url = URL.createObjectURL(blob);
-        pdfUrl.value = url;
-        
+        pdfMake.createPdf(docDefinition, null, fonts).getBlob((blob) => {
+          const url = URL.createObjectURL(blob);
+          pdfUrl.value = url;
+          resolve(url);
+        });
       });
     } catch (error) {
       console.error('Error generating PDF:', error);
+      return Promise.reject(error);
     }
   };
 

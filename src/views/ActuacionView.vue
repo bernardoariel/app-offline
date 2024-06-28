@@ -1,58 +1,65 @@
 <script lang="ts" setup>
-import { ref, watch, onMounted } from 'vue';
+import { ref, watch, onActivated } from 'vue';
 import DataViewCard from '@/components/DataViewCard.vue';
 import DatosLegalesView from './DatosLegalesView.vue';
 import DiligenciaView from './DiligenciaView.vue';
-
 import useActuacion from '@/composables/useActuacion';
 import useCardInformation from '@/composables/useCardInformation';
-
 import useItem from '../composables/useItems';
 import useFieldState from '@/composables/useFiledsState';
 import useDatosLegales from '../composables/useDatosLegales';
 import useDatosDiligencia from '@/composables/useDatosDiligencia';
 import useSaveData from '@/composables/useSaveData';
 
-interface Props{
+interface Props{ 
   actuacion?: string;
   id?: string
 }
+
 const props = defineProps<Props>()
 
-const actuacionRef = ref(props.actuacion);
+const actuacionRef = ref('sumario-denuncia');//esto tiene si es sumario denuncia o oficio
+console.log('actuacionRef',actuacionRef.value);
 const active = ref(0);
+
 const { agregarNuevoItem,toogleDateActuacion } = useActuacion();
 const {fetchActuacionById} = useSaveData()
+const { setAll } = useItem()
+const { resetStates } = useFieldState()
+const { relato } = useDatosDiligencia(props.actuacion || 'sumario-denuncia')
+const { setData} = useDatosLegales()
+const { cardInformationKeys, cardInformation } = useCardInformation('sumario-oficio')
 
-const getActuacion = async () => {
-  const actuacion = await fetchActuacionById(Number(props.id))
-  addRealData(actuacion)
-  console.log('actuacionRef',actuacionRef.value); //aca tengo la actuacion a editar
-  actuacionRef.value = actuacion
-}
-
-onMounted(()=>{
+onActivated(()=>{
   toogleDateActuacion()
   if(props.id){
     resetStates()
-    getActuacion() //si hay id cuando montamos el componente busca la actuacion en la db
+    getActuacion() 
   }
 })
 
-const { setAll } = useItem()
-const { resetStates } = useFieldState()
-const { relato } = useDatosDiligencia(props.actuacion)
-const { 
-  addDataFake, addRealData
-} = useDatosLegales()
-const { cardInformationKeys,cardInformation } = useCardInformation(actuacionRef)
+const getActuacion = async () => {
+  const actuacionReal = await fetchActuacionById(Number(props.id)) //actuacionReal
+  resetStates()
+  setAll(actuacionReal)
+  const realData = {
+    nroLegajo: actuacionReal.nroLegajoCompleto,
+    selectedYear: { name:   actuacionReal.fechaCreacion.split('/')[2]},
+    selectedSitio: { name: 'Biblioteca' },
+    selectedModusOperandi: { name: 'Fraude' },
+    itemsCausaCaratula: [{ name: 'Estafa' }],
+    selectedJuzgadoInterviniente: { name: actuacionReal.juzgadoInterviniente }
+  };
+  setData(realData);
+  relato.value = 'esto es una prueba del relato a editar'
+}
 
 const handleClick = (event: { ctrlKey: any; altKey: any; }) =>{
   if (event.ctrlKey && event.altKey) {
         console.log(`Ctrl + Alt + Click detectado: ${actuacionRef}`);
         resetStates()
         setAll()
-        addDataFake()
+        setData() 
         relato.value = 'esto es una prueba del relato'
   }
 }
@@ -73,7 +80,7 @@ watch(() => props.actuacion, (newValue) => {
         <template #title>
           <div class="title-container">
             
-            <div class="font-medium text-3xl text-900" @click="handleClick">Ingreso de datos {{ $props.actuacion }}</div>
+            <div class="font-medium text-3xl text-900" @click="handleClick">{{$props.id ? 'Edición de datos' : 'Ingreso de datos ' + $props.actuacion }}</div>
 
             <div class="buttons-container">
               <Button @click="active = 0" rounded label="1" class="button" :outlined="active !== 0" />

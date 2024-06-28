@@ -31,7 +31,7 @@ import ToastService from 'primevue/toastservice';
 import InputSwitch from 'primevue/inputswitch';
 import ProgressSpinner from 'primevue/progressspinner';
 import RadioButton from 'primevue/radiobutton';
-
+import ToggleButton from 'primevue/togglebutton';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import ColumnGroup from 'primevue/columngroup';   // optional
@@ -41,6 +41,7 @@ import 'primeflex/primeflex.css';
 // import 'primevue/resources/themes/lara-light-blue/theme.css'
 import 'primeicons/primeicons.css';
 import useThemeColor from './composables/useThemeColor';
+import { useStorageData } from './composables/useStorageData';
 
 const app = createApp(App)
 
@@ -78,6 +79,7 @@ app.component('Toast', Toast);
 app.component('InputSwitch', InputSwitch);
 app.component('ProgressSpinner', ProgressSpinner);
 app.component('RadioButton', RadioButton);
+app.component('ToggleButton', ToggleButton);
 
 app.directive('ripple', Ripple);
 app.directive('styleclass', StyleClass);
@@ -86,6 +88,8 @@ db.version(1).stores({
     afectados: '++id, typeAfectado, typeDocumento, nroDocumento, typeSexo, apellido, name, fecha, nacionalidad, estadoCivil, domicilioResidencia, telefono, email, profesion, instruccion'
 });
  */
+const { guardarDatosAleatorios } = useStorageData()
+guardarDatosAleatorios()
 const { currentTheme } = useThemeColor()
 app.mount('#app')
 

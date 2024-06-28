@@ -23,7 +23,7 @@ export interface dataActuacionForSave {
 /* const { fechaCreacion } = useActuacion()   */
 const fechaCreacion = ref('24/08/1974')
 const { nombreActuacion, nroLegajo, selectedJuzgadoInterviniente } = useDatosLegales()
-const db = new Dexie('Siis');
+const db = new Dexie('Siis') as any;
 
 db.version(1).stores({
     actuaciones: '++id'
@@ -31,7 +31,7 @@ db.version(1).stores({
 
 
 const useSaveData = () => {
-    const error = ref(null);
+    const error = ref(null as unknown);
     const success = ref(false);
 
     const saveData = async (data: dataActuacionForSave) => {
@@ -96,12 +96,29 @@ const useSaveData = () => {
             return [];
         }
     };
+
+    const deleteActuacion = async (id: string) => {
+        try {
+            await db.open();
+            const actuacion = await db.actuaciones.where({ id }).first();
+            if (actuacion) {
+                await db.actuaciones.delete(actuacion.id);
+                console.log('Actuación eliminada:', actuacion);
+            } else {
+                console.log('No se encontró la actuación con id:', id);
+            }
+        } catch (err) {
+            console.error('Error al eliminar actuación:', err);
+            error.value = err;
+        }
+    }
     return {
         saveData,
         error,
         success,
         fetchActuaciones,
-        fetchActuacionById
+        fetchActuacionById,
+        deleteActuacion
     };
 };
 

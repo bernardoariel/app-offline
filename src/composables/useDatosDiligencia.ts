@@ -14,12 +14,13 @@ interface ProcessedText {
 
 const { isEditedHeader } = useNewActuacion()
 const relato = ref<string>('')
+const headerContainer = ref<string>('')
 const useDatosDiligencia = (actuacion: Ref<string>) => {
   const { afectados, intervinientes } = useItem();
   
   const isEditingHeader = ref<boolean>(false);
  
-  const headerContainer = ref<string>('')
+  
   const diligenciaSeleccionada = computed(() => {
     return diligencias.find((d: DatosLegales) => d.id === actuacion.value);
   });
@@ -106,7 +107,8 @@ const useDatosDiligencia = (actuacion: Ref<string>) => {
     isEditingHeader,
     headerContainer,
     headerTextComputed,
-    relato
+    relato,
+    footerText: computed(() => processedText.value.footer)
   };
 };
 

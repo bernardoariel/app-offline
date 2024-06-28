@@ -72,7 +72,7 @@ const handleDelete = async (id: string) => {
                 <template #body="{ data }">
                     <div class="flex gap-2">
                         <Button icon="pi pi-file-pdf" square @click="" severity="success"  ></Button>
-                        <Button icon="pi pi-pencil" @click="onEditActuacion(slotProps.data.id, slotProps.data.nombreActuacion)" square severity="warning"></Button>
+                        <Button icon="pi pi-pencil" @click="onEditActuacion(data.id, data.nombreActuacion)" square severity="warning"></Button>
                         <Button icon="pi pi-trash" @click="() => handleDelete(data.id)" square severity="danger"></Button>
                         <span></span>
                     </div>

@@ -10,6 +10,8 @@ const {
   isEditingHeader,
   headerContainer,
   headerTextComputed,
+  footerContainer,
+  processedFooterText,
   relato,
   footerText
 } = useDatosDiligencia(actuacion);
@@ -20,7 +22,7 @@ const {
 export const bodySection = () => {
   const head = headerContainer.value || processedHeaderText.value
   const body = relato.value
-  const foot = footerText.value.replace(/<\/?[^>]+(>|$)/g, "");
+  const foot = footerContainer.value || processedFooterText.value
 
   return {
     text: head + ' ' + body + ' ' + foot,

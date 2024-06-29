@@ -41,11 +41,12 @@ const style: StyleDictionary = {
 };
 
 export const useViewPdf = () => {
+
   const fetchBodyContent = async (id?: number) => {
 
     if (id) {
       const actuacion = await fetchActuacionById(id);
-      return actuacion.viewPdf ? JSON.parse(actuacion.viewPdf) : bodySection().text;
+      return JSON.parse(actuacion.viewPdf);
     }
     
     return bodySection().text;

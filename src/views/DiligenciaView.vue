@@ -54,23 +54,24 @@
 <script lang="ts" setup>
 import useDatosDiligencia from '@/composables/useDatosDiligencia';
 import { getUpperCase } from '@/helpers/stringUtils';
-import { computed, ref, watch, onActivated, onDeactivated } from 'vue';
+import { ref, watch, onActivated, onDeactivated } from 'vue';
 import useNewActuacion from '../composables/useNewActuacion';
 import useSaveData from '../composables/useSaveData';
 import useItem from '@/composables/useItems';
 import { useRouter, useRoute } from 'vue-router';
 import { useViewPdf } from '../composables/useViewPdf';
 import PdfViewer from '@/components/reports/PdfViewer.vue';
+import type { dataActuacionForSave } from '../composables/useSaveData';
 
 interface Props {
   actuacion: string;
+  id?:number;
 }
 
 const props = defineProps<Props>();
 const router = useRouter();
 const route = useRoute()
 const actuacionRef = ref(props.actuacion);
-console.log('props.actuacion::: ', props.actuacion);
 
 const { generatePdf } = useViewPdf();
 const isVisible = ref<boolean>(false);
@@ -91,7 +92,7 @@ const {
 
 const {isEditedHeader, isEditedFooter} = useNewActuacion()
 
-const { saveData } = useSaveData();
+const { saveData,updateData } = useSaveData();
 const { afectados, efectos, fechaUbicacion, intervinientes, vinculados } = useItem();
 
 const setHeaderFromComputed = () => {
@@ -114,38 +115,56 @@ const toggleHeader = () => {
   setHeaderFromProcessedIfEmpty();
   isEditingHeader.value = !isEditingHeader.value;
 };
+
 const toggleFooter = () => {
   if (isEditingFooter.value) {
     
     footerContainer.value = footerTextComputed.value; // Usar headerTextComputed permite reflejar los cambios
     isEditedFooter.value = true; // Se mueve aquí para reflejar que ahora hay un valor editado
+
   }else{
+
     if (footerContainer.value === '') {
       footerContainer.value = processedFooterText.value;
     }
+
   }
   isEditingFooter.value = !isEditingFooter.value;
 }
 
-const handleSave = () => {
+const saveOrUpdateData = async () => {
 
   const head = headerContainer.value || processedHeaderText.value
   const body = relato.value
   const foot = footerContainer.value || processedFooterText.value
-  
-   ;
-  const data = {
+
+  const data:dataActuacionForSave = {
     afectados: afectados.value,
     vinculados: vinculados.value,
     fechaUbicacion: fechaUbicacion.value,
     efectos: efectos.value,
     personalInterviniente: intervinientes.value ?? [],
     viewPdf:head + ' ' + body + ' ' + foot,
-    pathName:route.params.actuacion
-  };
-  saveData(data);
+    pathName:route.params.actuacion as string
+  }; 
+
+
+  if (props.id) {
+    data.id = props.id;
+    updateData(data)  
+    return
+  } 
+
+  await saveData(data);
+  
+};
+
+const handleSave = async() => {
+
+  saveOrUpdateData()
   isVisible.value = false;
   router.push({ name: 'actuaciones' });
+
 };
 
 onActivated(() => {

@@ -84,14 +84,23 @@ const useVinculados = () => {
         vinculados.value = [];
         resetAllDropdown()
     };
-    const set = ()=>{
+    const set = (data = null) => {
         
-        vinculados.value = [...itemsFake]
-        itemsFake.forEach(item => {
-            agregarIdState(item.id, {}); // Llama a agregarIdState con el id de cada ítem
+        if (!data) {
+            vinculados.value = [...itemsFake];
+            itemsFake.forEach(item => {
+                agregarIdState(item.id, {});
+            });
+            return
+        }
+        
+        vinculados.value = JSON.parse(data);
+        vinculados.value.forEach(item => {
+            agregarIdState(item.id, {});
         });
-      }
-   
+ 
+    }
+
     return {
         vinculados,
         selectedType,

@@ -61,13 +61,23 @@ const useFecha = () => {
     resetStates();
   };
 
-  const set = () => {
-    fechaUbicacion.value = [...itemsFake];
-    itemsFake.forEach(item => {
+  const set = (data = null) => {
+        
+    if (!data) {
+      fechaUbicacion.value = [...itemsFake];
+      itemsFake.forEach(item => {
+          agregarIdState(item.id, {});
+      });
+      return
+    }
+    
+    fechaUbicacion.value = JSON.parse(data);
+    fechaUbicacion.value.forEach(item => {
       agregarIdState(item.id, {});
     });
-  };
 
+  }
+ 
   return {
     fechaUbicacion,
     selectedMunicipioDrop,

@@ -72,12 +72,22 @@ const useEfectos = () => {
       efectos.value = [];
       resetAllDropdown()
     };
-    const set = ()=>{
-     
-      efectos.value = [...itemsFake]
-      itemsFake.forEach(item => {
-          agregarIdState(item.id, {}); // Llama a agregarIdState con el id de cada ítem
-      });
+
+    const set = (data = null) => {
+        
+      if (!data) {
+          efectos.value = [...itemsFake];
+          itemsFake.forEach(item => {
+              agregarIdState(item.id, {});
+          });
+          return
+      }
+      
+        efectos.value = JSON.parse(data);
+        efectos.value.forEach(item => {
+          agregarIdState(item.id, {});
+        });
+
     }
      
     return {

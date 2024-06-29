@@ -88,13 +88,21 @@ const useAfectados = () => {
         afectados.value = [];
         resetAllDropdown()
     };
-    const set = ()=>{
-
-        afectados.value = [...itemsFake]
-        itemsFake.forEach(item => {
-            agregarIdState(item.id, {}); // Llama a agregarIdState con el id de cada ítem
+    const set = (data = null) => {
+        
+        if (!data) {
+            afectados.value = [...itemsFake];
+            itemsFake.forEach(item => {
+                agregarIdState(item.id, {});
+            });
+            return
+        }
+        
+        afectados.value = JSON.parse(data);
+        afectados.value.forEach(item => {
+            agregarIdState(item.id, {});
         });
-       
+ 
     }
 
   

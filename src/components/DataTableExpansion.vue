@@ -38,10 +38,7 @@ const viewPdf = async (id: string) => {
 };
 
 const onEditActuacion = (id:number, nombreActuacion:string) => {
-
     router.push({name: 'editActuacion', params: { id, actuacion:nombreActuacion }})
-/*     resetStates()
-     */
 }
 
 const handleDelete = async (id: string) => {

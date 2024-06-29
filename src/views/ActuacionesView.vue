@@ -1,9 +1,12 @@
 <script lang="ts" setup>
 import DataTableExpansion from '@/components/DataTableExpansion.vue';
 import useActuacion from '../composables/useActuacion';
+import { onActivated } from 'vue';
 
-const { toogleDateActuacion } = useActuacion()
-
+const { toogleDateActuacion,isActivated } = useActuacion()
+onActivated(()=>{
+   isActivated.value = false
+})
 </script>
 <template>
 

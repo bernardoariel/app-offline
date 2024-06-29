@@ -6,6 +6,7 @@ import { actuaciones } from '@/data/tipoActuaciones';
 import { formatFecha } from '../helpers/getFormatFecha';
 
 const fechaCreacion = ref<Date | null>(new Date());
+const isActivated = ref(false); 
 
 const useActuacion = () => {
   const router = useRouter();
@@ -46,6 +47,7 @@ const useActuacion = () => {
     getFormattedDateTime,
     agregarNuevoItem,
     toogleDateActuacion,
+    isActivated
   };
 };
 

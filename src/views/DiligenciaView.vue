@@ -58,7 +58,7 @@ import { computed, ref, watch, onActivated, onDeactivated } from 'vue';
 import useNewActuacion from '../composables/useNewActuacion';
 import useSaveData from '../composables/useSaveData';
 import useItem from '@/composables/useItems';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 import { useViewPdf } from '../composables/useViewPdf';
 import PdfViewer from '@/components/reports/PdfViewer.vue';
 
@@ -67,8 +67,10 @@ interface Props {
 }
 
 const props = defineProps<Props>();
-const actuacionRef = ref(props.actuacion);
 const router = useRouter();
+const route = useRoute()
+const actuacionRef = ref(props.actuacion);
+console.log('props.actuacion::: ', props.actuacion);
 
 const { generatePdf } = useViewPdf();
 const isVisible = ref<boolean>(false);
@@ -126,9 +128,12 @@ const toggleFooter = () => {
 }
 
 const handleSave = () => {
+
   const head = headerContainer.value || processedHeaderText.value
   const body = relato.value
   const foot = footerContainer.value || processedFooterText.value
+  
+   ;
   const data = {
     afectados: afectados.value,
     vinculados: vinculados.value,
@@ -136,6 +141,7 @@ const handleSave = () => {
     efectos: efectos.value,
     personalInterviniente: intervinientes.value ?? [],
     viewPdf:head + ' ' + body + ' ' + foot,
+    pathName:route.params.actuacion
   };
   saveData(data);
   isVisible.value = false;

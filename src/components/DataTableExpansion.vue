@@ -4,24 +4,21 @@ import { useToast } from 'primevue/usetoast';
 import { getColorByAfectado } from '@/helpers/getColorByAfectado';
 import useSaveData from '../composables/useSaveData';
 import { useViewPdf } from '@/composables/useViewPdf';
+import { useRouter } from 'vue-router';
 
-const products = ref();
+const actuacionesList = ref();
 const expandedRows = ref([]);
 const toast = useToast();
-
+const router = useRouter();
 const selectedOption = ref('afectados');
 const { generatePdf, pdfUrl } = useViewPdf();
 const {fetchActuaciones, deleteActuacion}= useSaveData()
 let actuaciones:any 
-/* onMounted(async () => {
-    actuaciones = await fetchActuaciones();
-    products.value = actuaciones
-    // ProductService.getProductsWithOrdersSmall().then((data: any) => (products.value = data));
-}) */
+
 
 onActivated(async()=>{
     actuaciones = await fetchActuaciones();
-    products.value = actuaciones
+    actuacionesList.value = actuaciones
 })
 const onRowExpand = (event: { data: { name: any; }; }) => {
     toast.add({ severity: 'info', summary: 'Item Expandidos', detail: event.data.name, life: 3000 });
@@ -30,7 +27,7 @@ const onRowCollapse = (event: { data: { name: any; }; }) => {
     toast.add({ severity: 'success', summary: 'Items Colapsados', detail: event.data.name, life: 3000 });
 };
 const expandAll = () => {
-    expandedRows.value = products.value.reduce((acc: { [x: string]: boolean; }, p: { id: string | number; }) => (acc[p.id] = true) && acc, {});
+    expandedRows.value = actuacionesList.value.reduce((acc: { [x: string]: boolean; }, p: { id: string | number; }) => (acc[p.id] = true) && acc, {});
 };
 const collapseAll = () => {
     expandedRows.value = [];
@@ -39,12 +36,20 @@ const viewPdf = async (id: string) => {
   await generatePdf(+id);
   window.open(pdfUrl.value, '_blank');
 };
+
+const onEditActuacion = (id:number, nombreActuacion:string) => {
+
+    router.push({name: 'editActuacion', params: { id, actuacion:nombreActuacion }})
+/*     resetStates()
+     */
+}
+
 const handleDelete = async (id: string) => {
     try {
         await deleteActuacion(id);
         toast.add({ severity: 'success', summary: 'Actuación eliminada', life: 3000 });
         actuaciones = await fetchActuaciones();
-        products.value = actuaciones;
+        actuacionesList.value = actuaciones;
     } catch (error) {
         toast.add({ severity: 'error', summary: 'Error', detail: `Error al eliminar actuación con ID ${id}`, life: 3000 });
     }
@@ -54,7 +59,7 @@ const handleDelete = async (id: string) => {
      <div class="card">
         <DataTable 
             class="my-custom-datatable"    
-            v-model:expandedRows="expandedRows" :value="products" dataKey="id"
+            v-model:expandedRows="expandedRows" :value="actuacionesList" dataKey="id"
             @rowExpand="onRowExpand" @rowCollapse="onRowCollapse" tableStyle="min-width: 60rem">
 
             <Column expander style="width: 5rem" />
@@ -66,7 +71,7 @@ const handleDelete = async (id: string) => {
                 <template #body="{ data }">
                     <div class="flex gap-2">
                         <Button icon="pi pi-file-pdf" square @click="viewPdf(data.id)" severity="success"  ></Button>
-                        <Button icon="pi pi-pencil" @click="" square severity="warning"></Button>
+                        <Button icon="pi pi-pencil" @click="onEditActuacion(data.id,data.pathName)" square severity="warning"></Button>
                         <Button icon="pi pi-trash" @click="() => handleDelete(data.id)" square severity="danger"></Button>
                         <span></span>
                     </div>

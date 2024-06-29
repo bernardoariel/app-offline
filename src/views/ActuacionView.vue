@@ -15,6 +15,7 @@ import useDatosDiligencia from '@/composables/useDatosDiligencia';
 
 interface Props{
   actuacion:string;
+  id?:string
 }
 const props = defineProps<Props>()
 const actuacionRef = ref(props.actuacion);
@@ -24,7 +25,10 @@ const { agregarNuevoItem,toogleDateActuacion } = useActuacion();
 onMounted(()=>toogleDateActuacion())
 const { setAll } = useItem()
 const { resetStates } = useFieldState()
+console.log('props.actuacion::: ', props.actuacion);
+console.log('props.actuacion::: ', props.id);
 const { relato } = useDatosDiligencia(props.actuacion)
+
 const { 
   addDataFake
 } = useDatosLegales()

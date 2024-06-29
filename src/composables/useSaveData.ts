@@ -35,6 +35,7 @@ const useSaveData = () => {
     const success = ref(false);
 
     const saveData = async (data: dataActuacionForSave) => {
+        console.log('data::: ', data);
 
         try {
             await db.open();
@@ -49,7 +50,8 @@ const useSaveData = () => {
                 fechaUbicacion: JSON.stringify(data.fechaUbicacion),
                 efectos: JSON.stringify(data.efectos),
                 personalInterviniente: JSON.stringify(data.personalInterviniente),
-                viewPdf:JSON.stringify(data.viewPdf)
+                viewPdf:JSON.stringify(data.viewPdf),
+                pathName:JSON.stringify(data.pathName),
             });
             success.value = true;
 
@@ -76,7 +78,8 @@ const useSaveData = () => {
                     fechaUbicacion: JSON.parse(actuacion.fechaUbicacion),
                     efectos: JSON.parse(actuacion.efectos),
                     personalInterviniente: JSON.parse(actuacion.personalInterviniente),
-                    viewPdf:JSON.parse(actuacion.viewPdf)
+                    viewPdf:JSON.parse(actuacion.viewPdf),
+                    pathName:JSON.parse(actuacion.pathName),
                 };
             });
 
@@ -88,13 +91,17 @@ const useSaveData = () => {
         }
     };
     const fetchActuacionById = async (id: number) => {
+
         try {
             await db.open();
             const actuacion = await db.actuaciones.get({ id });
             return actuacion;
+
         } catch (err) {
+
             console.error('Error al recuperar datos:', err);
             return [];
+            
         }
     };
     const deleteActuacion = async (id: string) => {

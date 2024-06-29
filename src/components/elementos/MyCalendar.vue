@@ -37,7 +37,7 @@
   
   // Define el tipo explícitamente para modelValue
   type ModelValue = Date | null;
-  
+
   const props = defineProps<{
     modelValue: ModelValue;
   }>();

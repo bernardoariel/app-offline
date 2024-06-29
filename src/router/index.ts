@@ -27,7 +27,7 @@ const router = createRouter({
     },
     {
       path: '/actuaciones/new/:actuacion/initial',
-      name: 'actuacion',
+      name: 'newActuacion',
       component: ActuacionView,
       props: ( route ) => {
         return  { actuacion: route.params.actuacion }

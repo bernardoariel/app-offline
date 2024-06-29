@@ -21,8 +21,7 @@ export interface dataActuacionForSave {
     personalInterviniente: PersonalInterviniente[],
     viewPdf?: string
 }
-/* const { fechaCreacion } = useActuacion()   */
-const fechaCreacion = ref('24/08/1974')
+const { getFormattedDate  } = useActuacion()  
 const { nombreActuacion, nroLegajo, selectedJuzgadoInterviniente } = useDatosLegales()
 const db = new Dexie('Siis') as any;
 
@@ -36,14 +35,13 @@ const useSaveData = () => {
     const success = ref(false);
 
     const saveData = async (data: dataActuacionForSave) => {
-        console.log('data::: ', data);
 
         try {
             await db.open();
             // Ajustar las claves aquí
             await db.actuaciones.add({
                 nroLegajoCompleto: nroLegajo.value,
-                fechaCreacion: fechaCreacion.value.substring(0, 10),
+                fechaCreacion: getFormattedDate.value,
                 nombreActuacion: nombreActuacion.value,
                 juzgadoInterviniente: selectedJuzgadoInterviniente.value.name,
                 afectados: JSON.stringify(data.afectados),
@@ -69,7 +67,7 @@ const useSaveData = () => {
 
                 return {
                     id: actuacion.id,
-                    fechaCreacion: fechaCreacion.value,
+                    fechaCreacion: actuacion.fechaCreacion,
                     nroLegajoCompleto: actuacion.nroLegajoCompleto,
                     nombreActuacion: nombreActuacion.value,
                     juzgadoInterviniente: actuacion.juzgadoInterviniente,

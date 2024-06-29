@@ -62,7 +62,7 @@ app.component('InputText', InputText);
 app.component('Textarea', Textarea);
 app.component('Listbox', Listbox);
 app.component('Toolbar', Toolbar);
-app.component('Calendar', Calendar);
+
 app.component('InputMask', InputMask);
 app.component('InputNumber', InputNumber);
 app.component('TabView', TabView);
@@ -80,7 +80,7 @@ app.component('InputSwitch', InputSwitch);
 app.component('ProgressSpinner', ProgressSpinner);
 app.component('RadioButton', RadioButton);
 app.component('ToggleButton', ToggleButton);
-
+app.component('Calendar', Calendar);
 app.directive('ripple', Ripple);
 app.directive('styleclass', StyleClass);
 /* const db = new Dexie('my_database');

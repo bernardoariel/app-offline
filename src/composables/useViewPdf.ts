@@ -43,9 +43,7 @@ export const useViewPdf = () => {
   const generatePdf = async () => {
     try {
       const header = await headerSection();
-      console.log('header::: ', header);
       const body = bodySection();
-      console.log('body::: ', body);
 
       return new Promise((resolve) => {
         const docDefinition: TDocumentDefinitions = {

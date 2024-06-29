@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, onMounted, reactive, onActivated } from 'vue';
+import { ref,onActivated } from 'vue';
 import { useToast } from 'primevue/usetoast';
 import { getColorByAfectado } from '@/helpers/getColorByAfectado';
 import useSaveData from '../composables/useSaveData';
@@ -36,7 +36,7 @@ const collapseAll = () => {
     expandedRows.value = [];
 };
 const viewPdf = async (id: string) => {
-  await generatePdf();
+  await generatePdf(+id);
   window.open(pdfUrl.value, '_blank');
 };
 const handleDelete = async (id: string) => {

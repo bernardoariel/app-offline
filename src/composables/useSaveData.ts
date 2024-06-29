@@ -87,7 +87,16 @@ const useSaveData = () => {
             return [];
         }
     };
-
+    const fetchActuacionById = async (id: number) => {
+        try {
+            await db.open();
+            const actuacion = await db.actuaciones.get({ id });
+            return actuacion;
+        } catch (err) {
+            console.error('Error al recuperar datos:', err);
+            return [];
+        }
+    };
     const deleteActuacion = async (id: string) => {
         try {
             await db.open();
@@ -108,7 +117,8 @@ const useSaveData = () => {
         error,
         success,
         fetchActuaciones,
-        deleteActuacion
+        deleteActuacion,
+        fetchActuacionById
     };
 };
 

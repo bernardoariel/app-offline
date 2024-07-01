@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+//actuacionView
 import { ref, watch, onActivated } from 'vue';
 import DataViewCard from '@/components/DataViewCard.vue';
 import DatosLegalesView from './DatosLegalesView.vue';

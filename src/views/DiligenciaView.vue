@@ -62,6 +62,7 @@ import { useRouter, useRoute } from 'vue-router';
 import { useViewPdf } from '../composables/useViewPdf';
 import PdfViewer from '@/components/reports/PdfViewer.vue';
 import type { dataActuacionForSave } from '../composables/useSaveData';
+import useActuacion from '@/composables/useActuacion';
 
 interface Props {
   actuacion: string;
@@ -90,8 +91,8 @@ const {
   relato
 } = useDatosDiligencia(actuacionRef);
 
-const {isEditedHeader, isEditedFooter} = useNewActuacion()
-
+const { isEditedHeader, isEditedFooter } = useNewActuacion()
+const { isActivated , currentEditId} = useActuacion()
 const { saveData,updateData } = useSaveData();
 const { afectados, efectos, fechaUbicacion, intervinientes, vinculados } = useItem();
 
@@ -163,6 +164,8 @@ const handleSave = async() => {
 
   saveOrUpdateData()
   isVisible.value = false;
+  isActivated.value = false;
+  currentEditId.value = null
   router.push({ name: 'actuaciones' });
 
 };

@@ -5,6 +5,7 @@ import { getColorByAfectado } from '@/helpers/getColorByAfectado';
 import useSaveData from '../composables/useSaveData';
 import { useViewPdf } from '@/composables/useViewPdf';
 import { useRouter } from 'vue-router';
+import useActuacion from '@/composables/useActuacion';
 
 const actuacionesList = ref();
 const expandedRows = ref([]);
@@ -13,6 +14,7 @@ const router = useRouter();
 const selectedOption = ref('afectados');
 const { generatePdf, pdfUrl } = useViewPdf();
 const {fetchActuaciones, deleteActuacion}= useSaveData()
+const { activateComponent } = useActuacion()
 let actuaciones:any 
 
 
@@ -38,6 +40,7 @@ const viewPdf = async (id: string) => {
 };
 
 const onEditActuacion = (id:number, nombreActuacion:string) => {
+    activateComponent()
     router.push({name: 'editActuacion', params: { id, actuacion:nombreActuacion }})
 }
 

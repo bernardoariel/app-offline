@@ -8,10 +8,11 @@ import useActuacion from '@/composables/useActuacion';
 import useCardInformation from '@/composables/useCardInformation';
 
 import useItem from '../composables/useItems';
-import useFieldState from '@/composables/useFiledsState';
+
 import useDatosLegales from '../composables/useDatosLegales';
 import useDatosDiligencia from '@/composables/useDatosDiligencia';
 import useSaveData from '@/composables/useSaveData';
+import { useRoute } from 'vue-router';
 
 interface Props{
   actuacion:string;
@@ -21,29 +22,26 @@ const props = defineProps<Props>()
 const actuacionRef = ref(props.actuacion);
 const active = ref(0);
 
-
-const { agregarNuevoItem,toogleDateActuacion ,isActivated } = useActuacion();
+const { agregarNuevoItem,currentEditId ,isActivated } = useActuacion();
 const { fetchActuacionById } = useSaveData()
 
-onActivated(async()=>{
+onActivated(async() => {
+
+  if (!isActivated.value) return;
+  if (!props.id) currentEditId.value = null
+
   
-  if (isActivated.value) return
+  if (props.id && !currentEditId.value) {
 
-  toogleDateActuacion()
-  resetStates()
-  resetAll()
-
-  if (props.id) {
     const data = await fetchActuacionById(props.id);
     setAll(data);
+    currentEditId.value = props.id
   }
 
-  isActivated.value = true;
-
-})
+});
 
 const { setAll, resetAll } = useItem()
-const { resetStates } = useFieldState()
+
 const { relato } = useDatosDiligencia(props.actuacion)
 const { addDataFake } = useDatosLegales()
 const { cardInformationKeys,cardInformation } = useCardInformation(actuacionRef)
@@ -58,6 +56,7 @@ const handleClick = (event: { ctrlKey: any; altKey: any; }) =>{
   }
 
 }
+
 watch(() => props.actuacion, (newValue) => {
   actuacionRef.value = newValue;
 });
@@ -73,7 +72,7 @@ watch(() => props.actuacion, (newValue) => {
         <template #title>
           <div class="title-container">
             
-            <div class="font-medium text-3xl text-900" @click="handleClick">{{ ($props.id) ? 'Edición ':'Ingreso de datos'}} {{ $props.actuacion }}</div>
+            <div class="font-medium text-3xl text-900" @click="handleClick">{{ ($props.id) ? 'Edición':'Ingreso de datos'}} {{ $props.actuacion }}</div>
 
             <div class="buttons-container">
               <Button @click="active = 0" rounded label="1" class="button" :outlined="active !== 0" />

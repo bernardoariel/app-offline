@@ -1,8 +1,12 @@
 <script lang="ts" setup>
+
 import { sidebarLinks } from "@/data/sideBarLinks";
 import { computed, ref } from "vue";
+import useActuacion from '@/composables/useActuacion';
+
 type SidebarPosition = "left" | "right" | "top" | "bottom" | "full";
 const visible = ref(false);
+const {activateComponent} = useActuacion();
 interface Props{
     icono:string,
     position?:SidebarPosition,
@@ -20,7 +24,11 @@ const props = defineProps<Props>();
 const filteredLinks = computed(() => {
   return sidebarLinks.filter(link => link.roles.includes('Oficial Sumariante'));
 });
-
+const onHandleClick = () =>{
+  console.log('HandleClick')
+  activateComponent()
+  closeSidebar()
+}
 // Agrupa los enlaces filtrados por el nombre del grupo
 const groupedLinks = computed(() => {
   const grouped: GroupedLinks = {};
@@ -70,7 +78,7 @@ const groupedLinks = computed(() => {
                                     <router-link
                                         v-ripple
                                         :to="link.path"
-                                        @click="closeSidebar"
+                                        @click="onHandleClick"
                                         class="flex align-items-center no-underline cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple"
                                     >
                                         <i class="mr-2" :class="'pi ' + link.icon "></i>

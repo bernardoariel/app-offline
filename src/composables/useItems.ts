@@ -5,7 +5,7 @@ import useEfectos from './useEfectos';
 import usePersonalInterviniente from '@/composables/usePersonalInterviniente';
 
 export const useItem = () => {
-    // Acceder a la lógica y datos de cada composable
+
     const { afectados,set:setAfectado,reset:resetAfectado } = useAfectados();
     const { vinculados,set:setVinculado,reset:resetVinculado } = useVinculados();
     const { fechaUbicacion,set:setFechaUbicacion,reset:resetFechaUbicacion } = useFecha();
@@ -19,12 +19,23 @@ export const useItem = () => {
         resetEfecto()
         resetInterviniente()
     };
-    const setAll = () => {
-        setAfectado()
-        setVinculado()
-        setFechaUbicacion()
-        setEfecto()
-        setInterviniente()
+    const setAll = (data = null) => {
+        
+        if (!data) {
+            setAfectado();
+            setVinculado();
+            setFechaUbicacion();
+            setEfecto();
+            setInterviniente();
+            return
+        }
+
+        setAfectado(data.afectados);
+        setVinculado(data.vinculados);
+        setFechaUbicacion(data.fechaUbicacion);
+        setEfecto(data.efectos);
+        setInterviniente(data.personalInterviniente);
+        
     };
     // Devolver todos los datos y métodos combinados
     return {

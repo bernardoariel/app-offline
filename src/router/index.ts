@@ -32,7 +32,20 @@ const router = createRouter({
       props: ( route ) => {
         return  { actuacion: route.params.actuacion }
      }
+    },
+    {
+      path: '/actuaciones/edit/:actuacion/initial/:id',
+      name: 'editActuacion',
+      component: ActuacionView,
+      props: (route) => {
+        const { id,actuacion } = route.params
+        return { 
+          id: +id,
+          actuacion 
+        }
+      }
     }
+
   ]
 })
 

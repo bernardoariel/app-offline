@@ -8,19 +8,11 @@ import useThemeColor from './composables/useThemeColor';
 
 const PrimeVue = usePrimeVue();
 const { changeThemeCurrent } = useThemeColor();
-const isLoading = ref(true);
+const isLoading = ref(false);
 
 onMounted(() => {
   const savedTheme = localStorage.getItem('currentTheme');
-  let themeName = 'lara-light-blue';
-
-  if (savedTheme) {
-    try {
-      themeName = JSON.parse(savedTheme).name;
-    } catch (error) {
-      console.error('Error parsing saved theme from localStorage:', error);
-    }
-  }
+  let themeName = JSON.parse(savedTheme as string).name || 'lara-light-blue';  
   changeThemeCurrent(themeName);
 
   PrimeVue.changeTheme('lara-light-blue', themeName, 'theme-link', () => {

@@ -18,7 +18,7 @@ vi.mock('vue-router', () => ({
       vi.clearAllMocks();
     });
   
-    it('debe recibir la prop actuacion en la ruta newActuacion y mostrarla en el DOM', async () => {
+    test('debe recibir la prop actuacion en la ruta newActuacion y mostrarla en el DOM', async () => {
       // Mock de useRoute para que devuelva un objeto route válido
       useRoute.mockReturnValue({
         name: 'newActuacion',
@@ -67,7 +67,7 @@ vi.mock('vue-router', () => ({
       expect(titleElement.exists()).toBe(true);
       expect(titleElement.text()).toContain('Ingreso de datos sumario-denuncia');
     });
-    it('debe recibir las props id y actuacion en la ruta editActuacion y mostrar "Editando" en el DOM', async () => {
+    test('debe recibir las props id y actuacion en la ruta editActuacion y mostrar "Edicion" en el DOM', async () => {
         // Mock de useRoute para que devuelva un objeto route válido
         useRoute.mockReturnValue({
           name: 'editActuacion',
@@ -115,6 +115,6 @@ vi.mock('vue-router', () => ({
     
         // assert
         expect(titleElement.exists()).toBe(true);
-        expect(titleElement.text()).toContain('Editando sumario-denuncia');
+        expect(titleElement.text()).toContain('Edición sumario-denuncia');
       });
   });

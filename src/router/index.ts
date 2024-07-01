@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import ActuacionView from '@/views/ActuacionView.vue'
 import FormActuacionVue from '@/views/FormActuacion.vue'
 import ActuacionesView from '@/views/ActuacionesView.vue'
+import UsuarioDeshabilitadoView from '@/views/UsuarioDeshabilitadoView.vue'
 
 import isSavedChanges from '@/guards/isSavedChanges';
 // import useItem from '../composables/useItems';
@@ -23,15 +24,20 @@ const router = createRouter({
       path: '/actuacion/personas/:tipo',
       name: 'formulario',
       component: FormActuacionVue,
-      props: true  
+      props: true
     },
     {
       path: '/actuaciones/new/:actuacion/initial',
       name: 'newActuacion',
       component: ActuacionView,
-      props: ( route ) => {
-        return  { actuacion: route.params.actuacion }
-     }
+      props: (route) => {
+        return { actuacion: route.params.actuacion }
+      }
+    },
+    {
+      path: '/deshabilitado',
+      name: 'deshabilitado',
+      component: UsuarioDeshabilitadoView,
     }
   ]
 })
@@ -40,7 +46,7 @@ router.beforeEach((to, from, next) => {
   if (to.name === 'actuacion' || from.name === 'actuacion') {
 /*     resetAll
  */    next()
-  }else{
+  } else {
     isSavedChanges(to, from, next); // Llamada al guard isSavedChanges en cada navegación
   }
 });

@@ -45,6 +45,7 @@ export function useStorageData() {
       dependencia.value = data.dependencia;
       usuario.value = data.usuario;
     }
+    return { dependencia: dependencia.value, usuario: usuario.value };
   };
 
   return {

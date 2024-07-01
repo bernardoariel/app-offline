@@ -3,38 +3,32 @@ import { usePrimeVue } from 'primevue/config';
 import useThemeColor from '@/composables/useThemeColor';
 
 const PrimeVue = usePrimeVue();
-const { themesLight,currentTheme,changeThemeCurrent } = useThemeColor()
+const { themesLight, currentTheme, changeThemeCurrent } = useThemeColor();
+
 const toggleTheme = (newThemeName: string) => {
- 
-  console.log('currentTheme.value.name::: ', currentTheme.value.name);
   PrimeVue.changeTheme(currentTheme.value.name, newThemeName, 'theme-link', () => {
-    console.log("Tema cambiado a:", newThemeName);
-    console.log("currentTheme", currentTheme.value);
+    changeThemeCurrent(newThemeName);
   });
-
-  changeThemeCurrent(newThemeName);
-}
-
-
-
+};
 </script>
+
 <template>
-   <section class="theme-selector">
+  <section class="theme-selector">
     <span class="title">Colores</span>
-    <small>{{ currentTheme.name }}</small>
     <div class="theme-row">
-      
-      <button 
+      <Tag 
         v-for="(theme, index) in themesLight" 
         :key="index" 
         @click="toggleTheme(theme.name)" 
-        class="theme-button" 
         :style="{ backgroundColor: theme.color }"
-        :title="theme.name"> 
-      </button>
+        :value="theme.name"
+        :title="theme.name"
+      >
+      </Tag>
     </div>
   </section>
 </template>
+
 <style scoped>
 .theme-selector {
   display: flex;
@@ -56,16 +50,4 @@ const toggleTheme = (newThemeName: string) => {
   gap: 10px; /* Espacio entre los botones */
 }
 
-.theme-button {
-  width: 30px;
-  height: 30px;
-  padding: 0;
-  margin: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-}
 </style>

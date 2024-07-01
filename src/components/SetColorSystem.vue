@@ -3,27 +3,20 @@ import { usePrimeVue } from 'primevue/config';
 import useThemeColor from '@/composables/useThemeColor';
 
 const PrimeVue = usePrimeVue();
-const { themesLight,currentTheme,changeThemeCurrent } = useThemeColor()
+const { themesLight, currentTheme, changeThemeCurrent } = useThemeColor();
+
 const toggleTheme = (newThemeName: string) => {
- 
-  console.log('currentTheme.value.name::: ', currentTheme.value.name);
   PrimeVue.changeTheme(currentTheme.value.name, newThemeName, 'theme-link', () => {
-    console.log("Tema cambiado a:", newThemeName);
-    console.log("currentTheme", currentTheme.value);
+    changeThemeCurrent(newThemeName);
   });
-
-  changeThemeCurrent(newThemeName);
-}
-
-
-
+};
 </script>
+
 <template>
-   <section class="theme-selector">
+  <section class="theme-selector">
     <span class="title">Colores</span>
     <small>{{ currentTheme.name }}</small>
     <div class="theme-row">
-      
       <button 
         v-for="(theme, index) in themesLight" 
         :key="index" 
@@ -35,6 +28,7 @@ const toggleTheme = (newThemeName: string) => {
     </div>
   </section>
 </template>
+
 <style scoped>
 .theme-selector {
   display: flex;

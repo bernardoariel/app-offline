@@ -33,9 +33,7 @@ watch(isDark, (newValue, oldValue) => {
 <template>
   <section
     class="py-4 flex align-items-center justify-content-between border-bottom-1 surface-border">
-    <span  class="text-xl font-semibold">DarkMode</span>
-  
-    <h4><small>{{ currentTheme.hasModeDark ? 'Tiene':'No tiene' }} DarkMode </small></h4>
+    <span  class="text-xl font-semibold">Modo oscuro</span>
     <InputSwitch v-model="isDark" :disabled="!currentTheme.hasModeDark" />
     
   </section>

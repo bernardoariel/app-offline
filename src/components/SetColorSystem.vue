@@ -15,16 +15,16 @@ const toggleTheme = (newThemeName: string) => {
 <template>
   <section class="theme-selector">
     <span class="title">Colores</span>
-    <small>{{ currentTheme.name }}</small>
     <div class="theme-row">
-      <button 
+      <Tag 
         v-for="(theme, index) in themesLight" 
         :key="index" 
         @click="toggleTheme(theme.name)" 
-        class="theme-button" 
         :style="{ backgroundColor: theme.color }"
-        :title="theme.name"> 
-      </button>
+        :value="theme.name"
+        :title="theme.name"
+      >
+      </Tag>
     </div>
   </section>
 </template>
@@ -50,16 +50,4 @@ const toggleTheme = (newThemeName: string) => {
   gap: 10px; /* Espacio entre los botones */
 }
 
-.theme-button {
-  width: 30px;
-  height: 30px;
-  padding: 0;
-  margin: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-}
 </style>

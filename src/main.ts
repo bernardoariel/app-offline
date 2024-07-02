@@ -34,6 +34,7 @@ import RadioButton from 'primevue/radiobutton';
 import ToggleButton from 'primevue/togglebutton';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
+import Dialog from 'primevue/dialog'
 import ColumnGroup from 'primevue/columngroup';   // optional
 import Row from 'primevue/row';                   // optional
 import Toast from 'primevue/toast';
@@ -47,7 +48,7 @@ const app = createApp(App)
 
 app.use(createPinia())
 app.use(PrimeVue)
-app.use(ToastService);     
+app.use(ToastService);
 
 
 app.use(router)
@@ -62,6 +63,7 @@ app.component('InputText', InputText);
 app.component('Textarea', Textarea);
 app.component('Listbox', Listbox);
 app.component('Toolbar', Toolbar);
+app.component('Dialog', Dialog)
 
 app.component('InputMask', InputMask);
 app.component('InputNumber', InputNumber);

@@ -55,34 +55,41 @@ const handleDelete = async (id: string) => {
         toast.add({ severity: 'error', summary: 'Error', detail: `Error al eliminar actuación con ID ${id}`, life: 3000 });
     }
 };
-
+interface buttonProps {
+  label: string;
+  class?: string;
+  icon?: string;
+  iconPos?: 'left' | 'right' | 'top' | 'bottom';
+  action: string;
+}
 const showModal = ref(false);
-
-const onAccept = () => {
-  console.log('Aceptar clicked');
-};
-
-const onCancel = () => {
-  console.log('Cancelar clicked');
+const modalButtons: buttonProps[] = [
+  { label: 'Aceptar', class: 'p-button-success', icon: 'pi pi-check', iconPos: 'left', action: 'accept' },
+  { label: 'Cancelar', class: 'p-button-secondary', icon: 'pi pi-times', iconPos: 'left', action: 'cancel' },
+];
+const handleButtonClick = (action: string) => {
+  if (action === 'accept') {
+    console.log('Aceptar clicked');
+  } else if (action === 'cancel') {
+    console.log('Cancelar clicked');
+  }
 };
 </script>
 <template>
      <div class="card">
         <div>
-                            <Button label="Mostrar Modal" @click="showModal = true" />
-                            <MyModal
-                                :visible="showModal"
-                                @update:visible="showModal = $event"
-                                title="Título del Modal"
-                                icon="pi pi-info-circle"
-                                iconColor="red"
-                                message="Este es un mensaje en el modal."
-                                :showAcceptButton="true"
-                                :showCancelButton="true"
-                                @accept="onAccept"
-                                @cancel="onCancel"
-                            />
-                        </div>
+            <Button label="Mostrar Modal" @click="showModal = true" />
+            <MyModal
+                @update:visible="showModal = $event"
+                title="Título del Modal"
+                icon="pi pi-info-circle"
+                iconColor="blue"
+                message="Este es un mensaje en el modal."
+                :buttons="modalButtons"
+                @button-click="handleButtonClick"
+                :visible="showModal"
+            />
+        </div>
         <DataTable 
             class="my-custom-datatable"    
             v-model:expandedRows="expandedRows" :value="actuacionesList" dataKey="id"

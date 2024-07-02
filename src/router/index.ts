@@ -42,7 +42,20 @@ const router = createRouter({
       name: 'denegado',
       beforeEnter: [userAvailable],
       component: AccessDeniedView,
+    },
+    {
+      path: '/actuaciones/edit/:actuacion/initial/:id',
+      name: 'editActuacion',
+      component: ActuacionView,
+      props: (route) => {
+        const { id,actuacion } = route.params
+        return { 
+          id: +id,
+          actuacion 
+        }
+      }
     }
+
   ]
 })
 

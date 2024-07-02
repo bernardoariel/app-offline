@@ -1,40 +1,46 @@
 <script setup lang="ts">
+import { ref, watch } from 'vue';
 import { usePrimeVue } from 'primevue/config';
 import useThemeColor from '@/composables/useThemeColor';
 
 const PrimeVue = usePrimeVue();
-const { themesLight,currentTheme,changeThemeCurrent } = useThemeColor()
+const { themesLight, currentTheme, changeThemeCurrent } = useThemeColor();
+
+const isDark = ref<boolean>(currentTheme.value.isDark);
+
 const toggleTheme = (newThemeName: string) => {
- 
-  console.log('currentTheme.value.name::: ', currentTheme.value.name);
   PrimeVue.changeTheme(currentTheme.value.name, newThemeName, 'theme-link', () => {
-    console.log("Tema cambiado a:", newThemeName);
-    console.log("currentTheme", currentTheme.value);
+    changeThemeCurrent(newThemeName);
   });
+};
 
-  changeThemeCurrent(newThemeName);
-}
-
-
-
+watch(currentTheme, (newValue) => {
+  isDark.value = newValue.isDark;
+});
 </script>
+
 <template>
-   <section class="theme-selector">
+  <section class="theme-selector">
     <span class="title">Colores</span>
-    <small>{{ currentTheme.name }}</small>
+    <Tag class="mb-3"
+      :value="currentTheme.name"
+      :title="currentTheme.name"
+    />
     <div class="theme-row">
-      
-      <button 
+      <Button 
         v-for="(theme, index) in themesLight" 
         :key="index" 
         @click="toggleTheme(theme.name)" 
-        class="theme-button" 
         :style="{ backgroundColor: theme.color }"
-        :title="theme.name"> 
-      </button>
+        :value="theme.name"
+        :title="theme.name"
+        :class="{ 'selected': currentTheme.name === theme.name }"
+      >
+      </Button>
     </div>
   </section>
 </template>
+
 <style scoped>
 .theme-selector {
   display: flex;
@@ -56,7 +62,7 @@ const toggleTheme = (newThemeName: string) => {
   gap: 10px; /* Espacio entre los botones */
 }
 
-.theme-button {
+.theme-tag {
   width: 30px;
   height: 30px;
   padding: 0;
@@ -64,8 +70,13 @@ const toggleTheme = (newThemeName: string) => {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: none;
   border-radius: 50%;
   cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.theme-tag.selected {
+  border: 2px solid #000; /* Ajusta el estilo para indicar el tema seleccionado */
+  transform: scale(1.1); /* Ajuste visual para resaltar el tema seleccionado */
 }
 </style>

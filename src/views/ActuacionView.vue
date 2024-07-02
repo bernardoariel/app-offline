@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { ref, watch, onMounted } from 'vue';
+//actuacionView
+import { ref, watch, onActivated } from 'vue';
 import DataViewCard from '@/components/DataViewCard.vue';
 import DatosLegalesView from './DatosLegalesView.vue';
 import DiligenciaView from './DiligenciaView.vue';
@@ -8,41 +9,59 @@ import useActuacion from '@/composables/useActuacion';
 import useCardInformation from '@/composables/useCardInformation';
 
 import useItem from '../composables/useItems';
-import useFieldState from '@/composables/useFiledsState';
+
 import useDatosLegales from '../composables/useDatosLegales';
 import useDatosDiligencia from '@/composables/useDatosDiligencia';
-
+import useSaveData from '@/composables/useSaveData';
+import { useRoute } from 'vue-router';
 
 interface Props{
   actuacion:string;
+  id?:number
 }
 const props = defineProps<Props>()
 const actuacionRef = ref(props.actuacion);
 const active = ref(0);
-const { agregarNuevoItem,toogleDateActuacion } = useActuacion();
 
-onMounted(()=>toogleDateActuacion())
-const { setAll } = useItem()
-const { resetStates } = useFieldState()
-const { relato } = useDatosDiligencia(props.actuacion)
-const { 
-  addDataFake
-} = useDatosLegales()
-const { cardInformationKeys,cardInformation } = useCardInformation(actuacionRef)
-const handleClick = (event: { ctrlKey: any; altKey: any; }) =>{
-  if (event.ctrlKey && event.altKey) {
-        console.log(`Ctrl + Alt + Click detectado: ${actuacionRef}`);
-        resetStates()
-        setAll()
-        addDataFake()
-        relato.value = 'esto es una prueba del relato'
+const { agregarNuevoItem,currentEditId ,isActivated } = useActuacion();
+const { fetchActuacionById } = useSaveData()
 
+onActivated(async() => {
+
+  if (!isActivated.value) return;
+  if (!props.id) currentEditId.value = null
+
+  
+  if (props.id && !currentEditId.value) {
+
+    const data = await fetchActuacionById(props.id);
+    setAll(data);
+    currentEditId.value = props.id
   }
+
+});
+
+const { setAll, resetAll } = useItem()
+
+const { relato } = useDatosDiligencia(props.actuacion)
+const { addDataFake } = useDatosLegales()
+const { cardInformationKeys,cardInformation } = useCardInformation(actuacionRef)
+
+const handleClick = (event: { ctrlKey: any; altKey: any; }) =>{
+
+  if (event.ctrlKey && event.altKey) {
+    console.log(`Ctrl + Alt + Click detectado: ${actuacionRef}`);
+    setAll()
+    addDataFake()
+    relato.value = 'esto es una prueba del relato'
+  }
+
 }
+
 watch(() => props.actuacion, (newValue) => {
   actuacionRef.value = newValue;
-  
 });
+
 </script>
 
 <template>
@@ -54,7 +73,7 @@ watch(() => props.actuacion, (newValue) => {
         <template #title>
           <div class="title-container">
             
-            <div class="font-medium text-3xl text-900" @click="handleClick">Ingreso de datos {{ $props.actuacion }}</div>
+            <div class="font-medium text-3xl text-900" @click="handleClick">{{ ($props.id) ? 'Edición':'Ingreso de datos'}} {{ $props.actuacion }}</div>
 
             <div class="buttons-container">
               <Button @click="active = 0" rounded label="1" class="button" :outlined="active !== 0" />
@@ -87,7 +106,7 @@ watch(() => props.actuacion, (newValue) => {
       </Card>
     </div>
     <div class="col">
-      <DiligenciaView :actuacion="actuacion" />
+      <DiligenciaView :actuacion="actuacion" :id="props.id"/>
     </div>
   </div>
 </template>

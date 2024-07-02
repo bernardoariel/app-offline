@@ -33,18 +33,13 @@ onMounted(() => {
   loadFontSize();
   // Cargar el nombre del tema del almacenamiento local
   const savedTheme = localStorage.getItem('currentTheme');
-
-
   const themeName = savedTheme ? JSON.parse(savedTheme).name : 'lara-light-blue';
-  console.log('themeName::: ', themeName);
-
+  changeThemeCurrent(themeName);
   
  
   // Aplicar el tema utilizando PrimeVue.changeTheme
-  PrimeVue.changeTheme('lara-light-blue', 'arya-blue', 'theme-link', () => {
-
-    isLoading.value = false;  // Marcar que la carga ha finalizado
-    changeThemeCurrent(themeName);
+  PrimeVue.changeTheme('lara-light-blue', themeName, 'theme-link', () => {
+    isLoading.value = false; 
   }); 
 });
 </script>

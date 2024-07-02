@@ -84,7 +84,7 @@ describe('<ActuacionView />', () => {
     vi.clearAllMocks();
   });
 
-  it('debe recibir la prop actuacion en la ruta newActuacion y mostrarla en el DOM', async () => {
+  test('debe recibir la prop actuacion en la ruta newActuacion y mostrarla en el DOM', async () => {
     // Mock de useRoute para que devuelva un objeto route válido
     useRoute.mockReturnValue({
       name: 'newActuacion',
@@ -139,9 +139,14 @@ describe('<ActuacionView />', () => {
     // assert
     expect(titleElement.exists()).toBe(true);
     expect(titleElement.text()).toContain('Ingreso de datos sumario-denuncia');
+    // Verificar que DiligenciaView se renderiza
+    const diligenciaView = wrapper.findComponent({ name: 'DiligenciaView' });
+    expect(diligenciaView.exists()).toBe(true);
+    expect(diligenciaView.props('actuacion')).toBe('sumario-denuncia');
+    expect(diligenciaView.props('id')).toBe(undefined);
   });
 
-  it('debe recibir las props id y actuacion en la ruta editActuacion y mostrar "Edición" en el DOM', async () => {
+  test('debe recibir las props id y actuacion en la ruta editActuacion y mostrar "Edición" en el DOM', async () => {
     // Mock de useRoute para que devuelva un objeto route válido
     useRoute.mockReturnValue({
       name: 'editActuacion',
@@ -197,5 +202,10 @@ describe('<ActuacionView />', () => {
     // assert
     expect(titleElement.exists()).toBe(true);
     expect(titleElement.text()).toContain('Edición sumario-denuncia');
+    // Verificar que DiligenciaView se renderiza con las props correctas
+    const diligenciaView = wrapper.findComponent({ name: 'DiligenciaView' });
+    expect(diligenciaView.exists()).toBe(true);
+    expect(diligenciaView.props('actuacion')).toBe('sumario-denuncia');
+    expect(diligenciaView.props('id')).toBe(123);
   });
 });

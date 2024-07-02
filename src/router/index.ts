@@ -2,9 +2,10 @@ import { createRouter, createWebHistory } from 'vue-router'
 import ActuacionView from '@/views/ActuacionView.vue'
 import FormActuacionVue from '@/views/FormActuacion.vue'
 import ActuacionesView from '@/views/ActuacionesView.vue'
-import UsuarioDeshabilitadoView from '@/views/UsuarioDeshabilitadoView.vue'
+import AccessDeniedView from '@/views/AccessDeniedView.vue'
 
 import isSavedChanges from '@/guards/isSavedChanges';
+import isUserAvaible from '@/guards/isUserAvaible'
 // import useItem from '../composables/useItems';
 // GUARDS
 // const { resetAll } =useItem()
@@ -18,6 +19,7 @@ const router = createRouter({
     {
       path: '/actuaciones/list',
       name: 'actuaciones',
+      beforeEnter: [isUserAvaible],
       component: ActuacionesView,
     },
     {
@@ -35,9 +37,9 @@ const router = createRouter({
       }
     },
     {
-      path: '/deshabilitado',
-      name: 'deshabilitado',
-      component: UsuarioDeshabilitadoView,
+      path: '/denegado',
+      name: 'denegado',
+      component: AccessDeniedView,
     }
   ]
 })

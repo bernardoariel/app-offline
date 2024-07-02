@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { RouterView } from 'vue-router'
+import { RouterView, useRoute } from 'vue-router'
 
 import { usePrimeVue } from 'primevue/config';
 import ToolbarComponent from './components/ToolbarComponent.vue';
@@ -10,6 +10,7 @@ const PrimeVue = usePrimeVue();
 const { changeThemeCurrent } = useThemeColor()
 const isLoading = ref(true); // Estado de carga
 const themeLink = document.querySelector('link#theme-link');
+const route = useRoute()
 if (themeLink) {
     // Verificar si el atributo href está presente y no está vacío
     const themeHref = themeLink.getAttribute('href');
@@ -47,9 +48,11 @@ onMounted(() => {
 
 <template>
   <div v-if="!isLoading">
-    <div class="toolbar-container">
-      <ToolbarComponent />
-    </div>
+    <template v-if="route.name !== 'denegado'">
+        <div class="toolbar-container">
+          <ToolbarComponent />
+        </div>
+      </template>
     <div class="router-view-container">
       <RouterView v-slot="{ Component, route }"> 
           <keep-alive>

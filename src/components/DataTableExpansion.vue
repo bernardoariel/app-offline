@@ -6,6 +6,7 @@ import useSaveData from '../composables/useSaveData';
 import { useViewPdf } from '@/composables/useViewPdf';
 import { useRouter } from 'vue-router';
 import useActuacion from '@/composables/useActuacion';
+import MyModal from './elementos/MyModal.vue';
 
 const actuacionesList = ref();
 const expandedRows = ref([]);
@@ -54,9 +55,34 @@ const handleDelete = async (id: string) => {
         toast.add({ severity: 'error', summary: 'Error', detail: `Error al eliminar actuación con ID ${id}`, life: 3000 });
     }
 };
+
+const showModal = ref(false);
+
+const onAccept = () => {
+  console.log('Aceptar clicked');
+};
+
+const onCancel = () => {
+  console.log('Cancelar clicked');
+};
 </script>
 <template>
      <div class="card">
+        <div>
+                            <Button label="Mostrar Modal" @click="showModal = true" />
+                            <MyModal
+                                :visible="showModal"
+                                @update:visible="showModal = $event"
+                                title="Título del Modal"
+                                icon="pi pi-info-circle"
+                                iconColor="red"
+                                message="Este es un mensaje en el modal."
+                                :showAcceptButton="true"
+                                :showCancelButton="true"
+                                @accept="onAccept"
+                                @cancel="onCancel"
+                            />
+                        </div>
         <DataTable 
             class="my-custom-datatable"    
             v-model:expandedRows="expandedRows" :value="actuacionesList" dataKey="id"
@@ -73,6 +99,7 @@ const handleDelete = async (id: string) => {
                         <Button icon="pi pi-file-pdf" square @click="viewPdf(data.id)" severity="success"  ></Button>
                         <Button icon="pi pi-pencil" @click="onEditActuacion(data.id,data.pathName)" square severity="warning"></Button>
                         <Button icon="pi pi-trash" @click="() => handleDelete(data.id)" square severity="danger"></Button>
+                        
                         <span></span>
                     </div>
                 </template>

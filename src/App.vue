@@ -5,9 +5,11 @@ import { RouterView } from 'vue-router'
 import { usePrimeVue } from 'primevue/config';
 import ToolbarComponent from './components/ToolbarComponent.vue';
 import useThemeColor from './composables/useThemeColor';
+import { useFontSize } from './composables/useFontSize';
 
 const PrimeVue = usePrimeVue();
 const { changeThemeCurrent } = useThemeColor()
+const { loadFontSize } = useFontSize(); 
 const isLoading = ref(true); // Estado de carga
 const themeLink = document.querySelector('link#theme-link');
 if (themeLink) {
@@ -24,11 +26,7 @@ if (themeLink) {
     console.error('No se encontró el enlace del tema en el DOM.');
 }
 
-const loadFontSize = () => {
-  const savedFontSize = localStorage.getItem('fontSize');
-  const fontSize = savedFontSize ? parseInt(savedFontSize) : 14;
-  document.documentElement.style.fontSize = `${fontSize}px`;
-};
+
 
 onMounted(() => {
 

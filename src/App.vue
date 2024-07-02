@@ -23,10 +23,18 @@ if (themeLink) {
 } else {
     console.error('No se encontró el enlace del tema en el DOM.');
 }
+
+const loadFontSize = () => {
+  const savedFontSize = localStorage.getItem('fontSize');
+  const fontSize = savedFontSize ? parseInt(savedFontSize) : 14;
+  document.documentElement.style.fontSize = `${fontSize}px`;
+};
+
 onMounted(() => {
 
+  loadFontSize();
   // Cargar el nombre del tema del almacenamiento local
-   const savedTheme = localStorage.getItem('currentTheme');
+  const savedTheme = localStorage.getItem('currentTheme');
   
 
   const themeName = savedTheme ? JSON.parse(savedTheme).name : 'lara-light-blue';

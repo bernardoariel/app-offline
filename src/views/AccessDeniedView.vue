@@ -8,7 +8,7 @@ const handleReload = () => {
 };
 </script>
 
-<template>
+<template >
     <div class="container">
         <h1 class="title">SIIS - Modo OFFLine</h1>
         <h2 class="subtitle">Su usuario no está habilitado para el modo offline</h2>
@@ -17,11 +17,12 @@ const handleReload = () => {
 </template>
 
 <style>
-.container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 .title{
     font-weight: 500;

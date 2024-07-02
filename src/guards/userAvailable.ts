@@ -2,16 +2,17 @@ import { useStorageData } from "@/composables/useStorageData"
 import { useRouter } from 'vue-router';
 
 
-const isUserAvaible = () => {
-    const router = useRouter();
+const userAvailable = (to: any, from: any, next: any) => {
     const enabledUsers = ["Jefe de Sumario", "Oficial Sumariante", "Jefe de Dependencia"]
 
     const { obtenerDatos } = useStorageData()
     const datos = obtenerDatos();
 
-    if (!enabledUsers.includes(datos.usuario!.tipoUsuario)) {
-        router.push({ name: 'denegado' });
+    if (enabledUsers.includes(datos.usuario!.tipoUsuario)) {
+        next({ name: 'actuaciones' });
+    } else {
+        next();
     }
 }
 
-export default isUserAvaible
+export default userAvailable

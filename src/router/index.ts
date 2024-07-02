@@ -5,7 +5,8 @@ import ActuacionesView from '@/views/ActuacionesView.vue'
 import AccessDeniedView from '@/views/AccessDeniedView.vue'
 
 import isSavedChanges from '@/guards/isSavedChanges';
-import isUserAvaible from '@/guards/isUserAvaible'
+import isUserAvailable from '@/guards/isUserAvailable'
+import userAvailable from '@/guards/userAvailable'
 // import useItem from '../composables/useItems';
 // GUARDS
 // const { resetAll } =useItem()
@@ -19,7 +20,7 @@ const router = createRouter({
     {
       path: '/actuaciones/list',
       name: 'actuaciones',
-      beforeEnter: [isUserAvaible],
+      beforeEnter: [isUserAvailable],
       component: ActuacionesView,
     },
     {
@@ -39,6 +40,7 @@ const router = createRouter({
     {
       path: '/denegado',
       name: 'denegado',
+      beforeEnter: [userAvailable],
       component: AccessDeniedView,
     }
   ]

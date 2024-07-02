@@ -1,57 +1,75 @@
-import { ref, watch, watchEffect } from 'vue';
+import { ref, watch } from 'vue';
 import { themes } from '../data/colorSistems';
-interface Theme{
-  light:string,
-  dark?:string,
-  color?:string,
-  name?: string; 
-}
-interface SelectedTheme{
-  name:string,
-  isDark:boolean,
-  hasModeDark:boolean
+
+interface Theme {
+  light: string;
+  dark?: string;
+  color?: string;
+  name?: string;
 }
 
-const currentTheme = ref<SelectedTheme>({ name: 'lara-light-blue', isDark:false, hasModeDark: true })
+interface SelectedTheme {
+  name: string;
+  isDark: boolean;
+  hasModeDark: boolean;
+}
 
-const useThemeColor = ()=>{
+const DEFAULT_THEME: SelectedTheme = { name: 'lara-light-blue', isDark: false, hasModeDark: true };
+
+const currentTheme = ref<SelectedTheme>({ ...DEFAULT_THEME });
+
+const useThemeColor = () => {
 
   const changeThemeCurrent = (name: string) => {
-    let theme = themes.find(theme => theme.light === name );
+    let theme = themes.find(theme => theme.light === name || theme.dark === name);
 
-    if (!theme){
-      theme = themes.find(theme => theme.dark === name );
-      currentTheme.value = { name: theme.dark, isDark:true, hasModeDark: true };
-    }else{
-      const hasModeDark = !theme.dark ? false:true
-
-      
-      currentTheme.value = { name: theme.light, isDark:false,hasModeDark:hasModeDark };
+    if (theme) {
+      currentTheme.value = {
+        name: theme.light === name ? theme.light : theme.dark as string,
+        isDark: theme.dark === name,
+        hasModeDark: !!theme.dark
+      };
+      applyTheme();
+    } else {
+      console.log(`Theme with name ${name} not found.`);
     }
-
   };
+
+  const applyTheme = () => {
+    const themeClass = currentTheme.value.isDark ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', `${currentTheme.value.name}-${themeClass}`);
+  };
+
   const saveThemeToLocalStorage = () => {
     localStorage.setItem('currentTheme', JSON.stringify(currentTheme.value));
   };
+
   const loadThemeFromLocalStorage = () => {
     const savedTheme = localStorage.getItem('currentTheme');
 
     if (savedTheme) {
-      currentTheme.value = JSON.parse(savedTheme);
-    }else{
-      currentTheme.value = { name: 'lara-light-blue', isDark:false, hasModeDark: true }
+      try {
+        currentTheme.value = JSON.parse(savedTheme);
+      } catch (error) {
+        console.error('Error parsing saved theme from localStorage:', error);
+        currentTheme.value = { ...DEFAULT_THEME };
+      }
+    } else {
+      currentTheme.value = { ...DEFAULT_THEME };
     }
+
+    applyTheme();
   };
-  
+
   watch(currentTheme, saveThemeToLocalStorage, { deep: true });
 
-  const themesLight = themes.map((theme: Theme) => {
-    return {
-      name: theme.light,
-      color: theme.color
-    };
-  });
-  
+  const themesLight = themes.map((theme: Theme) => ({
+    name: theme.light,
+    color: theme.color
+  }));
+
+  loadThemeFromLocalStorage();
+
   return {
     currentTheme,
     changeThemeCurrent,
@@ -59,4 +77,5 @@ const useThemeColor = ()=>{
     themes
   };
 }
-export default useThemeColor
+
+export default useThemeColor;

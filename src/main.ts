@@ -87,7 +87,7 @@ app.directive('styleclass', StyleClass);
 db.version(1).stores({
     afectados: '++id, typeAfectado, typeDocumento, nroDocumento, typeSexo, apellido, name, fecha, nacionalidad, estadoCivil, domicilioResidencia, telefono, email, profesion, instruccion'
 });
- */
+//  */
 const { guardarDatosAleatorios } = useStorageData()
 guardarDatosAleatorios()
 const { currentTheme } = useThemeColor()

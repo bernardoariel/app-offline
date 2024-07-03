@@ -27,11 +27,11 @@ const {
 const { selectedItem } = useItemValue()
 
 const { statesID, setPristineById, setModifiedData, guardarModificaciones,isEditing, cancelarModificaciones } = useFieldState();
-let formData = ref<VinculadosForm>({ ...initialValues });
+let formData = ref<VinculadosForm>({ ...selectedItem.value });
 
-onActivated(() => {
-  selectedItem.value= null
-});
+// onActivated(() => {
+//   selectedItem.value= null
+// });
 
 const handleDropdownChange = (
   campo: keyof VinculadosForm, 

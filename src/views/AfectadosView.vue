@@ -32,12 +32,8 @@ const { selectedItem } = useItemValue()
 const { resetIsEditedHeader} = useNewActuacion()
 
 const { statesID, setPristineById, setModifiedData, guardarModificaciones,isEditing, cancelarModificaciones } = useFieldState();
-let formData = ref<AfectadosForm>({ ...initialValues });
+let formData = ref<AfectadosForm>({ ...selectedItem.value });
 
-onActivated(() => {
-  selectedItem.value= null
-  
-});
 const handleDropdownChange = (
   campo: keyof AfectadosForm, 
   newValue: { value: any;name:string }

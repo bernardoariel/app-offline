@@ -24,11 +24,10 @@ const {
 const { selectedItem } = useItemValue()
 
 const { statesID, setPristineById, setModifiedData, guardarModificaciones,isEditing, cancelarModificaciones } = useFieldState();
-const formData = ref<EfectosForm>({ ...initialValues });
-
-onActivated(() => {
-  selectedItem.value= null
-});
+const formData = ref<EfectosForm>({ ...selectedItem.value });
+// onActivated(() => {
+//   selectedItem.value= null
+// });
 const handleDropdownChange = (
   campo: keyof EfectosForm, 
   newValue: { value: any;name:string }

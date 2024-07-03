@@ -10,7 +10,7 @@ import { useFontSize } from './composables/useFontSize';
 const PrimeVue = usePrimeVue();
 const { changeThemeCurrent } = useThemeColor()
 const { loadFontSize } = useFontSize(); 
-const isLoading = ref(true); // Estado de carga
+const isLoading = ref(false); // Estado de carga
 const themeLink = document.querySelector('link#theme-link');
 if (themeLink) {
     // Verificar si el atributo href está presente y no está vacío

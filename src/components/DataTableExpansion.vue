@@ -6,6 +6,7 @@ import useSaveData from '../composables/useSaveData';
 import { useViewPdf } from '@/composables/useViewPdf';
 import { useRouter } from 'vue-router';
 import useActuacion from '@/composables/useActuacion';
+import MyModal from './elementos/MyModal.vue';
 
 const actuacionesList = ref();
 const expandedRows = ref([]);
@@ -44,17 +45,41 @@ const onEditActuacion = (id:number, nombreActuacion:string) => {
     router.push({name: 'editActuacion', params: { id, actuacion:nombreActuacion }})
 }
 
-const handleDelete = async (id: string) => {
-    try {
-        await deleteActuacion(id);
-        toast.add({ severity: 'success', summary: 'Actuación eliminada', life: 3000 });
-        actuaciones = await fetchActuaciones();
-        actuacionesList.value = actuaciones;
-    } catch (error) {
-        toast.add({ severity: 'error', summary: 'Error', detail: `Error al eliminar actuación con ID ${id}`, life: 3000 });
-    }
+interface buttonProps {
+  label: string;
+  class?: string;
+  icon?: string;
+  iconPos?: 'left' | 'right' | 'top' | 'bottom';
+  action: string;
+}
+const visible = ref(false);
+const actuacionIdToDelete = ref<string| null>(null);
+const deleteModalButtons = ref<buttonProps[]>([
+  { label: 'Cancelar', class: 'p-button-secondary', icon: 'pi pi-times', iconPos: 'left', action: 'cancel' },
+  { label: 'Eliminar', class: 'p-button-danger', icon: 'pi pi-trash', iconPos: 'left', action: 'delete' },
+]);
+
+const openDeleteConfirmation = (id: string) => {
+
+  actuacionIdToDelete.value = id;
+  visible.value = true;
 };
+
+const handleDeleteConfirmation = async (action: string) => {
+  if (action === 'delete' && actuacionIdToDelete.value) {
+    try {
+      await deleteActuacion(actuacionIdToDelete.value);
+      toast.add({ severity: 'success', summary: 'Actuación eliminada', life: 3000 });
+      actuacionesList.value = await fetchActuaciones();
+    } catch (error) {
+      toast.add({ severity: 'error', summary: 'Error', detail: `Error al eliminar actuación con ID ${actuacionIdToDelete.value}`, life: 3000 });
+    }
+  }
+  actuacionIdToDelete.value = null;
+};
+
 </script>
+
 <template>
      <div class="card">
         <DataTable 
@@ -72,7 +97,7 @@ const handleDelete = async (id: string) => {
                     <div class="flex gap-2">
                         <Button icon="pi pi-file-pdf" square @click="viewPdf(data.id)" severity="success"  ></Button>
                         <Button icon="pi pi-pencil" @click="onEditActuacion(data.id,data.pathName)" square severity="warning"></Button>
-                        <Button icon="pi pi-trash" @click="() => handleDelete(data.id)" square severity="danger"></Button>
+                        <Button icon="pi pi-trash" @click="openDeleteConfirmation(data.id)" square severity="danger"></Button>
                         <span></span>
                     </div>
                 </template>
@@ -180,6 +205,15 @@ const handleDelete = async (id: string) => {
                 </div>
             </template>
         </DataTable>
+        <MyModal
+            v-model:visible="visible"
+            title="Confirmar Eliminación"
+            icon="pi pi-exclamation-triangle"
+            iconColor="red"
+            message="¿Estás seguro de que deseas eliminar esta actuación?"
+            :buttons="deleteModalButtons"
+            @button-click="handleDeleteConfirmation"
+            />
         <Toast />
     </div>
 </template>

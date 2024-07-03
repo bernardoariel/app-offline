@@ -75,7 +75,7 @@ const copyProduct = (productId:any) => {
                   </div>
 
                   <div class="flex-items">
-                    <ButtonOptions v-if="item.title" :tarjetaNombre="item.title" :item="item"/>
+                    <ButtonOptions  :tarjetaNombre="item.title" :item="item"/>
                   </div>
 
                 </div> 

@@ -36,23 +36,27 @@ export function useStorageData() {
     dependencia.value = dependenciaAleatoria;
     usuario.value = usuarioAleatorio;
   };
-  
-  const obtenerDatos = () => {
-    // Obtener los datos desde localStorage
-    const dataGuardada = localStorage.getItem("siisOffLineData");
+  const findUser = () =>{
 
-    // Convertir de JSON a objeto y actualizar los refs
+    const dataGuardada = localStorage.getItem("siisOffLineData");
     if (dataGuardada) {
+      
       const data = JSON.parse(dataGuardada);
       dependencia.value = data.dependencia;
       usuario.value = data.usuario;
-    } else {
-      dependencia.value = null;
-      usuario.value = null;
-    }
+      return 
+    } 
+
+    dependencia.value = null;
+    usuario.value = null;
+  }
     
+  const obtenerDatos = () => {
+    
+    findUser()
     return { dependencia: dependencia.value, usuario: usuario.value };
-};
+
+  };
 
   return {
     dependencia,

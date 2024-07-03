@@ -52,16 +52,17 @@ interface buttonProps {
   iconPos?: 'left' | 'right' | 'top' | 'bottom';
   action: string;
 }
-const showDeleteModal = ref(false);
-const actuacionIdToDelete = ref(null);
+const visible = ref(false);
+const actuacionIdToDelete = ref<string| null>(null);
 const deleteModalButtons = ref<buttonProps[]>([
   { label: 'Cancelar', class: 'p-button-secondary', icon: 'pi pi-times', iconPos: 'left', action: 'cancel' },
   { label: 'Eliminar', class: 'p-button-danger', icon: 'pi pi-trash', iconPos: 'left', action: 'delete' },
 ]);
 
 const openDeleteConfirmation = (id: string) => {
+
   actuacionIdToDelete.value = id;
-  showDeleteModal.value = true;
+  visible.value = true;
 };
 
 const handleDeleteConfirmation = async (action: string) => {
@@ -97,16 +98,6 @@ const handleDeleteConfirmation = async (action: string) => {
                         <Button icon="pi pi-file-pdf" square @click="viewPdf(data.id)" severity="success"  ></Button>
                         <Button icon="pi pi-pencil" @click="onEditActuacion(data.id,data.pathName)" square severity="warning"></Button>
                         <Button icon="pi pi-trash" @click="openDeleteConfirmation(data.id)" square severity="danger"></Button>
-                        <MyModal
-                            :visible="showDeleteModal"
-                            @update:visible="showDeleteModal = $event"
-                            title="Confirmar Eliminación"
-                            icon="pi pi-exclamation-triangle"
-                            iconColor="red"
-                            message="¿Estás seguro de que deseas eliminar esta actuación?"
-                            :buttons="deleteModalButtons"
-                            @button-click="handleDeleteConfirmation"
-                        />
                         <span></span>
                     </div>
                 </template>
@@ -214,6 +205,15 @@ const handleDeleteConfirmation = async (action: string) => {
                 </div>
             </template>
         </DataTable>
+        <MyModal
+            v-model:visible="visible"
+            title="Confirmar Eliminación"
+            icon="pi pi-exclamation-triangle"
+            iconColor="red"
+            message="¿Estás seguro de que deseas eliminar esta actuación?"
+            :buttons="deleteModalButtons"
+            @button-click="handleDeleteConfirmation"
+            />
         <Toast />
     </div>
 </template>

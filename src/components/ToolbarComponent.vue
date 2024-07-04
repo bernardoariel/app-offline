@@ -4,14 +4,14 @@ import SidebarMenu from './SidebarMenu.vue';
 import SidebarRight from './SidebarRight.vue';
 import useActuacion from '../composables/useActuacion';
 import MyCalendar from './elementos/MyCalendar.vue';
-import { ref, onMounted, watch } from 'vue';
+import { ref,  watch, onActivated } from 'vue';
 
 const route = useRoute();
 const { fechaCreacion , setFechaCreacion } = useActuacion();
 const showCalendar = ref(false);
 const today = ref<Date | null>(null);
 
-onMounted(() => {
+onActivated(() => {
   checkRoute();
 });
 

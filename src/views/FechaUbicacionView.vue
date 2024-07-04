@@ -8,30 +8,52 @@ import MyInput from '@/components/elementos/MyInput.vue';
 import MyDropdown from '@/components/elementos/MyDropdown.vue';
 import MyCalendar from '@/components/elementos/MyCalendar.vue';
 
-import type { FechaUbicacionForm, FechaUbicacion } from '../interfaces/fecha.interface';
+import type {
+  FechaUbicacionForm,
+  FechaUbicacion,
+} from '../interfaces/fecha.interface';
 import { municipiosDropdown } from '@/helpers/getDropItems';
 
 const { agregar, editar, initialValues, selectedMunicipioDrop } = useFecha();
 const { selectedItem } = useItemValue();
-const { statesID, setPristineById, setModifiedData, guardarModificaciones, isEditing, cancelarModificaciones } = useFieldState();
+const {
+  statesID,
+  setPristineById,
+  setModifiedData,
+  guardarModificaciones,
+  isEditing,
+  cancelarModificaciones,
+} = useFieldState();
 
 let formData = ref<FechaUbicacionForm>({ ...initialValues });
-
 onActivated(() => {
-  selectedItem.value = null;
+  if (selectedItem.value) {
+    formData.value = {
+      ...selectedItem.value,
+      desdeFechaHora: selectedItem.value.desdeFechaHora
+        ? new Date(selectedItem.value.desdeFechaHora)
+        : '',
+      hastaFechaHora: selectedItem.value.hastaFechaHora
+        ? new Date(selectedItem.value.hastaFechaHora)
+        : '',
+    };
+    selectedMunicipioDrop.value = { name: selectedItem.value.departamento };
+  }
 });
-
-const handleDropdownChange = (campo: keyof FechaUbicacionForm, newValue: { value: any; name: string }) => {
+const handleDropdownChange = (
+  campo: keyof FechaUbicacionForm,
+  newValue: { value: any; name: string }
+) => {
   const name = newValue.value.name;
 
   if (campo in formData.value) {
-    formData.value = { 
-      ...formData.value, 
-      [campo]: { name }
+    formData.value = {
+      ...formData.value,
+      [campo]: { name },
     };
 
     const itemId = formData.value.id!;
-    if (itemId) { 
+    if (itemId) {
       setPristineById(itemId, false);
       setModifiedData(itemId, campo, name);
     }
@@ -40,8 +62,12 @@ const handleDropdownChange = (campo: keyof FechaUbicacionForm, newValue: { value
 
 const getInputValue = (campo: keyof FechaUbicacionForm) => {
   if (campo in formData.value) {
-    const modifiedData = statesID.find((state) => state.id === selectedItem.value?.id)?.modifiedData;
-    return modifiedData && modifiedData[campo] !== undefined ? modifiedData[campo] : formData.value[campo];
+    const modifiedData = statesID.find(
+      (state) => state.id === selectedItem.value?.id
+    )?.modifiedData;
+    return modifiedData && modifiedData[campo] !== undefined
+      ? modifiedData[campo]
+      : formData.value[campo];
   }
 };
 
@@ -51,7 +77,7 @@ const handleInputChange = (campo: string | number, event: Event) => {
 
   const itemId = formData.value.id!;
   setPristineById(itemId, false);
-  
+
   const campoStr = typeof campo === 'number' ? campo.toString() : campo;
   setModifiedData(itemId, campoStr, valor);
 };
@@ -60,47 +86,47 @@ const changeToSpanish = () => {
   primevue.config.locale = {
     firstDayOfWeek: 1,
     dayNames: [
-      "Domingo",
-      "Lunes",
-      "Martes",
-      "Miércoles",
-      "Jueves",
-      "Viernes",
-      "Sábado"
+      'Domingo',
+      'Lunes',
+      'Martes',
+      'Miércoles',
+      'Jueves',
+      'Viernes',
+      'Sábado',
     ],
-    dayNamesShort: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
-    dayNamesMin: ["D", "L", "M", "X", "J", "V", "S"],
+    dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
+    dayNamesMin: ['D', 'L', 'M', 'X', 'J', 'V', 'S'],
     monthNames: [
-      "Enero",
-      "Febrero",
-      "Marzo",
-      "Abril",
-      "Mayo",
-      "Junio",
-      "Julio",
-      "Agosto",
-      "Septiembre",
-      "Octubre",
-      "Noviembre",
-      "Diciembre"
+      'Enero',
+      'Febrero',
+      'Marzo',
+      'Abril',
+      'Mayo',
+      'Junio',
+      'Julio',
+      'Agosto',
+      'Septiembre',
+      'Octubre',
+      'Noviembre',
+      'Diciembre',
     ],
     monthNamesShort: [
-      "Ene",
-      "Feb",
-      "Mar",
-      "Abr",
-      "May",
-      "Jun",
-      "Jul",
-      "Ago",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dic"
+      'Ene',
+      'Feb',
+      'Mar',
+      'Abr',
+      'May',
+      'Jun',
+      'Jul',
+      'Ago',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dic',
     ],
-    today: "Hoy",
-    clear: "Borrar",
-    weekHeader: "Sm"
+    today: 'Hoy',
+    clear: 'Borrar',
+    weekHeader: 'Sm',
   };
 };
 const handleBlur = (campo: keyof FechaUbicacionForm) => {
@@ -118,7 +144,7 @@ const handleAgregarElemento = () => {
     hastaFechaHora: formData.value.hastaFechaHora,
     calle: formData.value.calle,
     numero: formData.value.numero,
-    departamento: selectedMunicipioDrop.value!.name
+    departamento: selectedMunicipioDrop.value!.name,
   };
 
   agregar(nuevoItem);
@@ -136,7 +162,7 @@ const handleModificarElemento = () => {
   let itemAEditar = {
     ...formData.value,
     departamento: selectedMunicipioDrop.value?.name || '',
-    ...itemStateEncontrado
+    ...itemStateEncontrado,
   };
   editar(itemAEditar);
 };
@@ -147,8 +173,12 @@ watch(selectedItem, (newVal: any) => {
   } else {
     formData.value = {
       ...newVal,
-      desdeFechaHora: newVal.desdeFechaHora ? new Date(newVal.desdeFechaHora) : '',
-      hastaFechaHora: newVal.hastaFechaHora ? new Date(newVal.hastaFechaHora) : '',
+      desdeFechaHora: newVal.desdeFechaHora
+        ? new Date(newVal.desdeFechaHora)
+        : '',
+      hastaFechaHora: newVal.hastaFechaHora
+        ? new Date(newVal.hastaFechaHora)
+        : '',
     };
     selectedMunicipioDrop.value = { name: newVal.departamento };
   }
@@ -195,7 +225,9 @@ watch(selectedItem, (newVal: any) => {
             class="mt-2"
             :items="municipiosDropdown"
             v-model="selectedMunicipioDrop"
-            @change="(newValue) => handleDropdownChange('departamento', newValue)"
+            @change="
+              (newValue) => handleDropdownChange('departamento', newValue)
+            "
             filter
             placeholder="Seleccione un departamento"
             :color="!!selectedItem"

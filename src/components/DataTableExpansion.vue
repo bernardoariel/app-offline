@@ -208,12 +208,14 @@ const handleDeleteConfirmation = async (action: string) => {
         <MyModal
             v-model:visible="visible"
             title="Confirmar Eliminación"
-            icon="pi pi-exclamation-triangle"
-            iconColor="red"
-            message="¿Estás seguro de que deseas eliminar esta actuación?"
             :buttons="deleteModalButtons"
             @button-click="handleDeleteConfirmation"
-            />
+            >
+            <template #body>
+                <i class="pi pi-exclamation-triangle" :style="{ fontSize: '3rem', color: 'orange' }"></i>
+                <p class="text-center">¿Estás seguro de que deseas eliminar esta actuación?</p>
+            </template>
+        </MyModal>
         <Toast />
     </div>
 </template>

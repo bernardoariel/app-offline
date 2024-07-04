@@ -2,8 +2,8 @@
     <Dialog v-model:visible="isVisible" :header="title" modal :style="{ width: '500px' }" closable>
       <template #header></template>
       <div class="modal-body">
-        <i :class="['pi', icon]" :style="{ fontSize: '3.5rem', color: iconColor }"></i>
-        <p class="text-center">{{ message }}</p>
+        <slot name="body" />
+       
       </div>
       <template #footer>
         <div class="modal-footer">
@@ -35,18 +35,18 @@
   interface Props{
       visible: boolean;
       title: string;
-      icon: string;
-      iconColor: string;
-      message: string;
       buttons:buttonProps[]
   }
   const props = defineProps<Props>();
-  const isVisible = ref(props.visible);
   const emit = defineEmits(['update:visible', 'button-click']);
+
+  const isVisible = ref(props.visible);
+
   const onButtonClick = (action: string) => {
     emit('button-click', action);
     emit('update:visible', false);
-};
+  };
+  
   watch(() => props.visible, (newVal) => {
       isVisible.value = newVal;
   });

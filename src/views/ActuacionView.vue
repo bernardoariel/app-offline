@@ -24,13 +24,13 @@ const props = defineProps<Props>();
 const actuacionRef = ref(props.actuacion);
 const active = ref(0);
 
-const { agregarNuevoItem, currentEditId, isActivated } = useActuacion();
+const { agregarNuevoItem, currentEditId, isActivated,toogleDateActuacion } = useActuacion();
 const { fetchActuacionById } = useSaveData();
 
 onActivated(async () => {
   if (!isActivated.value) return;
   if (!props.id) currentEditId.value = null;
-
+  toogleDateActuacion()
   if (props.id && !currentEditId.value) {
     const data = await fetchActuacionById(props.id);
     setAll(data);
@@ -38,7 +38,7 @@ onActivated(async () => {
   }
 });
 
-const { setAll, resetAll } = useItem();
+const { setAll } = useItem();
 
 const { relato } = useDatosDiligencia(props.actuacion);
 const { addDataFake } = useDatosLegales();

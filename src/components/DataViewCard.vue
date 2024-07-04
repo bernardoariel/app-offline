@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import DataView from 'primevue/dataview';
 
 import ButtonOptions from '@/components/ButtonOptions.vue';
 import { getColorByAfectado } from '@/helpers/getColorByAfectado';
 import { getTitleCase, getUpperCase } from '@/helpers/stringUtils';
 import { formatFecha } from '@/helpers/getFormatFecha';
+import { useToast } from 'primevue/usetoast';
+import MyModal from './elementos/MyModal.vue';
 
 const props = defineProps<{
   itemsCardValue: { titulo: string; items: any[] };
@@ -13,6 +15,7 @@ const props = defineProps<{
 }>();
 
 const condicion: boolean = false;
+const toast = useToast();
 const items = computed(() => {
   if (props.dataKey === 'personalInterviniente') {
     console.log('Items de personalInterviniente:', props.itemsCardValue.items); // Inspecciona específicamente los items de 'fecha'
@@ -24,13 +27,62 @@ const editProduct = (productId: any) => {
 };
 
 const deleteItem = (productId: any) => {
-  // Lógica para eliminar el producto con el ID proporcionado
   const index = props.itemsCardValue.items.findIndex(
     (item) => item.id === productId
   );
   if (index !== -1) {
     props.itemsCardValue.items.splice(index, 1);
   }
+};
+interface buttonProps {
+  label: string;
+  class?: string;
+  icon?: string;
+  iconPos?: 'left' | 'right' | 'top' | 'bottom';
+  action: string;
+}
+const visible = ref(false);
+const itemToDelete = ref<string | null>(null);
+const deleteModalButtons = ref<buttonProps[]>([
+  {
+    label: 'Cancelar',
+    class: 'p-button-secondary',
+    icon: 'pi pi-times',
+    iconPos: 'left',
+    action: 'cancel',
+  },
+  {
+    label: 'Eliminar',
+    class: 'p-button-danger',
+    icon: 'pi pi-trash',
+    iconPos: 'left',
+    action: 'delete',
+  },
+]);
+const openDeleteConfirmation = (id: string) => {
+  itemToDelete.value = id;
+  visible.value = true;
+};
+
+const handleDeleteConfirmation = async (action: string) => {
+  if (action === 'delete' && itemToDelete.value) {
+    try {
+      await deleteItem(itemToDelete.value);
+      toast.add({
+        severity: 'success',
+        summary: 'Item eliminado',
+        life: 3000,
+      });
+    } catch (error) {
+      toast.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: `Error al eliminar Item`,
+        life: 3000,
+      });
+    }
+  }
+  itemToDelete.value = null;
 };
 
 const copyProduct = (productId: any) => {
@@ -86,7 +138,7 @@ const copyProduct = (productId: any) => {
                 <ButtonOptions
                   :tarjetaNombre="item.title"
                   :item="item"
-                  :deleteItem="deleteItem"
+                  :deleteItem="openDeleteConfirmation"
                 />
               </div>
             </div>
@@ -241,6 +293,23 @@ const copyProduct = (productId: any) => {
   <div v-else class="flex justify-content-end">
     <span class="text-right">Sin Registros</span>
   </div>
+  <MyModal
+    v-model:visible="visible"
+    title="Confirmar Eliminación"
+    :buttons="deleteModalButtons"
+    @button-click="handleDeleteConfirmation"
+  >
+    <template #body>
+      <div class="modal-body">
+        <i
+          class="pi pi-exclamation-triangle"
+          :style="{ fontSize: '3rem', color: 'orange' }"
+        ></i>
+        <p class="text-right font-bold">¿Deseas eliminar el siguiente item?</p>
+      </div>
+    </template>
+  </MyModal>
+  <Toast />
 </template>
 
 <style scoped>

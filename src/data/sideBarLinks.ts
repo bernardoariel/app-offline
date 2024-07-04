@@ -166,6 +166,7 @@ export const sidebarLinks = [
     type: 'link',
     grupo: 'UFI DELITOS',
     props: { formType: "ufi-delitos-especiales", pageTitle: "UFI - DELITOS ESPECIALES" },
+    expanded:true,
     subitems: [
       {
         path: '/actuaciones/delitos-especiales-paradero/initial',
@@ -174,7 +175,7 @@ export const sidebarLinks = [
         icon: 'pi-microsoft',
         roles: ['User Tester', 'Super User', 'Jefe de Dependencia', 'Oficial Sumariante', 'Jefe de Sumario'],
         type: 'link',
-        grupo: 'DELITOS-ESPECIALES',
+        grupo: 'Especiales',
         props: { formType: "especiales-paradero", pageTitle: "ESTABLECER PARADERO" },
       },
       {
@@ -184,7 +185,7 @@ export const sidebarLinks = [
         icon: 'pi-microsoft',
         roles: ['User Tester', 'Super User', 'Jefe de Dependencia', 'Oficial Sumariante', 'Jefe de Sumario'],
         type: 'link',
-        grupo: 'DELITOS-ESPECIALES',
+        grupo: 'Especiales',
         props: { formType: "especiales-médicas", pageTitle: "EMERGENCIAS MÉDICAS" },
       },
       {
@@ -194,7 +195,7 @@ export const sidebarLinks = [
         icon: 'pi-microsoft',
         roles: ['User Tester', 'Super User', 'Jefe de Dependencia', 'Oficial Sumariante', 'Jefe de Sumario'],
         type: 'link',
-        grupo: 'DELITOS-ESPECIALES',
+        grupo: 'Especiales',
         props: { formType: "especiales-vial", pageTitle: "SINIESTRO VIAL" },
       },
       {
@@ -204,7 +205,7 @@ export const sidebarLinks = [
         icon: 'pi-microsoft',
         roles: ['User Tester', 'Super User', 'Jefe de Dependencia', 'Oficial Sumariante', 'Jefe de Sumario'],
         type: 'link',
-        grupo: 'DELITOS-ESPECIALES',
+        grupo: 'Especiales',
         props: { formType: "especiales-ahorcamiento-suicidio", pageTitle: "AHORCAMIENTO O SUICIDIO" },
       },
       {
@@ -214,7 +215,7 @@ export const sidebarLinks = [
         icon: 'pi-microsoft',
         roles: ['User Tester', 'Super User', 'Jefe de Dependencia', 'Oficial Sumariante', 'Jefe de Sumario'],
         type: 'link',
-        grupo: 'DELITOS-ESPECIALES',
+        grupo: 'Especiales',
         props: { formType: "especiales-incendio-vivienda", pageTitle: "INCENDIO EN VIVIENDA" },
       },
       {

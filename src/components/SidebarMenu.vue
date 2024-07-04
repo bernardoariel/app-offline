@@ -41,6 +41,11 @@ const groupedLinks = computed(() => {
   return grouped;
 });
 
+// Controla la expansión de los links
+const toggleLink = (link: any) => {
+  link.expanded = !link.expanded;
+};
+
 </script>
 
 <template>
@@ -73,7 +78,7 @@ const groupedLinks = computed(() => {
                                 <span class="font-medium">{{ groupName }}</span>
                                 <i class="pi pi-chevron-down"></i>
                             </div>
-                            <ul class="list-none p-3 m-0 overflow-hidden">
+                            <ul class="list-none p-3 m-0 ">
                                 <li v-for="link in links" :key="link.pathName">
                                     <div
                                         v-if="link.subitems"
@@ -85,9 +90,9 @@ const groupedLinks = computed(() => {
                                             leaveToClass: 'hidden',
                                             leaveActiveClass: 'slideup'
                                         }"
-                                        class="p-3 flex align-items-center justify-content-between text-600 cursor-pointer p-ripple"
+                                        class="overflow-hidden p-3 flex align-items-center justify-content-between text-600 cursor-pointer p-ripple"
                                         >
-                                        <span class="font-medium">{{ groupName }}</span>
+                                        <span class="font-medium">{{ link.titulo }}</span>
                                         <i class="pi pi-chevron-down"></i>
                                     </div>
                                     <router-link v-else

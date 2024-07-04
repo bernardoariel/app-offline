@@ -75,7 +75,22 @@ const groupedLinks = computed(() => {
                             </div>
                             <ul class="list-none p-3 m-0 overflow-hidden">
                                 <li v-for="link in links" :key="link.pathName">
-                                    <router-link
+                                    <div
+                                        v-if="link.subitems"
+                                        v-ripple
+                                        v-styleclass="{
+                                            selector: '@next',
+                                            enterClass: 'hidden',
+                                            enterActiveClass: 'slidedown',
+                                            leaveToClass: 'hidden',
+                                            leaveActiveClass: 'slideup'
+                                        }"
+                                        class="p-3 flex align-items-center justify-content-between text-600 cursor-pointer p-ripple"
+                                        >
+                                        <span class="font-medium">{{ groupName }}</span>
+                                        <i class="pi pi-chevron-down"></i>
+                                    </div>
+                                    <router-link v-else
                                         v-ripple
                                         :to="link.path"
                                         @click="onHandleClick"
@@ -84,8 +99,23 @@ const groupedLinks = computed(() => {
                                         <i class="mr-2" :class="'pi ' + link.icon "></i>
                                         <span class="font-medium">{{ link.titulo }}</span>
                                     </router-link>
+                                    <ul v-if="link.subitems" class="list-none pl-4">
+                                        <li v-for="subitem in link.subitems" :key="subitem.pathName">
+                                            <router-link
+                                                v-ripple
+                                                :to="subitem.path"
+                                                @click="onHandleClick"
+                                                class="flex align-items-center no-underline cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple"
+                                            >
+                                                <i class="mr-2" :class="'pi ' + subitem.icon"></i>
+                                                <span class="font-medium">{{ subitem.titulo }}</span>
+                                            </router-link>
+                                        </li>
+                                    </ul>
                                 </li>
                             </ul>
+                             <!-- Check if link has subitems -->
+           
                         </div>
                     </div>
                     <div class="mt-auto">
@@ -109,7 +139,3 @@ const groupedLinks = computed(() => {
     </div>
 </template>
 
-
-<style scoped>
-
-</style>

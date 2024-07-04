@@ -6,6 +6,8 @@ import ButtonOptions from '@/components/ButtonOptions.vue'
 import { getColorByAfectado } from '@/helpers/getColorByAfectado';
 import { getTitleCase, getUpperCase } from "@/helpers/stringUtils";
 import { formatFecha } from "@/helpers/getFormatFecha";
+import useActuacion from "@/composables/useActuacion";
+import useItemValue from "@/composables/useItemValue";
 
 
 const props = defineProps<{
@@ -13,7 +15,11 @@ const props = defineProps<{
   dataKey: string; 
 }>();
 
-const condicion:boolean = false;
+const condicion: boolean = false;
+const { agregarNuevoItem} = useActuacion();
+const { selectedItem } = useItemValue()
+
+
 const items = computed(() => {
 
   if (props.dataKey === 'personalInterviniente') {
@@ -21,8 +27,11 @@ const items = computed(() => {
   }
   return props.itemsCardValue.items;
 });
-const editProduct = (productId:any) => {
-    // Lógica para editar el producto con el ID proporcionado
+
+const editProduct = (productId: any) => {
+  const itemToEdit = items.value.find(item => item.id === productId);
+  selectedItem.value = itemToEdit;
+  agregarNuevoItem(props.dataKey);
 };
 
 const deleteProduct = (productId:any) => {
@@ -43,13 +52,13 @@ const copyProduct = (productId:any) => {
       
       <template #list="slotProps">
     
-            <div v-for="(item, index) in items" :key="index">
+            <div v-for="(item, index) in items" :key="index" >
               <!-- Afectados y Vinculados -->
               <div v-if="dataKey=='afectados' || dataKey=='vinculados'">
                 
                 <div class="flex-container"  :class="{ 'border-top-1 surface-border': index !== 0 }">
 
-                  <div class="flex-items">
+                  <div class="flex-items" >
                     <Button icon="pi pi-pencil" @click="editProduct(item.id)" text rounded style="font-size: 1rem"></Button>
                   </div>
 
@@ -66,7 +75,7 @@ const copyProduct = (productId:any) => {
                   </div>
 
                   <div class="flex-items">
-                    <ButtonOptions v-if="item.title" :tarjetaNombre="item.title" :item="item"/>
+                    <ButtonOptions  :tarjetaNombre="item.title" :item="item"/>
                   </div>
 
                 </div> 

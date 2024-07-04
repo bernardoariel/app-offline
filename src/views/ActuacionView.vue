@@ -13,7 +13,7 @@ import useItem from '../composables/useItems';
 import useDatosLegales from '../composables/useDatosLegales';
 import useDatosDiligencia from '@/composables/useDatosDiligencia';
 import useSaveData from '@/composables/useSaveData';
-import { useRoute } from 'vue-router';
+
 
 interface Props{
   actuacion:string;
@@ -23,14 +23,14 @@ const props = defineProps<Props>()
 const actuacionRef = ref(props.actuacion);
 const active = ref(0);
 
-const { agregarNuevoItem,currentEditId ,isActivated } = useActuacion();
+const { agregarNuevoItem,currentEditId ,isActivated,toogleDateActuacion } = useActuacion();
 const { fetchActuacionById } = useSaveData()
 
 onActivated(async() => {
 
   if (!isActivated.value) return;
   if (!props.id) currentEditId.value = null
-
+  toogleDateActuacion()
   
   if (props.id && !currentEditId.value) {
 
@@ -41,7 +41,7 @@ onActivated(async() => {
 
 });
 
-const { setAll, resetAll } = useItem()
+const { setAll } = useItem()
 
 const { relato } = useDatosDiligencia(props.actuacion)
 const { addDataFake } = useDatosLegales()

@@ -73,17 +73,39 @@ const groupedLinks = computed(() => {
                                 <span class="font-medium">{{ groupName }}</span>
                                 <i class="pi pi-chevron-down"></i>
                             </div>
-                            <ul class="list-none p-3 m-0 overflow-hidden">
+                          <ul class="list-none p-3 m-0 overflow-hidden">
                                 <li v-for="link in links" :key="link.pathName">
-                                    <router-link
-                                        v-ripple
-                                        :to="link.path"
-                                        @click="onHandleClick"
-                                        class="flex align-items-center no-underline cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple"
-                                    >
-                                        <i class="mr-2" :class="'pi ' + link.icon "></i>
-                                        <span class="font-medium">{{ link.titulo }}</span>
-                                    </router-link>
+                                    <template v-if="link.subitems && link.subitems.length">
+                                        <div class="flex align-items-center text-700 cursor-pointer p-ripple">
+                                            <i class="mr-3" :class="'pi ' + link.icon "></i>
+                                            <span class="font-medium">{{ link.titulo }}</span>
+                                            <!-- <i class="pi pi-chevron-down"></i> -->
+                                        </div>
+                                        <ul class="list-none ml-0">
+                                            <li v-for="subitem in link.subitems" :key="subitem.pathName">
+                                                <router-link
+                                                    v-ripple
+                                                    :to="subitem.path"
+                                                    @click="onHandleClick"
+                                                    class="flex align-items-center no-underline cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple"
+                                                >
+                                                    <i class="mr-2" :class="'pi ' + subitem.icon "></i>
+                                                    <span class="font-medium">{{ subitem.titulo }}</span>
+                                                </router-link>
+                                            </li>
+                                        </ul>
+                                    </template>
+                                    <template v-else>
+                                        <router-link
+                                            v-ripple
+                                            :to="link.path"
+                                            @click="onHandleClick"
+                                            class="flex align-items-center no-underline cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple"
+                                        >
+                                            <i class="mr-2" :class="'pi ' + link.icon "></i>
+                                            <span class="font-medium">{{ link.titulo }}</span>
+                                        </router-link>
+                                    </template>
                                 </li>
                             </ul>
                         </div>

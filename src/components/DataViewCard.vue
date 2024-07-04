@@ -4,10 +4,12 @@ import DataView from 'primevue/dataview';
 
 import ButtonOptions from '@/components/ButtonOptions.vue';
 import { getColorByAfectado } from '@/helpers/getColorByAfectado';
-import { getTitleCase, getUpperCase } from '@/helpers/stringUtils';
-import { formatFecha } from '@/helpers/getFormatFecha';
 import { useToast } from 'primevue/usetoast';
 import MyModal from './elementos/MyModal.vue';
+import { getTitleCase, getUpperCase } from '@/helpers/stringUtils';
+import { formatFecha } from '@/helpers/getFormatFecha';
+import useActuacion from '@/composables/useActuacion';
+import useItemValue from '@/composables/useItemValue';
 
 const props = defineProps<{
   itemsCardValue: { titulo: string; items: any[] };
@@ -16,14 +18,20 @@ const props = defineProps<{
 
 const condicion: boolean = false;
 const toast = useToast();
+const { agregarNuevoItem } = useActuacion();
+const { selectedItem } = useItemValue();
+
 const items = computed(() => {
   if (props.dataKey === 'personalInterviniente') {
     console.log('Items de personalInterviniente:', props.itemsCardValue.items); // Inspecciona específicamente los items de 'fecha'
   }
   return props.itemsCardValue.items;
 });
+
 const editProduct = (productId: any) => {
-  // Lógica para editar el producto con el ID proporcionado
+  const itemToEdit = items.value.find((item) => item.id === productId);
+  selectedItem.value = itemToEdit;
+  agregarNuevoItem(props.dataKey);
 };
 
 const deleteItem = (productId: any) => {

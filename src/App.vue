@@ -11,7 +11,7 @@ import { useFontSize } from './composables/useFontSize';
 const PrimeVue = usePrimeVue();
 const { changeThemeCurrent } = useThemeColor()
 const { loadFontSize } = useFontSize(); 
-const isLoading = ref(true); // Estado de carga
+const isLoading = ref(false); // Estado de carga
 const themeLink = document.querySelector('link#theme-link');
 const route = useRoute()
 if (themeLink) {

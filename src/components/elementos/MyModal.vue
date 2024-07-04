@@ -1,10 +1,9 @@
 <template>
     <Dialog v-model:visible="isVisible" :header="title" modal :style="{ width: '500px' }" closable>
       <template #header></template>
-      <div class="modal-body">
+      
         <slot name="body" />
-       
-      </div>
+    
       <template #footer>
         <div class="modal-footer">
           <Button
@@ -59,13 +58,7 @@
   <style scoped>
 
   
-  .modal-body {
-    display: flex;
-    align-items: center;
-    justify-items: center;
-    padding: 1rem;
-    gap: 1rem;
-  }
+ 
   
 
 

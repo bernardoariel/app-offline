@@ -16,6 +16,7 @@ const selectedOption = ref('afectados');
 const { generatePdf, pdfUrl } = useViewPdf();
 const {fetchActuaciones, deleteActuacion}= useSaveData()
 const { activateComponent } = useActuacion()
+const mensaje =ref('')
 let actuaciones:any 
 
 
@@ -59,11 +60,18 @@ const deleteModalButtons = ref<buttonProps[]>([
   { label: 'Eliminar', class: 'p-button-danger', icon: 'pi pi-trash', iconPos: 'left', action: 'delete' },
 ]);
 
-const openDeleteConfirmation = (id: string) => {
+const openDeleteConfirmation = (data: any) => {
+    console.log('data::: ', data);
 
-  actuacionIdToDelete.value = id;
+  actuacionIdToDelete.value = data.id;
+  
   visible.value = true;
+  mensaje.value = `
+    Actuacion con <span class="font-semibold">Fecha:</span> ${data.fechaCreacion}
+    <span class="font-semibold">Nro: </span> ${data.nroLegajoCompleto}<br/>
+    <span class="font-semibold">${data.nombreActuacion}</span>`;
 };
+
 
 const handleDeleteConfirmation = async (action: string) => {
   if (action === 'delete' && actuacionIdToDelete.value) {
@@ -97,7 +105,7 @@ const handleDeleteConfirmation = async (action: string) => {
                     <div class="flex gap-2">
                         <Button icon="pi pi-file-pdf" square @click="viewPdf(data.id)" severity="success"  ></Button>
                         <Button icon="pi pi-pencil" @click="onEditActuacion(data.id,data.pathName)" square severity="warning"></Button>
-                        <Button icon="pi pi-trash" @click="openDeleteConfirmation(data.id)" square severity="danger"></Button>
+                        <Button icon="pi pi-trash" @click="openDeleteConfirmation(data)" square severity="danger"></Button>
                         <span></span>
                     </div>
                 </template>
@@ -212,8 +220,15 @@ const handleDeleteConfirmation = async (action: string) => {
             @button-click="handleDeleteConfirmation"
             >
             <template #body>
-                <i class="pi pi-exclamation-triangle" :style="{ fontSize: '3rem', color: 'orange' }"></i>
-                <p class="text-center">¿Estás seguro de que deseas eliminar esta actuación?</p>
+
+                <div class="modal-body">
+                    <i class="pi pi-exclamation-triangle" :style="{ fontSize: '3rem', color: 'orange' }"></i>
+                    <p class="text-right font-bold">¿Deseas eliminar la siguiente actuación?</p>
+                </div>
+                <p class="text-center m-0 text-sm" v-html="mensaje"></p>
+                    
+                
+                
             </template>
         </MyModal>
         <Toast />
@@ -227,5 +242,13 @@ const handleDeleteConfirmation = async (action: string) => {
     border-radius: 10px;
     margin-bottom: 1rem;
 }
-
+.modal-body {
+    display: flex;
+    
+    justify-content: space-between;
+    padding-top: 0.5rem;
+    padding-left: 3rem; /* Padding solo en los lados */
+    padding-right: 3rem; /* Padding solo en los lados */
+    /* gap: 1rem; */
+  }
 </style>

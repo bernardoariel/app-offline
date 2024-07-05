@@ -1,51 +1,79 @@
 <script lang="ts" setup>
-
 import { sidebarLinks } from "@/data/sideBarLinks";
 import { computed, ref } from "vue";
 import useActuacion from '@/composables/useActuacion';
 
 type SidebarPosition = "left" | "right" | "top" | "bottom" | "full";
 const visible = ref(false);
-const {activateComponent} = useActuacion();
-interface Props{
-    icono:string,
-    position?:SidebarPosition,
-    colorIcono:string
+const { activateComponent } = useActuacion();
+
+interface Props {
+    icono: string,
+    position?: SidebarPosition,
+    colorIcono: string
+}
+export interface SidebarLink {
+    path: string;
+    pathName: string;
+    titulo: string;
+    icon: string;
+    roles: string[];
+    type: string;
+    grupo: string;
+    props?: any;
+    subitems?: SidebarLink[];
+    action?: any;
 }
 interface GroupedLinks {
-  [groupName: string]: typeof sidebarLinks;
+    [groupName: string]: SidebarLink[];
 }
+
 const closeSidebar = () => {
-  visible.value = false;
+    visible.value = false;
 };
 const props = defineProps<Props>();
 
-// Filtra los enlaces basados en los roles
-const filteredLinks = computed(() => {
-  return sidebarLinks.filter(link => link.roles.includes('Oficial Sumariante'));
-});
-const onHandleClick = () =>{
-  console.log('HandleClick')
-  activateComponent()
-  closeSidebar()
-}
-// Agrupa los enlaces filtrados por el nombre del grupo
+// Estado de expansión para los enlaces y subenlaces
+const linkState = ref<{ [key: string]: boolean }>({});
+
+// Inicializa el estado de los enlaces principales como expandidos
+const initializeLinkState = () => {
+    sidebarLinks.forEach(link => {
+        if (!linkState.value[link.grupo]) {
+            linkState.value[link.grupo] = true; // Inicializar grupos principales como expandidos
+        }
+        linkState.value[link.pathName] = false;
+        if (link.subitems) {
+            link.subitems.forEach(subitem => {
+                linkState.value[subitem.pathName] = false;
+            });
+        }
+    });
+};
+initializeLinkState();
+
+// Filtra y agrupa los enlaces basados en los roles
 const groupedLinks = computed(() => {
-  const grouped: GroupedLinks = {};
-  filteredLinks.value.forEach(link => {
-    if (!grouped[link.grupo]) {
-      grouped[link.grupo] = [];
-    }
-    grouped[link.grupo].push(link);
-  });
-  return grouped;
+    const grouped: GroupedLinks = {};
+    sidebarLinks.filter(link => link.roles.includes('Oficial Sumariante')).forEach(link => {
+        if (!grouped[link.grupo]) {
+            grouped[link.grupo] = [];
+        }
+        grouped[link.grupo].push(link);
+    });
+    return grouped;
 });
 
-// Controla la expansión de los links
-const toggleLink = (link: any) => {
-  link.expanded = !link.expanded;
+const onHandleClick = () => {
+    console.log('HandleClick');
+    activateComponent();
+    closeSidebar();
 };
 
+// Controla la expansión de los links
+const toggleLink = (pathName: string | number) => {
+    linkState.value[pathName] = !linkState.value[pathName];
+};
 </script>
 
 <template>
@@ -55,7 +83,7 @@ const toggleLink = (link: any) => {
                 <div class="flex flex-column h-full">
                     <div class="flex align-items-center justify-content-between px-4 pt-3 flex-shrink-0">
                         <span class="inline-flex align-items-center gap-2">
-                            <img src="../assets/logo-policia-de-san-juan.png" alt="Logo Policía de San Juan" style="height: 50px;"/>
+                            <img src="../assets/logo-policia-de-san-juan.png" alt="Logo Policía de San Juan" style="height: 50px;" />
                         </span>
                         <span>
                             <Button type="button" @click="closeCallback" icon="pi pi-times" rounded outlined class="h-2rem w-2rem"></Button>
@@ -63,37 +91,23 @@ const toggleLink = (link: any) => {
                     </div>
                     <div class="overflow-y-auto">
                         <div v-for="(links, groupName) in groupedLinks" :key="groupName">
-                            <div
-                                v-if="groupName!='principal'"
+                            <div v-if="groupName != 'principal'"
                                 v-ripple
-                                v-styleclass="{
-                                    selector: '@next',
-                                    enterClass: 'hidden',
-                                    enterActiveClass: 'slidedown',
-                                    leaveToClass: 'hidden',
-                                    leaveActiveClass: 'slideup'
-                                }"
                                 class="p-3 flex align-items-center justify-content-between text-600 cursor-pointer p-ripple"
-                                >
+                                @click="toggleLink(groupName)"
+                            >
                                 <span class="font-medium">{{ groupName }}</span>
-                                <i class="pi pi-chevron-down"></i>
+                                <i class="pi" :class="linkState[groupName] ? 'pi-chevron-up' : 'pi-chevron-down'"></i>
                             </div>
-                            <ul class="list-none p-3 m-0 ">
+                            <ul v-show="linkState[groupName]" class="list-none p-3 m-0 overflow-hidden transition-all transition-duration-300">
                                 <li v-for="link in links" :key="link.pathName">
-                                    <div
-                                        v-if="link.subitems"
+                                    <div v-if="link.subitems"
                                         v-ripple
-                                        v-styleclass="{
-                                            selector: '@next',
-                                            enterClass: 'hidden',
-                                            enterActiveClass: 'slidedown',
-                                            leaveToClass: 'hidden',
-                                            leaveActiveClass: 'slideup'
-                                        }"
-                                        class="overflow-hidden p-3 flex align-items-center justify-content-between text-600 cursor-pointer p-ripple"
-                                        >
+                                        @click="toggleLink(link.pathName)"
+                                        class="p-3 flex align-items-center justify-content-between text-600 cursor-pointer p-ripple"
+                                    >
                                         <span class="font-medium">{{ link.titulo }}</span>
-                                        <i class="pi pi-chevron-down"></i>
+                                        <i class="pi" :class="linkState[link.pathName] ? 'pi-chevron-up' : 'pi-chevron-down'"></i>
                                     </div>
                                     <router-link v-else
                                         v-ripple
@@ -101,35 +115,35 @@ const toggleLink = (link: any) => {
                                         @click="onHandleClick"
                                         class="flex align-items-center no-underline cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple"
                                     >
-                                        <i class="mr-2" :class="'pi ' + link.icon "></i>
+                                        <i class="mr-2" :class="'pi ' + link.icon"></i>
                                         <span class="font-medium">{{ link.titulo }}</span>
                                     </router-link>
-                                    <ul v-if="link.subitems" class="list-none pl-4">
-                                        <li v-for="subitem in link.subitems" :key="subitem.pathName">
-                                            <router-link
-                                                v-ripple
-                                                :to="subitem.path"
-                                                @click="onHandleClick"
-                                                class="flex align-items-center no-underline cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple"
-                                            >
-                                                <i class="mr-2" :class="'pi ' + subitem.icon"></i>
-                                                <span class="font-medium">{{ subitem.titulo }}</span>
-                                            </router-link>
-                                        </li>
-                                    </ul>
+                                    <transition name="slidedown">
+                                        <ul v-show="linkState[link.pathName]" class="list-none pl-4 transition-all transition-duration-300">
+                                            <li v-for="subitem in link.subitems" :key="subitem.pathName">
+                                                <router-link
+                                                    v-ripple
+                                                    :to="subitem.path"
+                                                    @click="onHandleClick"
+                                                    class="flex align-items-center no-underline cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple"
+                                                >
+                                                    <i class="mr-2" :class="'pi ' + subitem.icon"></i>
+                                                    <span class="font-medium">{{ subitem.titulo }}</span>
+                                                </router-link>
+                                            </li>
+                                        </ul>
+                                    </transition>
                                 </li>
                             </ul>
-                             <!-- Check if link has subitems -->
-           
+                            <!-- Check if link has subitems -->
                         </div>
                     </div>
                     <div class="mt-auto">
                         <hr class="mb-3 mx-3 border-top-1 border-none surface-border" />
                         <a v-ripple class="m-3 flex align-items-center cursor-pointer p-3 gap-2 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                            <!-- <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" shape="circle" /> -->
                             <i class="pi pi-wifi" style="font-size: 2rem; position: relative;">
-            <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-45deg); width: 2.3rem; height: 2px; background-color: #343a40;"></span>
-        </i>
+                                <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-45deg); width: 2.3rem; height: 2px; background-color: #343a40;"></span>
+                            </i>
                             <span class="font-bold">Dependecia 2</span>
                         </a>
                     </div>
@@ -144,3 +158,24 @@ const toggleLink = (link: any) => {
     </div>
 </template>
 
+<style scoped>
+.hidden {
+    display: none;
+}
+
+.slidedown-enter-active,
+.slidedown-leave-active {
+    transition: max-height 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+.slidedown-enter-from,
+.slidedown-leave-to {
+    max-height: 0;
+}
+
+.slidedown-enter-to,
+.slidedown-leave-from {
+    max-height: 500px; /* Ajusta esto según el contenido */
+}
+</style>

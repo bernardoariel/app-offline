@@ -1,4 +1,5 @@
-export const sidebarLinks = [
+import type { SidebarLink } from '../components/SidebarMenu.vue';
+export const sidebarLinks:SidebarLink[] = [
   {
     path: '/',
     pathName: 'escritorio',

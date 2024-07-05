@@ -24,14 +24,16 @@ const props = defineProps<Props>();
 const actuacionRef = ref(props.actuacion);
 const active = ref(0);
 
-const { agregarNuevoItem, currentEditId, isActivated,toogleDateActuacion } = useActuacion();
+const { agregarNuevoItem, currentEditId, isActivated, toogleDateActuacion } =
+  useActuacion();
 const { fetchActuacionById } = useSaveData();
 
 onActivated(async () => {
-  if (!isActivated.value) return;
+  // if (!isActivated.value) return; //posible solucion al bug
   if (!props.id) currentEditId.value = null;
-  toogleDateActuacion()
+  toogleDateActuacion();
   if (props.id && !currentEditId.value) {
+    console.log('props.id', props.id);
     const data = await fetchActuacionById(props.id);
     setAll(data);
     currentEditId.value = props.id;

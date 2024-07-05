@@ -1,9 +1,10 @@
 import { ref } from 'vue';
 import { userDataSiis } from '../data/mock/datosActuacion';
 
+const dependencia = ref(null);
+const usuario = ref<string | null>(null);
+
 export function useStorageData() {
-  const dependencia = ref(null);
-  const usuario = ref<string | null>(null);
 
   const obtenerDatoAleatorio = (tipo) => {
     if (!userDataSiis[tipo] || userDataSiis[tipo].length === 0) {

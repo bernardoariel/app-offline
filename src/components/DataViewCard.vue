@@ -51,6 +51,7 @@ interface buttonProps {
 }
 const visible = ref(false);
 const itemToDelete = ref<string | null>(null);
+const itemType = ref(null);
 const mensaje = ref('');
 const deleteModalButtons = ref<buttonProps[]>([
   {
@@ -69,6 +70,7 @@ const deleteModalButtons = ref<buttonProps[]>([
   },
 ]);
 const openDeleteConfirmation = (item) => {
+  itemType.value = item;
   itemToDelete.value = item.id;
   visible.value = true;
   mensaje.value = `
@@ -159,7 +161,6 @@ const copyProduct = (productId: any) => {
             </div>
           </div>
           <!-- personal Interviniente -->
-
           <div v-else-if="dataKey === 'personalInterviniente'">
             <div
               class="flex-container"
@@ -251,7 +252,6 @@ const copyProduct = (productId: any) => {
               <p class="text-xs">{{ item.calle + ' ' + item.numero }}</p>
             </div>
           </div>
-
           <div v-else-if="dataKey == 'efectos'">
             <div
               class="flex-container"
@@ -317,7 +317,11 @@ const copyProduct = (productId: any) => {
           class="pi pi-exclamation-triangle"
           :style="{ fontSize: '3rem', color: 'orange' }"
         ></i>
-        <p class="text-right font-bold">¿Deseas eliminar?</p>
+        <div class="flex justify-content-center" style="width: 100%">
+          <p class="text-left font-bold">
+            ¿Deseas eliminar al siguiente {{ itemType?.typeAfectado }}?
+          </p>
+        </div>
       </div>
       <p class="text-center m-0 text-sm" v-html="mensaje"></p>
     </template>
@@ -352,10 +356,8 @@ const copyProduct = (productId: any) => {
 
 .modal-body {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   padding-top: 0.5rem;
-  padding-left: 3rem; /* Padding solo en los lados */
-  padding-right: 3rem; /* Padding solo en los lados */
   /* gap: 1rem; */
 }
 </style>

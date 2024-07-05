@@ -35,6 +35,7 @@ const editProduct = (productId: any) => {
 };
 
 const deleteItem = (productId: any) => {
+  console.log('productId', productId);
   const index = props.itemsCardValue.items.findIndex(
     (item) => item.id === productId
   );
@@ -69,12 +70,22 @@ const deleteModalButtons = ref<buttonProps[]>([
     action: 'delete',
   },
 ]);
-const openDeleteConfirmation = (item) => {
+const openDeleteConfirmation = (item, dataKey) => {
   itemType.value = item;
   itemToDelete.value = item.id;
   visible.value = true;
+  if (dataKey === 'efectos') {
+    mensaje.value = `
+    <span class="font-semibold">${item.categoria}</span><span>, ${item.marca}</span><br/>
+    modelo <span class="font-semibold">${item.modelo}`;
+    return;
+  }
+  if (dataKey === 'fecha') {
+    mensaje.value = ``;
+    return;
+  }
   mensaje.value = `
-    ${item.typeAfectado}: <span class="font-semibold">${item.apellido}</span><span>, ${item.nombre}</span><br/>
+    <span class="font-semibold">${item.apellido}</span><span>, ${item.nombre}</span><br/>
     con <span class="font-semibold">DNI:</span> ${item.nroDocumento}`;
 };
 
@@ -101,6 +112,18 @@ const handleDeleteConfirmation = async (action: string) => {
 
 const copyProduct = (productId: any) => {
   // Lógica para copiar el producto con el ID proporcionado
+};
+
+const convertStringToPhrase = (key: string): string => {
+  const phrases: { [key: string]: string } = {
+    afectados: 'al siguiente afectado',
+    vinculados: 'al siguiente vinculado',
+    personalInterviniente: 'al siguiente interviniente',
+    fecha: 'la fecha y ubicación',
+    efectos: 'el siguiente efecto',
+  };
+
+  return phrases[key] || key;
 };
 </script>
 
@@ -152,7 +175,7 @@ const copyProduct = (productId: any) => {
                 <ButtonOptions
                   :tarjetaNombre="item.title"
                   :item="item"
-                  :deleteItem="() => openDeleteConfirmation(item)"
+                  :deleteItem="() => openDeleteConfirmation(item, dataKey)"
                 />
               </div>
             </div>
@@ -197,7 +220,7 @@ const copyProduct = (productId: any) => {
                 <ButtonOptions
                   :tarjetaNombre="item.title"
                   :item="item"
-                  :deleteItem="deleteItem"
+                  :deleteItem="() => openDeleteConfirmation(item, dataKey)"
                 />
               </div>
             </div>
@@ -244,7 +267,7 @@ const copyProduct = (productId: any) => {
                 <ButtonOptions
                   :tarjetaNombre="item.title"
                   :item="item"
-                  :deleteItem="deleteItem"
+                  :deleteItem="() => openDeleteConfirmation(item, dataKey)"
                 />
               </div>
             </div>
@@ -290,7 +313,7 @@ const copyProduct = (productId: any) => {
                 <ButtonOptions
                   :tarjetaNombre="item.title"
                   :item="item"
-                  :deleteItem="deleteItem"
+                  :deleteItem="() => openDeleteConfirmation(item, dataKey)"
                 />
               </div>
             </div>
@@ -319,7 +342,7 @@ const copyProduct = (productId: any) => {
         ></i>
         <div class="flex justify-content-center" style="width: 100%">
           <p class="text-left font-bold">
-            ¿Deseas eliminar al siguiente {{ itemType?.typeAfectado }}?
+            ¿Deseas eliminar {{ convertStringToPhrase(dataKey) }}?
           </p>
         </div>
       </div>

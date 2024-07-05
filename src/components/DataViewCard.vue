@@ -51,6 +51,7 @@ interface buttonProps {
 }
 const visible = ref(false);
 const itemToDelete = ref<string | null>(null);
+const mensaje = ref('');
 const deleteModalButtons = ref<buttonProps[]>([
   {
     label: 'Cancelar',
@@ -67,9 +68,12 @@ const deleteModalButtons = ref<buttonProps[]>([
     action: 'delete',
   },
 ]);
-const openDeleteConfirmation = (id: string) => {
-  itemToDelete.value = id;
+const openDeleteConfirmation = (item) => {
+  itemToDelete.value = item.id;
   visible.value = true;
+  mensaje.value = `
+    ${item.typeAfectado}: <span class="font-semibold">${item.apellido}</span><span>, ${item.nombre}</span><br/>
+    con <span class="font-semibold">DNI:</span> ${item.nroDocumento}`;
 };
 
 const handleDeleteConfirmation = async (action: string) => {
@@ -146,7 +150,7 @@ const copyProduct = (productId: any) => {
                 <ButtonOptions
                   :tarjetaNombre="item.title"
                   :item="item"
-                  :deleteItem="openDeleteConfirmation"
+                  :deleteItem="() => openDeleteConfirmation(item)"
                 />
               </div>
             </div>
@@ -313,8 +317,9 @@ const copyProduct = (productId: any) => {
           class="pi pi-exclamation-triangle"
           :style="{ fontSize: '3rem', color: 'orange' }"
         ></i>
-        <p class="text-right font-bold">¿Deseas eliminar el siguiente item?</p>
+        <p class="text-right font-bold">¿Deseas eliminar?</p>
       </div>
+      <p class="text-center m-0 text-sm" v-html="mensaje"></p>
     </template>
   </MyModal>
   <Toast />
@@ -343,5 +348,14 @@ const copyProduct = (productId: any) => {
 .linea-2 {
   margin-top: -20px;
   margin-left: 50px;
+}
+
+.modal-body {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.5rem;
+  padding-left: 3rem; /* Padding solo en los lados */
+  padding-right: 3rem; /* Padding solo en los lados */
+  /* gap: 1rem; */
 }
 </style>

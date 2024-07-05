@@ -5,6 +5,7 @@ import useItemValue from '@/composables/useItemValue';
 import useFieldState from '@/composables/useFiledsState';
 
 import MyDropdown from '@/components/elementos/MyDropdown.vue';
+import MyInput from '@/components/elementos/MyInput.vue';
 
 import type { Efectos } from '../interfaces/efecto.interface';
 import type { EfectosForm } from '../interfaces/efecto.interface';
@@ -107,6 +108,14 @@ const handleAgregarElemento = () => {
     modelo: selectedModelo.value!.name,
     subcategoria: selectedSubcategoria.value!.name,
     tipo: selectedTipo.value!.name,
+    año: formData.value.año,
+    nroChasis: formData.value.nroChasis,
+    nroMotor: formData.value.nroMotor,
+    dominio: formData.value.dominio,
+    nroSerie: formData.value.nroSerie,
+    nroIMEI: formData.value.nroIMEI,
+    nroAbonado: formData.value.nroAbonado,
+    color: formData.value.color,
   };
 
   agregar(nuevoEfecto);
@@ -209,6 +218,86 @@ watch(selectedItem, (newVal: any) => {
             placeholder="Seleccione Modelo"
             :color="!!selectedItem"
             filter
+          />
+        </div>
+        <div class="col-6">
+          <label for="año">Año</label>
+          <MyInput
+            type="text"
+            class="mt-2"
+            :value="getInputValue('año')"
+            @input="handleInputChange('año', $event)"
+            @blur="() => handleBlur('año')"
+          />
+        </div>
+        <div class="col-6">
+          <label for="nroChasis">Nroº Chasis</label>
+          <MyInput
+            type="text"
+            class="mt-2"
+            :value="getInputValue('nroChasis')"
+            @input="handleInputChange('nroChasis', $event)"
+            @blur="() => handleBlur('nroChasis')"
+          />
+        </div>
+        <div class="col-6">
+          <label for="nroMotor">Nroº Motor</label>
+          <MyInput
+            type="text"
+            class="mt-2"
+            :value="getInputValue('nroMotor')"
+            @input="handleInputChange('nroMotor', $event)"
+            @blur="() => handleBlur('nroMotor')"
+          />
+        </div>
+        <div class="col-6">
+          <label for="dominio">Dominio</label>
+          <MyInput
+            type="text"
+            class="mt-2"
+            :value="getInputValue('dominio')"
+            @input="handleInputChange('dominio', $event)"
+            @blur="() => handleBlur('dominio')"
+          />
+        </div>
+        <div class="col-6">
+          <label for="nroSerie">Nroº Serie</label>
+          <MyInput
+            type="text"
+            class="mt-2"
+            :value="getInputValue('nroSerie')"
+            @input="handleInputChange('nroSerie', $event)"
+            @blur="() => handleBlur('nroSerie')"
+          />
+        </div>
+        <div class="col-6">
+          <label for="nroIMEI">Nroº IMEI</label>
+          <MyInput
+            type="text"
+            class="mt-2"
+            :value="getInputValue('nroIMEI')"
+            @input="handleInputChange('nroIMEI', $event)"
+            @blur="() => handleBlur('nroIMEI')"
+          />
+        </div>
+        <div class="col-6">
+          <label for="nroAbonado">Nroº Abonado</label>
+          <MyInput
+            type="text"
+            class="mt-2"
+            :value="getInputValue('nroAbonado')"
+            @input="handleInputChange('nroAbonado', $event)"
+            @blur="() => handleBlur('nroAbonado')"
+          />
+        </div>
+        <div class="col-6">
+          <label for="color">color</label>
+          <MyInput
+            type="text"
+            class="mt-2"
+            :value="getInputValue('color')"
+            @input="handleInputChange('color', $event)"
+            @blur="() => handleBlur('color')"
           />
         </div>
         <div class="ml-auto mt-2 p-0">

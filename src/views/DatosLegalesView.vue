@@ -8,6 +8,8 @@ import { ref, watch } from 'vue';
 import { sitiosDropdwown, modusOperandiDropdwown, causaCaratulaDropdwown, juzgadoIntervinienteDropdwown } from '../helpers/getDropItems';
 import { getUpperCase } from '@/helpers/stringUtils';
 import useDatosLegales from '../composables/useDatosLegales';
+import { DatosLegalesForm } from '../interfaces/datosLegalesForm.interface';
+import useItemValue from '@/composables/useItemValue';
 
 
 const { 
@@ -20,15 +22,16 @@ const {
     nroLegajo,
     itemsCausaCaratula
 } = useDatosLegales()
-
+const { selectedItem } = useItemValue();
 
 let yearsActuacion:string[] = getYearsDrop()
-
+let formData = ref<DatosLegalesForm>({ ...selectedItem.value });
 const handleDropdownChange = (
-  campo: keyof AfectadosForm,
+  campo: keyof DatosLegalesForm,
   newValue: { value: any; name: string }
 ) => {
   const name = newValue.value.name;
+  console.log('name::: ', name);
 
   if (campo in formData.value) {
     // Actualizar formData para que el campo específico tenga un objeto con la propiedad 'name' actualizada
@@ -38,10 +41,10 @@ const handleDropdownChange = (
     };
 
     const itemId = formData.value.id!;
-    if (itemId) {
+   /*  if (itemId) {
       setPristineById(itemId, false);
       setModifiedData(itemId, campo, name);
-    }
+    } */
   }
 };
 

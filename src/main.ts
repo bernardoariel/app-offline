@@ -35,6 +35,7 @@ import ToggleButton from 'primevue/togglebutton';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import Dialog from 'primevue/dialog'
+import ConfirmPopup from 'primevue/confirmpopup';
 import ColumnGroup from 'primevue/columngroup';   // optional
 import Row from 'primevue/row';                   // optional
 import Toast from 'primevue/toast';
@@ -64,6 +65,7 @@ app.component('Textarea', Textarea);
 app.component('Listbox', Listbox);
 app.component('Toolbar', Toolbar);
 app.component('Dialog', Dialog)
+app.component('ConfirmPopup', ConfirmPopup)
 
 app.component('InputMask', InputMask);
 app.component('InputNumber', InputNumber);

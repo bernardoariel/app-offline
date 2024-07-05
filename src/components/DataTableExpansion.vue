@@ -7,6 +7,7 @@ import { useViewPdf } from '@/composables/useViewPdf';
 import { useRouter } from 'vue-router';
 import useActuacion from '@/composables/useActuacion';
 import MyModal from './elementos/MyModal.vue';
+import MyPopup from './elementos/MyPopup.vue';
 
 const actuacionesList = ref();
 const expandedRows = ref([]);
@@ -231,6 +232,25 @@ const handleDeleteConfirmation = async (action: string) => {
                 
             </template>
         </MyModal>
+
+
+    <MyPopup
+      label="Mostrar"
+      icon="pi pi-info-circle"
+      v-model:visible="visible"
+      title="Confirmar Eliminación"
+      :buttons="deleteModalButtons"
+      @button-click="handleDeleteConfirmation"
+    >
+      <template #body>
+        <div class="modal-body">
+          <i class="pi pi-exclamation-triangle" :style="{ fontSize: '3rem', color: 'orange' }"></i>
+          <p class="text-right font-bold">¿Deseas eliminar la siguiente actuación?</p>
+        </div>
+        <p class="text-center m-0 text-sm" v-html="mensaje"></p>
+      </template>
+    </MyPopup>
+
         <Toast />
     </div>
 </template>

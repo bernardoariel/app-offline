@@ -3,7 +3,7 @@ import MyInput from '@/components/elementos/MyInput.vue';
 import { getYearsDrop } from '@/helpers/getYearsDrop';
 import MyDropdown from '@/components/elementos/MyDropdown.vue';
 import { mapToDropdownItems } from '@/helpers/dropUtils';
-import type { DropDownInterface } from '@/interfaces/dropdown.interface';
+
 import { ref, watch } from 'vue';
 import { sitiosDropdwown, modusOperandiDropdwown, causaCaratulaDropdwown, juzgadoIntervinienteDropdwown } from '../helpers/getDropItems';
 import { getUpperCase } from '@/helpers/stringUtils';
@@ -24,6 +24,26 @@ const {
 
 let yearsActuacion:string[] = getYearsDrop()
 
+const handleDropdownChange = (
+  campo: keyof AfectadosForm,
+  newValue: { value: any; name: string }
+) => {
+  const name = newValue.value.name;
+
+  if (campo in formData.value) {
+    // Actualizar formData para que el campo específico tenga un objeto con la propiedad 'name' actualizada
+    formData.value = {
+      ...formData.value,
+      [campo]: { name }, // Asigna un objeto con 'name' a campo
+    };
+
+    const itemId = formData.value.id!;
+    if (itemId) {
+      setPristineById(itemId, false);
+      setModifiedData(itemId, campo, name);
+    }
+  }
+};
 
 watch(selectedCausaCaratula, () => {
 
@@ -65,6 +85,9 @@ const eliminarItem = (name:string)=>{
                 optionLabel="name"
                 :filter=false
                 color
+                @change="
+                    (newValue) => handleDropdownChange('yearsActuacion', newValue)
+                "
                 />
         </div>    
         <!-- Sitio -->

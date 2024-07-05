@@ -14,7 +14,7 @@ import useDatosLegales from '../composables/useDatosLegales';
 import useDatosDiligencia from '@/composables/useDatosDiligencia';
 import useSaveData from '@/composables/useSaveData';
 import useItemValue from '@/composables/useItemValue';
-import { useRoute } from 'vue-router';
+
 
 interface Props {
   actuacion: string;

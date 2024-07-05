@@ -28,7 +28,8 @@ const { agregarNuevoItem, currentEditId, isActivated,toogleDateActuacion } = use
 const { fetchActuacionById } = useSaveData();
 
 onActivated(async () => {
-  if (!isActivated.value) return;
+  
+  // if (!isActivated.value) return;
   if (!props.id) currentEditId.value = null;
   toogleDateActuacion()
   if (props.id && !currentEditId.value) {

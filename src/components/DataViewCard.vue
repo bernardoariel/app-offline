@@ -378,9 +378,11 @@ const convertStringToPhrase = (key: string): string => {
 }
 
 .modal-body {
-  display: flex;
-  /* justify-content: space-between; */
-  padding-top: 0.5rem;
-  /* gap: 1rem; */
-}
+    display: flex;
+    justify-content: space-between;
+    padding-top: 0.5rem;
+    padding-left: 4rem; /* Padding solo en los lados */
+    padding-right: 3rem; /* Padding solo en los lados */
+    /* gap: 1rem; */
+  }
 </style>

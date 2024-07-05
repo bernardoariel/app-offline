@@ -1,11 +1,13 @@
 <script lang="ts" setup>
 import { sidebarLinks } from "@/data/sideBarLinks";
-import { computed, ref } from "vue";
+import { computed, ref, onMounted } from 'vue';
 import useActuacion from '@/composables/useActuacion';
+import { useStorageData } from '../composables/useStorageData';
 
 type SidebarPosition = "left" | "right" | "top" | "bottom" | "full";
 const visible = ref(false);
 const { activateComponent } = useActuacion();
+const { dependencia } = useStorageData()
 
 interface Props {
     icono: string,
@@ -27,7 +29,7 @@ export interface SidebarLink {
 interface GroupedLinks {
     [groupName: string]: SidebarLink[];
 }
-
+const dependenciaActual = dependencia.value!['nombre'] ||dependencia.value!['dependenciaLetra']
 const closeSidebar = () => {
     visible.value = false;
 };
@@ -140,11 +142,11 @@ const toggleLink = (pathName: string | number) => {
                     </div>
                     <div class="mt-auto">
                         <hr class="mb-3 mx-3 border-top-1 border-none surface-border" />
-                        <a v-ripple class="m-3 flex align-items-center cursor-pointer p-3 gap-2 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
+                        <a v-ripple class="m-3 flex align-items-center  p-3 gap-2 border-round text-700 transition-duration-150 transition-colors p-ripple">
                             <i class="pi pi-wifi" style="font-size: 2rem; position: relative;">
                                 <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-45deg); width: 2.3rem; height: 2px; background-color: #343a40;"></span>
                             </i>
-                            <span class="font-bold">Dependecia 2</span>
+                            <span class="font-bold">{{dependenciaActual}}</span>
                         </a>
                     </div>
                 </div>

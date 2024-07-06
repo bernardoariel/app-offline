@@ -63,6 +63,8 @@ import { useViewPdf } from '../composables/useViewPdf';
 import PdfViewer from '@/components/reports/PdfViewer.vue';
 import type { dataActuacionForSave } from '../composables/useSaveData';
 import useActuacion from '@/composables/useActuacion';
+import { DatosLegalesForm, DatosLegales } from '../interfaces/datosLegalesForm.interface';
+import useDatosLegales from '../composables/useDatosLegales';
 
 interface Props {
   actuacion: string;
@@ -95,7 +97,7 @@ const { isEditedHeader, isEditedFooter } = useNewActuacion()
 const { isActivated , currentEditId} = useActuacion()
 const { saveData,updateData } = useSaveData();
 const { afectados, efectos, fechaUbicacion, intervinientes, vinculados } = useItem();
-
+const { nroLegajo,selectedCausaCaratula,selectedSitio,selectedYear,selectedJuzgadoInterviniente,itemsCausaCaratula,selectedModusOperandi} = useDatosLegales()
 const setHeaderFromComputed = () => {
   headerContainer.value = headerTextComputed.value;
   isEditedHeader.value = true;
@@ -139,6 +141,15 @@ const saveOrUpdateData = async () => {
   const body = relato.value
   const foot = footerContainer.value || processedFooterText.value
 
+  const datosLegales: DatosLegales = {
+    nroLegajo: nroLegajo.value?.toString() || '',
+    selectYear: selectedYear.value?.name || '',
+    selectSitio: selectedSitio.value?.name || '',
+    selectModusOperandi: selectedModusOperandi.value?.name || '',
+    selectCausaCaratula: selectedCausaCaratula.value?.name || '',
+    opcionesCausaCaratula: itemsCausaCaratula.value.map((item: { name: string }) => item.name),
+    selectJuzgadoInterviniente: selectedJuzgadoInterviniente.value?.name || '',
+  };
   const data:dataActuacionForSave = {
     afectados: afectados.value,
     vinculados: vinculados.value,
@@ -146,7 +157,9 @@ const saveOrUpdateData = async () => {
     efectos: efectos.value,
     personalInterviniente: intervinientes.value ?? [],
     viewPdf:head + ' ' + body + ' ' + foot,
-    pathName:route.params.actuacion as string
+    pathName:route.params.actuacion as string,
+    datosLegales,
+    
   }; 
 
 

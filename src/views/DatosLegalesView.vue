@@ -8,7 +8,7 @@ import { ref, watch } from 'vue';
 import { sitiosDropdwown, modusOperandiDropdwown, causaCaratulaDropdwown, juzgadoIntervinienteDropdwown } from '../helpers/getDropItems';
 import { getUpperCase } from '@/helpers/stringUtils';
 import useDatosLegales from '../composables/useDatosLegales';
-import { DatosLegalesForm } from '../interfaces/datosLegalesForm.interface';
+import type { DatosLegalesForm } from '../interfaces/datosLegalesForm.interface';
 import useItemValue from '@/composables/useItemValue';
 
 
@@ -31,7 +31,6 @@ const handleDropdownChange = (
   newValue: { value: any; name: string }
 ) => {
   const name = newValue.value.name;
-  console.log('name::: ', name);
 
   if (campo in formData.value) {
     // Actualizar formData para que el campo específico tenga un objeto con la propiedad 'name' actualizada
@@ -56,7 +55,7 @@ watch(selectedCausaCaratula, () => {
     if (!itemExists) itemsCausaCaratula.value.push(selectedCausaCaratula.value);
     
     selectedCausaCaratula.value = undefined
-    console.log('selectedYear::: ', selectedYear.value);
+    
 });
 const eliminarItem = (name:string)=>{
     if (itemsCausaCaratula.value === undefined) return
@@ -103,6 +102,7 @@ const eliminarItem = (name:string)=>{
                 optionLabel="name"
                 filter
                 color
+                 @change="(newValue) => handleDropdownChange('selectedSitio', newValue)"
                 class="w-full mt-2" />
         </div>
         <!-- Modus Operandi -->
@@ -115,6 +115,8 @@ const eliminarItem = (name:string)=>{
                 optionLabel="name"
                 filter
                 color
+                @change="(newValue) => handleDropdownChange('selectedModusOperandi', newValue)"
+
                 class="w-full mt-2" />
         </div>
         <!-- Modus Operandi -->
@@ -127,6 +129,7 @@ const eliminarItem = (name:string)=>{
                 optionLabel="name"
                 filter
                 color
+                 @change="(newValue) => handleDropdownChange('selectedCausaCaratula', newValue)"
                 class="w-full mt-2" />
         </div>
         <div class="col-12">
@@ -160,6 +163,7 @@ const eliminarItem = (name:string)=>{
                 optionLabel="name"
                 filter
                 color
+                  @change="(newValue) => handleDropdownChange('selectedJuzgadoInterviniente', newValue)"
                 class="w-full mt-2" />
         </div>
     

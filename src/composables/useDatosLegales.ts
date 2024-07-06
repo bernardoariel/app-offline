@@ -29,7 +29,28 @@ const useDatosLegales = () => {
         itemsCausaCaratula.value = fakeValues.itemsCausaCaratula;
         selectedJuzgadoInterviniente.value = fakeValues.selectedJuzgadoInterviniente;
     };
-   
+    const resetData = () => {
+        nroLegajo.value = null;
+        selectedYear.value = null;
+        selectedSitio.value = null;
+        selectedModusOperandi.value = null;
+        selectedCausaCaratula.value = null;
+        selectedJuzgadoInterviniente.value = null;
+        selectedCausaCaratulaList.value = null;
+        itemsCausaCaratula.value = [];
+        nombreActuacion.value = 'Sumario por denuncia';
+    };
+    const setData = (data) => {
+        const datosLegales = JSON.parse(data.datosLegales);
+        nroLegajo.value = datosLegales.nroLegajo || null;
+        selectedYear.value = datosLegales.selectYear ? { name: datosLegales.selectYear } : null;
+        selectedSitio.value = datosLegales.selectSitio ? { name: datosLegales.selectSitio } : null;
+        selectedModusOperandi.value = datosLegales.selectModusOperandi ? { name: datosLegales.selectModusOperandi } : null;
+        selectedCausaCaratula.value = datosLegales.selectCausaCaratula ? { name: datosLegales.selectCausaCaratula } : null;
+        selectedJuzgadoInterviniente.value = datosLegales.selectJuzgadoInterviniente ? { name: datosLegales.selectJuzgadoInterviniente } : null;
+        itemsCausaCaratula.value = datosLegales.opcionesCausaCaratula ? datosLegales.opcionesCausaCaratula.map(name => ({ name })) : [];
+        nombreActuacion.value = datosLegales.nombreActuacion || 'Sumario por denuncia';
+    };
     return {
         selectedYear,
         selectedSitio,
@@ -40,7 +61,9 @@ const useDatosLegales = () => {
         nroLegajo,
         itemsCausaCaratula,
         addDataFake,
-        nombreActuacion
+        nombreActuacion,
+        resetData,
+        setData
     }
 };
 

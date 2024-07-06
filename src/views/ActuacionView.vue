@@ -26,15 +26,21 @@ const active = ref(0);
 
 const { agregarNuevoItem, currentEditId, isActivated,toogleDateActuacion } = useActuacion();
 const { fetchActuacionById } = useSaveData();
-
+const { resetData,setData } = useDatosLegales()
 onActivated(async () => {
   
   // if (!isActivated.value) return;
-  if (!props.id) currentEditId.value = null;
+  if (!props.id) {
+    currentEditId.value = null;
+    resetData()
+
+  }
   toogleDateActuacion()
   if (props.id && !currentEditId.value) {
     const data = await fetchActuacionById(props.id);
     setAll(data);
+    setData(data);
+
     currentEditId.value = props.id;
   }
 });
@@ -43,8 +49,7 @@ const { setAll } = useItem();
 
 const { relato } = useDatosDiligencia(props.actuacion);
 const { addDataFake } = useDatosLegales();
-const { cardInformationKeys, cardInformation } =
-  useCardInformation(actuacionRef);
+const { cardInformationKeys, cardInformation } = useCardInformation(actuacionRef);
 const { prepararNuevoItem } = useItemValue();
 
 const handleClick = (event: { ctrlKey: any; altKey: any }) => {

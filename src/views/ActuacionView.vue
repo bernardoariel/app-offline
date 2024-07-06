@@ -140,6 +140,7 @@ const handleNuevoItem = (key: string) => {
       <DiligenciaView :actuacion="actuacion" :id="props.id" />
     </div>
   </div>
+  
 </template>
 <style scoped>
 .title-container {

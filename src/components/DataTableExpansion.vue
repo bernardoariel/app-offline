@@ -244,7 +244,6 @@ const handleDeleteConfirmation = async (action: string) => {
 }
 .modal-body {
     display: flex;
-    
     justify-content: space-between;
     padding-top: 0.5rem;
     padding-left: 3rem; /* Padding solo en los lados */

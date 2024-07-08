@@ -14,7 +14,7 @@ import useDatosLegales from '../composables/useDatosLegales';
 import useDatosDiligencia from '@/composables/useDatosDiligencia';
 import useSaveData from '@/composables/useSaveData';
 import useItemValue from '@/composables/useItemValue';
-import { useRoute } from 'vue-router';
+
 
 interface Props {
   actuacion: string;
@@ -24,32 +24,36 @@ const props = defineProps<Props>();
 const actuacionRef = ref(props.actuacion);
 const active = ref(0);
 
-const { agregarNuevoItem, currentEditId, isActivated,toogleDateActuacion } = useActuacion();
+const { agregarNuevoItem, currentEditId,toogleDateActuacion } = useActuacion();
 const { fetchActuacionById } = useSaveData();
-
+const { resetData:resetDatosLegales,setData:setDatosLegales,nroLegajo } = useDatosLegales()
 onActivated(async () => {
+
+  if (!props.id) resetDatosLegales()
   
-  // if (!isActivated.value) return;
-  if (!props.id) currentEditId.value = null;
   toogleDateActuacion()
+
   if (props.id && !currentEditId.value) {
     const data = await fetchActuacionById(props.id);
-    setAll(data);
+    setAll(data); // info tabs1
+    setDatosLegales(data); // tabs2
+    relato.value = data.relato.replace(/['"]/g, '');
     currentEditId.value = props.id;
   }
+
+
 });
 
 const { setAll } = useItem();
 
 const { relato } = useDatosDiligencia(props.actuacion);
 const { addDataFake } = useDatosLegales();
-const { cardInformationKeys, cardInformation } =
-  useCardInformation(actuacionRef);
+const { cardInformationKeys, cardInformation } = useCardInformation(actuacionRef);
 const { prepararNuevoItem } = useItemValue();
 
 const handleClick = (event: { ctrlKey: any; altKey: any }) => {
   if (event.ctrlKey && event.altKey) {
-    console.log(`Ctrl + Alt + Click detectado: ${actuacionRef}`);
+    // console.log(`Ctrl + Alt + Click detectado: ${actuacionRef}`);
     setAll();
     addDataFake();
     relato.value = 'esto es una prueba del relato';
@@ -75,12 +79,19 @@ const handleNuevoItem = (key: string) => {
       <Card>
         <template #title>
           <div class="title-container">
+            <div>
+              <Button label="Cancelar" icon="pi pi-arrow-circle-left" severity="secondary" rounded @click="$router.replace({name:'actuaciones'})"/>
+            </div>
             <div class="font-medium text-3xl text-900" @click="handleClick">
-              {{ $props.id ? 'Edición' : 'Ingreso de datos' }}
-              {{ $props.actuacion }}
+              <small>
+                {{ $props.id ? 'Nro. Legajo:' +  nroLegajo : ''    }}
+              </small>
+
             </div>
 
             <div class="buttons-container">
+              <Tag @click="handleClick" v-if="$props.id" icon="pi pi-pencil" severity="danger" value="Edición" class="px-2"></Tag>
+              <Tag @click="handleClick" v-else icon="pi pi-bolt" severity="success" value="Nueva" class="px-2"></Tag>
               <Button
                 @click="active = 0"
                 rounded
@@ -99,7 +110,9 @@ const handleNuevoItem = (key: string) => {
           </div>
         </template>
         <template #content>
+          
           <TabView v-model:activeIndex="active">
+           
             <TabPanel header="Datos Requeridos">
               <Card
                 v-for="key in cardInformationKeys"

@@ -10,7 +10,7 @@ import useFieldState from '@/composables/useFiledsState';
 
 
 const fechaCreacion = ref<Date | null>(new Date());
-const isActivated = ref(false); 
+const isActuationInit = ref(false); 
 const currentEditId = ref<number|null>(null);
 const { setAll, resetAll } = useItem()
 const { resetStates } = useFieldState()
@@ -23,7 +23,7 @@ const useActuacion = () => {
   const toogleDateActuacion = () => {
 
     fechaCreacion.value = null;
-    isActivated.value = true;
+    isActuationInit.value = true;
     if (route.name === 'newActuacion') initValue()
 
   };
@@ -63,7 +63,7 @@ const useActuacion = () => {
     getFormattedDateTime,
     agregarNuevoItem,
     toogleDateActuacion,
-    isActivated,
+    isActuationInit,
     activateComponent,
     currentEditId
   };

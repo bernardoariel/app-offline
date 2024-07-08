@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, ref, onActivated } from 'vue';
 import DataView from 'primevue/dataview';
 
 import ButtonOptions from '@/components/ButtonOptions.vue';
@@ -10,6 +10,7 @@ import { getTitleCase, getUpperCase } from '@/helpers/stringUtils';
 import { formatFecha } from '@/helpers/getFormatFecha';
 import useActuacion from '@/composables/useActuacion';
 import useItemValue from '@/composables/useItemValue';
+import { useRoute } from 'vue-router';
 
 const props = defineProps<{
   itemsCardValue: { titulo: string; items: any[] };
@@ -20,7 +21,13 @@ const condicion: boolean = false;
 const toast = useToast();
 const { agregarNuevoItem } = useActuacion();
 const { selectedItem } = useItemValue();
+const isCreateActuation = ref(false)
+const { path } = useRoute()
+console.log('path::: ', path);
 
+onActivated(()=>{
+  isCreateActuation.value = path.includes('new') ? true:false
+})
 const items = computed(() => {
   if (props.dataKey === 'personalInterviniente') {
     console.log('Items de personalInterviniente:', props.itemsCardValue.items); // Inspecciona específicamente los items de 'fecha'
@@ -131,6 +138,26 @@ const convertStringToPhrase = (key: string): string => {
   <div v-if="items && items.length !== 0">
     <DataView :value="items" dataKey="id">
       <template #list="slotProps">
+        <div v-if="!items">
+          <div class="flex-container">
+            <!-- Primera columna con círculo -->
+            <div class="flex-item">
+              <Skeleton shape="circle" size="4rem"></Skeleton>
+            </div>
+            <!-- Segunda columna con dos párrafos -->
+            <div class="flex-item">
+              <Skeleton width="10rem" class="mb-2"></Skeleton>
+              <Skeleton width="5rem" class="mb-2"></Skeleton>
+              <Skeleton height=".5rem"></Skeleton>
+            </div>
+            <!-- Tercera columna con botón esqueleto -->
+            <div class="flex-item">
+              <Skeleton width="5rem" height="2rem"></Skeleton>
+            </div>
+          </div>
+          <Skeleton class="w-full mb-2" height="1rem"></Skeleton>
+          <Skeleton class="w-full" height="1rem"></Skeleton>
+        </div>
         <div v-for="(item, index) in items" :key="index">
           <!-- Afectados y Vinculados -->
           <div v-if="dataKey == 'afectados' || dataKey == 'vinculados'">
@@ -325,6 +352,29 @@ const convertStringToPhrase = (key: string): string => {
       </template>
     </DataView>
   </div>
+  <div v-else-if="!isCreateActuation">
+      <div class="flex-container">
+        <!-- Primera columna con círculo -->
+        <div class="flex-item">
+          <Skeleton shape="circle" size="4rem"></Skeleton>
+        </div>
+        <!-- Segunda columna con dos párrafos -->
+        <div class="flex-item">
+          <Skeleton width="10rem" class="mb-2"></Skeleton>
+          <Skeleton width="5rem" class="mb-2"></Skeleton>
+          <Skeleton height=".5rem"></Skeleton>
+        </div>
+        <!-- Tercera columna con botón esqueleto -->
+        <div class="flex-item">
+          <Skeleton width="5rem" height="2rem"></Skeleton>
+        </div>
+      </div>
+      <!-- Esqueleto que ocupa todo el ancho -->
+      <Skeleton class="w-full mb-2" height="1rem"></Skeleton>
+      <Skeleton class="w-full" height="1rem"></Skeleton>
+    </div>
+ 
+
   <div v-else class="flex justify-content-end">
     <span class="text-right">Sin Registros</span>
   </div>
@@ -385,4 +435,5 @@ const convertStringToPhrase = (key: string): string => {
     padding-right: 3rem; /* Padding solo en los lados */
     /* gap: 1rem; */
   }
+
 </style>

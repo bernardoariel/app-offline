@@ -1,34 +1,36 @@
 <template>
-    <Calendar
-      ref="calendarRef"
-      v-model="value"
-      :dateFormat="'dd/mm/yy'"
-      :manualInput="false"
-      showTime
-      showIcon>
-      
-      <template #footer>
-        <div class="flex justify-content-between">
-          <Button
-            label="Hoy"
-            icon="pi pi-check"
-            class="p-button-text"
-            @click="setToNow"
-          />
-          <div class="flex-grow-1"></div>
-          <Button
-            label="Cerrar"
-            icon="pi pi-times"
-            class="p-button-text"
-            @click="closeCalendar"
-          />
-        </div>
-      </template>
-    </Calendar>
-  </template>
+  <Calendar
+    ref="calendarRef"
+    v-model="value"
+    :dateFormat="'dd/mm/yy'"
+    :manualInput="false"
+    :minDate="minDate"
+    :maxDate="maxDate"
+    showTime
+    showIcon>
+    
+    <template #footer>
+      <div class="flex justify-content-between">
+        <Button
+          label="Hoy"
+          icon="pi pi-check"
+          class="p-button-text"
+          @click="setToNow"
+        />
+        <div class="flex-grow-1"></div>
+        <Button
+          label="Cerrar"
+          icon="pi pi-times"
+          class="p-button-text"
+          @click="closeCalendar"
+        />
+      </div>
+    </template>
+  </Calendar>
+</template>
   
   <script setup lang="ts">
-  import { ref, watch } from 'vue';
+  import { ref, computed, watch } from 'vue';
   import type { ComponentPublicInstance } from 'vue';
   
   interface PrimeVueCalendar extends ComponentPublicInstance {
@@ -40,6 +42,8 @@
 
   const props = defineProps<{
     modelValue: ModelValue;
+    fechaDesde?: null | 'today' | number;
+  fechaHasta?: null | 'today' | number;
   }>();
   
   const emits = defineEmits(['update:modelValue']);
@@ -51,6 +55,26 @@
     value.value = new Date();
     emits('update:modelValue', value.value);
   }
+
+const minDate = computed(() => {
+  if (props.fechaDesde === 'today') {
+    return new Date();
+  } else if (typeof props.fechaDesde === 'number') {
+    return new Date(Date.now() - props.fechaDesde * 24 * 60 * 60 * 1000);
+  } else {
+    return undefined;
+  }
+});
+
+const maxDate = computed(() => {
+  if (props.fechaHasta === 'today') {
+    return new Date();
+  } else if (typeof props.fechaHasta === 'number') {
+    return new Date(Date.now() + props.fechaHasta * 24 * 60 * 60 * 1000);
+  } else {
+    return undefined;
+  }
+});
   
   function closeCalendar() {
     if (calendarRef.value) {

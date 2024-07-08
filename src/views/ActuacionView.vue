@@ -79,6 +79,9 @@ const handleNuevoItem = (key: string) => {
       <Card>
         <template #title>
           <div class="title-container">
+            <div>
+              <Button label="Cancelar" icon="pi pi-arrow-left" severity="secondary" rounded @click="$router.replace({name:'actuaciones'})"/>
+            </div>
             <div class="font-medium text-3xl text-900" @click="handleClick">
               {{ $props.id ? 'Edición' : 'Ingreso de datos' }}
               {{ $props.actuacion }}

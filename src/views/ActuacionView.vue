@@ -26,7 +26,7 @@ const active = ref(0);
 
 const { agregarNuevoItem, currentEditId,toogleDateActuacion } = useActuacion();
 const { fetchActuacionById } = useSaveData();
-const { resetData:resetDatosLegales,setData:setDatosLegales } = useDatosLegales()
+const { resetData:resetDatosLegales,setData:setDatosLegales,nroLegajo } = useDatosLegales()
 onActivated(async () => {
 
   if (!props.id) resetDatosLegales()
@@ -80,14 +80,18 @@ const handleNuevoItem = (key: string) => {
         <template #title>
           <div class="title-container">
             <div>
-              <Button label="Cancelar" icon="pi pi-arrow-left" severity="secondary" rounded @click="$router.replace({name:'actuaciones'})"/>
+              <Button label="Cancelar" icon="pi pi-arrow-circle-left" severity="secondary" rounded @click="$router.replace({name:'actuaciones'})"/>
             </div>
             <div class="font-medium text-3xl text-900" @click="handleClick">
-              {{ $props.id ? 'Edición' : 'Ingreso de datos' }}
-              {{ $props.actuacion }}
+              <small>
+                {{ $props.id ? 'Nro. Legajo:' +  nroLegajo : ''    }}
+              </small>
+
             </div>
 
             <div class="buttons-container">
+              <Tag @click="handleClick" v-if="$props.id" icon="pi pi-pencil" severity="danger" value="Edición" class="px-2"></Tag>
+              <Tag @click="handleClick" v-else icon="pi pi-bolt" severity="success" value="Nueva" class="px-2"></Tag>
               <Button
                 @click="active = 0"
                 rounded

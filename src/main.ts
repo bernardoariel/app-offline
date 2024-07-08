@@ -43,8 +43,8 @@ import 'primeflex/primeflex.css';
 import ConfirmationService from 'primevue/confirmationservice';
 
 import 'primeicons/primeicons.css';
-import useThemeColor from './composables/useThemeColor';
 import { useStorageData } from './composables/useStorageData';
+import useTheme from './composables/useTheme'
 
 const app = createApp(App)
 
@@ -96,7 +96,7 @@ db.version(1).stores({
 //  */
 const { guardarDatosAleatorios } = useStorageData()
 guardarDatosAleatorios()
-const { currentTheme } = useThemeColor()
+const { currentTheme } = useTheme()
 app.mount('#app')
 
 

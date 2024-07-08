@@ -5,12 +5,10 @@ import { RouterView, useRoute } from 'vue-router'
 
 import { usePrimeVue } from 'primevue/config';
 import ToolbarComponent from './components/ToolbarComponent.vue';
-import useThemeColor from './composables/useThemeColor';
-import { useFontSize } from './composables/useFontSize';
+import useTheme from './composables/useTheme';
 
 const PrimeVue = usePrimeVue();
-const { changeThemeCurrent } = useThemeColor()
-const { loadFontSize } = useFontSize(); 
+const { changeThemeCurrent, loadFontSize } = useTheme()
 const isLoading = ref(false); // Estado de carga
 const themeLink = document.querySelector('link#theme-link');
 const route = useRoute()

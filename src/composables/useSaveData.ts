@@ -8,6 +8,7 @@ import type { PersonalInterviniente } from '../interfaces/personalInterviniente'
 import useActuacion from './useActuacion';
 import useDatosLegales from './useDatosLegales';
 import type { DatosLegales } from '../interfaces/datosLegalesForm.interface';
+import { actuaciones } from '../data/tipoActuaciones';
 
 export interface dataActuacionForSave {
   id?: number;
@@ -20,6 +21,7 @@ export interface dataActuacionForSave {
   personalInterviniente: PersonalInterviniente[];
   viewPdf?: string;
   pathName?: string;
+  relato:string;
 }
 
 const { getFormattedDate } = useActuacion();
@@ -53,6 +55,7 @@ const useSaveData = () => {
         personalInterviniente: JSON.stringify(data.personalInterviniente),
         viewPdf: JSON.stringify(data.viewPdf),
         pathName: JSON.stringify(data.pathName),
+        relato:JSON.stringify(data.relato)
       });
       success.value = true;
 
@@ -85,6 +88,7 @@ const useSaveData = () => {
         personalInterviniente: JSON.stringify(data.personalInterviniente),
         viewPdf: JSON.stringify(data.viewPdf),
         pathName: JSON.stringify(data.pathName),
+        relato: JSON.stringify(data.relato)
       });
       success.value = true;
     } catch (err) {
@@ -113,6 +117,7 @@ const useSaveData = () => {
           personalInterviniente: JSON.parse(actuacion.personalInterviniente),
           viewPdf: JSON.parse(actuacion.viewPdf),
           pathName: JSON.parse(actuacion.pathName),
+          relato:JSON.parse(actuacion.relato)
         };
       });
 

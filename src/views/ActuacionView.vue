@@ -23,33 +23,25 @@ interface Props {
 const props = defineProps<Props>();
 const actuacionRef = ref(props.actuacion);
 const active = ref(0);
-const isLoading = ref(false);
-const { agregarNuevoItem, currentEditId, isActuationInit,toogleDateActuacion } = useActuacion();
+
+const { agregarNuevoItem, currentEditId,toogleDateActuacion } = useActuacion();
 const { fetchActuacionById } = useSaveData();
 const { resetData:resetDatosLegales,setData:setDatosLegales } = useDatosLegales()
 onActivated(async () => {
-  console.log('inicia',isActuationInit.value)
+
+  if (!props.id) resetDatosLegales()
   
-  // if (!isActivated.value) return;
-  if (!props.id) {
-    // console.log('props.id::: ', props.id);
-    // console.log('currentEditId.value ::: ', currentEditId.value );
-    resetDatosLegales()
-  }
   toogleDateActuacion()
-  console.log('despues toogle',isActuationInit.value)
+
   if (props.id && !currentEditId.value) {
     const data = await fetchActuacionById(props.id);
-    // console.log('props.id::: ', props.id);
-    // console.log('currentEditId.value ::: ', currentEditId.value );
-    setAll(data);
-    setDatosLegales(data);
-
+    setAll(data); // info tabs1
+    setDatosLegales(data); // tabs2
+    relato.value = data.relato.replace(/['"]/g, '');
     currentEditId.value = props.id;
   }
-  // console.log('id ', props.id);
-    console.log('edit ', currentEditId.value );
-    isLoading.value =true
+
+
 });
 
 const { setAll } = useItem();

@@ -16,7 +16,10 @@ const { isEditedHeader, isEditedFooter } = useNewActuacion()
 const relato = ref<string>('')
 const headerContainer = ref<string>('')
 const footerContainer = ref<string>('')
+
 const useDatosDiligencia = (actuacion: ref<string>) => {
+  console.log('actuacion::: ', actuacion);
+
   const { afectados, intervinientes } = useItem();
 
   const isEditingHeader = ref<boolean>(false);

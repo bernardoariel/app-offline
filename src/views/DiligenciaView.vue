@@ -135,7 +135,7 @@ const toggleFooter = () => {
   isEditingFooter.value = !isEditingFooter.value;
 }
 
-const saveOrUpdateData = async () => {
+const storeData = async () => {
 
   const head = headerContainer.value || processedHeaderText.value
   const body = relato.value
@@ -159,6 +159,7 @@ const saveOrUpdateData = async () => {
     viewPdf:head + ' ' + body + ' ' + foot,
     pathName:route.params.actuacion as string,
     datosLegales,
+    relato:relato.value
     
   }; 
 
@@ -175,7 +176,7 @@ const saveOrUpdateData = async () => {
 
 const handleSave = async() => {
 
-  saveOrUpdateData()
+  storeData()
   isVisible.value = false;
   isActuationInit.value = false;
   currentEditId.value = null

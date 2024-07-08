@@ -23,26 +23,33 @@ interface Props {
 const props = defineProps<Props>();
 const actuacionRef = ref(props.actuacion);
 const active = ref(0);
-
-const { agregarNuevoItem, currentEditId, isActivated,toogleDateActuacion } = useActuacion();
+const isLoading = ref(false);
+const { agregarNuevoItem, currentEditId, isActuationInit,toogleDateActuacion } = useActuacion();
 const { fetchActuacionById } = useSaveData();
-const { resetData,setData } = useDatosLegales()
+const { resetData:resetDatosLegales,setData:setDatosLegales } = useDatosLegales()
 onActivated(async () => {
+  console.log('inicia',isActuationInit.value)
   
   // if (!isActivated.value) return;
   if (!props.id) {
-    currentEditId.value = null;
-    resetData()
-
+    // console.log('props.id::: ', props.id);
+    // console.log('currentEditId.value ::: ', currentEditId.value );
+    resetDatosLegales()
   }
   toogleDateActuacion()
+  console.log('despues toogle',isActuationInit.value)
   if (props.id && !currentEditId.value) {
     const data = await fetchActuacionById(props.id);
+    // console.log('props.id::: ', props.id);
+    // console.log('currentEditId.value ::: ', currentEditId.value );
     setAll(data);
-    setData(data);
+    setDatosLegales(data);
 
     currentEditId.value = props.id;
   }
+  // console.log('id ', props.id);
+    console.log('edit ', currentEditId.value );
+    isLoading.value =true
 });
 
 const { setAll } = useItem();
@@ -54,7 +61,7 @@ const { prepararNuevoItem } = useItemValue();
 
 const handleClick = (event: { ctrlKey: any; altKey: any }) => {
   if (event.ctrlKey && event.altKey) {
-    console.log(`Ctrl + Alt + Click detectado: ${actuacionRef}`);
+    // console.log(`Ctrl + Alt + Click detectado: ${actuacionRef}`);
     setAll();
     addDataFake();
     relato.value = 'esto es una prueba del relato';
@@ -104,7 +111,9 @@ const handleNuevoItem = (key: string) => {
           </div>
         </template>
         <template #content>
+          
           <TabView v-model:activeIndex="active">
+           
             <TabPanel header="Datos Requeridos">
               <Card
                 v-for="key in cardInformationKeys"

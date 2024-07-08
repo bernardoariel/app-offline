@@ -39,7 +39,8 @@ const actualizarFechaCreacion = (fechaSeleccionada: Date) => {
     <template #center>
       <div v-if="showCalendar && today" class="flex align-items-center gap-2">
         <div class="text-3xl">Actuación en fecha:</div>
-        <MyCalendar v-model="today" @update:modelValue="actualizarFechaCreacion"/>
+        <!-- <MyCalendar v-model="today" @update:modelValue="actualizarFechaCreacion"/> -->
+        <MyCalendar v-model="today" :fechaDesde="null" :fechaHasta="'today'" @update:modelValue="actualizarFechaCreacion"/>
       </div>
       <div v-else-if="showCalendar" class="p-d-flex p-flex-column text-3xl">Actuaciones</div>
       <div v-else class="p-d-flex p-flex-column text-3xl">Actuaciones</div>

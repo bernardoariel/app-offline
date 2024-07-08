@@ -30,7 +30,7 @@ const generateAndEmbedPdf = async () => {
   await generatePdf();
   embedPdf();
 };
-
+// necesita que el onmount
 onMounted(() => {
   generateAndEmbedPdf();
 });

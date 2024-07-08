@@ -1,7 +1,8 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 type SidebarPosition = "left" | "right" | "top" | "bottom" | "full";
-const fontSize = ref(14); // Tamaño inicial de la fuente en píxeles
+const savedFontSize = localStorage.getItem('fontSize');
+const fontSize = ref(savedFontSize ? parseInt(savedFontSize) : 14);
 let colorIcono = "primary"
 const iconClass = computed(() => {
   return [
@@ -22,6 +23,10 @@ const decreaseFontSize = (): void => {
   if(fontSize.value > 12) fontSize.value--;
   document.documentElement.style.fontSize = `${fontSize.value}px`;
 };
+
+watch(fontSize, (newValue) => {
+  localStorage.setItem('fontSize', newValue.toString());
+});
 </script>
 <template>
     <section class="pb-4 flex align-items-center justify-content-between border-bottom-1 surface-border">

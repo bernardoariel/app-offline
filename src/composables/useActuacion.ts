@@ -1,39 +1,72 @@
-import { ref } from "vue"
+// useActuacion
+import { ref, watch } from 'vue';
 import type { Actuacion } from '@/interfaces/tipoActuaciones.interface';
 import { useRoute } from 'vue-router';
 import { useRouter } from 'vue-router';
-import  { actuaciones } from '@/data/tipoActuaciones';
+import { actuaciones } from '@/data/tipoActuaciones';
 import { formatFecha } from '../helpers/getFormatFecha';
+import useItem from './useItems';
+import useFieldState from '@/composables/useFiledsState';
 
-let fechaCreacion = ref(formatFecha(new Date()))
+
+const fechaCreacion = ref<Date | null>(new Date());
+const isActivated = ref(false); 
+const currentEditId = ref<number|null>(null);
+const { setAll, resetAll } = useItem()
+const { resetStates } = useFieldState()
 
 const useActuacion = () => {
+
+  const router = useRouter();
+  const route = useRoute();
+  
+  const toogleDateActuacion = () => {
+
+    fechaCreacion.value = null;
+    isActivated.value = true;
+    if (route.name === 'newActuacion') initValue()
+
+  };
+
+  const activateComponent = () => {
     
-    const router = useRouter();
-    const route = useRoute();
-    const toogleDateActuacion = () =>{
+    toogleDateActuacion();
+    resetStates();
+    resetAll();
+    
+  }
+  const setFechaCreacion = (date: Date) => {
+    fechaCreacion.value = date;
+  };
 
-        if (fechaCreacion.value && route.name !== 'actuacion') {
-            console.log('es null')
-            fechaCreacion.value = null
+  const initValue = () =>{
+    
+    fechaCreacion.value = new Date();
+  }
 
-        }else{
-            fechaCreacion.value = formatFecha(new Date())
-            console.log('no es null')
-        }   
-    }
-    const refreshDate = ()=>{
-        fechaCreacion.value = formatFecha(new Date())
-    }
-    const agregarNuevoItem = (key: string) => {
-       router.push({ name: 'formulario', params: { tipo: key } });
-    };
+  const agregarNuevoItem = (key: string) => {
+    router.push({ name: 'formulario', params: { tipo: key } });
+  };
 
-    return {
-        agregarNuevoItem,
-        fechaCreacion,
-        toogleDateActuacion,
-        refreshDate
-    };
-}
+  watch(fechaCreacion, (newValue) => {
+    getFormattedDate.value = formatFecha(newValue, 'fecha');
+    getFormattedDateTime.value = formatFecha(newValue, 'fechaHora');
+  });
+  const getFormattedDate = ref<string>(formatFecha(fechaCreacion.value, 'fecha'));
+  const getFormattedDateTime = ref<string>(formatFecha(fechaCreacion.value, 'fechaHora'));
+
+
+  return {
+    fechaCreacion,
+    setFechaCreacion,
+    getFormattedDate,
+    getFormattedDateTime,
+    agregarNuevoItem,
+    toogleDateActuacion,
+    isActivated,
+    activateComponent,
+    currentEditId
+  };
+};
+
 export default useActuacion;

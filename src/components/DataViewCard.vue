@@ -1,181 +1,357 @@
 <script setup lang="ts">
-import { computed } from "vue";
-import DataView from "primevue/dataview";
+import { computed, ref } from 'vue';
+import DataView from 'primevue/dataview';
 
-import ButtonOptions from '@/components/ButtonOptions.vue'
+import ButtonOptions from '@/components/ButtonOptions.vue';
 import { getColorByAfectado } from '@/helpers/getColorByAfectado';
-import { getTitleCase, getUpperCase } from "@/helpers/stringUtils";
-import { formatFecha } from "@/helpers/getFormatFecha";
-
+import { useToast } from 'primevue/usetoast';
+import MyModal from './elementos/MyModal.vue';
+import { getTitleCase, getUpperCase } from '@/helpers/stringUtils';
+import { formatFecha } from '@/helpers/getFormatFecha';
+import useActuacion from '@/composables/useActuacion';
+import useItemValue from '@/composables/useItemValue';
 
 const props = defineProps<{
   itemsCardValue: { titulo: string; items: any[] };
-  dataKey: string; 
+  dataKey: string;
 }>();
 
-const condicion:boolean = false;
-const items = computed(() => {
+const condicion: boolean = false;
+const toast = useToast();
+const { agregarNuevoItem } = useActuacion();
+const { selectedItem } = useItemValue();
 
+const items = computed(() => {
   if (props.dataKey === 'personalInterviniente') {
     console.log('Items de personalInterviniente:', props.itemsCardValue.items); // Inspecciona específicamente los items de 'fecha'
   }
   return props.itemsCardValue.items;
 });
-const editProduct = (productId:any) => {
-    // Lógica para editar el producto con el ID proporcionado
+
+const editProduct = (productId: any) => {
+  const itemToEdit = items.value.find((item) => item.id === productId);
+  selectedItem.value = itemToEdit;
+  agregarNuevoItem(props.dataKey);
 };
 
-const deleteProduct = (productId:any) => {
-    // Lógica para eliminar el producto con el ID proporcionado
+const deleteItem = (productId: any) => {
+  console.log('productId', productId);
+  const index = props.itemsCardValue.items.findIndex(
+    (item) => item.id === productId
+  );
+  if (index !== -1) {
+    props.itemsCardValue.items.splice(index, 1);
+  }
+};
+interface buttonProps {
+  label: string;
+  class?: string;
+  icon?: string;
+  iconPos?: 'left' | 'right' | 'top' | 'bottom';
+  action: string;
+}
+const visible = ref(false);
+const itemToDelete = ref<string | null>(null);
+const itemType = ref(null);
+const mensaje = ref('');
+const deleteModalButtons = ref<buttonProps[]>([
+  {
+    label: 'Cancelar',
+    class: 'p-button-secondary',
+    icon: 'pi pi-times',
+    iconPos: 'left',
+    action: 'cancel',
+  },
+  {
+    label: 'Eliminar',
+    class: 'p-button-danger',
+    icon: 'pi pi-trash',
+    iconPos: 'left',
+    action: 'delete',
+  },
+]);
+const openDeleteConfirmation = (item, dataKey) => {
+  itemType.value = item;
+  itemToDelete.value = item.id;
+  visible.value = true;
+  if (dataKey === 'efectos') {
+    mensaje.value = `
+    <span class="font-semibold">${item.categoria}</span><span>, ${item.marca}</span><br/>
+    modelo <span class="font-semibold">${item.modelo}`;
+    return;
+  }
+  if (dataKey === 'fecha') {
+    mensaje.value = ``;
+    return;
+  }
+  mensaje.value = `
+    <span class="font-semibold">${item.apellido}</span><span>, ${item.nombre}</span><br/>
+    con <span class="font-semibold">DNI:</span> ${item.nroDocumento}`;
 };
 
-const copyProduct = (productId:any) => {
-    // Lógica para copiar el producto con el ID proporcionado
+const handleDeleteConfirmation = async (action: string) => {
+  if (action === 'delete' && itemToDelete.value) {
+    try {
+      await deleteItem(itemToDelete.value);
+      toast.add({
+        severity: 'success',
+        summary: 'Item eliminado',
+        life: 3000,
+      });
+    } catch (error) {
+      toast.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: `Error al eliminar Item`,
+        life: 3000,
+      });
+    }
+  }
+  itemToDelete.value = null;
 };
 
+const copyProduct = (productId: any) => {
+  // Lógica para copiar el producto con el ID proporcionado
+};
+
+const convertStringToPhrase = (key: string): string => {
+  const phrases: { [key: string]: string } = {
+    afectados: 'al siguiente afectado',
+    vinculados: 'al siguiente vinculado',
+    personalInterviniente: 'al siguiente interviniente',
+    fecha: 'la fecha y ubicación',
+    efectos: 'el siguiente efecto',
+  };
+
+  return phrases[key] || key;
+};
 </script>
 
 <template>
-  
-  <div v-if="items && items.length !== 0">   
-    
+  <div v-if="items && items.length !== 0">
     <DataView :value="items" dataKey="id">
-      
       <template #list="slotProps">
-    
-            <div v-for="(item, index) in items" :key="index">
-              <!-- Afectados y Vinculados -->
-              <div v-if="dataKey=='afectados' || dataKey=='vinculados'">
-                
-                <div class="flex-container"  :class="{ 'border-top-1 surface-border': index !== 0 }">
-
-                  <div class="flex-items">
-                    <Button icon="pi pi-pencil" @click="editProduct(item.id)" text rounded style="font-size: 1rem"></Button>
-                  </div>
-
-                  <div class="flex-items">
-                    <span class="font-bold">{{ item.apellido ? getUpperCase(item.apellido) + ',' : '' }}</span>
-                    <span class="ml-2">{{ item.nombre ? getTitleCase(item.nombre) : 'Nuevo' }}</span>
-                    <span v-if="item.typeDocumento && item.nroDocumento" class="ml-5">
-                      <i>{{ item.typeDocumento + ': ' }}</i>
-                      <i>{{ item.nroDocumento }}</i>
-                    </span>
-                    <span v-if="item.typeAfectado && item.typeAfectado" >
-                      <Tag :value="item.typeAfectado" class="ml-5" :severity="getColorByAfectado(item.typeAfectado)"></Tag>
-                    </span>
-                  </div>
-
-                  <div class="flex-items">
-                    <ButtonOptions v-if="item.title" :tarjetaNombre="item.title" :item="item"/>
-                  </div>
-
-                </div> 
-                <div class="linea-2"> 
-                  <p class="text-xs">{{ item.domicilioResidencia }}</p>
-                </div>
+        <div v-for="(item, index) in items" :key="index">
+          <!-- Afectados y Vinculados -->
+          <div v-if="dataKey == 'afectados' || dataKey == 'vinculados'">
+            <div
+              class="flex-container"
+              :class="{ 'border-top-1 surface-border': index !== 0 }"
+            >
+              <div class="flex-items">
+                <Button
+                  icon="pi pi-pencil"
+                  @click="editProduct(item.id)"
+                  text
+                  rounded
+                  style="font-size: 1rem"
+                ></Button>
               </div>
-              <!-- personal Interviniente -->  
-             
-              <div v-else-if="dataKey === 'personalInterviniente'">
 
-                <div class="flex-container"  :class="{ 'border-top-1 surface-border': index !== 0 }">
-
-                  <div class="flex-items">
-                    <Button icon="pi pi-pencil" @click="editProduct(item.id)" text rounded style="font-size: 1rem"></Button>
-                  </div>
-
-                  <div class="flex-items">
-                    <span class="font-bold">{{ item.apellido ? getUpperCase(item.apellido) + ',' : '' }}</span>
-                    <span class="ml-2">{{ item.nombre ? getTitleCase(item.nombre) : 'Nuevo' }}</span>
-                    
-                    <span v-if="item.jerarquia && item.jerarquia" >
-                      <Tag :value="item.jerarquia" class="ml-5" :severity="getColorByAfectado(item.jerarquia)"></Tag>
-                    </span>
-                  </div>
-
-                  <div class="flex-items">
-                    <ButtonOptions :tarjetaNombre="item.title" :item="item"/>
-                  </div>
-
-                </div> 
-                <div class="linea-2"> 
-                  <p class="text-xs">{{ item.dependencia }}</p>
-                </div>
+              <div class="flex-items">
+                <span class="font-bold">{{
+                  item.apellido ? getUpperCase(item.apellido) + ',' : ''
+                }}</span>
+                <span class="ml-2">{{
+                  item.nombre ? getTitleCase(item.nombre) : 'Nuevo'
+                }}</span>
+                <span
+                  v-if="item.typeDocumento && item.nroDocumento"
+                  class="ml-5"
+                >
+                  <i>{{ item.typeDocumento + ': ' }}</i>
+                  <i>{{ item.nroDocumento }}</i>
+                </span>
+                <span v-if="item.typeAfectado && item.typeAfectado">
+                  <Tag
+                    :value="item.typeAfectado"
+                    class="ml-5"
+                    :severity="getColorByAfectado(item.typeAfectado)"
+                  ></Tag>
+                </span>
               </div>
-              <!-- Fecha -->
-              <div v-else-if="dataKey=='fecha'">
-                <div class="flex-container"  :class="{ 'border-top-1 surface-border': index !== 0 }">
 
-                  <div class="flex-items">
-                    <Button icon="pi pi-pencil" @click="editProduct(item.id)" text rounded style="font-size: 1rem"></Button>
-                  </div>
-
-                  <div class="flex-items">
-                    
-                    <span class="font-bold">Entre </span>
-                    <span>{{ formatFecha(item.desdeFechaHora) }}</span>
-                    <span class="font-bold"> Y </span>
-                    <span>{{ formatFecha(item.hastaFechaHora) }}</span>
-                    <i class="pi pi-map-marker ml-5" :style="{ color: 'red', opacity: condicion ? 1 : 0.3 }"></i>
-
-
-                    <span v-if="item.departamento && item.departamento" >
-                      <Tag :value="item.departamento" class="ml-2" :severity="getColorByAfectado(item.departamento)"></Tag>
-                    </span>
-
-                  </div>
-
-                  <div class="flex-items">
-                    <ButtonOptions :tarjetaNombre="item.title" :item="item"/>
-                  </div>
-
-                </div> 
-                <div class="linea-2"> 
-                  <p class="text-xs">{{ item.calle +' '+ item.numero }}</p>
-                </div>
+              <div class="flex-items">
+                <ButtonOptions
+                  :tarjetaNombre="item.title"
+                  :item="item"
+                  :deleteItem="() => openDeleteConfirmation(item, dataKey)"
+                />
               </div>
-            
-             <div v-else-if="dataKey=='efectos'">
-                
-                <div class="flex-container"  :class="{ 'border-top-1 surface-border': index !== 0 }">
-
-                  <div class="flex-items">
-                    <Button icon="pi pi-pencil" @click="editProduct(item.id)" text rounded style="font-size: 1rem"></Button>
-                  </div>
-
-                  <div class="flex-items">
-                    <span class="font-bold">{{ getUpperCase(item.subcategoria)  }}</span>
-                    <span class="ml-2">{{ getTitleCase(item.tipo) }}-{{getTitleCase(item.marca)}}-{{ getTitleCase(item.modelo) }}</span>
-                    
-                    <span v-if="item.categoria" >
-                      <Tag :value="item.categoria" class="ml-5" :severity="getColorByAfectado(item.categoria)"></Tag>
-                    </span>
-                  </div>
-
-                  <div class="flex-items">
-                    <ButtonOptions :tarjetaNombre="item.title" :item="item"/>
-                  </div>
-
-                </div> 
-                <div class="linea-2"> 
-                  <p class="text-xs">{{ item.dependencia }}</p>
-                </div>
-             </div>
-
             </div>
-          
-   
+            <div class="linea-2">
+              <p class="text-xs">{{ item.domicilioResidencia }}</p>
+            </div>
+          </div>
+          <!-- personal Interviniente -->
+          <div v-else-if="dataKey === 'personalInterviniente'">
+            <div
+              class="flex-container"
+              :class="{ 'border-top-1 surface-border': index !== 0 }"
+            >
+              <div class="flex-items">
+                <Button
+                  icon="pi pi-pencil"
+                  @click="editProduct(item.id)"
+                  text
+                  rounded
+                  style="font-size: 1rem"
+                ></Button>
+              </div>
+
+              <div class="flex-items">
+                <span class="font-bold">{{
+                  item.apellido ? getUpperCase(item.apellido) + ',' : ''
+                }}</span>
+                <span class="ml-2">{{
+                  item.nombre ? getTitleCase(item.nombre) : 'Nuevo'
+                }}</span>
+
+                <span v-if="item.jerarquia && item.jerarquia">
+                  <Tag
+                    :value="item.jerarquia"
+                    class="ml-5"
+                    :severity="getColorByAfectado(item.jerarquia)"
+                  ></Tag>
+                </span>
+              </div>
+
+              <div class="flex-items">
+                <ButtonOptions
+                  :tarjetaNombre="item.title"
+                  :item="item"
+                  :deleteItem="() => openDeleteConfirmation(item, dataKey)"
+                />
+              </div>
+            </div>
+            <div class="linea-2">
+              <p class="text-xs">{{ item.dependencia }}</p>
+            </div>
+          </div>
+          <!-- Fecha -->
+          <div v-else-if="dataKey == 'fecha'">
+            <div
+              class="flex-container"
+              :class="{ 'border-top-1 surface-border': index !== 0 }"
+            >
+              <div class="flex-items">
+                <Button
+                  icon="pi pi-pencil"
+                  @click="editProduct(item.id)"
+                  text
+                  rounded
+                  style="font-size: 1rem"
+                ></Button>
+              </div>
+
+              <div class="flex-items">
+                <span class="font-bold">Entre </span>
+                <span>{{ formatFecha(item.desdeFechaHora) }}</span>
+                <span class="font-bold"> Y </span>
+                <span>{{ formatFecha(item.hastaFechaHora) }}</span>
+                <i
+                  class="pi pi-map-marker ml-5"
+                  :style="{ color: 'red', opacity: condicion ? 1 : 0.3 }"
+                ></i>
+
+                <span v-if="item.departamento && item.departamento">
+                  <Tag
+                    :value="item.departamento"
+                    class="ml-2"
+                    :severity="getColorByAfectado(item.departamento)"
+                  ></Tag>
+                </span>
+              </div>
+
+              <div class="flex-items">
+                <ButtonOptions
+                  :tarjetaNombre="item.title"
+                  :item="item"
+                  :deleteItem="() => openDeleteConfirmation(item, dataKey)"
+                />
+              </div>
+            </div>
+            <div class="linea-2">
+              <p class="text-xs">{{ item.calle + ' ' + item.numero }}</p>
+            </div>
+          </div>
+          <div v-else-if="dataKey == 'efectos'">
+            <div
+              class="flex-container"
+              :class="{ 'border-top-1 surface-border': index !== 0 }"
+            >
+              <div class="flex-items">
+                <Button
+                  icon="pi pi-pencil"
+                  @click="editProduct(item.id)"
+                  text
+                  rounded
+                  style="font-size: 1rem"
+                ></Button>
+              </div>
+
+              <div class="flex-items">
+                <span class="font-bold">{{
+                  getUpperCase(item.subcategoria)
+                }}</span>
+                <span class="ml-2"
+                  >{{ getTitleCase(item.tipo) }}-{{
+                    getTitleCase(item.marca)
+                  }}-{{ getTitleCase(item.modelo) }}</span
+                >
+
+                <span v-if="item.categoria">
+                  <Tag
+                    :value="item.categoria"
+                    class="ml-5"
+                    :severity="getColorByAfectado(item.categoria)"
+                  ></Tag>
+                </span>
+              </div>
+
+              <div class="flex-items">
+                <ButtonOptions
+                  :tarjetaNombre="item.title"
+                  :item="item"
+                  :deleteItem="() => openDeleteConfirmation(item, dataKey)"
+                />
+              </div>
+            </div>
+            <div class="linea-2">
+              <p class="text-xs">{{ item.dependencia }}</p>
+            </div>
+          </div>
+        </div>
       </template>
-      
     </DataView>
-  
   </div>
   <div v-else class="flex justify-content-end">
     <span class="text-right">Sin Registros</span>
   </div>
-    
+  <MyModal
+    v-model:visible="visible"
+    title="Confirmar Eliminación"
+    :buttons="deleteModalButtons"
+    @button-click="handleDeleteConfirmation"
+  >
+    <template #body>
+      <div class="modal-body">
+        <i
+          class="pi pi-exclamation-triangle"
+          :style="{ fontSize: '3rem', color: 'orange' }"
+        ></i>
+        <div class="flex justify-content-center" style="width: 100%">
+          <p class="text-left font-bold">
+            ¿Deseas eliminar {{ convertStringToPhrase(dataKey) }}?
+          </p>
+        </div>
+      </div>
+      <p class="text-center m-0 text-sm" v-html="mensaje"></p>
+    </template>
+  </MyModal>
+  <Toast />
 </template>
-  
+
 <style scoped>
 .flex-container {
   display: flex;
@@ -187,7 +363,8 @@ const copyProduct = (productId:any) => {
   margin-bottom: 8px;
 }
 
-.flex-items:nth-child(1), .flex-items:nth-child(3) {
+.flex-items:nth-child(1),
+.flex-items:nth-child(3) {
   flex: 0 1 auto;
 }
 
@@ -196,7 +373,16 @@ const copyProduct = (productId:any) => {
   align-self: center;
 }
 .linea-2 {
-  margin-top: -20px; 
+  margin-top: -20px;
   margin-left: 50px;
 }
+
+.modal-body {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 0.5rem;
+    padding-left: 4rem; /* Padding solo en los lados */
+    padding-right: 3rem; /* Padding solo en los lados */
+    /* gap: 1rem; */
+  }
 </style>

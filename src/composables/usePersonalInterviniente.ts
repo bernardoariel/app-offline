@@ -67,13 +67,23 @@ const usePersonalInterviniente = () => {
       resetAllDropdown()
     };
     
-    const set = ()=>{
-     
-      intervinientes.value = [...itemsFake]
-      itemsFake.forEach(item => {
-          agregarIdState(item.id, {}); // Llama a agregarIdState con el id de cada ítem
+    const set = (data = null) => {
+        
+      if (!data) {
+        intervinientes.value = [...itemsFake];
+        itemsFake.forEach(item => {
+            agregarIdState(item.id, {});
+        });
+        return
+      }
+      
+      intervinientes.value = JSON.parse(data);
+      intervinientes.value.forEach(item => {
+        agregarIdState(item.id, {});
       });
+
     }
+    
     return {
       intervinientes,
       selectedJerarquiaDrop,
@@ -87,8 +97,8 @@ const usePersonalInterviniente = () => {
       eliminar: eliminarPersonalInterviniente,
       editar: editarPersonalInterviniente,
       seleccionar:selecccionarPersonalInterviniente
-    };
-};
+    }
+}
 
 export default usePersonalInterviniente;
   

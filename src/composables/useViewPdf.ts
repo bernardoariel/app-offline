@@ -4,7 +4,7 @@ import { customFonts } from '../components/reports/fonts/customFonts.ts';
 import type { StyleDictionary, TDocumentDefinitions } from '../components/reports/interfaces/pdfmake';
 import { headerSection, bodySection } from '../components/reports/sections/index';
 import { ref } from 'vue';
-
+import useSaveData from './useSaveData';
 
 // Register custom fonts with pdfMake
 pdfMake.vfs = {
@@ -13,8 +13,7 @@ pdfMake.vfs = {
 };
 
 const pdfUrl = ref('');
-
-
+const { fetchActuacionById } =useSaveData()
 // Definir las fuentes
 const fonts = {
   TimesNewRoman: {
@@ -42,31 +41,49 @@ const style: StyleDictionary = {
 };
 
 export const useViewPdf = () => {
-  const generatePdf = async () => {
+
+  const fetchBodyContent = async (id?: number) => {
+
+    if (id) {
+      const actuacion = await fetchActuacionById(id);
+      return JSON.parse(actuacion.viewPdf);
+    }
+    
+    return bodySection().text;
+  
+  };
+
+  const generatePdf = async (id?:number) => {
+
     try {
       const header = await headerSection();
-      const body = bodySection();
+      const bodyContent = await fetchBodyContent(id);
 
-      const docDefinition: TDocumentDefinitions = {
-        content: [
-          header,
-          { text: 'ACTA DE INICIO', style: 'title' },
-          body,
-        ],
-        styles: style,
-        defaultStyle: {
-          font: 'TimesNewRoman',
-        },
-        pageMargins: [40, 60, 40, 60] 
-      };
+      
 
-      pdfMake.createPdf(docDefinition, null, fonts).getBlob((blob) => {
-        const url = URL.createObjectURL(blob);
-        pdfUrl.value = url;
-        
+      return new Promise((resolve) => {
+        const docDefinition: TDocumentDefinitions = {
+          content: [
+            header,
+            { text: 'ACTA DE INICIO', style: 'title' },
+            { text: bodyContent, style: 'body' },
+          ],
+          styles: style,
+          defaultStyle: {
+            font: 'TimesNewRoman',
+          },
+          pageMargins: [40, 60, 40, 60] 
+        };
+
+        pdfMake.createPdf(docDefinition, null, fonts).getBlob((blob) => {
+          const url = URL.createObjectURL(blob);
+          pdfUrl.value = url;
+          resolve(url);
+        });
       });
     } catch (error) {
       console.error('Error generating PDF:', error);
+      return Promise.reject(error);
     }
   };
 

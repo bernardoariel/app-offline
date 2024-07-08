@@ -34,11 +34,14 @@ import RadioButton from 'primevue/radiobutton';
 import ToggleButton from 'primevue/togglebutton';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
+import Dialog from 'primevue/dialog'
 import ColumnGroup from 'primevue/columngroup';   // optional
 import Row from 'primevue/row';                   // optional
 import Toast from 'primevue/toast';
+import ConfirmPopup from 'primevue/confirmpopup';
 import 'primeflex/primeflex.css';
-// import 'primevue/resources/themes/lara-light-blue/theme.css'
+import ConfirmationService from 'primevue/confirmationservice';
+
 import 'primeicons/primeicons.css';
 import useThemeColor from './composables/useThemeColor';
 import { useStorageData } from './composables/useStorageData';
@@ -47,7 +50,7 @@ const app = createApp(App)
 
 app.use(createPinia())
 app.use(PrimeVue)
-app.use(ToastService);     
+app.use(ToastService);
 
 
 app.use(router)
@@ -62,7 +65,8 @@ app.component('InputText', InputText);
 app.component('Textarea', Textarea);
 app.component('Listbox', Listbox);
 app.component('Toolbar', Toolbar);
-app.component('Calendar', Calendar);
+app.component('Dialog', Dialog)
+
 app.component('InputMask', InputMask);
 app.component('InputNumber', InputNumber);
 app.component('TabView', TabView);
@@ -80,14 +84,16 @@ app.component('InputSwitch', InputSwitch);
 app.component('ProgressSpinner', ProgressSpinner);
 app.component('RadioButton', RadioButton);
 app.component('ToggleButton', ToggleButton);
-
+app.component('Calendar', Calendar);
+app.component('ConfirmPopup', ConfirmPopup);
 app.directive('ripple', Ripple);
 app.directive('styleclass', StyleClass);
+app.use(ConfirmationService);
 /* const db = new Dexie('my_database');
 db.version(1).stores({
     afectados: '++id, typeAfectado, typeDocumento, nroDocumento, typeSexo, apellido, name, fecha, nacionalidad, estadoCivil, domicilioResidencia, telefono, email, profesion, instruccion'
 });
- */
+//  */
 const { guardarDatosAleatorios } = useStorageData()
 guardarDatosAleatorios()
 const { currentTheme } = useThemeColor()

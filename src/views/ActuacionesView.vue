@@ -1,16 +1,11 @@
-<script lang="ts" setup>
-import DataTableExpansion from '@/components/DataTableExpansion.vue';
-import useActuacion from '../composables/useActuacion';
-
-const { toogleDateActuacion } = useActuacion()
-
-</script>
 <template>
-
-   <DataTableExpansion />
-
+  <DataTableExpansion />
 </template>
 
-<style scoped>
+<script setup lang="ts">
+import DataTableExpansion from '@/components/DataTableExpansion.vue';
 
+</script>
+
+<style scoped>
 </style>

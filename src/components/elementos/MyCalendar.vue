@@ -57,23 +57,21 @@
   }
 
 const minDate = computed(() => {
-  if (props.fechaDesde === 'today') {
-    return new Date();
-  } else if (typeof props.fechaDesde === 'number') {
-    return new Date(Date.now() - props.fechaDesde * 24 * 60 * 60 * 1000);
-  } else {
-    return undefined;
-  }
+
+  if (props.fechaDesde === 'today')  return new Date();
+  if (typeof props.fechaDesde === 'number') return new Date(Date.now() - props.fechaDesde * 24 * 60 * 60 * 1000);
+ 
+  return undefined;
+ 
 });
 
 const maxDate = computed(() => {
-  if (props.fechaHasta === 'today') {
-    return new Date();
-  } else if (typeof props.fechaHasta === 'number') {
-    return new Date(Date.now() + props.fechaHasta * 24 * 60 * 60 * 1000);
-  } else {
-    return undefined;
-  }
+
+ if (props.fechaHasta === 'today')  return new Date();
+ if (typeof props.fechaHasta === 'number') return new Date(Date.now() + props.fechaHasta * 24 * 60 * 60 * 1000);
+
+ return undefined;
+
 });
   
   function closeCalendar() {

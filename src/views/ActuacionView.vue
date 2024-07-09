@@ -19,6 +19,8 @@ import useItemValue from '@/composables/useItemValue';
 interface Props {
   actuacion: string;
   id?: number;
+  actuacionData?:any;
+ 
 }
 const props = defineProps<Props>();
 const actuacionRef = ref(props.actuacion);
@@ -28,7 +30,7 @@ const { agregarNuevoItem, currentEditId,toogleDateActuacion } = useActuacion();
 const { fetchActuacionById } = useSaveData();
 const { resetData:resetDatosLegales,setData:setDatosLegales,nroLegajo } = useDatosLegales()
 onActivated(async () => {
-
+  console.log('actuacionData::: ', props.actuacionData);
   if (!props.id) resetDatosLegales()
   
   toogleDateActuacion()
@@ -82,10 +84,15 @@ const handleNuevoItem = (key: string) => {
             <div>
               <Button label="Cancelar" icon="pi pi-arrow-circle-left" severity="secondary" rounded @click="$router.replace({name:'actuaciones'})"/>
             </div>
-            <div class="font-medium text-3xl text-900" @click="handleClick">
-              <small>
+            <div class="font-medium text-center text-3xl text-900" @click="handleClick">
+              <div class="text-3xl font-bold">
+                {{ props.actuacionData.titulo }}
+              </div>
+
+              <small class="text-sm font-bold" v-if="nroLegajo">
                 {{ $props.id ? 'Nro. Legajo:' +  nroLegajo : ''    }}
               </small>
+              <Skeleton v-else-if="$props.id" width="w-full" class="mb-2"></Skeleton>
 
             </div>
 
@@ -135,6 +142,7 @@ const handleNuevoItem = (key: string) => {
                   </div>
                 </template>
                 <template #content>
+                  
                   <DataViewCard
                     :itemsCardValue="cardInformation[key]"
                     :data-key="key"

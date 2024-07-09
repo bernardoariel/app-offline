@@ -7,9 +7,8 @@ import AccessDeniedView from '@/views/AccessDeniedView.vue'
 import isSavedChanges from '@/guards/isSavedChanges';
 import isUserAllowed from '@/guards/isUserAllowed'
 import isUserAccessValid from '@/guards/isUserAccessValid'
-// import useItem from '../composables/useItems';
-// GUARDS
-// const { resetAll } =useItem()
+import { actuaciones } from '../data/tipoActuaciones';
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -34,7 +33,9 @@ const router = createRouter({
       name: 'newActuacion',
       component: ActuacionView,
       props: (route) => {
-        return { actuacion: route.params.actuacion }
+        const actuacionKey = route.params.actuacion
+        const actuacionData = actuaciones[actuacionKey] || {};
+        return { actuacion: route.params.actuacion, actuacionData }
       }
     },
     {
@@ -48,10 +49,13 @@ const router = createRouter({
       name: 'editActuacion',
       component: ActuacionView,
       props: (route) => {
+        const actuacionKey = route.params.actuacion
+        const actuacionData = actuaciones[actuacionKey] || {};
         const { id,actuacion } = route.params
         return { 
           id: +id,
-          actuacion 
+          actuacion,
+          actuacionData
         }
       }
     }

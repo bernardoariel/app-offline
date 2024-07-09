@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { watch, ref } from 'vue';
-import useThemeColor from '@/composables/useThemeColor';
+import useTheme from '@/composables/useTheme';
 import { usePrimeVue } from 'primevue/config';
 
 const PrimeVue = usePrimeVue();
-const { currentTheme, changeThemeCurrent } = useThemeColor();
+const { currentTheme, changeThemeCurrent } = useTheme();
 const isDark = ref<boolean>(currentTheme.value.isDark);
 
 watch(isDark, (newValue) => {

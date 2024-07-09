@@ -39,6 +39,8 @@ import ColumnGroup from 'primevue/columngroup';   // optional
 import Row from 'primevue/row';                   // optional
 import Toast from 'primevue/toast';
 import ConfirmPopup from 'primevue/confirmpopup';
+import Skeleton from 'primevue/skeleton';
+
 import 'primeflex/primeflex.css';
 import ConfirmationService from 'primevue/confirmationservice';
 
@@ -86,6 +88,7 @@ app.component('RadioButton', RadioButton);
 app.component('ToggleButton', ToggleButton);
 app.component('Calendar', Calendar);
 app.component('ConfirmPopup', ConfirmPopup);
+app.component('Skeleton', Skeleton);
 app.directive('ripple', Ripple);
 app.directive('styleclass', StyleClass);
 app.use(ConfirmationService);

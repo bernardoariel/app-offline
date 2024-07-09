@@ -1,15 +1,15 @@
 <template>
   <div class="surface-section px-2 py-5 md:px-6 lg:px-8 w-full">
     <div class="text-700 text-justify">
-      <div class="flex justify-content-between align-items-center mb-5">
+      <div class="flex justify-content-between align-items-center mb-3">
         <div class="font-medium text-3xl text-900">{{ primeradiligencia ? getUpperCase(primeradiligencia.titulo) : '' }}</div>
         <div>
           <ToggleButton v-model="isVisible" class="p-button-rounded mr-2" onLabel="Ocultar Pdf" offLabel="Ver Pdf" />
-          <Button label="Registrar" class="p-button-rounded" @click="handleSave" severity="warning"/>
+          <Button label="Registrar" class="p-button" @click="handleSave" severity="warning"/>
         </div>
       </div>
 
-      <div class="text-500 mb-3">Este diligencia es ....</div>
+     <!--  <div class="text-500 mb-3">Este diligencia es ....</div> -->
       <div v-if="isVisible">
         <PdfViewer />
       </div>
@@ -63,6 +63,8 @@ import { useViewPdf } from '../composables/useViewPdf';
 import PdfViewer from '@/components/reports/PdfViewer.vue';
 import type { dataActuacionForSave } from '../composables/useSaveData';
 import useActuacion from '@/composables/useActuacion';
+import type { DatosLegalesForm, DatosLegales } from '../interfaces/datosLegalesForm.interface';
+import useDatosLegales from '../composables/useDatosLegales';
 
 interface Props {
   actuacion: string;
@@ -92,10 +94,10 @@ const {
 } = useDatosDiligencia(actuacionRef);
 
 const { isEditedHeader, isEditedFooter } = useNewActuacion()
-const { isActivated , currentEditId} = useActuacion()
+const { isActuationInit , currentEditId} = useActuacion()
 const { saveData,updateData } = useSaveData();
 const { afectados, efectos, fechaUbicacion, intervinientes, vinculados } = useItem();
-
+const { nroLegajo,selectedCausaCaratula,selectedSitio,selectedYear,selectedJuzgadoInterviniente,itemsCausaCaratula,selectedModusOperandi} = useDatosLegales()
 const setHeaderFromComputed = () => {
   headerContainer.value = headerTextComputed.value;
   isEditedHeader.value = true;
@@ -133,12 +135,21 @@ const toggleFooter = () => {
   isEditingFooter.value = !isEditingFooter.value;
 }
 
-const saveOrUpdateData = async () => {
+const storeData = async () => {
 
   const head = headerContainer.value || processedHeaderText.value
   const body = relato.value
   const foot = footerContainer.value || processedFooterText.value
 
+  const datosLegales: DatosLegales = {
+    nroLegajo: nroLegajo.value?.toString() || '',
+    selectYear: selectedYear.value?.name || '',
+    selectSitio: selectedSitio.value?.name || '',
+    selectModusOperandi: selectedModusOperandi.value?.name || '',
+    selectCausaCaratula: selectedCausaCaratula.value?.name || '',
+    opcionesCausaCaratula: itemsCausaCaratula.value.map((item: { name: string }) => item.name),
+    selectJuzgadoInterviniente: selectedJuzgadoInterviniente.value?.name || '',
+  };
   const data:dataActuacionForSave = {
     afectados: afectados.value,
     vinculados: vinculados.value,
@@ -146,7 +157,10 @@ const saveOrUpdateData = async () => {
     efectos: efectos.value,
     personalInterviniente: intervinientes.value ?? [],
     viewPdf:head + ' ' + body + ' ' + foot,
-    pathName:route.params.actuacion as string
+    pathName:route.params.actuacion as string,
+    datosLegales,
+    relato:relato.value
+    
   }; 
 
 
@@ -162,9 +176,9 @@ const saveOrUpdateData = async () => {
 
 const handleSave = async() => {
 
-  saveOrUpdateData()
+  storeData()
   isVisible.value = false;
-  isActivated.value = false;
+  isActuationInit.value = false;
   currentEditId.value = null
   router.push({ name: 'actuaciones' });
 

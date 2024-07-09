@@ -3,11 +3,13 @@ import MyInput from '@/components/elementos/MyInput.vue';
 import { getYearsDrop } from '@/helpers/getYearsDrop';
 import MyDropdown from '@/components/elementos/MyDropdown.vue';
 import { mapToDropdownItems } from '@/helpers/dropUtils';
-import type { DropDownInterface } from '@/interfaces/dropdown.interface';
+
 import { ref, watch } from 'vue';
 import { sitiosDropdwown, modusOperandiDropdwown, causaCaratulaDropdwown, juzgadoIntervinienteDropdwown } from '../helpers/getDropItems';
 import { getUpperCase } from '@/helpers/stringUtils';
 import useDatosLegales from '../composables/useDatosLegales';
+import type { DatosLegalesForm } from '../interfaces/datosLegalesForm.interface';
+import useItemValue from '@/composables/useItemValue';
 
 
 const { 
@@ -20,10 +22,30 @@ const {
     nroLegajo,
     itemsCausaCaratula
 } = useDatosLegales()
-
+const { selectedItem } = useItemValue();
 
 let yearsActuacion:string[] = getYearsDrop()
+let formData = ref<DatosLegalesForm>({ ...selectedItem.value });
+const handleDropdownChange = (
+  campo: keyof DatosLegalesForm,
+  newValue: { value: any; name: string }
+) => {
+  const name = newValue.value.name;
 
+  if (campo in formData.value) {
+    // Actualizar formData para que el campo específico tenga un objeto con la propiedad 'name' actualizada
+    formData.value = {
+      ...formData.value,
+      [campo]: { name }, // Asigna un objeto con 'name' a campo
+    };
+
+    const itemId = formData.value.id!;
+   /*  if (itemId) {
+      setPristineById(itemId, false);
+      setModifiedData(itemId, campo, name);
+    } */
+  }
+};
 
 watch(selectedCausaCaratula, () => {
 
@@ -33,7 +55,7 @@ watch(selectedCausaCaratula, () => {
     if (!itemExists) itemsCausaCaratula.value.push(selectedCausaCaratula.value);
     
     selectedCausaCaratula.value = undefined
-    console.log('selectedYear::: ', selectedYear.value);
+    
 });
 const eliminarItem = (name:string)=>{
     if (itemsCausaCaratula.value === undefined) return
@@ -65,6 +87,9 @@ const eliminarItem = (name:string)=>{
                 optionLabel="name"
                 :filter=false
                 color
+                @change="
+                    (newValue) => handleDropdownChange('yearsActuacion', newValue)
+                "
                 />
         </div>    
         <!-- Sitio -->
@@ -77,6 +102,7 @@ const eliminarItem = (name:string)=>{
                 optionLabel="name"
                 filter
                 color
+                 @change="(newValue) => handleDropdownChange('selectedSitio', newValue)"
                 class="w-full mt-2" />
         </div>
         <!-- Modus Operandi -->
@@ -89,6 +115,8 @@ const eliminarItem = (name:string)=>{
                 optionLabel="name"
                 filter
                 color
+                @change="(newValue) => handleDropdownChange('selectedModusOperandi', newValue)"
+
                 class="w-full mt-2" />
         </div>
         <!-- Modus Operandi -->
@@ -101,6 +129,7 @@ const eliminarItem = (name:string)=>{
                 optionLabel="name"
                 filter
                 color
+                 @change="(newValue) => handleDropdownChange('selectedCausaCaratula', newValue)"
                 class="w-full mt-2" />
         </div>
         <div class="col-12">
@@ -134,6 +163,7 @@ const eliminarItem = (name:string)=>{
                 optionLabel="name"
                 filter
                 color
+                  @change="(newValue) => handleDropdownChange('selectedJuzgadoInterviniente', newValue)"
                 class="w-full mt-2" />
         </div>
     

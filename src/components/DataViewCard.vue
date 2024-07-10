@@ -11,6 +11,8 @@ import { formatFecha } from '@/helpers/getFormatFecha';
 import useActuacion from '@/composables/useActuacion';
 import useItemValue from '@/composables/useItemValue';
 import { useRoute } from 'vue-router';
+import useDatosDiligencia from '@/composables/useDatosDiligencia';
+import { getAge } from '@/helpers/getAge';
 
 const props = defineProps<{
   itemsCardValue: { titulo: string; items: any[] };
@@ -19,6 +21,7 @@ const props = defineProps<{
 
 const condicion: boolean = false;
 const toast = useToast();
+const { relato } = useDatosDiligencia('sumario-denuncia');
 const { agregarNuevoItem } = useActuacion();
 const { selectedItem } = useItemValue();
 const isCreateActuation = ref(false)
@@ -95,6 +98,13 @@ const openDeleteConfirmation = (item, dataKey) => {
     <span class="font-semibold">${item.apellido}</span><span>, ${item.nombre}</span><br/>
     con <span class="font-semibold">DNI:</span> ${item.nroDocumento}`;
 };
+
+const handleSendRelato = (item) => {
+  console.log('item',typeof item);
+  relato.value = `${relato.value}
+Detenido ${item.apellido.toUpperCase()} ${item.nombre}, DNI N° ${item.nroDocumento}, de nacionalidad ${item.nacionalidad.toUpperCase()}, estado civil ${item.estadoCivil}, de ${getAge(item.fecha)} años de edad, ${item.instruccion}, con domicilio en  ${item.domicilioResidencia}, CP: .
+    `
+}
 
 const handleDeleteConfirmation = async (action: string) => {
   if (action === 'delete' && itemToDelete.value) {
@@ -203,6 +213,7 @@ const convertStringToPhrase = (key: string): string => {
                   :tarjetaNombre="item.title"
                   :item="item"
                   :deleteItem="() => openDeleteConfirmation(item, dataKey)"
+                  :sendRelato="() => handleSendRelato(item)"
                 />
               </div>
             </div>

@@ -7,6 +7,7 @@ import { useViewPdf } from '@/composables/useViewPdf';
 import { useRouter } from 'vue-router';
 import useActuacion from '@/composables/useActuacion';
 import MyModal from './elementos/MyModal.vue';
+import MyConfirmPopup from './elementos/MyConfirmPopup.vue';
 
 const actuacionesList = ref();
 const expandedRows = ref([]);
@@ -86,6 +87,16 @@ const handleDeleteConfirmation = async (action: string) => {
   actuacionIdToDelete.value = null;
 };
 
+const confirmConfig = ref({
+  message: '¿Seguro que desea eliminar esta actuación?',
+  icon: 'pi pi-exclamation-triangle',
+  rejectClass: 'p-button-secondary p-button-outlined p-button-sm',
+  acceptClass: 'p-button-sm',
+  rejectLabel: 'Cancelar',
+  acceptLabel: 'Eliminar',
+  event: null as Event | null
+});
+
 </script>
 
 <template>
@@ -105,7 +116,11 @@ const handleDeleteConfirmation = async (action: string) => {
                     <div class="flex gap-2">
                         <Button icon="pi pi-file-pdf" square @click="viewPdf(data.id)" severity="success"  ></Button>
                         <Button icon="pi pi-pencil" @click="onEditActuacion(data.id,data.pathName)" square severity="warning"></Button>
-                        <Button icon="pi pi-trash" @click="openDeleteConfirmation(data)" square severity="danger"></Button>
+                        <!-- <Button icon="pi pi-trash" @click="openDeleteConfirmation(data)" square severity="danger"></Button> -->
+                        <MyConfirmPopup
+                        :config="confirmConfig"
+                    
+                        />
                         <span></span>
                     </div>
                 </template>
@@ -213,7 +228,7 @@ const handleDeleteConfirmation = async (action: string) => {
                 </div>
             </template>
         </DataTable>
-        <MyModal
+        <!-- <MyModal
             v-model:visible="visible"
             title="Confirmar Eliminación"
             :buttons="deleteModalButtons"
@@ -230,7 +245,7 @@ const handleDeleteConfirmation = async (action: string) => {
                 
                 
             </template>
-        </MyModal>
+        </MyModal> -->
         <Toast />
     </div>
 </template>

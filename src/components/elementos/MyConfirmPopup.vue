@@ -16,20 +16,20 @@
     event: Event | null;
   }
   
-  const props = defineProps<{ config: Config }>();
+  const { config } = defineProps<{ config: Config }>();
   const emit = defineEmits(['accepted', 'rejected']);
 
   const confirm = useConfirm();
-  watch(() => props.config.event, (newEvent) => {
+  watch(() =>config.event, (newEvent) => {
   if (newEvent) {
     confirm.require({
       target: newEvent.currentTarget as HTMLElement,
-      message: props.config.message,
-      icon: props.config.icon,
-      rejectClass: props.config.rejectClass,
-      acceptClass: props.config.acceptClass,
-      rejectLabel: props.config.rejectLabel,
-      acceptLabel: props.config.acceptLabel,
+      message:config.message,
+      icon:config.icon,
+      rejectClass:config.rejectClass,
+      acceptClass:config.acceptClass,
+      rejectLabel:config.rejectLabel,
+      acceptLabel:config.acceptLabel,
       accept: () => {
         emit('accepted');
       },

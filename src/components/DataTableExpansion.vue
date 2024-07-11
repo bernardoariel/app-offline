@@ -6,7 +6,7 @@ import useSaveData from '../composables/useSaveData';
 import { useViewPdf } from '@/composables/useViewPdf';
 import { useRouter } from 'vue-router';
 import useActuacion from '@/composables/useActuacion';
-import MyModal from './elementos/MyModal.vue';
+import MyConfirmPopup from './elementos/MyConfirmPopup.vue';
 
 const actuacionesList = ref();
 const expandedRows = ref([]);
@@ -73,7 +73,7 @@ const openDeleteConfirmation = (data: any) => {
 };
 
 
-const handleDeleteConfirmation = async (action: string) => {
+const  handleDeleteConfirmation= async (action: string) => {
   if (action === 'delete' && actuacionIdToDelete.value) {
     try {
       await deleteActuacion(actuacionIdToDelete.value);
@@ -85,7 +85,27 @@ const handleDeleteConfirmation = async (action: string) => {
   }
   actuacionIdToDelete.value = null;
 };
-
+const confirmConfig = ref({
+    message: '¿Seguro que desea eliminar esta actuación?',
+    icon: 'pi pi-exclamation-triangle',
+    rejectClass: 'p-button-secondary p-button-outlined p-button-sm',
+    acceptClass: 'p-button-danger p-button-sm',
+    rejectLabel: 'Cancelar',
+    acceptLabel: 'Eliminar',
+    event: null as Event | null
+})
+const showConfirm = (event: Event) => {
+    confirmConfig.value.event = event;
+  };
+  const handleAccepted = () => {
+    console.log('Accepted');
+    // Aquí puedes manejar la lógica cuando se hace clic en aceptar
+  };
+  
+  const handleRejected = () => {
+    console.log('Rejected');
+    // Aquí puedes manejar la lógica cuando se hace clic en rechazar
+  }
 </script>
 
 <template>
@@ -105,7 +125,7 @@ const handleDeleteConfirmation = async (action: string) => {
                     <div class="flex gap-2">
                         <Button icon="pi pi-file-pdf" square @click="viewPdf(data.id)" severity="success"  ></Button>
                         <Button icon="pi pi-pencil" @click="onEditActuacion(data.id,data.pathName)" square severity="warning"></Button>
-                        <Button icon="pi pi-trash" @click="openDeleteConfirmation(data)" square severity="danger"></Button>
+                        <Button icon="pi pi-trash" @click="showConfirm" square severity="danger"></Button>
                         <span></span>
                     </div>
                 </template>
@@ -213,7 +233,8 @@ const handleDeleteConfirmation = async (action: string) => {
                 </div>
             </template>
         </DataTable>
-        <MyModal
+        
+       <!--  <MyModal
             v-model:visible="visible"
             title="Confirmar Eliminación"
             :buttons="deleteModalButtons"
@@ -230,7 +251,12 @@ const handleDeleteConfirmation = async (action: string) => {
                 
                 
             </template>
-        </MyModal>
+        </MyModal> -->
+        <MyConfirmPopup
+            :config="confirmConfig"
+            @accepted="handleAccepted"
+            @rejected="handleRejected"
+            />
         <Toast />
     </div>
 </template>

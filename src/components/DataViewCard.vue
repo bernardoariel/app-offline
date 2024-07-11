@@ -11,6 +11,8 @@ import { formatFecha } from '@/helpers/getFormatFecha';
 import useActuacion from '@/composables/useActuacion';
 import useItemValue from '@/composables/useItemValue';
 import { useRoute } from 'vue-router';
+import useDatosDiligencia from '@/composables/useDatosDiligencia';
+import { getAge } from '@/helpers/getAge';
 
 const props = defineProps<{
   itemsCardValue: { titulo: string; items: any[] };
@@ -19,6 +21,7 @@ const props = defineProps<{
 
 const condicion: boolean = false;
 const toast = useToast();
+const { relato } = useDatosDiligencia('sumario-denuncia');
 const { agregarNuevoItem } = useActuacion();
 const { selectedItem } = useItemValue();
 const isCreateActuation = ref(false)
@@ -95,6 +98,31 @@ const openDeleteConfirmation = (item, dataKey) => {
     <span class="font-semibold">${item.apellido}</span><span>, ${item.nombre}</span><br/>
     con <span class="font-semibold">DNI:</span> ${item.nroDocumento}`;
 };
+
+const handleSendRelato = (item, dataKey) => {
+  console.log('dataKey',dataKey);
+  console.log('item',item);
+  if(dataKey === 'afectados'){
+    relato.value = `${relato.value}
+${item.typeAfectado} ${item.apellido.toUpperCase()} ${item.nombre}, DNI N° ${item.nroDocumento}, de nacionalidad ${item.nacionalidad.toUpperCase()}, estado civil ${item.estadoCivil}, de ${getAge(item.fecha)} años de edad, ${item.instruccion}, con domicilio en  ${item.domicilioResidencia}`
+    }
+    if(dataKey === 'vinculados'){
+    relato.value = `${relato.value}
+${item.typeAfectado} ${item.apellido.toUpperCase()} ${item.nombre}, DNI N° ${item.nroDocumento}, de nacionalidad ${item.nacionalidad.toUpperCase()}, estado civil ${item.estadoCivil}, de ${getAge(item.fecha)} años de edad, ${item.instruccion}, con domicilio en  ${item.domicilioResidencia}`
+    }
+  if(dataKey === 'personalInterviniente'){
+    relato.value = `${relato.value}
+Interviniente ${item.apellido.toUpperCase()} ${item.nombre}, de jerarquia ${item.jerarquia}, en ${item.dependencia}`
+  }
+  if(dataKey === 'fecha'){
+    relato.value = `${relato.value}
+En la fecha ${item.desdeFechaHora}, en ${item.calle} ${item.numero}, ${item.departamento}`
+  }
+  if(dataKey === 'efectos'){
+    relato.value = `${relato.value}
+${item.categoria}, ${item.subcategoria} ${item.marca} ${item.modelo}, de tipo ${item.tipo}`
+  }
+}
 
 const handleDeleteConfirmation = async (action: string) => {
   if (action === 'delete' && itemToDelete.value) {
@@ -203,6 +231,7 @@ const convertStringToPhrase = (key: string): string => {
                   :tarjetaNombre="item.title"
                   :item="item"
                   :deleteItem="() => openDeleteConfirmation(item, dataKey)"
+                  :sendRelato="() => handleSendRelato(item, dataKey)"
                 />
               </div>
             </div>
@@ -248,6 +277,8 @@ const convertStringToPhrase = (key: string): string => {
                   :tarjetaNombre="item.title"
                   :item="item"
                   :deleteItem="() => openDeleteConfirmation(item, dataKey)"
+                  :sendRelato="() => handleSendRelato(item, dataKey)"
+
                 />
               </div>
             </div>
@@ -295,6 +326,8 @@ const convertStringToPhrase = (key: string): string => {
                   :tarjetaNombre="item.title"
                   :item="item"
                   :deleteItem="() => openDeleteConfirmation(item, dataKey)"
+                  :sendRelato="() => handleSendRelato(item, dataKey)"
+
                 />
               </div>
             </div>
@@ -341,6 +374,7 @@ const convertStringToPhrase = (key: string): string => {
                   :tarjetaNombre="item.title"
                   :item="item"
                   :deleteItem="() => openDeleteConfirmation(item, dataKey)"
+                  :sendRelato="() => handleSendRelato(item, dataKey)"
                 />
               </div>
             </div>

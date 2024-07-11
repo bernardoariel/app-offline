@@ -5,6 +5,7 @@ const props = defineProps<{
   tarjetaNombre?: string;
   item: any;
   deleteItem: (id: string) => void;
+  sendRelato?: (text:string) => void;
 }>();
 
 const menu = ref();
@@ -16,6 +17,10 @@ const items = ref([
       {
         label: 'Enviar al Relato',
         icon: 'pi pi-file-import',
+        command: () => {
+          props.sendRelato!(props.item);
+          menu.value.toggle(event);
+        }
       },
       {
         label: 'Eliminar',

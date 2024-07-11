@@ -119,6 +119,7 @@ export const fechaUbicacioFake = [
 
 export const efectosFake = [
   {
+    "estado":"Denunciado",
     "categoria":"Vehiculos",
     "marca":" Rockrider",
     "modelo":"Blazer",
@@ -127,7 +128,22 @@ export const efectosFake = [
     "id":"64a888c4-5b79-4414-9a21-cd9a30b7059e"
   },
   {
-    "categoria":"Electrónica","marca":"Sanyo","modelo":"SM-G532M","subcategoria":"Electrodomesticos","tipo":"Televisor","id":"9355289c-08a0-43ba-8131-6c18d02de812"},{"categoria":"Instrumentos Musicales ","marca":"Samick","modelo":"Street","subcategoria":"Instrumentos de Cuerdas","tipo":"Guitarra ","id":"fbfec497-d07c-4004-a927-8d65b230fc5c"}]
+    "estado":"Denunciado",
+    "categoria":"Electrónica",
+    "marca":"Sanyo",
+    "modelo":"SM-G532M",
+    "subcategoria":"Electrodomesticos",
+    "tipo":"Televisor",
+    "id":"9355289c-08a0-43ba-8131-6c18d02de812"
+  },{
+    "estado":"Denunciado",
+    "categoria":"Instrumentos Musicales",
+    "marca":"Samick",
+    "modelo":"Street",
+    "subcategoria":"Instrumentos de Cuerdas",
+    "tipo":"Guitarra ",
+    "id":"fbfec497-d07c-4004-a927-8d65b230fc5c"
+  }]
 export const intervinientesFake = [
   {
     "apellido":"Perez",

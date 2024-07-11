@@ -104,7 +104,7 @@ export const actuaciones:TipoActuaciones  = {
         "tarjetas":{
             "afectados":{
                 "titulo" : "Afectados",
-                "valor": [ 'Víctima','Damnificado' ],
+                "valor": [ 'Denunciante','Damnificado' ],
             },
             "fecha":{
                 "titulo":"Fecha, Hora y Ubicacion",
@@ -130,7 +130,7 @@ export const actuaciones:TipoActuaciones  = {
         "tarjetas":{
             "afectados":{
                 "titulo" : "Afectados",
-                "valor": [ 'Víctima','Damnificado' ],
+                "valor": [ 'Denunciante','Damnificado' ],
             },
             "fecha":{
                 "titulo":"Fecha, Hora y Ubicacion",
@@ -156,7 +156,7 @@ export const actuaciones:TipoActuaciones  = {
         "tarjetas":{
             "afectados":{
                 "titulo" : "Afectados",
-                "valor": [ 'Víctima','Damnificado' ],
+                "valor": [ 'Denunciante','Damnificado' ],
             },
             "fecha":{
                 "titulo":"Fecha, Hora y Ubicacion",
@@ -182,7 +182,7 @@ export const actuaciones:TipoActuaciones  = {
         "tarjetas":{
             "afectados":{
                 "titulo" : "Afectados",
-                "valor": [ 'Víctima','Damnificado' ],
+                "valor": [ 'Denunciante','Damnificado' ],
             },
             "fecha":{
                 "titulo":"Fecha, Hora y Ubicacion",
@@ -204,7 +204,7 @@ export const actuaciones:TipoActuaciones  = {
         "tarjetas":{
             "afectados":{
                 "titulo" : "Afectados",
-                "valor": [ 'Víctima','Damnificado' ],
+                "valor": [ 'Denunciante','Damnificado' ],
             },
             "fecha":{
                 "titulo":"Fecha, Hora y Ubicacion",
@@ -230,7 +230,7 @@ export const actuaciones:TipoActuaciones  = {
         "tarjetas":{
             "afectados":{
                 "titulo" : "Afectados",
-                "valor": [ 'Víctima','Damnificado' ],
+                "valor": [ 'Denunciante','Damnificado' ],
             },
             "fecha":{
                 "titulo":"Fecha, Hora y Ubicacion",
@@ -252,7 +252,7 @@ export const actuaciones:TipoActuaciones  = {
         "tarjetas":{
             "afectados":{
                 "titulo" : "Afectados",
-                "valor": [ 'Víctima','Damnificado' ],
+                "valor": [ 'Denunciante','Damnificado' ],
             },
             "fecha":{
                 "titulo":"Fecha, Hora y Ubicacion",
@@ -278,7 +278,29 @@ export const actuaciones:TipoActuaciones  = {
         "tarjetas":{
             "afectados":{
                 "titulo" : "Afectados",
-                "valor": [ 'Víctima','Damnificado' ],
+                "valor": [ 'Denunciante','Damnificado' ],
+            },
+            "fecha":{
+                "titulo":"Fecha, Hora y Ubicacion",
+                "valor": null,
+            },
+            "vinculados":{
+                "titulo" : "Vinculados",
+                "valor":[ 'Aprehendido','Acusado' ],
+            },
+            "efectos":{
+                "titulo":"Efectos",
+                "valor":[ 'Denunciado','Recuperado','Secuestrado' ],
+            }
+        }
+    },
+    "ufi-propiedad-oficio":{
+        titulo: 'UFI - DELITOS CONTRA LA PROPIEDAD POR OFICIO',
+        tituloAlternativo: 'UNIDADES FISCALES DE INVESTIGACIÓN DELITOS CONTRA LA PROPIEDAD POR OFICIO',
+        "tarjetas":{
+            "afectados":{
+                "titulo" : "Afectados",
+                "valor": [ 'Denunciante','Damnificado' ],
             },
             "fecha":{
                 "titulo":"Fecha, Hora y Ubicacion",

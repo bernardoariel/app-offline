@@ -3,6 +3,7 @@ import { onActivated, ref, watch } from 'vue';
 import useEfectos from '@/composables/useEfectos';
 import useItemValue from '@/composables/useItemValue';
 import useFieldState from '@/composables/useFiledsState';
+import useActuacionData from '@/composables/useActuacionData';
 
 import MyDropdown from '@/components/elementos/MyDropdown.vue';
 import MyInput from '@/components/elementos/MyInput.vue';
@@ -38,9 +39,14 @@ const {
   isEditing,
   cancelarModificaciones,
 } = useFieldState();
+const { obtenerTarjeta } = useActuacionData();
+
 const formData = ref<EfectosForm>({ ...initialValues });
+const tarjetaValues = ref<string[]>([]);
 
 onActivated(() => {
+  tarjetaValues.value = obtenerTarjeta('efectos')?.valor as string[];
+  console.log('tarjetaValues.value', tarjetaValues.value);
   if (selectedItem.value) {
     selectedCategoria.value = { name: selectedItem.value.categoria };
     selectedMarca.value = { name: selectedItem.value.marca };

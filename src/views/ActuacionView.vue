@@ -14,27 +14,31 @@ import useDatosLegales from '../composables/useDatosLegales';
 import useDatosDiligencia from '@/composables/useDatosDiligencia';
 import useSaveData from '@/composables/useSaveData';
 import useItemValue from '@/composables/useItemValue';
-
+import useActuacionData from '@/composables/useActuacionData';
 
 interface Props {
   actuacion: string;
   id?: number;
-  actuacionData?:any;
- 
+  actuacionData?: any;
 }
 const props = defineProps<Props>();
 const actuacionRef = ref(props.actuacion);
 const active = ref(0);
 
-const { agregarNuevoItem, currentEditId,toogleDateActuacion } = useActuacion();
+const { agregarNuevoItem, currentEditId, toogleDateActuacion } = useActuacion();
+const { set: setActuacionData } = useActuacionData();
 const { fetchActuacionById } = useSaveData();
-const { resetData:resetDatosLegales,setData:setDatosLegales,nroLegajo } = useDatosLegales()
-onActivated(async () => {
-  console.log('actuacionData::: ', props.actuacionData);
-  if (!props.id) resetDatosLegales()
-  
-  toogleDateActuacion()
+const {
+  resetData: resetDatosLegales,
+  setData: setDatosLegales,
+  nroLegajo,
+} = useDatosLegales();
 
+setActuacionData(props.actuacionData);
+
+onActivated(async () => {
+  if (!props.id) resetDatosLegales();
+  toogleDateActuacion();
   if (props.id && !currentEditId.value) {
     const data = await fetchActuacionById(props.id);
     setAll(data); // info tabs1
@@ -42,15 +46,14 @@ onActivated(async () => {
     relato.value = data.relato.replace(/['"]/g, '');
     currentEditId.value = props.id;
   }
-
-
 });
 
 const { setAll } = useItem();
 
 const { relato } = useDatosDiligencia(props.actuacion);
 const { addDataFake } = useDatosLegales();
-const { cardInformationKeys, cardInformation } = useCardInformation(actuacionRef);
+const { cardInformationKeys, cardInformation } =
+  useCardInformation(actuacionRef);
 const { prepararNuevoItem } = useItemValue();
 
 const handleClick = (event: { ctrlKey: any; altKey: any }) => {
@@ -82,23 +85,49 @@ const handleNuevoItem = (key: string) => {
         <template #title>
           <div class="title-container">
             <div>
-              <Button label="Cancelar" icon="pi pi-arrow-circle-left" severity="secondary" rounded @click="$router.replace({name:'actuaciones'})"/>
+              <Button
+                label="Cancelar"
+                icon="pi pi-arrow-circle-left"
+                severity="secondary"
+                rounded
+                @click="$router.replace({ name: 'actuaciones' })"
+              />
             </div>
-            <div class="font-medium text-center text-3xl text-900" @click="handleClick">
+            <div
+              class="font-medium text-center text-3xl text-900"
+              @click="handleClick"
+            >
               <div class="text-3xl font-bold">
                 {{ props.actuacionData.titulo }}
               </div>
 
               <small class="text-sm font-bold" v-if="nroLegajo">
-                {{ $props.id ? 'Nro. Legajo:' +  nroLegajo : ''    }}
+                {{ $props.id ? 'Nro. Legajo:' + nroLegajo : '' }}
               </small>
-              <Skeleton v-else-if="$props.id" width="w-full" class="mb-2"></Skeleton>
-
+              <Skeleton
+                v-else-if="$props.id"
+                width="w-full"
+                class="mb-2"
+              ></Skeleton>
             </div>
 
             <div class="buttons-container">
-              <Tag @click="handleClick" v-if="$props.id" icon="pi pi-pencil" severity="danger" value="Edición" class="px-2"></Tag>
-              <Tag @click="handleClick" v-else icon="pi pi-bolt" severity="success" value="Nueva" class="px-2"></Tag>
+              <Tag
+                @click="handleClick"
+                v-if="$props.id"
+                icon="pi pi-pencil"
+                severity="danger"
+                value="Edición"
+                class="px-2"
+              ></Tag>
+              <Tag
+                @click="handleClick"
+                v-else
+                icon="pi pi-bolt"
+                severity="success"
+                value="Nueva"
+                class="px-2"
+              ></Tag>
               <Button
                 @click="active = 0"
                 rounded
@@ -117,9 +146,7 @@ const handleNuevoItem = (key: string) => {
           </div>
         </template>
         <template #content>
-          
           <TabView v-model:activeIndex="active">
-           
             <TabPanel header="Datos Requeridos">
               <Card
                 v-for="key in cardInformationKeys"
@@ -142,7 +169,6 @@ const handleNuevoItem = (key: string) => {
                   </div>
                 </template>
                 <template #content>
-                  
                   <DataViewCard
                     :itemsCardValue="cardInformation[key]"
                     :data-key="key"
@@ -161,7 +187,6 @@ const handleNuevoItem = (key: string) => {
       <DiligenciaView :actuacion="actuacion" :id="props.id" />
     </div>
   </div>
-  
 </template>
 <style scoped>
 .title-container {

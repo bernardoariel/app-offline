@@ -10,12 +10,14 @@ import MyTextArea from '@/components/elementos/MyTextArea.vue';
 import MyInputMask from '@/components/elementos/MyInputMask.vue';
 import MyInputNumber from '@/components/elementos/MyInputNumber.vue';
 
+import useActuacionData from '@/composables/useActuacionData';
+import { mapToDropdownItems } from '@/helpers/dropUtils';
+
 import type {
   Vinculados,
   VinculadosForm,
 } from '@/interfaces/vinculado.interface';
 import {
-  afectadosDropdown,
   documentosDropdown,
   estadoCivilDropdown,
   instruccionDropdown,
@@ -36,6 +38,7 @@ const {
 } = useVinculados();
 
 const { selectedItem } = useItemValue();
+const { obtenerTarjeta } = useActuacionData();
 
 const {
   statesID,
@@ -46,8 +49,11 @@ const {
   cancelarModificaciones,
 } = useFieldState();
 let formData = ref<VinculadosForm>({ ...selectedItem.value });
+let tarjetaValues = ref<string[]>([]);
 
 onActivated(() => {
+  tarjetaValues.value = obtenerTarjeta('vinculados')?.valor as string[];
+
   if (selectedItem.value) {
     selectedType.value = { name: selectedItem.value.typeAfectado };
     selectedDocumento.value = { name: selectedItem.value.typeDocumento };
@@ -168,20 +174,20 @@ watch(selectedItem, (newVal: any) => {
 </script>
 <template>
   <Card>
-    <!-- <template #title> Afectados </template> -->
     <template #content>
       <div class="grid">
         <div class="col-12">
           <label for="dropdown">Seleccione tipo de Denunciante</label>
           <MyDropdown
             class="mt-2"
-            :items="afectadosDropdown"
+            :items="mapToDropdownItems(tarjetaValues)"
             v-model="selectedType"
             @change="
               (newValue) => handleDropdownChange('typeAfectado', newValue)
             "
             placeholder="Seleccione tipo de Denunciante"
             :color="!!selectedItem"
+            filter
           />
         </div>
         <div class="col-4">

@@ -15,7 +15,6 @@ interface Actuacion {
 }
 
 const actuacionData = ref<Actuacion | null>(null);
-console.log('actuacionData', actuacionData);
 
 const useActuacionData = () => {
     const set = (data: Actuacion) => {

@@ -18,10 +18,13 @@ import {
   tipoCategoriasDropdown,
 } from '@/helpers/getDropItems';
 
+import { mapToDropdownItems } from '@/helpers/dropUtils';
+
 const {
   editar,
   agregar,
   initialValues,
+  selectedEstado,
   selectedCategoria,
   selectedMarca,
   selectedModelo,
@@ -46,8 +49,8 @@ const tarjetaValues = ref<string[]>([]);
 
 onActivated(() => {
   tarjetaValues.value = obtenerTarjeta('efectos')?.valor as string[];
-  console.log('tarjetaValues.value', tarjetaValues.value);
   if (selectedItem.value) {
+    selectedEstado.value = { name: selectedItem.value.estado };
     selectedCategoria.value = { name: selectedItem.value.categoria };
     selectedMarca.value = { name: selectedItem.value.marca };
     selectedModelo.value = { name: selectedItem.value.modelo };
@@ -109,6 +112,7 @@ const handleBlur = (campo: keyof EfectosForm) => {
 const handleAgregarElemento = () => {
   if (!formData.value) return;
   const nuevoEfecto: Efectos = {
+    estado: selectedEstado.value!.name,
     categoria: selectedCategoria.value!.name,
     marca: selectedMarca.value!.name,
     modelo: selectedModelo.value!.name,
@@ -138,6 +142,7 @@ const handleModificarElemento = () => {
   let itemStateEncontrado = guardarModificaciones(selectedItem.value!.id);
   let itemAEditar = {
     ...formData.value,
+    estado: selectedEstado.value?.name || '',
     categoria: selectedCategoria.value?.name || '',
     marca: selectedMarca.value?.name || '',
     modelo: selectedModelo.value?.name || '',
@@ -151,6 +156,7 @@ watch(selectedItem, (newVal: any) => {
   if (!newVal) {
     formData.value = { ...initialValues };
   } else {
+    selectedEstado.value = { name: newVal.estado };
     selectedCategoria.value = { name: newVal.categoria };
     selectedMarca.value = { name: newVal.marca };
     selectedModelo.value = { name: newVal.modelo };
@@ -164,6 +170,18 @@ watch(selectedItem, (newVal: any) => {
   <Card>
     <template #content>
       <div class="grid">
+        <div class="col-6">
+          <label for="categoriaDropdown">Seleccione tipo de efecto</label>
+          <MyDropdown
+            class="mt-2"
+            :items="mapToDropdownItems(tarjetaValues)"
+            v-model="selectedCategoria"
+            @change="(newValue) => handleDropdownChange('categoria', newValue)"
+            placeholder="Seleccione Categoría"
+            filter
+            :color="!!selectedItem"
+          />
+        </div>
         <div class="col-6">
           <label for="categoriaDropdown">Seleccione Categoría</label>
           <MyDropdown

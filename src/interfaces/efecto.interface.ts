@@ -12,6 +12,7 @@ interface PrimaryAttributes {
 }
 
 export interface EfectosForm extends PrimaryAttributes {
+    estado: { name: string };
     categoria: { name: string };
     subcategoria: { name: string };
     tipo: { name: string };
@@ -20,6 +21,7 @@ export interface EfectosForm extends PrimaryAttributes {
 }
 
 export interface Efectos extends PrimaryAttributes {
+    estado: string;
     categoria: string;
     subcategoria: string;
     tipo: string;

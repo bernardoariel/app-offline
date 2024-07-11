@@ -3,12 +3,11 @@ import { onActivated, ref, watch } from 'vue';
 import useAfectados from '../composables/useAfectados';
 import useItemValue from '@/composables/useItemValue';
 import useFieldState from '@/composables/useFiledsState';
+import useActuacionData from '@/composables/useActuacionData';
 
 import MyDropdown from '@/components/elementos/MyDropdown.vue';
 import MyInput from '@/components/elementos/MyInput.vue';
 import MyTextArea from '@/components/elementos/MyTextArea.vue';
-import MyInputMask from '@/components/elementos/MyInputMask.vue';
-import MyInputNumber from '@/components/elementos/MyInputNumber.vue';
 
 import type {
   AfectadosForm,
@@ -22,7 +21,8 @@ import {
   instruccionDropdown,
   afectadosDropdown,
 } from '@/helpers/getDropItems';
-import useDatosDiligencia from '../composables/useDatosDiligencia';
+import { mapToDropdownItems } from '@/helpers/dropUtils';
+
 import useNewActuacion from '@/composables/useNewActuacion';
 
 const {
@@ -40,6 +40,7 @@ const {
 
 const { selectedItem } = useItemValue();
 const { resetIsEditedHeader } = useNewActuacion();
+const { obtenerTarjeta } = useActuacionData();
 
 const {
   statesID,
@@ -50,8 +51,10 @@ const {
   cancelarModificaciones,
 } = useFieldState();
 let formData = ref<AfectadosForm>({ ...selectedItem.value });
+const tarjetaValues = ref<string[]>([]);
 
 onActivated(() => {
+  tarjetaValues.value = obtenerTarjeta('afectados')?.valor as string[];
   if (selectedItem.value) {
     selectedType.value = { name: selectedItem.value.typeAfectado };
     selectedDocumento.value = { name: selectedItem.value.typeDocumento };
@@ -182,7 +185,7 @@ watch(selectedItem, (newVal: any) => {
           <label for="dropdown">Seleccione tipo de Denunciante</label>
           <MyDropdown
             class="mt-2"
-            :items="afectadosDropdown"
+            :items="mapToDropdownItems(tarjetaValues)"
             v-model="selectedType"
             @change="
               (newValue) => handleDropdownChange('typeAfectado', newValue)

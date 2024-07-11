@@ -8,6 +8,7 @@ import { efectosFake as itemsFake } from '@/data/mock/datosActuacion'
 const { agregarIdState, guardarModificaciones, eliminarIdState } = useFieldState();
 let efectos = ref<Efectos[]>([]);
 
+let selectedEstado = ref<DropDownInterface>()
 let selectedCategoria = ref<DropDownInterface>()
 let selectedSubcategoria = ref<DropDownInterface>()
 let selectedTipo = ref<DropDownInterface>()
@@ -15,6 +16,7 @@ let selectedMarca = ref<DropDownInterface>()
 let selectedModelo = ref<DropDownInterface>()
 
 const initialValues: EfectosForm = {
+  estado: { name: '' },
   categoria: { name: '' },
   marca: { name: '' },
   modelo: { name: '' },
@@ -69,6 +71,7 @@ const useEfectos = () => {
   };
 
   const resetAllDropdown = () => {
+    selectedEstado.value = null;
     selectedCategoria.value = null;
     selectedSubcategoria.value = null;
     selectedTipo.value = null;
@@ -100,6 +103,7 @@ const useEfectos = () => {
 
   return {
     efectos,
+    selectedEstado,
     selectedCategoria,
     selectedSubcategoria,
     selectedTipo,

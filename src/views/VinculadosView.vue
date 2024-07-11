@@ -49,7 +49,7 @@ const {
   cancelarModificaciones,
 } = useFieldState();
 let formData = ref<VinculadosForm>({ ...selectedItem.value });
-let tarjetaValues = ref<string[]>([]);
+const tarjetaValues = ref<string[]>([]);
 
 onActivated(() => {
   tarjetaValues.value = obtenerTarjeta('vinculados')?.valor as string[];

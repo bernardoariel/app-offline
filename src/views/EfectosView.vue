@@ -175,9 +175,9 @@ watch(selectedItem, (newVal: any) => {
           <MyDropdown
             class="mt-2"
             :items="mapToDropdownItems(tarjetaValues)"
-            v-model="selectedCategoria"
-            @change="(newValue) => handleDropdownChange('categoria', newValue)"
-            placeholder="Seleccione Categoría"
+            v-model="selectedEstado"
+            @change="(newValue) => handleDropdownChange('estado', newValue)"
+            placeholder="Seleccione tipo de efecto"
             filter
             :color="!!selectedItem"
           />

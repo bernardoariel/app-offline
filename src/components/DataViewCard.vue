@@ -379,13 +379,6 @@ const convertStringToPhrase = (key: string): string => {
                   :severity="getColorByAfectado(item.estado)"
                   class="ml-5"
                 />
-                <span v-if="item.categoria">
-                  <Tag
-                    :value="item.categoria"
-                    class="ml-5"
-                    :severity="getColorByAfectado(item.categoria)"
-                  ></Tag>
-                </span>
               </div>
 
               <div class="flex-items">

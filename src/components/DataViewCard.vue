@@ -24,13 +24,13 @@ const toast = useToast();
 const { relato } = useDatosDiligencia('sumario-denuncia');
 const { agregarNuevoItem } = useActuacion();
 const { selectedItem } = useItemValue();
-const isCreateActuation = ref(false)
-const { path } = useRoute()
+const isCreateActuation = ref(false);
+const { path } = useRoute();
 console.log('path::: ', path);
 
-onActivated(()=>{
-  isCreateActuation.value = path.includes('new') ? true:false
-})
+onActivated(() => {
+  isCreateActuation.value = path.includes('new') ? true : false;
+});
 const items = computed(() => {
   if (props.dataKey === 'personalInterviniente') {
     console.log('Items de personalInterviniente:', props.itemsCardValue.items); // Inspecciona específicamente los items de 'fecha'
@@ -100,29 +100,43 @@ const openDeleteConfirmation = (item, dataKey) => {
 };
 
 const handleSendRelato = (item, dataKey) => {
-  console.log('dataKey',dataKey);
-  console.log('item',item);
-  if(dataKey === 'afectados'){
+  console.log('dataKey', dataKey);
+  console.log('item', item);
+  if (dataKey === 'afectados') {
     relato.value = `${relato.value}
-${item.typeAfectado} ${item.apellido.toUpperCase()} ${item.nombre}, DNI N° ${item.nroDocumento}, de nacionalidad ${item.nacionalidad.toUpperCase()}, estado civil ${item.estadoCivil}, de ${getAge(item.fecha)} años de edad, ${item.instruccion}, con domicilio en  ${item.domicilioResidencia}`
-    }
-    if(dataKey === 'vinculados'){
-    relato.value = `${relato.value}
-${item.typeAfectado} ${item.apellido.toUpperCase()} ${item.nombre}, DNI N° ${item.nroDocumento}, de nacionalidad ${item.nacionalidad.toUpperCase()}, estado civil ${item.estadoCivil}, de ${getAge(item.fecha)} años de edad, ${item.instruccion}, con domicilio en  ${item.domicilioResidencia}`
-    }
-  if(dataKey === 'personalInterviniente'){
-    relato.value = `${relato.value}
-Interviniente ${item.apellido.toUpperCase()} ${item.nombre}, de jerarquia ${item.jerarquia}, en ${item.dependencia}`
+${item.typeAfectado} ${item.apellido.toUpperCase()} ${item.nombre}, DNI N° ${
+      item.nroDocumento
+    }, de nacionalidad ${item.nacionalidad.toUpperCase()}, estado civil ${
+      item.estadoCivil
+    }, de ${getAge(item.fecha)} años de edad, ${
+      item.instruccion
+    }, con domicilio en  ${item.domicilioResidencia}`;
   }
-  if(dataKey === 'fecha'){
+  if (dataKey === 'vinculados') {
     relato.value = `${relato.value}
-En la fecha ${item.desdeFechaHora}, en ${item.calle} ${item.numero}, ${item.departamento}`
+${item.typeAfectado} ${item.apellido.toUpperCase()} ${item.nombre}, DNI N° ${
+      item.nroDocumento
+    }, de nacionalidad ${item.nacionalidad.toUpperCase()}, estado civil ${
+      item.estadoCivil
+    }, de ${getAge(item.fecha)} años de edad, ${
+      item.instruccion
+    }, con domicilio en  ${item.domicilioResidencia}`;
   }
-  if(dataKey === 'efectos'){
+  if (dataKey === 'personalInterviniente') {
     relato.value = `${relato.value}
-${item.categoria}, ${item.subcategoria} ${item.marca} ${item.modelo}, de tipo ${item.tipo}`
+Interviniente ${item.apellido.toUpperCase()} ${item.nombre}, de jerarquia ${
+      item.jerarquia
+    }, en ${item.dependencia}`;
   }
-}
+  if (dataKey === 'fecha') {
+    relato.value = `${relato.value}
+En la fecha ${item.desdeFechaHora}, en ${item.calle} ${item.numero}, ${item.departamento}`;
+  }
+  if (dataKey === 'efectos') {
+    relato.value = `${relato.value}
+${item.categoria}, ${item.subcategoria} ${item.marca} ${item.modelo}, de tipo ${item.tipo}`;
+  }
+};
 
 const handleDeleteConfirmation = async (action: string) => {
   if (action === 'delete' && itemToDelete.value) {
@@ -278,7 +292,6 @@ const convertStringToPhrase = (key: string): string => {
                   :item="item"
                   :deleteItem="() => openDeleteConfirmation(item, dataKey)"
                   :sendRelato="() => handleSendRelato(item, dataKey)"
-
                 />
               </div>
             </div>
@@ -327,7 +340,6 @@ const convertStringToPhrase = (key: string): string => {
                   :item="item"
                   :deleteItem="() => openDeleteConfirmation(item, dataKey)"
                   :sendRelato="() => handleSendRelato(item, dataKey)"
-
                 />
               </div>
             </div>
@@ -378,36 +390,35 @@ const convertStringToPhrase = (key: string): string => {
                 />
               </div>
             </div>
-            <div class="linea-2">
+            <!-- <div class="linea-2">
               <p class="text-xs">{{ item.dependencia }}</p>
-            </div>
+            </div> -->
           </div>
         </div>
       </template>
     </DataView>
   </div>
   <div v-else-if="!isCreateActuation">
-      <div class="flex-container">
-        <!-- Primera columna con círculo -->
-        <div class="flex-item">
-          <Skeleton shape="circle" size="4rem"></Skeleton>
-        </div>
-        <!-- Segunda columna con dos párrafos -->
-        <div class="flex-item">
-          <Skeleton width="10rem" class="mb-2"></Skeleton>
-          <Skeleton width="5rem" class="mb-2"></Skeleton>
-          <Skeleton height=".5rem"></Skeleton>
-        </div>
-        <!-- Tercera columna con botón esqueleto -->
-        <div class="flex-item">
-          <Skeleton width="5rem" height="2rem"></Skeleton>
-        </div>
+    <div class="flex-container">
+      <!-- Primera columna con círculo -->
+      <div class="flex-item">
+        <Skeleton shape="circle" size="4rem"></Skeleton>
       </div>
-      <!-- Esqueleto que ocupa todo el ancho -->
-      <Skeleton class="w-full mb-2" height="1rem"></Skeleton>
-      <Skeleton class="w-full" height="1rem"></Skeleton>
+      <!-- Segunda columna con dos párrafos -->
+      <div class="flex-item">
+        <Skeleton width="10rem" class="mb-2"></Skeleton>
+        <Skeleton width="5rem" class="mb-2"></Skeleton>
+        <Skeleton height=".5rem"></Skeleton>
+      </div>
+      <!-- Tercera columna con botón esqueleto -->
+      <div class="flex-item">
+        <Skeleton width="5rem" height="2rem"></Skeleton>
+      </div>
     </div>
- 
+    <!-- Esqueleto que ocupa todo el ancho -->
+    <Skeleton class="w-full mb-2" height="1rem"></Skeleton>
+    <Skeleton class="w-full" height="1rem"></Skeleton>
+  </div>
 
   <div v-else class="flex justify-content-end">
     <span class="text-right">Sin Registros</span>
@@ -462,12 +473,11 @@ const convertStringToPhrase = (key: string): string => {
 }
 
 .modal-body {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 0.5rem;
-    padding-left: 4rem; /* Padding solo en los lados */
-    padding-right: 3rem; /* Padding solo en los lados */
-    /* gap: 1rem; */
-  }
-
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.5rem;
+  padding-left: 4rem; /* Padding solo en los lados */
+  padding-right: 3rem; /* Padding solo en los lados */
+  /* gap: 1rem; */
+}
 </style>

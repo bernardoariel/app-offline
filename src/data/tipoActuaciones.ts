@@ -294,29 +294,7 @@ export const actuaciones: TipoActuaciones = {
             }
         }
     },
-    "ufi-propiedad-oficio": {
-        titulo: 'UFI - DELITOS CONTRA LA PROPIEDAD POR OFICIO',
-        tituloAlternativo: 'UNIDADES FISCALES DE INVESTIGACIÓN DELITOS CONTRA LA PROPIEDAD POR OFICIO',
-        "tarjetas": {
-            "afectados": {
-                "titulo": "Afectados",
-                "valor": ['Denunciante', 'Damnificado'],
-            },
-            "fecha": {
-                "titulo": "Fecha, Hora y Ubicacion",
-                "valor": null,
-            },
-            "vinculados": {
-                "titulo": "Vinculados",
-                "valor": ['Aprehendido', 'Acusado'],
-            },
-            "efectos": {
-                "titulo": "Efectos",
-                "valor": ['Denunciado', 'Recuperado', 'Secuestrado'],
-            }
-        }
-    },
-    "ufi-establecer-paradero": {
+    "delitos-especiales-paradero":{
         titulo: 'UFI - ESTABLECER PARADERO',
         tituloAlternativo: 'UNIDADES FISCALES DE INVESTIGACION D.E ESTABLECER PARADERO',
         "tarjetas": {
@@ -338,7 +316,7 @@ export const actuaciones: TipoActuaciones = {
             }
         }
     },
-    "ufi-emergencias-medicas": {
+    "delitos-especiales-médicas":{
         titulo: 'UFI - EMERGENCIAS MÉDICAS',
         tituloAlternativo: 'UNIDADES FISCALES DE INVESTIGACION D.E EMERGENCIAS MEDICAS',
         "tarjetas": {
@@ -360,7 +338,7 @@ export const actuaciones: TipoActuaciones = {
             },
         }
     },
-    "ufi-siniestro-vial": {
+    "delitos-especiales-vial":{
         titulo: 'UFI - SINIESTRO VIAL',
         tituloAlternativo: 'UNIDADES FISCALES DE INVESTIGACION D.E SINIESTRO VIAL',
         "tarjetas": {
@@ -386,7 +364,7 @@ export const actuaciones: TipoActuaciones = {
             },
         }
     },
-    "ufi-suicidio": {
+    "delitos-especiales-ahorcamiento-suicidio":{
         titulo: 'UFI - AHORCAMIENTO O SUICIDIO',
         tituloAlternativo: 'UNIDADES FISCALES DE INVESTIGACION D.E AHORCAMIENTO O SUICIDIO',
         "tarjetas": {
@@ -408,7 +386,7 @@ export const actuaciones: TipoActuaciones = {
             },
         }
     },
-    "ufi-incendio-vivienda": {
+    "delitos-especiales-incendio-vivienda":{
         titulo: 'UFI - INCENDIO EN VIVIENDA',
         tituloAlternativo: 'UNIDADES FISCALES DE INVESTIGACION D.E INCENDIO EN VIVIENDA',
         "tarjetas": {
@@ -430,7 +408,7 @@ export const actuaciones: TipoActuaciones = {
             },
         }
     },
-    "ufi-intoxicacion": {
+    "delitos-especiales-intoxicación":{
         titulo: 'UFI - INTOXICACIÓN',
         tituloAlternativo: 'UNIDADES FISCALES DE INVESTIGACION D.E INTOXICACION',
         "tarjetas": {
@@ -478,7 +456,7 @@ export const actuaciones: TipoActuaciones = {
             },
         }
     },
-    "preliminares-establecer-procedencia": {
+    "preliminares-procendencia":{
         titulo: 'ACTUACIONES PRELIMINARES - ESTABLECER PROCEDENCIA',
         tituloAlternativo: 'ACTUACION PRELIMINAR PARA ESTABLECER PROCEDENCIAS',
         "tarjetas": {
@@ -504,7 +482,7 @@ export const actuaciones: TipoActuaciones = {
             },
         }
     },
-    "preliminares-fuga-menor": {
+    "preliminares-fuga":{
         titulo: 'ACTUACIONES PRELIMINARES - FUGA DE MENOR',
         tituloAlternativo: 'ACTUACION PRELIMINAR POR FUGA DE MENOR',
         "tarjetas": {
@@ -530,7 +508,7 @@ export const actuaciones: TipoActuaciones = {
             },
         }
     },
-    "preliminares-siniestro-vial": {
+    "preliminares-siniestro":{
         titulo: 'ACTUACIONES PRELIMINARES - SINIESTRO VIAL',
         tituloAlternativo: 'ACTUACION PRELIMINAR POR SINIESTRO VIAL',
         "tarjetas": {
@@ -552,7 +530,7 @@ export const actuaciones: TipoActuaciones = {
             },
         }
     },
-    "preliminares-caida-casual": {
+    "preliminares-caida":{
         titulo: 'ACTUACIONES PRELIMINARES - CAÍDA CASUAL',
         tituloAlternativo: 'ACTUACION PRELIMINAR POR CAIDA CASUAL',
         "tarjetas": {
@@ -596,7 +574,7 @@ export const actuaciones: TipoActuaciones = {
             },
         }
     },
-    "preliminares-suicidio": {
+    "preliminares-tentativa":{
         titulo: 'ACTUACIONES PRELIMINARES - TENTATIVA DE SUICIDIO',
         tituloAlternativo: 'ACTUACION PRELIMINAR POR TENTATIVA DE SUICIDIO',
         "tarjetas": {

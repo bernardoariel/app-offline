@@ -1,17 +1,20 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { RouterView, useRoute } from 'vue-router'
+import { RouterView, useRoute, useRouter } from 'vue-router';
 
 
 import { usePrimeVue } from 'primevue/config';
 import ToolbarComponent from './components/ToolbarComponent.vue';
 import useTheme from './composables/useTheme';
-
+import MyDialog from '@/components/elementos/MyModal.vue'
+import { useDialog } from './composables/useDialog';
 const PrimeVue = usePrimeVue();
 const { changeThemeCurrent, loadFontSize } = useTheme()
 const isLoading = ref(false); // Estado de carga
 const themeLink = document.querySelector('link#theme-link');
+const { isDialogVisible, showDialog, hideDialog } = useDialog();
 const route = useRoute()
+
 if (themeLink) {
     // Verificar si el atributo href está presente y no está vacío
     const themeHref = themeLink.getAttribute('href');
@@ -42,6 +45,8 @@ onMounted(() => {
     isLoading.value = false; 
   }); 
 });
+
+
 </script>
 
 <template>
@@ -65,6 +70,8 @@ onMounted(() => {
       animationDuration=".5s" aria-label="Custom ProgressSpinner" />
     <h1 class="loading-message">Iniciando sistema offline...</h1>
   </div>
+  <Button label="Mostrar Dialog" @click="showDialog" />
+  
 </template>
 
 <style>

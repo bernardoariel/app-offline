@@ -4,7 +4,6 @@ import { ref, watch, onActivated } from 'vue';
 import DataViewCard from '@/components/DataViewCard.vue';
 import DatosLegalesView from './DatosLegalesView.vue';
 import DiligenciaView from './DiligenciaView.vue';
-
 import useActuacion from '@/composables/useActuacion';
 import useCardInformation from '@/composables/useCardInformation';
 
@@ -15,7 +14,11 @@ import useDatosDiligencia from '@/composables/useDatosDiligencia';
 import useSaveData from '@/composables/useSaveData';
 import useItemValue from '@/composables/useItemValue';
 import useActuacionData from '@/composables/useActuacionData';
-
+import { useDialog } from '../composables/useDialog';
+import { useRouter } from 'vue-router';
+import MyDialog from '@/components/elementos/MyModal.vue';
+const router = useRouter();
+const { isDialogVisible, confirmNavigation , hideDialog } = useDialog();
 interface Props {
   actuacion: string;
   id?: number;
@@ -76,9 +79,45 @@ const handleNuevoItem = (key: string) => {
   prepararNuevoItem();
   agregarNuevoItem(key);
 };
+const dialogButtons = [
+    {
+        label: 'Aceptar',
+        class: 'p-button-primary',
+        icon: 'pi pi-check',
+        action: 'accept',
+    },
+    {
+        label: 'Cancelar',
+        class: 'p-button-secondary',
+        icon: 'pi pi-times',
+        action: 'cancel',
+    },
+];
+
+const handleButtonClick = (action: string) => {
+    console.log(`Button clicked: ${action}`);
+    // Manejar la lógica de acuerdo a la acción del botón
+    if (action === 'accept') {
+        confirmNavigation(router); // Proceder con la navegación
+    } else if (action === 'cancel') {
+        hideDialog();
+        // Mantén al usuario en la página actual
+    }
+};
 </script>
 
 <template>
+  <MyDialog
+        :visible="isDialogVisible"
+        title="Título del Diálogo"
+        :buttons="dialogButtons"
+        @update:visible="isDialogVisible = $event"
+        @button-click="handleButtonClick"
+    >
+        <template #body>
+            <p>Contenido del diálogo.</p>
+        </template>
+    </MyDialog>
   <div class="grid">
     <div class="col-5">
       <Card>

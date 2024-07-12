@@ -9,6 +9,8 @@ import isUserAllowed from '@/guards/isUserAllowed'
 import isUserAccessValid from '@/guards/isUserAccessValid'
 import { actuaciones } from '../data/tipoActuaciones';
 
+
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -64,11 +66,10 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.name === 'actuacion' || from.name === 'actuacion') {
-/*     resetAll
- */    next()
+  if (to.name === 'actuaciones') {
+    isSavedChanges(to, from, next); // Llamada al guard isSavedChanges solo para la ruta 'actuaciones'
   } else {
-    isSavedChanges(to, from, next); // Llamada al guard isSavedChanges en cada navegación
+    next(); // Continuar la navegación para otras rutas
   }
 });
 

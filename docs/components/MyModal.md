@@ -1,84 +1,106 @@
 # Componente Dialog Customizado
 
 Este documento describe el uso del componente customizado `Dialog` El componente muestra un diálogo modal con un título, contenido y botones configurables.
-
-### Código ejemplo en el componente padre
-
-```vue
-<template>
-  <Button label="Mostrar Dialog" @click="showDialog" />
-  <MyDialog
-    :visible="isDialogVisible"
-    title="Título del Diálogo"
-    :buttons="dialogButtons"
-    @update:visible="isDialogVisible = $event"
-    @button-click="handleButtonClick"
+## Padre
+1. El componente tiene las siguientes props: el titulo,la visibilidad, los botones y el evento del boton.
+```
+<MyModal
+    v-model:visible="visible"
+    title="Confirmar Eliminación"
+    :buttons="deleteModalButtons"
+    @button-click="handleDeleteConfirmation"
   >
-    <template #body>
-      <p>Contenido del diálogo.</p>
-    </template>
-  </MyDialog>
-</template>
-
-<script setup lang="ts">
-import { ref } from 'vue';
-import MyDialog from '@/components/MyDialog.vue';
-
-const isDialogVisible = ref(false);
-
-const dialogButtons = [
-  {
-    label: 'Aceptar',
-    class: 'p-button-primary',
-    icon: 'pi pi-check',
-    action: 'accept',
-  },
+```
+2. El padre manejara la visibilidad por medio de la propiedad
+```
+const isVisibleModal = ref(false);
+```
+3. Los botones tendran su interface
+```
+interface buttonProps {
+  label: string;
+  class?: string;
+  icon?: string;
+  iconPos?: 'left' | 'right' | 'top' | 'bottom';
+  action: string;
+}
+```
+4. Las propiedades de los botones en el caso de dos botones
+```
+const deleteModalButtons = ref<buttonProps[]>([
   {
     label: 'Cancelar',
     class: 'p-button-secondary',
     icon: 'pi pi-times',
+    iconPos: 'left',
     action: 'cancel',
   },
-];
-
-const showDialog = () => {
-  isDialogVisible.value = true;
-};
-
-const handleButtonClick = (action: string) => {
-  console.log(`Button clicked: ${action}`);
-  // Manejar la lógica de acuerdo a la acción del botón
-};
-</script>
+  {
+    label: 'Eliminar',
+    class: 'p-button-danger',
+    icon: 'pi pi-trash',
+    iconPos: 'left',
+    action: 'delete',
+  },
+]); 
+```
+5. Y el evento que hará lo que precisemos
+```
+const handleDeleteConfirmation = async () => ()
+```
+6. Por ultimo el modal recibe un slot por medio de un template para renderizar lo que precisamos
+```
+<template #body>
+      <div class="modal-body">
+        <i
+          class="pi pi-exclamation-triangle"
+          :style="{ fontSize: '3rem', color: 'orange' }"
+        ></i>
+        <div class="flex justify-content-center" style="width: 100%">
+          <p class="text-left font-bold">
+            ¿Deseas eliminar el item {item}?
+          </p>
+        </div>
+      </div>
+      <p class="text-center m-0 text-sm" v-html="mensaje"></p>
+    </template>
 ```
 
-### Notas Adicionales
+## Hijo <MyModal />
+1. Recibira de la siguiente manera las props del padre
+```
 
-- Los botones son configurables a través de la propiedad buttons, que es una lista de objetos con propiedades como label, class, icon, iconPos y action.
-- Utiliza propiedades y eventos para manejar la lógica de visibilidad y las acciones de los botones.
-
-## Eventos Emitidos (emits)
-
-El componente hijo MyDialog.vue utiliza los siguientes emits para comunicar cambios al componente padre:
-
-- update:visible: Este evento se emite cada vez que cambia la visibilidad del diálogo.
-- button-click: Este evento se emite cuando se hace clic en un botón del diálogo, pasando la acción del botón como argumento.
-
-### Cómo Funcionan los emits
-
-- update:visible: Se emite cuando la visibilidad del diálogo cambia, permitiendo que el componente padre actualice su estado de visibilidad.
-- button-click: Se emite cuando un botón del diálogo es clicado, permitiendo que el componente padre maneje la lógica según la acción del botón.
-
-### Ejemplo de Uso de los emits
-
+interface buttonProps {
+  label: string;
+  class?: string;
+  icon?: string;
+  iconPos?: 'left' | 'right' | 'top' | 'bottom';
+  action: string;
+}
+interface Props {
+  visible: boolean;
+  title: string;
+  buttons: buttonProps[];
+}
+const props = defineProps<Props>();
+```
+Siendo que isVisible es una propiedad local pero recibe del padre la props `isVisibleModal`
+```
+const isVisible = ref(props.isVisibleModal);
+<Dialog
+    v-model:visible="isVisible"
+    :header="title"
+    modal
+    :style="{ width: '500px' }"
+    closable
+  >
+``` 
+2. Defino los emits
 ```
 const emit = defineEmits(['update:visible', 'button-click']);
-
-const onButtonClick = (action: string) => {
-  emit('button-click', action);
-  emit('update:visible', false);
-};
-
+```
+3. Observo cambios en la props de entrada visibilidad y mi props de visibilidad
+```
 watch(
   () => props.visible,
   (newVal) => {
@@ -89,9 +111,42 @@ watch(
 watch(isVisible, (newVal) => {
   emit('update:visible', newVal);
 });
+
+```
+4. Y creo una funcion para manejar los eventos
+```
+const onButtonClick = (action: string) => {
+  emit('button-click', action);
+  emit('update:visible', false);
+};
 ```
 
-### En el ejemplo anterior:
+```
+<Dialog
+    v-model:visible="isVisible"
+    :header="title"
+    modal
+    :style="{ width: '500px' }"
+    closable
+  >
+    <template #header></template>
 
-- La función onButtonClick emite el evento button-click con la acción del botón y también emite update:visible con false para cerrar el diálogo.
-- Los watch en props.visible y isVisible aseguran que la visibilidad del diálogo se sincronice correctamente entre el componente padre e hijo.
+    <slot name="body" />
+
+    <template #footer>
+      <div class="modal-footer">
+        <Button
+          v-for="(button, index) in buttons"
+          :key="index"
+          :label="button.label"
+          :class="button.class"
+          :icon="button.icon"
+          :iconPos="button.iconPos"
+          @click="onButtonClick(button.action)"
+          :autofocus="index === 0"
+        />
+      </div>
+    </template>
+  </Dialog>
+```
+

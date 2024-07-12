@@ -1,21 +1,16 @@
-import useFieldState from '@/composables/useFiledsState';
+import { useDialog } from '../composables/useDialog';
 
-const isSavedChanges = (to:any, from:any, next:any) => {
-   
-    const { statesID } = useFieldState();
+const {showDialog} = useDialog()
 
-    if (from.path.includes('/actuacion/personas') && statesID.some(state => !state.pristine)) {
-        if (!window.confirm('Hay cambios no guardados. ¿Deseas guardar los cambios?')) {
-            next();
-            return;
-        }
-        //TODO: Agregar componente de primevue
-        //TODO: Guardar los cambios desde aquí usando los composables.
-        next(false);
+const isSavedChanges = (to, from, next) => {
+    console.log('from::: ', from);
+  
+    if (from.path.includes('/edit/') || from.path.includes('/new/')) {
+        showDialog(to);
+      next(false); // Detener la navegación hasta que el usuario confirme
     } else {
-        next();
+      next(); // Continuar la navegación si la condición no se cumple
     }
- 
-};
+  };
 
 export default isSavedChanges;

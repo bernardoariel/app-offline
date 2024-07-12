@@ -54,7 +54,7 @@ interface buttonProps {
   action: string;
 }
 const visible = ref(false);
-const actuacionIdToDelete = ref<string| null>(null);
+const actuacionIdToDelete = ref<number| null>(null);
 const deleteModalButtons = ref<buttonProps[]>([
   { label: 'Cancelar', class: 'p-button-secondary', icon: 'pi pi-times', iconPos: 'left', action: 'cancel' },
   { label: 'Eliminar', class: 'p-button-danger', icon: 'pi pi-trash', iconPos: 'left', action: 'delete' },
@@ -73,18 +73,6 @@ const openDeleteConfirmation = (data: any) => {
 };
 
 
-const  handleDeleteConfirmation= async (action: string) => {
-  if (action === 'delete' && actuacionIdToDelete.value) {
-    try {
-      await deleteActuacion(actuacionIdToDelete.value);
-      toast.add({ severity: 'success', summary: 'Actuación eliminada', life: 3000 });
-      actuacionesList.value = await fetchActuaciones();
-    } catch (error) {
-      toast.add({ severity: 'error', summary: 'Error', detail: `Error al eliminar actuación con ID ${actuacionIdToDelete.value}`, life: 3000 });
-    }
-  }
-  actuacionIdToDelete.value = null;
-};
 const confirmConfig = ref({
     message: '¿Seguro que desea eliminar esta actuación?',
     icon: 'pi pi-exclamation-triangle',
@@ -94,13 +82,22 @@ const confirmConfig = ref({
     acceptLabel: 'Eliminar',
     event: null as Event | null
 })
-const showConfirm = (event: Event) => {
+const showConfirm = (event: Event,idDelete:number) => {
+    actuacionIdToDelete.value = idDelete
     confirmConfig.value.event = event;
-  };
-  const handleAccepted = () => {
-    console.log('Accepted');
-    // Aquí puedes manejar la lógica cuando se hace clic en aceptar
-  };
+};
+const handleAccepted = async() => {
+    if (!actuacionIdToDelete.value) return 
+    try {
+      await deleteActuacion(actuacionIdToDelete.value);
+      toast.add({ severity: 'success', summary: 'Actuación eliminada', life: 3000 });
+      actuacionesList.value = await fetchActuaciones();
+    } catch (error) {
+      toast.add({ severity: 'error', summary: 'Error', detail: `Error al eliminar actuación con ID ${actuacionIdToDelete.value}`, life: 3000 });
+    }
+    actuacionIdToDelete.value = null;
+  }
+
   
   const handleRejected = () => {
     console.log('Rejected');
@@ -125,7 +122,7 @@ const showConfirm = (event: Event) => {
                     <div class="flex gap-2">
                         <Button icon="pi pi-file-pdf" square @click="viewPdf(data.id)" severity="success"  ></Button>
                         <Button icon="pi pi-pencil" @click="onEditActuacion(data.id,data.pathName)" square severity="warning"></Button>
-                        <Button icon="pi pi-trash" @click="showConfirm" square severity="danger"></Button>
+                        <Button icon="pi pi-trash" @click="showConfirm($event,data.id)" square severity="danger"></Button>
                         <span></span>
                     </div>
                 </template>
@@ -256,7 +253,7 @@ const showConfirm = (event: Event) => {
             :config="confirmConfig"
             @accepted="handleAccepted"
             @rejected="handleRejected"
-            />
+        />
         <Toast />
     </div>
 </template>

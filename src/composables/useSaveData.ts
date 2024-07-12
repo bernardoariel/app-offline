@@ -139,7 +139,7 @@ const useSaveData = () => {
     }
   };
 
-  const deleteActuacion = async (id: string) => {
+  const deleteActuacion = async (id: number) => {
     try {
       await db.open();
       const actuacion = await db.actuaciones.where({ id }).first();

@@ -45,7 +45,7 @@ const {
 const { obtenerTarjeta } = useActuacionData();
 
 const formData = ref<EfectosForm>({ ...initialValues });
-const tarjetaValues = ref<string[]>([]);
+const tarjetaValues = ref<string[]>(['']);
 
 onActivated(() => {
   tarjetaValues.value = obtenerTarjeta('efectos')?.valor as string[];
@@ -174,7 +174,7 @@ watch(selectedItem, (newVal: any) => {
           <label for="categoriaDropdown">Seleccione tipo de efecto</label>
           <MyDropdown
             class="mt-2"
-            :items="mapToDropdownItems(tarjetaValues)"
+            :items="tarjetaValues ? mapToDropdownItems(tarjetaValues) : ''"
             v-model="selectedEstado"
             @change="(newValue) => handleDropdownChange('estado', newValue)"
             placeholder="Seleccione tipo de efecto"

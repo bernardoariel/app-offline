@@ -13,6 +13,7 @@ import useItemValue from '@/composables/useItemValue';
 import { useRoute } from 'vue-router';
 import useDatosDiligencia from '@/composables/useDatosDiligencia';
 import { getAge } from '@/helpers/getAge';
+import type { getColorByEstado } from '@/helpers/getColorByEstado';
 
 const props = defineProps<{
   itemsCardValue: { titulo: string; items: any[] };
@@ -134,7 +135,9 @@ En la fecha ${item.desdeFechaHora}, en ${item.calle} ${item.numero}, ${item.depa
   }
   if (dataKey === 'efectos') {
     relato.value = `${relato.value}
-${item.categoria}, ${item.subcategoria} ${item.marca} ${item.modelo}, de tipo ${item.tipo}`;
+  ${item.estado.toUpperCase()}, ${item.categoria}, ${item.subcategoria} ${
+      item.marca
+    } ${item.modelo}, de tipo ${item.tipo}`;
   }
 };
 
@@ -371,14 +374,11 @@ const convertStringToPhrase = (key: string): string => {
                     getTitleCase(item.marca)
                   }}-{{ getTitleCase(item.modelo) }}</span
                 >
-
-                <span v-if="item.categoria">
-                  <Tag
-                    :value="item.categoria"
-                    class="ml-5"
-                    :severity="getColorByAfectado(item.categoria)"
-                  ></Tag>
-                </span>
+                <Tag
+                  :value="item.estado"
+                  :severity="getColorByAfectado(item.estado)"
+                  class="ml-5"
+                />
               </div>
 
               <div class="flex-items">

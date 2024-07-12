@@ -294,6 +294,7 @@ export const actuaciones: TipoActuaciones = {
             }
         }
     },
+<<<<<<< HEAD
     "ufi-propiedad-oficio": {
         titulo: 'UFI - DELITOS CONTRA LA PROPIEDAD POR OFICIO',
         tituloAlternativo: 'UNIDADES FISCALES DE INVESTIGACIÓN DELITOS CONTRA LA PROPIEDAD POR OFICIO',
@@ -317,6 +318,9 @@ export const actuaciones: TipoActuaciones = {
         }
     },
     "ufi-establecer-paradero": {
+=======
+    "delitos-especiales-paradero":{
+>>>>>>> Eze/SS-4418-Guard-salir-edicion-creacion
         titulo: 'UFI - ESTABLECER PARADERO',
         tituloAlternativo: 'UNIDADES FISCALES DE INVESTIGACION D.E ESTABLECER PARADERO',
         "tarjetas": {
@@ -338,7 +342,11 @@ export const actuaciones: TipoActuaciones = {
             }
         }
     },
+<<<<<<< HEAD
     "ufi-emergencias-medicas": {
+=======
+    "delitos-especiales-médicas":{
+>>>>>>> Eze/SS-4418-Guard-salir-edicion-creacion
         titulo: 'UFI - EMERGENCIAS MÉDICAS',
         tituloAlternativo: 'UNIDADES FISCALES DE INVESTIGACION D.E EMERGENCIAS MEDICAS',
         "tarjetas": {
@@ -360,7 +368,11 @@ export const actuaciones: TipoActuaciones = {
             },
         }
     },
+<<<<<<< HEAD
     "ufi-siniestro-vial": {
+=======
+    "delitos-especiales-vial":{
+>>>>>>> Eze/SS-4418-Guard-salir-edicion-creacion
         titulo: 'UFI - SINIESTRO VIAL',
         tituloAlternativo: 'UNIDADES FISCALES DE INVESTIGACION D.E SINIESTRO VIAL',
         "tarjetas": {
@@ -386,7 +398,11 @@ export const actuaciones: TipoActuaciones = {
             },
         }
     },
+<<<<<<< HEAD
     "ufi-suicidio": {
+=======
+    "delitos-especiales-ahorcamiento-suicidio":{
+>>>>>>> Eze/SS-4418-Guard-salir-edicion-creacion
         titulo: 'UFI - AHORCAMIENTO O SUICIDIO',
         tituloAlternativo: 'UNIDADES FISCALES DE INVESTIGACION D.E AHORCAMIENTO O SUICIDIO',
         "tarjetas": {
@@ -408,7 +424,11 @@ export const actuaciones: TipoActuaciones = {
             },
         }
     },
+<<<<<<< HEAD
     "ufi-incendio-vivienda": {
+=======
+    "delitos-especiales-incendio-vivienda":{
+>>>>>>> Eze/SS-4418-Guard-salir-edicion-creacion
         titulo: 'UFI - INCENDIO EN VIVIENDA',
         tituloAlternativo: 'UNIDADES FISCALES DE INVESTIGACION D.E INCENDIO EN VIVIENDA',
         "tarjetas": {
@@ -430,7 +450,11 @@ export const actuaciones: TipoActuaciones = {
             },
         }
     },
+<<<<<<< HEAD
     "ufi-intoxicacion": {
+=======
+    "delitos-especiales-intoxicación":{
+>>>>>>> Eze/SS-4418-Guard-salir-edicion-creacion
         titulo: 'UFI - INTOXICACIÓN',
         tituloAlternativo: 'UNIDADES FISCALES DE INVESTIGACION D.E INTOXICACION',
         "tarjetas": {
@@ -478,7 +502,11 @@ export const actuaciones: TipoActuaciones = {
             },
         }
     },
+<<<<<<< HEAD
     "preliminares-establecer-procedencia": {
+=======
+    "preliminares-procendencia":{
+>>>>>>> Eze/SS-4418-Guard-salir-edicion-creacion
         titulo: 'ACTUACIONES PRELIMINARES - ESTABLECER PROCEDENCIA',
         tituloAlternativo: 'ACTUACION PRELIMINAR PARA ESTABLECER PROCEDENCIAS',
         "tarjetas": {
@@ -504,7 +532,11 @@ export const actuaciones: TipoActuaciones = {
             },
         }
     },
+<<<<<<< HEAD
     "preliminares-fuga-menor": {
+=======
+    "preliminares-fuga":{
+>>>>>>> Eze/SS-4418-Guard-salir-edicion-creacion
         titulo: 'ACTUACIONES PRELIMINARES - FUGA DE MENOR',
         tituloAlternativo: 'ACTUACION PRELIMINAR POR FUGA DE MENOR',
         "tarjetas": {
@@ -530,7 +562,11 @@ export const actuaciones: TipoActuaciones = {
             },
         }
     },
+<<<<<<< HEAD
     "preliminares-siniestro-vial": {
+=======
+    "preliminares-siniestro":{
+>>>>>>> Eze/SS-4418-Guard-salir-edicion-creacion
         titulo: 'ACTUACIONES PRELIMINARES - SINIESTRO VIAL',
         tituloAlternativo: 'ACTUACION PRELIMINAR POR SINIESTRO VIAL',
         "tarjetas": {
@@ -552,7 +588,11 @@ export const actuaciones: TipoActuaciones = {
             },
         }
     },
+<<<<<<< HEAD
     "preliminares-caida-casual": {
+=======
+    "preliminares-caida":{
+>>>>>>> Eze/SS-4418-Guard-salir-edicion-creacion
         titulo: 'ACTUACIONES PRELIMINARES - CAÍDA CASUAL',
         tituloAlternativo: 'ACTUACION PRELIMINAR POR CAIDA CASUAL',
         "tarjetas": {
@@ -596,7 +636,11 @@ export const actuaciones: TipoActuaciones = {
             },
         }
     },
+<<<<<<< HEAD
     "preliminares-suicidio": {
+=======
+    "preliminares-tentativa":{
+>>>>>>> Eze/SS-4418-Guard-salir-edicion-creacion
         titulo: 'ACTUACIONES PRELIMINARES - TENTATIVA DE SUICIDIO',
         tituloAlternativo: 'ACTUACION PRELIMINAR POR TENTATIVA DE SUICIDIO',
         "tarjetas": {

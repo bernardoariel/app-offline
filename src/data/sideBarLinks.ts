@@ -170,7 +170,7 @@ export const sidebarLinks:SidebarLink[] = [
     expanded:true,
     subitems: [
       {
-        path: '/actuaciones/delitos-especiales-paradero/initial',
+        path: '/actuaciones/new/delitos-especiales-paradero/initial',
         pathName: 'especiales-paradero',
         titulo: 'Establecer Paradero',
         icon: 'pi-microsoft',
@@ -180,7 +180,7 @@ export const sidebarLinks:SidebarLink[] = [
         props: { formType: "especiales-paradero", pageTitle: "ESTABLECER PARADERO" },
       },
       {
-        path: '/actuaciones/delitos-especiales-médicas/initial',
+        path: '/actuaciones/new/delitos-especiales-médicas/initial',
         pathName: 'especiales-médicas',
         titulo: 'Emergencias Medicas',
         icon: 'pi-microsoft',
@@ -190,7 +190,7 @@ export const sidebarLinks:SidebarLink[] = [
         props: { formType: "especiales-médicas", pageTitle: "EMERGENCIAS MÉDICAS" },
       },
       {
-        path: '/actuaciones/delitos-especiales-vial/initial',
+        path: '/actuaciones/new/delitos-especiales-vial/initial',
         pathName: 'especiales-vial',
         titulo: 'Siniestro Vial',
         icon: 'pi-microsoft',
@@ -200,7 +200,7 @@ export const sidebarLinks:SidebarLink[] = [
         props: { formType: "especiales-vial", pageTitle: "SINIESTRO VIAL" },
       },
       {
-        path: '/actuaciones/delitos-especiales-ahorcamiento-suicidio/initial',
+        path: '/actuaciones/new/delitos-especiales-ahorcamiento-suicidio/initial',
         pathName: 'especiales-ahorcamiento-suicidio',
         titulo: 'Ahorcamiento o Suicidio',
         icon: 'pi-microsoft',
@@ -210,7 +210,7 @@ export const sidebarLinks:SidebarLink[] = [
         props: { formType: "especiales-ahorcamiento-suicidio", pageTitle: "AHORCAMIENTO O SUICIDIO" },
       },
       {
-        path: '/actuaciones/delitos-especiales-incendio-vivienda/initial',
+        path: '/actuaciones/new/delitos-especiales-incendio-vivienda/initial',
         pathName: 'especiales-incendio-vivienda',
         titulo: 'Incendio en Vivienda',
         icon: 'pi-microsoft',
@@ -220,7 +220,7 @@ export const sidebarLinks:SidebarLink[] = [
         props: { formType: "especiales-incendio-vivienda", pageTitle: "INCENDIO EN VIVIENDA" },
       },
       {
-        path: '/actuaciones/delitos-especiales-intoxicación/initial',
+        path: '/actuaciones/new/delitos-especiales-intoxicación/initial',
         pathName: 'especiales-intoxicación',
         titulo: 'Intoxicación',
         icon: 'pi-microsoft',
@@ -232,7 +232,7 @@ export const sidebarLinks:SidebarLink[] = [
     ]
   },
   {
-    path: '/actuaciones/preliminares-incendio-vivienda/initial',
+    path: '/actuaciones/new/preliminares-incendio-vivienda/initial',
     pathName: 'preliminares-incendio-vivienda',
     titulo: 'Incendio en Vivienda',
     icon: 'pi-microsoft',
@@ -242,7 +242,7 @@ export const sidebarLinks:SidebarLink[] = [
     props: { formType: "preliminares-incendio-vivienda", pageTitle: "INCENDIO EN VIVIENDIA" },
   },
   {
-    path: '/actuaciones/preliminares-procendencia/initial',
+    path: '/actuaciones/new/preliminares-procendencia/initial',
     pathName: 'preliminares-procendencia',
     titulo: 'Establecer procedencia',
     icon: 'pi-microsoft',
@@ -252,7 +252,7 @@ export const sidebarLinks:SidebarLink[] = [
     props: { formType: "preliminares-procendencia", pageTitle: "ESTABLECER PROCEDENCIA" },
   },
   {
-    path: '/actuaciones/preliminares-fuga/initial',
+    path: '/actuaciones/new/preliminares-fuga/initial',
     pathName: 'preliminares-fuga',
     titulo: 'Fuga de Menor',
     icon: 'pi-microsoft',
@@ -262,7 +262,7 @@ export const sidebarLinks:SidebarLink[] = [
     props: { formType: "preliminares-fuga", pageTitle: "FUGA DE MENOR" },
   },
   {
-    path: '/actuaciones/preliminares-siniestro/initial',
+    path: '/actuaciones/new/preliminares-siniestro/initial',
     pathName: 'preliminares-siniestro',
     titulo: 'Siniestro Vial',
     icon: 'pi-microsoft',
@@ -272,7 +272,7 @@ export const sidebarLinks:SidebarLink[] = [
     props: { formType: "preliminares-siniestro", pageTitle: "SINIESTRO VIAL" },
   },
   {
-    path: '/actuaciones/preliminares-caida/initial',
+    path: '/actuaciones/new/preliminares-caida/initial',
     pathName: 'preliminares-caida',
     titulo: 'Caída Casual',
     icon: 'pi-microsoft',
@@ -282,7 +282,7 @@ export const sidebarLinks:SidebarLink[] = [
     props: { formType: "preliminares-caida", pageTitle: "CAÍDA CASUAL" },
   },
   {
-    path: '/actuaciones/preliminares-incendio-automotor/initial',
+    path: '/actuaciones/new/preliminares-incendio-automotor/initial',
     pathName: 'preliminares-incendio-automotor',
     titulo: 'Incendio Automotor',
     icon: 'pi-microsoft',
@@ -292,7 +292,7 @@ export const sidebarLinks:SidebarLink[] = [
     props: { formType: "preliminares-incendio-automotor", pageTitle: "INCENDIO AUTOMOTOR" },
   },
   {
-    path: '/actuaciones/preliminares-tentativa/initial',
+    path: '/actuaciones/new/preliminares-tentativa/initial',
     pathName: 'preliminares-tentativa',
     titulo: 'Tentativa de Suicidio',
     icon: 'pi-microsoft',
@@ -302,7 +302,7 @@ export const sidebarLinks:SidebarLink[] = [
     props: { formType: "preliminares-tentativa", pageTitle: "TENTATIVA DE SUICIDIO" },
   },
   {
-    path: '/actuaciones/preliminares-otros/initial',
+    path: '/actuaciones/new/preliminares-otros/initial',
     pathName: 'preliminares-otros',
     titulo: 'Otros',
     icon: 'pi-microsoft',

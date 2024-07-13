@@ -70,7 +70,7 @@ onMounted(() => {
       animationDuration=".5s" aria-label="Custom ProgressSpinner" />
     <h1 class="loading-message">Iniciando sistema offline...</h1>
   </div>
-  <Button label="Mostrar Dialog" @click="showDialog" />
+ 
   
 </template>
 

@@ -18,7 +18,7 @@ import { useDialog } from '../composables/useDialog';
 import { useRouter } from 'vue-router';
 import MyDialog from '@/components/elementos/MyModal.vue';
 const router = useRouter();
-const { isDialogVisible, confirmNavigation , hideDialog } = useDialog();
+const { isDialogVisible, confirmNavigation , hideDialog,pendingRoute } = useDialog();
 interface Props {
   actuacion: string;
   id?: number;
@@ -95,28 +95,37 @@ const dialogButtons = [
 ];
 
 const handleButtonClick = (action: string) => {
-    console.log(`Button clicked: ${action}`);
-    // Manejar la lógica de acuerdo a la acción del botón
-    if (action === 'accept') {
-        confirmNavigation(router); // Proceder con la navegación
-    } else if (action === 'cancel') {
-        hideDialog();
-        // Mantén al usuario en la página actual
+    if (action !== 'accept') {
+      hideDialog();// Mantén al usuario en la página actual
+      pendingRoute.value = null
     }
-};
+    confirmNavigation(); // Proceder con la navegación
+  }
+
 </script>
 
 <template>
   <MyDialog
         :visible="isDialogVisible"
-        title="Título del Diálogo"
+        title="Consulta del Sistema"
         :buttons="dialogButtons"
         @update:visible="isDialogVisible = $event"
         @button-click="handleButtonClick"
     >
-        <template #body>
-            <p>Contenido del diálogo.</p>
-        </template>
+    <template #body>
+      <div class="modal-body">
+        <i
+          class="pi pi-exclamation-triangle"
+          :style="{ fontSize: '3rem', color: 'orange' }"
+        ></i>
+        <div class="flex justify-content-center" style="width: 100%">
+          <p class="text-left font-bold">
+            ¿Deseas Salir sin guardar los datos?
+          </p>
+        </div>
+      </div>
+      
+    </template>
     </MyDialog>
   <div class="grid">
     <div class="col-5">
@@ -245,5 +254,13 @@ const handleButtonClick = (action: string) => {
 
 .color-border-top {
   border-top: 1px solid #e9e9e984; /* Cambia el color y grosor del borde según necesites */
+}
+.modal-body {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.5rem;
+  padding-left: 4rem; /* Padding solo en los lados */
+  padding-right: 3rem; /* Padding solo en los lados */
+  /* gap: 1rem; */
 }
 </style>

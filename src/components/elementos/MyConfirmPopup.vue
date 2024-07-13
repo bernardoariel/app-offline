@@ -4,7 +4,7 @@
   
   <script setup lang="ts">
   import { useConfirm } from 'primevue/useconfirm';
-  import { defineProps, watch } from 'vue';
+  import {  watch } from 'vue';
   
   interface Config {
     message: string;

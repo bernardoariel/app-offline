@@ -1,32 +1,38 @@
 // src/composables/useDialog.js
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
+import { useRouter } from 'vue-router';
 
 const isDialogVisible = ref(false);
 const pendingRoute = ref(null);
 
 export function useDialog() {
+
+  const router = useRouter()
+
   const showDialog = (route) => {
-    pendingRoute.value = route;
+    pendingRoute.value = route.name;
     isDialogVisible.value = true;
   };
 
   const hideDialog = () => {
     isDialogVisible.value = false;
-    pendingRoute.value = null;
   };
 
-  const confirmNavigation = (router) => {
+  const confirmNavigation = () => {
+   
     if (pendingRoute.value) {
-      router.push(pendingRoute.value);
+      router.push({name:pendingRoute.value});
       hideDialog();
     }
-  };
 
+  };
+ 
   return {
     isDialogVisible,
     showDialog,
     hideDialog,
     confirmNavigation,
+    pendingRoute
   };
 }
 

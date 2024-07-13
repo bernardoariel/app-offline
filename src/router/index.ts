@@ -67,8 +67,10 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.name === 'actuaciones') {
-    isSavedChanges(to, from, next); // Llamada al guard isSavedChanges solo para la ruta 'actuaciones'
+    console.log('entro por actuaciones')
+    isSavedChanges(to, from, next); 
   } else {
+    console.log('no entro')
     next(); // Continuar la navegación para otras rutas
   }
 });

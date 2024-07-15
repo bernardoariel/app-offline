@@ -17,8 +17,16 @@ import useActuacionData from '@/composables/useActuacionData';
 import { useDialog } from '../composables/useDialog';
 import { useRouter } from 'vue-router';
 import MyDialog from '@/components/elementos/MyModal.vue';
+
 const router = useRouter();
-const { isDialogVisible, confirmNavigation , hideDialog,pendingRoute } = useDialog();
+const {
+  isDialogVisible,
+  confirmNavigation,
+  hideDialog,
+  pendingRoute,
+  showDialog,
+} = useDialog();
+
 interface Props {
   actuacion: string;
   id?: number;
@@ -80,38 +88,47 @@ const handleNuevoItem = (key: string) => {
   agregarNuevoItem(key);
 };
 const dialogButtons = [
-    {
-        label: 'Aceptar',
-        class: 'p-button-primary',
-        icon: 'pi pi-check',
-        action: 'accept',
-    },
-    {
-        label: 'Cancelar',
-        class: 'p-button-secondary',
-        icon: 'pi pi-times',
-        action: 'cancel',
-    },
+  {
+    label: 'Aceptar',
+    class: 'p-button-primary',
+    icon: 'pi pi-check',
+    action: 'accept',
+  },
+  {
+    label: 'Cancelar',
+    class: 'p-button-secondary',
+    icon: 'pi pi-times',
+    action: 'cancel',
+  },
 ];
 
 const handleButtonClick = (action: string) => {
-    if (action !== 'accept') {
-      hideDialog();// Mantén al usuario en la página actual
-      pendingRoute.value = null
-    }
-    confirmNavigation(); // Proceder con la navegación
+  if (action !== 'accept') {
+    hideDialog(); // Mantén al usuario en la página actual
+    pendingRoute.value = null;
+    return;
   }
+  confirmNavigation(); // Proceder con la navegación
+};
 
+const handleShowDialog = () => {
+  showDialog({
+    route: { name: 'actuaciones' },
+    title: 'Consulta del Sistema',
+    icon: 'pi pi-exclamation-triangle',
+    message: '¿Deseas salir sin guardar los datos?',
+  });
+};
 </script>
 
 <template>
   <MyDialog
-        :visible="isDialogVisible"
-        title="Consulta del Sistema"
-        :buttons="dialogButtons"
-        @update:visible="isDialogVisible = $event"
-        @button-click="handleButtonClick"
-    >
+    :visible="isDialogVisible"
+    title="Consulta del Sistema"
+    :buttons="dialogButtons"
+    @update:visible="isDialogVisible = $event"
+    @button-click="handleButtonClick"
+  >
     <template #body>
       <div class="modal-body">
         <i
@@ -124,9 +141,8 @@ const handleButtonClick = (action: string) => {
           </p>
         </div>
       </div>
-      
     </template>
-    </MyDialog>
+  </MyDialog>
   <div class="grid">
     <div class="col-5">
       <Card>
@@ -138,7 +154,7 @@ const handleButtonClick = (action: string) => {
                 icon="pi pi-arrow-circle-left"
                 severity="secondary"
                 rounded
-                @click="$router.replace({ name: 'actuaciones' })"
+                @click="handleShowDialog"
               />
             </div>
             <div

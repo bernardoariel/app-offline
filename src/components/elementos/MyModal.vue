@@ -20,7 +20,7 @@
           :icon="button.icon"
           :iconPos="button.iconPos"
           @click="onButtonClick(button.action)"
-          :autofocus="index === 0"
+          :autofocus="index === 1"
         />
       </div>
     </template>
@@ -28,27 +28,37 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { ref, watch, nextTick } from 'vue';
+import { useDialog } from '@/composables/useDialog';
 
-interface buttonProps {
+interface ButtonProps {
   label: string;
   class?: string;
   icon?: string;
   iconPos?: 'left' | 'right' | 'top' | 'bottom';
   action: string;
 }
+
 interface Props {
   visible: boolean;
   title: string;
-  buttons: buttonProps[];
+  route?: string;
+  buttons: ButtonProps[];
 }
+
 const props = defineProps<Props>();
 const emit = defineEmits(['update:visible', 'button-click']);
 
 const isVisible = ref(props.visible);
+const { hideDialog, confirmNavigation, pendingRoute } = useDialog();
 
 const onButtonClick = (action: string) => {
   emit('button-click', action);
+  if (action === 'confirm' && pendingRoute.value) {
+    confirmNavigation();
+  } else {
+    hideDialog();
+  }
   emit('update:visible', false);
 };
 

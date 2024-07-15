@@ -203,6 +203,7 @@ const convertStringToPhrase = (key: string): string => {
           <Skeleton class="w-full mb-2" height="1rem"></Skeleton>
           <Skeleton class="w-full" height="1rem"></Skeleton>
         </div>
+
         <div v-for="(item, index) in items" :key="index">
           <!-- Afectados y Vinculados -->
           <div v-if="dataKey == 'afectados' || dataKey == 'vinculados'">
@@ -210,50 +211,64 @@ const convertStringToPhrase = (key: string): string => {
               class="flex-container"
               :class="{ 'border-top-1 surface-border': index !== 0 }"
             >
-              <div class="flex-items">
-                <Button
-                  icon="pi pi-pencil"
-                  @click="editProduct(item.id)"
-                  text
-                  rounded
-                  style="font-size: 1rem"
-                ></Button>
-              </div>
+              <div class="grid responsive-container" style="width: 100%">
+                <div class="col-1 responsive-item">
+                  <Button
+                    icon="pi pi-pencil"
+                    @click="editProduct(item.id)"
+                    text
+                    rounded
+                    style="font-size: 1rem"
+                  ></Button>
+                </div>
 
-              <div class="flex-items">
-                <span class="font-bold">{{
-                  item.apellido ? getUpperCase(item.apellido) + ',' : ''
-                }}</span>
-                <span class="ml-2">{{
-                  item.nombre ? getTitleCase(item.nombre) : 'Nuevo'
-                }}</span>
-                <span
-                  v-if="item.typeDocumento && item.nroDocumento"
-                  class="ml-5"
-                >
-                  <i>{{ item.typeDocumento + ': ' }}</i>
-                  <i>{{ item.nroDocumento }}</i>
-                </span>
-                <span v-if="item.typeAfectado && item.typeAfectado">
-                  <Tag
-                    :value="item.typeAfectado"
-                    class="ml-5"
-                    :severity="getColorByAfectado(item.typeAfectado)"
-                  ></Tag>
-                </span>
+                <div class="col-10 responsive-item">
+                  <div class="responsive-content">
+                    <div class="grid responsive-grid">
+                      <div class="col-4 responsive-item" id="nombreApellido">
+                        <span class="font-bold">
+                          {{
+                            item.apellido
+                              ? getUpperCase(item.apellido) + ','
+                              : ''
+                          }}
+                        </span>
+                        <span class="ml-2">
+                          {{
+                            item.nombre ? getTitleCase(item.nombre) : 'Nuevo'
+                          }}
+                        </span>
+                      </div>
+                      <div class="col-4 responsive-item" id="documento">
+                        <span
+                          v-if="item.typeDocumento && item.nroDocumento"
+                          class="ml-5"
+                        >
+                          <i>{{ item.typeDocumento + ': ' }}</i>
+                          <i>{{ item.nroDocumento }}</i>
+                        </span>
+                      </div>
+                      <div class="col-4 responsive-item" id="tipo">
+                        <Tag
+                          v-if="item.typeAfectado && item.typeAfectado"
+                          :value="item.typeAfectado"
+                          class="ml-5"
+                          :severity="getColorByAfectado(item.typeAfectado)"
+                        ></Tag>
+                      </div>
+                    </div>
+                    <p class="text-xs">{{ item.domicilioResidencia }}</p>
+                  </div>
+                </div>
+                <div class="col-1 responsive-item">
+                  <ButtonOptions
+                    :tarjetaNombre="item.title"
+                    :item="item"
+                    :deleteItem="() => openDeleteConfirmation(item, dataKey)"
+                    :sendRelato="() => handleSendRelato(item, dataKey)"
+                  />
+                </div>
               </div>
-
-              <div class="flex-items">
-                <ButtonOptions
-                  :tarjetaNombre="item.title"
-                  :item="item"
-                  :deleteItem="() => openDeleteConfirmation(item, dataKey)"
-                  :sendRelato="() => handleSendRelato(item, dataKey)"
-                />
-              </div>
-            </div>
-            <div class="linea-2">
-              <p class="text-xs">{{ item.domicilioResidencia }}</p>
             </div>
           </div>
           <!-- personal Interviniente -->
@@ -455,23 +470,8 @@ const convertStringToPhrase = (key: string): string => {
   justify-content: space-between;
   align-items: center; /* Centra los elementos verticalmente */
   align-content: normal;
-  margin-bottom: 8px;
+  /* margin-bottom: 8px; */
 }
-
-.flex-items:nth-child(1),
-.flex-items:nth-child(3) {
-  flex: 0 1 auto;
-}
-
-.flex-items:nth-child(2) {
-  flex: 1 1 auto;
-  align-self: center;
-}
-.linea-2 {
-  margin-top: -20px;
-  margin-left: 50px;
-}
-
 .modal-body {
   display: flex;
   justify-content: space-between;
@@ -479,5 +479,42 @@ const convertStringToPhrase = (key: string): string => {
   padding-left: 4rem; /* Padding solo en los lados */
   padding-right: 3rem; /* Padding solo en los lados */
   /* gap: 1rem; */
+}
+
+.responsive-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.responsive-item {
+  flex: 1 1 100%;
+}
+
+.responsive-content {
+  display: flex;
+  flex-direction: column;
+  padding-top: 3px;
+}
+
+.responsive-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 767px) {
+  .responsive-item {
+    flex: none;
+  }
+  .responsive-container {
+    flex-wrap: nowrap;
+  }
+}
+@media (min-width: 1240px) {
+  .responsive-item {
+    flex: none;
+  }
+  .responsive-container {
+    flex-wrap: nowrap;
+  }
 }
 </style>

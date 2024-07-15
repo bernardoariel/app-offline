@@ -80,11 +80,11 @@ const handleNuevoItem = (key: string) => {
 
 <template>
   <div class="grid">
-    <div class="col-5">
+    <div class="col-12 md:col-5">
       <Card>
         <template #title>
           <div class="title-container">
-            <div>
+            <div class="col">
               <Button
                 label="Cancelar"
                 icon="pi pi-arrow-circle-left"
@@ -94,7 +94,7 @@ const handleNuevoItem = (key: string) => {
               />
             </div>
             <div
-              class="font-medium text-center text-3xl text-900"
+              class="col font-medium text-center text-3xl text-900"
               @click="handleClick"
             >
               <div class="text-3xl font-bold">
@@ -111,7 +111,7 @@ const handleNuevoItem = (key: string) => {
               ></Skeleton>
             </div>
 
-            <div class="buttons-container">
+            <div class="col buttons-container">
               <Tag
                 @click="handleClick"
                 v-if="$props.id"
@@ -148,33 +148,37 @@ const handleNuevoItem = (key: string) => {
         <template #content>
           <TabView v-model:activeIndex="active">
             <TabPanel header="Datos Requeridos">
-              <Card
-                v-for="key in cardInformationKeys"
-                :key="key"
-                class="p-fluid mb-2 color-border-top"
-              >
-                <template #title>
-                  <div class="title-container">
-                    <div class="font-medium text-3xl text-900">
-                      {{ cardInformation[key].titulo }}
-                    </div>
+              <div class="grid">
+                <div
+                  class="col-12"
+                  v-for="key in cardInformationKeys"
+                  :key="key"
+                >
+                  <Card class="p-fluid mb-2 color-border-top">
+                    <template #title>
+                      <div class="title-container">
+                        <div class="font-medium text-3xl text-900">
+                          {{ cardInformation[key].titulo }}
+                        </div>
 
-                    <Button
-                      icon="pi pi-plus"
-                      severity="secondary"
-                      rounded
-                      outlined
-                      @click="handleNuevoItem(key as string)"
-                    />
-                  </div>
-                </template>
-                <template #content>
-                  <DataViewCard
-                    :itemsCardValue="cardInformation[key]"
-                    :data-key="key"
-                  />
-                </template>
-              </Card>
+                        <Button
+                          icon="pi pi-plus"
+                          severity="secondary"
+                          rounded
+                          outlined
+                          @click="handleNuevoItem(key as string)"
+                        />
+                      </div>
+                    </template>
+                    <template #content>
+                      <DataViewCard
+                        :itemsCardValue="cardInformation[key]"
+                        :data-key="key"
+                      />
+                    </template>
+                  </Card>
+                </div>
+              </div>
             </TabPanel>
             <TabPanel header="Datos Legales">
               <DatosLegalesView />
@@ -183,7 +187,7 @@ const handleNuevoItem = (key: string) => {
         </template>
       </Card>
     </div>
-    <div class="col">
+    <div class="col-12 md:col-7">
       <DiligenciaView :actuacion="actuacion" :id="props.id" />
     </div>
   </div>

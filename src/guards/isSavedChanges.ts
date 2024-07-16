@@ -12,12 +12,12 @@ const isSavedChanges = (to, from, next) => {
   const pathIncludesGuard = pathFindGuard.some(keyword => from.path.includes(keyword));
   console.log('pathIncludesGuard::: ', pathIncludesGuard);
   console.log('pendingRoute.value::: ', pendingRoute.value);
-
+  const { name } = to
   /* cuando quiero salir del la edicion o la creacion */
   if (pathIncludesGuard && pendingRoute.value === null) {
     next(false)
     showDialog({
-      route: { name: to as string },
+      route: name,
       title: 'Deseas descartar los cambios?',
       icon: 'pi pi-exclamation-triangle',
       message: 'Los cambios o la actuacion nueva no se guardaran y se perderan.'

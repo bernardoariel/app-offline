@@ -41,6 +41,7 @@ const {
   guardarModificaciones,
   isEditing,
   cancelarModificaciones,
+  markNewRecordCreated,
 } = useFieldState();
 const { obtenerTarjeta } = useActuacionData();
 
@@ -129,6 +130,7 @@ const handleAgregarElemento = () => {
   };
 
   agregar(nuevoEfecto);
+  markNewRecordCreated();
   formData.value = { ...initialValues };
 };
 

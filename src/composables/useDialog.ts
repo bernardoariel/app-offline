@@ -35,12 +35,16 @@ export function useDialog() {
   };
 
   const confirmNavigation = () => {
-
     if (pendingRoute.value) {
-      router.push({ name: pendingRoute.value });
+      const routeToNavigate = pendingRoute.value;
+      pendingRoute.value = null;
+      router.push({ name: routeToNavigate });
     }
     hideDialog();
+  };
 
+  const navigateWithoutDialog = (routeName: string) => {
+    router.push({ name: routeName });
   };
 
   return {
@@ -51,7 +55,8 @@ export function useDialog() {
     pendingRoute,
     iconDialog,
     messageDialog,
-    titleDialog
+    titleDialog,
+    navigateWithoutDialog
   };
 }
 

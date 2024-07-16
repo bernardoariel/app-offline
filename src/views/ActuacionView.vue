@@ -17,6 +17,7 @@ import useActuacionData from '@/composables/useActuacionData';
 import { useDialog } from '../composables/useDialog';
 import { useRouter } from 'vue-router';
 import MyDialog from '@/components/elementos/MyModal.vue';
+import useFiledsState from '@/composables/useFiledsState';
 
 const router = useRouter();
 const {
@@ -28,6 +29,7 @@ const {
   iconDialog,
   messageDialog,
   titleDialog,
+  navigateWithoutDialog,
 } = useDialog();
 
 interface Props {
@@ -39,6 +41,16 @@ const props = defineProps<Props>();
 const actuacionRef = ref(props.actuacion);
 const active = ref(0);
 
+const {
+  statesID,
+  resetNewRecordCreated,
+  getAllUnsavedChanges,
+  isUnsavedChange,
+  resetUnsavedChanges,
+  areAnyFieldsModifiedGlobally,
+  isNewRecordCreated,
+  markNewRecordCreated,
+} = useFiledsState();
 const { agregarNuevoItem, currentEditId, toogleDateActuacion } = useActuacion();
 const { set: setActuacionData } = useActuacionData();
 const { fetchActuacionById } = useSaveData();
@@ -75,6 +87,7 @@ const handleClick = (event: { ctrlKey: any; altKey: any }) => {
     // console.log(`Ctrl + Alt + Click detectado: ${actuacionRef}`);
     setAll();
     addDataFake();
+    markNewRecordCreated();
     relato.value = 'esto es una prueba del relato';
   }
 };
@@ -111,16 +124,27 @@ const handleButtonClick = (action: string) => {
     pendingRoute.value = null;
     return;
   }
+  resetUnsavedChanges();
+  resetNewRecordCreated();
   confirmNavigation(); // Proceder con la navegación
 };
 
-const handleShowDialog = () => {
-  showDialog({
-    nameRouteToRedirect: 'actuaciones',
-    title: 'Consulta del Sistema',
-    icon: 'pi pi-exclamation-triangle',
-    message: '¿Deseas salir sin guardar los datos?',
-  });
+const handleCancelar = () => {
+  if (
+    isUnsavedChange.value ||
+    areAnyFieldsModifiedGlobally() ||
+    isNewRecordCreated.value
+  ) {
+    showDialog({
+      nameRouteToRedirect: 'actuaciones',
+      title: 'Mensaje de Confirmación',
+      icon: 'pi pi-question-circle',
+      message:
+        'Los cambios o la actuación nueva no se guardaran y se perderán.',
+    });
+  } else {
+    navigateWithoutDialog('actuaciones');
+  }
 };
 </script>
 
@@ -157,7 +181,7 @@ const handleShowDialog = () => {
                 icon="pi pi-arrow-circle-left"
                 severity="secondary"
                 rounded
-                @click="handleShowDialog"
+                @click="handleCancelar"
               />
             </div>
             <div

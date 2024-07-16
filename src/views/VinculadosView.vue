@@ -47,6 +47,7 @@ const {
   guardarModificaciones,
   isEditing,
   cancelarModificaciones,
+  markNewRecordCreated,
 } = useFieldState();
 let formData = ref<VinculadosForm>({ ...selectedItem.value });
 const tarjetaValues = ref<string[]>([]);
@@ -135,6 +136,7 @@ const handleAgregarElemento = () => {
   };
 
   agregar(nuevoItem);
+  markNewRecordCreated();
   formData.value = { ...initialValues };
 };
 

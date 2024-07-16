@@ -44,12 +44,15 @@ const { obtenerTarjeta } = useActuacionData();
 
 const {
   statesID,
+  agregarIdState,
   setPristineById,
   setModifiedData,
   guardarModificaciones,
   isEditing,
   cancelarModificaciones,
+  markNewRecordCreated,
 } = useFieldState();
+
 let formData = ref<AfectadosForm>({ ...selectedItem.value });
 const tarjetaValues = ref<string[]>([]);
 
@@ -63,8 +66,10 @@ onActivated(() => {
     selectedEstadoCivil.value = { name: selectedItem.value.estadoCivil };
     selectedInstruccion.value = { name: selectedItem.value.instruccion };
     formData.value = { ...selectedItem.value };
+    agregarIdState(selectedItem.value.id, selectedItem.value);
   }
 });
+
 const handleDropdownChange = (
   campo: keyof AfectadosForm,
   newValue: { value: any; name: string }
@@ -72,10 +77,9 @@ const handleDropdownChange = (
   const name = newValue.value.name;
 
   if (campo in formData.value) {
-    // Actualizar formData para que el campo específico tenga un objeto con la propiedad 'name' actualizada
     formData.value = {
       ...formData.value,
-      [campo]: { name }, // Asigna un objeto con 'name' a campo
+      [campo]: { name },
     };
 
     const itemId = formData.value.id!;
@@ -135,6 +139,7 @@ const handleAgregarElemento = () => {
   };
 
   agregar(nuevoItem);
+  markNewRecordCreated();
   formData.value = { ...initialValues };
   resetAllDropdown();
   resetIsEditedHeader();
@@ -143,7 +148,7 @@ const handleAgregarElemento = () => {
 const handleCancelar = () => {
   if (!selectedItem.value) return;
   cancelarModificaciones(selectedItem.value.id);
-  formData.value = formData.value = { ...initialValues, ...selectedItem.value };
+  formData.value = { ...initialValues, ...selectedItem.value };
 };
 
 const handleModificarElemento = () => {
@@ -174,9 +179,11 @@ watch(selectedItem, (newVal: any) => {
     selectedInstruccion.value = { name: newVal.instruccion };
 
     formData.value = { ...newVal };
+    agregarIdState(newVal.id, newVal);
   }
 });
 </script>
+
 <template>
   <Card>
     <template #content>
@@ -211,7 +218,6 @@ watch(selectedItem, (newVal: any) => {
         </div>
         <div class="col-4">
           <label for="dropdown">N° de doc.</label>
-          <!-- <MyInputNumber -->
           <MyInput
             type="number"
             class="mt-2"
@@ -235,7 +241,6 @@ watch(selectedItem, (newVal: any) => {
         </div>
         <div class="col-6">
           <label for="dropdown">Apellido</label>
-          <!-- <MyInput type="text" class="mt-2" v-model="formData.apellido"/> -->
           <MyInput
             type="text"
             class="mt-2"
@@ -385,8 +390,8 @@ watch(selectedItem, (newVal: any) => {
         </div>
       </div>
       <pre>
-          <span v-for="(id, pristine) in statesID" key="id">
-            ID: {{id}}, Pristine: {{ pristine }}
+          <span v-for="state in statesID" :key="state.id">
+            ID: {{state.id}}, Pristine: {{ state.pristine }}, IsModified: {{ state.isModified }}
           </span>
         </pre>
     </template>

@@ -1,39 +1,31 @@
 import { useDialog } from '../composables/useDialog';
+import useFieldState from '@/composables/useFiledsState';
 
-const { showDialog, pendingRoute } = useDialog()
-
+const { showDialog, pendingRoute } = useDialog();
+const { isUnsavedChange } = useFieldState();
 
 const isSavedChanges = (to, from, next) => {
-  console.log('from::: ', from);
-  console.log('to::: ', to);
-
-
   const pathFindGuard = ['edit', 'new'];
   const pathIncludesGuard = pathFindGuard.some(keyword => from.path.includes(keyword));
-  console.log('pathIncludesGuard::: ', pathIncludesGuard);
-  console.log('pendingRoute.value::: ', pendingRoute.value);
-  const { name } = to
-  /* cuando quiero salir del la edicion o la creacion */
-  if (pathIncludesGuard && pendingRoute.value === null) {
-    next(false)
+
+  if (pathIncludesGuard && isUnsavedChange.value) {
+    next(false);
     showDialog({
-      nameRouteToRedirect: name,
+      nameRouteToRedirect: to.name,
       title: 'Mensaje de Confirmación',
       icon: 'pi pi-question-circle',
       message: 'Los cambios o la actuación nueva no se guardaran y se perderán.'
     });
-    console.log('2.', pendingRoute.value);
-    return
+    return;
   }
-  /* cuando tengo una ruta pendiente a navegar luego de mostrar el modal */
-  if (pendingRoute) {
-    pendingRoute.value = null
-    next()
-    return
-  }
-  /* para todos las demas */
-  next()
 
+  if (pendingRoute.value) {
+    pendingRoute.value = null;
+    next();
+    return;
+  }
+
+  next();
 };
 
 export default isSavedChanges;

@@ -23,6 +23,7 @@ const {
   guardarModificaciones,
   isEditing,
   cancelarModificaciones,
+  markNewRecordCreated,
 } = useFieldState();
 
 let formData = ref<FechaUbicacionForm>({ ...initialValues });
@@ -148,6 +149,7 @@ const handleAgregarElemento = () => {
   };
 
   agregar(nuevoItem);
+  markNewRecordCreated();
   formData.value = { ...initialValues };
 };
 

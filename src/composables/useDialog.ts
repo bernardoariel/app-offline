@@ -3,9 +3,13 @@ import { useRouter } from 'vue-router';
 
 const isDialogVisible = ref(false);
 const pendingRoute = ref<string | null>(null);
+const titleDialog = ref<string | null>(null)
+const messageDialog = ref<string | null>(null)
+const iconDialog = ref<string | null>(null)
+
 
 interface DialogOptions {
-  route?: { name: string };
+  nameRouteToRedirect?: string;
   title: string;
   icon: string;
   message: string;
@@ -15,10 +19,14 @@ export function useDialog() {
 
   const router = useRouter()
 
-  const showDialog = (options: DialogOptions) => {
-    if (options.route) {
-      pendingRoute.value = options.route.name;
+  const showDialog = ({ title, message, nameRouteToRedirect, icon }: DialogOptions) => {
+    if (nameRouteToRedirect) {
+      pendingRoute.value = nameRouteToRedirect;
     }
+    titleDialog.value = title
+    messageDialog.value = message
+    iconDialog.value = icon
+
     isDialogVisible.value = true;
   };
 
@@ -40,7 +48,10 @@ export function useDialog() {
     showDialog,
     hideDialog,
     confirmNavigation,
-    pendingRoute
+    pendingRoute,
+    iconDialog,
+    messageDialog,
+    titleDialog
   };
 }
 

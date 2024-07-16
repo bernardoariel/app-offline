@@ -17,10 +17,10 @@ const isSavedChanges = (to, from, next) => {
   if (pathIncludesGuard && pendingRoute.value === null) {
     next(false)
     showDialog({
-      route: name,
-      title: 'Deseas descartar los cambios?',
-      icon: 'pi pi-exclamation-triangle',
-      message: 'Los cambios o la actuacion nueva no se guardaran y se perderan.'
+      nameRouteToRedirect: name,
+      title: 'Mensaje de Confirmación',
+      icon: 'pi pi-question-circle',
+      message: 'Los cambios o la actuación nueva no se guardaran y se perderán.'
     });
     console.log('2.', pendingRoute.value);
     return

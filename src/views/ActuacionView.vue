@@ -25,6 +25,9 @@ const {
   hideDialog,
   pendingRoute,
   showDialog,
+  iconDialog,
+  messageDialog,
+  titleDialog,
 } = useDialog();
 
 interface Props {
@@ -113,7 +116,7 @@ const handleButtonClick = (action: string) => {
 
 const handleShowDialog = () => {
   showDialog({
-    route: { name: 'actuaciones' },
+    nameRouteToRedirect: 'actuaciones',
     title: 'Consulta del Sistema',
     icon: 'pi pi-exclamation-triangle',
     message: '¿Deseas salir sin guardar los datos?',
@@ -124,7 +127,7 @@ const handleShowDialog = () => {
 <template>
   <MyDialog
     :visible="isDialogVisible"
-    title="Consulta del Sistema"
+    :title="titleDialog ? titleDialog : 'Consulta del sistema'"
     :buttons="dialogButtons"
     @update:visible="isDialogVisible = $event"
     @button-click="handleButtonClick"
@@ -132,12 +135,12 @@ const handleShowDialog = () => {
     <template #body>
       <div class="modal-body">
         <i
-          class="pi pi-exclamation-triangle"
+          :class="iconDialog"
           :style="{ fontSize: '3rem', color: 'orange' }"
         ></i>
         <div class="flex justify-content-center" style="width: 100%">
           <p class="text-left font-bold">
-            ¿Deseas Salir sin guardar los datos?
+            {{ messageDialog }}
           </p>
         </div>
       </div>

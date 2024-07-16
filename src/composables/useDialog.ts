@@ -8,7 +8,7 @@ const messageDialog = ref<string | null>(null)
 const iconDialog = ref<string | null>(null)
 
 
-interface DialogOptions {
+export interface DialogOptions {
   nameRouteToRedirect?: string;
   title: string;
   icon: string;

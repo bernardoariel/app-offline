@@ -1,5 +1,5 @@
 import './assets/main.css'
-
+import './config/yup'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 

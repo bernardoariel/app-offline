@@ -4,7 +4,8 @@ import useAfectados from '../composables/useAfectados';
 import useItemValue from '@/composables/useItemValue';
 import useFieldState from '@/composables/useFiledsState';
 import useActuacionData from '@/composables/useActuacionData';
-
+import * as yup from 'yup';
+import { useForm } from 'vee-validate';
 import MyDropdown from '@/components/elementos/MyDropdown.vue';
 import MyInput from '@/components/elementos/MyInput.vue';
 import MyTextArea from '@/components/elementos/MyTextArea.vue';
@@ -24,6 +25,14 @@ import {
 import { mapToDropdownItems } from '@/helpers/dropUtils';
 
 import useNewActuacion from '@/composables/useNewActuacion';
+const validationSchema = yup.object({
+  nombre: yup.string().required().min(3),
+});
+const { defineField,values,errors } = useForm({
+  validationSchema
+});
+
+const [nombre, nombreAttrs] = defineField('nombre');
 
 const {
   editar,
@@ -182,6 +191,7 @@ watch(selectedItem, (newVal: any) => {
     <template #content>
       <div class="grid">
         <div class="col-12">
+          <pre>{{ values }}</pre>
           <label for="dropdown">Seleccione tipo de Denunciante</label>
           <MyDropdown
             class="mt-2"
@@ -250,11 +260,19 @@ watch(selectedItem, (newVal: any) => {
           <MyInput
             type="text"
             class="mt-2"
+            v-model="nombre"
+            v-bind = "nombreAttrs"
+            :error="errors.nombre"
+          /> 
+          <!-- <MyInput
+            type="text"
+            class="mt-2"º
             :value="getInputValue('nombre')"
             @input="handleInputChange('nombre', $event)"
             @blur="() => handleBlur('nombre')"
             :color="!!selectedItem"
-          />
+          />  -->
+
         </div>
         <div class="col-3">
           <label for="dropdown">Fecha de nac.</label>

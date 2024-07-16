@@ -1,6 +1,6 @@
 import { useDialog } from '../composables/useDialog';
 
-const { showDialog,pendingRoute } = useDialog()
+const { showDialog, pendingRoute } = useDialog()
 
 
 const isSavedChanges = (to, from, next) => {
@@ -16,19 +16,24 @@ const isSavedChanges = (to, from, next) => {
   /* cuando quiero salir del la edicion o la creacion */
   if (pathIncludesGuard && pendingRoute.value === null) {
     next(false)
-    showDialog(to);
+    showDialog({
+      route: { name: to as string },
+      title: 'Deseas descartar los cambios?',
+      icon: 'pi pi-exclamation-triangle',
+      message: 'Los cambios o la actuacion nueva no se guardaran y se perderan.'
+    });
     console.log('2.', pendingRoute.value);
     return
   }
   /* cuando tengo una ruta pendiente a navegar luego de mostrar el modal */
-  if(pendingRoute) {
+  if (pendingRoute) {
     pendingRoute.value = null
     next()
     return
   }
   /* para todos las demas */
   next()
- 
+
 };
 
 export default isSavedChanges;

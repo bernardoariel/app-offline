@@ -65,6 +65,7 @@ import type { dataActuacionForSave } from '../composables/useSaveData';
 import useActuacion from '@/composables/useActuacion';
 import type { DatosLegalesForm, DatosLegales } from '../interfaces/datosLegalesForm.interface';
 import useDatosLegales from '../composables/useDatosLegales';
+import {useDialog}  from '../composables/useDialog';
 
 interface Props {
   actuacion: string;
@@ -92,7 +93,7 @@ const {
   footerTextComputed,
   relato
 } = useDatosDiligencia(actuacionRef);
-
+const {dialogState}= useDialog()
 const { isEditedHeader, isEditedFooter } = useNewActuacion()
 const { isActuationInit , currentEditId} = useActuacion()
 const { saveData,updateData } = useSaveData();
@@ -174,14 +175,17 @@ const storeData = async () => {
   
 };
 
-const handleSave = async() => {
-
-  storeData()
+const handleSave = async () => {
+  storeData();
   isVisible.value = false;
   isActuationInit.value = false;
-  currentEditId.value = null
-  router.push({ name: 'actuaciones' });
+  currentEditId.value = null;
+  dialogState.allowNavigation = true;
 
+  // Esperar a que la navegación se complete antes de restablecer allowNavigation
+  await router.push({ name: 'actuaciones' });
+
+  dialogState.allowNavigation = false;
 };
 
 onActivated(() => {

@@ -18,7 +18,10 @@ import { useDialog } from '../composables/useDialog';
 import { useRouter } from 'vue-router';
 import MyDialog from '@/components/elementos/MyModal.vue';
 const router = useRouter();
-const { isDialogVisible, confirmNavigation , hideDialog,pendingRoute } = useDialog();
+const { dialogState,
+    showDialog,
+    hideDialog,
+    confirmNavigation } = useDialog();
 interface Props {
   actuacion: string;
   id?: number;
@@ -85,19 +88,21 @@ const dialogButtons = [
         class: 'p-button-primary',
         icon: 'pi pi-check',
         action: 'accept',
+        focus: false
     },
     {
         label: 'Cancelar',
         class: 'p-button-secondary',
         icon: 'pi pi-times',
         action: 'cancel',
+        focus: true
     },
 ];
 
 const handleButtonClick = (action: string) => {
     if (action !== 'accept') {
       hideDialog();// Mantén al usuario en la página actual
-      pendingRoute.value = null
+      dialogState.pendingRoute = null
     }
     confirmNavigation(); // Proceder con la navegación
   }
@@ -106,21 +111,22 @@ const handleButtonClick = (action: string) => {
 
 <template>
   <MyDialog
-        :visible="isDialogVisible"
-        title="Consulta del Sistema"
+        :visible="dialogState.isDialogVisible"
+        :title="dialogState.header.title"
         :buttons="dialogButtons"
-        @update:visible="isDialogVisible = $event"
+        @update:visible="dialogState.isDialogVisible = $event"
         @button-click="handleButtonClick"
     >
     <template #body>
       <div class="modal-body">
         <i
           class="pi pi-exclamation-triangle"
-          :style="{ fontSize: '3rem', color: 'orange' }"
+          :class="[dialogState.body.color]"
+          :style="{ fontSize: '3rem'}"
         ></i>
         <div class="flex justify-content-center" style="width: 100%">
           <p class="text-left font-bold">
-            ¿Deseas Salir sin guardar los datos?
+            {{dialogState.body.message}}
           </p>
         </div>
       </div>

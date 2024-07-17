@@ -1,38 +1,57 @@
 // src/composables/useDialog.js
-import { ref, watch } from 'vue';
+import { ref, watch, reactive } from 'vue';
 import { useRouter } from 'vue-router';
+import type { DialogOptions } from '../guards/isSavedChanges';
 
-const isDialogVisible = ref(false);
-const pendingRoute = ref(null);
+const dialogState = reactive({
+  isDialogVisible: false,
+  pendingRoute: null as string | null,
+  allowNavigation: false,
+  header: {
+    title: 'Consulta del Sistema!!'
+  },
+  body: {
+    icon: '',
+    message: '',
+    color: ''
+  },
+  footer: null as any
+});
+
 
 export function useDialog() {
+  const router = useRouter();
 
-  const router = useRouter()
+  const showDialog = (options: DialogOptions) => {
+    dialogState.pendingRoute = options.nameRouteToRedirect || null;
+    dialogState.isDialogVisible = true;
 
-  const showDialog = (route) => {
-    pendingRoute.value = route.name;
-    isDialogVisible.value = true;
+    dialogState.header.title = options.header.title;
+    dialogState.body.icon = options.body.icon;
+    dialogState.body.message = options.body.message;
+    dialogState.body.colorClass = options.body.colorClass;
+
+    if (options.footer) {
+      dialogState.footer = options.footer;
+    }
   };
 
   const hideDialog = () => {
-    isDialogVisible.value = false;
+    dialogState.isDialogVisible = false;
   };
 
   const confirmNavigation = () => {
-   
-    if (pendingRoute.value) {
-      router.push({name:pendingRoute.value});
+    if (dialogState.pendingRoute) {
+      router.push({ name: dialogState.pendingRoute });
       hideDialog();
     }
-
   };
- 
+
   return {
-    isDialogVisible,
+    dialogState,
     showDialog,
     hideDialog,
-    confirmNavigation,
-    pendingRoute
+    confirmNavigation
   };
 }
 

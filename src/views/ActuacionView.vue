@@ -190,7 +190,7 @@ const handleButtonClick = (action: string) => {
                 severity="danger"
                 value="Edición"
                 class="px-2"
-              ></Tag>
+              />
               <Tag
                 @click="handleClick"
                 v-else
@@ -198,7 +198,7 @@ const handleButtonClick = (action: string) => {
                 severity="success"
                 value="Nueva"
                 class="px-2"
-              ></Tag>
+              />
               <Button
                 @click="active = 0"
                 rounded
@@ -213,6 +213,11 @@ const handleButtonClick = (action: string) => {
                 class="button"
                 :outlined="active !== 1"
               />
+              
+            </div>
+            <div>
+
+              <small class="text-sm">Sin Cambios</small>
             </div>
           </div>
         </template>

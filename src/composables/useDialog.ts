@@ -3,7 +3,7 @@ import { ref, watch, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import type { DialogOptions } from '../guards/isSavedChanges';
 
-const dialogState = reactive({
+const dialogState = ref({
   isDialogVisible: false,
   pendingRoute: null as string | null,
   allowNavigation: false,
@@ -12,8 +12,9 @@ const dialogState = reactive({
   },
   body: {
     icon: '',
-    message: '',
-    colorClass: ''
+    comments: '',
+    colorClass: '',
+    answer:''
   },
   footer: null as any
 });
@@ -23,25 +24,26 @@ export function useDialog() {
   const router = useRouter();
 
   const showDialog = (options: DialogOptions) => {
-    dialogState.pendingRoute = options.nameRouteToRedirect || null;
-    dialogState.isDialogVisible = true;
+    dialogState.value.pendingRoute = options.nameRouteToRedirect || null;
+    dialogState.value.isDialogVisible = true;
 
-    dialogState.header.title = options.header.title;
-    dialogState.body.icon = options.body.icon;
-    dialogState.body.message = options.body.message;
-    dialogState.body.colorClass = options.body.colorClass;
+    dialogState.value.header.title = options.header.title;
+    dialogState.value.body.icon = options.body.icon;
+    dialogState.value.body.answer = options.body.answer;
+    dialogState.value.body.comments = options.body.comments;
+    dialogState.value.body.colorClass = options.body.colorClass;
 
     if (options.footer) {
-      dialogState.footer = options.footer;
+      dialogState.value.footer = options.footer;
     }
   };
 
   const hideDialog = () => {
-    dialogState.isDialogVisible = false;
+    dialogState.value.isDialogVisible = false;
   };
 
   const confirmNavigation = () => {
-    if (dialogState.pendingRoute) {
+    if (dialogState.value.pendingRoute) {
       router.push({ name: dialogState.pendingRoute });
       hideDialog();
     }

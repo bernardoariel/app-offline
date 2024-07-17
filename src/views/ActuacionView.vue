@@ -102,10 +102,10 @@ const dialogButtons = [
 const handleButtonClick = (action: string) => {
     if (action !== 'accept') {
       hideDialog();// Mantén al usuario en la página actual
-      dialogState.pendingRoute = null
+      dialogState.value.pendingRoute = null
     }
     confirmNavigation(); // Proceder con la navegación
-  }
+}
 
 </script>
 
@@ -118,19 +118,22 @@ const handleButtonClick = (action: string) => {
         @button-click="handleButtonClick"
     >
     <template #body>
-      <div class="modal-body">
-        <i
-          class="pi pi-exclamation-triangle"
-          :class="[dialogState.body.colorClass]"
-          :style="{ fontSize: '3rem'}"
-        ></i>
-        <div class="flex justify-content-center" style="width: 100%">
-          <p class="text-left font-bold">
-            {{dialogState.body.message}}
+     
+      <div class="modal-body flex flex-col items-center w-full" style="padding: 0;">
+        <div class="flex items-center w-full justify-between">
+          <i 
+            class="text-red-500 text-7xl mt-3 ml-5"
+            :class="[dialogState.body.colorClass,dialogState.body.icon]"
+            ></i>
+          <p class="font-bold text-3xl ml-6">
+            {{ dialogState.body.answer }}
           </p>
         </div>
+        <p class="text-lg ml-5 text-center text-gray-600" style="margin-top:-20px">
+          {{ dialogState.body.comments }}
+        </p>
       </div>
-      
+
     </template>
     </MyDialog>
   <div class="grid">
@@ -263,10 +266,9 @@ const handleButtonClick = (action: string) => {
 }
 .modal-body {
   display: flex;
-  justify-content: space-between;
-  padding-top: 0.5rem;
-  padding-left: 4rem; /* Padding solo en los lados */
-  padding-right: 3rem; /* Padding solo en los lados */
-  /* gap: 1rem; */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
+
 </style>

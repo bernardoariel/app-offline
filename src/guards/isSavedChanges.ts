@@ -8,50 +8,47 @@ export interface DialogHeader {
 
 export interface DialogBody {
   icon: string;
-  message: string;
+  answer: string;
   colorClass: string;
+  comment:string;
 }
 
 export interface DialogOptions {
   nameRouteToRedirect?: string;
   header: DialogHeader;
   body: DialogBody;
-  footer?: any; // Puedes definir esto más adelante
+  footer?: any; //quizas lo usemos mas tarde
 }
 
 const isSavedChanges = (to, from, next) => {
-  console.log('from::: ', from);
-  console.log('to::: ', to);
 
   const pathFindGuard = ['edit', 'new'];
   const pathIncludesGuard = pathFindGuard.some(keyword => from.path.includes(keyword));
-  console.log('pathIncludesGuard::: ', pathIncludesGuard);
-  console.log('pendingRoute.value::: ', dialogState.pendingRoute);
 
   /* cuando quiero salir del la edicion o la creacion */
-  if (pathIncludesGuard && dialogState.pendingRoute === null && !dialogState.allowNavigation) {
+  if (pathIncludesGuard && dialogState.value.pendingRoute === null && !dialogState.allowNavigation) {
     const optionDialog: DialogOptions = {
       nameRouteToRedirect: to.name,
       header: {
-        title: 'Mensaje de Confirmación!!'
+        title: 'Confirmación Necesaria'
       },
       body: {
         icon: 'pi pi-question-circle',
-        message: 'Los cambios o y se perderán.',
-        colorClass: 'text-red-100' // Debe ser colorClass en lugar de color
+        answer: '¿Guardar cambios?',
+        colorClass: 'text-red-400',
+        comments:'Los cambios no guardados se perderán.'
       },
       footer: {} // Completar más adelante según sea necesario
     };
 
-    // next(false)
     showDialog(optionDialog);
-    console.log('2.', dialogState.pendingRoute);
+    console.log('2.', dialogState.value.pendingRoute);
     return;
   }
 
   /* cuando tengo una ruta pendiente a navegar luego de mostrar el modal */
-  if (dialogState.pendingRoute) {
-    dialogState.pendingRoute = null;
+  if (dialogState.value.pendingRoute) {
+    dialogState.value.pendingRoute = null;
     next();
     return;
   }

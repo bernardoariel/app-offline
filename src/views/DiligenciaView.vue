@@ -180,12 +180,12 @@ const handleSave = async () => {
   isVisible.value = false;
   isActuationInit.value = false;
   currentEditId.value = null;
-  dialogState.allowNavigation = true;
+  dialogState.value.allowNavigation = true;
 
   // Esperar a que la navegación se complete antes de restablecer allowNavigation
   await router.push({ name: 'actuaciones' });
 
-  dialogState.allowNavigation = false;
+  dialogState.value.allowNavigation = false;
 };
 
 onActivated(() => {

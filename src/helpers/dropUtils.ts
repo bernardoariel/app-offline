@@ -1,6 +1,7 @@
 
 export const mapToDropdownItems = (array: any) => {
-    return array.map((item: any) => ({ name: item }));
+    if (array)
+        return array.map((item: any) => ({ name: item }));
 };
 
 export const mapToDropDownEfectos =(array:any) => {
@@ -13,4 +14,9 @@ export const mapToDropDownEfectos =(array:any) => {
         };
     });
     
+}
+
+export const mapToArray=(dropDownValues:any)=>{
+    if(dropDownValues)
+        return dropDownValues.value.map(item => item.name)
 }

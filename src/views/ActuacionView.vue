@@ -119,6 +119,12 @@ const handleButtonClick = (action: string) => {
   resetRecordDeleted();
   confirmNavigation(); // Proceder con la navegación
 };
+watch(
+  () => dialogState.value.isDialogVisible,
+  (newVal) => {
+    if(newVal === false ) dialogState.value.pendingRoute = null;
+  }
+);
 </script>
 
 <template>

@@ -19,7 +19,7 @@
           :class="button.class"
           :icon="button.icon"
           :iconPos="button.iconPos"
-          :autofocus="button.focus || index === 0"
+          :autofocus="button.focus || index === 1"
           @click="onButtonClick(button.action)"
         />
       </div>

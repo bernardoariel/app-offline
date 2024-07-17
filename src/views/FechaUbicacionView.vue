@@ -2,7 +2,7 @@
 import { onActivated, ref, watch } from 'vue';
 import useFecha from '@/composables/useFecha';
 import useItemValue from '@/composables/useItemValue';
-import useFieldState from '@/composables/useFiledsState';
+import useFieldState from '@/composables/useFieldState';
 
 import MyInput from '@/components/elementos/MyInput.vue';
 import MyDropdown from '@/components/elementos/MyDropdown.vue';
@@ -23,6 +23,7 @@ const {
   guardarModificaciones,
   isEditing,
   cancelarModificaciones,
+  markNewRecordCreated,
 } = useFieldState();
 
 let formData = ref<FechaUbicacionForm>({ ...initialValues });
@@ -148,6 +149,7 @@ const handleAgregarElemento = () => {
   };
 
   agregar(nuevoItem);
+  markNewRecordCreated();
   formData.value = { ...initialValues };
 };
 

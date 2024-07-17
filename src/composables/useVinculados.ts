@@ -2,10 +2,10 @@ import { ref, } from "vue"
 import { v4 as uuid } from 'uuid';
 import type { VinculadosForm, Vinculados } from "@/interfaces/vinculado.interface";
 import type { DropDownInterface } from '../interfaces/dropdown.interface';
-import useFieldState from "./useFiledsState";
+import useFieldState from "./useFieldState";
 import { vinculadosFake as itemsFake } from '@/data/mock/datosActuacion'
 
-const { agregarIdState, guardarModificaciones, eliminarIdState,resetStates } = useFieldState();
+const { agregarIdState, guardarModificaciones, eliminarIdState, resetStates } = useFieldState();
 let vinculados = ref<Vinculados[]>([]);
 
 let selectedType = ref<DropDownInterface>()
@@ -23,7 +23,7 @@ const initialValues: VinculadosForm = {
     domicilioResidencia: '',
     telefono: '',
     profesion: '',
-    apodo:'',
+    apodo: '',
     typeAfectado: { name: '' },
     typeDocumento: { name: '' },
     typeSexo: { name: '' },
@@ -34,19 +34,19 @@ const initialValues: VinculadosForm = {
 
 
 const useVinculados = () => {
-    
+
     const agregarVinculado = (item: Vinculados) => {
-        
-        if(!item) return 
+
+        if (!item) return
         const id = uuid();
 
-        vinculados.value?.push({...item, id})
+        vinculados.value?.push({ ...item, id })
         // Agrega el estado del ítem
         agregarIdState(id, {});
     };
 
     const editarVinculado = (item: Vinculados) => {
-        if(!item.id) return
+        if (!item.id) return
         const itemExistente = findById(item.id);
         if (itemExistente) {
             const index = vinculados.value.indexOf(itemExistente);
@@ -65,14 +65,14 @@ const useVinculados = () => {
         }
     };
     const selecccionarVinculado = (id: string) => {
-       
-    
-    };   
+
+
+    };
     const findById = (id: string) => {
         return vinculados.value.find(item => item.id === id);
-    }; 
+    };
 
-    const resetAllDropdown = () =>{
+    const resetAllDropdown = () => {
         selectedType.value = null;
         selectedDocumento.value = null;
         selectedSexo.value = null;
@@ -85,7 +85,7 @@ const useVinculados = () => {
         resetAllDropdown()
     };
     const set = (data = null) => {
-        
+
         if (!data) {
             vinculados.value = [...itemsFake];
             itemsFake.forEach(item => {
@@ -93,12 +93,12 @@ const useVinculados = () => {
             });
             return
         }
-        
+
         vinculados.value = JSON.parse(data);
         vinculados.value.forEach(item => {
             agregarIdState(item.id, {});
         });
- 
+
     }
 
     return {
@@ -117,10 +117,10 @@ const useVinculados = () => {
         agregar: agregarVinculado,
         eliminar: eliminarVinculado,
         editar: editarVinculado,
-        seleccionar:selecccionarVinculado
+        seleccionar: selecccionarVinculado
     };
 };
 
 export default useVinculados;
-  
+
 

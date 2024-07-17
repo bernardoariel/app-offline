@@ -1,36 +1,38 @@
 <script lang="ts" setup>
 //actuacionView
 import { ref, watch, onActivated } from 'vue';
+import { useRouter } from 'vue-router';
+
 import DataViewCard from '@/components/DataViewCard.vue';
+import MyDialog from '@/components/elementos/MyModal.vue';
+
 import DatosLegalesView from './DatosLegalesView.vue';
 import DiligenciaView from './DiligenciaView.vue';
+
 import useActuacion from '@/composables/useActuacion';
 import useCardInformation from '@/composables/useCardInformation';
-
 import useItem from '../composables/useItems';
-
 import useDatosLegales from '../composables/useDatosLegales';
 import useDatosDiligencia from '@/composables/useDatosDiligencia';
 import useSaveData from '@/composables/useSaveData';
 import useItemValue from '@/composables/useItemValue';
 import useActuacionData from '@/composables/useActuacionData';
 import { useDialog } from '../composables/useDialog';
-import { useRouter } from 'vue-router';
-import MyDialog from '@/components/elementos/MyModal.vue';
+import useFieldState from '@/composables/useFieldState';
+
 const router = useRouter();
-const { dialogState,
-    showDialog,
-    hideDialog,
-    confirmNavigation } = useDialog();
+
 interface Props {
   actuacion: string;
   id?: number;
   actuacionData?: any;
 }
 const props = defineProps<Props>();
+
 const actuacionRef = ref(props.actuacion);
 const active = ref(0);
 
+const { dialogState, showDialog, hideDialog, confirmNavigation } = useDialog();
 const { agregarNuevoItem, currentEditId, toogleDateActuacion } = useActuacion();
 const { set: setActuacionData } = useActuacionData();
 const { fetchActuacionById } = useSaveData();
@@ -39,6 +41,18 @@ const {
   setData: setDatosLegales,
   nroLegajo,
 } = useDatosLegales();
+const { setAll } = useItem();
+const { relato } = useDatosDiligencia(props.actuacion);
+const { addDataFake } = useDatosLegales();
+const { cardInformationKeys, cardInformation } =
+  useCardInformation(actuacionRef);
+const { prepararNuevoItem } = useItemValue();
+const {
+  resetNewRecordCreated,
+  resetUnsavedChanges,
+  markNewRecordCreated,
+  resetRecordDeleted,
+} = useFieldState();
 
 setActuacionData(props.actuacionData);
 
@@ -54,19 +68,12 @@ onActivated(async () => {
   }
 });
 
-const { setAll } = useItem();
-
-const { relato } = useDatosDiligencia(props.actuacion);
-const { addDataFake } = useDatosLegales();
-const { cardInformationKeys, cardInformation } =
-  useCardInformation(actuacionRef);
-const { prepararNuevoItem } = useItemValue();
-
 const handleClick = (event: { ctrlKey: any; altKey: any }) => {
   if (event.ctrlKey && event.altKey) {
     // console.log(`Ctrl + Alt + Click detectado: ${actuacionRef}`);
     setAll();
     addDataFake();
+    markNewRecordCreated();
     relato.value = 'esto es una prueba del relato';
   }
 };
@@ -82,60 +89,67 @@ const handleNuevoItem = (key: string) => {
   prepararNuevoItem();
   agregarNuevoItem(key);
 };
+
 const dialogButtons = [
-    {
-        label: 'Aceptar',
-        class: 'p-button-primary',
-        icon: 'pi pi-check',
-        action: 'accept',
-        focus: false
-    },
-    {
-        label: 'Cancelar',
-        class: 'p-button-secondary',
-        icon: 'pi pi-times',
-        action: 'cancel',
-        focus: true
-    },
+  {
+    label: 'Aceptar',
+    class: 'p-button-primary',
+    icon: 'pi pi-check',
+    action: 'accept',
+    focus: false,
+  },
+  {
+    label: 'Cancelar',
+    class: 'p-button-secondary',
+    icon: 'pi pi-times',
+    action: 'cancel',
+    focus: true,
+  },
 ];
 
 const handleButtonClick = (action: string) => {
-    if (action !== 'accept') {
-      hideDialog();// Mantén al usuario en la página actual
-      dialogState.value.pendingRoute = null
-    }
-    confirmNavigation(); // Proceder con la navegación
-}
-
+  if (action !== 'accept') {
+    hideDialog(); // Mantén al usuario en la página actual
+    dialogState.value.pendingRoute = null;
+  }
+  resetUnsavedChanges();
+  resetNewRecordCreated();
+  resetRecordDeleted();
+  confirmNavigation(); // Proceder con la navegación
+};
 </script>
 
 <template>
   <MyDialog
-        :visible="dialogState.isDialogVisible"
-        :title="dialogState.header.title"
-        :buttons="dialogButtons"
-        @update:visible="dialogState.isDialogVisible = $event"
-        @button-click="handleButtonClick"
-    >
+    :visible="dialogState.isDialogVisible"
+    :title="dialogState.header.title"
+    :buttons="dialogButtons"
+    @update:visible="dialogState.isDialogVisible = $event"
+    @button-click="handleButtonClick"
+  >
     <template #body>
-     
-      <div class="modal-body flex flex-col items-center w-full" style="padding: 0;">
+      <div
+        class="modal-body flex flex-col items-center w-full"
+        style="padding: 0"
+      >
         <div class="flex items-center w-full justify-between">
-          <i 
+          <i
             class="text-red-500 text-7xl mt-3 ml-5"
-            :class="[dialogState.body.colorClass,dialogState.body.icon]"
-            ></i>
-          <p class="font-bold text-3xl ml-6">
+            :class="[dialogState.body.colorClass, dialogState.body.icon]"
+          ></i>
+          <p class="font-bold text-xl ml-6">
             {{ dialogState.body.answer }}
           </p>
         </div>
-        <p class="text-lg ml-5 text-center text-gray-600" style="margin-top:-20px">
+        <p
+          class="text-lg ml-5 text-center text-gray-600"
+          style="margin-top: -20px"
+        >
           {{ dialogState.body.comments }}
         </p>
       </div>
-
     </template>
-    </MyDialog>
+  </MyDialog>
   <div class="grid">
     <div class="col-5">
       <Card>
@@ -270,5 +284,4 @@ const handleButtonClick = (action: string) => {
   align-items: center;
   justify-content: center;
 }
-
 </style>

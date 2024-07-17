@@ -14,7 +14,7 @@ const dialogState = ref({
     icon: '',
     comments: '',
     colorClass: '',
-    answer:''
+    answer: ''
   },
   footer: null as any
 });
@@ -44,7 +44,7 @@ export function useDialog() {
 
   const confirmNavigation = () => {
     if (dialogState.value.pendingRoute) {
-      router.push({ name: dialogState.pendingRoute });
+      router.push({ name: dialogState.value.pendingRoute });
       hideDialog();
     }
   };

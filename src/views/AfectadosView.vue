@@ -50,7 +50,6 @@ const {
   cancelarModificaciones,
   markNewRecordCreated,
 } = useFieldState();
-
 let formData = ref<AfectadosForm>({ ...selectedItem.value });
 const tarjetaValues = ref<string[]>([]);
 
@@ -80,6 +79,7 @@ const handleDropdownChange = (
     };
 
     const itemId = formData.value.id!;
+    console.log('itemId', itemId);
     if (itemId) {
       setPristineById(itemId, false);
       setModifiedData(itemId, campo, name);

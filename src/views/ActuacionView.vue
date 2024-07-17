@@ -19,6 +19,7 @@ import useItemValue from '@/composables/useItemValue';
 import useActuacionData from '@/composables/useActuacionData';
 import { useDialog } from '../composables/useDialog';
 import useFieldState from '@/composables/useFieldState';
+import useLegalesState from '@/composables/useLegalesState';
 
 const router = useRouter();
 
@@ -53,6 +54,7 @@ const {
   markNewRecordCreated,
   resetRecordDeleted,
 } = useFieldState();
+const { resetFields: resetLegalFields } = useLegalesState();
 
 setActuacionData(props.actuacionData);
 
@@ -67,7 +69,6 @@ onActivated(async () => {
     currentEditId.value = props.id;
   }
 });
-
 const handleClick = (event: { ctrlKey: any; altKey: any }) => {
   if (event.ctrlKey && event.altKey) {
     // console.log(`Ctrl + Alt + Click detectado: ${actuacionRef}`);
@@ -114,6 +115,7 @@ const handleButtonClick = (action: string) => {
   }
   resetUnsavedChanges();
   resetNewRecordCreated();
+  resetLegalFields();
   resetRecordDeleted();
   confirmNavigation(); // Proceder con la navegación
 };
@@ -213,10 +215,8 @@ const handleButtonClick = (action: string) => {
                 class="button"
                 :outlined="active !== 1"
               />
-              
             </div>
             <div>
-
               <small class="text-sm">Sin Cambios</small>
             </div>
           </div>

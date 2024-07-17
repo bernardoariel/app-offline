@@ -122,6 +122,7 @@ import useActuacion from '@/composables/useActuacion';
 import useDatosLegales from '../composables/useDatosLegales';
 import { useDialog } from '../composables/useDialog';
 import useFieldState from '@/composables/useFieldState';
+import useLegalesState from '@/composables/useLegalesState';
 
 interface Props {
   actuacion: string;
@@ -166,6 +167,7 @@ const {
 } = useDatosLegales();
 const { resetUnsavedChanges, resetNewRecordCreated, resetRecordDeleted } =
   useFieldState();
+const { resetFields: resetLegalFields } = useLegalesState();
 
 const setHeaderFromComputed = () => {
   headerContainer.value = headerTextComputed.value;
@@ -245,6 +247,7 @@ const handleSave = async () => {
   dialogState.value.allowNavigation = true;
   resetUnsavedChanges();
   resetNewRecordCreated();
+  resetLegalFields();
   resetRecordDeleted();
   // Esperar a que la navegación se complete antes de restablecer allowNavigation
   await router.push({ name: 'actuaciones' });

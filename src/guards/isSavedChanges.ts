@@ -1,5 +1,7 @@
 import { useDialog } from '../composables/useDialog';
 import useFieldState from '@/composables/useFieldState';
+import useLegalesState from '@/composables/useLegalesState';
+import { computed } from 'vue';
 
 const { showDialog, dialogState } = useDialog();
 
@@ -28,6 +30,15 @@ const {
   isRecordDeleted
 } = useFieldState();
 
+const { isAnyFieldModified: isLegalModified } = useLegalesState()
+
+const isAnyChange = computed(() => {
+  return isUnsavedChange.value ||
+    areAnyFieldsModifiedGlobally() ||
+    isNewRecordCreated.value ||
+    isRecordDeleted.value ||
+    isLegalModified.value;
+});
 
 const isSavedChanges = (to, from, next) => {
 
@@ -36,7 +47,7 @@ const isSavedChanges = (to, from, next) => {
 
   /* cuando quiero salir del la edicion o la creacion */
   if (pathIncludesGuard && dialogState.value.pendingRoute === null && !dialogState.allowNavigation) {
-    if (isUnsavedChange.value || areAnyFieldsModifiedGlobally() || isNewRecordCreated.value || isRecordDeleted.value) {
+    if (isAnyChange.value) {
       const optionDialog: DialogOptions = {
         nameRouteToRedirect: to.name,
         header: {

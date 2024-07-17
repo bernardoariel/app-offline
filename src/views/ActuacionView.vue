@@ -137,12 +137,12 @@ const handleButtonClick = (action: string) => {
             class="text-red-500 text-7xl mt-3 ml-5"
             :class="[dialogState.body.colorClass, dialogState.body.icon]"
           ></i>
-          <p class="font-bold text-xl ml-6">
+          <p class="font-bold text-xl ml-4">
             {{ dialogState.body.answer }}
           </p>
         </div>
         <p
-          class="text-lg ml-5 text-center text-gray-600"
+          class="text-lg ml-8 text-center text-gray-600"
           style="margin-top: -20px"
         >
           {{ dialogState.body.comments }}

@@ -36,7 +36,7 @@ interface buttonProps {
   icon?: string;
   iconPos?: 'left' | 'right' | 'top' | 'bottom';
   action: string;
-  focus: boole
+  focus: boolean;
 }
 interface Props {
   visible: boolean;

@@ -121,7 +121,7 @@ const handleButtonClick = (action: string) => {
       <div class="modal-body">
         <i
           class="pi pi-exclamation-triangle"
-          :class="[dialogState.body.color]"
+          :class="[dialogState.body.colorClass]"
           :style="{ fontSize: '3rem'}"
         ></i>
         <div class="flex justify-content-center" style="width: 100%">

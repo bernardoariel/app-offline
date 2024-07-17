@@ -13,7 +13,7 @@ const dialogState = reactive({
   body: {
     icon: '',
     message: '',
-    color: ''
+    colorClass: ''
   },
   footer: null as any
 });

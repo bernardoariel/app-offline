@@ -1,34 +1,81 @@
 import { useDialog } from '../composables/useDialog';
+import useFieldState from '@/composables/useFieldState';
+import useLegalesState from '@/composables/useLegalesState';
+import { computed } from 'vue';
 
-const { showDialog,pendingRoute } = useDialog()
+const { showDialog, dialogState } = useDialog();
 
+export interface DialogHeader {
+  title: string;
+}
+
+export interface DialogBody {
+  icon: string;
+  answer: string;
+  colorClass: string;
+  comment: string;
+}
+
+export interface DialogOptions {
+  nameRouteToRedirect?: string;
+  header: DialogHeader;
+  body: DialogBody;
+  footer?: any; //quizas lo usemos mas tarde
+}
+
+const {
+  isUnsavedChange,
+  areAnyFieldsModifiedGlobally,
+  isNewRecordCreated,
+  isRecordDeleted
+} = useFieldState();
+
+const { isAnyFieldModified: isLegalModified } = useLegalesState()
+
+const isAnyChange = computed(() => {
+  return isUnsavedChange.value ||
+    areAnyFieldsModifiedGlobally() ||
+    isNewRecordCreated.value ||
+    isRecordDeleted.value ||
+    isLegalModified.value;
+});
 
 const isSavedChanges = (to, from, next) => {
-  console.log('from::: ', from);
-  console.log('to::: ', to);
-
 
   const pathFindGuard = ['edit', 'new'];
   const pathIncludesGuard = pathFindGuard.some(keyword => from.path.includes(keyword));
-  console.log('pathIncludesGuard::: ', pathIncludesGuard);
-  console.log('pendingRoute.value::: ', pendingRoute.value);
 
   /* cuando quiero salir del la edicion o la creacion */
-  if (pathIncludesGuard && pendingRoute.value === null) {
-    next(false)
-    showDialog(to);
-    console.log('2.', pendingRoute.value);
-    return
+  if (pathIncludesGuard && dialogState.value.pendingRoute === null && !dialogState.allowNavigation) {
+    if (isAnyChange.value) {
+      const optionDialog: DialogOptions = {
+        nameRouteToRedirect: to.name,
+        header: {
+          title: 'Confirmación Necesaria'
+        },
+        body: {
+          icon: 'pi pi-question-circle',
+          answer: '¿Desea salir sin guardar los cambios?',
+          colorClass: 'text-red-400',
+          comments: 'Los cambios no guardados se perderán.'
+        },
+        footer: {} // Completar más adelante según sea necesario
+      };
+      showDialog(optionDialog);
+      console.log('2.', dialogState.value.pendingRoute);
+      return;
+    }
   }
+
   /* cuando tengo una ruta pendiente a navegar luego de mostrar el modal */
-  if(pendingRoute) {
-    pendingRoute.value = null
-    next()
-    return
+  if (dialogState.value.pendingRoute) {
+    dialogState.value.pendingRoute = null;
+    next();
+    return;
   }
+
   /* para todos las demas */
-  next()
- 
+  next();
 };
 
 export default isSavedChanges;

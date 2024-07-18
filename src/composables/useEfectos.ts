@@ -2,7 +2,7 @@ import { ref } from "vue"
 import { v4 as uuid } from 'uuid';
 import type { Efectos, EfectosForm } from "@/interfaces/efecto.interface";
 import type { DropDownInterface } from '../interfaces/dropdown.interface';
-import useFieldState from "./useFiledsState";
+import useFieldState from "./useFieldState";
 import { efectosFake as itemsFake } from '@/data/mock/datosActuacion'
 
 const { agregarIdState, guardarModificaciones, eliminarIdState } = useFieldState();

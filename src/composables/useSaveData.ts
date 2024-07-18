@@ -8,7 +8,8 @@ import type { PersonalInterviniente } from '../interfaces/personalInterviniente'
 import useActuacion from './useActuacion';
 import useDatosLegales from './useDatosLegales';
 import type { DatosLegales } from '../interfaces/datosLegalesForm.interface';
-import { actuaciones } from '../data/tipoActuaciones';
+import { getDependenciaData } from '@/helpers/getDependencia';
+import { formatFecha } from '@/helpers/getFormatFecha';
 
 export interface dataActuacionForSave {
   id?: number;
@@ -21,10 +22,10 @@ export interface dataActuacionForSave {
   personalInterviniente: PersonalInterviniente[];
   viewPdf?: string;
   pathName?: string;
-  relato:string;
+  relato: string;
 }
 
-const { getFormattedDate } = useActuacion();
+const { fechaCreacion, getFormattedDate } = useActuacion();
 const { nombreActuacion, nroLegajo, selectedJuzgadoInterviniente } = useDatosLegales();
 const db = new Dexie('Siis') as any;
 
@@ -37,14 +38,12 @@ const useSaveData = () => {
   const success = ref(false);
 
   const saveData = async (data: dataActuacionForSave) => {
-    console.log('data::: ', data);
 
     try {
       await db.open();
-
       await db.actuaciones.add({
         nroLegajoCompleto: nroLegajo.value,
-        fechaCreacion: getFormattedDate.value,
+        fechaCreacion: fechaCreacion.value,
         nombreActuacion: nombreActuacion.value,
         juzgadoInterviniente: selectedJuzgadoInterviniente.value?.name || '',
         afectados: JSON.stringify(data.afectados),
@@ -55,7 +54,8 @@ const useSaveData = () => {
         personalInterviniente: JSON.stringify(data.personalInterviniente),
         viewPdf: JSON.stringify(data.viewPdf),
         pathName: JSON.stringify(data.pathName),
-        relato:JSON.stringify(data.relato)
+        relato: JSON.stringify(data.relato),
+        dependenciaData: JSON.stringify(getDependenciaData())
       });
       success.value = true;
 
@@ -66,7 +66,6 @@ const useSaveData = () => {
   };
 
   const updateData = async (data: dataActuacionForSave) => {
-    console.log('data::: ', data);
     if (typeof data.id !== 'number') {
       console.error('Invalid id:', data.id);
       error.value = 'Invalid id';
@@ -105,7 +104,7 @@ const useSaveData = () => {
       const deserializedData = actuacionesArray.map(actuacion => {
         return {
           id: actuacion.id,
-          fechaCreacion: actuacion.fechaCreacion,
+          fechaCreacion: formatFecha(actuacion.fechaCreacion, 'fecha'),
           nroLegajoCompleto: actuacion.nroLegajoCompleto,
           nombreActuacion: nombreActuacion.value,
           juzgadoInterviniente: actuacion.juzgadoInterviniente,
@@ -117,7 +116,7 @@ const useSaveData = () => {
           personalInterviniente: JSON.parse(actuacion.personalInterviniente),
           viewPdf: JSON.parse(actuacion.viewPdf),
           pathName: JSON.parse(actuacion.pathName),
-          relato:JSON.parse(actuacion.relato)
+          relato: JSON.parse(actuacion.relato)
         };
       });
 

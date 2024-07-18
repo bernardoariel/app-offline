@@ -22,11 +22,11 @@ const years = {
 export const convertDate = (isoDateString: string): string => {
     const date = new Date(isoDateString);
 
-    const day = date.getUTCDate();
-    const month = date.getUTCMonth();
-    const year = date.getUTCFullYear();
-    const hours = date.getUTCHours();
-    const minutes = date.getUTCMinutes();
+    const day = date.getDay();
+    const month = date.getMonth();
+    const year = date.getFullYear();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
 
     const dayText = numbers[day];
     const monthText = months[month];

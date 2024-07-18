@@ -4,6 +4,7 @@ import { diligencias } from '@/data/datosDiligencia';
 import useItem from '@/composables/useItems';
 import type { DatosLegales } from '@/interfaces/datosLegales.interface';
 import { getTitleCase, getUpperCase } from '@/helpers/stringUtils';
+import { getDependenciaData } from '@/helpers/getDependencia'
 import { getAge } from '@/helpers/getAge';
 import useNewActuacion from './useNewActuacion';
 import useActuacion from './useActuacion';
@@ -14,28 +15,16 @@ interface ProcessedText {
   footer: string;
 }
 
-interface DependenciaData {
-  dependencia: {
-    nombre: string,
-    telefonos: string,
-    dependenciaLetra: string,
-    domicilio: string,
-    departamento: string
-  },
-  usuario: string
-}
-
 const relato = ref<string>('')
 const headerContainer = ref<string>('')
 const footerContainer = ref<string>('')
-let dependenciaData = ref<DependenciaData>()
 
 const { isEditedHeader, isEditedFooter } = useNewActuacion()
 const { fechaCreacion } = useActuacion()
 
 const useDatosDiligencia = (actuacion: ref<string>) => {
 
-  const { afectados, intervinientes } = useItem();
+  const { afectados, intervinientes, fechaCreacionaActuacion, itemSelected, dependenciaData: dependencia } = useItem();
 
   const isEditingHeader = ref<boolean>(false);
   const isEditingFooter = ref<boolean>(false);
@@ -48,18 +37,8 @@ const useDatosDiligencia = (actuacion: ref<string>) => {
     return `<span class="text-primary font-medium"><i>${value}</i></span>`;
   };
 
-  const getFromLocalStorage = (key: string): string | null => {
-    return localStorage.getItem(key);
-  };
-
-  const offlineData = getFromLocalStorage('siisOffLineData');
-  if (offlineData) {
-    try {
-      dependenciaData.value = JSON.parse(offlineData);
-    } catch (error) {
-      console.error('Error parsing offline data:', error);
-    }
-  }
+  const dependenciaDataLocal = getDependenciaData() //datos local Storage
+  // const dependenciaDataDB = JSON.parse(dependencia.value)// datos del item seleccionado, que esta en la db
 
 
   const processedAfectados = computed(() => {
@@ -88,16 +67,14 @@ const useDatosDiligencia = (actuacion: ref<string>) => {
     }).join(' ');
 
   });
-
   const processedText = computed<ProcessedText>(() => {
     let header = '';
     let footer = '';
-
     if (diligenciaSeleccionada.value) {
       header = diligenciaSeleccionada.value.header
-        .replace('@dependencia', getStyle(dependenciaData.value?.dependencia.nombre as string))
-        .replace('@departamento', getStyle(dependenciaData.value?.dependencia.departamento as string))
-        .replace('@fechaactuacion', getStyle(convertDate(fechaCreacion.value)))
+        .replace('@dependencia', getStyle(dependenciaDataLocal.dependencia.nombre))
+        .replace('@departamento', getStyle(dependenciaDataLocal.dependencia.departamento))
+        .replace('@fechaactuacion', getStyle(convertDate(itemSelected.value ? fechaCreacionaActuacion.value : fechaCreacion.value)))
         .replace('@afectados', processedAfectados.value)
         .replace('@intervinientes', processedIntervinientes.value);
 

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 //actuacionView
-import { ref, watch, onActivated } from 'vue';
+import { ref, watch, onActivated, computed } from 'vue';
 import { useRouter } from 'vue-router';
 
 import DataViewCard from '@/components/DataViewCard.vue';
@@ -53,9 +53,13 @@ const {
   resetUnsavedChanges,
   markNewRecordCreated,
   resetRecordDeleted,
+  isUnsavedChange,
+  areAnyFieldsModifiedGlobally,
+  isNewRecordCreated,
+  isRecordDeleted,
 } = useFieldState();
-const { resetFields: resetLegalFields } = useLegalesState();
-
+const { resetFields: resetLegalFields, isAnyFieldModified: isLegalModified } =
+  useLegalesState();
 setActuacionData(props.actuacionData);
 
 onActivated(async () => {
@@ -127,6 +131,16 @@ watch(
     if (newVal === false) dialogState.value.pendingRoute = null;
   }
 );
+
+const isAnyChange = computed(() => {
+  return (
+    isUnsavedChange.value ||
+    areAnyFieldsModifiedGlobally() ||
+    isNewRecordCreated.value ||
+    isRecordDeleted.value ||
+    isLegalModified.value
+  );
+});
 </script>
 
 <template>
@@ -225,7 +239,9 @@ watch(
               />
             </div>
             <div>
-              <small class="text-sm">Sin Cambios</small>
+              <small class="text-sm">{{
+                isAnyChange ? 'Cambios Pendientes' : 'Sin Cambios'
+              }}</small>
             </div>
           </div>
         </template>

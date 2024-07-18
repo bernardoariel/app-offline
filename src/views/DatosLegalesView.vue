@@ -32,7 +32,6 @@ const {
   initialValuesDatosLegales,
 } = useDatosLegales();
 const { addField, setFieldModified, isAnyFieldModified } = useLegalesState();
-const { setModifiedData, setPristineById } = useFieldState();
 
 let yearsActuacion: string[] = getYearsDrop();
 let formData = ref<DatosLegalesForm>({ ...initialValuesDatosLegales });
@@ -44,10 +43,9 @@ const handleDropdownChange = (
   const name = newValue.value.name;
   addField(campo, name);
   if (campo in formData.value) {
-    // Actualizar formData para que el campo específico tenga un objeto con la propiedad 'name' actualizada
     formData.value = {
       ...formData.value,
-      [campo]: { name }, // Asigna un objeto con 'name' a campo
+      [campo]: { name },
     };
     setFieldModified(campo, true);
   }

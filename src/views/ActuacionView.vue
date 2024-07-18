@@ -33,7 +33,7 @@ const props = defineProps<Props>();
 const actuacionRef = ref(props.actuacion);
 const active = ref(0);
 
-const { dialogState, showDialog, hideDialog, confirmNavigation } = useDialog();
+const { dialogState, hideDialog, confirmNavigation } = useDialog();
 const { agregarNuevoItem, currentEditId, toogleDateActuacion } = useActuacion();
 const { set: setActuacionData } = useActuacionData();
 const { fetchActuacionById } = useSaveData();
@@ -110,8 +110,10 @@ const dialogButtons = [
 
 const handleButtonClick = (action: string) => {
   if (action !== 'accept') {
-    hideDialog(); // Mantén al usuario en la página actual
+    // Manténgo al usuario en la página actual sin borrar los estados pendientes por guardar
+    hideDialog();
     dialogState.value.pendingRoute = null;
+    return;
   }
   resetUnsavedChanges();
   resetNewRecordCreated();
@@ -122,7 +124,7 @@ const handleButtonClick = (action: string) => {
 watch(
   () => dialogState.value.isDialogVisible,
   (newVal) => {
-    if(newVal === false ) dialogState.value.pendingRoute = null;
+    if (newVal === false) dialogState.value.pendingRoute = null;
   }
 );
 </script>

@@ -38,6 +38,7 @@ export default function useFieldState() {
     const index = statesID.findIndex((state) => state.id === id);
     if (index !== -1) {
       statesID[index].modifiedData[campo] = valor;
+      statesID[index].isModified = true;
     }
   };
 
@@ -100,7 +101,7 @@ export default function useFieldState() {
   };
 
   const areAnyFieldsModifiedGlobally = () => {
-    return statesID.some((state) => Object.keys(state.modifiedData).length > 0);
+    return statesID.some((state) => state.isModified);
   };
 
   return {

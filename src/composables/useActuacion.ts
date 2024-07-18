@@ -6,12 +6,12 @@ import { useRouter } from 'vue-router';
 import { actuaciones } from '@/data/tipoActuaciones';
 import { formatFecha } from '../helpers/getFormatFecha';
 import useItem from './useItems';
-import useFieldState from '@/composables/useFiledsState';
+import useFieldState from '@/composables/useFieldState';
 
 
 const fechaCreacion = ref<Date | null>(new Date());
-const isActuationInit = ref(false); 
-const currentEditId = ref<number|null>(null);
+const isActuationInit = ref(false);
+const currentEditId = ref<number | null>(null);
 const { setAll, resetAll } = useItem()
 const { resetStates } = useFieldState()
 
@@ -19,7 +19,7 @@ const useActuacion = () => {
 
   const router = useRouter();
   const route = useRoute();
-  
+
   const toogleDateActuacion = () => {
 
     fechaCreacion.value = null;
@@ -29,18 +29,18 @@ const useActuacion = () => {
   };
 
   const activateComponent = () => {
-    
+
     toogleDateActuacion();
     resetStates();
     resetAll();
-    
+
   }
   const setFechaCreacion = (date: Date) => {
     fechaCreacion.value = date;
   };
 
-  const initValue = () =>{
-    
+  const initValue = () => {
+
     fechaCreacion.value = new Date();
   }
 

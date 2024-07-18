@@ -2,8 +2,9 @@
 import { onActivated, ref, watch } from 'vue';
 import useAfectados from '../composables/useAfectados';
 import useItemValue from '@/composables/useItemValue';
-import useFieldState from '@/composables/useFiledsState';
+import useFieldState from '@/composables/useFieldState';
 import useActuacionData from '@/composables/useActuacionData';
+import useNewActuacion from '@/composables/useNewActuacion';
 
 import MyDropdown from '@/components/elementos/MyDropdown.vue';
 import MyInput from '@/components/elementos/MyInput.vue';
@@ -22,8 +23,6 @@ import {
   afectadosDropdown,
 } from '@/helpers/getDropItems';
 import { mapToDropdownItems } from '@/helpers/dropUtils';
-
-import useNewActuacion from '@/composables/useNewActuacion';
 
 const {
   editar,
@@ -49,6 +48,7 @@ const {
   guardarModificaciones,
   isEditing,
   cancelarModificaciones,
+  markNewRecordCreated,
 } = useFieldState();
 let formData = ref<AfectadosForm>({ ...selectedItem.value });
 const tarjetaValues = ref<string[]>([]);
@@ -79,6 +79,7 @@ const handleDropdownChange = (
     };
 
     const itemId = formData.value.id!;
+    console.log('itemId', itemId);
     if (itemId) {
       setPristineById(itemId, false);
       setModifiedData(itemId, campo, name);
@@ -135,6 +136,7 @@ const handleAgregarElemento = () => {
   };
 
   agregar(nuevoItem);
+  markNewRecordCreated();
   formData.value = { ...initialValues };
   resetAllDropdown();
   resetIsEditedHeader();

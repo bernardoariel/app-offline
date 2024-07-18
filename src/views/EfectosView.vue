@@ -2,7 +2,7 @@
 import { onActivated, ref, watch } from 'vue';
 import useEfectos from '@/composables/useEfectos';
 import useItemValue from '@/composables/useItemValue';
-import useFieldState from '@/composables/useFiledsState';
+import useFieldState from '@/composables/useFieldState';
 import useActuacionData from '@/composables/useActuacionData';
 
 import MyDropdown from '@/components/elementos/MyDropdown.vue';
@@ -41,6 +41,7 @@ const {
   guardarModificaciones,
   isEditing,
   cancelarModificaciones,
+  markNewRecordCreated,
 } = useFieldState();
 const { obtenerTarjeta } = useActuacionData();
 
@@ -129,6 +130,7 @@ const handleAgregarElemento = () => {
   };
 
   agregar(nuevoEfecto);
+  markNewRecordCreated();
   formData.value = { ...initialValues };
 };
 

@@ -2,7 +2,7 @@
 import { onActivated, ref, watch } from 'vue';
 import useVinculados from '@/composables/useVinculados';
 import useItemValue from '@/composables/useItemValue';
-import useFieldState from '@/composables/useFiledsState';
+import useFieldState from '@/composables/useFieldState';
 
 import MyDropdown from '@/components/elementos/MyDropdown.vue';
 import MyInput from '@/components/elementos/MyInput.vue';
@@ -47,6 +47,7 @@ const {
   guardarModificaciones,
   isEditing,
   cancelarModificaciones,
+  markNewRecordCreated,
 } = useFieldState();
 let formData = ref<VinculadosForm>({ ...selectedItem.value });
 const tarjetaValues = ref<string[]>([]);
@@ -135,6 +136,7 @@ const handleAgregarElemento = () => {
   };
 
   agregar(nuevoItem);
+  markNewRecordCreated();
   formData.value = { ...initialValues };
 };
 

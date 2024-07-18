@@ -23,6 +23,7 @@ const router = createRouter({
       name: 'actuaciones',
       beforeEnter: [isUserAllowed],
       component: ActuacionesView,
+      props: (route) => console.log(route)
     },
     {
       path: '/actuacion/personas/:tipo',

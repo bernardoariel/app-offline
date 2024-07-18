@@ -12,6 +12,7 @@ import useActuacion from '@/composables/useActuacion';
 import useItemValue from '@/composables/useItemValue';
 import { useRoute } from 'vue-router';
 import useDatosDiligencia from '@/composables/useDatosDiligencia';
+import useFieldState from '@/composables/useFieldState';
 import { getAge } from '@/helpers/getAge';
 import type { getColorByEstado } from '@/helpers/getColorByEstado';
 
@@ -25,6 +26,7 @@ const toast = useToast();
 const { relato } = useDatosDiligencia('sumario-denuncia');
 const { agregarNuevoItem } = useActuacion();
 const { selectedItem } = useItemValue();
+const { markRecordDeleted } = useFieldState();
 const isCreateActuation = ref(false);
 const { path } = useRoute();
 console.log('path::: ', path);
@@ -52,6 +54,7 @@ const deleteItem = (productId: any) => {
   );
   if (index !== -1) {
     props.itemsCardValue.items.splice(index, 1);
+    markRecordDeleted();
   }
 };
 interface buttonProps {

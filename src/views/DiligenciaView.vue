@@ -3,7 +3,7 @@
     <div class="text-700 text-justify">
       <div class="flex justify-content-between align-items-center mb-3">
         <Skeleton
-          v-if="loading"
+          v-if="isLoading()"
           width="10rem"
           class="mb-2"
           height="2rem"
@@ -11,7 +11,7 @@
         <div v-else class="font-medium text-3xl text-900">
           {{ primeradiligencia ? getUpperCase(primeradiligencia.titulo) : '' }}
         </div>
-        <div v-if="loading" class="flex d-row">
+        <div v-if="isLoading()" class="flex d-row">
           <Skeleton width="5rem" class="mr-2"></Skeleton>
           <Skeleton width="5rem" class="mb-2"></Skeleton>
         </div>
@@ -35,7 +35,7 @@
         <PdfViewer />
       </div>
       <ul v-else class="list-none p-0 m-0 w-full">
-        <div v-if="loading">
+        <div v-if="isLoading()">
           <Skeleton class="w-full mb-2" height="1rem"></Skeleton>
           <Skeleton class="w-full mb-2" height="1rem"></Skeleton>
           <Skeleton class="w-full mb-2" height="1rem"></Skeleton>
@@ -52,7 +52,7 @@
             v-html="processedText.header"
           ></div>
           <div v-else-if="!isEditingHeader && isEditedHeader">
-            <Skeleton v-if="loading" width="10rem" class="mb-2"></Skeleton>
+            <Skeleton v-if="isLoading()" width="10rem" class="mb-2"></Skeleton>
             {{ headerContainer }}
           </div>
 
@@ -78,7 +78,7 @@
         </li>
         <li class="py-3 px-2 border-top-1 surface-border">
           <Skeleton
-            v-if="loading"
+            v-if="isLoading()"
             class="mb-2"
             height="1rem"
             width="5rem"
@@ -86,14 +86,18 @@
           <div v-else class="text-500 font-medium mb-2">Relato</div>
           <div>
             <Skeleton
-              v-if="loading"
+              v-if="isLoading()"
               class="w-full mb-2"
               height="16rem"
             ></Skeleton>
             <Textarea v-else rows="10" class="w-full" v-model="relato" />
           </div>
         </li>
-        <Skeleton v-if="loading" class="w-full mb-2" height="3rem"></Skeleton>
+        <Skeleton
+          v-if="isLoading()"
+          class="w-full mb-2"
+          height="3rem"
+        ></Skeleton>
         <li
           v-else
           class="flex align-items-center py-3 px-2 border-top-1 surface-border"
@@ -154,6 +158,8 @@ import type {
   DatosLegales,
 } from '../interfaces/datosLegalesForm.interface';
 import useDatosLegales from '../composables/useDatosLegales';
+import useActuacionLoading from '@/composables/useActuacionLoading';
+
 import Skeleton from 'primevue/skeleton';
 
 interface Props {
@@ -168,8 +174,6 @@ const actuacionRef = ref(props.actuacion);
 
 const { generatePdf } = useViewPdf();
 const isVisible = ref<boolean>(false);
-const loading = ref(true);
-
 const {
   processedText,
   primeradiligencia,
@@ -183,6 +187,7 @@ const {
   footerTextComputed,
   relato,
 } = useDatosDiligencia(actuacionRef);
+const { isLoading } = useActuacionLoading();
 
 const { isEditedHeader, isEditedFooter } = useNewActuacion();
 const { isActuationInit, currentEditId } = useActuacion();
@@ -198,15 +203,18 @@ const {
   itemsCausaCaratula,
   selectedModusOperandi,
 } = useDatosLegales();
+
 const setHeaderFromComputed = () => {
   headerContainer.value = headerTextComputed.value;
   isEditedHeader.value = true;
 };
+
 const setHeaderFromProcessedIfEmpty = () => {
   if (headerContainer.value === '') {
     headerContainer.value = processedHeaderText.value;
   }
 };
+
 const toggleHeader = () => {
   if (isEditingHeader.value) {
     setHeaderFromComputed();
@@ -280,14 +288,6 @@ onActivated(() => {
 
 onDeactivated(() => {
   isVisible.value = false; // Set visibility to false when the component is deactivated
-});
-
-onBeforeMount(() => {
-  loading.value = true; // Set loading to true before the component is mounted
-});
-
-onMounted(() => {
-  loading.value = false; // Set loading to false after a delay
 });
 
 watch(

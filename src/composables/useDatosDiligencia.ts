@@ -1,26 +1,30 @@
 // useDatosDiligencia.ts
-import { diligencias } from '@/data/datosDiligencia';
 import { computed, ref } from 'vue';
+import { diligencias } from '@/data/datosDiligencia';
 import useItem from '@/composables/useItems';
 import type { DatosLegales } from '@/interfaces/datosLegales.interface';
 import { getTitleCase, getUpperCase } from '@/helpers/stringUtils';
+import { getDependenciaData } from '@/helpers/getDependencia'
 import { getAge } from '@/helpers/getAge';
 import useNewActuacion from './useNewActuacion';
+import useActuacion from './useActuacion';
+import { convertDate } from '../helpers/dateToString'
 
 interface ProcessedText {
   header: string;
   footer: string;
 }
 
-const { isEditedHeader, isEditedFooter } = useNewActuacion()
 const relato = ref<string>('')
 const headerContainer = ref<string>('')
 const footerContainer = ref<string>('')
 
-const useDatosDiligencia = (actuacion: ref<string>) => {
-  console.log('actuacion::: ', actuacion);
+const { isEditedHeader, isEditedFooter } = useNewActuacion()
+const { fechaCreacion } = useActuacion()
 
-  const { afectados, intervinientes } = useItem();
+const useDatosDiligencia = (actuacion: ref<string>) => {
+
+  const { afectados, intervinientes, fechaCreacionaActuacion, itemSelected, dependenciaData: dependencia } = useItem();
 
   const isEditingHeader = ref<boolean>(false);
   const isEditingFooter = ref<boolean>(false);
@@ -32,6 +36,10 @@ const useDatosDiligencia = (actuacion: ref<string>) => {
   const getStyle = (value: string): string => {
     return `<span class="text-primary font-medium"><i>${value}</i></span>`;
   };
+
+  const dependenciaDataLocal = getDependenciaData() //datos local Storage
+  // const dependenciaDataDB = JSON.parse(dependencia.value)// datos del item seleccionado, que esta en la db
+
 
   const processedAfectados = computed(() => {
     return afectados.value.map((a, index) => {
@@ -54,7 +62,7 @@ const useDatosDiligencia = (actuacion: ref<string>) => {
       const separator = isLast ? '.' : ',';
 
       return `${getStyle(getTitleCase(item.jerarquia) + ' ' + getUpperCase(item.apellido) + + ' ' + getTitleCase(item.nombre))}
-        ${getStyle(' adscripto/s a numerario de  ' + item.dependencia)}${separator}`
+          ${getStyle(' adscripto/s a numerario de  ' + item.dependencia)}${separator}`
 
     }).join(' ');
 
@@ -63,12 +71,11 @@ const useDatosDiligencia = (actuacion: ref<string>) => {
   const processedText = computed<ProcessedText>(() => {
     let header = '';
     let footer = '';
-
     if (diligenciaSeleccionada.value) {
       header = diligenciaSeleccionada.value.header
-        .replace('@dependencia', getStyle('SUB COMISARIA E3'))
-        .replace('@departamento', getStyle('RAWSON'))
-        .replace('@fechaactuacion', getStyle('a los 22 días del mes de Marzo del año Dos Mil Veinticuatro, siendo las 12:44 horas'))
+        .replace('@dependencia', getStyle(dependenciaDataLocal.dependencia.nombre))
+        .replace('@departamento', getStyle(dependenciaDataLocal.dependencia.departamento))
+        .replace('@fechaactuacion', getStyle(convertDate(itemSelected.value ? fechaCreacionaActuacion.value : fechaCreacion.value)))
         .replace('@afectados', processedAfectados.value)
         .replace('@intervinientes', processedIntervinientes.value);
 

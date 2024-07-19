@@ -1,9 +1,7 @@
-import type { DatosLegalesForm } from "@/interfaces/datosLegalesForm.interface"
 import { ref } from "vue"
-import type { DropDownInterface } from "@/interfaces/dropdown.interface";
 
 
-let nroLegajo = ref<string | null>()
+let nroLegajo = ref<number|null>()
 let selectedYear = ref<DropDownInterface>()
 let selectedSitio = ref<DropDownInterface>()
 let selectedModusOperandi = ref<DropDownInterface>()
@@ -14,26 +12,15 @@ let itemsCausaCaratula = ref<any[]>([])
 let nombreActuacion = ref<string>('Sumario por denuncia')
 
 const useDatosLegales = () => {
-
-    const initialValuesDatosLegales: DatosLegalesForm = {
-        nroLegajo: '',
-        selectYear: { name: '' },
-        selectSitio: { name: '' },
-        selectModusOperandi: { name: '' },
-        selectCausaCaratula: { name: '' },
-        opcionesCausaCaratula: [''],
-        selectJuzgadoInterviniente: { name: '' },
-    };
-
+    
     const fakeValues = {
-        nroLegajo: '101',
-        selectedYear: { name: '2024' },
-        selectedSitio: { name: 'Museo' },
-        selectedModusOperandi: { name: ' Delito Rural' },
-        itemsCausaCaratula: [{ name: 'Siniestro Vial' }, { name: 'Robo simple en grado de tentativa' }],
-        selectedJuzgadoInterviniente: { name: 'Unidad Fiscal de Prueba' }
+        nroLegajo: 101,
+        selectedYear: {name: 2024},
+        selectedSitio:{name: 'Museo'},
+        selectedModusOperandi:{name:' Delito Rural'},
+        itemsCausaCaratula:[{name:'Siniestro Vial'}, {name: 'Robo simple en grado de tentativa'}],
+        selectedJuzgadoInterviniente:{name:'Unidad Fiscal de Prueba'}
     }
-
     const addDataFake = () => {
         nroLegajo.value = fakeValues.nroLegajo;
         selectedYear.value = fakeValues.selectedYear;
@@ -42,20 +29,18 @@ const useDatosLegales = () => {
         itemsCausaCaratula.value = fakeValues.itemsCausaCaratula;
         selectedJuzgadoInterviniente.value = fakeValues.selectedJuzgadoInterviniente;
     };
-
     const resetData = () => {
         nroLegajo.value = null;
-        selectedYear.value = { name: '' };
-        selectedSitio.value = { name: '' };
-        selectedModusOperandi.value = { name: '' };
-        selectedCausaCaratula.value = { name: '' };
-        selectedJuzgadoInterviniente.value = { name: '' };
+        selectedYear.value = null;
+        selectedSitio.value = null;
+        selectedModusOperandi.value = null;
+        selectedCausaCaratula.value = null;
+        selectedJuzgadoInterviniente.value = null;
         selectedCausaCaratulaList.value = null;
         itemsCausaCaratula.value = [];
         nombreActuacion.value = 'Sumario por denuncia';
     };
-
-    const setData = (data: { datosLegales: string }) => {
+    const setData = (data) => {
         const datosLegales = JSON.parse(data.datosLegales);
         nroLegajo.value = datosLegales.nroLegajo || null;
         selectedYear.value = datosLegales.selectYear ? { name: datosLegales.selectYear } : null;
@@ -66,7 +51,6 @@ const useDatosLegales = () => {
         itemsCausaCaratula.value = datosLegales.opcionesCausaCaratula ? datosLegales.opcionesCausaCaratula.map(name => ({ name })) : [];
         nombreActuacion.value = datosLegales.nombreActuacion || 'Sumario por denuncia';
     };
-
     return {
         selectedYear,
         selectedSitio,
@@ -79,11 +63,10 @@ const useDatosLegales = () => {
         addDataFake,
         nombreActuacion,
         resetData,
-        setData,
-        initialValuesDatosLegales
+        setData
     }
 };
 
 export default useDatosLegales;
-
+  
 

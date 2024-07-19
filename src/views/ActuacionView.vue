@@ -1,39 +1,33 @@
 <script lang="ts" setup>
 //actuacionView
-import { ref, watch, onActivated, computed } from 'vue';
-import { useRouter } from 'vue-router';
-
+import { ref, watch, onActivated } from 'vue';
 import DataViewCard from '@/components/DataViewCard.vue';
-import MyDialog from '@/components/elementos/MyModal.vue';
-
 import DatosLegalesView from './DatosLegalesView.vue';
 import DiligenciaView from './DiligenciaView.vue';
-
 import useActuacion from '@/composables/useActuacion';
 import useCardInformation from '@/composables/useCardInformation';
+
 import useItem from '../composables/useItems';
+
 import useDatosLegales from '../composables/useDatosLegales';
 import useDatosDiligencia from '@/composables/useDatosDiligencia';
 import useSaveData from '@/composables/useSaveData';
 import useItemValue from '@/composables/useItemValue';
 import useActuacionData from '@/composables/useActuacionData';
 import { useDialog } from '../composables/useDialog';
-import useFieldState from '@/composables/useFieldState';
-import useLegalesState from '@/composables/useLegalesState';
-
+import { useRouter } from 'vue-router';
+import MyDialog from '@/components/elementos/MyModal.vue';
 const router = useRouter();
-
+const { isDialogVisible, confirmNavigation , hideDialog,pendingRoute } = useDialog();
 interface Props {
   actuacion: string;
   id?: number;
   actuacionData?: any;
 }
 const props = defineProps<Props>();
-
 const actuacionRef = ref(props.actuacion);
 const active = ref(0);
 
-const { dialogState, hideDialog, confirmNavigation } = useDialog();
 const { agregarNuevoItem, currentEditId, toogleDateActuacion } = useActuacion();
 const { set: setActuacionData } = useActuacionData();
 const { fetchActuacionById } = useSaveData();
@@ -42,24 +36,7 @@ const {
   setData: setDatosLegales,
   nroLegajo,
 } = useDatosLegales();
-const { setAll } = useItem();
-const { relato } = useDatosDiligencia(props.actuacion);
-const { addDataFake } = useDatosLegales();
-const { cardInformationKeys, cardInformation } =
-  useCardInformation(actuacionRef);
-const { prepararNuevoItem } = useItemValue();
-const {
-  resetNewRecordCreated,
-  resetUnsavedChanges,
-  markNewRecordCreated,
-  resetRecordDeleted,
-  isUnsavedChange,
-  areAnyFieldsModifiedGlobally,
-  isNewRecordCreated,
-  isRecordDeleted,
-} = useFieldState();
-const { resetFields: resetLegalFields, isAnyFieldModified: isLegalModified } =
-  useLegalesState();
+
 setActuacionData(props.actuacionData);
 
 onActivated(async () => {
@@ -73,12 +50,20 @@ onActivated(async () => {
     currentEditId.value = props.id;
   }
 });
+
+const { setAll } = useItem();
+
+const { relato } = useDatosDiligencia(props.actuacion);
+const { addDataFake } = useDatosLegales();
+const { cardInformationKeys, cardInformation } =
+  useCardInformation(actuacionRef);
+const { prepararNuevoItem } = useItemValue();
+
 const handleClick = (event: { ctrlKey: any; altKey: any }) => {
   if (event.ctrlKey && event.altKey) {
     // console.log(`Ctrl + Alt + Click detectado: ${actuacionRef}`);
     setAll();
     addDataFake();
-    markNewRecordCreated();
     relato.value = 'esto es una prueba del relato';
   }
 };
@@ -94,86 +79,54 @@ const handleNuevoItem = (key: string) => {
   prepararNuevoItem();
   agregarNuevoItem(key);
 };
-
 const dialogButtons = [
-  {
-    label: 'Aceptar',
-    class: 'p-button-primary',
-    icon: 'pi pi-check',
-    action: 'accept',
-    focus: false,
-  },
-  {
-    label: 'Cancelar',
-    class: 'p-button-secondary',
-    icon: 'pi pi-times',
-    action: 'cancel',
-    focus: true,
-  },
+    {
+        label: 'Aceptar',
+        class: 'p-button-primary',
+        icon: 'pi pi-check',
+        action: 'accept',
+    },
+    {
+        label: 'Cancelar',
+        class: 'p-button-secondary',
+        icon: 'pi pi-times',
+        action: 'cancel',
+    },
 ];
 
 const handleButtonClick = (action: string) => {
-  if (action !== 'accept') {
-    // Manténgo al usuario en la página actual sin borrar los estados pendientes por guardar
-    hideDialog();
-    dialogState.value.pendingRoute = null;
-    return;
+    if (action !== 'accept') {
+      hideDialog();// Mantén al usuario en la página actual
+      pendingRoute.value = null
+    }
+    confirmNavigation(); // Proceder con la navegación
   }
-  resetUnsavedChanges();
-  resetNewRecordCreated();
-  resetLegalFields();
-  resetRecordDeleted();
-  confirmNavigation(); // Proceder con la navegación
-};
-watch(
-  () => dialogState.value.isDialogVisible,
-  (newVal) => {
-    if (newVal === false) dialogState.value.pendingRoute = null;
-  }
-);
 
-const isAnyChange = computed(() => {
-  return (
-    isUnsavedChange.value ||
-    areAnyFieldsModifiedGlobally() ||
-    isNewRecordCreated.value ||
-    isRecordDeleted.value ||
-    isLegalModified.value
-  );
-});
 </script>
 
 <template>
   <MyDialog
-    :visible="dialogState.isDialogVisible"
-    :title="dialogState.header.title"
-    :buttons="dialogButtons"
-    @update:visible="dialogState.isDialogVisible = $event"
-    @button-click="handleButtonClick"
-  >
+        :visible="isDialogVisible"
+        title="Consulta del Sistema"
+        :buttons="dialogButtons"
+        @update:visible="isDialogVisible = $event"
+        @button-click="handleButtonClick"
+    >
     <template #body>
-      <div
-        class="modal-body flex flex-col items-center w-full"
-        style="padding: 0"
-      >
-        <div class="flex items-center w-full justify-between">
-          <i
-            class="text-red-500 text-7xl mt-3 ml-5"
-            :class="[dialogState.body.colorClass, dialogState.body.icon]"
-          ></i>
-          <p class="font-bold text-xl ml-4">
-            {{ dialogState.body.answer }}
+      <div class="modal-body">
+        <i
+          class="pi pi-exclamation-triangle"
+          :style="{ fontSize: '3rem', color: 'orange' }"
+        ></i>
+        <div class="flex justify-content-center" style="width: 100%">
+          <p class="text-left font-bold">
+            ¿Deseas Salir sin guardar los datos?
           </p>
         </div>
-        <p
-          class="text-lg ml-8 text-center text-gray-600"
-          style="margin-top: -20px"
-        >
-          {{ dialogState.body.comments }}
-        </p>
       </div>
+      
     </template>
-  </MyDialog>
+    </MyDialog>
   <div class="grid">
     <div class="col-5">
       <Card>
@@ -214,7 +167,7 @@ const isAnyChange = computed(() => {
                 severity="danger"
                 value="Edición"
                 class="px-2"
-              />
+              ></Tag>
               <Tag
                 @click="handleClick"
                 v-else
@@ -222,7 +175,7 @@ const isAnyChange = computed(() => {
                 severity="success"
                 value="Nueva"
                 class="px-2"
-              />
+              ></Tag>
               <Button
                 @click="active = 0"
                 rounded
@@ -237,11 +190,6 @@ const isAnyChange = computed(() => {
                 class="button"
                 :outlined="active !== 1"
               />
-            </div>
-            <div>
-              <small class="text-sm">{{
-                isAnyChange ? 'Cambios Pendientes' : 'Sin Cambios'
-              }}</small>
             </div>
           </div>
         </template>
@@ -309,8 +257,10 @@ const isAnyChange = computed(() => {
 }
 .modal-body {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding-top: 0.5rem;
+  padding-left: 4rem; /* Padding solo en los lados */
+  padding-right: 3rem; /* Padding solo en los lados */
+  /* gap: 1rem; */
 }
 </style>

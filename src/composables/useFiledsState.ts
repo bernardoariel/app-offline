@@ -1,28 +1,25 @@
-import { computed, reactive, ref } from 'vue';
+import { reactive } from 'vue';
 
 interface FieldState {
   id: string;
   modifiedData: Record<string, any>;
-  pristine: boolean;
-  isModified: boolean
+  pristine:boolean;
 }
 
-const statesID = reactive<FieldState[]>([])
-const isNewRecordCreated = ref(false)
-const isRecordDeleted = ref(false)
+const statesID =reactive<FieldState[]>([])
+
 
 export default function useFieldState() {
-
-  const agregarIdState = (id: string, data: Record<string, any>) => {
-
-    if (!id) return
+ 
+  const agregarIdState = (id: string,data: Record<string, any>) => {
+    
+    if(!id) return
     statesID.push({
       id: id,
       modifiedData: { ...data },
       pristine: true,
-      isModified: false
     });
-
+   
   };
 
   const setPristineById = (id: string, pristine: boolean) => {
@@ -34,15 +31,14 @@ export default function useFieldState() {
 
   const setModifiedData = (id: string | number, campo: string, valor: any) => {
 
-    if (!id) return
+    if (!id ) return
     const index = statesID.findIndex((state) => state.id === id);
     if (index !== -1) {
       statesID[index].modifiedData[campo] = valor;
-      statesID[index].isModified = true;
     }
   };
 
-  const findById = (id: string) => {
+  const findById = (id:string) =>{
     const index = statesID.findIndex((state) => state.id === id);
     return {
       index,
@@ -53,57 +49,40 @@ export default function useFieldState() {
   const guardarModificaciones = (id: string) => {
     const { item } = findById(id);
     if (item) {
-      const modifiedData = { ...item.modifiedData };
+      const modifiedData = item.modifiedData;
+    
+      // Opcional: Limpia modifiedData después de "guardar"
+      item.modifiedData = {};
       item.pristine = true;
+    
+      // Devuelve los datos modificados
       return modifiedData;
     }
-    return null;
+    return null; // Devuelve null si no se encuentra el ítem
   };
 
   const cancelarModificaciones = (id: string) => {
     const { item } = findById(id);
     if (item) {
+      // Limpia modifiedData y lo marca como pristine para realmente "cancelar" las modificaciones
       item.modifiedData = {};
       item.pristine = true;
     }
   };
 
   const isEditing = (id: string | null) => {
+   
     if (!id) return false
     const state = statesID.find(state => state.id === id);
     return state ? state.pristine : false;
   };
-
   const eliminarIdState = (id: string) => {
     const { index } = findById(id);
     if (index !== -1) {
-      statesID.splice(index, 1);
+      statesID.splice(index, 1); 
     }
   };
-
-  const getAllUnsavedChanges = () => {
-    return statesID
-      .filter((state) => state.isModified)
-      .map((state) => ({
-        id: state.id,
-        modifiedData: { ...state.modifiedData },
-      }));
-  };
-
-  const isUnsavedChange = computed(() => {
-    return statesID.some((state) => state.isModified);
-  });
-
-  const resetUnsavedChanges = () => {
-    statesID.forEach(state => {
-      state.isModified = false;
-    });
-  };
-
-  const areAnyFieldsModifiedGlobally = () => {
-    return statesID.some((state) => state.isModified);
-  };
-
+  
   return {
     statesID,
     agregarIdState,
@@ -113,16 +92,6 @@ export default function useFieldState() {
     cancelarModificaciones,
     isEditing,
     eliminarIdState,
-    resetStates: () => statesID.splice(0, statesID.length),
-    isNewRecordCreated,
-    getAllUnsavedChanges,
-    isUnsavedChange,
-    resetUnsavedChanges,
-    areAnyFieldsModifiedGlobally,
-    markNewRecordCreated: () => isNewRecordCreated.value = true,
-    resetNewRecordCreated: () => isNewRecordCreated.value = false,
-    isRecordDeleted,
-    markRecordDeleted: () => isRecordDeleted.value = true,
-    resetRecordDeleted: () => isRecordDeleted.value = false,
+    resetStates:()=> statesID.splice(0, statesID.length)
   };
 }

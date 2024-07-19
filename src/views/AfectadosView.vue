@@ -326,7 +326,7 @@ watch(selectedItem, (newVal: any) => {
     <template #content>
       <div class="grid">
         <div class="col-12">
-          <pre>{{ values }}</pre>
+          <!-- <pre>{{ values }}</pre> -->
           <label for="dropdown">Seleccione tipo de Denunciante</label>
           <MyDropdown class="mt-2" :items="mapToDropdownItems(tarjetaValues)" filter v-model="tipoDenuncianteSelect"
             placeholder="Seleccione tipo de denunciante" @change="handleDropdownChange('typeAfectado', $event)"

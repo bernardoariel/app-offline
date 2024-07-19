@@ -1,12 +1,12 @@
 import { reactive, ref, watch, type Ref } from 'vue';
 import { v4 as uuid } from 'uuid';
 import type { AfectadosForm } from "@/interfaces/afectadosForm.interface";
-import useFieldState from './useFieldState';
+import useFieldState from './useFiledsState';
 
 
 // Interfaces para los elementos de los afectados y el composable
 interface newItem {
-  name: string;
+  name: string; 
   code: string;
 }
 
@@ -78,7 +78,7 @@ const { agregarIdState } = useFieldState();
 const agregarAfectado = (nuevoAfectado: AfectadosForm) => {
   const id = uuid();
   afectados.push({ ...nuevoAfectado, id });
-  agregarIdState(id, {});
+  agregarIdState(id,{});
   resetInput();
 };
 

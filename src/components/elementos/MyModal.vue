@@ -19,8 +19,8 @@
           :class="button.class"
           :icon="button.icon"
           :iconPos="button.iconPos"
-          :autofocus="button.focus || index === 1"
           @click="onButtonClick(button.action)"
+          :autofocus="index === 0"
         />
       </div>
     </template>
@@ -36,7 +36,6 @@ interface buttonProps {
   icon?: string;
   iconPos?: 'left' | 'right' | 'top' | 'bottom';
   action: string;
-  focus: boolean;
 }
 interface Props {
   visible: boolean;

@@ -1,61 +1,54 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { RouterView, useRoute, useRouter } from 'vue-router';
-
+import { RouterView, useRoute } from 'vue-router';
 
 import { usePrimeVue } from 'primevue/config';
 import ToolbarComponent from './components/ToolbarComponent.vue';
 import useTheme from './composables/useTheme';
-import MyDialog from '@/components/elementos/MyModal.vue'
-import { useDialog } from './composables/useDialog';
+
 const PrimeVue = usePrimeVue();
-const { changeThemeCurrent, loadFontSize } = useTheme()
+const { changeThemeCurrent, loadFontSize } = useTheme();
+const route = useRoute();
 const isLoading = ref(false); // Estado de carga
 const themeLink = document.querySelector('link#theme-link');
-const { isDialogVisible, showDialog, hideDialog } = useDialog();
-const route = useRoute()
 
 if (themeLink) {
-    // Verificar si el atributo href está presente y no está vacío
-    const themeHref = themeLink.getAttribute('href');
+  // Verificar si el atributo href está presente y no está vacío
+  const themeHref = themeLink.getAttribute('href');
 
-    if (themeHref) {
-        // El CSS del tema se ha cargado correctamente
-        console.log('El tema se ha cargado correctamente:', themeHref);
-    } else {
-        console.error('El atributo href del enlace del tema está vacío.');
-    }
+  if (themeHref) {
+    // El CSS del tema se ha cargado correctamente
+    console.log('El tema se ha cargado correctamente:', themeHref);
+  } else {
+    console.error('El atributo href del enlace del tema está vacío.');
+  }
 } else {
-    console.error('No se encontró el enlace del tema en el DOM.');
+  console.error('No se encontró el enlace del tema en el DOM.');
 }
 
-
-
 onMounted(() => {
-  
   loadFontSize();
   // Cargar el nombre del tema del almacenamiento local
   const savedTheme = localStorage.getItem('currentTheme');
-  const themeName = savedTheme ? JSON.parse(savedTheme).name : 'lara-light-blue';
+  const themeName = savedTheme
+    ? JSON.parse(savedTheme).name
+    : 'lara-light-blue';
   changeThemeCurrent(themeName);
-  
- 
+
   // Aplicar el tema utilizando PrimeVue.changeTheme
   PrimeVue.changeTheme('lara-light-blue', themeName, 'theme-link', () => {
-    isLoading.value = false; 
-  }); 
+    isLoading.value = false;
+  });
 });
-
-
 </script>
 
 <template>
   <div v-if="!isLoading">
     <template v-if="route.name !== 'denegado'">
-        <div class="toolbar-container">
-          <ToolbarComponent />
-        </div>
-      </template>
+      <div class="toolbar-container">
+        <ToolbarComponent />
+      </div>
+    </template>
     <div class="router-view-container">
       <RouterView v-slot="{ Component, route }">
         <keep-alive>
@@ -64,14 +57,17 @@ onMounted(() => {
       </RouterView>
     </div>
   </div>
-  
+
   <div v-else class="loader-container">
-    <ProgressSpinner style="width:100px; height: 100px" strokeWidth="5" fill="var(--surface-ground)"
-      animationDuration=".5s" aria-label="Custom ProgressSpinner" />
+    <ProgressSpinner
+      style="width: 100px; height: 100px"
+      strokeWidth="5"
+      fill="var(--surface-ground)"
+      animationDuration=".5s"
+      aria-label="Custom ProgressSpinner"
+    />
     <h1 class="loading-message">Iniciando sistema offline...</h1>
   </div>
- 
-  
 </template>
 
 <style>

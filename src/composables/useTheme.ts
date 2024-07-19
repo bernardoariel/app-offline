@@ -49,7 +49,6 @@ const useTheme = () => {
 
     const loadThemeFromLocalStorage = () => {
         const savedTheme = localStorage.getItem('currentTheme');
-        const savedFontSize = localStorage.getItem('fontSize');
 
         if (savedTheme) {
             try {
@@ -60,10 +59,6 @@ const useTheme = () => {
             }
         } else {
             currentTheme.value = { ...DEFAULT_THEME };
-        }
-
-        if (savedFontSize) {
-            currentTheme.value.fontSize = parseInt(savedFontSize);
         }
 
         applyTheme();
@@ -78,9 +73,8 @@ const useTheme = () => {
     const changeFontSize = (size: number) => {
         currentTheme.value.fontSize = size;
         document.documentElement.style.fontSize = `${size}px`;
-        localStorage.setItem('fontSize', size.toString());
+        saveThemeToLocalStorage();
     };
-
     watch(currentTheme, saveThemeToLocalStorage, { deep: true });
 
     const themesLight = themes.map((theme: Theme) => ({

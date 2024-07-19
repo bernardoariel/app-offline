@@ -260,7 +260,6 @@ const handleAgregarElemento = () => {
   };
   agregar(nuevoItem);
   formData.value = { ...initialValues };
-  console.log("laksdjflkasdjfklasdjflkasjfkl")
   apellido.value = "";
   telefono.value=""
   profesion.value=""

@@ -95,7 +95,7 @@ let [nacionalidadSelect, nacionalidadSelectAttrs] = defineField("nacionalidadSel
 let [estadoCivilSelect, estadoCivilSelectAttrs] = defineField("estadoCivilSelect");
 let [instruccionSelect, instruccionSelectAttrs] = defineField("instruccionSelect");
 let [fechaNacimiento, fechaNacimientoAttrs] = defineField("fechaNacimiento");
-
+const firsDateChangeDone = ref(true);
 const {
   editar,
   agregar,
@@ -216,12 +216,22 @@ const getInputValue = (campo: keyof AfectadosForm) => {
 };
 
 const handleInputChange = (campo: string | number, event: Event) => {
-  const valor = (event.target as HTMLInputElement).value;
+  const valor = (event.target as HTMLInputElement).value
   formData.value = { ...formData.value, [campo]: valor };
-
   const itemId = formData.value.id!;
   setPristineById(itemId, false);
-
+  const campoStr = typeof campo === "number" ? campo.toString() : campo;
+  setModifiedData(itemId, campoStr, valor);
+};
+const handleDateChange = (campo: string | number, event: Event) => {
+  if(firsDateChangeDone.value){
+    firsDateChangeDone.value=false
+    return
+  }
+  const valor = event
+  formData.value = { ...formData.value, [campo]: valor };
+  const itemId = formData.value.id!;
+  setPristineById(itemId, false);
   const campoStr = typeof campo === "number" ? campo.toString() : campo;
   setModifiedData(itemId, campoStr, valor);
 };
@@ -292,6 +302,7 @@ const handleModificarElemento = () => {
 };
 
 watch(selectedItem, (newVal: any) => {
+  firsDateChangeDone.value=true
   if (!newVal) {
     formData.value = { ...initialValues };
     apellido.value = "";
@@ -320,6 +331,7 @@ watch(selectedItem, (newVal: any) => {
     updateDataWithForm(formData)
   }
 });
+
 </script>
 <template>
   <Card>
@@ -347,7 +359,7 @@ watch(selectedItem, (newVal: any) => {
         <div class="col-4">
           <label for="dropdown">N° de doc.</label>
           <MyInput type="number" class="mt-2" v-model="nroDocumento" :color="false" v-bind="nroDocumentoAttrs"
-            :error="errors.nroDocumento" placeholder="Ingrese N° de doc" />
+            :error="errors.nroDocumento" placeholder="Ingrese N° de doc" @input="handleInputChange('nroDocumento', $event)"  @blur="() => handleBlur('nroDocumento')" />
         </div>
         <div class="col-4">
           <label for="dropdown">Sexo</label>
@@ -360,7 +372,7 @@ watch(selectedItem, (newVal: any) => {
         <div class="col-6">
           <label for="dropdown">Apellido</label>
           <MyInput type="text" class="mt-2" v-model="apellido" v-bind="apellidoAttrs" :color="false" :error="errors.apellido"
-            placeholder="Ingrese apellido" />
+            placeholder="Ingrese apellido" @input="handleInputChange('apellido', $event)"  @blur="() => handleBlur('apellido')" />
         </div>
         <div class="col-6">
           <label for="dropdown">Nombre</label>
@@ -370,7 +382,7 @@ watch(selectedItem, (newVal: any) => {
         </div>
         <div class="col-3">
           <label for="dropdown">Fecha de nac.</label>
-          <MyInputMask class="mt-2 w-full" mask="99/99/9999" slotChar="dd/mm/yyyy" placeholder="Ingrese fecha"
+          <MyInputMask class="mt-2 w-full" mask="99/99/9999" slotChar="dd/mm/yyyy" placeholder="Ingrese fecha" @update:modelValue="handleDateChange('fecha', $event)"  
             v-model="fechaNacimiento" v-bind="fechaNacimientoAttrs" :color="false" :error="errors.fechaNacimiento" />
         </div>
         <div class="col-3">
@@ -393,7 +405,7 @@ watch(selectedItem, (newVal: any) => {
         </div>
         <div class="col-12">
           <label for="dropdown">Domicilio de residencia</label>
-          <MyTextArea class="mt-2 w-full" placeholder="Ingrese Domicilio de residencia" v-bind="domicilioAttrs"
+          <MyTextArea class="mt-2 w-full" placeholder="Ingrese Domicilio de residencia" v-bind="domicilioAttrs" @input="handleInputChange('domicilioResidencia', $event)"  @blur="() => handleBlur('domicilioResidencia')"
             v-model="domicilio" :error="errors.domicilio" />
         </div>
         <div class="col-3">

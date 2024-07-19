@@ -28,7 +28,6 @@ watch(() => props.modelValue, (newValue) => {
 });
 
 const updateValue = (value: string) => {
-  console.log("esto no se ve nunca")
   // const target = event as HTMLInputElement;
   emits('update:modelValue', value);
 };

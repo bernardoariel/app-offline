@@ -22,7 +22,7 @@ const years = {
 export const convertDate = (isoDateString: string): string => {
     const date = new Date(isoDateString);
 
-    const day = date.getDay();
+    const day = date.getDate();
     const month = date.getMonth();
     const year = date.getFullYear();
     const hours = date.getHours();
@@ -37,5 +37,3 @@ export const convertDate = (isoDateString: string): string => {
 
     return `a los ${dayText} días del mes de ${monthText} del año ${yearText}, siendo las ${hoursText}:${minutesText} horas`;
 };
-
-

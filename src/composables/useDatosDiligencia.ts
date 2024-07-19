@@ -67,6 +67,7 @@ const useDatosDiligencia = (actuacion: ref<string>) => {
     }).join(' ');
 
   });
+
   const processedText = computed<ProcessedText>(() => {
     let header = '';
     let footer = '';

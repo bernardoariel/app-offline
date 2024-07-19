@@ -71,12 +71,11 @@ const useSaveData = () => {
       error.value = 'Invalid id';
       return;
     }
-
     try {
       await db.open();
       await db.actuaciones.update(data.id, {
         nroLegajoCompleto: nroLegajo.value,
-        fechaCreacion: getFormattedDate.value,
+        fechaCreacion: fechaCreacion.value,
         nombreActuacion: nombreActuacion.value,
         juzgadoInterviniente: selectedJuzgadoInterviniente.value?.name || '',
         afectados: JSON.stringify(data.afectados),

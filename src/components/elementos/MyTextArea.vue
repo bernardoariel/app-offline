@@ -2,13 +2,14 @@
 import { defineEmits } from "vue";
 
 interface Props {
-    color: boolean,
+    color?: boolean,
     error?: string,
     modelValue: string
     placeholder?: string
 }
 const props = withDefaults(defineProps<Props>(), {
-    color: false
+    color: false,
+    modelValue: '' 
 })
 
 const emit = defineEmits(['update:modelValue', 'blur'])
@@ -18,10 +19,15 @@ const emit = defineEmits(['update:modelValue', 'blur'])
 
 <template>
     <div>
-        <textarea rows="5" cols="120" :value="modelValue" :placeholder
-            @input="$emit('update:modelValue', ($event.target as HTMLInputElement)?.value ?? '')" @blur="$emit('blur')"
-            :class="{ 'surface-100': props.color, 'border-red-500': props.error ? true : false }"
-            class="w-full border-round-sm" />
+        <Textarea 
+            rows="5" cols="120" 
+            :value="modelValue" 
+            :placeholder
+            @input="$emit('update:modelValue', ($event.target as HTMLInputElement)?.value ?? '')"
+            @blur="$emit('blur')"
+            :class="{ 'surface-100': props.color, 
+            'border-red-500': props.error ? true : false }"
+            class="w-full border-round-sm"/>
         <span class="text-red-400" v-if="props.error">{{ props.error }}</span>
     </div>
 </template>

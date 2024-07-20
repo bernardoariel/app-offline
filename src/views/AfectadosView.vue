@@ -28,6 +28,7 @@ const validationSchema = yup.object({
   nombre: yup.string().required().min(3),
   apellido: yup.string().required().min(3),
   domicilio: yup.string().required().min(8),
+  // telefono: yup.number(),
   nroDocumento: yup.number().required('Ingrese un número documento válido').min(5000000, 'Ingrese un número documento válido'),
   fechaNacimiento: yup.string().required('La fecha de nacimiento es obligatoria').test(
     'format-valid-check',
@@ -81,7 +82,8 @@ const { defineField, values, errors } = useForm({
 const hasErrors = () => {
   const keys1 = Object.keys(validationSchema.fields);
   const keys2 = Object.keys(values);
-  const areKeysEqual = keys1.length === keys2.length && keys1.every((key) => keys2.includes(key));
+  const areKeysEqual = keys1.length < keys2.length && keys1.every((key) => keys2.includes(key));
+
   return Object.keys(errors.value).length > 0 || !areKeysEqual;
 };
 let [nombre, nombreAttrs] = defineField("nombre");
@@ -95,18 +97,21 @@ let [nacionalidadSelect, nacionalidadSelectAttrs] = defineField("nacionalidadSel
 let [estadoCivilSelect, estadoCivilSelectAttrs] = defineField("estadoCivilSelect");
 let [instruccionSelect, instruccionSelectAttrs] = defineField("instruccionSelect");
 let [fechaNacimiento, fechaNacimientoAttrs] = defineField("fechaNacimiento");
+let [telefono] = defineField("telefono");
+let [email] = defineField("email");
+let [profesion] = defineField("profesion");
 const firsDateChangeDone = ref(true);
 const {
   editar,
   agregar,
   resetAllDropdown,
   initialValues,
-  selectedType,
-  selectedDocumento,
-  selectedSexo,
-  selectedNacionalidad,
-  selectedEstadoCivil,
-  selectedInstruccion,
+  // selectedType,
+  // selectedDocumento,
+  // selectedSexo,
+  // selectedNacionalidad,
+  // selectedEstadoCivil,
+  // selectedInstruccion,
 } = useAfectados();
 
 const { selectedItem } = useItemValue();
@@ -156,12 +161,12 @@ const tarjetaValues = ref<string[]>([]);
 onActivated(() => {
   tarjetaValues.value = obtenerTarjeta("afectados")?.valor as string[];
   if (selectedItem.value) {
-    selectedType.value = { name: selectedItem.value.typeAfectado };
-    selectedDocumento.value = { name: selectedItem.value.typeDocumento };
-    selectedSexo.value = { name: selectedItem.value.typeSexo };
-    selectedNacionalidad.value = { name: selectedItem.value.nacionalidad };
-    selectedEstadoCivil.value = { name: selectedItem.value.estadoCivil };
-    selectedInstruccion.value = { name: selectedItem.value.instruccion };
+    // selectedType.value = { name: selectedItem.value.typeAfectado };
+    // selectedDocumento.value = { name: selectedItem.value.typeDocumento };
+    // selectedSexo.value = { name: selectedItem.value.typeSexo };
+    // selectedNacionalidad.value = { name: selectedItem.value.nacionalidad };
+    // selectedEstadoCivil.value = { name: selectedItem.value.estadoCivil };
+    // selectedInstruccion.value = { name: selectedItem.value.instruccion };
     formData.value = { ...selectedItem.value };
     updateDataWithForm(formData)
   }
@@ -169,6 +174,9 @@ onActivated(() => {
 
 const updateDataWithForm = (form: any) => {
   if (form) {
+    telefono.value=formData.value.telefono
+    profesion.value=formData.value.profesion
+    email.value=formData.value.email
     apellido.value = formData.value.apellido;
     nombre.value = formData.value.nombre
     domicilio.value = formData.value.domicilioResidencia
@@ -263,7 +271,21 @@ const handleAgregarElemento = () => {
   };
   
   agregar(nuevoItem);
-  formData.value = { ...initialValues };
+  formData.value = { ...nuevoItem };
+  apellido.value = "";
+  nombre.value = ""
+  domicilio.value = ""
+  sexoSelect.value = {name:"Seleccione sexo"}
+  tipoDenuncianteSelect.value ={name:"Seleccione tipo"}
+  tipoDocSelect.value = {name:"Seleccione tipo"}
+  nacionalidadSelect.value = {name:"Nacionalidad"}
+  estadoCivilSelect.value = {name:"Estado Civil"}
+  instruccionSelect.value = {name:"instrucción"}
+  nroDocumento.value = ""
+  fechaNacimiento.value = ""
+  telefono.value=""
+  profesion.value=""
+  email.value=""
   resetAllDropdown();
   resetIsEditedHeader();
 };
@@ -305,6 +327,9 @@ watch(selectedItem, (newVal: any) => {
   firsDateChangeDone.value=true
   if (!newVal) {
     formData.value = { ...initialValues };
+    telefono.value= ""
+    profesion.value= ""
+    email.value= ""
     apellido.value = "";
     nombre.value = ""
     domicilio.value = ""
@@ -320,12 +345,12 @@ watch(selectedItem, (newVal: any) => {
     
   } else {
     
-    selectedType.value = { name: newVal.typeAfectado };
-    selectedDocumento.value = { name: newVal.typeDocumento };
-    selectedSexo.value = { name: newVal.typeSexo };
-    selectedNacionalidad.value = { name: newVal.nacionalidad };
-    selectedEstadoCivil.value = { name: newVal.estadoCivil };
-    selectedInstruccion.value = { name: newVal.instruccion };
+    // selectedType.value = { name: newVal.typeAfectado };
+    // selectedDocumento.value = { name: newVal.typeDocumento };
+    // selectedSexo.value = { name: newVal.typeSexo };
+    // selectedNacionalidad.value = { name: newVal.nacionalidad };
+    // selectedEstadoCivil.value = { name: newVal.estadoCivil };
+    // selectedInstruccion.value = { name: newVal.instruccion };
 
     formData.value = { ...newVal };
     updateDataWithForm(formData)
@@ -406,21 +431,21 @@ watch(selectedItem, (newVal: any) => {
         <div class="col-12">
           <label for="dropdown">Domicilio de residencia</label>
           <MyTextArea class="mt-2 w-full" placeholder="Ingrese Domicilio de residencia" v-bind="domicilioAttrs" @input="handleInputChange('domicilioResidencia', $event)"  @blur="() => handleBlur('domicilioResidencia')"
-            v-model="domicilio" :error="errors.domicilio" />
+            v-model="domicilio" :error="errors.domicilio" :color="false"/>
         </div>
         <div class="col-3">
           <label for="dropdown">Teléfono</label>
-          <MyInput type="text" class="mt-2" placeholder="Ingrese teléfono" :value="getInputValue('telefono')"
-            @input="handleInputChange('telefono', $event)" @blur="() => handleBlur('telefono')" :color="false" />
+          <MyInput type="number" class="mt-2" placeholder="Ingrese teléfono"  v-model="telefono" 
+            @input="handleInputChange('telefono', $event)" @blur="() => handleBlur('telefono')" :color="false" :error="errors.telefono" />
         </div>
         <div class="col-3">
           <label for="dropdown">Email</label>
-          <MyInput type="text" class="mt-2" placeholder="Ingrese email" :value="getInputValue('email')"
+          <MyInput type="text" class="mt-2" placeholder="Ingrese email" v-model="email" 
             @input="handleInputChange('email', $event)" @blur="() => handleBlur('email')" :color="false"/>
         </div>
         <div class="col-3">
           <label for="dropdown">Profesión</label>
-          <MyInput type="text" class="mt-2" placeholder="Ingrese Profesión" :value="getInputValue('profesion')"
+          <MyInput type="text" class="mt-2" placeholder="Ingrese Profesión" v-model="profesion" 
             @input="handleInputChange('profesion', $event)" @blur="() => handleBlur('profesion')" :color="false" />
         </div>
         <div class="col-3">

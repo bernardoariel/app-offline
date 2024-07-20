@@ -84,7 +84,7 @@ export const vinculadosFake = [
   "typeSexo": "Femenino",
   "nacionalidad": "Argentina",
   "estadoCivil": "Casado/a",
-  "instruccion": "Sabe leer y escribir",
+  "instruccion": "Sabe leer y sabe firmar",
   "id": "b234c567-d890-e123-f456-g78901h234i5"
   },
   {

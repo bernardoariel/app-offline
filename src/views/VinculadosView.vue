@@ -81,8 +81,10 @@ const validationSchema = yup.object({
   instruccionSelect: yup.object().shape({
     name: yup.string().required('Seleccione un opción').oneOf(mapToArray(instruccionDropdown), 'Selecciones una opción válida'),
   }),
-
+  
 });
+
+console.log('(mapToArray(instruccionDropdown)::: ', (mapToArray(instruccionDropdown)))
 const { defineField, values, errors } = useForm({
   validationSchema
 });

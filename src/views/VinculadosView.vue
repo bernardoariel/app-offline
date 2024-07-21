@@ -343,18 +343,14 @@ watch(selectedItem, (newVal: any) => {
           <MyDropdown class="mt-2" :items="mapToDropdownItems(tarjetaValues)" filter v-model="tipoDenuncianteSelect"
             placeholder="Seleccione tipo de denunciante" @change="handleDropdownChange('typeAfectado', $event)"
             :error="errors.tipoDenuncianteSelect" v-bind="tipoDenuncianteSelectAttrs"  :color="false"/>
-          <span class="text-red-400" v-if="errors.tipoDenuncianteSelect ? true : false">
-            {{ errors.tipoDenuncianteSelect }}
-          </span>
+          
         </div>
         <div class="col-4">
           <label for="dropdown">Tipo de doc.</label>
           <MyDropdown class="mt-2" :items="documentosDropdown" :color="false" v-model="tipoDocSelect" v-bind="tipoDocSelectAttrs"
             :error="errors.tipoDocSelect" @change="(newValue) => handleDropdownChange('typeDocumento', newValue)"
             placeholder="Seleccione tipo de doc." filter  />
-          <span class="text-red-400" v-if="errors.tipoDocSelect ? true : false">
-            {{ errors.tipoDocSelect }}
-          </span>
+         
         </div>
         <div class="col-4">
           <label for="dropdown">N° de doc.</label>
@@ -365,9 +361,7 @@ watch(selectedItem, (newVal: any) => {
           <label for="dropdown">Sexo</label>
           <MyDropdown class="mt-2" :items="sexoDropdown" v-model="sexoSelect" placeholder="Seleccione sexo"
             @change="handleDropdownChange('typeSexo', $event)" :error="errors.sexoSelect" v-bind="sexoSelectAttrs" :color="false" filter />
-          <span class="text-red-400" v-if="errors.sexoSelect ? true : false" >
-            {{ errors.sexoSelect }}
-          </span>
+          
         </div>
         <div class="col-6">
           <label for="dropdown">Apellido</label>
@@ -390,18 +384,14 @@ watch(selectedItem, (newVal: any) => {
           <MyDropdown class="mt-2" :items="nacionalidadDropdown" v-model="nacionalidadSelect"
             v-bind="nacionalidadSelectAttrs" placeholder="Nacionalidad"
             @change="handleDropdownChange('nacionalidad', $event)" :error="errors.nacionalidadSelect" filter :color="false" />
-          <span class="text-red-400" v-if="errors.nacionalidadSelect ? true : false" >
-            {{ errors.nacionalidadSelect }}
-          </span>
+          
         </div>
         <div class="col-3">
           <label for="dropdown">Estado Civil</label>
           <MyDropdown class="mt-2" :items="estadoCivilDropdown" v-model="estadoCivilSelect" placeholder="Estado Civil"
             @change="handleDropdownChange('estadoCivil', $event)" :error="errors.estadoCivilSelect" :color="false" filter
             v-bind="estadoCivilSelectAttrs" />
-          <span class="text-red-400" v-if="errors.estadoCivilSelect ? true : false">
-            {{ errors.estadoCivilSelect }}
-          </span>
+          
         </div>
         <div class="col-12">
           <label for="dropdown">Domicilio de residencia</label>
@@ -424,9 +414,7 @@ watch(selectedItem, (newVal: any) => {
           <MyDropdown class="mt-2" :items="instruccionDropdown" v-model="instruccionSelect" placeholder="Instrucción"
             @change="handleDropdownChange('instruccion', $event)" :error="errors.instruccionSelect" filter :color="false"
             v-bind="instruccionSelectAttrs" />
-          <span class="text-red-400" v-if="errors.instruccionSelect ? true : false">
-            {{ errors.instruccionSelect }}
-          </span>
+          
         </div>
         
         <div class="col-3">

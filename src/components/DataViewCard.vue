@@ -13,6 +13,7 @@ import useItemValue from '@/composables/useItemValue';
 import { useRoute } from 'vue-router';
 import useDatosDiligencia from '@/composables/useDatosDiligencia';
 import { getAge } from '@/helpers/getAge';
+const { isLoading, setLoading } = useActuacionLoading();
 import type { getColorByEstado } from '@/helpers/getColorByEstado';
 
 const props = defineProps<{

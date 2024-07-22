@@ -3,7 +3,7 @@ import { onActivated, ref, watch } from 'vue';
 import useFecha from '@/composables/useFecha';
 import useItemValue from '@/composables/useItemValue';
 import useFieldState from '@/composables/useFiledsState';
-
+import * as yup from "yup";
 import MyInput from '@/components/elementos/MyInput.vue';
 import MyDropdown from '@/components/elementos/MyDropdown.vue';
 import MyCalendar from '@/components/elementos/MyCalendar.vue';
@@ -13,8 +13,89 @@ import type {
   FechaUbicacion,
 } from '../interfaces/fecha.interface';
 import { municipiosDropdown } from '@/helpers/getDropItems';
+import { mapToArray } from "@/helpers/dropUtils";
+import { useForm } from 'vee-validate';
+
 
 const { agregar, editar, initialValues, selectedMunicipioDrop } = useFecha();
+
+const validationSchema = yup.object({
+  calle: yup.string().required().min(3),
+  numero: yup.string().required().min(3),
+  desdeFecha: yup.string().required('Seleccione una fecha desde').test(
+    'format-valid-check',
+    'La fecha debe estar en el formato dd/MM/yyyy hh:mm y ser válida',
+    (value) => {
+      if (!value) return false;
+
+      const [day, month, year] = value.split('/').map(Number);
+      if (
+        !Number.isInteger(day) ||
+        !Number.isInteger(month) ||
+        !Number.isInteger(year)
+      ) {
+        return false;
+      }
+      if (day > 31 || month > 12 || year < 1600 || year > new Date().getFullYear()) {
+        return false;
+      }
+      const date = new Date(year, month - 1, day);
+      return (
+        date.getFullYear() === year &&
+        date.getMonth() === month - 1 &&
+        date.getDate() === day
+      );
+    }
+  ),
+  hastaFecha: yup.string().required('Seleccione una fecha hasta').test(
+    'format-valid-check',
+    'La fecha debe estar en el formato dd/MM/yyyy hh:mm y ser válida',
+    (value) => {
+      if (!value) return false;
+
+      const [day, month, year] = value.split('/').map(Number);
+      if (
+        !Number.isInteger(day) ||
+        !Number.isInteger(month) ||
+        !Number.isInteger(year)
+      ) {
+        return false;
+      }
+      if (day > 31 || month > 12 || year < 1600 || year > new Date().getFullYear()) {
+        return false;
+      }
+      const date = new Date(year, month - 1, day);
+      return (
+        date.getFullYear() === year &&
+        date.getMonth() === month - 1 &&
+        date.getDate() === day
+      );
+    }
+  ),
+  
+  departamentoSelect: yup.object().shape({
+    name: yup.string().required('Seleccione un opción').oneOf(mapToArray(municipiosDropdown), 'Selecciones una opción válida'),
+  }),
+
+});
+
+const { defineField, values, errors } = useForm({
+  validationSchema
+});
+
+const hasErrors = () => {
+  const keys1 = Object.keys(validationSchema.fields);
+  const keys2 = Object.keys(values);
+  const areKeysEqual = keys1.length < keys2.length && keys1.every((key) => keys2.includes(key));
+  return Object.keys(errors.value).length > 0 || !areKeysEqual;
+};
+
+let [calle, calleAttrs] = defineField("calle");
+let [numero, numeroAttrs] = defineField("numero");
+let [fechaDesde, fechaDesdeAttrs] = defineField("fechaDesde");
+let [fechaHasta, fechaHastaAttrs] = defineField("fechaHasta");
+let [departementoSelect, fdepartementoSelectAttrs] = defineField("departementoSelect");
+
 const { selectedItem } = useItemValue();
 const {
   statesID,
@@ -38,8 +119,20 @@ onActivated(() => {
         : '',
     };
     selectedMunicipioDrop.value = { name: selectedItem.value.departamento };
+    updateDataWithForm(formData)
+
   }
 });
+
+const updateDataWithForm = (form: any) => {
+  if (form) {
+    calle.value=formData.value.calle
+    fechaDesde.value=formData.value.desdeFechaHora
+    fechaHasta.value=formData.value.hastaFechaHora
+    numero.value = formData.value.numero;
+    departementoSelect.value = formData.value.departamento
+  }
+}
 const handleDropdownChange = (
   campo: keyof FechaUbicacionForm,
   newValue: { value: any; name: string }
@@ -137,18 +230,24 @@ const handleBlur = (campo: keyof FechaUbicacionForm) => {
 };
 
 const handleAgregarElemento = () => {
-  if (!formData.value) return;
+  if (hasErrors()) return;
 
   const nuevoItem: FechaUbicacion = {
-    desdeFechaHora: formData.value.desdeFechaHora,
-    hastaFechaHora: formData.value.hastaFechaHora,
-    calle: formData.value.calle,
-    numero: formData.value.numero,
-    departamento: selectedMunicipioDrop.value!.name,
+    desdeFechaHora: fechaDesde.value,
+    hastaFechaHora: fechaHasta.value,
+    calle: calle.value,
+    numero: numero.value,
+    departamento: departementoSelect.value.name,
   };
 
   agregar(nuevoItem);
   formData.value = { ...initialValues };
+  fechaDesde.value = ""
+  fechaHasta.value = ""
+  calle.value = ""
+  numero.value = ""
+  departementoSelect.value.name = {name:"Seleccione departamento"}
+
 };
 
 const handleCancelar = () => {

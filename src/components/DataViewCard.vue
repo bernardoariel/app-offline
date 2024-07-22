@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, onActivated } from 'vue';
+import { computed, ref, onActivated, watch } from 'vue';
 import DataView from 'primevue/dataview';
 
 import ButtonOptions from '@/components/ButtonOptions.vue';
@@ -13,8 +13,7 @@ import useItemValue from '@/composables/useItemValue';
 import { useRoute } from 'vue-router';
 import useDatosDiligencia from '@/composables/useDatosDiligencia';
 import { getAge } from '@/helpers/getAge';
-const { isLoading, setLoading } = useActuacionLoading();
-import type { getColorByEstado } from '@/helpers/getColorByEstado';
+import useActuacionLoading from '@/composables/useActuacionLoading';
 
 const props = defineProps<{
   itemsCardValue: { titulo: string; items: any[] };
@@ -26,9 +25,9 @@ const toast = useToast();
 const { relato } = useDatosDiligencia('sumario-denuncia');
 const { agregarNuevoItem } = useActuacion();
 const { selectedItem } = useItemValue();
+const { isLoading, setLoading } = useActuacionLoading();
 const isCreateActuation = ref(false);
 const { path } = useRoute();
-console.log('path::: ', path);
 
 onActivated(() => {
   isCreateActuation.value = path.includes('new') ? true : false;
@@ -40,7 +39,6 @@ onActivated(() => {
 });
 const items = computed(() => {
   if (props.dataKey === 'personalInterviniente') {
-    console.log('Items de personalInterviniente:', props.itemsCardValue.items); // Inspecciona específicamente los items de 'fecha'
   }
   return props.itemsCardValue.items;
 });
@@ -183,13 +181,21 @@ const convertStringToPhrase = (key: string): string => {
 
   return phrases[key] || key;
 };
+
+watch(
+  items,
+  (newItems) => {
+    setLoading(newItems.length === 0);
+  },
+  { immediate: true }
+);
 </script>
 
 <template>
   <div v-if="items && items.length !== 0">
     <DataView :value="items" dataKey="id">
       <template #list="slotProps">
-        <div v-if="!items">
+        <div v-if="isLoading()">
           <div class="flex-container">
             <!-- Primera columna con círculo -->
             <div class="flex-item">

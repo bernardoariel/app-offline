@@ -31,6 +31,11 @@ const { path } = useRoute();
 
 onActivated(() => {
   isCreateActuation.value = path.includes('new') ? true : false;
+  if (isCreateActuation.value) {
+    setLoading(false);
+    return;
+  }
+  setLoading(true);
 });
 const items = computed(() => {
   if (props.dataKey === 'personalInterviniente') {

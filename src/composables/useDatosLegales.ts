@@ -44,15 +44,16 @@ const useDatosLegales = () => {
     };
 
     const resetData = () => {
+        const currentYear = new Date().getFullYear();
         nroLegajo.value = null;
-        selectedYear.value = { name: '' };
-        selectedSitio.value = { name: '' };
-        selectedModusOperandi.value = { name: '' };
-        selectedCausaCaratula.value = { name: '' };
-        selectedJuzgadoInterviniente.value = { name: '' };
+        selectedYear.value = { name: currentYear.toString() };
+        selectedSitio.value = null
+        selectedModusOperandi.value = null
+        selectedCausaCaratula.value = null
+        selectedJuzgadoInterviniente.value = null
         selectedCausaCaratulaList.value = null;
         itemsCausaCaratula.value = [];
-        nombreActuacion.value = 'Sumario por denuncia';
+        nombreActuacion.value = '';
     };
 
     const setData = (data: { datosLegales: string }) => {

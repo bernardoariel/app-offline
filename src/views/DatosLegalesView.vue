@@ -8,7 +8,7 @@ import { getYearsDrop } from '@/helpers/getYearsDrop';
 import { mapToDropdownItems } from '@/helpers/dropUtils';
 import {
   sitiosDropdwown,
-  modusOperandiDropdwown,
+  modusOperandiDropdwown, 
   causaCaratulaDropdwown,
   juzgadoIntervinienteDropdwown,
 } from '../helpers/getDropItems';
@@ -36,7 +36,7 @@ const { addField, setFieldModified, isAnyFieldModified } = useLegalesState();
 let yearsActuacion: string[] = getYearsDrop();
 let formData = ref<DatosLegalesForm>({ ...initialValuesDatosLegales });
 
-const handleDropdownChange = (
+const handleDropdownChange  = (
   campo: keyof DatosLegalesForm,
   newValue: { value: any; name: string }
 ) => {

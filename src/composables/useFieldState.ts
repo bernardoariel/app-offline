@@ -8,7 +8,7 @@ interface FieldState {
 }
 
 const statesID = reactive<FieldState[]>([])
-const isNewRecordCreated = ref(false)
+const isNewRecordCreated = ref(false) 
 const isRecordDeleted = ref(false)
 
 export default function useFieldState() {

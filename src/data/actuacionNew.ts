@@ -22,7 +22,7 @@ export const categorias =  [
     },
     {
         "CategoriaID": "950b6a2c-144f-11ed-bb82-0eb8b69eb347",
-        "Nombre": "Instrumentos Musicales "
+        "Nombre": "Instrumentos Musicales"
     },
     {
         "CategoriaID": "f44f68f6-1455-11ed-bb82-0eb8b69eb347",
@@ -129,19 +129,19 @@ export const subcategorias = [
     },
     {
         "SubcategoriaID": "c04e870b-144f-11ed-bb82-0eb8b69eb347",
-        "categoria": "Instrumentos Musicales ",
+        "categoria": "Instrumentos Musicales",
         "id_categoria": "950b6a2c-144f-11ed-bb82-0eb8b69eb347",
         "Nombre": "Instrumentos de Cuerdas"
     },
     {
         "SubcategoriaID": "cf23d57d-144f-11ed-bb82-0eb8b69eb347",
-        "categoria": "Instrumentos Musicales ",
+        "categoria": "Instrumentos Musicales",
         "id_categoria": "950b6a2c-144f-11ed-bb82-0eb8b69eb347",
         "Nombre": "Instrumentos de Viento"
     },
     {
         "SubcategoriaID": "edc81750-144f-11ed-bb82-0eb8b69eb347",
-        "categoria": "Instrumentos Musicales ",
+        "categoria": "Instrumentos Musicales",
         "id_categoria": "950b6a2c-144f-11ed-bb82-0eb8b69eb347",
         "Nombre": "Instrumento De Percusi\u00f3n "
     },
@@ -11074,7 +11074,7 @@ export const modelosCategorias = [
         "Nombre": "Segtt",
         "id_tipo": "SIN MARCA ",
         "tipo": null,
-        "categorias": "Instrumentos Musicales ",
+        "categorias": "Instrumentos Musicales",
         "subcategorias": "Instrumentos de Cuerdas"
     },
     {

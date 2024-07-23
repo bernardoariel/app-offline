@@ -89,6 +89,7 @@ onActivated(() => {
     formData.value = { ...selectedItem.value };
     updateDataWithForm()
   }
+  console.log(mapToArray(categoriasDropdown))
 });
 const hasErrors = () => {
     const keys1 = Object.keys(validationSchema.fields);

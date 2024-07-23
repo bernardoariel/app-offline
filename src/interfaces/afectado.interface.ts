@@ -1,6 +1,6 @@
 interface PrimaryAttributes{
     id?: string,
-    nroDocumento: number,
+    nroDocumento: string,
     apellido: string,
     nombre: string,
     fecha: string,

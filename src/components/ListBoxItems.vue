@@ -41,8 +41,8 @@ const getPristineById = (id: string) => {
                   option.nombre ? getTitleCase(option.nombre) : ''
                 }}</span>
                 <span class="ml-5">
-                  <i>{{ option.typeDocumento + ': ' }}</i>
-                  <i>{{ option.nroDocumento }}</i>
+                  <i v-if="option.typeDocumento">{{ option.typeDocumento +  ': ' }}</i>
+                  <i v-if="option.nroDocumento">{{ option.nroDocumento }}</i>
                 </span>
               </div>
               <div class="tag-row">

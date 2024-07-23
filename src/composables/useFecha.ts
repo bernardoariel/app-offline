@@ -2,7 +2,7 @@ import { ref } from 'vue';
 import { v4 as uuid } from 'uuid';
 import type { FechaUbicacion, FechaUbicacionForm } from '../interfaces/fecha.interface';
 import type { DropDownInterface } from '../interfaces/dropdown.interface';
-import useFieldState from './useFiledsState';
+import useFieldState from './useFieldsState';
 import { fechaUbicacioFake as itemsFake } from '@/data/mock/datosActuacion';
 
 const { agregarIdState, guardarModificaciones, eliminarIdState, resetStates } = useFieldState();
@@ -62,22 +62,22 @@ const useFecha = () => {
   };
 
   const set = (data = null) => {
-        
+
     if (!data) {
       fechaUbicacion.value = [...itemsFake];
       itemsFake.forEach(item => {
-          agregarIdState(item.id, {});
+        agregarIdState(item.id, {});
       });
       return
     }
-    
+
     fechaUbicacion.value = JSON.parse(data);
     fechaUbicacion.value.forEach(item => {
       agregarIdState(item.id, {});
     });
 
   }
- 
+
   return {
     fechaUbicacion,
     selectedMunicipioDrop,

@@ -7,14 +7,16 @@ import useVinculados from './useVinculados';
 import useEfectos from './useEfectos';
 import useFecha from './useFecha';
 import usePersonalInterviniente from './usePersonalInterviniente';
+import useFieldState from './useFieldsState';
 
-const selectedItem = ref(null); 
+const selectedItem = ref(null);
 type RouteTypeKey = 'afectados' | 'vinculados' | 'fecha' | 'efectos' | 'personalInterviniente';
 
-const useItemsComputados = ()=> {
+const useItemsComputados = () => {
 
+  const { markRecordDeleted } = useFieldState()
   const { routeType } = useRouteType(); // Obtiene el tipo de ruta actual
-  const  composables: Record<RouteTypeKey, any> = {
+  const composables: Record<RouteTypeKey, any> = {
     afectados: useAfectados(),
     vinculados: useVinculados(),
     fecha: useFecha(),
@@ -27,15 +29,16 @@ const useItemsComputados = ()=> {
     const composableActual = composables[routeType.value as RouteTypeKey];
     if (composableActual && composableActual.eliminar) {
       composableActual.eliminar(id);
+      markRecordDeleted()
     } else {
       console.error("Método eliminar no definido para el tipo de ruta actual");
     }
   };
   const itemsComputados = computed(() => {
-    if(!routeType.value ) return
- 
+    if (!routeType.value) return
+
     cargando.value = true;
-    let data:any = [];
+    let data: any = [];
     const composableActual = composables[routeType.value as RouteTypeKey];
 
     if (composableActual) {

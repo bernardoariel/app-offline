@@ -70,6 +70,9 @@ const eliminarItem = (name: string) => {
 
 const handleInputChange = (campo: string | number, event: Event) => {
   const valor = (event.target as HTMLInputElement).value;
+  if (campo === 'nroLegajo') {
+    nroLegajo.value = valor;
+  }
   formData.value = { ...formData.value, [campo]: valor };
   addField(campo.toString(), valor);
   setFieldModified(campo.toString(), true);
@@ -82,7 +85,7 @@ const handleInputChange = (campo: string | number, event: Event) => {
       <MyInput
         type="text"
         class="mt-2"
-        :value="nroLegajo"
+        v-model="nroLegajo"
         @input="handleInputChange('nroLegajo', $event)"
         color
       />

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 //actuacionView
-import { ref, watch, onActivated } from 'vue';
+import { ref, watch, onActivated, computed } from 'vue';
 import DataViewCard from '@/components/DataViewCard.vue';
 import DatosLegalesView from './DatosLegalesView.vue';
 import DiligenciaView from './DiligenciaView.vue';
@@ -17,9 +17,11 @@ import useActuacionData from '@/composables/useActuacionData';
 import { useDialog } from '../composables/useDialog';
 import { useRouter } from 'vue-router';
 import MyDialog from '@/components/elementos/MyModal.vue';
+import useFieldState from '@/composables/useFieldsState';
+import useLegalesState from '@/composables/useLegalesState';
+
 const router = useRouter();
-const { isDialogVisible, confirmNavigation, hideDialog, pendingRoute } =
-  useDialog();
+const { dialogState, confirmNavigation, hideDialog } = useDialog();
 interface Props {
   actuacion: string;
   id?: number;
@@ -42,6 +44,19 @@ const {
   setData: setDatosLegales,
   nroLegajo,
 } = useDatosLegales();
+
+const {
+  resetNewRecordCreated,
+  resetUnsavedChanges,
+  markNewRecordCreated,
+  resetRecordDeleted,
+  isUnsavedChange,
+  areAnyFieldsModifiedGlobally,
+  isNewRecordCreated,
+  isRecordDeleted,
+} = useFieldState();
+const { resetFields: resetLegalFields, isAnyFieldModified: isLegalModified } =
+  useLegalesState();
 
 setActuacionData(props.actuacionData);
 
@@ -71,6 +86,7 @@ const handleClick = (event: { ctrlKey: any; altKey: any }) => {
     // console.log(`Ctrl + Alt + Click detectado: ${actuacionRef}`);
     setAll();
     addDataFake();
+    markNewRecordCreated();
     relato.value = 'esto es una prueba del relato';
   }
 };
@@ -92,43 +108,75 @@ const dialogButtons = [
     class: 'p-button-primary',
     icon: 'pi pi-check',
     action: 'accept',
+    focus: false,
   },
   {
     label: 'Cancelar',
     class: 'p-button-secondary',
     icon: 'pi pi-times',
     action: 'cancel',
+    focus: true,
   },
 ];
 
 const handleButtonClick = (action: string) => {
   if (action !== 'accept') {
-    hideDialog(); // Mantén al usuario en la página actual
-    pendingRoute.value = null;
+    // Manténgo al usuario en la página actual sin borrar los estados pendientes por guardar
+    hideDialog();
+    dialogState.value.pendingRoute = null;
+    return;
   }
+  resetUnsavedChanges();
+  resetNewRecordCreated();
+  resetLegalFields();
+  resetRecordDeleted();
   confirmNavigation(); // Proceder con la navegación
 };
+watch(
+  () => dialogState.value.isDialogVisible,
+  (newVal) => {
+    if (newVal === false) dialogState.value.pendingRoute = null;
+  }
+);
+const isAnyChange = computed(() => {
+  return (
+    isUnsavedChange.value ||
+    areAnyFieldsModifiedGlobally() ||
+    isNewRecordCreated.value ||
+    isRecordDeleted.value ||
+    isLegalModified.value
+  );
+});
 </script>
 
 <template>
   <MyDialog
-    :visible="isDialogVisible"
-    title="Consulta del Sistema"
+    :visible="dialogState.isDialogVisible"
+    :title="dialogState.header.title"
     :buttons="dialogButtons"
-    @update:visible="isDialogVisible = $event"
+    @update:visible="dialogState.isDialogVisible = $event"
     @button-click="handleButtonClick"
   >
     <template #body>
-      <div class="modal-body">
-        <i
-          class="pi pi-exclamation-triangle"
-          :style="{ fontSize: '3rem', color: 'orange' }"
-        ></i>
-        <div class="flex justify-content-center" style="width: 100%">
-          <p class="text-left font-bold">
-            ¿Deseas Salir sin guardar los datos?
+      <div
+        class="modal-body flex flex-col items-center w-full"
+        style="padding: 0"
+      >
+        <div class="flex items-center w-full justify-between">
+          <i
+            class="text-red-500 text-7xl mt-3 ml-5"
+            :class="[dialogState.body.colorClass, dialogState.body.icon]"
+          ></i>
+          <p class="font-bold text-xl ml-4">
+            {{ dialogState.body.answer }}
           </p>
         </div>
+        <p
+          class="text-lg ml-8 text-center text-gray-600"
+          style="margin-top: -20px"
+        >
+          {{ dialogState.body.comments }}
+        </p>
       </div>
     </template>
   </MyDialog>
@@ -196,6 +244,11 @@ const handleButtonClick = (action: string) => {
                 :outlined="active !== 1"
               />
             </div>
+            <div>
+              <small class="text-sm">{{
+                isAnyChange ? 'Cambios Pendientes' : 'Sin Cambios'
+              }}</small>
+            </div>
           </div>
         </template>
         <template #content>
@@ -262,10 +315,8 @@ const handleButtonClick = (action: string) => {
 }
 .modal-body {
   display: flex;
-  justify-content: space-between;
-  padding-top: 0.5rem;
-  padding-left: 4rem; /* Padding solo en los lados */
-  padding-right: 3rem; /* Padding solo en los lados */
-  /* gap: 1rem; */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 </style>

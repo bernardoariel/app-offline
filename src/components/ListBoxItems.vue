@@ -8,7 +8,7 @@ import { getColorByEstado } from '@/helpers/getColorByEstado';
 import { formatFecha } from '@/helpers/getFormatFecha';
 import useItemsComputados from '@/composables/useItemsComputados';
 import useItemValue from '@/composables/useItemValue';
-import useFieldState from '@/composables/useFiledsState';
+import useFieldState from '@/composables/useFieldsState';
 
 const { itemsComputados, routeType, eliminarItem } = useItemsComputados();
 const { selectedItem } = useItemValue();

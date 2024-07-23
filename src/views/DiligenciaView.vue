@@ -137,14 +137,7 @@
 <script lang="ts" setup>
 import useDatosDiligencia from '@/composables/useDatosDiligencia';
 import { getUpperCase } from '@/helpers/stringUtils';
-import {
-  ref,
-  watch,
-  onActivated,
-  onDeactivated,
-  onBeforeMount,
-  onMounted,
-} from 'vue';
+import { ref, watch, onActivated, onDeactivated } from 'vue';
 import useNewActuacion from '../composables/useNewActuacion';
 import useSaveData from '../composables/useSaveData';
 import useItem from '@/composables/useItems';
@@ -153,6 +146,9 @@ import { useViewPdf } from '../composables/useViewPdf';
 import PdfViewer from '@/components/reports/PdfViewer.vue';
 import type { dataActuacionForSave } from '../composables/useSaveData';
 import useActuacion from '@/composables/useActuacion';
+import { useDialog } from '@/composables/useDialog';
+import useFieldState from '@/composables/useFieldsState';
+import useLegalesState from '@/composables/useLegalesState';
 import type {
   DatosLegalesForm,
   DatosLegales,
@@ -203,6 +199,10 @@ const {
   itemsCausaCaratula,
   selectedModusOperandi,
 } = useDatosLegales();
+const { dialogState } = useDialog();
+const { resetNewRecordCreated, resetRecordDeleted, resetUnsavedChanges } =
+  useFieldState();
+const { resetFields: resetLegalFields } = useLegalesState();
 
 const setHeaderFromComputed = () => {
   headerContainer.value = headerTextComputed.value;
@@ -279,7 +279,12 @@ const handleSave = async () => {
   isVisible.value = false;
   isActuationInit.value = false;
   currentEditId.value = null;
-  router.push({ name: 'actuaciones' });
+  dialogState.value.allowNavigation = true;
+  resetUnsavedChanges();
+  resetNewRecordCreated();
+  resetLegalFields();
+  resetRecordDeleted();
+  await router.push({ name: 'actuaciones' });
 };
 
 onActivated(() => {

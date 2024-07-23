@@ -1,7 +1,7 @@
-import type { AfectadosForm } from "@/interfaces/afectadosForm.interface";
+import type { AfectadosForm } from "@/interfaces/afectado.interface";
 import { ref, watch } from "vue";
 import { v4 as uuid } from 'uuid';
-import useFieldState from "./useFiledsState";
+import useFieldState from "./useFieldsState";
 
 
 const afectados = ref<AfectadosForm[]>([]);

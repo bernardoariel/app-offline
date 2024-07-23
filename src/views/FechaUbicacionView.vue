@@ -3,18 +3,48 @@ import { onActivated, ref, watch } from 'vue';
 import useFecha from '@/composables/useFecha';
 import useItemValue from '@/composables/useItemValue';
 import useFieldState from '@/composables/useFieldsState';
-
+import * as yup from 'yup';
 import MyInput from '@/components/elementos/MyInput.vue';
 import MyDropdown from '@/components/elementos/MyDropdown.vue';
 import MyCalendar from '@/components/elementos/MyCalendar.vue';
-
 import type {
   FechaUbicacionForm,
   FechaUbicacion,
 } from '../interfaces/fecha.interface';
 import { municipiosDropdown } from '@/helpers/getDropItems';
+import { mapToArray } from '@/helpers/dropUtils';
+import { useForm } from 'vee-validate';
 
 const { agregar, editar, initialValues, selectedMunicipioDrop } = useFecha();
+
+const validationSchema = yup.object({
+  calle: yup.string().required().min(3),
+  numero: yup.number().required(),
+  departamentoSelect: yup.object().shape({
+    name: yup
+      .string()
+      .required('Seleccione un opción')
+      .oneOf(mapToArray(municipiosDropdown), 'Selecciones una opción válida'),
+  }),
+});
+
+const { defineField, values, errors } = useForm({
+  validationSchema,
+});
+
+const hasErrors = () => {
+  const keys1 = Object.keys(validationSchema.fields);
+  const keys2 = Object.keys(values);
+  const areKeysEqual =
+    keys1.length <= keys2.length && keys1.every((key) => keys2.includes(key));
+  return Object.keys(errors.value).length > 0 || !areKeysEqual;
+};
+
+let [calle, calleAttrs] = defineField('calle');
+let [numero, numeroAttrs] = defineField('numero');
+let [departamentoSelect, departamentoSelectAttrs] =
+  defineField('departamentoSelect');
+
 const { selectedItem } = useItemValue();
 const {
   statesID,
@@ -38,21 +68,27 @@ onActivated(() => {
         ? new Date(selectedItem.value.hastaFechaHora)
         : '',
     };
-    selectedMunicipioDrop.value = { name: selectedItem.value.departamento };
+    updateDataWithForm(formData);
   }
 });
+
+const updateDataWithForm = (form: any) => {
+  if (form) {
+    calle.value = formData.value.calle;
+    numero.value = formData.value.numero;
+    departamentoSelect.value = { name: formData.value.departamento };
+  }
+};
 const handleDropdownChange = (
   campo: keyof FechaUbicacionForm,
   newValue: { value: any; name: string }
 ) => {
   const name = newValue.value.name;
-
   if (campo in formData.value) {
     formData.value = {
       ...formData.value,
       [campo]: { name },
     };
-
     const itemId = formData.value.id!;
     if (itemId) {
       setPristineById(itemId, false);
@@ -138,19 +174,21 @@ const handleBlur = (campo: keyof FechaUbicacionForm) => {
 };
 
 const handleAgregarElemento = () => {
-  if (!formData.value) return;
-
+  if (hasErrors()) return;
   const nuevoItem: FechaUbicacion = {
     desdeFechaHora: formData.value.desdeFechaHora,
     hastaFechaHora: formData.value.hastaFechaHora,
-    calle: formData.value.calle,
-    numero: formData.value.numero,
-    departamento: selectedMunicipioDrop.value!.name,
+    calle: calle.value,
+    numero: numero.value,
+    departamento: departamentoSelect.value.name,
   };
 
   agregar(nuevoItem);
   markNewRecordCreated();
   formData.value = { ...initialValues };
+  calle.value = '';
+  numero.value = '';
+  departamentoSelect.value = { name: 'Seleccione departamento' };
 };
 
 const handleCancelar = () => {
@@ -160,10 +198,17 @@ const handleCancelar = () => {
 };
 
 const handleModificarElemento = () => {
+  if (hasErrors()) {
+    alert('Completa el formulario antes de guardar.');
+    return;
+  }
   let itemStateEncontrado = guardarModificaciones(selectedItem.value!.id);
   let itemAEditar = {
     ...formData.value,
-    departamento: selectedMunicipioDrop.value?.name || '',
+    // departamento: selectedMunicipioDrop.value?.name || '',
+    calle: calle.value || '',
+    numero: numero.value || '',
+    departamento: departamentoSelect.value.name || '',
     ...itemStateEncontrado,
   };
   editar(itemAEditar);
@@ -172,6 +217,9 @@ const handleModificarElemento = () => {
 watch(selectedItem, (newVal: any) => {
   if (!newVal) {
     formData.value = { ...initialValues };
+    calle.value = '';
+    numero.value = '';
+    departamentoSelect.value = { name: 'Seleccione un departamento' };
   } else {
     formData.value = {
       ...newVal,
@@ -182,6 +230,7 @@ watch(selectedItem, (newVal: any) => {
         ? new Date(newVal.hastaFechaHora)
         : '',
     };
+    updateDataWithForm(formData);
     selectedMunicipioDrop.value = { name: newVal.departamento };
   }
 });
@@ -204,21 +253,27 @@ watch(selectedItem, (newVal: any) => {
           <MyInput
             type="text"
             class="mt-2"
-            :value="getInputValue('calle')"
+            v-model="calle"
+            :color="false"
+            v-bind="calleAttrs"
+            :error="errors.calle"
+            placeholder="ingrese una calle"
             @input="handleInputChange('calle', $event)"
             @blur="() => handleBlur('calle')"
-            :color="!!selectedItem"
           />
         </div>
         <div class="col-4">
           <label for="numero">Número</label>
           <MyInput
-            type="text"
+            type="number"
             class="mt-2"
-            :value="getInputValue('numero')"
+            v-model="numero"
+            :color="false"
+            v-bind="numeroAttrs"
+            :error="errors.numero"
+            placeholder="ingrese un número"
             @input="handleInputChange('numero', $event)"
             @blur="() => handleBlur('numero')"
-            :color="!!selectedItem"
           />
         </div>
         <div class="col-4">
@@ -226,18 +281,25 @@ watch(selectedItem, (newVal: any) => {
           <MyDropdown
             class="mt-2"
             :items="municipiosDropdown"
-            v-model="selectedMunicipioDrop"
-            @change="
-              (newValue) => handleDropdownChange('departamento', newValue)
-            "
             filter
-            placeholder="Seleccione un departamento"
-            :color="!!selectedItem"
+            v-model="departamentoSelect"
+            placeholder="Seleccione departamento"
+            @change="handleDropdownChange('departamento', $event)"
+            :error="errors.departamentoSelect"
+            v-bind="departamentoSelectAttrs"
+            :color="false"
           />
+          <span
+            class="text-red-400"
+            v-if="errors.departamentoSelect ? true : false"
+          >
+            {{ errors.departamentoSelect }}
+          </span>
         </div>
         <div class="ml-auto mt-2 p-0">
           <Button
             label="Agregar"
+            :disabled="hasErrors()"
             v-if="!selectedItem"
             @click="handleAgregarElemento()"
           ></Button>

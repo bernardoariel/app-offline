@@ -54,6 +54,8 @@ const {
   areAnyFieldsModifiedGlobally,
   isNewRecordCreated,
   isRecordDeleted,
+  isDiligenciaChange,
+  resetDiliginciaChange,
 } = useFieldState();
 const { resetFields: resetLegalFields, isAnyFieldModified: isLegalModified } =
   useLegalesState();
@@ -75,7 +77,7 @@ onActivated(async () => {
 
 const { setAll } = useItem();
 
-const { relato } = useDatosDiligencia(props.actuacion);
+const { relato, isEditingHeader } = useDatosDiligencia(props.actuacion);
 const { addDataFake } = useDatosLegales();
 const { cardInformationKeys, cardInformation } =
   useCardInformation(actuacionRef);
@@ -126,10 +128,12 @@ const handleButtonClick = (action: string) => {
     dialogState.value.pendingRoute = null;
     return;
   }
+  isEditingHeader.value = !isEditingHeader.value;
   resetUnsavedChanges();
   resetNewRecordCreated();
   resetLegalFields();
   resetRecordDeleted();
+  resetDiliginciaChange();
   confirmNavigation(); // Proceder con la navegación
 };
 watch(
@@ -144,7 +148,8 @@ const isAnyChange = computed(() => {
     areAnyFieldsModifiedGlobally() ||
     isNewRecordCreated.value ||
     isRecordDeleted.value ||
-    isLegalModified.value
+    isLegalModified.value ||
+    isDiligenciaChange.value
   );
 });
 </script>

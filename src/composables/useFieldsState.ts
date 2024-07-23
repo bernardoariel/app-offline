@@ -10,7 +10,7 @@ interface FieldState {
 const statesID = reactive<FieldState[]>([])
 const isNewRecordCreated = ref(false)
 const isRecordDeleted = ref(false)
-
+const isDiligenciaChange = ref(false)
 
 export default function useFieldState() {
 
@@ -124,5 +124,8 @@ export default function useFieldState() {
     isRecordDeleted,
     markRecordDeleted: () => isRecordDeleted.value = true,
     resetRecordDeleted: () => isRecordDeleted.value = false,
+    setDiliginciaChange: () => isDiligenciaChange.value = true,
+    resetDiliginciaChange: () => isDiligenciaChange.value = false,
+    isDiligenciaChange
   };
 }

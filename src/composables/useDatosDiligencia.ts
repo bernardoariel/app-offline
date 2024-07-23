@@ -138,7 +138,7 @@ const useDatosDiligencia = (actuacion: ref<string>) => {
     footerContainer,
     footerTextComputed,
     relato,
-    footerText: computed(() => processedText.value.footer)
+    footerText: computed(() => processedText.value.footer),
   };
 };
 

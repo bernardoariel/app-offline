@@ -4,7 +4,7 @@ import { getYearsDrop } from '@/helpers/getYearsDrop';
 import MyDropdown from '@/components/elementos/MyDropdown.vue';
 import { mapToDropdownItems } from '@/helpers/dropUtils';
 
-import { ref, watch, onActivated } from 'vue';
+import { ref, watch } from 'vue';
 import {
   sitiosDropdwown,
   modusOperandiDropdwown,
@@ -14,9 +14,10 @@ import {
 import { getUpperCase } from '@/helpers/stringUtils';
 import useDatosLegales from '../composables/useDatosLegales';
 import type { DatosLegalesForm } from '../interfaces/datosLegalesForm.interface';
-import useItemValue from '@/composables/useItemValue';
 import useLegalesState from '@/composables/useLegalesState';
+import useFieldState from '@/composables/useFieldsState';
 
+const { markRecordDeleted } = useFieldState();
 const {
   selectedYear,
   selectedSitio,
@@ -28,7 +29,7 @@ const {
   itemsCausaCaratula,
   initialValuesDatosLegales,
 } = useDatosLegales();
-const { addField, setFieldModified, isAnyFieldModified } = useLegalesState();
+const { addField, setFieldModified } = useLegalesState();
 
 let yearsActuacion: string[] = getYearsDrop();
 let formData = ref<DatosLegalesForm>({ ...initialValuesDatosLegales });
@@ -37,7 +38,7 @@ const handleDropdownChange = (
   newValue: { value: any; name: string }
 ) => {
   const name = newValue.value.name;
-
+  addField(campo, name);
   if (campo in formData.value) {
     formData.value = {
       ...formData.value,
@@ -64,6 +65,7 @@ const eliminarItem = (name: string) => {
   itemsCausaCaratula.value = itemsCausaCaratula.value.filter(
     (item) => item.name !== name
   );
+  markRecordDeleted();
 };
 
 const handleInputChange = (campo: string | number, event: Event) => {

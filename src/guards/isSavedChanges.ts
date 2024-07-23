@@ -27,7 +27,8 @@ const {
   isUnsavedChange,
   areAnyFieldsModifiedGlobally,
   isNewRecordCreated,
-  isRecordDeleted
+  isRecordDeleted,
+  isDiligenciaChange
 } = useFieldState();
 
 const { isAnyFieldModified: isLegalModified } = useLegalesState()
@@ -37,7 +38,8 @@ const isAnyChange = computed(() => {
     areAnyFieldsModifiedGlobally() ||
     isNewRecordCreated.value ||
     isRecordDeleted.value ||
-    isLegalModified.value;
+    isLegalModified.value ||
+    isDiligenciaChange.value;
 });
 
 const isSavedChanges = (to, from, next) => {

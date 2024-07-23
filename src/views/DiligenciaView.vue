@@ -60,6 +60,7 @@
             v-if="isEditingHeader"
             v-model="headerTextComputed"
             autoResize
+            @input="setDiliginciaChange()"
             class="w-full"
           />
 
@@ -90,7 +91,14 @@
               class="w-full mb-2"
               height="16rem"
             ></Skeleton>
-            <Textarea v-else rows="10" class="w-full" v-model="relato" />
+            <Textarea
+              v-else
+              rows="10"
+              class="w-full"
+              v-model="relato"
+              name="relato"
+              @input="setDiliginciaChange()"
+            />
           </div>
         </li>
         <Skeleton
@@ -114,6 +122,7 @@
             v-if="isEditingFooter"
             v-model="footerTextComputed"
             autoResize
+            @input="setDiliginciaChange()"
             class="w-full"
           />
           <div>
@@ -200,8 +209,12 @@ const {
   selectedModusOperandi,
 } = useDatosLegales();
 const { dialogState } = useDialog();
-const { resetNewRecordCreated, resetRecordDeleted, resetUnsavedChanges } =
-  useFieldState();
+const {
+  resetNewRecordCreated,
+  resetRecordDeleted,
+  resetUnsavedChanges,
+  setDiliginciaChange,
+} = useFieldState();
 const { resetFields: resetLegalFields } = useLegalesState();
 
 const setHeaderFromComputed = () => {

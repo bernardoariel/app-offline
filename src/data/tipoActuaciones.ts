@@ -31,6 +31,7 @@ export const actuaciones: TipoActuaciones = {
             "afectados": {
                 "titulo": "Afectados",
                 "valor": ['Denunciante y Damnificado', 'Denunciante', 'Damnificado', 'Orden Público'],
+                "ordenPublico": "check"
             },
             "fecha": {
                 "titulo": "Fecha, Hora y Ubicacion",
@@ -79,6 +80,7 @@ export const actuaciones: TipoActuaciones = {
             "afectados": {
                 "titulo": "Afectados",
                 "valor": ['Denunciante y Damnificado', 'Denunciante', 'Damnificado', 'Orden Público'],
+                "ordenPublico": "default"
             },
             "fecha": {
                 "titulo": "Fecha, Hora y Ubicacion",
@@ -105,6 +107,7 @@ export const actuaciones: TipoActuaciones = {
             "afectados": {
                 "titulo": "Afectados",
                 "valor": ['Denunciante', 'Damnificado'],
+                "ordenPublico": "check"
             },
             "fecha": {
                 "titulo": "Fecha, Hora y Ubicacion",
@@ -131,6 +134,7 @@ export const actuaciones: TipoActuaciones = {
             "afectados": {
                 "titulo": "Afectados",
                 "valor": ['Denunciante', 'Damnificado'],
+                "ordenPublico": "check"
             },
             "fecha": {
                 "titulo": "Fecha, Hora y Ubicacion",
@@ -157,6 +161,7 @@ export const actuaciones: TipoActuaciones = {
             "afectados": {
                 "titulo": "Afectados",
                 "valor": ['Denunciante', 'Damnificado'],
+                "ordenPublico": "check"
             },
             "fecha": {
                 "titulo": "Fecha, Hora y Ubicacion",
@@ -205,6 +210,7 @@ export const actuaciones: TipoActuaciones = {
             "afectados": {
                 "titulo": "Afectados",
                 "valor": ['Denunciante', 'Damnificado'],
+                "ordenPublico": "check"
             },
             "fecha": {
                 "titulo": "Fecha, Hora y Ubicacion",
@@ -231,6 +237,7 @@ export const actuaciones: TipoActuaciones = {
             "afectados": {
                 "titulo": "Afectados",
                 "valor": ['Denunciante', 'Damnificado'],
+                "ordenPublico": "check"
             },
             "fecha": {
                 "titulo": "Fecha, Hora y Ubicacion",
@@ -253,6 +260,7 @@ export const actuaciones: TipoActuaciones = {
             "afectados": {
                 "titulo": "Afectados",
                 "valor": ['Denunciante', 'Damnificado'],
+                "ordenPublico": "check"
             },
             "fecha": {
                 "titulo": "Fecha, Hora y Ubicacion",
@@ -301,6 +309,7 @@ export const actuaciones: TipoActuaciones = {
             "afectados": {
                 "titulo": "Afectados",
                 "valor": ['Denunciante'],
+                "ordenPublico": "check"
             },
             "fecha": {
                 "titulo": "Fecha, Hora y Ubicacion",
@@ -323,6 +332,7 @@ export const actuaciones: TipoActuaciones = {
             "afectados": {
                 "titulo": "Afectados",
                 "valor": ['Fallecido', 'Damnificado'],
+                "ordenPublico": "check"
             },
             "fecha": {
                 "titulo": "Fecha, Hora y Ubicacion",
@@ -345,6 +355,7 @@ export const actuaciones: TipoActuaciones = {
             "afectados": {
                 "titulo": "Afectados",
                 "valor": ['Fallecido', 'Damnificado'],
+                "ordenPublico": "check"
             },
             "fecha": {
                 "titulo": "Fecha, Hora y Ubicacion",
@@ -371,6 +382,7 @@ export const actuaciones: TipoActuaciones = {
             "afectados": {
                 "titulo": "Afectados",
                 "valor": ['Fallecido', 'Damnificado'],
+                "ordenPublico": "check"
             },
             "fecha": {
                 "titulo": "Fecha, Hora y Ubicacion",
@@ -393,6 +405,7 @@ export const actuaciones: TipoActuaciones = {
             "afectados": {
                 "titulo": "Afectados",
                 "valor": ['Fallecido', 'Damnificado'],
+                "ordenPublico": "check"
             },
             "fecha": {
                 "titulo": "Fecha, Hora y Ubicacion",
@@ -415,6 +428,7 @@ export const actuaciones: TipoActuaciones = {
             "afectados": {
                 "titulo": "Afectados",
                 "valor": ['Fallecido', 'Damnificado'],
+                "ordenPublico": "check"
             },
             "fecha": {
                 "titulo": "Fecha, Hora y Ubicacion",

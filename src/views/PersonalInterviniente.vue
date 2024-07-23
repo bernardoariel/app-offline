@@ -3,15 +3,37 @@ import { onActivated, ref, watch } from 'vue';
 import usePersonalInterviniente from '@/composables/usePersonalInterviniente';
 import useItemValue from '@/composables/useItemValue';
 import useFieldState from '@/composables/useFieldsState';
-
+import * as yup from "yup";
 import MyDropdown from '@/components/elementos/MyDropdown.vue';
 import MyInput from '@/components/elementos/MyInput.vue';
-
 import type {
   PersonalInterviniente,
   PersonalIntervinienteForm,
 } from '../interfaces/personalInterviniente';
 import { dependenciaDropdown, jerarquiaDropdown } from '@/helpers/getDropItems';
+import { useForm } from 'vee-validate';
+import { mapToArray } from '@/helpers/dropUtils';
+
+const validationSchema = yup.object({
+  jerarquiaSelect: yup.object().shape({
+    name: yup.string().required('Seleccione un estado').oneOf(mapToArray(jerarquiaDropdown), 'Selecciones un tipo válido'),
+  }),
+  dependenciaSelect: yup.object().shape({
+    name: yup.string().required('Seleccione una categoria').oneOf(mapToArray(dependenciaDropdown), 'Selecciones una categoria válida'),
+  }),
+  nombre: yup.string().required().min(3),
+  apellido: yup.string().required().min(3),
+  
+});
+const { defineField, values, errors } = useForm({
+  validationSchema
+});
+
+
+let [jerarquiaSelect, jerarquiaSelectAttrs] = defineField("jerarquiaSelect");
+let [dependenciaSelect, dependenciaSelectAttrs] = defineField("dependenciaSelect");
+let [nombre, nombreAttrs] = defineField("nombre");
+let [apellido, apellidoAttrs] = defineField("apellido");
 
 const {
   editar,
@@ -35,8 +57,28 @@ const {
 let formData = ref<PersonalIntervinienteForm>({ ...initialValues });
 
 onActivated(() => {
-  selectedItem.value = null;
+  if (selectedItem.value) {
+    formData.value = { ...selectedItem.value };
+    updateDataWithForm()
+  }
+  // selectedItem.value = null;
 });
+const hasErrors = () => {
+    const keys1 = Object.keys(validationSchema.fields);
+    const keys2 = Object.keys(values);
+    const areKeysEqual = keys1.length <= keys2.length && keys1.every((key) => keys2.includes(key));
+    return Object.keys(errors.value).length > 0 || !areKeysEqual;
+  };
+
+const updateDataWithForm = () => {
+  if (formData) {
+    jerarquiaSelect.value = { name: formData.value.jerarquia }
+    dependenciaSelect.value={ name: formData.value.dependencia }
+    nombre.value= formData.value.nombre
+    apellido.value= formData.value.apellido
+   
+  }
+}
 
 const handleDropdownChange = (
   campo: keyof PersonalIntervinienteForm,
@@ -89,17 +131,22 @@ const handleBlur = (campo: keyof PersonalIntervinienteForm) => {
 };
 
 const handleAgregarElemento = () => {
-  if (!formData.value) return;
+  if (hasErrors()) return;
   const nuevoPersonalInterviniente: PersonalInterviniente = {
-    apellido: formData.value.apellido,
-    nombre: formData.value.nombre,
-    jerarquia: selectedJerarquiaDrop.value!.name,
-    dependencia: selectedDependenciaDrop.value!.name,
+    apellido: apellido.value,
+    nombre: nombre.value,
+    jerarquia: jerarquiaSelect.value.name || "",
+    dependencia: dependenciaSelect.value.name || "",
   };
 
   agregar(nuevoPersonalInterviniente);
   markNewRecordCreated();
   formData.value = { ...initialValues };
+  jerarquiaSelect.value = { name: "Seleccione una jerarquie" }
+  dependenciaSelect.value={ name: "Seleccione una dependencia" }
+  nombre.value="" 
+  apellido.value="" 
+
 };
 
 const handleCancelar = () => {
@@ -109,11 +156,18 @@ const handleCancelar = () => {
 };
 
 const handleModificarElemento = () => {
+  if (hasErrors()) {
+    alert('Completa el formulario antes de guardar.');
+    return;
+  }
   let itemStateEncontrado = guardarModificaciones(selectedItem.value!.id);
   let itemAEditar = {
     ...formData.value,
-    jerarquia: selectedJerarquiaDrop.value?.name || '',
-    dependencia: selectedDependenciaDrop.value?.name || '',
+    id: formData.value.id,
+    jerarquia: jerarquiaSelect.value?.name || '',
+    dependencia: dependenciaSelect.value?.name || '',
+    nombre: nombre.value,
+    apellido : apellido.value,
     ...itemStateEncontrado,
   };
   editar(itemAEditar);
@@ -122,10 +176,16 @@ const handleModificarElemento = () => {
 watch(selectedItem, (newVal: any) => {
   if (!newVal) {
     formData.value = { ...initialValues };
+    jerarquiaSelect.value= { name:"Seleccione una jerarquia"}
+    dependenciaSelect.value= { name:"Seleccione una dependencia"}
+    nombre.value = ""
+    apellido.value = ""
+
   } else {
     selectedJerarquiaDrop.value = { name: newVal.jerarquia };
     selectedDependenciaDrop.value = { name: newVal.dependencia };
     formData.value = { ...newVal };
+    updateDataWithForm();
   }
 });
 </script>
@@ -139,10 +199,13 @@ watch(selectedItem, (newVal: any) => {
           <MyInput
             type="text"
             class="mt-2"
-            :value="getInputValue('apellido')"
+            placeholder="Ingrese apellido"
             @input="handleInputChange('apellido', $event)"
             @blur="() => handleBlur('apellido')"
-            :color="!!selectedItem"
+            v-model="apellido"
+            :color="false"
+            :error="errors.apellido" 
+            v-bind="apellidoAttrs"  
           />
         </div>
         <div class="col-6">
@@ -150,10 +213,13 @@ watch(selectedItem, (newVal: any) => {
           <MyInput
             type="text"
             class="mt-2"
-            :value="getInputValue('nombre')"
+            placeholder="Ingrese nombre"
             @input="handleInputChange('nombre', $event)"
             @blur="() => handleBlur('nombre')"
-            :color="!!selectedItem"
+            v-model="nombre"
+            :color="false"
+            :error="errors.nombre" 
+            v-bind="nombreAttrs"  
           />
         </div>
         <div class="col-6">
@@ -161,11 +227,13 @@ watch(selectedItem, (newVal: any) => {
           <MyDropdown
             class="mt-2"
             :items="jerarquiaDropdown"
-            v-model="selectedJerarquiaDrop"
+            v-model="jerarquiaSelect"
             @change="(newValue) => handleDropdownChange('jerarquia', newValue)"
             placeholder="Seleccione la Jerarquia"
             filter
-            :color="!!selectedItem"
+            :color="false"
+            :error="errors.jerarquiaSelect" 
+            v-bind="jerarquiaSelectAttrs"  
           />
         </div>
         <div class="col-6">
@@ -173,13 +241,15 @@ watch(selectedItem, (newVal: any) => {
           <MyDropdown
             class="mt-2"
             :items="dependenciaDropdown"
-            v-model="selectedDependenciaDrop"
+            v-model="dependenciaSelect"
             @change="
               (newValue) => handleDropdownChange('dependencia', newValue)
             "
             placeholder="Seleccione la Dependencia"
             filter
-            :color="!!selectedItem"
+            :color="false"
+            :error="errors.dependenciaSelect" 
+            v-bind="dependenciaSelectAttrs"  
           />
         </div>
         <div class="ml-auto mt-2 p-0">

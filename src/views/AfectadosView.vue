@@ -31,11 +31,10 @@ const validationSchema = yup.object({
   nombre: yup.string().required().min(3),
   apellido: yup.string().required().min(3),
   domicilio: yup.string().required().min(8),
-  // telefono: yup.number(),
-  nroDocumento: yup
-    .number()
-    .required('Ingrese un número documento válido')
-    .min(5000000, 'Ingrese un número documento válido'),
+  // nroDocumento: yup
+  //   .number()
+  //   .required('Ingrese un número documento válido')
+  //   .min(5000000, 'Ingrese un número documento válido'),
   fechaNacimiento: yup
     .string()
     .required('La fecha de nacimiento es obligatoria')
@@ -85,12 +84,12 @@ const validationSchema = yup.object({
         'Selecciones un tipo válido'
       ),
   }),
-  tipoDocSelect: yup.object().shape({
-    name: yup
-      .string()
-      .required('Seleccione un tipo de documento')
-      .oneOf(mapToArray(documentosDropdown), 'Selecciones un tipo válido'),
-  }),
+  // tipoDocSelect: yup.object().shape({
+  //   name: yup
+  //     .string()
+  //     .required('Seleccione un tipo de documento')
+  //     .oneOf(mapToArray(documentosDropdown), 'Selecciones un tipo válido'),
+  // }),
   nacionalidadSelect: yup.object().shape({
     name: yup
       .string()
@@ -122,9 +121,7 @@ const { defineField, values, errors } = useForm({
 const hasErrors = () => {
   const keys1 = Object.keys(validationSchema.fields);
   const keys2 = Object.keys(values);
-  const areKeysEqual =
-    keys1.length < keys2.length && keys1.every((key) => keys2.includes(key));
-
+  const areKeysEqual = keys1.length <= keys2.length && keys1.every((key) => keys2.includes(key));
   return Object.keys(errors.value).length > 0 || !areKeysEqual;
 };
 let [nombre, nombreAttrs] = defineField('nombre');
@@ -152,12 +149,6 @@ const {
   agregar,
   resetAllDropdown,
   initialValues,
-  // selectedType,
-  // selectedDocumento,
-  // selectedSexo,
-  // selectedNacionalidad,
-  // selectedEstadoCivil,
-  // selectedInstruccion,
 } = useAfectados();
 
 const { selectedItem } = useItemValue();
@@ -193,7 +184,7 @@ let formData = ref<AfectadosForm>({
   instruccion: {
     name: '',
   },
-  nroDocumento: 0,
+  nroDocumento: '',
   apellido: '',
   nombre: '',
   fecha: '',
@@ -202,18 +193,11 @@ let formData = ref<AfectadosForm>({
   email: '',
   profesion: '',
 });
-// const formData = ref<AfectadosForm>(selectedItem.value && Object.keys(selectedItem.value).length > 0 ? { ...selectedItem.value } : { ...initialValues }
 const tarjetaValues = ref<string[]>([]);
 
 onActivated(() => {
   tarjetaValues.value = obtenerTarjeta('afectados')?.valor as string[];
   if (selectedItem.value) {
-    // selectedType.value = { name: selectedItem.value.typeAfectado };
-    // selectedDocumento.value = { name: selectedItem.value.typeDocumento };
-    // selectedSexo.value = { name: selectedItem.value.typeSexo };
-    // selectedNacionalidad.value = { name: selectedItem.value.nacionalidad };
-    // selectedEstadoCivil.value = { name: selectedItem.value.estadoCivil };
-    // selectedInstruccion.value = { name: selectedItem.value.instruccion };
     formData.value = { ...selectedItem.value };
     updateDataWithForm(formData);
   }
@@ -229,7 +213,7 @@ const updateDataWithForm = (form: any) => {
     domicilio.value = formData.value.domicilioResidencia;
     sexoSelect.value = { name: formData.value.typeSexo || '' };
     tipoDenuncianteSelect.value = { name: formData.value.typeAfectado };
-    tipoDocSelect.value = { name: formData.value.typeDocumento };
+    tipoDocSelect.value = { name: formData?.value?.typeDocumento || 'Seleccione tipo' };
     nacionalidadSelect.value = { name: formData.value.nacionalidad };
     estadoCivilSelect.value = { name: formData.value.estadoCivil };
     instruccionSelect.value = { name: formData.value.instruccion };
@@ -308,7 +292,7 @@ const handleAgregarElemento = () => {
     email: formData.value.email,
     profesion: formData.value.profesion,
     typeAfectado: tipoDenuncianteSelect.value.name,
-    typeDocumento: tipoDocSelect.value.name,
+    typeDocumento: tipoDocSelect?.value?.name || '',
     typeSexo: sexoSelect.value.name,
     nacionalidad: nacionalidadSelect.value.name,
     estadoCivil: estadoCivilSelect.value.name,
@@ -360,7 +344,7 @@ const handleModificarElemento = () => {
     email: formData.value.email || '',
     profesion: formData.value.profesion || '',
     typeAfectado: tipoDenuncianteSelect.value.name || '',
-    typeDocumento: tipoDocSelect.value.name || '',
+    typeDocumento: tipoDocSelect.value.name =='Seleccione tipo' ? '': tipoDocSelect.value.name || '',
     typeSexo: sexoSelect.value.name || '',
     nacionalidad: nacionalidadSelect.value.name || '',
     estadoCivil: estadoCivilSelect.value.name || '',
@@ -388,15 +372,7 @@ watch(selectedItem, (newVal: any) => {
     instruccionSelect.value = { name: 'instrucción' };
     nroDocumento.value = '';
     fechaNacimiento.value = '';
-    // updateDataWithForm(formData)
   } else {
-    // selectedType.value = { name: newVal.typeAfectado };
-    // selectedDocumento.value = { name: newVal.typeDocumento };
-    // selectedSexo.value = { name: newVal.typeSexo };
-    // selectedNacionalidad.value = { name: newVal.nacionalidad };
-    // selectedEstadoCivil.value = { name: newVal.estadoCivil };
-    // selectedInstruccion.value = { name: newVal.instruccion };
-
     formData.value = { ...newVal };
     updateDataWithForm(formData);
   }
@@ -449,7 +425,7 @@ watch(selectedItem, (newVal: any) => {
         <div class="col-4">
           <label for="dropdown">N° de doc.</label>
           <MyInput
-            type="number"
+            type="text"
             class="mt-2"
             v-model="nroDocumento"
             :color="false"

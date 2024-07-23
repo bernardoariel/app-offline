@@ -32,10 +32,6 @@ const validationSchema = yup.object({
   nombre: yup.string().required().min(3),
   apellido: yup.string().required().min(3),
   domicilio: yup.string().required().min(8),
-  nroDocumento: yup
-    .number()
-    .required('Ingrese un número documento válido')
-    .min(5000000, 'Ingrese un número documento válido'),
   fechaNacimiento: yup
     .string()
     .required('La fecha de nacimiento es obligatoria')
@@ -82,12 +78,7 @@ const validationSchema = yup.object({
       .required('Seleccione un tipo de denunciante')
       .oneOf(['Acusado', 'Detenido'], 'Selecciones un tipo válido'),
   }),
-  tipoDocSelect: yup.object().shape({
-    name: yup
-      .string()
-      .required('Seleccione un tipo de documento')
-      .oneOf(mapToArray(documentosDropdown), 'Selecciones un tipo válido'),
-  }),
+  
   nacionalidadSelect: yup.object().shape({
     name: yup
       .string()
@@ -125,8 +116,7 @@ const { defineField, values, errors } = useForm({
 const hasErrors = () => {
   const keys1 = Object.keys(validationSchema.fields);
   const keys2 = Object.keys(values);
-  const areKeysEqual =
-    keys1.length < keys2.length && keys1.every((key) => keys2.includes(key));
+  const areKeysEqual = keys1.length <= keys2.length && keys1.every((key) => keys2.includes(key));
   return Object.keys(errors.value).length > 0 || !areKeysEqual;
 };
 
@@ -180,7 +170,7 @@ let formData = ref<VinculadosForm>({
   instruccion: {
     name: '',
   },
-  nroDocumento: 0,
+  nroDocumento: '',
   apellido: '',
   nombre: '',
   fecha: '',
@@ -209,7 +199,7 @@ const updateDataWithForm = (form: any) => {
     domicilio.value = formData.value.domicilioResidencia;
     sexoSelect.value = { name: formData.value.typeSexo || '' };
     tipoDenuncianteSelect.value = { name: formData.value.typeAfectado };
-    tipoDocSelect.value = { name: formData.value.typeDocumento };
+    tipoDocSelect.value = { name: formData?.value?.typeDocumento || 'Seleccione tipo'  };
     nacionalidadSelect.value = { name: formData.value.nacionalidad };
     estadoCivilSelect.value = { name: formData.value.estadoCivil };
     instruccionSelect.value = { name: formData.value.instruccion };
@@ -292,7 +282,7 @@ const handleAgregarElemento = () => {
     telefono: formData.value.telefono,
     profesion: formData.value.profesion,
     typeAfectado: tipoDenuncianteSelect.value.name,
-    typeDocumento: tipoDocSelect.value.name,
+    typeDocumento:tipoDocSelect?.value?.name || '',
     typeSexo: sexoSelect.value.name,
     nacionalidad: nacionalidadSelect.value.name,
     estadoCivil: estadoCivilSelect.value.name,
@@ -340,7 +330,7 @@ const handleModificarElemento = () => {
     profesion: formData.value.profesion || '',
     apodo: formData.value.apodo || '',
     typeAfectado: tipoDenuncianteSelect.value.name || '',
-    typeDocumento: tipoDocSelect.value.name || '',
+    typeDocumento: tipoDocSelect.value.name =='Seleccione tipo' ? '': tipoDocSelect.value.name || '',
     typeSexo: sexoSelect.value.name || '',
     nacionalidad: nacionalidadSelect.value.name || '',
     estadoCivil: estadoCivilSelect.value.name || '',
@@ -420,7 +410,7 @@ watch(selectedItem, (newVal: any) => {
         <div class="col-4">
           <label for="dropdown">N° de doc.</label>
           <MyInput
-            type="number"
+            type="text"
             class="mt-2"
             v-model="nroDocumento"
             :color="false"

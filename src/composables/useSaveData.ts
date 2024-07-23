@@ -41,33 +41,35 @@ const useSaveData = () => {
 
   const saveData = async (data: dataActuacionForSave) => {
     const isValid = validateForm(nombreActuacion.value, data)
-    if (isValid) {
-      try {
-        await db.open();
-        await db.actuaciones.add({
-          nroLegajoCompleto: nroLegajo.value,
-          fechaCreacion: fechaCreacion.value,
-          nombreActuacion: nombreActuacion.value,
-          juzgadoInterviniente: selectedJuzgadoInterviniente.value?.name || '',
-          afectados: JSON.stringify(data.afectados),
-          vinculados: JSON.stringify(data.vinculados),
-          fechaUbicacion: JSON.stringify(data.fechaUbicacion),
-          efectos: JSON.stringify(data.efectos),
-          datosLegales: JSON.stringify(data.datosLegales),
-          personalInterviniente: JSON.stringify(data.personalInterviniente),
-          viewPdf: JSON.stringify(data.viewPdf),
-          pathName: JSON.stringify(data.pathName),
-          relato: JSON.stringify(data.relato),
-          dependenciaData: JSON.stringify(getDependenciaData())
-        });
-        success.value = true;
-
-      } catch (err) {
-        console.error('Error al guardar datos:', err);
-        error.value = err;
-      }
+    if (!isValid) {
+      alert('faltan datos')
+      return
     }
-    alert('faltan datos')
+    try {
+      await db.open();
+      await db.actuaciones.add({
+        nroLegajoCompleto: nroLegajo.value,
+        fechaCreacion: fechaCreacion.value,
+        nombreActuacion: nombreActuacion.value,
+        juzgadoInterviniente: selectedJuzgadoInterviniente.value?.name || '',
+        afectados: JSON.stringify(data.afectados),
+        vinculados: JSON.stringify(data.vinculados),
+        fechaUbicacion: JSON.stringify(data.fechaUbicacion),
+        efectos: JSON.stringify(data.efectos),
+        datosLegales: JSON.stringify(data.datosLegales),
+        personalInterviniente: JSON.stringify(data.personalInterviniente),
+        viewPdf: JSON.stringify(data.viewPdf),
+        pathName: JSON.stringify(data.pathName),
+        relato: JSON.stringify(data.relato),
+        dependenciaData: JSON.stringify(getDependenciaData())
+      });
+      success.value = true;
+
+    } catch (err) {
+      console.error('Error al guardar datos:', err);
+      error.value = err;
+    }
+
   };
 
   const updateData = async (data: dataActuacionForSave) => {

@@ -11,6 +11,13 @@ const actuacionesRequierenInterviniente = [
   'ufi-cavig',
   'ufi-anivi'
 ]
+const missingFieldsEmpty = reactive({
+  afectados: false,
+  vinculados: false,
+  fecha: false,
+  efectos: false,
+  personalInterviniente: false
+});
 const useCardInformation = (actuacionRef) => {
   const itemsCollection = useItems();
 
@@ -20,6 +27,7 @@ const useCardInformation = (actuacionRef) => {
     fecha: { titulo: 'Fecha', items: itemsCollection.fechaUbicacion },
     efectos: { titulo: 'Efectos', items: itemsCollection.efectos },
   });
+  
 
   const updatePersonalInterviniente = (actuacion) => {
     if (actuacionesRequierenInterviniente.includes(actuacion)) {
@@ -46,7 +54,8 @@ const useCardInformation = (actuacionRef) => {
 
   return {
     cardInformationKeys,
-    cardInformation
+    cardInformation,
+    missingFieldsEmpty
   };
 };
 

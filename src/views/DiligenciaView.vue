@@ -166,6 +166,7 @@ import useDatosLegales from '../composables/useDatosLegales';
 import useActuacionLoading from '@/composables/useActuacionLoading';
 
 import Skeleton from 'primevue/skeleton';
+import useCardInformation from '@/composables/useCardInformation';
 
 interface Props {
   actuacion: string;
@@ -216,7 +217,7 @@ const {
   setDiliginciaChange,
 } = useFieldState();
 const { resetFields: resetLegalFields } = useLegalesState();
-
+const { cardInformationKeys, missingFieldsEmpty } = useCardInformation(actuacionRef);
 const setHeaderFromComputed = () => {
   headerContainer.value = headerTextComputed.value;
   isEditedHeader.value = true;
@@ -255,18 +256,17 @@ const storeData = async () => {
   const body = relato.value;
   const foot = footerContainer.value || processedFooterText.value;
 
-  const datosLegales: DatosLegales = {
+  const datosLegales = {
     nroLegajo: nroLegajo.value?.toString() || '',
     selectYear: selectedYear.value?.name || '',
     selectSitio: selectedSitio.value?.name || '',
     selectModusOperandi: selectedModusOperandi.value?.name || '',
     selectCausaCaratula: selectedCausaCaratula.value?.name || '',
-    opcionesCausaCaratula: itemsCausaCaratula.value.map(
-      (item: { name: string }) => item.name
-    ),
+    opcionesCausaCaratula: itemsCausaCaratula.value.map((item) => item.name),
     selectJuzgadoInterviniente: selectedJuzgadoInterviniente.value?.name || '',
   };
-  const data: dataActuacionForSave = {
+
+  const data:dataActuacionForSave  = {
     afectados: afectados.value,
     vinculados: vinculados.value,
     fechaUbicacion: fechaUbicacion.value,
@@ -287,8 +287,49 @@ const storeData = async () => {
   await saveData(data);
 };
 
+const navigateSuccessfully = async () => {
+  await router.push({ name: 'actuaciones' });
+};
+
 const handleSave = async () => {
-  storeData();
+ 
+
+  // Reiniciar el estado de los errores
+  Object.keys(missingFieldsEmpty).forEach(key => {
+    missingFieldsEmpty[key] = false;
+  });
+
+  let hasErrors = false;
+
+  if (cardInformationKeys.value.includes('afectados') && (!afectados.value || afectados.value.length === 0)) {
+    missingFieldsEmpty.afectados = true;
+    hasErrors = true;
+  }
+  if (cardInformationKeys.value.includes('vinculados') && (!vinculados.value || vinculados.value.length === 0)) {
+    missingFieldsEmpty.vinculados = true;
+    hasErrors = true;
+  }
+  if (cardInformationKeys.value.includes('fecha') && !fechaUbicacion.value) {
+    missingFieldsEmpty.fecha = true;
+    hasErrors = true;
+  }
+  if (cardInformationKeys.value.includes('efectos') && (!efectos.value || efectos.value.length === 0)) {
+    missingFieldsEmpty.efectos = true;
+    hasErrors = true;
+  }
+  if (cardInformationKeys.value.includes('personalInterviniente') && (!intervinientes.value || intervinientes.value.length === 0)) {
+    missingFieldsEmpty.personalInterviniente = true;
+    hasErrors = true;
+  }
+
+  if (hasErrors) {
+    alert(`Los siguientes campos están vacíos: ${Object.keys(missingFieldsEmpty).filter(key => missingFieldsEmpty[key]).join(', ')}`);
+    return;
+  }
+
+  await storeData();
+  await navigateSuccessfully();
+
   isVisible.value = false;
   isActuationInit.value = false;
   currentEditId.value = null;
@@ -297,8 +338,8 @@ const handleSave = async () => {
   resetNewRecordCreated();
   resetLegalFields();
   resetRecordDeleted();
-  await router.push({ name: 'actuaciones' });
 };
+
 
 onActivated(() => {
   isVisible.value = false; // Set visibility to false when the component is activated

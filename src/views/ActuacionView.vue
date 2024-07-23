@@ -79,8 +79,7 @@ const { setAll } = useItem();
 
 const { relato, isEditingHeader } = useDatosDiligencia(props.actuacion);
 const { addDataFake } = useDatosLegales();
-const { cardInformationKeys, cardInformation } =
-  useCardInformation(actuacionRef);
+const { cardInformationKeys, cardInformation,missingFieldsEmpty } =useCardInformation(actuacionRef);
 const { prepararNuevoItem } = useItemValue();
 
 const handleClick = (event: { ctrlKey: any; altKey: any }) => {
@@ -249,10 +248,13 @@ const isAnyChange = computed(() => {
                 :outlined="active !== 1"
               />
             </div>
+            
             <div>
-              <small class="text-sm">{{
-                isAnyChange ? 'Cambios Pendientes' : 'Sin Cambios'
-              }}</small>
+              <small class="text-sm">
+            <!--     <i :class="isAnyChange ? 'pi pi-exclamation-circle' : 'pi pi-check-circle'"
+                  :style="{ color: isAnyChange ? 'orange' : 'green' }"></i> -->
+                {{ isAnyChange ? ' Cambios Pendientes' : ' Sin Cambios' }}
+              </small>
             </div>
           </div>
         </template>

@@ -29,10 +29,45 @@ const useDatosDiligencia = (actuacion: ref<string>) => {
   const isEditingHeader = ref<boolean>(false);
   const isEditingFooter = ref<boolean>(false);
 
-  const diligenciaSeleccionada = computed(() => {
-    return diligencias.find((d: DatosLegales) => d.id === actuacion.value);
-  });
+  const actuacionMap: { [key: string]: string } = {
+    'sumario-denuncia': 'sumario-denuncia',
+    'sumario-oficio': 'sumario-oficio',
+    'expediente-denuncia': 'expediente-denuncia',
+    'expediente-oficio': 'expediente-oficio',
+    'ufi-delitos-especiales-paradero': 'ufi-delitos-especiales-paradero'
+  };
 
+  const getIdToFind = (actuacion: string) => {
+    console.log('actuacion::: ', actuacion);
+    if (actuacionMap[actuacion]) {
+      return actuacionMap[actuacion];
+    }
+    if (actuacion.startsWith('ufi-delitos-especiales-') && actuacion !== 'ufi-delitos-especiales-paradero') {
+      return 'ufi-delitos-especiales';
+    }
+    if (actuacion.startsWith('preliminares-')) {
+      return 'preliminares';
+    }
+
+    const ufiOficio = ['oficio', 'cavig', 'flagrancia', 'anivi'];
+    if (actuacion.startsWith('ufi') && ufiOficio.some(term => actuacion.includes(term))) {
+      return 'ufi-oficio';
+    }
+    if (actuacion.startsWith('ufi') && actuacion.includes('denuncia')) {
+      return 'ufi-denuncia';
+    }
+
+    return actuacion; 
+};
+
+  const diligenciaSeleccionada = computed(() => {
+    if ( !actuacion.value ) return 
+    const idToFind = getIdToFind(actuacion.value);
+    const result = diligencias.find((d: DatosLegales) => d.id === idToFind);
+    console.log('Diligencia seleccionada: ', result);
+    return result;
+  });
+  
   const getStyle = (value: string): string => {
     return `<span class="text-primary font-medium"><i>${value}</i></span>`;
   };

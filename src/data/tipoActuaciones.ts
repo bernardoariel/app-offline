@@ -294,7 +294,7 @@ export const actuaciones: TipoActuaciones = {
             }
         }
     },
-    "delitos-especiales-paradero":{
+    "ufi-delitos-especiales-paradero":{
         titulo: 'UFI - ESTABLECER PARADERO',
         tituloAlternativo: 'UNIDADES FISCALES DE INVESTIGACION D.E ESTABLECER PARADERO',
         "tarjetas": {
@@ -316,7 +316,7 @@ export const actuaciones: TipoActuaciones = {
             }
         }
     },
-    "delitos-especiales-médicas":{
+    "ufi-delitos-especiales-médicas":{
         titulo: 'UFI - EMERGENCIAS MÉDICAS',
         tituloAlternativo: 'UNIDADES FISCALES DE INVESTIGACION D.E EMERGENCIAS MEDICAS',
         "tarjetas": {
@@ -338,7 +338,7 @@ export const actuaciones: TipoActuaciones = {
             },
         }
     },
-    "delitos-especiales-vial":{
+    "ufi-delitos-especiales-vial":{
         titulo: 'UFI - SINIESTRO VIAL',
         tituloAlternativo: 'UNIDADES FISCALES DE INVESTIGACION D.E SINIESTRO VIAL',
         "tarjetas": {
@@ -364,7 +364,7 @@ export const actuaciones: TipoActuaciones = {
             },
         }
     },
-    "delitos-especiales-ahorcamiento-suicidio":{
+    "ufi-delitos-especiales-ahorcamiento-suicidio":{
         titulo: 'UFI - AHORCAMIENTO O SUICIDIO',
         tituloAlternativo: 'UNIDADES FISCALES DE INVESTIGACION D.E AHORCAMIENTO O SUICIDIO',
         "tarjetas": {
@@ -386,7 +386,7 @@ export const actuaciones: TipoActuaciones = {
             },
         }
     },
-    "delitos-especiales-incendio-vivienda":{
+    "ufi-delitos-especiales-incendio-vivienda":{
         titulo: 'UFI - INCENDIO EN VIVIENDA',
         tituloAlternativo: 'UNIDADES FISCALES DE INVESTIGACION D.E INCENDIO EN VIVIENDA',
         "tarjetas": {
@@ -408,7 +408,7 @@ export const actuaciones: TipoActuaciones = {
             },
         }
     },
-    "delitos-especiales-intoxicación":{
+    "ufi-delitos-especiales-intoxicación":{
         titulo: 'UFI - INTOXICACIÓN',
         tituloAlternativo: 'UNIDADES FISCALES DE INVESTIGACION D.E INTOXICACION',
         "tarjetas": {

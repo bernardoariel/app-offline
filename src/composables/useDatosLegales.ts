@@ -52,7 +52,7 @@ const useDatosLegales = () => {
         selectedJuzgadoInterviniente.value = null
         selectedCausaCaratulaList.value = null;
         itemsCausaCaratula.value = [];
-        nombreActuacion.value = '';
+        nombreActuacion.value = 'Sumario por denuncia';
     };
 
     const setData = (data: { datosLegales: string }) => {

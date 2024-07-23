@@ -10,6 +10,7 @@ import useDatosLegales from './useDatosLegales';
 import type { DatosLegales } from '../interfaces/datosLegalesForm.interface';
 import { getDependenciaData } from '@/helpers/getDependencia';
 import { formatFecha } from '@/helpers/getFormatFecha';
+import { useFormCompleted } from './useFormCompleted';
 
 export interface dataActuacionForSave {
   id?: number;
@@ -27,6 +28,7 @@ export interface dataActuacionForSave {
 
 const { fechaCreacion, getFormattedDate } = useActuacion();
 const { nombreActuacion, nroLegajo, selectedJuzgadoInterviniente } = useDatosLegales();
+const { validateForm } = useFormCompleted()
 const db = new Dexie('Siis') as any;
 
 db.version(1).stores({
@@ -38,7 +40,11 @@ const useSaveData = () => {
   const success = ref(false);
 
   const saveData = async (data: dataActuacionForSave) => {
-
+    const isValid = validateForm(nombreActuacion.value, data)
+    if (!isValid) {
+      alert('faltan datos')
+      return
+    }
     try {
       await db.open();
       await db.actuaciones.add({
@@ -63,6 +69,7 @@ const useSaveData = () => {
       console.error('Error al guardar datos:', err);
       error.value = err;
     }
+
   };
 
   const updateData = async (data: dataActuacionForSave) => {

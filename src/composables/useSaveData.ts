@@ -28,7 +28,7 @@ export interface dataActuacionForSave {
 
 const { fechaCreacion, getFormattedDate } = useActuacion();
 const { nombreActuacion, nroLegajo, selectedJuzgadoInterviniente } = useDatosLegales();
-const { validateForm } = useFormCompleted()
+const { validateForm, missingFields } = useFormCompleted()
 const db = new Dexie('Siis') as any;
 
 db.version(1).stores({
@@ -42,8 +42,11 @@ const useSaveData = () => {
   const saveData = async (data: dataActuacionForSave) => {
     const isValid = validateForm(nombreActuacion.value, data)
     if (!isValid) {
-      alert('faltan datos')
-      return
+      const missingFieldsList = Array.from(missingFields.value).map(field => {
+        return field.toUpperCase();
+      }).join(', ');
+      alert(`Faltan datos en los siguientes campos: ${missingFieldsList}`);
+      return;
     }
     try {
       await db.open();

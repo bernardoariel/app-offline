@@ -404,7 +404,7 @@ const convertStringToPhrase = (key: string): string => {
       </template>
     </DataView>
   </div>
-  <div v-else-if="!isCreateActuation">
+  <div v-else>
     <div class="flex-container">
       <!-- Primera columna con círculo -->
       <div class="flex-item">

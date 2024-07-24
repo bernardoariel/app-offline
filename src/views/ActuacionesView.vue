@@ -10,8 +10,6 @@ const {isActuationInit,currentEditId} = useActuacion()
 onActivated(()=>{
   isActuationInit.value = false 
   currentEditId.value = null
-  console.log('actuaciones:init',isActuationInit.value)
-  console.log('actuaciones:currentId',currentEditId.value)
 })
 </script>
 

@@ -4,7 +4,7 @@ import useEfectos from '@/composables/useEfectos';
 import useItemValue from '@/composables/useItemValue';
 import useFieldState from '@/composables/useFieldsState';
 import useActuacionData from '@/composables/useActuacionData';
-import * as yup from "yup";
+import * as yup from 'yup';
 
 import MyDropdown from '@/components/elementos/MyDropdown.vue';
 import MyInput from '@/components/elementos/MyInput.vue';
@@ -24,37 +24,65 @@ import { useForm } from 'vee-validate';
 
 const validationSchema = yup.object({
   estadoSelect: yup.object().shape({
-    name: yup.string().required('Seleccione un estado').oneOf(["Denunciado", "Recuperado", "Secuestrado"], 'Selecciones un tipo válido'),
+    name: yup
+      .string()
+      .required('Seleccione un estado')
+      .oneOf(
+        ['Denunciado', 'Recuperado', 'Secuestrado'],
+        'Selecciones un tipo válido'
+      ),
   }),
   categoriaSelect: yup.object().shape({
-    name: yup.string().required('Seleccione una categoria').oneOf(mapToArray(categoriasDropdown), 'Selecciones una categoria válida'),
+    name: yup
+      .string()
+      .required('Seleccione una categoria')
+      .oneOf(
+        mapToArray(categoriasDropdown),
+        'Selecciones una categoria válida'
+      ),
   }),
   subCategoriaSelect: yup.object().shape({
-    name: yup.string().required('Seleccione una sub categoria').oneOf(mapToArray(subcategoriasDropdown), 'Selecciones una subcategoria'),
+    name: yup
+      .string()
+      .required('Seleccione una sub categoria')
+      .oneOf(mapToArray(subcategoriasDropdown), 'Selecciones una subcategoria'),
   }),
   tipoSelect: yup.object().shape({
-    name: yup.string().required('Seleccione un tipo').oneOf(mapToArray(tipoCategoriasDropdown), 'Selecciones un tipo válido'),
+    name: yup
+      .string()
+      .required('Seleccione un tipo')
+      .oneOf(mapToArray(tipoCategoriasDropdown), 'Selecciones un tipo válido'),
   }),
   modeloSelect: yup.object().shape({
-    name: yup.string().required('Seleccione un modelo').oneOf(mapToArray(modelosCategoriasDropdown), 'Selecciones un modelo válido'),
+    name: yup
+      .string()
+      .required('Seleccione un modelo')
+      .oneOf(
+        mapToArray(modelosCategoriasDropdown),
+        'Selecciones un modelo válido'
+      ),
   }),
   marcaSelect: yup.object().shape({
-    name: yup.string().required('Seleccione una marca').oneOf(mapToArray(marcasCategoriasDropdown), 'Selecciones una marca válida'),
+    name: yup
+      .string()
+      .required('Seleccione una marca')
+      .oneOf(
+        mapToArray(marcasCategoriasDropdown),
+        'Selecciones una marca válida'
+      ),
   }),
-  
 });
 const { defineField, values, errors } = useForm({
-  validationSchema
+  validationSchema,
 });
 
-
-let [estadoSelect, estadoSelectAttrs] = defineField("estadoSelect");
-let [categoriaSelect, categoriaSelectAttrs] = defineField("categoriaSelect");
-let [subCategoriaSelect, subCategoriaSelectAttrs] = defineField("subCategoriaSelect");
-let [tipoSelect, tipoSelectAttrs] = defineField("tipoSelect");
-let [marcaSelect, marcaSelectAttrs] = defineField("marcaSelect");
-let [modeloSelect, modeloSelectAttrs] = defineField("modeloSelect");
-
+let [estadoSelect, estadoSelectAttrs] = defineField('estadoSelect');
+let [categoriaSelect, categoriaSelectAttrs] = defineField('categoriaSelect');
+let [subCategoriaSelect, subCategoriaSelectAttrs] =
+  defineField('subCategoriaSelect');
+let [tipoSelect, tipoSelectAttrs] = defineField('tipoSelect');
+let [marcaSelect, marcaSelectAttrs] = defineField('marcaSelect');
+let [modeloSelect, modeloSelectAttrs] = defineField('modeloSelect');
 
 const {
   editar,
@@ -77,6 +105,7 @@ const {
   guardarModificaciones,
   isEditing,
   cancelarModificaciones,
+  markNewRecordCreated,
 } = useFieldState();
 const { obtenerTarjeta } = useActuacionData();
 
@@ -87,26 +116,27 @@ onActivated(() => {
   tarjetaValues.value = obtenerTarjeta('efectos')?.valor as string[];
   if (selectedItem.value) {
     formData.value = { ...selectedItem.value };
-    updateDataWithForm()
+    updateDataWithForm();
   }
-  console.log(mapToArray(categoriasDropdown))
+  console.log(mapToArray(categoriasDropdown));
 });
 const hasErrors = () => {
-    const keys1 = Object.keys(validationSchema.fields);
-    const keys2 = Object.keys(values);
-    const areKeysEqual = keys1.length <= keys2.length && keys1.every((key) => keys2.includes(key));
-    return Object.keys(errors.value).length > 0 || !areKeysEqual;
-  };
+  const keys1 = Object.keys(validationSchema.fields);
+  const keys2 = Object.keys(values);
+  const areKeysEqual =
+    keys1.length <= keys2.length && keys1.every((key) => keys2.includes(key));
+  return Object.keys(errors.value).length > 0 || !areKeysEqual;
+};
 const updateDataWithForm = () => {
   if (formData) {
-    tipoSelect.value = { name: formData.value.tipo }
-    marcaSelect.value={ name: formData.value.marca }
-    modeloSelect.value={ name: formData.value.modelo }
-    categoriaSelect.value={ name: formData.value.categoria }
-    subCategoriaSelect.value={ name: formData.value.subcategoria }
-    estadoSelect.value={ name: formData.value.estado }
+    tipoSelect.value = { name: formData.value.tipo };
+    marcaSelect.value = { name: formData.value.marca };
+    modeloSelect.value = { name: formData.value.modelo };
+    categoriaSelect.value = { name: formData.value.categoria };
+    subCategoriaSelect.value = { name: formData.value.subcategoria };
+    estadoSelect.value = { name: formData.value.estado };
   }
-}
+};
 const handleDropdownChange = (
   campo: keyof EfectosForm,
   newValue: { value: any; name: string }
@@ -177,14 +207,14 @@ const handleAgregarElemento = () => {
   };
 
   agregar(nuevoEfecto);
+  markNewRecordCreated();
   formData.value = { ...initialValues };
-  tipoSelect.value = { name: "Seleccione un tipo" }
-  marcaSelect.value={ name: "Seleccione una marca" }
-  modeloSelect.value={ name: "Seleccione un modelo" }
-  categoriaSelect.value={ name: "Seleccione una categoria" }
-  subCategoriaSelect.value={ name: "Seleccione una subcategoria" }
-  estadoSelect.value={ name: "Seleccione un estado" }
-
+  tipoSelect.value = { name: 'Seleccione un tipo' };
+  marcaSelect.value = { name: 'Seleccione una marca' };
+  modeloSelect.value = { name: 'Seleccione un modelo' };
+  categoriaSelect.value = { name: 'Seleccione una categoria' };
+  subCategoriaSelect.value = { name: 'Seleccione una subcategoria' };
+  estadoSelect.value = { name: 'Seleccione un estado' };
 };
 
 const handleCancelar = () => {
@@ -194,13 +224,14 @@ const handleCancelar = () => {
 };
 
 const handleModificarElemento = () => {
-  if (hasErrors()){
-    alert("Completa el formulario antes de guardar.")
-     return;}
+  if (hasErrors()) {
+    alert('Completa el formulario antes de guardar.');
+    return;
+  }
   let itemStateEncontrado = guardarModificaciones(selectedItem.value!.id);
   let itemAEditar = {
     ...formData.value,
-    id:formData.value.id,
+    id: formData.value.id,
     estado: estadoSelect.value.name || '',
     categoria: categoriaSelect.value.name || '',
     marca: marcaSelect.value.name || '',
@@ -214,13 +245,12 @@ const handleModificarElemento = () => {
 watch(selectedItem, (newVal: any) => {
   if (!newVal) {
     formData.value = { ...initialValues };
-    tipoSelect.value = { name: "Seleccione un tipo" }
-    marcaSelect.value={ name: "Seleccione una marca" }
-    modeloSelect.value={ name: "Seleccione un modelo" }
-    categoriaSelect.value={ name: "Seleccione una categoria" }
-    subCategoriaSelect.value={ name: "Seleccione una subcategoria" }
-    estadoSelect.value={ name: "Seleccione un estado" }
-
+    tipoSelect.value = { name: 'Seleccione un tipo' };
+    marcaSelect.value = { name: 'Seleccione una marca' };
+    modeloSelect.value = { name: 'Seleccione un modelo' };
+    categoriaSelect.value = { name: 'Seleccione una categoria' };
+    subCategoriaSelect.value = { name: 'Seleccione una subcategoria' };
+    estadoSelect.value = { name: 'Seleccione un estado' };
   } else {
     // selectedEstado.value = { name: newVal.estado };
     // selectedCategoria.value = { name: newVal.categoria };
@@ -229,7 +259,7 @@ watch(selectedItem, (newVal: any) => {
     // selectedSubcategoria.value = { name: newVal.subcategoria };
     // selectedTipo.value = { name: newVal.tipo };
     formData.value = { ...newVal };
-    updateDataWithForm()
+    updateDataWithForm();
   }
 });
 </script>
@@ -248,8 +278,8 @@ watch(selectedItem, (newVal: any) => {
             placeholder="Seleccione tipo de efecto"
             filter
             :color="false"
-            :error="errors.estadoSelect" 
-            v-bind="estadoSelectAttrs"  
+            :error="errors.estadoSelect"
+            v-bind="estadoSelectAttrs"
           />
           <span class="text-red-400" v-if="errors.estadoSelect ? true : false">
             {{ errors.estadoSelect }}
@@ -265,10 +295,13 @@ watch(selectedItem, (newVal: any) => {
             placeholder="Seleccione Categoría"
             filter
             :color="false"
-            :error="errors.categoriaSelect" 
+            :error="errors.categoriaSelect"
             v-bind="categoriaSelectAttrs"
           />
-          <span class="text-red-400" v-if="errors.categoriaSelect ? true : false">
+          <span
+            class="text-red-400"
+            v-if="errors.categoriaSelect ? true : false"
+          >
             {{ errors.categoriaSelect }}
           </span>
         </div>
@@ -282,10 +315,13 @@ watch(selectedItem, (newVal: any) => {
             placeholder="Seleccione Sub-Categoría"
             filter
             :color="false"
-            :error="errors.subCategoriaSelect" 
+            :error="errors.subCategoriaSelect"
             v-bind="subCategoriaSelectAttrs"
           />
-          <span class="text-red-400" v-if="errors.subCategoriaSelect ? true : false">
+          <span
+            class="text-red-400"
+            v-if="errors.subCategoriaSelect ? true : false"
+          >
             {{ errors.subCategoriaSelect }}
           </span>
         </div>
@@ -299,7 +335,7 @@ watch(selectedItem, (newVal: any) => {
             placeholder="Seleccione Tipo"
             filter
             :color="false"
-            :error="errors.tipoSelect" 
+            :error="errors.tipoSelect"
             v-bind="tipoSelectAttrs"
           />
           <span class="text-red-400" v-if="errors.tipoSelect ? true : false">
@@ -318,7 +354,7 @@ watch(selectedItem, (newVal: any) => {
             placeholder="Seleccione Marca"
             filter
             :color="false"
-            :error="errors.marcaSelect" 
+            :error="errors.marcaSelect"
             v-bind="marcaSelectAttrs"
           />
           <span class="text-red-400" v-if="errors.marcaSelect ? true : false">
@@ -334,7 +370,7 @@ watch(selectedItem, (newVal: any) => {
             @change="(newValue) => handleDropdownChange('tipo', newValue)"
             placeholder="Seleccione Modelo"
             :color="false"
-            :error="errors.modeloSelect" 
+            :error="errors.modeloSelect"
             v-bind="modeloSelectAttrs"
           />
           <span class="text-red-400" v-if="errors.modeloSelect ? true : false">

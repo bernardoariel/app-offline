@@ -20,6 +20,7 @@ import MyDialog from '@/components/elementos/MyModal.vue';
 import useFieldState from '@/composables/useFieldsState';
 import useLegalesState from '@/composables/useLegalesState';
 import useActuacionLoading from '@/composables/useActuacionLoading';
+import useCardValidation from '@/composables/useCardValidations';
 
 const router = useRouter();
 const { path } = useRoute();
@@ -80,18 +81,21 @@ onActivated(async () => {
     relato.value = data.relato.replace(/['"]/g, '');
     currentEditId.value = props.id;
     setLoading(false);
+    resetFieldsEmpty();
   }
 });
 
 onDeactivated(() => {
   resetAllStates();
+  resetFieldsEmpty();
 });
 const { setAll } = useItem();
 
 const { relato, isEditingHeader } = useDatosDiligencia(props.actuacion);
 const { addDataFake } = useDatosLegales();
-const { cardInformationKeys, cardInformation, missingFieldsEmpty } =
+const { cardInformationKeys, cardInformation } =
   useCardInformation(actuacionRef);
+const { missingFieldsEmpty, resetFieldsEmpty } = useCardValidation();
 const { prepararNuevoItem } = useItemValue();
 
 const handleClick = (event: { ctrlKey: any; altKey: any }) => {
@@ -286,6 +290,13 @@ const isAnyChange = computed(() => {
                 v-for="key in cardInformationKeys"
                 :key="key"
                 class="p-fluid mb-2 color-border-top"
+                :style="
+                  missingFieldsEmpty[key]
+                    ? key === 'efectos'
+                      ? 'borderBottom: 2px solid #f97316'
+                      : 'borderBottom: 2px solid #dc3545'
+                    : null
+                "
               >
                 <template #title>
                   <div class="title-container">
@@ -306,6 +317,7 @@ const isAnyChange = computed(() => {
                   <DataViewCard
                     :itemsCardValue="cardInformation[key]"
                     :data-key="key"
+                    :actuacion="actuacionRef"
                   />
                 </template>
               </Card>

@@ -167,6 +167,7 @@ import useActuacionLoading from '@/composables/useActuacionLoading';
 
 import Skeleton from 'primevue/skeleton';
 import useCardInformation from '@/composables/useCardInformation';
+import useCardValidation from '@/composables/useCardValidations';
 
 interface Props {
   actuacion: string;
@@ -217,8 +218,8 @@ const {
   setDiliginciaChange,
 } = useFieldState();
 const { resetFields: resetLegalFields } = useLegalesState();
-const { cardInformationKeys, missingFieldsEmpty } =
-  useCardInformation(actuacionRef);
+const { cardInformationKeys } = useCardInformation(actuacionRef);
+const { setField, missingFieldsEmpty, hasErrors } = useCardValidation();
 const setHeaderFromComputed = () => {
   headerContainer.value = headerTextComputed.value;
   isEditedHeader.value = true;
@@ -298,42 +299,45 @@ const handleSave = async () => {
     missingFieldsEmpty[key] = false;
   });
 
-  let hasErrors = false;
+  hasErrors.value = false;
 
   if (
     cardInformationKeys.value.includes('afectados') &&
     (!afectados.value || afectados.value.length === 0)
   ) {
-    missingFieldsEmpty.afectados = true;
-    hasErrors = true;
+    setField('afectados', true);
+    hasErrors.value = true;
   }
   if (
     cardInformationKeys.value.includes('vinculados') &&
     (!vinculados.value || vinculados.value.length === 0)
   ) {
     missingFieldsEmpty.vinculados = true;
-    hasErrors = true;
+    hasErrors.value = true;
   }
-  if (cardInformationKeys.value.includes('fecha') && !fechaUbicacion.value) {
+  if (
+    cardInformationKeys.value.includes('fecha') &&
+    (!fechaUbicacion.value || fechaUbicacion.value.length === 0)
+  ) {
     missingFieldsEmpty.fecha = true;
-    hasErrors = true;
+    hasErrors.value = true;
   }
   if (
     cardInformationKeys.value.includes('efectos') &&
     (!efectos.value || efectos.value.length === 0)
   ) {
     missingFieldsEmpty.efectos = true;
-    hasErrors = true;
+    hasErrors.value = true;
   }
   if (
     cardInformationKeys.value.includes('personalInterviniente') &&
     (!intervinientes.value || intervinientes.value.length === 0)
   ) {
     missingFieldsEmpty.personalInterviniente = true;
-    hasErrors = true;
+    hasErrors.value = true;
   }
 
-  if (hasErrors) {
+  if (hasErrors.value) {
     alert(
       `Los siguientes campos están vacíos: ${Object.keys(missingFieldsEmpty)
         .filter((key) => missingFieldsEmpty[key])

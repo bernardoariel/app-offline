@@ -35,10 +35,9 @@ onActivated(() => {
   isCreateActuation.value = path.includes('new') ? true : false;
   if (isCreateActuation.value) {
     setLoading(false);
-    return;
   }
-  setLoading(true);
 });
+
 const items = computed(() => {
   if (props.dataKey === 'personalInterviniente') {
   }
@@ -184,14 +183,6 @@ const convertStringToPhrase = (key: string): string => {
 
   return phrases[key] || key;
 };
-
-watch(
-  items,
-  (newItems) => {
-    setLoading(newItems.length === 0);
-  },
-  { immediate: true }
-);
 </script>
 
 <template>

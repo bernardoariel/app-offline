@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 //actuacionView
-import { ref, watch, onActivated, computed } from 'vue';
+import { ref, watch, onActivated, computed, onDeactivated } from 'vue';
 import DataViewCard from '@/components/DataViewCard.vue';
 import DatosLegalesView from './DatosLegalesView.vue';
 import DiligenciaView from './DiligenciaView.vue';
@@ -59,6 +59,7 @@ const {
   isRecordDeleted,
   isDiligenciaChange,
   resetDiliginciaChange,
+  resetStates,
 } = useFieldState();
 const { resetFields: resetLegalFields, isAnyFieldModified: isLegalModified } =
   useLegalesState();
@@ -82,6 +83,13 @@ onActivated(async () => {
   }
 });
 
+onDeactivated(() => {
+  resetStates();
+  resetUnsavedChanges();
+  resetNewRecordCreated();
+  resetRecordDeleted();
+  resetDiliginciaChange();
+});
 const { setAll } = useItem();
 
 const { relato, isEditingHeader } = useDatosDiligencia(props.actuacion);

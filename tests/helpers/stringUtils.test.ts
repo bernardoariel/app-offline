@@ -9,8 +9,6 @@ describe('getUpperCase', () => {
      
         // act 
         const result = getUpperCase(inputWord)
-        console.log('result::: ', result);
-     
         // assert
         expect(result).toEqual(expectedOuput)
      })
@@ -57,7 +55,7 @@ describe('getUpperCase', () => {
        
          // act 
          const result = getUpperCase(inputWord);
-         console.log('result::: ', result);
+        
        
          // assert
          expect(result).toEqual(expectedOutput);
@@ -68,7 +66,6 @@ describe('getUpperCase', () => {
          
          // act 
          const result = getUpperCase(inputNumber);
-         console.log('result::: ', result);
          
          // assert
          expect(result).toEqual(inputNumber);
@@ -85,7 +82,6 @@ describe('getLowerCase', () => {
      
         // act 
         const result = getLowerCase(inputWord)
-        console.log('result::: ', result);
      
         // assert
         expect(result).toEqual(expectedOuput)

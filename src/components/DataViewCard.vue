@@ -15,6 +15,7 @@ import useDatosDiligencia from '@/composables/useDatosDiligencia';
 import { getAge } from '@/helpers/getAge';
 import useActuacionLoading from '@/composables/useActuacionLoading';
 import useFieldState from '@/composables/useFieldsState';
+import useCardValidation from '@/composables/useCardValidations';
 
 const props = defineProps<{
   itemsCardValue: { titulo: string; items: any[] };
@@ -28,6 +29,7 @@ const { agregarNuevoItem } = useActuacion();
 const { selectedItem } = useItemValue();
 const { markRecordDeleted } = useFieldState();
 const { isLoading, setLoading } = useActuacionLoading();
+const { missingFieldsEmpty } = useCardValidation();
 const isCreateActuation = ref(false);
 const { path } = useRoute();
 
@@ -427,7 +429,17 @@ const convertStringToPhrase = (key: string): string => {
   </div>
 
   <div v-else class="flex justify-content-end">
-    <span class="text-right">Sin Registros</span>
+    <span
+      class="text-right"
+      :style="
+        missingFieldsEmpty[dataKey]
+          ? dataKey === 'efectos'
+            ? 'color: #f97316'
+            : 'color: #dc3545'
+          : null
+      "
+      >Sin Registros</span
+    >
   </div>
   <MyModal
     v-model:visible="visible"

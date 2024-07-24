@@ -87,6 +87,7 @@ onActivated(async () => {
 
 onDeactivated(() => {
   resetAllStates();
+  resetFieldsEmpty();
 });
 const { setAll } = useItem();
 
@@ -291,8 +292,8 @@ const isAnyChange = computed(() => {
                 class="p-fluid mb-2 color-border-top"
                 :style="
                   missingFieldsEmpty[key]
-                    ? key === 'fecha' || key === 'efectos'
-                      ? 'borderBottom: 2px solid orange'
+                    ? key === 'efectos'
+                      ? 'borderBottom: 2px solid #f97316'
                       : 'borderBottom: 2px solid #dc3545'
                     : null
                 "

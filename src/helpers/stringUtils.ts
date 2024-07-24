@@ -22,3 +22,9 @@ export const getUpperCase = (word:string) => {
   export const getHour = (hour: string) => {
     return hour.charAt(0).toUpperCase() + hour.slice(1).toLowerCase();
   }
+
+  export const getTruncatedString= (text: string, maxLength:number) => {
+    return text.length > maxLength
+    ? text.slice(0, maxLength) + '...'
+    : text;
+  }

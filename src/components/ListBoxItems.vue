@@ -1,10 +1,8 @@
 <script setup lang="ts">
 //listBoxItems
-
-import { getUpperCase, getTitleCase } from '@/helpers/stringUtils';
+import { getUpperCase, getTitleCase, getTruncatedString } from '@/helpers/stringUtils';
 import { getColorByAfectado } from '@/helpers/getColorByAfectado';
 import { getColorByEstado } from '@/helpers/getColorByEstado';
-
 import { formatFecha } from '@/helpers/getFormatFecha';
 import useItemsComputados from '@/composables/useItemsComputados';
 import useItemValue from '@/composables/useItemValue';
@@ -18,6 +16,7 @@ const getPristineById = (id: string) => {
   const found = statesID.find((state) => state.id === id);
   return found ? found.pristine : false;
 };
+console.log("lista", itemsComputados)
 </script>
 <template>
   <div class="card flex flex-column justify-content-center">
@@ -33,7 +32,7 @@ const getPristineById = (id: string) => {
           <div class="left-column">
             <!-- Afectados y vinculados -->
             <div v-if="routeType === 'afectados' || routeType === 'vinculados'">
-              <div class="text-row">
+              <div v-if="!option.descripcionDesconocido" class="text-row">
                 <span class="font-bold">{{
                   option.apellido ? getUpperCase(option.apellido) + ',' : ''
                 }}</span>
@@ -44,6 +43,14 @@ const getPristineById = (id: string) => {
                   <i v-if="option.typeDocumento">{{ option.typeDocumento +  ': ' }}</i>
                   <i v-if="option.nroDocumento">{{ option.nroDocumento }}</i>
                 </span>
+              </div>
+              <div v-else class="text-row">
+                <span class="font-bold">
+                  Persona de filiación desconocida: 
+                </span>
+                <span class="ml-2">{{
+                  getTruncatedString(option.descripcionDesconocido, 40)
+                }}</span>
               </div>
               <div class="tag-row">
                 <Tag

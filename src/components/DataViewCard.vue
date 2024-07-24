@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { computed, ref, onActivated, watch } from 'vue';
 import DataView from 'primevue/dataview';
-
 import ButtonOptions from '@/components/ButtonOptions.vue';
 import { getColorByAfectado } from '@/helpers/getColorByAfectado';
 import { useToast } from 'primevue/usetoast';
 import MyModal from './elementos/MyModal.vue';
-import { getTitleCase, getUpperCase } from '@/helpers/stringUtils';
+import { getTitleCase, getTruncatedString, getUpperCase } from '@/helpers/stringUtils';
 import { formatFecha } from '@/helpers/getFormatFecha';
 import useActuacion from '@/composables/useActuacion';
 import useItemValue from '@/composables/useItemValue';
@@ -236,10 +235,10 @@ watch(
               </div>
 
               <div class="flex-items">
-                <span class="font-bold">{{
+                <span  v-if="!item.descripcionDesconocido" class="font-bold">{{
                   item.apellido ? getUpperCase(item.apellido) + ',' : ''
                 }}</span>
-                <span class="ml-2">{{
+                <span  v-if="!item.descripcionDesconocido" class="ml-2">{{
                   item.nombre ? getTitleCase(item.nombre) : 'Nuevo'
                 }}</span>
                 <span
@@ -249,6 +248,10 @@ watch(
                   <i>{{ item.typeDocumento + ': ' }}</i>
                   <i>{{ item.nroDocumento }}</i>
                 </span>
+                <span v-if="item.descripcionDesconocido" class="font-bold">
+                  Persona de filiación desconocida: 
+                </span>
+                <span v-if="item.descripcionDesconocido">{{getTruncatedString(item.descripcionDesconocido, 20)}}</span>
                 <span v-if="item.typeAfectado && item.typeAfectado">
                   <Tag
                     :value="item.typeAfectado"

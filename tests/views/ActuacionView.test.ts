@@ -174,68 +174,68 @@ describe('<ActuacionView />', () => {
     expect(diligenciaView.props('id')).toBe(undefined);
   });
 
-  // test('debe recibir las props id y actuacion en la ruta editActuacion y mostrar "Edición" en el DOM', async () => {
+  test('debe recibir las props id y actuacion en la ruta editActuacion y mostrar "Edición" en el DOM', async () => {
     
-  //   useRoute.mockReturnValue({
-  //     name: 'editActuacion',
-  //     params: { actuacion: 'sumario-denuncia', id: '123' },
-  //   });
+    useRoute.mockReturnValue({
+      name: 'editActuacion',
+      params: { actuacion: 'sumario-denuncia', id: '123' },
+    });
 
 
-  //   const wrapper = mount(ActuacionView, {
-  //     global: {
-  //       plugins: [PrimeVue, ToastService],
-  //       components: {
-  //         Button: {
-  //           template: '<button><slot /></button>',
-  //         },
-  //         Card: {
-  //           template: '<div><slot name="title"></slot><slot name="content"></slot></div>',
-  //         },
-  //         TabPanel: {
-  //           template: '<div><slot /></div>',
-  //         },
-  //         TabView: {
-  //           template: '<div><slot /></div>',
-  //         },
-  //         ToggleButton: {
-  //           template: '<button><slot /></button>',
-  //         },
-  //         DataViewCard: {
-  //           template: '<div><slot /></div>',
-  //         },
-  //         DatosLegalesView: {
-  //           template: '<div>DatosLegalesView</div>',
-  //         },
-  //         DiligenciaView: {
-  //           template: '<div>DiligenciaView</div>',
-  //           props: ['actuacion', 'id'],
-  //         },
-  //         Textarea: {
-  //           template: '<textarea></textarea>',
-  //         },
-  //         PdfViewer: {
-  //           template: '<div>PDF Viewer</div>',
-  //         },
-  //       },
-  //     },
-  //     props: {
-  //       actuacion: 'sumario-denuncia',
-  //       id: 123,
-  //       actuacionData: mockActuacionData['sumario-denuncia'],
-  //     },
-  //   });
+    const wrapper = mount(ActuacionView, {
+      global: {
+        plugins: [PrimeVue, ToastService],
+        components: {
+          Button: {
+            template: '<button><slot /></button>',
+          },
+          Card: {
+            template: '<div><slot name="title"></slot><slot name="content"></slot></div>',
+          },
+          TabPanel: {
+            template: '<div><slot /></div>',
+          },
+          TabView: {
+            template: '<div><slot /></div>',
+          },
+          ToggleButton: {
+            template: '<button><slot /></button>',
+          },
+          DataViewCard: {
+            template: '<div><slot /></div>',
+          },
+          DatosLegalesView: {
+            template: '<div>DatosLegalesView</div>',
+          },
+          DiligenciaView: {
+            template: '<div>DiligenciaView</div>',
+            props: ['actuacion', 'id'],
+          },
+          Textarea: {
+            template: '<textarea></textarea>',
+          },
+          PdfViewer: {
+            template: '<div>PDF Viewer</div>',
+          },
+        },
+      },
+      props: {
+        actuacion: 'sumario-denuncia',
+        id: 123,
+        actuacionData: mockActuacionData['sumario-denuncia'],
+      },
+    });
 
-  //   // act
-  //   const titleElement = wrapper.find('.font-medium.text-3xl.text-900');
+    // act
+    const titleElement = wrapper.find('.font-medium.text-3xl.text-900');
 
   
-  //   expect(titleElement.exists()).toBe(true);
-  //   expect(titleElement.text()).toContain('Edición sumario-denuncia');
+    expect(titleElement.exists()).toBe(true);
+    expect(titleElement.text()).toContain('Sumario por Denuncia');
     
-  //   const diligenciaView = wrapper.findComponent({ name: 'DiligenciaView' });
-  //   expect(diligenciaView.exists()).toBe(true);
-  //   expect(diligenciaView.props('actuacion')).toBe('sumario-denuncia');
-  //   expect(diligenciaView.props('id')).toBe(123);
-  // });
+    const diligenciaView = wrapper.findComponent({ name: 'DiligenciaView' });
+    expect(diligenciaView.exists()).toBe(true);
+    expect(diligenciaView.props('actuacion')).toBe('sumario-denuncia');
+    expect(diligenciaView.props('id')).toBe(123);
+  });
 });

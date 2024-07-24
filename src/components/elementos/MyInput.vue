@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 interface Props {
   modelValue?: string | number | null;
   type?: 'text' | 'number';
@@ -8,11 +7,7 @@ interface Props {
   placeholder?: string;
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  type: 'text',
-  color: false,
-});
-
+const props = defineProps<Props>();
 const emit = defineEmits(['update:modelValue', 'blur']);
 
 const handleInput = (event: Event) => {

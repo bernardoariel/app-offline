@@ -84,11 +84,7 @@ onActivated(async () => {
 });
 
 onDeactivated(() => {
-  resetStates();
-  resetUnsavedChanges();
-  resetNewRecordCreated();
-  resetRecordDeleted();
-  resetDiliginciaChange();
+  resetAllStates();
 });
 const { setAll } = useItem();
 
@@ -112,8 +108,17 @@ watch(
   () => props.actuacion,
   (newValue) => {
     actuacionRef.value = newValue;
+    resetAllStates();
   }
 );
+
+const resetAllStates = () => {
+  resetStates();
+  resetUnsavedChanges();
+  resetNewRecordCreated();
+  resetRecordDeleted();
+  resetDiliginciaChange();
+};
 
 const handleNuevoItem = (key: string) => {
   prepararNuevoItem();

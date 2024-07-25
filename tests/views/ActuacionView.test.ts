@@ -1,8 +1,9 @@
-
 import { mount } from '@vue/test-utils';
 import { ref } from 'vue';
 import ActuacionView from '@/views/ActuacionView.vue';
 import { useRoute } from 'vue-router';
+import PrimeVue from 'primevue/config';
+import ToastService from 'primevue/toastservice';
 
 // Mock de useRoute y useRouter
 vi.mock('vue-router', () => ({
@@ -78,6 +79,31 @@ vi.mock('@/composables/useSaveData', () => ({
   }),
 }));
 
+const mockActuacionData = {
+  "sumario-denuncia": {
+    titulo: 'Sumario por Denuncia',
+    tituloAlternativo: 'Prevencional Denuncia',
+    tarjetas: {
+      afectados: {
+        titulo: "Afectados",
+        valor: ['Denunciante y Damnificado', 'Denunciante', 'Damnificado']
+      },
+      fecha: {
+        titulo: "Fecha, Hora y Ubicacion",
+        valor: null,
+      },
+      vinculados: {
+        titulo: "Vinculados",
+        valor: ['Acusado', 'Detenido'],
+      },
+      efectos: {
+        titulo: "Efectos",
+        valor: ['Denunciado', 'Recuperado', 'Secuestrado'],
+      }
+    }
+  }
+};
+
 describe('<ActuacionView />', () => {
   beforeEach(() => {
     // Resetea el mock antes de cada test
@@ -94,6 +120,7 @@ describe('<ActuacionView />', () => {
     // arrange
     const wrapper = mount(ActuacionView, {
       global: {
+        plugins: [PrimeVue, ToastService],
         components: {
           Button: {
             template: '<button><slot /></button>',
@@ -130,6 +157,7 @@ describe('<ActuacionView />', () => {
       },
       props: {
         actuacion: 'sumario-denuncia',
+        actuacionData: mockActuacionData['sumario-denuncia'],
       },
     });
 
@@ -138,7 +166,7 @@ describe('<ActuacionView />', () => {
 
     // assert
     expect(titleElement.exists()).toBe(true);
-    expect(titleElement.text()).toContain('Ingreso de datos sumario-denuncia');
+    expect(titleElement.text()).toContain('Sumario por Denuncia');
     // Verificar que DiligenciaView se renderiza
     const diligenciaView = wrapper.findComponent({ name: 'DiligenciaView' });
     expect(diligenciaView.exists()).toBe(true);
@@ -147,15 +175,16 @@ describe('<ActuacionView />', () => {
   });
 
   test('debe recibir las props id y actuacion en la ruta editActuacion y mostrar "Edición" en el DOM', async () => {
-    // Mock de useRoute para que devuelva un objeto route válido
+    
     useRoute.mockReturnValue({
       name: 'editActuacion',
       params: { actuacion: 'sumario-denuncia', id: '123' },
     });
 
-    // arrange
+
     const wrapper = mount(ActuacionView, {
       global: {
+        plugins: [PrimeVue, ToastService],
         components: {
           Button: {
             template: '<button><slot /></button>',
@@ -193,16 +222,17 @@ describe('<ActuacionView />', () => {
       props: {
         actuacion: 'sumario-denuncia',
         id: 123,
+        actuacionData: mockActuacionData['sumario-denuncia'],
       },
     });
 
     // act
     const titleElement = wrapper.find('.font-medium.text-3xl.text-900');
 
-    // assert
+  
     expect(titleElement.exists()).toBe(true);
-    expect(titleElement.text()).toContain('Edición sumario-denuncia');
-    // Verificar que DiligenciaView se renderiza con las props correctas
+    expect(titleElement.text()).toContain('Sumario por Denuncia');
+    
     const diligenciaView = wrapper.findComponent({ name: 'DiligenciaView' });
     expect(diligenciaView.exists()).toBe(true);
     expect(diligenciaView.props('actuacion')).toBe('sumario-denuncia');

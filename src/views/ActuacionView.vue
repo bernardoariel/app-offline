@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 //actuacionView
-import { ref, watch, onActivated, computed } from 'vue';
+import { ref, watch, onActivated, computed, onDeactivated } from 'vue';
 import DataViewCard from '@/components/DataViewCard.vue';
 import DatosLegalesView from './DatosLegalesView.vue';
 import DiligenciaView from './DiligenciaView.vue';
@@ -15,12 +15,15 @@ import useSaveData from '@/composables/useSaveData';
 import useItemValue from '@/composables/useItemValue';
 import useActuacionData from '@/composables/useActuacionData';
 import { useDialog } from '../composables/useDialog';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 import MyDialog from '@/components/elementos/MyModal.vue';
 import useFieldState from '@/composables/useFieldsState';
 import useLegalesState from '@/composables/useLegalesState';
+import useActuacionLoading from '@/composables/useActuacionLoading';
+import useCardValidation from '@/composables/useCardValidations';
 
 const router = useRouter();
+const { path } = useRoute();
 const { dialogState, confirmNavigation, hideDialog } = useDialog();
 interface Props {
   actuacion: string;
@@ -44,6 +47,7 @@ const {
   setData: setDatosLegales,
   nroLegajo,
 } = useDatosLegales();
+const { setLoading } = useActuacionLoading();
 
 const {
   resetNewRecordCreated,
@@ -56,6 +60,7 @@ const {
   isRecordDeleted,
   isDiligenciaChange,
   resetDiliginciaChange,
+  resetStates,
 } = useFieldState();
 const { resetFields: resetLegalFields, isAnyFieldModified: isLegalModified } =
   useLegalesState();
@@ -63,7 +68,10 @@ const { resetFields: resetLegalFields, isAnyFieldModified: isLegalModified } =
 setActuacionData(props.actuacionData);
 
 onActivated(async () => {
-  if (!props.id) resetDatosLegales();
+  if (!props.id) {
+    resetDatosLegales();
+    setLoading(false);
+  }
   toogleDateActuacion();
   if (props.id && !currentEditId.value) {
     const data = await fetchActuacionById(props.id);
@@ -72,14 +80,22 @@ onActivated(async () => {
     setFechaCreacion(data.fechaCreacion);
     relato.value = data.relato.replace(/['"]/g, '');
     currentEditId.value = props.id;
+    setLoading(false);
+    resetFieldsEmpty();
   }
 });
 
+onDeactivated(() => {
+  resetAllStates();
+  resetFieldsEmpty();
+});
 const { setAll } = useItem();
 
 const { relato, isEditingHeader } = useDatosDiligencia(props.actuacion);
 const { addDataFake } = useDatosLegales();
-const { cardInformationKeys, cardInformation,missingFieldsEmpty } =useCardInformation(actuacionRef);
+const { cardInformationKeys, cardInformation } =
+  useCardInformation(actuacionRef);
+const { missingFieldsEmpty, resetFieldsEmpty } = useCardValidation();
 const { prepararNuevoItem } = useItemValue();
 
 const handleClick = (event: { ctrlKey: any; altKey: any }) => {
@@ -96,8 +112,17 @@ watch(
   () => props.actuacion,
   (newValue) => {
     actuacionRef.value = newValue;
+    resetAllStates();
   }
 );
+
+const resetAllStates = () => {
+  resetStates();
+  resetUnsavedChanges();
+  resetNewRecordCreated();
+  resetRecordDeleted();
+  resetDiliginciaChange();
+};
 
 const handleNuevoItem = (key: string) => {
   prepararNuevoItem();
@@ -248,10 +273,10 @@ const isAnyChange = computed(() => {
                 :outlined="active !== 1"
               />
             </div>
-            
+
             <div>
               <small class="text-sm">
-            <!--     <i :class="isAnyChange ? 'pi pi-exclamation-circle' : 'pi pi-check-circle'"
+                <!--     <i :class="isAnyChange ? 'pi pi-exclamation-circle' : 'pi pi-check-circle'"
                   :style="{ color: isAnyChange ? 'orange' : 'green' }"></i> -->
                 {{ isAnyChange ? ' Cambios Pendientes' : ' Sin Cambios' }}
               </small>
@@ -265,6 +290,13 @@ const isAnyChange = computed(() => {
                 v-for="key in cardInformationKeys"
                 :key="key"
                 class="p-fluid mb-2 color-border-top"
+                :style="
+                  missingFieldsEmpty[key]
+                    ? key === 'efectos'
+                      ? 'borderBottom: 2px solid #f97316'
+                      : 'borderBottom: 2px solid #dc3545'
+                    : null
+                "
               >
                 <template #title>
                   <div class="title-container">
@@ -285,6 +317,7 @@ const isAnyChange = computed(() => {
                   <DataViewCard
                     :itemsCardValue="cardInformation[key]"
                     :data-key="key"
+                    :actuacion="actuacionRef"
                   />
                 </template>
               </Card>

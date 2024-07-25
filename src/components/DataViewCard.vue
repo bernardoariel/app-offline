@@ -14,6 +14,7 @@ import useDatosDiligencia from '@/composables/useDatosDiligencia';
 import { getAge } from '@/helpers/getAge';
 import useActuacionLoading from '@/composables/useActuacionLoading';
 import useFieldState from '@/composables/useFieldsState';
+import useCardValidation from '@/composables/useCardValidations';
 
 const props = defineProps<{
   itemsCardValue: { titulo: string; items: any[] };
@@ -27,6 +28,7 @@ const { agregarNuevoItem } = useActuacion();
 const { selectedItem } = useItemValue();
 const { markRecordDeleted } = useFieldState();
 const { isLoading, setLoading } = useActuacionLoading();
+const { missingFieldsEmpty } = useCardValidation();
 const isCreateActuation = ref(false);
 const { path } = useRoute();
 
@@ -34,10 +36,9 @@ onActivated(() => {
   isCreateActuation.value = path.includes('new') ? true : false;
   if (isCreateActuation.value) {
     setLoading(false);
-    return;
   }
-  setLoading(true);
 });
+
 const items = computed(() => {
   if (props.dataKey === 'personalInterviniente') {
   }
@@ -183,14 +184,6 @@ const convertStringToPhrase = (key: string): string => {
 
   return phrases[key] || key;
 };
-
-watch(
-  items,
-  (newItems) => {
-    setLoading(newItems.length === 0);
-  },
-  { immediate: true }
-);
 </script>
 
 <template>
@@ -416,7 +409,7 @@ watch(
       </template>
     </DataView>
   </div>
-  <div v-else-if="!isCreateActuation">
+  <div v-else>
     <div class="flex-container">
       <!-- Primera columna con círculo -->
       <div class="flex-item">
@@ -439,7 +432,17 @@ watch(
   </div>
 
   <div v-else class="flex justify-content-end">
-    <span class="text-right">Sin Registros</span>
+    <span
+      class="text-right"
+      :style="
+        missingFieldsEmpty[dataKey]
+          ? dataKey === 'efectos'
+            ? 'color: #f97316'
+            : 'color: #dc3545'
+          : null
+      "
+      >Sin Registros</span
+    >
   </div>
   <MyModal
     v-model:visible="visible"

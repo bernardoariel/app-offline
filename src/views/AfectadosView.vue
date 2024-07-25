@@ -24,8 +24,10 @@ import {
 import { mapToArray, mapToDropdownItems } from '@/helpers/dropUtils';
 import useNewActuacion from '@/composables/useNewActuacion';
 import MyInputMask from '@/components/elementos/MyInputMask.vue';
+import useCardValidation from '@/composables/useCardValidations';
 
 const { obtenerTarjeta } = useActuacionData();
+const { setField } = useCardValidation();
 
 const validationSchema = yup.object({
   nombre: yup.string().required().min(3),
@@ -121,7 +123,8 @@ const { defineField, values, errors } = useForm({
 const hasErrors = () => {
   const keys1 = Object.keys(validationSchema.fields);
   const keys2 = Object.keys(values);
-  const areKeysEqual = keys1.length <= keys2.length && keys1.every((key) => keys2.includes(key));
+  const areKeysEqual =
+    keys1.length <= keys2.length && keys1.every((key) => keys2.includes(key));
   return Object.keys(errors.value).length > 0 || !areKeysEqual;
 };
 let [nombre, nombreAttrs] = defineField('nombre');
@@ -144,12 +147,7 @@ let [telefono] = defineField('telefono');
 let [email] = defineField('email');
 let [profesion] = defineField('profesion');
 const firsDateChangeDone = ref(true);
-const {
-  editar,
-  agregar,
-  resetAllDropdown,
-  initialValues,
-} = useAfectados();
+const { editar, agregar, resetAllDropdown, initialValues } = useAfectados();
 
 const { selectedItem } = useItemValue();
 const { resetIsEditedHeader } = useNewActuacion();
@@ -213,7 +211,9 @@ const updateDataWithForm = (form: any) => {
     domicilio.value = formData.value.domicilioResidencia;
     sexoSelect.value = { name: formData.value.typeSexo || '' };
     tipoDenuncianteSelect.value = { name: formData.value.typeAfectado };
-    tipoDocSelect.value = { name: formData?.value?.typeDocumento || 'Seleccione tipo' };
+    tipoDocSelect.value = {
+      name: formData?.value?.typeDocumento || 'Seleccione tipo',
+    };
     nacionalidadSelect.value = { name: formData.value.nacionalidad };
     estadoCivilSelect.value = { name: formData.value.estadoCivil };
     instruccionSelect.value = { name: formData.value.instruccion };
@@ -301,6 +301,7 @@ const handleAgregarElemento = () => {
 
   agregar(nuevoItem);
   markNewRecordCreated();
+  setField('afectados', false);
   formData.value = { ...nuevoItem };
   apellido.value = '';
   nombre.value = '';
@@ -344,7 +345,10 @@ const handleModificarElemento = () => {
     email: formData.value.email || '',
     profesion: formData.value.profesion || '',
     typeAfectado: tipoDenuncianteSelect.value.name || '',
-    typeDocumento: tipoDocSelect.value.name =='Seleccione tipo' ? '': tipoDocSelect.value.name || '',
+    typeDocumento:
+      tipoDocSelect.value.name == 'Seleccione tipo'
+        ? ''
+        : tipoDocSelect.value.name || '',
     typeSexo: sexoSelect.value.name || '',
     nacionalidad: nacionalidadSelect.value.name || '',
     estadoCivil: estadoCivilSelect.value.name || '',

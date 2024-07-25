@@ -117,7 +117,6 @@ watch(
 );
 
 const resetAllStates = () => {
-  resetStates();
   resetUnsavedChanges();
   resetNewRecordCreated();
   resetRecordDeleted();

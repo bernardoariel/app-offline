@@ -43,6 +43,7 @@ const useSaveData = () => {
     const isValid = validateForm(nombreActuacion.value, data)
     if (!isValid) {
       alert('faltan datos')
+      success.value = false; 
       return
     }
     try {
@@ -68,6 +69,7 @@ const useSaveData = () => {
     } catch (err) {
       console.error('Error al guardar datos:', err);
       error.value = err;
+      success.value = false;
     }
 
   };

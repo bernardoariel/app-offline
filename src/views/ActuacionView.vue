@@ -230,14 +230,9 @@ const isAnyChange = computed(() => {
                 {{ props.actuacionData.titulo }}
               </div>
 
-              <small class="text-sm font-bold" v-if="nroLegajo">
-                {{ $props.id ? 'Nro. Legajo:' + nroLegajo : '' }}
+              <small class="text-sm font-bold">
+                Nro. Legajo: {{ nroLegajo ? nroLegajo : '' }}
               </small>
-              <Skeleton
-                v-else-if="$props.id"
-                width="w-full"
-                class="mb-2"
-              ></Skeleton>
             </div>
 
             <div class="buttons-container">

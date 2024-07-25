@@ -15,7 +15,8 @@ export interface VinculadosForm extends PrimaryAttributes{
     typeSexo: {name:string},
     nacionalidad: {name:string},
     estadoCivil: {name:string},
-    instruccion: {name:string}
+    instruccion: {name:string},
+    descripcionDesconocido?: string
 }
 export interface Vinculados extends PrimaryAttributes{
     typeAfectado: string,
@@ -23,7 +24,8 @@ export interface Vinculados extends PrimaryAttributes{
     typeSexo: string,
     nacionalidad: string,
     estadoCivil: string,
-    instruccion: string
+    instruccion: string,
+    descripcionDesconocido?: string
 }  
 export interface Vinculado{
     titulo: string,

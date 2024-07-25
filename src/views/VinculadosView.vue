@@ -28,7 +28,7 @@ const { editar, agregar, initialValues } = useVinculados();
 
 const { selectedItem } = useItemValue();
 const { obtenerTarjeta } = useActuacionData();
-const checkboxValue = ref<boolean>(false);
+const isPersonaDesconocida = ref<boolean>(false);
 // const textAreaDescription  = ref<string>("");
 
 
@@ -40,7 +40,7 @@ const validationSchema = yup.object({
       'required test',
       'La descripción debe tener al menos 5 caracteres',
       (value) => {
-        if (checkboxValue.value){
+        if (isPersonaDesconocida.value){
           if (!value) return false;
           if(value.length >=5){
             return true
@@ -128,7 +128,7 @@ const { defineField, values, errors } = useForm({
 });
 
 const hasErrors = () => {
-  if(checkboxValue.value && textAreaDescription.value){
+  if(isPersonaDesconocida.value && textAreaDescription.value){
     if (textAreaDescription.value.length>=5)
       return false
   }
@@ -227,9 +227,9 @@ const updateDataWithForm = () => {
     fechaNacimiento.value = formData.value.fecha;
     if(formData.value.descripcionDesconocido){
       textAreaDescription.value= formData.value.descripcionDesconocido
-      checkboxValue.value=true
+      isPersonaDesconocida.value=true
     }else{
-      checkboxValue.value=false
+      isPersonaDesconocida.value=false
 
     }
   }
@@ -300,7 +300,7 @@ const handleBlur = (campo: keyof VinculadosForm) => {
 const handleAgregarElemento = () => {
   if (hasErrors()) return;
   let nuevoItem: Vinculados 
-  if(checkboxValue.value){
+  if(isPersonaDesconocida.value){
     nuevoItem = {
     apodo: "",
     nroDocumento: "",
@@ -318,6 +318,7 @@ const handleAgregarElemento = () => {
     instruccion:"",
     descripcionDesconocido: textAreaDescription.value
   };
+  isPersonaDesconocida.value=false
   }
   else{
     nuevoItem = {
@@ -371,25 +372,35 @@ const handleModificarElemento = () => {
     return;
   }
   let itemStateEncontrado = guardarModificaciones(selectedItem.value!.id);
-  let itemAEditar = {
-    id: formData.value.id,
-    nroDocumento: nroDocumento.value || '',
-    apellido: apellido.value || '',
-    nombre: nombre.value || '',
-    fecha: fechaNacimiento.value || '',
-    domicilioResidencia: domicilio.value || '',
-    telefono: formData.value.telefono || '',
-    profesion: formData.value.profesion || '',
-    apodo: formData.value.apodo || '',
-    typeAfectado: tipoDenuncianteSelect.value.name || '',
-    typeDocumento: tipoDocSelect.value.name =='Seleccione tipo' ? '': tipoDocSelect.value.name || '',
-    typeSexo: sexoSelect.value.name || '',
-    nacionalidad: nacionalidadSelect.value.name || '',
-    estadoCivil: estadoCivilSelect.value.name || '',
-    instruccion: instruccionSelect.value.name || '',
-    descripcionDesconocido: textAreaDescription.value ||'',
-    ...itemStateEncontrado,
+  let itemAEditar = {}
+  
+  if(isPersonaDesconocida.value){
+      itemAEditar={
+      id: formData.value.id,
+      typeAfectado: 'Acusado' ,
+      descripcionDesconocido: textAreaDescription.value ||'',
+      ...itemStateEncontrado,
+      };
+    }else{
+      {itemAEditar={id: formData.value.id,
+      nroDocumento: nroDocumento.value || '',
+      apellido: apellido.value || '',
+      nombre: nombre.value || '',
+      fecha: fechaNacimiento.value || '',
+      domicilioResidencia: domicilio.value || '',
+      telefono: formData.value.telefono || '',
+      profesion: formData.value.profesion || '',
+      apodo: formData.value.apodo || '',
+      typeAfectado: tipoDenuncianteSelect.value.name || '',
+      typeDocumento: tipoDocSelect.value.name =='Seleccione tipo' ? '': tipoDocSelect.value.name || '',
+      typeSexo: sexoSelect.value.name || '',
+      nacionalidad: nacionalidadSelect.value.name || '',
+      estadoCivil: estadoCivilSelect.value.name || '',
+      instruccion: instruccionSelect.value.name || '',
+      descripcionDesconocido: textAreaDescription.value ||'',
+      ...itemStateEncontrado,}
   };
+    }
   editar(itemAEditar);
 };
 watch(selectedItem, (newVal: any) => {
@@ -411,7 +422,7 @@ watch(selectedItem, (newVal: any) => {
     profesion.value = '';
     apodo.value = '';
     textAreaDescription.value= ''
-    checkboxValue.value=false
+    isPersonaDesconocida.value=false
   } else {
     formData.value = { ...newVal };
     updateDataWithForm();
@@ -422,7 +433,7 @@ watch(selectedItem, (newVal: any) => {
   <Card>
     <template #content>
       <div class="grid">
-        <div class="grid" v-if="!checkboxValue" >
+        <div class="grid" v-if="!isPersonaDesconocida" >
           <div class="col-12">
             <!-- <pre>{{ values }}</pre> -->
             <label for="dropdown">Seleccione tipo de Denunciante</label>
@@ -662,7 +673,7 @@ watch(selectedItem, (newVal: any) => {
           <div class="col-3">
             <div class="flex align-items-center">
               <Checkbox 
-                v-model="checkboxValue" 
+                v-model="isPersonaDesconocida" 
                 :binary="true" 
                 value="filacionDesconocida" />
               <p class="ml-2">Persona de filiación desconocida</p>

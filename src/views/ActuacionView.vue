@@ -176,6 +176,15 @@ const isAnyChange = computed(() => {
     isDiligenciaChange.value
   );
 });
+
+const getBorderStyleWithDefault = (key: string) => {
+  if (missingFieldsEmpty[key]) {
+    return key === 'efectos'
+      ? 'border-bottom: 2px solid #f97316'
+      : 'border-bottom: 2px solid #dc3545';
+  }
+  return 'border-bottom: 2px solid #22c55e';
+};
 </script>
 
 <template>
@@ -290,13 +299,7 @@ const isAnyChange = computed(() => {
                 v-for="key in cardInformationKeys"
                 :key="key"
                 class="p-fluid mb-2 color-border-top"
-                :style="
-                  missingFieldsEmpty[key]
-                    ? key === 'efectos'
-                      ? 'borderBottom: 2px solid #f97316'
-                      : 'borderBottom: 2px solid #dc3545'
-                    : null
-                "
+                :style="getBorderStyleWithDefault(key as string)"
               >
                 <template #title>
                   <div class="title-container">

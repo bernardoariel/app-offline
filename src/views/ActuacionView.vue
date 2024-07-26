@@ -22,8 +22,6 @@ import useLegalesState from '@/composables/useLegalesState';
 import useActuacionLoading from '@/composables/useActuacionLoading';
 import useCardValidation from '@/composables/useCardValidations';
 
-const router = useRouter();
-const { path } = useRoute();
 const { dialogState, confirmNavigation, hideDialog } = useDialog();
 interface Props {
   actuacion: string;
@@ -32,8 +30,8 @@ interface Props {
 }
 const props = defineProps<Props>();
 const actuacionRef = ref(props.actuacion);
+const idRef = ref(props.id);
 const active = ref(0);
-
 const {
   agregarNuevoItem,
   currentEditId,
@@ -87,7 +85,7 @@ onActivated(async () => {
 const { setAll } = useItem();
 
 const { relato, isEditingHeader } = useDatosDiligencia(props.actuacion);
-const { addDataFake } = useDatosLegales();
+const { addDataFake, resetData: resetDataLegal } = useDatosLegales();
 const { cardInformationKeys, cardInformation } =
   useCardInformation(actuacionRef);
 const { missingFieldsEmpty, resetFieldsEmpty } = useCardValidation();
@@ -102,6 +100,15 @@ const handleClick = (event: { ctrlKey: any; altKey: any }) => {
     relato.value = 'esto es una prueba del relato';
   }
 };
+const resetAllStates = () => {
+  resetUnsavedChanges();
+  resetNewRecordCreated();
+  resetRecordDeleted();
+  resetDiliginciaChange();
+  resetDatosLegales();
+  resetLegalFields();
+  resetDataLegal();
+};
 
 watch(
   () => props.actuacion,
@@ -111,14 +118,13 @@ watch(
   }
 );
 
-const resetAllStates = () => {
-  resetUnsavedChanges();
-  resetNewRecordCreated();
-  resetRecordDeleted();
-  resetDiliginciaChange();
-  resetDatosLegales();
-  resetLegalFields();
-};
+watch(
+  () => props.id,
+  (newValue) => {
+    resetAllStates();
+  },
+  { immediate: true } // Esto asegura que el watcher se ejecute inmediatamente con el valor inicial
+);
 
 const handleNuevoItem = (key: string) => {
   prepararNuevoItem();

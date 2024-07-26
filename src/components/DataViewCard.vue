@@ -19,6 +19,7 @@ import useCardValidation from '@/composables/useCardValidations';
 const props = defineProps<{
   itemsCardValue: { titulo: string; items: any[] };
   dataKey: string;
+  actuacion?: string;
 }>();
 
 const condicion: boolean = false;

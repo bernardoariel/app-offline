@@ -50,6 +50,7 @@ vi.mock('@/composables/useDatosDiligencia', () => ({
     footerContainer: ref(''),
     footerTextComputed: ref(''),
     relato: ref(''),
+    resetRelato: vi.fn(),
   }),
 }));
 

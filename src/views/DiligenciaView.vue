@@ -216,6 +216,7 @@ const {
   resetRecordDeleted,
   resetUnsavedChanges,
   setDiliginciaChange,
+  resetDiliginciaChange,
 } = useFieldState();
 const { resetFields: resetLegalFields } = useLegalesState();
 const { cardInformationKeys } = useCardInformation(actuacionRef);
@@ -356,6 +357,7 @@ const handleSave = async () => {
   resetNewRecordCreated();
   resetLegalFields();
   resetRecordDeleted();
+  resetDiliginciaChange();
   await navigateSuccessfully();
 };
 

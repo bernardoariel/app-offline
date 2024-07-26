@@ -22,7 +22,11 @@ export const actuaciones: TipoActuaciones = {
                 "titulo": "Efectos",
                 "valor": ['Denunciado', 'Recuperado', 'Secuestrado'],
             }
+        },
+        "datosLegales": {
+            "items":['numeroActuacion','sitio','modusOperandi','causaCaratula','juzgadoInterviniente']
         }
+        
     },
     "sumario-oficio": {
         titulo: 'Sumario por Oficio',
@@ -49,6 +53,9 @@ export const actuaciones: TipoActuaciones = {
                 "titulo": "Personal Interviniente",
                 "valor": null,
             },
+        },
+        "datosLegales": {
+            "items":['numeroActuacion','sitio','modusOperandi','causaCaratula','juzgadoInterviniente']
         }
     },
     "expediente-denuncia": {
@@ -71,6 +78,9 @@ export const actuaciones: TipoActuaciones = {
                 "titulo": "Efectos",
                 "valor": ['Denunciado', 'Recuperado', 'Secuestrado'],
             }
+        },
+        "datosLegales": {
+            "items":['numeroActuacion','sitio','articulosRelacionados','juzgadoInterviniente']
         }
     },
     "expediente-oficio": {
@@ -98,6 +108,9 @@ export const actuaciones: TipoActuaciones = {
                 "titulo": "Personal Interviniente",
                 "valor": null,
             },
+        },
+        "datosLegales": {
+            "items":['numeroActuacion','sitio','articulosRelacionados','juzgadoInterviniente']
         }
     },
     "ufi-flagrancia": {
@@ -125,6 +138,9 @@ export const actuaciones: TipoActuaciones = {
                 "titulo": "Personal Interviniente",
                 "valor": null,
             },
+        },
+        "datosLegales": {
+            "items":['numeroActuacion','sitio','modusOperandi','delito','ufiNro','fiscalCargo','AyudanteFiscal']
         }
     },
     "ufi-cavig": {
@@ -152,6 +168,9 @@ export const actuaciones: TipoActuaciones = {
                 "titulo": "Personal Interviniente",
                 "valor": null,
             },
+        },
+        "datosLegales": {
+            "items":['numeroActuacion','sitio','modusOperandi','delito','ufiNro','fiscalCargo','AyudanteFiscal']
         }
     },
     "ufi-anivi": {
@@ -179,6 +198,9 @@ export const actuaciones: TipoActuaciones = {
                 "titulo": "Personal Interviniente",
                 "valor": null,
             },
+        },
+        "datosLegales": {
+            "items":['numeroActuacion','sitio','modusOperandi','delito','ufiNro','fiscalCargo','AyudanteFiscal']
         }
     },
     "ufi-generica-denuncia": {
@@ -201,6 +223,9 @@ export const actuaciones: TipoActuaciones = {
                 "titulo": "Efectos",
                 "valor": ['Denunciado', 'Recuperado', 'Secuestrado'],
             },
+        },
+        "datosLegales": {
+            "items":['numeroActuacion','sitio','modusOperandi','delito','ufiNro','fiscalCargo','AyudanteFiscal']
         }
     },
     "ufi-generica-oficio": {
@@ -228,6 +253,9 @@ export const actuaciones: TipoActuaciones = {
                 "titulo": "Personal Interviniente",
                 "valor": null,
             },
+        },
+        "datosLegales": {
+            "items":['numeroActuacion','sitio','modusOperandi','delito','ufiNro','fiscalCargo','AyudanteFiscal']
         }
     },
     "ufi-informatica-denuncia": {
@@ -251,6 +279,9 @@ export const actuaciones: TipoActuaciones = {
                 "titulo": "Efectos",
                 "valor": ['Denunciado', 'Recuperado', 'Secuestrado'],
             }
+        },
+        "datosLegales": {
+            "items":['numeroActuacion','sitio','modusOperandi','delito','ufiNro','fiscalCargo','AyudanteFiscal']
         }
     },
     "ufi-informatica-oficio": {
@@ -278,6 +309,9 @@ export const actuaciones: TipoActuaciones = {
                 "titulo": "Personal Interviniente",
                 "valor": null,
             },
+        },
+        "datosLegales": {
+            "items":['numeroActuacion','sitio','modusOperandi','delito','ufiNro','fiscalCargo','AyudanteFiscal']
         }
     },
     "ufi-propiedad-denuncia": {
@@ -300,6 +334,9 @@ export const actuaciones: TipoActuaciones = {
                 "titulo": "Efectos",
                 "valor": ['Denunciado', 'Recuperado', 'Secuestrado'],
             }
+        },
+        "datosLegales": {
+            "items":['numeroActuacion','sitio','modusOperandi','delito','ufiNro','fiscalCargo','AyudanteFiscal']
         }
     },
     "ufi-delitos-especiales-paradero":{
@@ -323,6 +360,9 @@ export const actuaciones: TipoActuaciones = {
                 "titulo": "Efectos",
                 "valor": ['Secuestrado'],
             }
+        },
+        "datosLegales": {
+            "items":['numeroActuacion','sitio','modusOperandi','delito','ufiNro','fiscalCargo','AyudanteFiscal']
         }
     },
     "ufi-delitos-especiales-médicas":{
@@ -346,6 +386,9 @@ export const actuaciones: TipoActuaciones = {
                 "titulo": "Personal Interviniente",
                 "valor": null,
             },
+        },
+        "datosLegales": {
+            "items":['numeroActuacion','sitio','modusOperandi','delito','ufiNro','fiscalCargo','AyudanteFiscal']
         }
     },
     "ufi-delitos-especiales-vial":{
@@ -373,6 +416,9 @@ export const actuaciones: TipoActuaciones = {
                 "titulo": "Personal Interviniente",
                 "valor": null,
             },
+        },
+        "datosLegales": {
+            "items":['numeroActuacion','sitio','modusOperandi','delito','ufiNro','fiscalCargo','AyudanteFiscal']
         }
     },
     "ufi-delitos-especiales-ahorcamiento-suicidio":{
@@ -396,6 +442,9 @@ export const actuaciones: TipoActuaciones = {
                 "titulo": "Personal Interviniente",
                 "valor": null,
             },
+        },
+        "datosLegales": {
+            "items":['numeroActuacion','sitio','modusOperandi','delito','ufiNro','fiscalCargo','AyudanteFiscal']
         }
     },
     "ufi-delitos-especiales-incendio-vivienda":{
@@ -419,6 +468,9 @@ export const actuaciones: TipoActuaciones = {
                 "titulo": "Personal Interviniente",
                 "valor": null,
             },
+        },
+        "datosLegales": {
+            "items":['numeroActuacion','sitio','modusOperandi','delito','ufiNro','fiscalCargo','AyudanteFiscal']
         }
     },
     "ufi-delitos-especiales-intoxicación":{
@@ -442,6 +494,9 @@ export const actuaciones: TipoActuaciones = {
                 "titulo": "Personal Interviniente",
                 "valor": null,
             },
+        },
+        "datosLegales": {
+            "items":['numeroActuacion','sitio','modusOperandi','delito','ufiNro','fiscalCargo','AyudanteFiscal']
         }
     },
     "preliminares-incendio-vivienda": {
@@ -468,6 +523,9 @@ export const actuaciones: TipoActuaciones = {
                 "titulo": "Personal Interviniente",
                 "valor": null,
             },
+        },
+        "datosLegales": {
+            "items":['numeroActuacion','sitio','modusOperandi','causaCaratula','interviniente']
         }
     },
     "preliminares-procendencia":{
@@ -494,6 +552,9 @@ export const actuaciones: TipoActuaciones = {
                 "titulo": "Personal Interviniente",
                 "valor": null,
             },
+        },
+        "datosLegales": {
+            "items":['numeroActuacion','sitio','modusOperandi','causaCaratula','interviniente']
         }
     },
     "preliminares-fuga":{
@@ -520,6 +581,9 @@ export const actuaciones: TipoActuaciones = {
                 "titulo": "Personal Interviniente",
                 "valor": null,
             },
+        },
+        "datosLegales": {
+            "items":['numeroActuacion','sitio','modusOperandi','causaCaratula','interviniente']
         }
     },
     "preliminares-siniestro":{
@@ -542,6 +606,9 @@ export const actuaciones: TipoActuaciones = {
                 "titulo": "Personal Interviniente",
                 "valor": null,
             },
+        },
+        "datosLegales": {
+            "items":['numeroActuacion','sitio','modusOperandi','causaCaratula','interviniente']
         }
     },
     "preliminares-caida":{
@@ -564,6 +631,9 @@ export const actuaciones: TipoActuaciones = {
                 "titulo": "Personal Interviniente",
                 "valor": null,
             },
+        },
+        "datosLegales": {
+            "items":['numeroActuacion','sitio','modusOperandi','causaCaratula','interviniente']
         }
     },
     "preliminares-incendio-automotor": {
@@ -586,6 +656,9 @@ export const actuaciones: TipoActuaciones = {
                 "titulo": "Personal Interviniente",
                 "valor": null,
             },
+        },
+        "datosLegales": {
+            "items":['numeroActuacion','sitio','modusOperandi','causaCaratula','interviniente']
         }
     },
     "preliminares-tentativa":{
@@ -612,6 +685,9 @@ export const actuaciones: TipoActuaciones = {
                 "titulo": "Personal Interviniente",
                 "valor": null,
             },
+        },
+        "datosLegales": {
+            "items":['numeroActuacion','sitio','modusOperandi','causaCaratula','interviniente']
         }
     },
     "preliminares-otros": {
@@ -638,6 +714,9 @@ export const actuaciones: TipoActuaciones = {
                 "titulo": "Personal Interviniente",
                 "valor": null,
             },
+        },
+        "datosLegales": {
+            "items":['numeroActuacion','sitio','modusOperandi','causaCaratula','interviniente']
         }
     }
 }

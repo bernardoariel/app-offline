@@ -62,6 +62,7 @@ const {
 } = useFieldState();
 const { resetFields: resetLegalFields, isAnyFieldModified: isLegalModified } =
   useLegalesState();
+const { addDataFake, resetData: resetDataLegal } = useDatosLegales();
 
 setActuacionData(props.actuacionData);
 
@@ -84,8 +85,9 @@ onActivated(async () => {
 
 const { setAll } = useItem();
 
-const { relato, isEditingHeader } = useDatosDiligencia(props.actuacion);
-const { addDataFake, resetData: resetDataLegal } = useDatosLegales();
+const { relato, isEditingHeader, resetRelato } = useDatosDiligencia(
+  props.actuacion
+);
 const { cardInformationKeys, cardInformation } =
   useCardInformation(actuacionRef);
 const { missingFieldsEmpty, resetFieldsEmpty } = useCardValidation();
@@ -108,6 +110,7 @@ const resetAllStates = () => {
   resetDatosLegales();
   resetLegalFields();
   resetDataLegal();
+  resetRelato();
 };
 
 watch(

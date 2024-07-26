@@ -193,6 +193,7 @@ const {
   footerContainer,
   footerTextComputed,
   relato,
+  resetRelato,
 } = useDatosDiligencia(actuacionRef);
 const { isLoading } = useActuacionLoading();
 
@@ -380,6 +381,6 @@ const resetAllStates = () => {
   resetRecordDeleted();
   resetDiliginciaChange();
   resetLegalFields();
-  resetDatosLegales();
+  resetRelato();
 };
 </script>

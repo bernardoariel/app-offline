@@ -233,7 +233,7 @@ const isAnyChange = computed(() => {
               </div>
 
               <small class="text-sm font-bold">
-                Nro. Legajo: {{ nroLegajo ? nroLegajo : '' }}
+                <i class="">{{ actuacionData.datosLegales.items[0]}}</i>: {{ nroLegajo ? nroLegajo : '' }}
               </small>
             </div>
 
@@ -319,7 +319,7 @@ const isAnyChange = computed(() => {
               </Card>
             </TabPanel>
             <TabPanel header="Datos Legales">
-              <DatosLegalesView :datosLegales="actuacionData.DatosLegales" />
+              <DatosLegalesView :datosLegalesItems="actuacionData.datosLegales.items" />
             </TabPanel>
           </TabView>
         </template>

@@ -33,6 +33,11 @@ const { addField, setFieldModified } = useLegalesState();
 
 let yearsActuacion: string[] = getYearsDrop();
 let formData = ref<DatosLegalesForm>({ ...initialValuesDatosLegales });
+  interface Props {
+    datosLegalesItems?: string[];
+}
+const props = defineProps<Props>();
+  
 const handleDropdownChange = (
   campo: keyof DatosLegalesForm,
   newValue: { value: any; name: string }
@@ -81,7 +86,8 @@ const handleInputChange = (campo: string | number, event: Event) => {
 <template>
   <div class="grid">
     <div class="col-9">
-      <label for="dropdown">Legajo N° / N° de extracto</label>
+      <label for="dropdown">{{props.datosLegalesItems[0]}}</label>
+     
       <MyInput
         type="text"
         class="mt-2"

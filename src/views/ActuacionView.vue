@@ -22,8 +22,6 @@ import useLegalesState from '@/composables/useLegalesState';
 import useActuacionLoading from '@/composables/useActuacionLoading';
 import useCardValidation from '@/composables/useCardValidations';
 
-const router = useRouter();
-const { path } = useRoute();
 const { dialogState, confirmNavigation, hideDialog } = useDialog();
 interface Props {
   actuacion: string;
@@ -32,8 +30,8 @@ interface Props {
 }
 const props = defineProps<Props>();
 const actuacionRef = ref(props.actuacion);
+const idRef = ref(props.id);
 const active = ref(0);
-
 const {
   agregarNuevoItem,
   currentEditId,
@@ -69,7 +67,6 @@ setActuacionData(props.actuacionData);
 
 onActivated(async () => {
   if (!props.id) {
-    resetDatosLegales();
     setLoading(false);
   }
   toogleDateActuacion();
@@ -85,14 +82,10 @@ onActivated(async () => {
   }
 });
 
-onDeactivated(() => {
-  resetAllStates();
-  resetFieldsEmpty();
-});
 const { setAll } = useItem();
 
 const { relato, isEditingHeader } = useDatosDiligencia(props.actuacion);
-const { addDataFake } = useDatosLegales();
+const { addDataFake, resetData: resetDataLegal } = useDatosLegales();
 const { cardInformationKeys, cardInformation } =
   useCardInformation(actuacionRef);
 const { missingFieldsEmpty, resetFieldsEmpty } = useCardValidation();
@@ -107,6 +100,15 @@ const handleClick = (event: { ctrlKey: any; altKey: any }) => {
     relato.value = 'esto es una prueba del relato';
   }
 };
+const resetAllStates = () => {
+  resetUnsavedChanges();
+  resetNewRecordCreated();
+  resetRecordDeleted();
+  resetDiliginciaChange();
+  resetDatosLegales();
+  resetLegalFields();
+  resetDataLegal();
+};
 
 watch(
   () => props.actuacion,
@@ -116,12 +118,13 @@ watch(
   }
 );
 
-const resetAllStates = () => {
-  resetUnsavedChanges();
-  resetNewRecordCreated();
-  resetRecordDeleted();
-  resetDiliginciaChange();
-};
+watch(
+  () => props.id,
+  (newValue) => {
+    resetAllStates();
+  },
+  { immediate: true } // Esto asegura que el watcher se ejecute inmediatamente con el valor inicial
+);
 
 const handleNuevoItem = (key: string) => {
   prepararNuevoItem();
@@ -152,11 +155,7 @@ const handleButtonClick = (action: string) => {
     return;
   }
   isEditingHeader.value = !isEditingHeader.value;
-  resetUnsavedChanges();
-  resetNewRecordCreated();
-  resetLegalFields();
-  resetRecordDeleted();
-  resetDiliginciaChange();
+  resetAllStates();
   confirmNavigation(); // Proceder con la navegación
 };
 watch(
@@ -230,14 +229,9 @@ const isAnyChange = computed(() => {
                 {{ props.actuacionData.titulo }}
               </div>
 
-              <small class="text-sm font-bold" v-if="nroLegajo">
-                {{ $props.id ? 'Nro. Legajo:' + nroLegajo : '' }}
+              <small class="text-sm font-bold">
+                Nro. Legajo: {{ nroLegajo ? nroLegajo : '' }}
               </small>
-              <Skeleton
-                v-else-if="$props.id"
-                width="w-full"
-                class="mb-2"
-              ></Skeleton>
             </div>
 
             <div class="buttons-container">

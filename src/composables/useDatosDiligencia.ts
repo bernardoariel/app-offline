@@ -57,17 +57,17 @@ const useDatosDiligencia = (actuacion: ref<string>) => {
       return 'ufi-denuncia';
     }
 
-    return actuacion; 
-};
+    return actuacion;
+  };
 
   const diligenciaSeleccionada = computed(() => {
-    if ( !actuacion.value ) return 
+    if (!actuacion.value) return
     const idToFind = getIdToFind(actuacion.value);
     const result = diligencias.find((d: DatosLegales) => d.id === idToFind);
     console.log('Diligencia seleccionada: ', result);
     return result;
   });
-  
+
   const getStyle = (value: string): string => {
     return `<span class="text-primary font-medium"><i>${value}</i></span>`;
   };
@@ -173,6 +173,7 @@ const useDatosDiligencia = (actuacion: ref<string>) => {
     footerContainer,
     footerTextComputed,
     relato,
+    resetRelato: () => relato.value = '',
     footerText: computed(() => processedText.value.footer),
   };
 };

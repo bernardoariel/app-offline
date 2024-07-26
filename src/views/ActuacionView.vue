@@ -69,7 +69,6 @@ setActuacionData(props.actuacionData);
 
 onActivated(async () => {
   if (!props.id) {
-    resetDatosLegales();
     setLoading(false);
   }
   toogleDateActuacion();
@@ -85,10 +84,6 @@ onActivated(async () => {
   }
 });
 
-onDeactivated(() => {
-  resetAllStates();
-  resetFieldsEmpty();
-});
 const { setAll } = useItem();
 
 const { relato, isEditingHeader } = useDatosDiligencia(props.actuacion);
@@ -121,6 +116,8 @@ const resetAllStates = () => {
   resetNewRecordCreated();
   resetRecordDeleted();
   resetDiliginciaChange();
+  resetDatosLegales();
+  resetLegalFields();
 };
 
 const handleNuevoItem = (key: string) => {
@@ -152,11 +149,7 @@ const handleButtonClick = (action: string) => {
     return;
   }
   isEditingHeader.value = !isEditingHeader.value;
-  resetUnsavedChanges();
-  resetNewRecordCreated();
-  resetLegalFields();
-  resetRecordDeleted();
-  resetDiliginciaChange();
+  resetAllStates();
   confirmNavigation(); // Proceder con la navegación
 };
 watch(

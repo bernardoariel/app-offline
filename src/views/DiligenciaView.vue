@@ -209,6 +209,7 @@ const {
   selectedJuzgadoInterviniente,
   itemsCausaCaratula,
   selectedModusOperandi,
+  resetData: resetDatosLegales,
 } = useDatosLegales();
 const { dialogState } = useDialog();
 const {
@@ -353,11 +354,7 @@ const handleSave = async () => {
   isActuationInit.value = false;
   currentEditId.value = null;
   dialogState.value.allowNavigation = true;
-  resetUnsavedChanges();
-  resetNewRecordCreated();
-  resetLegalFields();
-  resetRecordDeleted();
-  resetDiliginciaChange();
+  resetAllStates();
   await navigateSuccessfully();
 };
 
@@ -373,6 +370,16 @@ watch(
   () => props.actuacion,
   (newValue) => {
     actuacionRef.value = newValue;
+    resetAllStates();
   }
 );
+
+const resetAllStates = () => {
+  resetUnsavedChanges();
+  resetNewRecordCreated();
+  resetRecordDeleted();
+  resetDiliginciaChange();
+  resetLegalFields();
+  resetDatosLegales();
+};
 </script>

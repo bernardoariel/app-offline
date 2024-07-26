@@ -25,9 +25,13 @@ import { mapToArray, mapToDropdownItems } from '@/helpers/dropUtils';
 import useNewActuacion from '@/composables/useNewActuacion';
 import MyInputMask from '@/components/elementos/MyInputMask.vue';
 import useCardValidation from '@/composables/useCardValidations';
+import Checkbox from 'primevue/checkbox';
 
-const { obtenerTarjeta } = useActuacionData();
+
+const { obtenerTarjeta , actuacionData} = useActuacionData();
 const { setField } = useCardValidation();
+const isOrdenPublico = ref<boolean>(false);
+const actuacionHasOrdenPublico = ref<boolean>(false);
 
 const validationSchema = yup.object({
   nombre: yup.string().required().min(3),
@@ -37,6 +41,21 @@ const validationSchema = yup.object({
   //   .number()
   //   .required('Ingrese un número documento válido')
   //   .min(5000000, 'Ingrese un número documento válido'),
+  textAreaDescription: yup.string().test(
+      'required test',
+      'La descripción debe tener al menos 5 caracteres',
+      (value) => {
+        if (isOrdenPublico.value){
+          if (!value) return false;
+          if(value.length >=5){
+            return true
+          }
+          return false
+        }else{
+          return true
+        }
+      }
+    ),
   fechaNacimiento: yup
     .string()
     .required('La fecha de nacimiento es obligatoria')
@@ -121,12 +140,16 @@ const { defineField, values, errors } = useForm({
   validationSchema,
 });
 const hasErrors = () => {
+  if(isOrdenPublico.value && textAreaDescription.value){
+    if (textAreaDescription.value.length>=5)
+      return false
+  }
   const keys1 = Object.keys(validationSchema.fields);
   const keys2 = Object.keys(values);
-  const areKeysEqual =
-    keys1.length <= keys2.length && keys1.every((key) => keys2.includes(key));
+  const areKeysEqual = keys1.length-1 <= keys2.length && keys1.every((key) => keys2.includes(key));
   return Object.keys(errors.value).length > 0 || !areKeysEqual;
 };
+
 let [nombre, nombreAttrs] = defineField('nombre');
 let [apellido, apellidoAttrs] = defineField('apellido');
 let [nroDocumento, nroDocumentoAttrs] = defineField('nroDocumento');
@@ -146,6 +169,8 @@ let [fechaNacimiento, fechaNacimientoAttrs] = defineField('fechaNacimiento');
 let [telefono] = defineField('telefono');
 let [email] = defineField('email');
 let [profesion] = defineField('profesion');
+let [textAreaDescription,textAreaDescriptionAtrrs] = defineField('textAreaDescription');
+
 const firsDateChangeDone = ref(true);
 const { editar, agregar, resetAllDropdown, initialValues } = useAfectados();
 
@@ -190,11 +215,21 @@ let formData = ref<AfectadosForm>({
   telefono: '',
   email: '',
   profesion: '',
+  descripcionOrdenPublico:'',
 });
 const tarjetaValues = ref<string[]>([]);
 
 onActivated(() => {
   tarjetaValues.value = obtenerTarjeta('afectados')?.valor as string[];
+  console.log(actuacionData.value?.tarjetas.afectados.ordenPublico,"set")
+  if(actuacionData.value?.tarjetas.afectados.ordenPublico){
+    actuacionHasOrdenPublico.value=true;
+    if (actuacionData.value?.tarjetas.afectados.ordenPublico==="check"){
+      isOrdenPublico.value=true
+    }else
+      isOrdenPublico.value=false
+  }
+  // console.log("tarjetaAfectados_______", tarjetaValues.value)
   if (selectedItem.value) {
     formData.value = { ...selectedItem.value };
     updateDataWithForm(formData);
@@ -219,6 +254,12 @@ const updateDataWithForm = (form: any) => {
     instruccionSelect.value = { name: formData.value.instruccion };
     nroDocumento.value = formData.value.nroDocumento;
     fechaNacimiento.value = formData.value.fecha;
+    if(formData.value.descripcionOrdenPublico){
+      textAreaDescription.value= formData.value.descripcionOrdenPublico
+      isOrdenPublico.value=true
+    }else{
+      isOrdenPublico.value=false
+    }
   }
 };
 const handleDropdownChange = (
@@ -282,27 +323,51 @@ const handleBlur = (campo: keyof AfectadosForm) => {
 
 const handleAgregarElemento = () => {
   if (hasErrors()) return;
-  const nuevoItem: Afectados = {
-    nroDocumento: nroDocumento.value,
-    apellido: apellido.value,
-    nombre: nombre.value,
-    fecha: fechaNacimiento.value,
-    domicilioResidencia: domicilio.value,
-    telefono: formData.value.telefono,
-    email: formData.value.email,
-    profesion: formData.value.profesion,
-    typeAfectado: tipoDenuncianteSelect.value.name,
-    typeDocumento: tipoDocSelect?.value?.name || '',
-    typeSexo: sexoSelect.value.name,
-    nacionalidad: nacionalidadSelect.value.name,
-    estadoCivil: estadoCivilSelect.value.name,
-    instruccion: instruccionSelect.value.name,
-  };
+   let nuevoItem: Afectados
+   if(isOrdenPublico.value){
+    nuevoItem = {
+      nroDocumento: "",
+      apellido: "",
+      nombre: "",
+      fecha: "",
+      domicilioResidencia: "",
+      telefono: "",
+      email:"",
+      profesion: "",
+      typeAfectado: "Damnificado",
+      typeDocumento: "",
+      typeSexo: "",
+      nacionalidad: "",
+      estadoCivil: "",
+      instruccion: "",
+      descripcionOrdenPublico: textAreaDescription.value
+    };
+    isOrdenPublico.value = false
+   }else{
+    nuevoItem = {
+      nroDocumento: nroDocumento.value,
+      apellido: apellido.value,
+      nombre: nombre.value,
+      fecha: fechaNacimiento.value,
+      domicilioResidencia: domicilio.value,
+      telefono: formData.value.telefono,
+      email: formData.value.email,
+      profesion: formData.value.profesion,
+      typeAfectado: tipoDenuncianteSelect.value.name,
+      typeDocumento: tipoDocSelect?.value?.name || '',
+      typeSexo: sexoSelect.value.name,
+      nacionalidad: nacionalidadSelect.value.name,
+      estadoCivil: estadoCivilSelect.value.name,
+      instruccion: instruccionSelect.value.name,
+      descripcionOrdenPublico: ''
+    };
+   }
+    
 
   agregar(nuevoItem);
   markNewRecordCreated();
   setField('afectados', false);
-  formData.value = { ...nuevoItem };
+  formData.value = { ...initialValues };
   apellido.value = '';
   nombre.value = '';
   domicilio.value = '';
@@ -317,6 +382,7 @@ const handleAgregarElemento = () => {
   telefono.value = '';
   profesion.value = '';
   email.value = '';
+  textAreaDescription.value = '';
   resetAllDropdown();
   resetIsEditedHeader();
 };
@@ -332,29 +398,41 @@ const handleModificarElemento = () => {
     alert('Completa el formulario antes de guardar.');
     return;
   }
+
   let itemStateEncontrado = guardarModificaciones(selectedItem.value!.id);
+  let itemAEditar= {}
   console.log('itemStateEncontrado::: ', itemStateEncontrado);
-  let itemAEditar = {
-    id: formData.value.id,
-    nroDocumento: nroDocumento.value || '',
-    apellido: apellido.value || '',
-    nombre: nombre.value || '',
-    fecha: fechaNacimiento.value || '',
-    domicilioResidencia: domicilio.value || '',
-    telefono: formData.value.telefono || '',
-    email: formData.value.email || '',
-    profesion: formData.value.profesion || '',
-    typeAfectado: tipoDenuncianteSelect.value.name || '',
-    typeDocumento:
+  if (isOrdenPublico.value){
+    console.log("alñskfjñasldkfj",textAreaDescription.value,itemStateEncontrado)
+    itemAEditar={
+      id: formData.value.id,
+      typeAfectado: 'Damnificado' ,
+      descripcionOrdenPublico: textAreaDescription.value ||'',
+      ...itemStateEncontrado,
+    }
+  }else{
+    itemAEditar = {
+      id: formData.value.id,
+      nroDocumento: nroDocumento.value || '',
+      apellido: apellido.value || '',
+      nombre: nombre.value || '',
+      fecha: fechaNacimiento.value || '',
+      domicilioResidencia: domicilio.value || '',
+      telefono: formData.value.telefono || '',
+      email: formData.value.email || '',
+      profesion: formData.value.profesion || '',
+      typeAfectado: tipoDenuncianteSelect.value.name || '',
+      typeDocumento:
       tipoDocSelect.value.name == 'Seleccione tipo'
         ? ''
         : tipoDocSelect.value.name || '',
-    typeSexo: sexoSelect.value.name || '',
-    nacionalidad: nacionalidadSelect.value.name || '',
-    estadoCivil: estadoCivilSelect.value.name || '',
-    instruccion: instruccionSelect.value.name || '',
-    ...itemStateEncontrado,
-  };
+      typeSexo: sexoSelect.value.name || '',
+      nacionalidad: nacionalidadSelect.value.name || '',
+      estadoCivil: estadoCivilSelect.value.name || '',
+      instruccion: instruccionSelect.value.name || '',
+      ...itemStateEncontrado,
+    };
+  }
   editar(itemAEditar);
 };
 
@@ -386,254 +464,282 @@ watch(selectedItem, (newVal: any) => {
   <Card>
     <template #content>
       <div class="grid">
-        <div class="col-12">
-          <!-- <pre>{{ values }}</pre> -->
-          <label for="dropdown">Seleccione tipo de Denunciante</label>
-          <MyDropdown
-            class="mt-2"
-            :items="mapToDropdownItems(tarjetaValues)"
-            filter
-            v-model="tipoDenuncianteSelect"
-            placeholder="Seleccione tipo de denunciante"
-            @change="handleDropdownChange('typeAfectado', $event)"
-            :error="errors.tipoDenuncianteSelect"
-            v-bind="tipoDenuncianteSelectAttrs"
-            :color="false"
-          />
-          <span
-            class="text-red-400"
-            v-if="errors.tipoDenuncianteSelect ? true : false"
-          >
-            {{ errors.tipoDenuncianteSelect }}
-          </span>
+        <div class="grid" v-if="!isOrdenPublico">
+          <div class="col-12">
+            <!-- <pre>{{ values }}</pre> -->
+            <label for="dropdown">Seleccione tipo de Denunciante</label>
+            <MyDropdown
+              class="mt-2"
+              :items="mapToDropdownItems(tarjetaValues)"
+              filter
+              v-model="tipoDenuncianteSelect"
+              placeholder="Seleccione tipo de denunciante"
+              @change="handleDropdownChange('typeAfectado', $event)"
+              :error="errors.tipoDenuncianteSelect"
+              v-bind="tipoDenuncianteSelectAttrs"
+              :color="false"
+            />
+            <span
+              class="text-red-400"
+              v-if="errors.tipoDenuncianteSelect ? true : false"
+            >
+              {{ errors.tipoDenuncianteSelect }}
+            </span>
+          </div>
+          <div class="col-4">
+            <label for="dropdown">Tipo de doc.</label>
+            <MyDropdown
+              class="mt-2"
+              :items="documentosDropdown"
+              :color="false"
+              v-model="tipoDocSelect"
+              v-bind="tipoDocSelectAttrs"
+              :error="errors.tipoDocSelect"
+              @change="
+                (newValue) => handleDropdownChange('typeDocumento', newValue)
+              "
+              placeholder="Seleccione tipo de doc."
+              filter
+            />
+            <span class="text-red-400" v-if="errors.tipoDocSelect ? true : false">
+              {{ errors.tipoDocSelect }}
+            </span>
+          </div>
+          <div class="col-4">
+            <label for="dropdown">N° de doc.</label>
+            <MyInput
+              type="text"
+              class="mt-2"
+              v-model="nroDocumento"
+              :color="false"
+              v-bind="nroDocumentoAttrs"
+              :error="errors.nroDocumento"
+              placeholder="Ingrese N° de doc"
+              @input="handleInputChange('nroDocumento', $event)"
+              @blur="() => handleBlur('nroDocumento')"
+            />
+          </div>
+          <div class="col-4">
+            <label for="dropdown">Sexo</label>
+            <MyDropdown
+              class="mt-2"
+              :items="sexoDropdown"
+              v-model="sexoSelect"
+              placeholder="Seleccione sexo"
+              @change="handleDropdownChange('typeSexo', $event)"
+              :error="errors.sexoSelect"
+              v-bind="sexoSelectAttrs"
+              :color="false"
+              filter
+            />
+            <span class="text-red-400" v-if="errors.sexoSelect ? true : false">
+              {{ errors.sexoSelect }}
+            </span>
+          </div>
+          <div class="col-6">
+            <label for="dropdown">Apellido</label>
+            <MyInput
+              type="text"
+              class="mt-2"
+              v-model="apellido"
+              v-bind="apellidoAttrs"
+              :color="false"
+              :error="errors.apellido"
+              placeholder="Ingrese apellido"
+              @input="handleInputChange('apellido', $event)"
+              @blur="() => handleBlur('apellido')"
+            />
+          </div>
+          <div class="col-6">
+            <label for="dropdown">Nombre</label>
+            <MyInput
+              type="text"
+              class="mt-2"
+              @input="handleInputChange('nombre', $event)"
+              v-model="nombre"
+              v-bind="nombreAttrs"
+              :error="errors.nombre"
+              :color="false"
+              placeholder="Ingrese nombre"
+              @blur="() => handleBlur('nombre')"
+            />
+          </div>
+          <div class="col-3">
+            <label for="dropdown">Fecha de nac.</label>
+            <MyInputMask
+              class="mt-2 w-full"
+              mask="99/99/9999"
+              slotChar="dd/mm/yyyy"
+              placeholder="Ingrese fecha"
+              @update:modelValue="handleDateChange('fecha', $event)"
+              v-model="fechaNacimiento"
+              v-bind="fechaNacimientoAttrs"
+              :color="false"
+              :error="errors.fechaNacimiento"
+            />
+          </div>
+          <div class="col-3">
+            <label for="dropdown">Nacionalidad</label>
+            <MyDropdown
+              class="mt-2"
+              :items="nacionalidadDropdown"
+              v-model="nacionalidadSelect"
+              v-bind="nacionalidadSelectAttrs"
+              placeholder="Nacionalidad"
+              @change="handleDropdownChange('nacionalidad', $event)"
+              :error="errors.nacionalidadSelect"
+              filter
+              :color="false"
+            />
+            <span
+              class="text-red-400"
+              v-if="errors.nacionalidadSelect ? true : false"
+            >
+              {{ errors.nacionalidadSelect }}
+            </span>
+          </div>
+          <div class="col-3">
+            <label for="dropdown">Estado Civil</label>
+            <MyDropdown
+              class="mt-2"
+              :items="estadoCivilDropdown"
+              v-model="estadoCivilSelect"
+              placeholder="Estado Civil"
+              @change="handleDropdownChange('estadoCivil', $event)"
+              :error="errors.estadoCivilSelect"
+              :color="false"
+              filter
+              v-bind="estadoCivilSelectAttrs"
+            />
+            <span
+              class="text-red-400"
+              v-if="errors.estadoCivilSelect ? true : false"
+            >
+              {{ errors.estadoCivilSelect }}
+            </span>
+          </div>
+          <div class="col-12">
+            <label for="dropdown">Domicilio de residencia</label>
+            <MyTextArea
+              class="mt-2 w-full"
+              placeholder="Ingrese Domicilio de residencia"
+              v-bind="domicilioAttrs"
+              @input="handleInputChange('domicilioResidencia', $event)"
+              @blur="() => handleBlur('domicilioResidencia')"
+              v-model="domicilio"
+              :error="errors.domicilio"
+              :color="false"
+            />
+          </div>
+          <div class="col-3">
+            <label for="dropdown">Teléfono</label>
+            <MyInput
+              type="number"
+              class="mt-2"
+              placeholder="Ingrese teléfono"
+              v-model="telefono"
+              @input="handleInputChange('telefono', $event)"
+              @blur="() => handleBlur('telefono')"
+              :color="false"
+              :error="errors.telefono"
+            />
+          </div>
+          <div class="col-3">
+            <label for="dropdown">Email</label>
+            <MyInput
+              type="text"
+              class="mt-2"
+              placeholder="Ingrese email"
+              v-model="email"
+              @input="handleInputChange('email', $event)"
+              @blur="() => handleBlur('email')"
+              :color="false"
+            />
+          </div>
+          <div class="col-3">
+            <label for="dropdown">Profesión</label>
+            <MyInput
+              type="text"
+              class="mt-2"
+              placeholder="Ingrese Profesión"
+              v-model="profesion"
+              @input="handleInputChange('profesion', $event)"
+              @blur="() => handleBlur('profesion')"
+              :color="false"
+            />
+          </div>
+          <div class="col-3">
+            <label for="dropdown">Instrucción</label>
+            <MyDropdown
+              class="mt-2"
+              :items="instruccionDropdown"
+              v-model="instruccionSelect"
+              placeholder="Instrucción"
+              @change="handleDropdownChange('instruccion', $event)"
+              :error="errors.instruccionSelect"
+              filter
+              :color="false"
+              v-bind="instruccionSelectAttrs"
+            />
+            <span
+              class="text-red-400"
+              v-if="errors.instruccionSelect ? true : false"
+            >
+              {{ errors.instruccionSelect }}
+            </span>
+          </div>
         </div>
-        <div class="col-4">
-          <label for="dropdown">Tipo de doc.</label>
-          <MyDropdown
-            class="mt-2"
-            :items="documentosDropdown"
-            :color="false"
-            v-model="tipoDocSelect"
-            v-bind="tipoDocSelectAttrs"
-            :error="errors.tipoDocSelect"
-            @change="
-              (newValue) => handleDropdownChange('typeDocumento', newValue)
-            "
-            placeholder="Seleccione tipo de doc."
-            filter
-          />
-          <span class="text-red-400" v-if="errors.tipoDocSelect ? true : false">
-            {{ errors.tipoDocSelect }}
-          </span>
+        <div  class="col-12" v-else >
+          <p class="mb-0">Descripción:</p>
+          <MyTextArea 
+            class="w-full max-w-4xl"  
+            @input="handleInputChange('descripcionOrdenPublico', $event)"  
+            v-model="textAreaDescription"
+            v-bind="textAreaDescriptionAtrrs" 
+            :error="errors.textAreaDescription"
+            variant="filled"
+             rows="5"
+              cols="60" />
+  
         </div>
-        <div class="col-4">
-          <label for="dropdown">N° de doc.</label>
-          <MyInput
-            type="text"
-            class="mt-2"
-            v-model="nroDocumento"
-            :color="false"
-            v-bind="nroDocumentoAttrs"
-            :error="errors.nroDocumento"
-            placeholder="Ingrese N° de doc"
-            @input="handleInputChange('nroDocumento', $event)"
-            @blur="() => handleBlur('nroDocumento')"
-          />
-        </div>
-        <div class="col-4">
-          <label for="dropdown">Sexo</label>
-          <MyDropdown
-            class="mt-2"
-            :items="sexoDropdown"
-            v-model="sexoSelect"
-            placeholder="Seleccione sexo"
-            @change="handleDropdownChange('typeSexo', $event)"
-            :error="errors.sexoSelect"
-            v-bind="sexoSelectAttrs"
-            :color="false"
-            filter
-          />
-          <span class="text-red-400" v-if="errors.sexoSelect ? true : false">
-            {{ errors.sexoSelect }}
-          </span>
+        <div class="col-3">
+          <div class="flex align-items-center" v-if="actuacionHasOrdenPublico">
+            <Checkbox 
+              v-model="isOrdenPublico" 
+              :binary="true" 
+              value="filacionDesconocida" />
+            <p class="ml-2">Orden Público</p>
+          </div>
         </div>
         <div class="col-6">
-          <label for="dropdown">Apellido</label>
-          <MyInput
-            type="text"
-            class="mt-2"
-            v-model="apellido"
-            v-bind="apellidoAttrs"
-            :color="false"
-            :error="errors.apellido"
-            placeholder="Ingrese apellido"
-            @input="handleInputChange('apellido', $event)"
-            @blur="() => handleBlur('apellido')"
-          />
-        </div>
-        <div class="col-6">
-          <label for="dropdown">Nombre</label>
-          <MyInput
-            type="text"
-            class="mt-2"
-            @input="handleInputChange('nombre', $event)"
-            v-model="nombre"
-            v-bind="nombreAttrs"
-            :error="errors.nombre"
-            :color="false"
-            placeholder="Ingrese nombre"
-            @blur="() => handleBlur('nombre')"
-          />
         </div>
         <div class="col-3">
-          <label for="dropdown">Fecha de nac.</label>
-          <MyInputMask
-            class="mt-2 w-full"
-            mask="99/99/9999"
-            slotChar="dd/mm/yyyy"
-            placeholder="Ingrese fecha"
-            @update:modelValue="handleDateChange('fecha', $event)"
-            v-model="fechaNacimiento"
-            v-bind="fechaNacimientoAttrs"
-            :color="false"
-            :error="errors.fechaNacimiento"
-          />
-        </div>
-        <div class="col-3">
-          <label for="dropdown">Nacionalidad</label>
-          <MyDropdown
-            class="mt-2"
-            :items="nacionalidadDropdown"
-            v-model="nacionalidadSelect"
-            v-bind="nacionalidadSelectAttrs"
-            placeholder="Nacionalidad"
-            @change="handleDropdownChange('nacionalidad', $event)"
-            :error="errors.nacionalidadSelect"
-            filter
-            :color="false"
-          />
-          <span
-            class="text-red-400"
-            v-if="errors.nacionalidadSelect ? true : false"
-          >
-            {{ errors.nacionalidadSelect }}
-          </span>
-        </div>
-        <div class="col-3">
-          <label for="dropdown">Estado Civil</label>
-          <MyDropdown
-            class="mt-2"
-            :items="estadoCivilDropdown"
-            v-model="estadoCivilSelect"
-            placeholder="Estado Civil"
-            @change="handleDropdownChange('estadoCivil', $event)"
-            :error="errors.estadoCivilSelect"
-            :color="false"
-            filter
-            v-bind="estadoCivilSelectAttrs"
-          />
-          <span
-            class="text-red-400"
-            v-if="errors.estadoCivilSelect ? true : false"
-          >
-            {{ errors.estadoCivilSelect }}
-          </span>
-        </div>
-        <div class="col-12">
-          <label for="dropdown">Domicilio de residencia</label>
-          <MyTextArea
-            class="mt-2 w-full"
-            placeholder="Ingrese Domicilio de residencia"
-            v-bind="domicilioAttrs"
-            @input="handleInputChange('domicilioResidencia', $event)"
-            @blur="() => handleBlur('domicilioResidencia')"
-            v-model="domicilio"
-            :error="errors.domicilio"
-            :color="false"
-          />
-        </div>
-        <div class="col-3">
-          <label for="dropdown">Teléfono</label>
-          <MyInput
-            type="number"
-            class="mt-2"
-            placeholder="Ingrese teléfono"
-            v-model="telefono"
-            @input="handleInputChange('telefono', $event)"
-            @blur="() => handleBlur('telefono')"
-            :color="false"
-            :error="errors.telefono"
-          />
-        </div>
-        <div class="col-3">
-          <label for="dropdown">Email</label>
-          <MyInput
-            type="text"
-            class="mt-2"
-            placeholder="Ingrese email"
-            v-model="email"
-            @input="handleInputChange('email', $event)"
-            @blur="() => handleBlur('email')"
-            :color="false"
-          />
-        </div>
-        <div class="col-3">
-          <label for="dropdown">Profesión</label>
-          <MyInput
-            type="text"
-            class="mt-2"
-            placeholder="Ingrese Profesión"
-            v-model="profesion"
-            @input="handleInputChange('profesion', $event)"
-            @blur="() => handleBlur('profesion')"
-            :color="false"
-          />
-        </div>
-        <div class="col-3">
-          <label for="dropdown">Instrucción</label>
-          <MyDropdown
-            class="mt-2"
-            :items="instruccionDropdown"
-            v-model="instruccionSelect"
-            placeholder="Instrucción"
-            @change="handleDropdownChange('instruccion', $event)"
-            :error="errors.instruccionSelect"
-            filter
-            :color="false"
-            v-bind="instruccionSelectAttrs"
-          />
-          <span
-            class="text-red-400"
-            v-if="errors.instruccionSelect ? true : false"
-          >
-            {{ errors.instruccionSelect }}
-          </span>
-        </div>
-        <div class="ml-auto mt-2 p-0">
-          <Button
-            label="Agregar"
-            :disabled="hasErrors()"
-            v-if="!selectedItem"
-            @click="handleAgregarElemento()"
-          >
-          </Button>
-          <div v-else>
-            <Button
-              :disabled="isEditing(selectedItem!.id)"
-              label="Cancelar"
-              icon="pi pi-times"
-              severity="secondary"
-              outlined
-              aria-label="Cancel"
-              class="mr-3"
-              @click="handleCancelar"
-            ></Button>
-            <Button
-              label="Guardar Cambios"
-              :disabled="isEditing(selectedItem!.id)"
-              @click="handleModificarElemento()"
-              severity="warning"
-            ></Button>
+            <div class="flex align-items-center  justify-content-end">
+              <Button
+                label="Agregar"
+                :disabled="hasErrors()"
+                v-if="!selectedItem"
+                @click="handleAgregarElemento()"
+              >
+              </Button>
+              <div v-else>
+                <Button
+                  :disabled="isEditing(selectedItem!.id)"
+                  label="Cancelar"
+                  icon="pi pi-times"
+                  severity="secondary"
+                  outlined
+                  aria-label="Cancel"
+                  class="mr-3"
+                  @click="handleCancelar"
+                ></Button>
+                <Button
+                  label="Guardar Cambios"
+                  :disabled="isEditing(selectedItem!.id)"
+                  @click="handleModificarElemento()"
+                  severity="warning"
+                ></Button>
+              </div>
           </div>
         </div>
       </div>

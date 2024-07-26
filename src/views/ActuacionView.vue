@@ -116,6 +116,7 @@ const resetAllStates = () => {
 watch(
   () => props.actuacion,
   (newValue) => {
+    setActuacionData(props.actuacionData);
     actuacionRef.value = newValue;
     resetAllStates();
   }

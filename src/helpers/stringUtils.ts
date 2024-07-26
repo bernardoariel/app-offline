@@ -1,6 +1,9 @@
 // Transforma una cadena a mayúsculas
-export const getUpperCase = (word:string) => {
+export const getUpperCase = (word?:string) => {
+  if (word)
     return word.toUpperCase();
+  else
+    return
   };
   
   // Transforma una cadena a minúsculas

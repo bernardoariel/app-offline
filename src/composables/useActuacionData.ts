@@ -4,6 +4,7 @@ import { ref } from 'vue';
 interface Tarjetas {
     titulo: string;
     valor: string[] | null;
+    ordenPublico: "check" | "default"
 }
 
 interface Actuacion {

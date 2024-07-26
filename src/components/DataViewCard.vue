@@ -21,7 +21,6 @@ const props = defineProps<{
   dataKey: string;
   actuacion?: string;
 }>();
-
 const condicion: boolean = false;
 const toast = useToast();
 const { relato } = useDatosDiligencia('sumario-denuncia');
@@ -229,10 +228,10 @@ const convertStringToPhrase = (key: string): string => {
               </div>
 
               <div class="flex-items">
-                <span  v-if="!item.descripcionDesconocido" class="font-bold">{{
+                <span  v-if="!item.descripcionDesconocido && !item.descripcionOrdenPublico" class="font-bold">{{
                   item.apellido ? getUpperCase(item.apellido) + ',' : ''
                 }}</span>
-                <span  v-if="!item.descripcionDesconocido" class="ml-2">{{
+                <span  v-if="!item.descripcionDesconocido && !item.descripcionOrdenPublico" class="ml-2">{{
                   item.nombre ? getTitleCase(item.nombre) : 'Nuevo'
                 }}</span>
                 <span
@@ -242,6 +241,10 @@ const convertStringToPhrase = (key: string): string => {
                   <i>{{ item.typeDocumento + ': ' }}</i>
                   <i>{{ item.nroDocumento }}</i>
                 </span>
+                <span  v-if="item.descripcionOrdenPublico" class="font-bold">
+                  Orden público: 
+                </span>
+                <span v-if="item.descripcionOrdenPublico">{{getTruncatedString(item.descripcionOrdenPublico, 20)}}</span>
                 <span v-if="item.descripcionDesconocido" class="font-bold">
                   Persona de filiación desconocida: 
                 </span>

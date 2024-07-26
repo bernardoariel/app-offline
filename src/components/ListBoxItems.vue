@@ -32,7 +32,7 @@ console.log("lista", itemsComputados)
           <div class="left-column">
             <!-- Afectados y vinculados -->
             <div v-if="routeType === 'afectados' || routeType === 'vinculados'">
-              <div v-if="!option.descripcionDesconocido" class="text-row">
+              <div v-if="!option.descripcionDesconocido && !option.descripcionOrdenPublico" class="text-row">
                 <span class="font-bold">{{
                   option.apellido ? getUpperCase(option.apellido) + ',' : ''
                 }}</span>
@@ -44,12 +44,20 @@ console.log("lista", itemsComputados)
                   <i v-if="option.nroDocumento">{{ option.nroDocumento }}</i>
                 </span>
               </div>
-              <div v-else class="text-row">
+              <div v-if="option.descripcionDesconocido" class="text-row">
                 <span class="font-bold">
                   Persona de filiación desconocida: 
                 </span>
                 <span class="ml-2">{{
                   getTruncatedString(option.descripcionDesconocido, 40)
+                }}</span>
+              </div>
+              <div v-if="option.descripcionOrdenPublico" class="text-row">
+                <span class="font-bold">
+                  Orden público: 
+                </span>
+                <span class="ml-2">{{
+                  getTruncatedString(option.descripcionOrdenPublico, 40)
                 }}</span>
               </div>
               <div class="tag-row">

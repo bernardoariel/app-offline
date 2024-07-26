@@ -316,7 +316,7 @@ const isAnyChange = computed(() => {
               </Card>
             </TabPanel>
             <TabPanel header="Datos Legales">
-              <DatosLegalesView />
+              <DatosLegalesView :datosLegales="actuacionData.DatosLegales" />
             </TabPanel>
           </TabView>
         </template>

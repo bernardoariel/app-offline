@@ -13383,7 +13383,7 @@ export const juzgadoInterviniente = [
     }
 ]
 
-export const articulos = [
+export const articulosRelacionados = [
     {
         "ArticulosID": "01671da7-cc69-11ec-acbc-16c2a030bb97",
         "Numeroarticulo": "195\u00b0 Merodeo",
@@ -13749,5 +13749,941 @@ export const articulos = [
         "Numeroarticulo": "117\u00ba BIS Difunda a trav\u00e9s de medios electr\u00f3nicos",
         "nombre": "117\u00ba BIS Difunda a trav\u00e9s de medios electr\u00f3nicos",
         "Codigo": "LEY N\u00ba 941-R"
+    }
+]
+export const ayudanteFiscal = [
+    {
+        "PersonalfiscalID": "042e4575-c84b-11ed-9f0f-0e3a1e34687f",
+        "Denominacion": "Dr Ghilardi Oscar Andres",
+        "nombre": "Dr Ghilardi Oscar Andres",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "0a910417-5918-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dr. Miguel Gay ",
+        "nombre": "Dr. Miguel Gay ",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "0b3b3429-95a9-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dra. Pacheco Cecilia",
+        "nombre": "Dra. Pacheco Cecilia",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "0f8def62-4ccd-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dr. Pe\u00f1a David",
+        "nombre": "Dr. Pe\u00f1a David",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "12cb7ac9-6d93-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dr Nicolia Francisco",
+        "nombre": "Dr Nicolia Francisco",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "1689958e-95d4-11ed-9b80-0e87116d214b",
+        "Denominacion": "Ferrer Pablo Alfredo",
+        "nombre": "Ferrer Pablo Alfredo",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "169a845a-5918-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dr. Jos\u00e9 Plaza ",
+        "nombre": "Dr. Jos\u00e9 Plaza ",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "18e3fa3f-df3b-11ee-8df7-0e3a1e34687f",
+        "Denominacion": "Elizondo Adrian ",
+        "nombre": "Elizondo Adrian ",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "1c4934fc-d673-11ee-8df7-0e3a1e34687f",
+        "Denominacion": "Dr. Salinas Jorge",
+        "nombre": "Dr. Salinas Jorge",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "2fa640f7-dc9a-11ee-8df7-0e3a1e34687f",
+        "Denominacion": "Dra. Blanco Gabriela ",
+        "nombre": "Dra. Blanco Gabriela ",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "4004c14f-e162-11ed-9f0f-0e3a1e34687f",
+        "Denominacion": "Dr. Codorniu Mario",
+        "nombre": "Dr. Codorniu Mario",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "45513631-5918-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dr. Juan Galvez",
+        "nombre": "Dr. Juan Galvez",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "4be54f08-eac4-11ed-9f0f-0e3a1e34687f",
+        "Denominacion": "Dr Poblete Fabricio",
+        "nombre": "Dr Poblete Fabricio",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "52e2868e-5918-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dr. Eduardo Martinez Yanzon",
+        "nombre": "Dr. Eduardo Martinez Yanzon",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "53bf8499-1441-11ee-ba93-0e3a1e34687f",
+        "Denominacion": "Dr. Oropel Oscar Santiago",
+        "nombre": "Dr. Oropel Oscar Santiago",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "54bbd1d9-5919-11ed-9b80-0e87116d214b",
+        "Denominacion": "dra. Ingrid Schott",
+        "nombre": "dra. Ingrid Schott",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "59411647-8c88-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dr. Shoar Aballay ",
+        "nombre": "Dr. Shoar Aballay ",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "5c5f8325-5918-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dra. Claudia Galante",
+        "nombre": "Dra. Claudia Galante",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "5e0265be-17a6-11ef-9e2a-0e3a1e34687f",
+        "Denominacion": "Mario Quiroga",
+        "nombre": "Mario Quiroga",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "5f332df2-373d-11ef-9e2a-0e3a1e34687f",
+        "Denominacion": "Dr. Miranda Sebastian",
+        "nombre": "Dr. Miranda Sebastian",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "64fa9dcf-17a6-11ef-9e2a-0e3a1e34687f",
+        "Denominacion": "Carlos Ortiz",
+        "nombre": "Carlos Ortiz",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "65805c75-5919-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dr. Duilio Ejarque",
+        "nombre": "Dr. Duilio Ejarque",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "6f791044-96c7-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dr. Eiben Ezequiel",
+        "nombre": "Dr. Eiben Ezequiel",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "7831ed9b-5919-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dr. Roberto Marcucci",
+        "nombre": "Dr. Roberto Marcucci",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "7eeb927f-aa4d-11ed-9f0f-0e3a1e34687f",
+        "Denominacion": "Dr. Miranda Carlos",
+        "nombre": "Dr. Miranda Carlos",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "7fa371d8-ce7d-11ed-9f0f-0e3a1e34687f",
+        "Denominacion": "Dra Riveros Rosana",
+        "nombre": "Dra Riveros Rosana",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "841d7818-d691-11ee-8df7-0e3a1e34687f",
+        "Denominacion": "Dr.Pereira Federico",
+        "nombre": "Dr.Pereira Federico",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "8c80ff66-5919-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dr. Nicolas Shiattino",
+        "nombre": "Dr. Nicolas Shiattino",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "8e88ee3c-7564-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dra Cangialosi Cecilia",
+        "nombre": "Dra Cangialosi Cecilia",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "960d36e4-4a76-11ef-b47c-0e3a1e34687f",
+        "Denominacion": "DR. MATTAR JUAN MARTIN",
+        "nombre": "DR. MATTAR JUAN MARTIN",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "970e873c-f449-11ed-9f0f-0e3a1e34687f",
+        "Denominacion": "Dr. Cabrera Gema",
+        "nombre": "Dr. Cabrera Gema",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "98d1d023-5919-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dr. Ricardo Juarez Prieto",
+        "nombre": "Dr. Ricardo Juarez Prieto",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "9d3cc7f6-5918-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dra. Claudia Carignano",
+        "nombre": "Dra. Claudia Carignano",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "a01bebe3-da29-11ee-8df7-0e3a1e34687f",
+        "Denominacion": "Dr. Rodriguez Carlos",
+        "nombre": "Dr. Rodriguez Carlos",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "a33b56f5-5919-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dr. Renato Roca",
+        "nombre": "Dr. Renato Roca",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "a9689dcb-8dc2-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dr. Eden Martin",
+        "nombre": "Dr. Eden Martin",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "aade8d8a-5919-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dr. Francisco Bruno",
+        "nombre": "Dr. Francisco Bruno",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "aadf43c0-6d9e-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dr. Nicolia Francisco",
+        "nombre": "Dr. Nicolia Francisco",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "ab97826b-92c1-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dr. Teja Mariano",
+        "nombre": "Dr. Teja Mariano",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "aeb67405-da29-11ee-8df7-0e3a1e34687f",
+        "Denominacion": "Dra. Ginestar Adriana",
+        "nombre": "Dra. Ginestar Adriana",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "b35c8555-a0d1-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dr. Garc\u00eda Thomas",
+        "nombre": "Dr. Garc\u00eda Thomas",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "b38de3d0-ff06-11ec-bb82-0eb8b69eb347",
+        "Denominacion": "Dr. Carlos C\u00e1ceres",
+        "nombre": "Dr. Carlos C\u00e1ceres",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "b8d73615-ff06-11ec-bb82-0eb8b69eb347",
+        "Denominacion": "Dr. Solera Alejandro",
+        "nombre": "Dr. Solera Alejandro",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "b953f9c1-5918-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dr. Mario Panetta Soppelsa",
+        "nombre": "Dr. Mario Panetta Soppelsa",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "b978acdc-d772-11ee-8df7-0e3a1e34687f",
+        "Denominacion": "Dr. Cabral Rodrigo",
+        "nombre": "Dr. Cabral Rodrigo",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "bdfc61d3-16df-11ee-ba93-0e3a1e34687f",
+        "Denominacion": "-",
+        "nombre": "-",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "be10322b-d7c3-11ee-8df7-0e3a1e34687f",
+        "Denominacion": "Dr. Varas Alejandro",
+        "nombre": "Dr. Varas Alejandro",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "be66711e-77bf-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dr. Sergio Cuneo",
+        "nombre": "Dr. Sergio Cuneo",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "be944ab7-ff06-11ec-bb82-0eb8b69eb347",
+        "Denominacion": "Dr. Cristian Gerarduzzi",
+        "nombre": "Dr. Cristian Gerarduzzi",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "c3fe32e0-ff06-11ec-bb82-0eb8b69eb347",
+        "Denominacion": "DR. Lafont Rodrigo",
+        "nombre": "DR. Lafont Rodrigo",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "c5e1582f-fc27-11ee-8df7-0e3a1e34687f",
+        "Denominacion": "Dr. Vale Alejandro",
+        "nombre": "Dr. Vale Alejandro",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "c75e115a-f8b1-11ed-9f0f-0e3a1e34687f",
+        "Denominacion": "Dr. Eduardo Garcia",
+        "nombre": "Dr. Eduardo Garcia",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "cdadcfb6-5919-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dr. Francisco Micheltonera ",
+        "nombre": "Dr. Francisco Micheltonera ",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "d6572ca4-087b-11ef-8bfb-0e3a1e34687f",
+        "Denominacion": "Videla Rodrigo",
+        "nombre": "Videla Rodrigo",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "da1eec46-5919-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dr. Francisco Pizarro",
+        "nombre": "Dr. Francisco Pizarro",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "dca7d7c2-7842-11ee-ba93-0e3a1e34687f",
+        "Denominacion": "Dr. Bustos Marcelo",
+        "nombre": "Dr. Bustos Marcelo",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "dd6958b0-087b-11ef-8bfb-0e3a1e34687f",
+        "Denominacion": "Orellano Pablo",
+        "nombre": "Orellano Pablo",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "ef229ba7-5917-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dr. Alberto Martinez",
+        "nombre": "Dr. Alberto Martinez",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "f51e7f7d-1602-11ef-9e2a-0e3a1e34687f",
+        "Denominacion": "Jorge Sanchez",
+        "nombre": "Jorge Sanchez",
+        "Jerarquia": "Ayudante"
+    },
+    {
+        "PersonalfiscalID": "f68b7785-5917-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dr. Cristian Catalano ",
+        "nombre": "Dr. Cristian Catalano ",
+        "Jerarquia": "Ayudante"
+    }
+]
+export const fiscalCargo = [
+    {
+        "PersonalfiscalID": "0b021bda-6d93-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dr. Catalano Cristian ",
+        "nombre": "Dr. Catalano Cristian ",
+        "Jerarquia": "Fiscal"
+    },
+    {
+        "PersonalfiscalID": "0fc38b3e-86ba-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dr. Shoar Aballay",
+        "nombre": "Dr. Shoar Aballay",
+        "Jerarquia": "Fiscal"
+    },
+    {
+        "PersonalfiscalID": "159d607f-ff05-11ec-bb82-0eb8b69eb347",
+        "Denominacion": "Dr. Adrian Riveros",
+        "nombre": "Dr. Adrian Riveros",
+        "Jerarquia": "Fiscal"
+    },
+    {
+        "PersonalfiscalID": "17bd942e-f1f9-11ee-8df7-0e3a1e34687f",
+        "Denominacion": "Dr Videla Rodrigo",
+        "nombre": "Dr Videla Rodrigo",
+        "Jerarquia": "Fiscal"
+    },
+    {
+        "PersonalfiscalID": "1bf9b159-86ba-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dr. Gaston Salvio",
+        "nombre": "Dr. Gaston Salvio",
+        "Jerarquia": "Fiscal"
+    },
+    {
+        "PersonalfiscalID": "2108cf54-5918-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dr. Ignacio Achem",
+        "nombre": "Dr. Ignacio Achem",
+        "Jerarquia": "Fiscal"
+    },
+    {
+        "PersonalfiscalID": "2a9604cb-7564-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dra Pringles Daniela",
+        "nombre": "Dra Pringles Daniela",
+        "Jerarquia": "Fiscal"
+    },
+    {
+        "PersonalfiscalID": "4ab6c286-5916-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dra. Virginia Branca",
+        "nombre": "Dra. Virginia Branca",
+        "Jerarquia": "Fiscal"
+    },
+    {
+        "PersonalfiscalID": "5039390f-c84c-11ed-9f0f-0e3a1e34687f",
+        "Denominacion": "Dra Galante Yanina",
+        "nombre": "Dra Galante Yanina",
+        "Jerarquia": "Fiscal"
+    },
+    {
+        "PersonalfiscalID": "53d560cb-5916-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dra. Claudia Salica",
+        "nombre": "Dra. Claudia Salica",
+        "Jerarquia": "Fiscal"
+    },
+    {
+        "PersonalfiscalID": "5dcc366f-5916-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dr. Roberto Ginsbert",
+        "nombre": "Dr. Roberto Ginsbert",
+        "Jerarquia": "Fiscal"
+    },
+    {
+        "PersonalfiscalID": "6c4d7de6-d8b5-11ee-8df7-0e3a1e34687f",
+        "Denominacion": "Dr. Micheltorena Francisco",
+        "nombre": "Dr. Micheltorena Francisco",
+        "Jerarquia": "Fiscal"
+    },
+    {
+        "PersonalfiscalID": "76e55071-ce7d-11ed-9f0f-0e3a1e34687f",
+        "Denominacion": "Dr Rodr\u00edguez Carlos",
+        "nombre": "Dr Rodr\u00edguez Carlos",
+        "Jerarquia": "Fiscal"
+    },
+    {
+        "PersonalfiscalID": "7c5c8e84-2d73-11ef-9e2a-0e3a1e34687f",
+        "Denominacion": "Alejandra Veronica Bazan ",
+        "nombre": "Alejandra Veronica Bazan ",
+        "Jerarquia": "Fiscal"
+    },
+    {
+        "PersonalfiscalID": "814c0f20-5919-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dr. Eduardo Gallastegui",
+        "nombre": "Dr. Eduardo Gallastegui",
+        "Jerarquia": "Fiscal"
+    },
+    {
+        "PersonalfiscalID": "8503131c-8dc2-11ed-9b80-0e87116d214b",
+        "Denominacion": "Fiscal en turno",
+        "nombre": "Fiscal en turno",
+        "Jerarquia": "Fiscal"
+    },
+    {
+        "PersonalfiscalID": "9d9d0264-5916-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dra. Valentina Bucciarelli",
+        "nombre": "Dra. Valentina Bucciarelli",
+        "Jerarquia": "Fiscal"
+    },
+    {
+        "PersonalfiscalID": "9eb42219-6d9e-11ed-9b80-0e87116d214b",
+        "Denominacion": " Dr. Catalano Cristian",
+        "nombre": " Dr. Catalano Cristian",
+        "Jerarquia": "Fiscal"
+    },
+    {
+        "PersonalfiscalID": "a8dc325b-ff06-11ec-bb82-0eb8b69eb347",
+        "Denominacion": "Dr. Ivan Grassi",
+        "nombre": "Dr. Ivan Grassi",
+        "Jerarquia": "Fiscal"
+    },
+    {
+        "PersonalfiscalID": "ae42c5b9-ff06-11ec-bb82-0eb8b69eb347",
+        "Denominacion": "DR. Pablo Martin",
+        "nombre": "DR. Pablo Martin",
+        "Jerarquia": "Fiscal"
+    },
+    {
+        "PersonalfiscalID": "aec23992-5916-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dr. Ra\u00fal Jos\u00e9 Iglesia Galante",
+        "nombre": "Dr. Ra\u00fal Jos\u00e9 Iglesia Galante",
+        "Jerarquia": "Fiscal"
+    },
+    {
+        "PersonalfiscalID": "b4e9cbc6-16df-11ee-ba93-0e3a1e34687f",
+        "Denominacion": "Dr. Mattar Alejandro",
+        "nombre": "Dr. Mattar Alejandro",
+        "Jerarquia": "Fiscal"
+    },
+    {
+        "PersonalfiscalID": "c61e93bd-da21-11ee-8df7-0e3a1e34687f",
+        "Denominacion": "Dr. Gerarduzzi Cristian",
+        "nombre": "Dr. Gerarduzzi Cristian",
+        "Jerarquia": "Fiscal"
+    },
+    {
+        "PersonalfiscalID": "eca8c5de-1af5-11ef-9e2a-0e3a1e34687f",
+        "Denominacion": "Bazan Alejandra",
+        "nombre": "Bazan Alejandra",
+        "Jerarquia": "Fiscal"
+    },
+    {
+        "PersonalfiscalID": "ffeef281-5917-11ed-9b80-0e87116d214b",
+        "Denominacion": "Dra. Daniela Pringles",
+        "nombre": "Dra. Daniela Pringles",
+        "Jerarquia": "Fiscal"
+    }
+]
+
+export const ufiNro = [
+    {
+        "ufiID": "1",
+        "nombre": "1"
+    },
+    {
+        "ufiID": "2",
+        "nombre": "2"
+    },
+    {
+        "ufiID": "3",
+        "nombre": "3"
+    },
+    {
+        "ufiID": "4",
+        "nombre": "4"
+    },
+    {
+        "ufiID": "5",
+        "nombre": "En Turno"
+    },
+]
+
+export const delitos = [
+    {
+        "TipocausacaratulaID": "b41735b3-da24-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "TENT. SUSTRACION MENORES",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "abd718dd-da24-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "TENT. HURTO",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "e0cb2626-7ade-11ed-9b80-0e87116d214b",
+        "Descripcion": null,
+        "Nombre": "Tenencia ileg\u00edtima de arma de fuego",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "4ffb5ac8-d8b5-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "Siniestro vial",
+        "Nombre": "Siniestro vial",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "452392ea-7adc-11ed-9b80-0e87116d214b",
+        "Descripcion": "Robo Simple en Grado de Tentativa ",
+        "Nombre": "Robo Simple en Grado de Tentativa ",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "d3ba8907-da24-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "ROBO CON ARMA BLANCA",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "b8bd07bb-1112-11ee-ba93-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "ROBO ARREBATO",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "d451f431-7adb-11ed-9b80-0e87116d214b",
+        "Descripcion": "Robo agravado por ser en poblado y en banda con participaci\u00f3n de menores",
+        "Nombre": "Robo agravado por ser en poblado y en banda con participaci\u00f3n de menores",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "eb21e7be-7adb-11ed-9b80-0e87116d214b",
+        "Descripcion": "Robo Agravado por escalamiento con la participaci\u00f3n de menores",
+        "Nombre": "Robo Agravado por escalamiento con la participaci\u00f3n de menores",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "aef74fd0-7adc-11ed-9b80-0e87116d214b",
+        "Descripcion": null,
+        "Nombre": "Robo Agravado por escalamiento ",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "59aa54e9-7adc-11ed-9b80-0e87116d214b",
+        "Descripcion": null,
+        "Nombre": "ROBO AGRAVADO POR EL USO DE ARMA DE FUEGO Y POR HABERSE COMETIDO EN BANDA",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "880ab227-da27-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "Robo Agravado Por Efracci\u00f3n",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "a6c64dda-642f-11ed-9b80-0e87116d214b",
+        "Descripcion": "Robo Agravado Por la  Participaci\u00f3n de un Menor de Edad",
+        "Nombre": "Robo Agravado Part. de un Menor Edad",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "98fdaa53-642f-11ed-9b80-0e87116d214b",
+        "Descripcion": "Robo Agravado",
+        "Nombre": "Robo Agravado",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "61ebb2e7-8dc2-11ed-9b80-0e87116d214b",
+        "Descripcion": null,
+        "Nombre": "Robo",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "492cb091-20df-11ef-9e2a-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "Pto Hurto",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "fa5c9d19-7adb-11ed-9b80-0e87116d214b",
+        "Descripcion": "Privaci\u00f3n Ileg\u00edtima de la libertad ",
+        "Nombre": "Privaci\u00f3n Ileg\u00edtima de la libertad ",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "0b13dc8e-7adc-11ed-9b80-0e87116d214b",
+        "Descripcion": "Lesiones leves agravadas por violencia intrafamiliar y de genero ",
+        "Nombre": "Lesiones leves agravadas por violencia intrafamiliar y de genero ",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "cff6e5f1-7ade-11ed-9b80-0e87116d214b",
+        "Descripcion": null,
+        "Nombre": "Lesiones leves agravadas por ser en contexto de violencia intrafamiliar",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "732d90d7-da20-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "Lesiones Graves en Prejuicio",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "56309ff3-da27-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "LESIONES EN RI\u00d1A",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "5b419f2d-da27-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "LESIONES ART.92",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "4c222a02-da27-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "LESIONES ART. 94 (MALA PRAXIS)",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "610cb74f-da27-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "LESIONES ART. 94",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "6719cb61-da27-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "LESIONES ART. 91",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "6d1f8e60-da27-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "LESIONES ART. 89",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "986fa7e9-7adb-11ed-9b80-0e87116d214b",
+        "Descripcion": "Lesiones 89\u00b0 en contexto de violencia intrafamiliar y da\u00f1o",
+        "Nombre": "Lesiones 89\u00b0 en contexto de violencia intrafamiliar y da\u00f1o",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "46873a79-da27-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "LESIONES 89 (VIOLENCIA FLIAR)",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "af54ec28-7adb-11ed-9b80-0e87116d214b",
+        "Descripcion": "Hurto Simple",
+        "Nombre": "Hurto Simple",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "6dee3781-6425-11ed-9b80-0e87116d214b",
+        "Descripcion": "Hurto en Grado  de Tentativa",
+        "Nombre": "Hurto en Grado  de Tentativa",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "6ca2ac95-7adc-11ed-9b80-0e87116d214b",
+        "Descripcion": null,
+        "Nombre": "Hurto Calificado por Escalamiento ",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "1f8f88af-da27-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "HURTO CALIFICADO",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "70dc2d2a-da21-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "Hurto Calificado",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "2a59f720-c29a-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": "Homicidio Culposo",
+        "Nombre": "Homicidio Culposo",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "2a9ed224-da27-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "HOMICIDIO ART. 84",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "2f9ef7bd-da27-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "HOMICIDIO ART. 80 AGRAVADO",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "3581ed27-da27-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "HOMICIDIO ART. 79",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "3bb99083-da27-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "HOMICIDIO ART 80",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "89c46fd7-da26-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "FALTA AL DEBER FUNC PUB",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "f4753b09-7ade-11ed-9b80-0e87116d214b",
+        "Descripcion": null,
+        "Nombre": "Falsificaci\u00f3n de documento",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "8f6d728b-da26-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "FALLECIMIENTO SIN ASIST.",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "9731f92d-da26-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "EXTORSION",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "9d926cb2-da26-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "EXHIBICIONES OBSCENAS",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "823bd33b-da26-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "EVASION",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "ae99267b-edca-11ee-8df7-0e3a1e34687f",
+        "Descripcion": ".",
+        "Nombre": "ESTAFA RN GRADO DE TENTATIVA ",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "cd713f8e-8762-11ed-9b80-0e87116d214b",
+        "Descripcion": null,
+        "Nombre": "Estafa",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "f064f081-0ec0-11ef-9e2a-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "Establecer Procedencia",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "7bff2f8c-9e46-11ed-9b80-0e87116d214b",
+        "Descripcion": "Establecer Paradero",
+        "Nombre": "Establecer Paradero",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "785482c3-7adc-11ed-9b80-0e87116d214b",
+        "Descripcion": null,
+        "Nombre": "Desobediencia a una orden judicial ",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "e8964826-e165-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": null,
+        "Nombre": "Desobediencia a uan orden judicial y da\u00f1\u00f3 agravado en concurso real ",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "eaa977df-7ade-11ed-9b80-0e87116d214b",
+        "Descripcion": null,
+        "Nombre": "Da\u00f1o agravado, resistencia a la Autoridad y violaci\u00f3n de domicilio",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "b692c36b-7adb-11ed-9b80-0e87116d214b",
+        "Descripcion": "Da\u00f1o",
+        "Nombre": "Da\u00f1o",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "79b4889a-da26-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "COHECHO",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "e3f3011e-c2a8-11ee-8df7-0e3a1e34687f",
+        "Descripcion": ".",
+        "Nombre": "COACCION",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "7a1daad2-da20-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "Caida Casual",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "6ba3b439-da26-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "AMENAZAS Y LESIONES 89",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "a1337538-2e70-11ef-9e2a-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "Amenazas y Da\u00f1o",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "6542bc46-16e0-11ee-ba93-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "AMENAZAS",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "5eca6397-da26-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "Actuaciones por hallazgo",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "8952ebb5-9e46-11ed-9b80-0e87116d214b",
+        "Descripcion": "Actuaciones por fuga",
+        "Nombre": "Actuaciones por fuga",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "4444cb49-da26-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "ACTUACIONES POR DENUNCIA",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "f76c3037-f449-11ed-9f0f-0e3a1e34687f",
+        "Descripcion": null,
+        "Nombre": "Actuaciones por Denuncia ",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "4ac9dc6e-da26-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "ACT.POR FALLECIMIENTO",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "c8176028-7adc-11ed-9b80-0e87116d214b",
+        "Descripcion": null,
+        "Nombre": "Abuso sexual con acceso carnal agravado por el vinculo ",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "2c02fcda-da26-11ee-8df7-0e3a1e34687f",
+        "Descripcion": "",
+        "Nombre": "ABORTO",
+        "TipoCaratula": "Delito"
+    },
+    {
+        "TipocausacaratulaID": "141bcd5f-087c-11ef-8bfb-0e3a1e34687f",
+        "Descripcion": "En grado de Tentativa del CPA",
+        "Nombre": "Abigeato en grado de Tentativa del CPA",
+        "TipoCaratula": "Delito"
     }
 ]

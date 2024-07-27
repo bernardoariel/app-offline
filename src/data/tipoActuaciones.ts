@@ -140,7 +140,7 @@ export const actuaciones: TipoActuaciones = {
             },
         },
         "datosLegales": {
-            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','AyudanteFiscal']
+            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','ayudanteFiscal']
         }
     },
     "ufi-cavig": {

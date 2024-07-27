@@ -9,6 +9,7 @@ let selectedSitio = ref<DropDownInterface>()
 let selectedModusOperandi = ref<DropDownInterface>()
 let selectedCausaCaratula = ref<DropDownInterface>()
 let selectedJuzgadoInterviniente = ref<DropDownInterface>()
+let selectedDelito = ref<DropDownInterface>()
 let selectedCausaCaratulaList = ref(null)
 let selectedArticulosRelacionadosList = ref(null)
 let selectedArticulo = ref<DropDownInterface>()
@@ -25,6 +26,7 @@ const useDatosLegales = () => {
         selectArticulo: { name: '' },
         selectModusOperandi: { name: '' },
         selectCausaCaratula: { name: '' },
+        selectDelito: { name: '' },
         opcionesCausaCaratula: [''],
         opcionesArticulosRelacionados: [''],
         selectJuzgadoInterviniente: { name: '' },
@@ -35,6 +37,7 @@ const useDatosLegales = () => {
         selectedYear: { name: '2024' },
         selectedSitio: { name: 'Museo' },
         selectedModusOperandi: { name: ' Delito Rural' },
+        selectedDelito: { name: 'ACT.POR FALLECIMIENTO' },
         itemsCausaCaratula: [{ name: 'Siniestro Vial' }, { name: 'Robo simple en grado de tentativa' }],
         itemsArticulosRelacionados: [{ name: '183\u00ba ' }, { name: 'Actuaciones por Denuncia' }],
         selectedJuzgadoInterviniente: { name: 'Unidad Fiscal de Prueba' },
@@ -45,6 +48,7 @@ const useDatosLegales = () => {
         nroLegajo.value = fakeValues.nroLegajo;
         selectedYear.value = fakeValues.selectedYear;
         selectedSitio.value = fakeValues.selectedSitio;
+        selectedDelito.value = fakeValues.selectedDelito;
         selectedModusOperandi.value = fakeValues.selectedModusOperandi;
         itemsCausaCaratula.value = fakeValues.itemsCausaCaratula;
         itemsArticulosRelacionados.value = fakeValues.itemsArticulosRelacionados;
@@ -57,6 +61,7 @@ const useDatosLegales = () => {
         nroLegajo.value = null;
         selectedYear.value = { name: currentYear.toString() };
         selectedSitio.value = null
+        selectedDelito.value = null
         selectedModusOperandi.value = null
         selectedCausaCaratula.value = null
         selectedJuzgadoInterviniente.value = null
@@ -73,6 +78,7 @@ const useDatosLegales = () => {
         nroLegajo.value = datosLegales.nroLegajo || null;
         selectedYear.value = datosLegales.selectYear ? { name: datosLegales.selectYear } : null;
         selectedSitio.value = datosLegales.selectSitio ? { name: datosLegales.selectSitio } : null;
+        selectedDelito.value = datosLegales.selectDelito ? { name: datosLegales.selectDelito } : null;
         selectedModusOperandi.value = datosLegales.selectModusOperandi ? { name: datosLegales.selectModusOperandi } : null;
         selectedCausaCaratula.value = datosLegales.selectCausaCaratula ? { name: datosLegales.selectCausaCaratula } : null;
         selectedJuzgadoInterviniente.value = datosLegales.selectJuzgadoInterviniente ? { name: datosLegales.selectJuzgadoInterviniente } : null;
@@ -90,6 +96,7 @@ const useDatosLegales = () => {
         selectedCausaCaratulaList,
         selectedArticulosRelacionadosList,
         selectedArticulo,
+        selectedDelito,
         nroLegajo,
         itemsCausaCaratula,
         itemsArticulosRelacionados,

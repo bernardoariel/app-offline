@@ -4,13 +4,14 @@ import { getYearsDrop } from '@/helpers/getYearsDrop';
 import MyDropdown from '@/components/elementos/MyDropdown.vue';
 import { mapToDropdownItems } from '@/helpers/dropUtils';
 
-import { ref, watch, computed } from 'vue';
+import { ref, watch } from 'vue';
 import {
   sitiosDropdwown,
   modusOperandiDropdwown,
   causaCaratulaDropdwown,
   juzgadoIntervinienteDropdwown,
-  articulosDropdwown
+  articulosDropdwown,
+  delitosDropdown
 } from '../helpers/getDropItems';
 import { getUpperCase } from '@/helpers/stringUtils';
 import useDatosLegales from '../composables/useDatosLegales';
@@ -22,6 +23,7 @@ const { markRecordDeleted } = useFieldState();
 const {
   selectedYear,
   selectedSitio,
+  selectedDelito,
   selectedModusOperandi,
   selectedCausaCaratula,
   selectedJuzgadoInterviniente,
@@ -32,38 +34,38 @@ const {
   itemsArticulosRelacionados,
   selectedCausaCaratulaList,
   selectedArticulosRelacionadosList
-  
 } = useDatosLegales();
 const { addField, setFieldModified } = useLegalesState();
 
 let yearsActuacion: string[] = getYearsDrop();
 let formData = ref<DatosLegalesForm>({ ...initialValuesDatosLegales });
-  interface Props {
-    datosLegalesItems?: string[];
+interface Props {
+  datosLegalesItems?: string[];
 }
 const props = defineProps<Props>();
-  
+
 const handleDropdownChange = (
   campo: keyof DatosLegalesForm,
-  newValue: { value: any; name: string }
+  newValue: any
 ) => {
   console.log('newValue::: ', newValue);
   console.log('campo::: ', campo);
-  const name = newValue.value.name;
+  const name = newValue.name; // Usa `name` directamente
   addField(campo, name);
   if (campo in formData.value) {
     formData.value = {
       ...formData.value,
       [campo]: { name },
     };
-
     setFieldModified(campo, true);
   }
- // Actualizar las variables reactivas directamente
- if (campo === 'selectSitio') {
+  // Actualizar las variables reactivas directamente
+  if (campo === 'selectSitio') {
     selectedSitio.value = newValue.value;
   } else if (campo === 'selectModusOperandi') {
     selectedModusOperandi.value = newValue.value;
+  } else if (campo === 'selectDelito') {
+    selectedDelito.value = newValue.value;
   } else if (campo === 'selectCausaCaratula') {
     selectedCausaCaratula.value = newValue.value;
   } else if (campo === 'selectJuzgadoInterviniente') {
@@ -85,6 +87,7 @@ watch(selectedCausaCaratula, () => {
 
   selectedCausaCaratula.value = undefined;
 });
+
 watch(selectedArticulosRelacionados, () => {
   if (!selectedArticulosRelacionados.value) return;
 
@@ -95,12 +98,13 @@ watch(selectedArticulosRelacionados, () => {
 
   selectedArticulosRelacionados.value = undefined;
 });
+
 const eliminarItem = (name: string, itemList: string) => {
-  if (itemList.startsWith('Tipo')) {
+  if (itemList === 'Tipo') {
     itemsCausaCaratula.value = itemsCausaCaratula.value.filter(
       (item) => item.name !== name
     );
-  } else if (itemList.startsWith('Articulo')) {
+  } else if (itemList === 'Articulo') {
     itemsArticulosRelacionados.value = itemsArticulosRelacionados.value.filter(
       (item) => item.name !== name
     );
@@ -117,10 +121,13 @@ const handleInputChange = (campo: string | number, event: Event) => {
   addField(campo.toString(), valor);
   setFieldModified(campo.toString(), true);
 };
+
 const getField = (type: string): keyof DatosLegalesForm => {
   switch (type) {
     case 'sitio':
       return 'selectSitio';
+    case 'delito':
+      return 'selectDelito';
     case 'modusOperandi':
       return 'selectModusOperandi';
     case 'causaCaratula':
@@ -137,18 +144,20 @@ const getField = (type: string): keyof DatosLegalesForm => {
 };
 
 const dropdownItems: { [key: string]: any } = {
-  
   selectSitio: sitiosDropdwown.value,
   selectModusOperandi: modusOperandiDropdwown.value,
   selectCausaCaratula: causaCaratulaDropdwown.value,
   selectJuzgadoInterviniente: juzgadoIntervinienteDropdwown.value,
   selectArticulo: articulosDropdwown.value,
+  selectDelito: delitosDropdown.value
 };
 
 const getDropdownModel = (item: string) => {
   switch (item) {
     case 'sitio':
       return selectedSitio;
+    case 'delito':
+      return selectedDelito;
     case 'modusOperandi':
       return selectedModusOperandi;
     case 'causaCaratula':
@@ -164,6 +173,7 @@ const getDropdownModel = (item: string) => {
   }
 };
 </script>
+
 <template>
   <div class="grid">
     <div class="col-9">
@@ -254,5 +264,3 @@ const getDropdownModel = (item: string) => {
     </div>
   </div>
 </template>
-
-

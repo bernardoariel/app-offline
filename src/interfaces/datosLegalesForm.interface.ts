@@ -11,6 +11,7 @@ export interface DatosLegalesForm extends PrimaryAttributes {
     opcionesCausaCaratula?: string[] | null,
     selectJuzgadoInterviniente?: { name: string } | null,
     selectArticulo?:{ name:string } | null,
+    selectDelito?:{ name:string } | null,
 }
 
 export interface DatosLegales extends PrimaryAttributes {
@@ -21,4 +22,5 @@ export interface DatosLegales extends PrimaryAttributes {
     opcionesCausaCaratula?: string[] | null;
     selectJuzgadoInterviniente?: string | null;
     selectArticulo?: string | null;
+    selectDelito?: string | null,
 }

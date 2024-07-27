@@ -1,7 +1,10 @@
 
 export const mapToDropdownItems = (array: any) => {
     if (array)
-        return array.map((item: any) => ({ name: item }));
+        return array.map((item: any) => {
+            const name = item.Nombre || item.name || item.nombre; // Asegúrate de que el campo `name` esté presente
+            return { ...item, name };
+        });
 };
 
 export const mapToDropDownEfectos =(array:any) => {

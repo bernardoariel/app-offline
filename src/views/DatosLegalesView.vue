@@ -4,7 +4,7 @@ import { getYearsDrop } from '@/helpers/getYearsDrop';
 import MyDropdown from '@/components/elementos/MyDropdown.vue';
 import { mapToDropdownItems } from '@/helpers/dropUtils';
 
-import { ref, watch } from 'vue';
+import { ref, watch, computed } from 'vue';
 import {
   sitiosDropdwown,
   modusOperandiDropdwown,
@@ -42,6 +42,8 @@ const handleDropdownChange = (
   campo: keyof DatosLegalesForm,
   newValue: { value: any; name: string }
 ) => {
+  console.log('newValue::: ', newValue);
+  console.log('campo::: ', campo);
   const name = newValue.value.name;
   addField(campo, name);
   if (campo in formData.value) {
@@ -51,6 +53,18 @@ const handleDropdownChange = (
     };
 
     setFieldModified(campo, true);
+  }
+  // Actualizar las variables reactivas directamente
+  if (campo === 'selectSitio') {
+    selectedSitio.value = newValue.value;
+  } else if (campo === 'selectModusOperandi') {
+    selectedModusOperandi.value = newValue.value;
+  } else if (campo === 'selectCausaCaratula') {
+    selectedCausaCaratula.value = newValue.value;
+  } else if (campo === 'selectJuzgadoInterviniente') {
+    selectedJuzgadoInterviniente.value = newValue.value;
+  } else if (campo === 'opcionesCausaCaratula') {
+    selectedCausaCaratula.value = newValue.value;
   }
 };
 
@@ -82,12 +96,49 @@ const handleInputChange = (campo: string | number, event: Event) => {
   addField(campo.toString(), valor);
   setFieldModified(campo.toString(), true);
 };
+const getField = (type: string): keyof DatosLegalesForm => {
+  switch (type) {
+    case 'sitio':
+      return 'selectSitio';
+    case 'modusOperandi':
+      return 'selectModusOperandi';
+    case 'causaCaratula':
+      return 'selectCausaCaratula';
+    case 'juzgadoInterviniente':
+      return 'selectJuzgadoInterviniente';
+    case 'listboxCausaCaratula':
+      return 'opcionesCausaCaratula';
+    default:
+      return '' as keyof DatosLegalesForm;
+  }
+};
+const dropdownItems: { [key: string]: any } = {
+  selectSitio: sitiosDropdwown.value,
+  selectModusOperandi: modusOperandiDropdwown.value,
+  selectCausaCaratula: causaCaratulaDropdwown.value,
+  selectJuzgadoInterviniente: juzgadoIntervinienteDropdwown.value,
+};
+const getDropdownModel = (item: string) => {
+  switch (item) {
+    case 'sitio':
+      return selectedSitio;
+    case 'modusOperandi':
+      return selectedModusOperandi;
+    case 'causaCaratula':
+      return selectedCausaCaratula;
+    case 'juzgadoInterviniente':
+      return selectedJuzgadoInterviniente;
+    case 'listboxCausaCaratula':
+      return selectedCausaCaratula;
+    default:
+      return ref(null);
+  }
+};
 </script>
 <template>
   <div class="grid">
     <div class="col-9">
-      <label for="dropdown">{{props.datosLegalesItems[0]}}</label>
-     
+      <label for="dropdown">{{props.datosLegalesItems![0]}}</label>
       <MyInput
         type="text"
         class="mt-2"
@@ -110,53 +161,21 @@ const handleInputChange = (campo: string | number, event: Event) => {
       />
     </div>
     <!-- Sitio -->
-    <div class="col-12">
-      <label for="dropdown">Sitio</label>
+    <div v-for="(item, index) in props.datosLegalesItems!.slice(1)" :key="index" class="col-12">
+      <label :for="item" class="capitalize">{{ item }}</label>
       <MyDropdown
-        :items="sitiosDropdwown"
-        v-model="selectedSitio"
-        placeholder="Seleccione un sitio"
+        v-if="item !== 'listboxCausaCaratula'"
+        :items="dropdownItems[getField(item)]"
+        v-model="getDropdownModel(item).value"
+        :placeholder="'Seleccione ' + item"
         optionLabel="name"
         filter
         color
-        @change="(newValue) => handleDropdownChange('selectSitio', newValue)"
+        @change="(newValue) => handleDropdownChange(getField(item), newValue)"
         class="w-full mt-2"
       />
-    </div>
-    <!-- Modus Operandi -->
-    <div class="col-12">
-      <label for="dropdown">Modus operandi</label>
-      <MyDropdown
-        :items="modusOperandiDropdwown"
-        v-model="selectedModusOperandi"
-        placeholder="Seleccione Modus Operandi"
-        optionLabel="name"
-        filter
-        color
-        @change="
-          (newValue) => handleDropdownChange('selectModusOperandi', newValue)
-        "
-        class="w-full mt-2"
-      />
-    </div>
-    <!-- Modus Operandi -->
-    <div class="col-12">
-      <label for="dropdown">Causa Caratula</label>
-      <MyDropdown
-        :items="causaCaratulaDropdwown"
-        v-model="selectedCausaCaratula"
-        placeholder="Seleccione Causa Caratula"
-        optionLabel="name"
-        filter
-        color
-        @change="
-          (newValue) => handleDropdownChange('selectCausaCaratula', newValue)
-        "
-        class="w-full mt-2"
-      />
-    </div>
-    <div class="col-12">
       <Listbox
+      v-else
         v-model="selectedCausaCaratulaList"
         :options="itemsCausaCaratula"
         optionLabel="name"
@@ -182,22 +201,8 @@ const handleInputChange = (campo: string | number, event: Event) => {
         </template>
       </Listbox>
     </div>
-    <!-- UFI Nro. -->
-    <div class="col-12">
-      <label for="dropdown">Juzgado Interviniente</label>
-      <MyDropdown
-        :items="juzgadoIntervinienteDropdwown"
-        v-model="selectedJuzgadoInterviniente"
-        placeholder="Seleccione Juzgado Interviniente"
-        optionLabel="name"
-        filter
-        color
-        @change="
-          (newValue) =>
-            handleDropdownChange('selectJuzgadoInterviniente', newValue)
-        "
-        class="w-full mt-2"
-      />
-    </div>
+  
+      
+
   </div>
 </template>

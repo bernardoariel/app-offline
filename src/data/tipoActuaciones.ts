@@ -24,7 +24,7 @@ export const actuaciones: TipoActuaciones = {
             }
         },
         "datosLegales": {
-            "items":['N° de sumario / N° de extracto','sitio','modusOperandi','causaCaratula','juzgadoInterviniente']
+            "items":['N° de sumario / N° de extracto','sitio','modusOperandi','causaCaratula','listboxCausaCaratula','juzgadoInterviniente']
         }
         
     },
@@ -55,7 +55,7 @@ export const actuaciones: TipoActuaciones = {
             },
         },
         "datosLegales": {
-            "items":['Nº de sumario / Nº de extracto','sitio','modusOperandi','causaCaratula','juzgadoInterviniente']
+            "items": ['Nº de sumario / Nº de extracto', 'sitio', 'modusOperandi', 'causaCaratula', 'listboxCausaCaratula','juzgadoInterviniente']
         }
     },
     "expediente-denuncia": {
@@ -80,7 +80,7 @@ export const actuaciones: TipoActuaciones = {
             }
         },
         "datosLegales": {
-            "items":['N° de expediente / N° de extracto','sitio','articulosRelacionados','juzgadoInterviniente']
+            "items": ['N° de expediente / N° de extracto', 'sitio', 'articulosRelacionados', 'listboxArticulos', 'juzgadoInterviniente']
         }
     },
     "expediente-oficio": {
@@ -110,7 +110,7 @@ export const actuaciones: TipoActuaciones = {
             },
         },
         "datosLegales": {
-            "items":['N° de expediente / N° de extracto','sitio','articulosRelacionados','juzgadoInterviniente']
+            "items": ['N° de expediente / N° de extracto', 'sitio', 'articulosRelacionados', 'listboxArticulos', 'juzgadoInterviniente']
         }
     },
     "ufi-flagrancia": {
@@ -525,7 +525,7 @@ export const actuaciones: TipoActuaciones = {
             },
         },
         "datosLegales": {
-            "items":['ACT. Preliminares N° / N° de extracto','sitio','modusOperandi','causaCaratula','interviniente']
+            "items": ['ACT. Preliminares N° / N° de extracto', 'sitio', 'modusOperandi', 'causaCaratula', 'listboxCausaCaratula', 'interviniente']
         }
     },
     "preliminares-procendencia":{
@@ -554,7 +554,7 @@ export const actuaciones: TipoActuaciones = {
             },
         },
         "datosLegales": {
-            "items":['ACT. Preliminares N° / N° de extracto','sitio','modusOperandi','causaCaratula','interviniente']
+            "items": ['ACT. Preliminares N° / N° de extracto', 'sitio', 'modusOperandi', 'causaCaratula', 'listboxCausaCaratula', 'interviniente']
         }
     },
     "preliminares-fuga":{
@@ -583,7 +583,7 @@ export const actuaciones: TipoActuaciones = {
             },
         },
         "datosLegales": {
-            "items":['ACT. Preliminares N° / N° de extracto','sitio','modusOperandi','causaCaratula','interviniente']
+            "items": ['ACT. Preliminares N° / N° de extracto', 'sitio', 'modusOperandi', 'causaCaratula', 'listboxCausaCaratula', 'interviniente']
         }
     },
     "preliminares-siniestro":{
@@ -608,7 +608,7 @@ export const actuaciones: TipoActuaciones = {
             },
         },
         "datosLegales": {
-            "items":['ACT. Preliminares N° / N° de extracto','sitio','modusOperandi','causaCaratula','interviniente']
+            "items": ['ACT. Preliminares N° / N° de extracto', 'sitio', 'modusOperandi', 'causaCaratula', 'listboxCausaCaratula', 'interviniente']
         }
     },
     "preliminares-caida":{
@@ -633,7 +633,7 @@ export const actuaciones: TipoActuaciones = {
             },
         },
         "datosLegales": {
-            "items":['ACT. Preliminares N° / N° de extracto','sitio','modusOperandi','causaCaratula','interviniente']
+            "items": ['ACT. Preliminares N° / N° de extracto', 'sitio', 'modusOperandi', 'causaCaratula', 'listboxCausaCaratula', 'interviniente']
         }
     },
     "preliminares-incendio-automotor": {
@@ -658,7 +658,7 @@ export const actuaciones: TipoActuaciones = {
             },
         },
         "datosLegales": {
-            "items":['ACT. Preliminares N° / N° de extracto','sitio','modusOperandi','causaCaratula','interviniente']
+            "items": ['ACT. Preliminares N° / N° de extracto', 'sitio', 'modusOperandi', 'causaCaratula', 'listboxCausaCaratula', 'interviniente']
         }
     },
     "preliminares-tentativa":{
@@ -687,7 +687,7 @@ export const actuaciones: TipoActuaciones = {
             },
         },
         "datosLegales": {
-            "items":['ACT. Preliminares N° / N° de extracto','sitio','modusOperandi','causaCaratula','interviniente']
+            "items": ['ACT. Preliminares N° / N° de extracto', 'sitio', 'modusOperandi', 'causaCaratula', 'listboxCausaCaratula', 'interviniente']
         }
     },
     "preliminares-otros": {
@@ -716,7 +716,7 @@ export const actuaciones: TipoActuaciones = {
             },
         },
         "datosLegales": {
-            "items":['ACT. Preliminares N° / N° de extracto','sitio','modusOperandi','causaCaratula','interviniente']
+            "items": ['ACT. Preliminares N° / N° de extracto', 'sitio', 'modusOperandi', 'causaCaratula', 'listboxCausaCaratula', 'interviniente']
         }
     }
 }

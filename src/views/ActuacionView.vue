@@ -232,7 +232,7 @@ const isAnyChange = computed(() => {
                 {{ props.actuacionData.titulo }}
               </div>
 
-              <small class="text-sm font-bold">
+              <small class="text-sm font-bold text-gray-500	">
                 <i class="">{{ actuacionData.datosLegales.items[0]}}</i>: {{ nroLegajo ? nroLegajo : '' }}
               </small>
             </div>

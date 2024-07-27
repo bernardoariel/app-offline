@@ -13387,306 +13387,367 @@ export const articulos = [
     {
         "ArticulosID": "01671da7-cc69-11ec-acbc-16c2a030bb97",
         "Numeroarticulo": "195\u00b0 Merodeo",
+        "nombre": "195\u00b0 Merodeo",
         "Codigo": "LEY N\u00b0 941-R"
     },
     {
         "ArticulosID": "048288b9-0cdd-11ed-bb82-0eb8b69eb347",
         "Numeroarticulo": "11\u00b0",
+        "nombre": "11\u00b0",
         "Codigo": "Art. 11\u00b0 Intervenci\u00f3n del Juez de Menores."
     },
     {
         "ArticulosID": "06cb4728-cf1e-11ec-acbc-16c2a030bb97",
         "Numeroarticulo": "ART 77\u00b0 de la ley 24449",
+        "nombre": "ART 77\u00b0 de la ley 24449",
         "Codigo": "TR\u00c1NSITO"
     },
     {
         "ArticulosID": "0afc85b7-b60f-11ec-8878-16c2a030bb97",
         "Numeroarticulo": "98\u00b0 Inobservancia de disposiciones legales ",
+        "nombre": "98\u00b0 Inobservancia de disposiciones legales ",
         "Codigo": "LEY N\u00b0  941-R "
     },
     {
         "ArticulosID": "0bfcf202-b5f7-11ec-8878-16c2a030bb97",
         "Numeroarticulo": "108\u00b0 Discriminaci\u00f3n ",
+        "nombre": "108\u00b0 Discriminaci\u00f3n ",
         "Codigo": "Ley N\u00b0 941-R"
     },
     {
         "ArticulosID": "117e7578-1ff0-11ee-ba93-0e3a1e34687f",
         "Numeroarticulo": "170\u00b0 Animales Peligrosos o Sueltos",
+        "nombre": "170\u00b0 Animales Peligrosos o Sueltos",
         "Codigo": "Ley N\u00b0 941-R"
     },
     {
         "ArticulosID": "12110411-9d53-11ec-816d-16c2a030bb97",
         "Numeroarticulo": "134\u00ba Estado de ebriedad",
+        "nombre": "134\u00ba Estado de ebriedad",
         "Codigo": "Ley N\u00ba 941-R"
     },
     {
         "ArticulosID": "14c9dd3c-cb50-11ee-8df7-0e3a1e34687f",
         "Numeroarticulo": "Art181\u00b0 Inc. de Normas sobre edificacion",
+        "nombre": "Art181\u00b0 Inc. de Normas sobre edificacion",
         "Codigo": "Art181\u00b0 Inc. de Normas sobre edificacion"
     },
     {
         "ArticulosID": "19182a34-2a52-11ed-8709-0e085dd00fab",
         "Numeroarticulo": "Art 23\u00b0",
+        "nombre": "Art 23\u00b0",
         "Codigo": "687-p"
     },
     {
         "ArticulosID": "2132ead1-9d53-11ec-816d-16c2a030bb97",
         "Numeroarticulo": "135\u00ba Prohibici\u00f3n de beber en la v\u00eda publica",
+        "nombre": "135\u00ba Prohibici\u00f3n de beber en la v\u00eda publica",
         "Codigo": "Ley N \u00ba 941-R"
     },
     {
         "ArticulosID": "216690a0-aade-11ed-9f0f-0e3a1e34687f",
         "Numeroarticulo": "162\u00b0",
+        "nombre": "162\u00b0",
         "Codigo": "941-R"
     },
     {
         "ArticulosID": "246908ca-28bc-11ed-8709-0e085dd00fab",
         "Numeroarticulo": "Articulo 65 ",
+        "nombre": "Articulo 65 ",
         "Codigo": "Ley 24449 "
     },
     {
         "ArticulosID": "26ef62c9-8f2f-11ec-816d-16c2a030bb97",
         "Numeroarticulo": "157\u00ba Operaciones de cambio",
+        "nombre": "157\u00ba Operaciones de cambio",
         "Codigo": "Ley N\u00ba 941-R"
     },
     {
         "ArticulosID": "2b658c3e-c104-11ec-8878-16c2a030bb97",
         "Numeroarticulo": "113\u00b0 - inc C ",
+        "nombre": "113\u00b0 - inc C ",
         "Codigo": "LEY N\u00b0 941-R"
     },
     {
         "ArticulosID": "337344d9-b5f7-11ec-8878-16c2a030bb97",
         "Numeroarticulo": "111\u00b0 Patota ",
+        "nombre": "111\u00b0 Patota ",
         "Codigo": "Ley N\u00b0 941 -R"
     },
     {
         "ArticulosID": "3d204e62-3521-11ee-ba93-0e3a1e34687f",
         "Numeroarticulo": "109\u00b0",
+        "nombre": "109\u00b0",
         "Codigo": "Ley 941-R"
     },
     {
         "ArticulosID": "44b1228c-8e67-11ec-816d-16c2a030bb97",
         "Numeroarticulo": "100 \u00b0 Negaci\u00f3n de Datos",
+        "nombre": "100 \u00b0 Negaci\u00f3n de Datos",
         "Codigo": "Ley N\u00ba 941-R"
     },
     {
         "ArticulosID": "463c3be8-5957-11ed-9b80-0e87116d214b",
         "Numeroarticulo": "99",
+        "nombre": "99",
         "Codigo": "Arti 99 cod de falta"
     },
     {
         "ArticulosID": "49a5c84f-bbe8-11ec-8878-16c2a030bb97",
         "Numeroarticulo": "178\u00b0 Portacion de arma blanca o contundente. ",
+        "nombre": "178\u00b0 Portacion de arma blanca o contundente. ",
         "Codigo": "Ley N\u00b0 941-R "
     },
     {
         "ArticulosID": "4e5c8b5e-f7fc-11ed-9f0f-0e3a1e34687f",
         "Numeroarticulo": "Art 192 aprovechamiento malicioso de credito",
+        "nombre": "Art 192 aprovechamiento malicioso de credito",
         "Codigo": "Art 192 aprovechamiento malicioso de credito"
     },
     {
         "ArticulosID": "5ce767ca-a5e9-11ee-8df7-0e3a1e34687f",
         "Numeroarticulo": "INFRACCION DEL ART. 109",
+        "nombre": "INFRACCION DEL ART. 109",
         "Codigo": "DE LEY 941-R"
     },
     {
         "ArticulosID": "633dbae1-08f9-11ed-bb82-0eb8b69eb347",
         "Numeroarticulo": "Art 11\u00b0 Responsabilidad de los padres",
+        "nombre": "Art 11\u00b0 Responsabilidad de los padres",
         "Codigo": "art 11"
     },
     {
         "ArticulosID": "648a5e7a-c4a0-11ec-8878-16c2a030bb97",
         "Numeroarticulo": "194 Intromisi\u00f3n indebida en campo o pro. ajena",
+        "nombre": "194 Intromisi\u00f3n indebida en campo o pro. ajena",
         "Codigo": "LEY 941-R"
     },
     {
         "ArticulosID": "6a6a49e6-6c2d-11ee-ba93-0e3a1e34687f",
         "Numeroarticulo": "142\u00b0 Expedido de bebidas alcoh\u00f3licas ",
+        "nombre": "142\u00b0 Expedido de bebidas alcoh\u00f3licas ",
         "Codigo": "Ley 941-R"
     },
     {
         "ArticulosID": "72980292-cb32-11ec-acbc-16c2a030bb97",
         "Numeroarticulo": "LEY 2005-L",
+        "nombre": "LEY 2005-L",
         "Codigo": "LEY 2005-L"
     },
     {
         "ArticulosID": "751f9e89-1426-11ee-ba93-0e3a1e34687f",
         "Numeroarticulo": "188\u00b0 Tenencia injustificada ",
+        "nombre": "188\u00b0 Tenencia injustificada ",
         "Codigo": "188\u00b0"
     },
     {
         "ArticulosID": "772b4818-e5d4-11ed-9f0f-0e3a1e34687f",
         "Numeroarticulo": "210",
+        "nombre": "210",
         "Codigo": "941-R"
     },
     {
         "ArticulosID": "78449ed0-a0cc-11ec-816d-16c2a030bb97",
         "Numeroarticulo": "202\u00b0 Falta de Custodia de Alineados",
+        "nombre": "202\u00b0 Falta de Custodia de Alineados",
         "Codigo": "LEY N\u00ba 941-R"
     },
     {
         "ArticulosID": "7930fa1d-ff7a-11ec-bb82-0eb8b69eb347",
         "Numeroarticulo": "Art. 209 ",
+        "nombre": "Art. 209 ",
         "Codigo": "Poda,tala. erradicaci\u00f3n de arbolado publico"
     },
     {
         "ArticulosID": "7c18e7f3-ddc9-11ec-acbc-16c2a030bb97",
         "Numeroarticulo": "ART\u00cdCULO 104\u00b0 LEY 941-R",
+        "nombre": "ART\u00cdCULO 104\u00b0 LEY 941-R",
         "Codigo": "LEY 941-R"
     },
     {
         "ArticulosID": "7cc83b4f-cb32-11ec-acbc-16c2a030bb97",
         "Numeroarticulo": "LEY 2190-L",
+        "nombre": "LEY 2190-L",
         "Codigo": "LEY 2190-L"
     },
     {
         "ArticulosID": "860ab24e-8ffa-11ec-816d-16c2a030bb97",
         "Numeroarticulo": "127 \u00ba Actos  de prostituci\u00f3n u oferta sexual",
+        "nombre": "127 \u00ba Actos  de prostituci\u00f3n u oferta sexual",
         "Codigo": "Ley N\u00ba 941-R"
     },
     {
         "ArticulosID": "9c4da043-150e-11ed-bb82-0eb8b69eb347",
         "Numeroarticulo": "196\u00b0 Reventa de entradas",
+        "nombre": "196\u00b0 Reventa de entradas",
         "Codigo": "ley 941-R"
     },
     {
         "ArticulosID": "9d452ffa-a21c-11ec-816d-16c2a030bb97",
         "Numeroarticulo": " 109\u00b0 Hostigamiento. Maltrato. Amenazas. Golpes ",
+        "nombre": " 109\u00b0 Hostigamiento. Maltrato. Amenazas. Golpes ",
         "Codigo": "LEY N\u00b0 941-R"
     },
     {
         "ArticulosID": "a5619481-1fe4-11ee-ba93-0e3a1e34687f",
         "Numeroarticulo": "206\u00b0 Destruccion de Faunas ",
+        "nombre": "206\u00b0 Destruccion de Faunas ",
         "Codigo": "Ley 941-R"
     },
     {
         "ArticulosID": "a6790e73-843a-11ec-816d-16c2a030bb97",
         "Numeroarticulo": "169\u00ba Arrojamiento de residuos, gases, fuego",
+        "nombre": "169\u00ba Arrojamiento de residuos, gases, fuego",
         "Codigo": "LEY N\u00ba 941-R"
     },
     {
         "ArticulosID": "b1130ed1-4047-11ed-8709-0e085dd00fab",
         "Numeroarticulo": " Art\u00edculo 197. Aprovechamiento abusivo de aguas",
+        "nombre": " Art\u00edculo 197. Aprovechamiento abusivo de aguas",
         "Codigo": "codigo de faltas de la provincia de San Juan "
     },
     {
         "ArticulosID": "b40a5e0b-843a-11ec-816d-16c2a030bb97",
         "Numeroarticulo": "137\u00ba Abuso de sustancias estupefacientes ",
+        "nombre": "137\u00ba Abuso de sustancias estupefacientes ",
         "Codigo": "LEY N\u00ba 941-R"
     },
     {
         "ArticulosID": "b54bf5f1-8df3-11ec-816d-16c2a030bb97",
         "Numeroarticulo": "113\u00ba Actos turbatorios y des\u00f3rdenes",
+        "nombre": "113\u00ba Actos turbatorios y des\u00f3rdenes",
         "Codigo": "LEY N\u00ba 941-R"
     },
     {
         "ArticulosID": "be514a11-9fc6-11ec-816d-16c2a030bb97",
         "Numeroarticulo": "187\u00b0 Perjuicio a la propiedad p\u00fablica o privada",
+        "nombre": "187\u00b0 Perjuicio a la propiedad p\u00fablica o privada",
         "Codigo": "LEY N\u00b0 941- R"
     },
     {
         "ArticulosID": "bede71a9-15ad-11ee-ba93-0e3a1e34687f",
         "Numeroarticulo": "Art. 182\u00b0",
+        "nombre": "Art. 182\u00b0",
         "Codigo": "."
     },
     {
         "ArticulosID": "c1c6b445-28b5-11ed-8709-0e085dd00fab",
         "Numeroarticulo": "124\u00b0 Prostituci\u00f3n escandalosa",
+        "nombre": "124\u00b0 Prostituci\u00f3n escandalosa",
         "Codigo": "LEY N\u00b0 941-R"
     },
     {
         "ArticulosID": "c2dd6572-2310-11ed-bb82-0eb8b69eb347",
         "Numeroarticulo": "Art. 204\u00b0 Uso indebido de agua ",
+        "nombre": "Art. 204\u00b0 Uso indebido de agua ",
         "Codigo": "Ley 941-r "
     },
     {
         "ArticulosID": "c4663c60-0203-11ee-9f0f-0e3a1e34687f",
         "Numeroarticulo": "Art 172\u00b0 Entorpecimiento de servicios esenciales",
+        "nombre": "Art 172\u00b0 Entorpecimiento de servicios esenciales",
         "Codigo": "Art 172\u00b0 Entorpecimiento de servicios esenciales"
     },
     {
         "ArticulosID": "c5799baa-b771-11ec-8878-16c2a030bb97",
         "Numeroarticulo": "72\u00b0 BIS. Animales Sueltos. Medidas preventivas ",
+        "nombre": "72\u00b0 BIS. Animales Sueltos. Medidas preventivas ",
         "Codigo": "LEY N\u00b0 941-R"
     },
     {
         "ArticulosID": "c92df587-9d51-11ec-816d-16c2a030bb97",
         "Numeroarticulo": "117\u00ba Ofensas a la moral p\u00fablica",
+        "nombre": "117\u00ba Ofensas a la moral p\u00fablica",
         "Codigo": "LEY N\u00ba 941-R"
     },
     {
         "ArticulosID": "c93a47c7-8ea1-11ec-816d-16c2a030bb97",
         "Numeroarticulo": "115\u00ba - Juegos deportivos en la v\u00eda p\u00fablica",
+        "nombre": "115\u00ba - Juegos deportivos en la v\u00eda p\u00fablica",
         "Codigo": "LEY N\u00ba 941-R"
     },
     {
         "ArticulosID": "d0917e3e-39fb-11ed-8709-0e085dd00fab",
         "Numeroarticulo": "Art 89 lesiones  y resistencia a la autoridad ",
+        "nombre": "Art 89 lesiones  y resistencia a la autoridad ",
         "Codigo": "CPA"
     },
     {
         "ArticulosID": "d6824861-6c2c-11ee-ba93-0e3a1e34687f",
         "Numeroarticulo": "139\u00b0 Incumpliendo de la legislaci\u00f3n especial",
+        "nombre": "139\u00b0 Incumpliendo de la legislaci\u00f3n especial",
         "Codigo": " Ley 941-R"
     },
     {
         "ArticulosID": "d8750046-8e71-11ec-816d-16c2a030bb97",
         "Numeroarticulo": "138\u00ba Ebriedad habitual y toxicoman\u00eda",
+        "nombre": "138\u00ba Ebriedad habitual y toxicoman\u00eda",
         "Codigo": "LEY N\u00ba 941-R"
     },
     {
         "ArticulosID": "df141665-a8d1-11ed-9b80-0e87116d214b",
         "Numeroarticulo": "183\u00ba ",
+        "nombre": "183\u00ba ",
         "Codigo": "941-R"
     },
     {
         "ArticulosID": "df809960-1ef4-11ed-bb82-0eb8b69eb347",
         "Numeroarticulo": "Actuaciones por Denuncia ",
+        "nombre": "Actuaciones por Denuncia ",
         "Codigo": "941-r"
     },
     {
         "ArticulosID": "e0607d61-499e-11ed-9b80-0e87116d214b",
         "Numeroarticulo": "Art 197\u00b0 Aprovechamiento abusivo de aguas",
+        "nombre": "Art 197\u00b0 Aprovechamiento abusivo de aguas",
         "Codigo": "ley 941-R"
     },
     {
         "ArticulosID": "e1d9a615-a23d-11ed-9b80-0e87116d214b",
         "Numeroarticulo": "146\u00b0",
+        "nombre": "146\u00b0",
         "Codigo": "LR-941"
     },
     {
         "ArticulosID": "e55b7a27-2b20-11ed-8709-0e085dd00fab",
         "Numeroarticulo": "Art. 131",
+        "nombre": "Art. 131",
         "Codigo": "C.P.A"
     },
     {
         "ArticulosID": "e7abdbff-a21c-11ec-816d-16c2a030bb97",
         "Numeroarticulo": "110\u00b0 Ri\u00f1a",
+        "nombre": "110\u00b0 Ri\u00f1a",
         "Codigo": "LEY N\u00b0 941-R"
     },
     {
         "ArticulosID": "ebb9c4e0-9d52-11ec-816d-16c2a030bb97",
         "Numeroarticulo": "118\u00ba Esc\u00e1ndalo p\u00fablico",
+        "nombre": "118\u00ba Esc\u00e1ndalo p\u00fablico",
         "Codigo": "LEY N\u00ba 941-R"
     },
     {
         "ArticulosID": "f30b77c7-7757-11ee-ba93-0e3a1e34687f",
         "Numeroarticulo": "ART. 26 - CLAUSURA ",
+        "nombre": "ART. 26 - CLAUSURA ",
         "Codigo": "ley 941 - r"
     },
     {
         "ArticulosID": "f43fc7ca-6d9d-11ed-9b80-0e87116d214b",
         "Numeroarticulo": "168\u00b0 Destrucci\u00f3n o deterioro de se\u00f1ales",
+        "nombre": "168\u00b0 Destrucci\u00f3n o deterioro de se\u00f1ales",
         "Codigo": "Ley 941-R"
     },
     {
         "ArticulosID": "f95fed0b-481d-11ed-9b80-0e87116d214b",
         "Numeroarticulo": "Art 32\u00b0",
+        "nombre": "Art 32\u00b0",
         "Codigo": "Ley 687-p"
     },
     {
         "ArticulosID": "facc9e97-9d6a-11ec-816d-16c2a030bb97",
         "Numeroarticulo": "117\u00ba BIS Difunda a trav\u00e9s de medios electr\u00f3nicos",
+        "nombre": "117\u00ba BIS Difunda a trav\u00e9s de medios electr\u00f3nicos",
         "Codigo": "LEY N\u00ba 941-R"
     }
 ]

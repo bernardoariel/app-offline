@@ -10,6 +10,7 @@ import {
   modusOperandiDropdwown,
   causaCaratulaDropdwown,
   juzgadoIntervinienteDropdwown,
+  articulosDropdwown
 } from '../helpers/getDropItems';
 import { getUpperCase } from '@/helpers/stringUtils';
 import useDatosLegales from '../composables/useDatosLegales';
@@ -24,10 +25,14 @@ const {
   selectedModusOperandi,
   selectedCausaCaratula,
   selectedJuzgadoInterviniente,
-  selectedCausaCaratulaList,
+  selectedArticulo: selectedArticulosRelacionados,
   nroLegajo,
   itemsCausaCaratula,
   initialValuesDatosLegales,
+  itemsArticulosRelacionados,
+  selectedCausaCaratulaList,
+  selectedArticulosRelacionadosList
+  
 } = useDatosLegales();
 const { addField, setFieldModified } = useLegalesState();
 
@@ -54,8 +59,8 @@ const handleDropdownChange = (
 
     setFieldModified(campo, true);
   }
-  // Actualizar las variables reactivas directamente
-  if (campo === 'selectSitio') {
+ // Actualizar las variables reactivas directamente
+ if (campo === 'selectSitio') {
     selectedSitio.value = newValue.value;
   } else if (campo === 'selectModusOperandi') {
     selectedModusOperandi.value = newValue.value;
@@ -65,6 +70,8 @@ const handleDropdownChange = (
     selectedJuzgadoInterviniente.value = newValue.value;
   } else if (campo === 'opcionesCausaCaratula') {
     selectedCausaCaratula.value = newValue.value;
+  } else if (campo === 'selectArticulo') {
+    selectedArticulosRelacionados.value = newValue.value;
   }
 };
 
@@ -78,12 +85,26 @@ watch(selectedCausaCaratula, () => {
 
   selectedCausaCaratula.value = undefined;
 });
+watch(selectedArticulosRelacionados, () => {
+  if (!selectedArticulosRelacionados.value) return;
 
-const eliminarItem = (name: string) => {
-  if (itemsCausaCaratula.value === undefined) return;
-  itemsCausaCaratula.value = itemsCausaCaratula.value.filter(
-    (item) => item.name !== name
+  const itemExists = itemsArticulosRelacionados.value.some(
+    (item) => item.name === selectedArticulosRelacionados.value?.name
   );
+  if (!itemExists) itemsArticulosRelacionados.value.push(selectedArticulosRelacionados.value);
+
+  selectedArticulosRelacionados.value = undefined;
+});
+const eliminarItem = (name: string, itemList: string) => {
+  if (itemList.startsWith('Tipo')) {
+    itemsCausaCaratula.value = itemsCausaCaratula.value.filter(
+      (item) => item.name !== name
+    );
+  } else if (itemList.startsWith('Articulo')) {
+    itemsArticulosRelacionados.value = itemsArticulosRelacionados.value.filter(
+      (item) => item.name !== name
+    );
+  }
   markRecordDeleted();
 };
 
@@ -108,16 +129,22 @@ const getField = (type: string): keyof DatosLegalesForm => {
       return 'selectJuzgadoInterviniente';
     case 'listboxCausaCaratula':
       return 'opcionesCausaCaratula';
+    case 'articulosRelacionados':
+      return 'selectArticulo';
     default:
       return '' as keyof DatosLegalesForm;
   }
 };
+
 const dropdownItems: { [key: string]: any } = {
+  
   selectSitio: sitiosDropdwown.value,
   selectModusOperandi: modusOperandiDropdwown.value,
   selectCausaCaratula: causaCaratulaDropdwown.value,
   selectJuzgadoInterviniente: juzgadoIntervinienteDropdwown.value,
+  selectArticulo: articulosDropdwown.value,
 };
+
 const getDropdownModel = (item: string) => {
   switch (item) {
     case 'sitio':
@@ -129,7 +156,9 @@ const getDropdownModel = (item: string) => {
     case 'juzgadoInterviniente':
       return selectedJuzgadoInterviniente;
     case 'listboxCausaCaratula':
-      return selectedCausaCaratula;
+      return selectedCausaCaratulaList;
+    case 'articulosRelacionados':
+      return selectedArticulosRelacionadosList;
     default:
       return ref(null);
   }
@@ -138,7 +167,7 @@ const getDropdownModel = (item: string) => {
 <template>
   <div class="grid">
     <div class="col-9">
-      <label for="dropdown">{{props.datosLegalesItems![0]}}</label>
+      <label for="dropdown">{{ props.datosLegalesItems![0] }}</label>
       <MyInput
         type="text"
         class="mt-2"
@@ -164,7 +193,7 @@ const getDropdownModel = (item: string) => {
     <div v-for="(item, index) in props.datosLegalesItems!.slice(1)" :key="index" class="col-12">
       <label :for="item" class="capitalize">{{ item }}</label>
       <MyDropdown
-        v-if="item !== 'listboxCausaCaratula'"
+        v-if="item !== 'listboxCausaCaratula' && item !== 'listboxArticulos'"
         :items="dropdownItems[getField(item)]"
         v-model="getDropdownModel(item).value"
         :placeholder="'Seleccione ' + item"
@@ -175,34 +204,55 @@ const getDropdownModel = (item: string) => {
         class="w-full mt-2"
       />
       <Listbox
-      v-else
+        v-else-if="item === 'listboxCausaCaratula'"
         v-model="selectedCausaCaratulaList"
         :options="itemsCausaCaratula"
         optionLabel="name"
         class="w-full"
       >
         <template #option="{ option }">
-          <div
-            class="flex align-content-center justify-content-between flex-wrap"
-          >
+          <div class="flex align-content-center justify-content-between flex-wrap">
             <div class="justify-content-between">
-              <span class="font-bold">{{
-                option.name ? getUpperCase(option.name) : ''
-              }}</span>
+              <span class="font-bold">
+                {{ option.name ? getUpperCase(option.name) : '' }}
+              </span>
             </div>
             <div class="justify-content-between">
               <Button
                 icon="pi pi-trash"
                 severity="danger"
-                @click="eliminarItem(option.name)"
+                @click="eliminarItem(option.name, 'Tipo')"
+              />
+            </div>
+          </div>
+        </template>
+      </Listbox>
+      <Listbox
+        v-else
+        v-model="selectedArticulosRelacionadosList"
+        :options="itemsArticulosRelacionados"
+        optionLabel="name"
+        class="w-full"
+      >
+        <template #option="{ option }">
+          <div class="flex align-content-center justify-content-between flex-wrap">
+            <div class="justify-content-between">
+              <span class="font-bold">
+                {{ option.name ? getUpperCase(option.name) : '' }}
+              </span>
+            </div>
+            <div class="justify-content-between">
+              <Button
+                icon="pi pi-trash"
+                severity="danger"
+                @click="eliminarItem(option.name, 'Articulo')"
               />
             </div>
           </div>
         </template>
       </Listbox>
     </div>
-  
-      
-
   </div>
 </template>
+
+

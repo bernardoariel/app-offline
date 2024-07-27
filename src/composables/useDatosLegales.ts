@@ -64,6 +64,7 @@ const useDatosLegales = () => {
         selectedArticulo.value = null;
         selectedArticulosRelacionadosList.value = null;
         itemsCausaCaratula.value = [];
+        itemsArticulosRelacionados.value = [];
         nombreActuacion.value = 'Sumario por denuncia';
     };
 

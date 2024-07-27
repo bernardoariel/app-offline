@@ -716,7 +716,7 @@ export const actuaciones: TipoActuaciones = {
             },
         },
         "datosLegales": {
-            "items": ['ACT. Preliminares N° / N° de extracto', 'sitio', 'modusOperandi', 'causaCaratula', 'listboxCausaCaratula', 'interviniente']
+            "items": ['ACT. Preliminares N° / N° de extracto', 'sitio', 'modusOperandi', 'causaCaratula', 'listboxCausaCaratula', 'juzgadoInterviniente']
         }
     }
 }

@@ -18,6 +18,7 @@ import useDatosLegales from '../composables/useDatosLegales';
 import type { DatosLegalesForm } from '../interfaces/datosLegalesForm.interface';
 import useLegalesState from '@/composables/useLegalesState';
 import useFieldState from '@/composables/useFieldsState';
+import { ufiNroDropdown, fiscalCargoDropdown, ayudanteFiscalDropdown } from '../helpers/getDropItems';
 
 const { markRecordDeleted } = useFieldState();
 const {
@@ -33,7 +34,10 @@ const {
   initialValuesDatosLegales,
   itemsArticulosRelacionados,
   selectedCausaCaratulaList,
-  selectedArticulosRelacionadosList
+  selectedArticulosRelacionadosList,
+  selectedUfiNro,
+  selectedFiscalCargo,
+  selectedAyudanteFiscal
 } = useDatosLegales();
 const { addField, setFieldModified } = useLegalesState();
 
@@ -138,6 +142,12 @@ const getField = (type: string): keyof DatosLegalesForm => {
       return 'opcionesCausaCaratula';
     case 'articulosRelacionados':
       return 'selectArticulo';
+    case 'ufiNro':
+      return 'selectUfiNro';
+    case 'fiscalCargo':
+      return 'selectFiscalCargo';
+    case 'ayudanteFiscal':
+      return 'selectAyudanteFiscal';
     default:
       return '' as keyof DatosLegalesForm;
   }
@@ -149,7 +159,10 @@ const dropdownItems: { [key: string]: any } = {
   selectCausaCaratula: causaCaratulaDropdwown.value,
   selectJuzgadoInterviniente: juzgadoIntervinienteDropdwown.value,
   selectArticulo: articulosDropdwown.value,
-  selectDelito: delitosDropdown.value
+  selectDelito: delitosDropdown.value,
+  selectUfiNro: ufiNroDropdown.value,
+  selectFiscalCargo:fiscalCargoDropdown.value,
+  selectAyudanteFiscal: ayudanteFiscalDropdown.value
 };
 
 const getDropdownModel = (item: string) => {
@@ -168,6 +181,12 @@ const getDropdownModel = (item: string) => {
       return selectedCausaCaratulaList;
     case 'articulosRelacionados':
       return selectedArticulosRelacionadosList;
+    case 'ufiNro':
+      return selectedUfiNro;
+    case 'fiscalCargo':
+      return selectedFiscalCargo;
+    case 'ayudanteFiscal':
+      return selectedAyudanteFiscal;
     default:
       return ref(null);
   }

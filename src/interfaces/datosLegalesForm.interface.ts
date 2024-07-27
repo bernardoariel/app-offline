@@ -12,6 +12,10 @@ export interface DatosLegalesForm extends PrimaryAttributes {
     selectJuzgadoInterviniente?: { name: string } | null,
     selectArticulo?:{ name:string } | null,
     selectDelito?:{ name:string } | null,
+    selectUfiNro?:{ name:string } | null,
+    selectedAyudanteFiscal?:{ name:string } | null,
+    selectedFiscalCargo?:{ name:string } | null,
+
 }
 
 export interface DatosLegales extends PrimaryAttributes {
@@ -23,4 +27,7 @@ export interface DatosLegales extends PrimaryAttributes {
     selectJuzgadoInterviniente?: string | null;
     selectArticulo?: string | null;
     selectDelito?: string | null,
+    selectUfiNro?: string | null,
+    selectAyudanteFiscal?: string | null,
+    selectFiscalCargo?: string | null,
 }

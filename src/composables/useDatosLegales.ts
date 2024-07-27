@@ -10,6 +10,9 @@ let selectedModusOperandi = ref<DropDownInterface>()
 let selectedCausaCaratula = ref<DropDownInterface>()
 let selectedJuzgadoInterviniente = ref<DropDownInterface>()
 let selectedDelito = ref<DropDownInterface>()
+let selectedUfiNro = ref<DropDownInterface>()
+let selectedAyudanteFiscal = ref<DropDownInterface>()
+let selectedFiscalCargo = ref<DropDownInterface>()
 let selectedCausaCaratulaList = ref(null)
 let selectedArticulosRelacionadosList = ref(null)
 let selectedArticulo = ref<DropDownInterface>()
@@ -23,9 +26,12 @@ const useDatosLegales = () => {
         nroLegajo: '',
         selectYear: { name: '' },
         selectSitio: { name: '' },
+        selectUfiNro: { name: '' },
         selectArticulo: { name: '' },
         selectModusOperandi: { name: '' },
         selectCausaCaratula: { name: '' },
+        selectAyudanteFiscal: { name: '' },
+        selectFiscalCargo: { name: '' },
         selectDelito: { name: '' },
         opcionesCausaCaratula: [''],
         opcionesArticulosRelacionados: [''],
@@ -37,6 +43,9 @@ const useDatosLegales = () => {
         selectedYear: { name: '2024' },
         selectedSitio: { name: 'Museo' },
         selectedModusOperandi: { name: ' Delito Rural' },
+        selectedAyudanteFiscal: { name: 'Dra. Pacheco Cecilia' },
+        selectedFiscalCargo: { name: 'Dr. Shoar Aballay' },
+        selectedUfiNro: { name: '1' },
         selectedDelito: { name: 'ACT.POR FALLECIMIENTO' },
         itemsCausaCaratula: [{ name: 'Siniestro Vial' }, { name: 'Robo simple en grado de tentativa' }],
         itemsArticulosRelacionados: [{ name: '183\u00ba ' }, { name: 'Actuaciones por Denuncia' }],
@@ -49,6 +58,9 @@ const useDatosLegales = () => {
         selectedYear.value = fakeValues.selectedYear;
         selectedSitio.value = fakeValues.selectedSitio;
         selectedDelito.value = fakeValues.selectedDelito;
+        selectedUfiNro.value = fakeValues.selectedUfiNro;
+        selectedAyudanteFiscal.value = fakeValues.selectedAyudanteFiscal;
+        selectedFiscalCargo.value = fakeValues.selectedFiscalCargo;
         selectedModusOperandi.value = fakeValues.selectedModusOperandi;
         itemsCausaCaratula.value = fakeValues.itemsCausaCaratula;
         itemsArticulosRelacionados.value = fakeValues.itemsArticulosRelacionados;
@@ -66,6 +78,9 @@ const useDatosLegales = () => {
         selectedCausaCaratula.value = null
         selectedJuzgadoInterviniente.value = null
         selectedCausaCaratulaList.value = null;
+        selectedAyudanteFiscal.value = null
+        selectedFiscalCargo.value = null;
+        selectedUfiNro.value = null;
         selectedArticulo.value = null;
         selectedArticulosRelacionadosList.value = null;
         itemsCausaCaratula.value = [];
@@ -79,6 +94,9 @@ const useDatosLegales = () => {
         selectedYear.value = datosLegales.selectYear ? { name: datosLegales.selectYear } : null;
         selectedSitio.value = datosLegales.selectSitio ? { name: datosLegales.selectSitio } : null;
         selectedDelito.value = datosLegales.selectDelito ? { name: datosLegales.selectDelito } : null;
+        selectedUfiNro.value = datosLegales.selectUfiNro ? { name: datosLegales.selectUfiNro } : null;
+        selectedAyudanteFiscal.value = datosLegales.selectAyudanteFiscal ? { name: datosLegales.selectAyudanteFiscal } : null;
+        selectedFiscalCargo.value = datosLegales.selectFiscalCargo ? { name: datosLegales.selectFiscalCargo } : null;
         selectedModusOperandi.value = datosLegales.selectModusOperandi ? { name: datosLegales.selectModusOperandi } : null;
         selectedCausaCaratula.value = datosLegales.selectCausaCaratula ? { name: datosLegales.selectCausaCaratula } : null;
         selectedJuzgadoInterviniente.value = datosLegales.selectJuzgadoInterviniente ? { name: datosLegales.selectJuzgadoInterviniente } : null;
@@ -97,6 +115,9 @@ const useDatosLegales = () => {
         selectedArticulosRelacionadosList,
         selectedArticulo,
         selectedDelito,
+        selectedUfiNro,
+        selectedAyudanteFiscal,
+        selectedFiscalCargo,
         nroLegajo,
         itemsCausaCaratula,
         itemsArticulosRelacionados,

@@ -108,46 +108,25 @@ const openDeleteConfirmation = (item, dataKey) => {
     con <span class="font-semibold">DNI:</span> ${item.nroDocumento}`;
 };
 
-const handleSendRelato = (item, dataKey) => {
-  console.log('dataKey', dataKey);
-  console.log('item', item);
-  if (dataKey === 'afectados') {
-    relato.value = `${relato.value}
-${item.typeAfectado} ${item.apellido.toUpperCase()} ${item.nombre}, DNI N° ${
-      item.nroDocumento
-    }, de nacionalidad ${item.nacionalidad.toUpperCase()}, estado civil ${
-      item.estadoCivil
-    }, de ${getAge(item.fecha)} años de edad, ${
-      item.instruccion
-    }, con domicilio en  ${item.domicilioResidencia}`;
-  }
-  if (dataKey === 'vinculados') {
-    relato.value = `${relato.value}
-${item.typeAfectado} ${item.apellido.toUpperCase()} ${item.nombre}, DNI N° ${
-      item.nroDocumento
-    }, de nacionalidad ${item.nacionalidad.toUpperCase()}, estado civil ${
-      item.estadoCivil
-    }, de ${getAge(item.fecha)} años de edad, ${
-      item.instruccion
-    }, con domicilio en  ${item.domicilioResidencia}`;
-  }
-  if (dataKey === 'personalInterviniente') {
-    relato.value = `${relato.value}
-Interviniente ${item.apellido.toUpperCase()} ${item.nombre}, de jerarquia ${
-      item.jerarquia
-    }, en ${item.dependencia}`;
-  }
-  if (dataKey === 'fecha') {
-    relato.value = `${relato.value}
-En la fecha ${item.desdeFechaHora}, en ${item.calle} ${item.numero}, ${item.departamento}`;
-  }
-  if (dataKey === 'efectos') {
-    relato.value = `${relato.value}
-  ${item.estado.toUpperCase()}, ${item.categoria}, ${item.subcategoria} ${
-      item.marca
-    } ${item.modelo}, de tipo ${item.tipo}`;
+
+type DataKey = 'afectados' | 'vinculados' | 'personalInterviniente' | 'fecha' | 'efectos';
+
+const handleSendRelato = (item: any, dataKey: DataKey) => {
+  console.log('dataKey::: ', dataKey);
+  console.log('item::: ', item);
+  const relatoTemplates: Record<DataKey, string> = {
+    afectados: `${item.typeAfectado || ''} ${item.apellido ? item.apellido.toUpperCase() : ''} ${item.nombre || ''}, DNI N° ${item.nroDocumento || ''}, de nacionalidad ${item.nacionalidad ? item.nacionalidad.toUpperCase() : ''}, estado civil ${item.estadoCivil || ''}, de ${getAge(item.fecha)} años de edad, ${item.instruccion || ''}, con domicilio en ${item.domicilioResidencia || ''}`,
+    vinculados: `${item.typeAfectado || ''} ${item.apellido ? item.apellido.toUpperCase() : ''} ${item.nombre || ''}, DNI N° ${item.nroDocumento || ''}, de nacionalidad ${item.nacionalidad ? item.nacionalidad.toUpperCase() : ''}, estado civil ${item.estadoCivil || ''}, de ${getAge(item.fecha)} años de edad, ${item.instruccion || ''}, con domicilio en ${item.domicilioResidencia || ''}`,
+    personalInterviniente: `Interviniente ${item.apellido ? item.apellido.toUpperCase() : ''} ${item.nombre || ''}, de jerarquia ${item.jerarquia || ''}, en ${item.dependencia || ''}`,
+    fecha: `En la fecha ${item.desdeFechaHora || ''}, en ${item.calle || ''} ${item.numero || ''}, ${item.departamento || ''}`,
+    efectos: `${item.estado ? item.estado.toUpperCase() : ''}, ${item.categoria || ''}, ${item.subcategoria || ''} ${item.marca || ''} ${item.modelo || ''}, de tipo ${item.tipo || ''}`
+  };
+
+  if (relatoTemplates[dataKey]) {
+    relato.value = `${relato.value}\n${relatoTemplates[dataKey]}`;
   }
 };
+
 
 const handleDeleteConfirmation = async (action: string) => {
   if (action === 'delete' && itemToDelete.value) {

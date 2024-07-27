@@ -24,7 +24,7 @@ const { fechaCreacion } = useActuacion()
 
 const useDatosDiligencia = (actuacion: ref<string>) => {
 
-  const { afectados, intervinientes, fechaCreacionaActuacion, itemSelected, dependenciaData: dependencia } = useItem();
+  const { afectados, intervinientes,vinculados,fechaCreacionaActuacion, itemSelected, dependenciaData: dependencia,fechaUbicacion} = useItem();
 
   const isEditingHeader = ref<boolean>(false);
   const isEditingFooter = ref<boolean>(false);
@@ -91,6 +91,20 @@ const useDatosDiligencia = (actuacion: ref<string>) => {
     }).join(' ');
   });
 
+  const processedVinculados = computed(() => {
+    return vinculados.value.map((v, index) => {
+      const isLast = index === vinculados.value.length - 1;
+      const separator = isLast ? '.' : ',';
+      const apellidoNombre = getUpperCase(v.apellido) + ', ' + getTitleCase(v.nombre);
+      const documento = 'con ' + v.typeDocumento + ' Nº ' + String(v.nroDocumento);
+      const nacionalidad = 'de nacionalidad ' + v.nacionalidad;
+      const edad = 'de ' + getAge(v.fecha) + ' años de edad.';
+      const instruccion = v.instruccion + ',';
+      const profesion = 'de profesion ' + v.profesion + ',';
+      const domicilio = 'con domicilio en ' + v.domicilioResidencia;
+      return `${getStyle(apellidoNombre)} ${getStyle(documento)} ${getStyle(nacionalidad)} ${getStyle(edad)} ${getStyle(instruccion)} ${getStyle(profesion)} ${getStyle(domicilio, isLast)}`;
+    }).join(' ');
+  });
   const processedIntervinientes = computed(() => {
     return intervinientes.value.map((item, index) => {
       const isLast = index === intervinientes.value.length - 1;
@@ -112,10 +126,13 @@ const useDatosDiligencia = (actuacion: ref<string>) => {
         .replace('@departamento', getStyle(dependenciaDataLocal.dependencia.departamento))
         .replace('@fechaactuacion', getStyle(convertDate(itemSelected.value ? fechaCreacionaActuacion.value : fechaCreacion.value)))
         .replace('@afectados', processedAfectados.value)
-        .replace('@intervinientes', processedIntervinientes.value);
+        .replace('@intervinientes', processedIntervinientes.value)
+        .replace('@vinculados', processedVinculados.value)
+        .replace('@@horaDelHecho', processedVinculados.value);
 
-      footer = diligenciaSeleccionada.value.footer;
 
+      footer = diligenciaSeleccionada.value.footer
+      .replace('@vinculados', processedVinculados.value);
       // Reemplazar palabras claves con estilos especiales
       ['HACE CONSTAR', 'DISPONE', 'CERTIFICO', 'CERTIFICA', 'DECLARO'].forEach((word) => {
         const replacement = `<span style="font-weight: bold; text-decoration: underline;">${word}</span>`;
@@ -159,10 +176,12 @@ const useDatosDiligencia = (actuacion: ref<string>) => {
       footerContainer.value = newValue;
     }
   });
+  
   return {
     processedText,
     processedAfectados,
     processedIntervinientes,
+    processedVinculados,
     primeradiligencia: diligenciaSeleccionada.value, // Asignación de la propiedad primeradiligencia
     processedHeaderText,
     isEditingHeader,

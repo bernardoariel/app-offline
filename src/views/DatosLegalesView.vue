@@ -41,7 +41,7 @@ const {
 } = useDatosLegales();
 const { addField, setFieldModified } = useLegalesState();
 
-let yearsActuacion: string[] = getYearsDrop();
+let yearsActuacion = getYearsDrop();
 let formData = ref<DatosLegalesForm>({ ...initialValuesDatosLegales });
 interface Props {
   datosLegalesItems?: string[];

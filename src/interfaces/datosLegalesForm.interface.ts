@@ -13,8 +13,8 @@ export interface DatosLegalesForm extends PrimaryAttributes {
     selectArticulo?:{ name:string } | null,
     selectDelito?:{ name:string } | null,
     selectUfiNro?:{ name:string } | null,
-    selectedAyudanteFiscal?:{ name:string } | null,
-    selectedFiscalCargo?:{ name:string } | null,
+    selectAyudanteFiscal?:{ name:string } | null,
+    selectFiscalCargo?:{ name:string } | null,
 
 }
 

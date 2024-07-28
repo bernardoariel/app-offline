@@ -20,7 +20,7 @@ export const diligencias:DatosLegales[] = [
     {
         id:'expediente-oficio',
         titulo: 'Acta de inicio',
-        header: `--- En la provincia de San Juan, @dependencia,@departamento @fechaactuacion, el funcionario de Policia que suscribe, a los fines legales HACE CONSTAR: Que siendo la fecha y hora antes indicada, se presenta el Personal Interviniente informando que siendo las @horaDelHecho horas, el funcionario de Policia que suscribe, a los fines legales HACE CONSTAR: Que siendo la fecha y hora antes indicada, se presenta el Personal Interviniente`,
+        header: `--- En la provincia de San Juan, @dependencia,@departamento @fechaactuacion, el funcionario de Policia que suscribe, a los fines legales HACE CONSTAR: Que siendo la fecha y hora antes indicada, se presenta el Personal Interviniente informando que siendo las @horaDelHecho , el funcionario de Policia que suscribe, a los fines legales HACE CONSTAR: Que siendo la fecha y hora antes indicada, se presenta el Personal Interviniente`,
         footer: `Al consultarle por los datos personales manifestando llamarse @vinculados , procediendo al traslado a esta dependencia, como así también del secuestro de @efectos DISPONE: Iniciar en base a la presente Acta las Actuaciones Contravencionales de rigor. Designar Secretario al Oficial que al pie firma en notificación del cargo conferido. Recibir a tenor el , el acta Contravencional labrada in situ, así también al contraventor antes mencionado. Dar inmediata intervención al Señor Juez del , Sr. Jefe de Policia (Dpto. Jud.D-5) mediante remisión de copias nota de Estilo. Llevar adelante toda otra medida que se estime de interés para la sustanciación del presente expediente. CERTIFICO.`
     },
     {

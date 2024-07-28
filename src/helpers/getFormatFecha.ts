@@ -10,7 +10,12 @@ export const formatFecha = (fechaString: Date, formato: FormatoFecha = 'fechaHor
     const hora = fecha.getHours();
     const minutos = fecha.getMinutes();
   
-    if (formato === 'fechaHora') return `${dia.toString().padStart(2, '0')}/${mes.toString().padStart(2, '0')}/${año} ${hora.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}`;
+    if (formato === 'fechaHora'){
+
+      return `${dia.toString().padStart(2, '0')}/${mes.toString().padStart(2, '0')}/${año} ${hora.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}`;
+
+    }
+    
     return `${dia.toString().padStart(2, '0')}/${mes.toString().padStart(2, '0')}/${año}`;
 }
   

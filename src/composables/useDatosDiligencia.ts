@@ -9,6 +9,7 @@ import { getAge } from '@/helpers/getAge';
 import useNewActuacion from './useNewActuacion';
 import useActuacion from './useActuacion';
 import { convertDate } from '../helpers/dateToString'
+import { formatFecha } from '../helpers/getFormatFecha';
 
 interface ProcessedText {
   header: string;
@@ -24,7 +25,11 @@ const { fechaCreacion } = useActuacion()
 
 const useDatosDiligencia = (actuacion: ref<string>) => {
 
-  const { afectados, intervinientes,vinculados,fechaCreacionaActuacion, itemSelected, dependenciaData: dependencia,fechaUbicacion} = useItem();
+  const { afectados, intervinientes,vinculados,fechaCreacionaActuacion, itemSelected, dependenciaData: dependencia,fechaUbicacion, efectos} = useItem();
+  /* variables para que sean dinamicas */
+  const ufiNro = '1'
+  const articulosRelacionados =['Articulo 65 ','Ley N\u00ba 941-R','Art 192 aprovechamiento malicioso de credito']
+  const juzgado = 'JUZGADO DE PAZ ANGACO'
 
   const isEditingHeader = ref<boolean>(false);
   const isEditingFooter = ref<boolean>(false);
@@ -38,7 +43,7 @@ const useDatosDiligencia = (actuacion: ref<string>) => {
   };
 
   const getIdToFind = (actuacion: string) => {
-    console.log('actuacion::: ', actuacion);
+    // console.log('actuacion::: ', actuacion);
     if (actuacionMap[actuacion]) {
       return actuacionMap[actuacion];
     }
@@ -64,12 +69,12 @@ const useDatosDiligencia = (actuacion: ref<string>) => {
     if (!actuacion.value) return
     const idToFind = getIdToFind(actuacion.value);
     const result = diligencias.find((d: DatosLegales) => d.id === idToFind);
-    console.log('Diligencia seleccionada: ', result);
+    // console.log('Diligencia seleccionada: ', result);
     return result;
   });
 
-  const getStyle = (value: string): string => {
-    return `<span class="text-primary font-medium"><i>${value}</i></span>`;
+  const getStyle = (value: string, color:string = 'primary'): string => {
+    return `<span class="text-${color} font-medium"><i>${value}</i></span>`;
   };
 
   const dependenciaDataLocal = getDependenciaData() //datos local Storage
@@ -116,23 +121,47 @@ const useDatosDiligencia = (actuacion: ref<string>) => {
     }).join(' ');
 
   });
+  const processedEfectos = computed(() => {
+    return efectos.value.map((e, index) => {
+      const subcategoria = e.subcategoria || '';
+      const marca = e.marca || '';
+      const modelo = e.modelo || '';
 
+      return ` un/una ${subcategoria} Marca ${marca} Modelo ${modelo};`;
+    }).join(' ');
+  });
+  const processedArticulosRelacionados = computed(() => {
+    return articulosRelacionados.join(', ');
+  });
+
+  const processedUfiNro = computed(() => {
+    return ufiNro ? getStyle(ufiNro) : '';
+  });
+  
+  const processedJuzgado = computed(() => {
+    return juzgado ? getStyle(juzgado) : '';
+  });
+  
   const processedText = computed<ProcessedText>(() => {
     let header = '';
     let footer = '';
     if (diligenciaSeleccionada.value) {
       header = diligenciaSeleccionada.value.header
-        .replace('@dependencia', getStyle(dependenciaDataLocal.dependencia.nombre))
+        .replace('@dependencia', getStyle(dependenciaDataLocal.dependencia.nombre,'blue-600'))
         .replace('@departamento', getStyle(dependenciaDataLocal.dependencia.departamento))
         .replace('@fechaactuacion', getStyle(convertDate(itemSelected.value ? fechaCreacionaActuacion.value : fechaCreacion.value)))
         .replace('@afectados', processedAfectados.value)
         .replace('@intervinientes', processedIntervinientes.value)
         .replace('@vinculados', processedVinculados.value)
-        .replace('@@horaDelHecho', processedVinculados.value);
-
+        .replace('@horaDelHecho', getStyle(processedFechaUbicacion.value));
+        
 
       footer = diligenciaSeleccionada.value.footer
-      .replace('@vinculados', processedVinculados.value);
+      .replace('@vinculados', processedVinculados.value)
+      .replace('@efectos', getStyle(processedEfectos.value))
+      .replace('@ufi', getStyle(processedUfiNro.value,'blue-600'))
+      .replace('@juzgado', getStyle(processedJuzgado.value,'blue-600'))
+      .replace('@articulosRelacionados', getStyle(processedArticulosRelacionados.value,'blue-600'));
       // Reemplazar palabras claves con estilos especiales
       ['HACE CONSTAR', 'DISPONE', 'CERTIFICO', 'CERTIFICA', 'DECLARO'].forEach((word) => {
         const replacement = `<span style="font-weight: bold; text-decoration: underline;">${word}</span>`;
@@ -143,7 +172,20 @@ const useDatosDiligencia = (actuacion: ref<string>) => {
 
     return { header, footer };
   });
+  const processedFechaUbicacion = computed(() => {
+    if (!fechaUbicacion.value || fechaUbicacion.value.length === 0) {
+      return '';
+    }
+    const ubicacionItem = fechaUbicacion.value[0]; 
+    if (!ubicacionItem || !ubicacionItem.desdeFechaHora || !ubicacionItem.calle || !ubicacionItem.numero) {
+      return '';
+    }
 
+    const formattedFechaHora = formatFecha(new Date(ubicacionItem.desdeFechaHora), 'hora');
+    const ubicacion = `se encontraban de recorridas por Calle ${getTitleCase(ubicacionItem.calle)} Número: ${ubicacionItem.numero}`;
+    
+    return `${formattedFechaHora} horas, ${ubicacion}`;
+  });
   const editableHeader = computed(() => processedText.value.header);
 
   const processedHeaderText = computed(() => {
@@ -155,11 +197,11 @@ const useDatosDiligencia = (actuacion: ref<string>) => {
   const headerTextComputed = computed({
     get() {
 
-      console.log('isEditingHeader.value::: ', isEditingHeader.value);
+      // console.log('isEditingHeader.value::: ', isEditingHeader.value);
       return isEditingHeader.value ? headerContainer.value : processedHeaderText.value;
     },
     set(newValue) {
-      console.log('newValue::: ', newValue, isEditedHeader.value);
+      // console.log('newValue::: ', newValue, isEditedHeader.value);
       // Directamente actualiza headerContainer con lo que se edite en el textarea
       headerContainer.value = newValue;
     }
@@ -167,11 +209,11 @@ const useDatosDiligencia = (actuacion: ref<string>) => {
   const footerTextComputed = computed({
     get() {
 
-      console.log('isEditingFooter.value::: ', isEditingFooter.value);
+      // console.log('isEditingFooter.value::: ', isEditingFooter.value);
       return isEditingFooter.value ? footerContainer.value : processedFooterText.value;
     },
     set(newValue) {
-      console.log('newValue::: ', newValue, isEditedFooter.value);
+      // console.log('newValue::: ', newValue, isEditedFooter.value);
       // Directamente actualiza footerContainer con lo que se edite en el textarea
       footerContainer.value = newValue;
     }
@@ -182,6 +224,7 @@ const useDatosDiligencia = (actuacion: ref<string>) => {
     processedAfectados,
     processedIntervinientes,
     processedVinculados,
+    processedFechaUbicacion,
     primeradiligencia: diligenciaSeleccionada.value, // Asignación de la propiedad primeradiligencia
     processedHeaderText,
     isEditingHeader,

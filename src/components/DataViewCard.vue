@@ -100,7 +100,7 @@ const openDeleteConfirmation = (item, dataKey) => {
     return;
   }
   if (dataKey === 'fecha') {
-    mensaje.value = ``;
+    mensaje.value = '';
     return;
   }
   mensaje.value = `
@@ -118,7 +118,7 @@ const handleSendRelato = (item: any, dataKey: DataKey) => {
     afectados: `${item.typeAfectado || ''} ${item.apellido ? item.apellido.toUpperCase() : ''} ${item.nombre || ''}, DNI N° ${item.nroDocumento || ''}, de nacionalidad ${item.nacionalidad ? item.nacionalidad.toUpperCase() : ''}, estado civil ${item.estadoCivil || ''}, de ${getAge(item.fecha)} años de edad, ${item.instruccion || ''}, con domicilio en ${item.domicilioResidencia || ''}`,
     vinculados: `${item.typeAfectado || ''} ${item.apellido ? item.apellido.toUpperCase() : ''} ${item.nombre || ''}, DNI N° ${item.nroDocumento || ''}, de nacionalidad ${item.nacionalidad ? item.nacionalidad.toUpperCase() : ''}, estado civil ${item.estadoCivil || ''}, de ${getAge(item.fecha)} años de edad, ${item.instruccion || ''}, con domicilio en ${item.domicilioResidencia || ''}`,
     personalInterviniente: `Interviniente ${item.apellido ? item.apellido.toUpperCase() : ''} ${item.nombre || ''}, de jerarquia ${item.jerarquia || ''}, en ${item.dependencia || ''}`,
-    fecha: `En la fecha ${item.desdeFechaHora || ''}, en ${item.calle || ''} ${item.numero || ''}, ${item.departamento || ''}`,
+    fecha: `En la fecha ${formatFecha(item.desdeFechaHora,'fechaHora') || ''}, en ${item.calle || ''} ${item.numero || ''}, ${item.departamento || ''}`,
     efectos: `${item.estado ? item.estado.toUpperCase() : ''}, ${item.categoria || ''}, ${item.subcategoria || ''} ${item.marca || ''} ${item.modelo || ''}, de tipo ${item.tipo || ''}`
   };
 

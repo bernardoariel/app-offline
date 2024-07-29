@@ -89,6 +89,7 @@ const deleteModalButtons = ref<buttonProps[]>([
   },
 ]);
 const openDeleteConfirmation = (item, dataKey) => {
+  // console.log("askldjflkasdfjl")
   itemType.value = item;
   itemToDelete.value = item.id;
   visible.value = true;
@@ -102,34 +103,57 @@ const openDeleteConfirmation = (item, dataKey) => {
     mensaje.value = ``;
     return;
   }
+  if (dataKey === 'vinculados' && item.descripcionDesconocido){
+    mensaje.value = `
+    <span class="font-semibold">Persona de filiación desconocida:</span> </br><span> ${item.descripcionDesconocido}`;
+    return
+  }
+  if (dataKey === 'afectados' && item.descripcionOrdenPublico){
+    mensaje.value = `
+    <span class="font-semibold">Orden público: </span> </br></span><span> ${getTruncatedString(item.descripcionOrdenPublico,30)}`;
+    return
+  }
+ 
   mensaje.value = `
     <span class="font-semibold">${item.apellido}</span><span>, ${item.nombre}</span><br/>
     con <span class="font-semibold">DNI:</span> ${item.nroDocumento}`;
 };
 
 const handleSendRelato = (item, dataKey) => {
-  console.log('dataKey', dataKey);
-  console.log('item', item);
   if (dataKey === 'afectados') {
-    relato.value = `${relato.value}
-${item.typeAfectado} ${item.apellido.toUpperCase()} ${item.nombre}, DNI N° ${
-      item.nroDocumento
-    }, de nacionalidad ${item.nacionalidad.toUpperCase()}, estado civil ${
-      item.estadoCivil
-    }, de ${getAge(item.fecha)} años de edad, ${
-      item.instruccion
-    }, con domicilio en  ${item.domicilioResidencia}`;
+    if (!item.descripcionOrdenPublico){
+      relato.value =
+       `${relato.value}
+        ${item.typeAfectado} ${item.apellido.toUpperCase()} ${item.nombre}, DNI N° ${
+              item.nroDocumento
+            }, de nacionalidad ${item.nacionalidad.toUpperCase()}, estado civil ${
+              item.estadoCivil
+            }, de ${getAge(item.fecha)} años de edad, ${
+              item.instruccion
+            }, con domicilio en  ${item.domicilioResidencia}`;
+          }
+          else{
+          relato.value =
+          `${relato.value}
+            ${item.typeAfectado} (Orden público): ${item.descripcionOrdenPublico}`
+        }
   }
   if (dataKey === 'vinculados') {
-    relato.value = `${relato.value}
-${item.typeAfectado} ${item.apellido.toUpperCase()} ${item.nombre}, DNI N° ${
-      item.nroDocumento
-    }, de nacionalidad ${item.nacionalidad.toUpperCase()}, estado civil ${
-      item.estadoCivil
-    }, de ${getAge(item.fecha)} años de edad, ${
-      item.instruccion
-    }, con domicilio en  ${item.domicilioResidencia}`;
-  }
+     if(!item.descripcionDesconocido) {
+        relato.value = 
+        `${relato.value}
+          ${item.typeAfectado} ${item.apellido.toUpperCase()} ${item.nombre}, DNI N° ${
+                item.nroDocumento
+              }, de nacionalidad ${item.nacionalidad.toUpperCase()}, estado civil ${
+                item.estadoCivil
+              }, de ${getAge(item.fecha)} años de edad, ${
+                item.instruccion
+              }, con domicilio en  ${item.domicilioResidencia}`;
+      }else{
+        relato.value =`${relato.value}
+        ${item.typeAfectado} (Persona de filiación desconocida): ${item.descripcionDesconocido}`
+      }
+}
   if (dataKey === 'personalInterviniente') {
     relato.value = `${relato.value}
 Interviniente ${item.apellido.toUpperCase()} ${item.nombre}, de jerarquia ${

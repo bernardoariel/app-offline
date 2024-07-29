@@ -258,6 +258,7 @@ const updateDataWithForm = (form: any) => {
       textAreaDescription.value= formData.value.descripcionOrdenPublico
       isOrdenPublico.value=true
     }else{
+      textAreaDescription.value=""
       isOrdenPublico.value=false
     }
   }
@@ -403,7 +404,6 @@ const handleModificarElemento = () => {
   let itemAEditar= {}
   console.log('itemStateEncontrado::: ', itemStateEncontrado);
   if (isOrdenPublico.value){
-    console.log("alñskfjñasldkfj",textAreaDescription.value,itemStateEncontrado)
     itemAEditar={
       id: formData.value.id,
       typeAfectado: 'Damnificado' ,

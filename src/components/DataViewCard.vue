@@ -21,7 +21,6 @@ const props = defineProps<{
   dataKey: string;
   actuacion?: string;
 }>();
-
 const condicion: boolean = false;
 const toast = useToast();
 const { relato } = useDatosDiligencia('sumario-denuncia');
@@ -90,6 +89,7 @@ const deleteModalButtons = ref<buttonProps[]>([
   },
 ]);
 const openDeleteConfirmation = (item, dataKey) => {
+  // console.log("askldjflkasdfjl")
   itemType.value = item;
   itemToDelete.value = item.id;
   visible.value = true;
@@ -103,34 +103,57 @@ const openDeleteConfirmation = (item, dataKey) => {
     mensaje.value = ``;
     return;
   }
+  if (dataKey === 'vinculados' && item.descripcionDesconocido){
+    mensaje.value = `
+    <span class="font-semibold">Persona de filiación desconocida:</span> </br><span> ${item.descripcionDesconocido}`;
+    return
+  }
+  if (dataKey === 'afectados' && item.descripcionOrdenPublico){
+    mensaje.value = `
+    <span class="font-semibold">Orden público: </span> </br></span><span> ${getTruncatedString(item.descripcionOrdenPublico,30)}`;
+    return
+  }
+ 
   mensaje.value = `
     <span class="font-semibold">${item.apellido}</span><span>, ${item.nombre}</span><br/>
     con <span class="font-semibold">DNI:</span> ${item.nroDocumento}`;
 };
 
 const handleSendRelato = (item, dataKey) => {
-  console.log('dataKey', dataKey);
-  console.log('item', item);
   if (dataKey === 'afectados') {
-    relato.value = `${relato.value}
-${item.typeAfectado} ${item.apellido.toUpperCase()} ${item.nombre}, DNI N° ${
-      item.nroDocumento
-    }, de nacionalidad ${item.nacionalidad.toUpperCase()}, estado civil ${
-      item.estadoCivil
-    }, de ${getAge(item.fecha)} años de edad, ${
-      item.instruccion
-    }, con domicilio en  ${item.domicilioResidencia}`;
+    if (!item.descripcionOrdenPublico){
+      relato.value =
+       `${relato.value}
+        ${item.typeAfectado} ${item.apellido.toUpperCase()} ${item.nombre}, DNI N° ${
+              item.nroDocumento
+            }, de nacionalidad ${item.nacionalidad.toUpperCase()}, estado civil ${
+              item.estadoCivil
+            }, de ${getAge(item.fecha)} años de edad, ${
+              item.instruccion
+            }, con domicilio en  ${item.domicilioResidencia}`;
+          }
+          else{
+          relato.value =
+          `${relato.value}
+            ${item.typeAfectado} (Orden público): ${item.descripcionOrdenPublico}`
+        }
   }
   if (dataKey === 'vinculados') {
-    relato.value = `${relato.value}
-${item.typeAfectado} ${item.apellido.toUpperCase()} ${item.nombre}, DNI N° ${
-      item.nroDocumento
-    }, de nacionalidad ${item.nacionalidad.toUpperCase()}, estado civil ${
-      item.estadoCivil
-    }, de ${getAge(item.fecha)} años de edad, ${
-      item.instruccion
-    }, con domicilio en  ${item.domicilioResidencia}`;
-  }
+     if(!item.descripcionDesconocido) {
+        relato.value = 
+        `${relato.value}
+          ${item.typeAfectado} ${item.apellido.toUpperCase()} ${item.nombre}, DNI N° ${
+                item.nroDocumento
+              }, de nacionalidad ${item.nacionalidad.toUpperCase()}, estado civil ${
+                item.estadoCivil
+              }, de ${getAge(item.fecha)} años de edad, ${
+                item.instruccion
+              }, con domicilio en  ${item.domicilioResidencia}`;
+      }else{
+        relato.value =`${relato.value}
+        ${item.typeAfectado} (Persona de filiación desconocida): ${item.descripcionDesconocido}`
+      }
+}
   if (dataKey === 'personalInterviniente') {
     relato.value = `${relato.value}
 Interviniente ${item.apellido.toUpperCase()} ${item.nombre}, de jerarquia ${
@@ -228,11 +251,11 @@ const convertStringToPhrase = (key: string): string => {
                 ></Button>
               </div>
 
-              <div class="flex-items">
-                <span  v-if="!item.descripcionDesconocido" class="font-bold">{{
+              <div :class="['flex-items',{ 'my-4': item.descripcionDesconocido || item.descripcionOrdenPublico }]">
+                <span  v-if="!item.descripcionDesconocido && !item.descripcionOrdenPublico" class="font-bold">{{
                   item.apellido ? getUpperCase(item.apellido) + ',' : ''
                 }}</span>
-                <span  v-if="!item.descripcionDesconocido" class="ml-2">{{
+                <span  v-if="!item.descripcionDesconocido && !item.descripcionOrdenPublico" class="ml-2">{{
                   item.nombre ? getTitleCase(item.nombre) : 'Nuevo'
                 }}</span>
                 <span
@@ -242,6 +265,10 @@ const convertStringToPhrase = (key: string): string => {
                   <i>{{ item.typeDocumento + ': ' }}</i>
                   <i>{{ item.nroDocumento }}</i>
                 </span>
+                <span  v-if="item.descripcionOrdenPublico" class="font-bold">
+                  Orden público: 
+                </span>
+                <span v-if="item.descripcionOrdenPublico">{{getTruncatedString(item.descripcionOrdenPublico, 20)}}</span>
                 <span v-if="item.descripcionDesconocido" class="font-bold">
                   Persona de filiación desconocida: 
                 </span>

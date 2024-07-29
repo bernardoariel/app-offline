@@ -17,7 +17,8 @@ export interface AfectadosForm extends PrimaryAttributes{
     typeSexo: {name:string},
     nacionalidad: {name:string},
     estadoCivil: {name:string},
-    instruccion: {name:string}
+    instruccion: {name:string},
+    descripcionOrdenPublico?: string
 }
 export interface Afectados extends PrimaryAttributes{
     typeAfectado: string,
@@ -25,7 +26,9 @@ export interface Afectados extends PrimaryAttributes{
     typeSexo: string,
     nacionalidad: string,
     estadoCivil: string,
-    instruccion: string
+    instruccion: string,
+    descripcionOrdenPublico?: string
+
 }  
 
 export interface Afectado{

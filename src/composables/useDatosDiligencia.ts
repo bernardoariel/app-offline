@@ -1,14 +1,13 @@
-// useDatosDiligencia.ts
 import { computed, ref } from 'vue';
 import { diligencias } from '@/data/datosDiligencia';
 import useItem from '@/composables/useItems';
 import type { DatosLegales } from '@/interfaces/datosLegales.interface';
 import { getTitleCase, getUpperCase } from '@/helpers/stringUtils';
-import { getDependenciaData } from '@/helpers/getDependencia'
+import { getDependenciaData } from '@/helpers/getDependencia';
 import { getAge } from '@/helpers/getAge';
 import useNewActuacion from './useNewActuacion';
 import useActuacion from './useActuacion';
-import { convertDate } from '../helpers/dateToString'
+import { convertDate } from '../helpers/dateToString';
 import { formatFecha } from '../helpers/getFormatFecha';
 
 interface ProcessedText {
@@ -16,20 +15,20 @@ interface ProcessedText {
   footer: string;
 }
 
-const relato = ref<string>('')
-const headerContainer = ref<string>('')
-const footerContainer = ref<string>('')
+const relato = ref<string>('');
+const headerContainer = ref<string>('');
+const footerContainer = ref<string>('');
 
-const { isEditedHeader, isEditedFooter } = useNewActuacion()
-const { fechaCreacion } = useActuacion()
+const { isEditedHeader, isEditedFooter } = useNewActuacion();
+const { fechaCreacion } = useActuacion();
 
 const useDatosDiligencia = (actuacion: ref<string>) => {
 
-  const { afectados, intervinientes,vinculados,fechaCreacionaActuacion, itemSelected, dependenciaData: dependencia,fechaUbicacion, efectos} = useItem();
+  const { afectados, intervinientes, vinculados, fechaCreacionaActuacion, itemSelected, dependenciaData: dependencia, fechaUbicacion, efectos } = useItem();
   /* variables para que sean dinamicas */
-  const ufiNro = '1'
-  const articulosRelacionados =['Articulo 65 ','Ley N\u00ba 941-R','Art 192 aprovechamiento malicioso de credito']
-  const juzgado = 'JUZGADO DE PAZ ANGACO'
+  const ufiNro = '1';
+  const articulosRelacionados = ['Articulo 65 ', 'Ley N\u00ba 941-R', 'Art 192 aprovechamiento malicioso de credito'];
+  const juzgado = 'JUZGADO DE PAZ ANGACO';
 
   const isEditingHeader = ref<boolean>(false);
   const isEditingFooter = ref<boolean>(false);
@@ -43,7 +42,6 @@ const useDatosDiligencia = (actuacion: ref<string>) => {
   };
 
   const getIdToFind = (actuacion: string) => {
-    // console.log('actuacion::: ', actuacion);
     if (actuacionMap[actuacion]) {
       return actuacionMap[actuacion];
     }
@@ -66,20 +64,17 @@ const useDatosDiligencia = (actuacion: ref<string>) => {
   };
 
   const diligenciaSeleccionada = computed(() => {
-    if (!actuacion.value) return
+    if (!actuacion.value) return;
     const idToFind = getIdToFind(actuacion.value);
     const result = diligencias.find((d: DatosLegales) => d.id === idToFind);
-    // console.log('Diligencia seleccionada: ', result);
     return result;
   });
 
-  const getStyle = (value: string, color:string = 'primary'): string => {
+  const getStyle = (value: string, color: string = 'primary'): string => {
     return `<span class="text-${color} font-medium"><i>${value}</i></span>`;
   };
 
-  const dependenciaDataLocal = getDependenciaData() //datos local Storage
-  // const dependenciaDataDB = JSON.parse(dependencia.value)// datos del item seleccionado, que esta en la db
-
+  const dependenciaDataLocal = getDependenciaData(); //datos local Storage
 
   const processedAfectados = computed(() => {
     return afectados.value.map((a, index) => {
@@ -110,26 +105,31 @@ const useDatosDiligencia = (actuacion: ref<string>) => {
       return `${getStyle(apellidoNombre)} ${getStyle(documento)} ${getStyle(nacionalidad)} ${getStyle(edad)} ${getStyle(instruccion)} ${getStyle(profesion)} ${getStyle(domicilio, isLast)}`;
     }).join(' ');
   });
+
   const processedIntervinientes = computed(() => {
     return intervinientes.value.map((item, index) => {
       const isLast = index === intervinientes.value.length - 1;
       const separator = isLast ? '.' : ',';
 
-      return `${getStyle(getTitleCase(item.jerarquia) + ' ' + getUpperCase(item.apellido) + + ' ' + getTitleCase(item.nombre))}
-          ${getStyle(' adscripto/s a numerario de  ' + item.dependencia)}${separator}`
+      return `${getStyle(getTitleCase(item.jerarquia) + ' ' + getUpperCase(item.apellido) + ' ' + getTitleCase(item.nombre))}
+          ${getStyle(' adscripto/s a numerario de  ' + item.dependencia)}${separator}`;
 
     }).join(' ');
 
   });
+
   const processedEfectos = computed(() => {
     return efectos.value.map((e, index) => {
       const subcategoria = e.subcategoria || '';
       const marca = e.marca || '';
       const modelo = e.modelo || '';
+      const estado = e.estado || ''; // Asumimos que hay una propiedad estado que indica si el efecto es secuestrado
 
-      return ` un/una ${subcategoria} Marca ${marca} Modelo ${modelo};`;
+      const textoSecuestro = estado.toLowerCase() === 'secuestrado' ? 'el secuestro de ' : '';
+      return `${textoSecuestro}un/una ${subcategoria} Marca ${marca} Modelo ${modelo};`;
     }).join(' ');
   });
+
   const processedArticulosRelacionados = computed(() => {
     return articulosRelacionados.join(', ');
   });
@@ -154,7 +154,6 @@ const useDatosDiligencia = (actuacion: ref<string>) => {
         .replace('@intervinientes', processedIntervinientes.value)
         .replace('@vinculados', processedVinculados.value)
         .replace('@horaDelHecho', getStyle(processedFechaUbicacion.value));
-        
 
       footer = diligenciaSeleccionada.value.footer
       .replace('@vinculados', processedVinculados.value)
@@ -163,7 +162,7 @@ const useDatosDiligencia = (actuacion: ref<string>) => {
       .replace('@juzgado', getStyle(processedJuzgado.value,'blue-600'))
       .replace('@articulosRelacionados', getStyle(processedArticulosRelacionados.value,'blue-600'));
       // Reemplazar palabras claves con estilos especiales
-      ['HACE CONSTAR', 'DISPONE', 'CERTIFICO', 'CERTIFICA', 'DECLARO'].forEach((word) => {
+      ['HACE CONSTAR', 'DISPONE', 'CERTIFICO', 'CERTIFICA', 'DECLARO' , 'DECLARA', 'U.F.I'].forEach((word) => {
         const replacement = `<span style="font-weight: bold; text-decoration: underline;">${word}</span>`;
         header = header.replace(new RegExp(word, 'g'), replacement);
         footer = footer.replace(new RegExp(word, 'g'), replacement);
@@ -172,20 +171,25 @@ const useDatosDiligencia = (actuacion: ref<string>) => {
 
     return { header, footer };
   });
+
   const processedFechaUbicacion = computed(() => {
     if (!fechaUbicacion.value || fechaUbicacion.value.length === 0) {
-      return '';
+        return '';
     }
     const ubicacionItem = fechaUbicacion.value[0]; 
     if (!ubicacionItem || !ubicacionItem.desdeFechaHora || !ubicacionItem.calle || !ubicacionItem.numero) {
-      return '';
+        return '';
     }
 
-    const formattedFechaHora = formatFecha(new Date(ubicacionItem.desdeFechaHora), 'hora');
+    const fechaHora = new Date(ubicacionItem.desdeFechaHora);
+    const hora = fechaHora.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+
     const ubicacion = `se encontraban de recorridas por Calle ${getTitleCase(ubicacionItem.calle)} Número: ${ubicacionItem.numero}`;
     
-    return `${formattedFechaHora} horas, ${ubicacion}`;
-  });
+    return `${hora} horas, ${ubicacion}`;
+});
+
+
   const editableHeader = computed(() => processedText.value.header);
 
   const processedHeaderText = computed(() => {
@@ -196,25 +200,17 @@ const useDatosDiligencia = (actuacion: ref<string>) => {
   });
   const headerTextComputed = computed({
     get() {
-
-      // console.log('isEditingHeader.value::: ', isEditingHeader.value);
       return isEditingHeader.value ? headerContainer.value : processedHeaderText.value;
     },
     set(newValue) {
-      // console.log('newValue::: ', newValue, isEditedHeader.value);
-      // Directamente actualiza headerContainer con lo que se edite en el textarea
       headerContainer.value = newValue;
     }
   });
   const footerTextComputed = computed({
     get() {
-
-      // console.log('isEditingFooter.value::: ', isEditingFooter.value);
       return isEditingFooter.value ? footerContainer.value : processedFooterText.value;
     },
     set(newValue) {
-      // console.log('newValue::: ', newValue, isEditedFooter.value);
-      // Directamente actualiza footerContainer con lo que se edite en el textarea
       footerContainer.value = newValue;
     }
   });

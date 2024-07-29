@@ -41,6 +41,7 @@ const useSaveData = () => {
 
   const saveData = async (data: dataActuacionForSave) => {
     const isValid = validateForm(nombreActuacion.value, data)
+    data.relato = data.relato.replace(/\n/g, ' ');
     if (!isValid) {
       alert('faltan datos')
       success.value = false;
@@ -75,6 +76,7 @@ const useSaveData = () => {
   };
 
   const updateData = async (data: dataActuacionForSave) => {
+    data.relato = data.relato.replace(/\n/g, ' ');
     if (typeof data.id !== 'number') {
       console.error('Invalid id:', data.id);
       error.value = 'Invalid id';
@@ -84,7 +86,7 @@ const useSaveData = () => {
       await db.open();
       await db.actuaciones.update(data.id, {
         nroLegajoCompleto: nroLegajo.value,
-        fechaCreacion: fechaCreacion.value,
+        // fechaCreacion: fechaCreacion.value,
         nombreActuacion: nombreActuacion.value,
         juzgadoInterviniente: selectedJuzgadoInterviniente.value?.name || '',
         afectados: JSON.stringify(data.afectados),

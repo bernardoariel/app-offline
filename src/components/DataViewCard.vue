@@ -123,8 +123,7 @@ const handleSendRelato = (item, dataKey) => {
   if (dataKey === 'afectados') {
     if (!item.descripcionOrdenPublico){
       relato.value =
-       `${relato.value}
-        ${item.typeAfectado} ${item.apellido.toUpperCase()} ${item.nombre}, DNI N° ${
+       `${relato.value} ${item.typeAfectado} ${item.apellido.toUpperCase()} ${item.nombre}, DNI N° ${
               item.nroDocumento
             }, de nacionalidad ${item.nacionalidad.toUpperCase()}, estado civil ${
               item.estadoCivil
@@ -134,15 +133,13 @@ const handleSendRelato = (item, dataKey) => {
           }
           else{
           relato.value =
-          `${relato.value}
-            ${item.typeAfectado} (Orden público): ${item.descripcionOrdenPublico}`
+          `${relato.value} ${item.typeAfectado} (Orden público): ${item.descripcionOrdenPublico}`
         }
   }
   if (dataKey === 'vinculados') {
      if(!item.descripcionDesconocido) {
         relato.value = 
-        `${relato.value}
-          ${item.typeAfectado} ${item.apellido.toUpperCase()} ${item.nombre}, DNI N° ${
+        `${relato.value} ${item.typeAfectado} ${item.apellido.toUpperCase()} ${item.nombre}, DNI N° ${
                 item.nroDocumento
               }, de nacionalidad ${item.nacionalidad.toUpperCase()}, estado civil ${
                 item.estadoCivil
@@ -150,23 +147,23 @@ const handleSendRelato = (item, dataKey) => {
                 item.instruccion
               }, con domicilio en  ${item.domicilioResidencia}`;
       }else{
-        relato.value =`${relato.value}
-        ${item.typeAfectado} (Persona de filiación desconocida): ${item.descripcionDesconocido}`
+        relato.value =
+        `${relato.value} ${item.typeAfectado} (Persona de filiación desconocida): ${item.descripcionDesconocido}`
       }
 }
   if (dataKey === 'personalInterviniente') {
-    relato.value = `${relato.value}
-Interviniente ${item.apellido.toUpperCase()} ${item.nombre}, de jerarquia ${
+    relato.value = `${relato.value} Interviniente ${
+    item.apellido.toUpperCase()} ${item.nombre}, de jerarquia ${
       item.jerarquia
     }, en ${item.dependencia}`;
   }
   if (dataKey === 'fecha') {
-    relato.value = `${relato.value}
-En la fecha ${item.desdeFechaHora}, en ${item.calle} ${item.numero}, ${item.departamento}`;
+    relato.value = `${relato.value} En la fecha ${
+    item.desdeFechaHora}, en ${item.calle} ${item.numero}, ${item.departamento}`;
   }
   if (dataKey === 'efectos') {
-    relato.value = `${relato.value}
-  ${item.estado.toUpperCase()}, ${item.categoria}, ${item.subcategoria} ${
+    relato.value = `${relato.value} ${
+    item.estado.toUpperCase()}, ${item.categoria}, ${item.subcategoria} ${
       item.marca
     } ${item.modelo}, de tipo ${item.tipo}`;
   }

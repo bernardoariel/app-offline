@@ -227,7 +227,7 @@ const convertStringToPhrase = (key: string): string => {
                 ></Button>
               </div>
 
-              <div class="flex-items">
+              <div :class="['flex-items',{ 'my-4': item.descripcionDesconocido || item.descripcionOrdenPublico }]">
                 <span  v-if="!item.descripcionDesconocido && !item.descripcionOrdenPublico" class="font-bold">{{
                   item.apellido ? getUpperCase(item.apellido) + ',' : ''
                 }}</span>

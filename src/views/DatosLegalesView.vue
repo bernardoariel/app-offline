@@ -227,6 +227,7 @@ const getDropdownModel = (item: string) => {
         v-model="selectedCausaCaratulaList"
         :options="itemsCausaCaratula"
         optionLabel="name"
+        emptyMessage="No hay opciones seleccionadas"
         class="w-full"
       >
         <template #option="{ option }">
@@ -251,6 +252,7 @@ const getDropdownModel = (item: string) => {
         v-model="selectedArticulosRelacionadosList"
         :options="itemsArticulosRelacionados"
         optionLabel="name"
+        emptyMessage="No hay opciones seleccionadas"
         class="w-full"
       >
         <template #option="{ option }">

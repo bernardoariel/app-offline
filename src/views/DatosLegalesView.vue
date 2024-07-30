@@ -10,6 +10,11 @@ import {
   modusOperandiDropdwown,
   causaCaratulaDropdwown,
   juzgadoIntervinienteDropdwown,
+  articulosDropdwown,
+  delitosDropdown,
+  ufiNroDropdown,
+fiscalCargoDropdown,
+ayudanteFiscalDropdown
 } from '../helpers/getDropItems';
 import { getUpperCase } from '@/helpers/stringUtils';
 import useDatosLegales from '../composables/useDatosLegales';
@@ -24,15 +29,20 @@ const { markRecordDeleted } = useFieldState();
 const {
   selectedYear,
   selectedSitio,
+  selectedDelito,
   selectedModusOperandi,
   selectedCausaCaratula,
   selectedJuzgadoInterviniente,
-  selectedCausaCaratulaList,
+  selectedArticulo: selectedArticulosRelacionados,
   nroLegajo,
   itemsCausaCaratula,
   initialValuesDatosLegales,
-  selectedDelito,
-  selectedArticulosRelacionados,
+  itemsArticulosRelacionados,
+  selectedCausaCaratulaList,
+  selectedArticulosRelacionadosList,
+  selectedUfiNro,
+  selectedFiscalCargo,
+  selectedAyudanteFiscal
 } = useDatosLegales();
 const { addField, setFieldModified } = useLegalesState();
 
@@ -81,6 +91,16 @@ watch(selectedCausaCaratula, () => {
   selectedCausaCaratula.value = undefined;
 });
 
+watch(selectedArticulosRelacionados, () => {
+  if (!selectedArticulosRelacionados.value) return;
+
+  const itemExists = itemsArticulosRelacionados.value.some(
+    (item) => item.name === selectedArticulosRelacionados.value?.name
+  );
+  if (!itemExists) itemsArticulosRelacionados.value.push(selectedArticulosRelacionados.value);
+
+  selectedArticulosRelacionados.value = undefined;
+});
 const eliminarItem = (name: string) => {
   if (itemsCausaCaratula.value === undefined) return;
   itemsCausaCaratula.value = itemsCausaCaratula.value.filter(
@@ -97,6 +117,71 @@ const handleInputChange = (campo: string | number, event: Event) => {
   formData.value = { ...formData.value, [campo]: valor };
   addField(campo.toString(), valor);
   setFieldModified(campo.toString(), true);
+};
+const getField = (type: string): keyof DatosLegalesForm => {
+  switch (type) {
+    case 'sitio':
+      return 'selectSitio';
+    case 'delito':
+      return 'selectDelito';
+    case 'modusOperandi':
+      return 'selectModusOperandi';
+    case 'causaCaratula':
+      return 'selectCausaCaratula';
+    case 'juzgadoInterviniente':
+      return 'selectJuzgadoInterviniente';
+    case 'listboxCausaCaratula':
+      return 'opcionesCausaCaratula';
+    case 'articulosRelacionados':
+      return 'selectArticulo';
+    case 'ufiNro':
+      return 'selectUfiNro';
+    case 'fiscalCargo':
+      return 'selectFiscalCargo';
+    case 'ayudanteFiscal':
+      return 'selectAyudanteFiscal';
+    default:
+      return '' as keyof DatosLegalesForm;
+  }
+};
+
+const dropdownItems: { [key: string]: any } = {
+  selectSitio: sitiosDropdwown.value,
+  selectModusOperandi: modusOperandiDropdwown.value,
+  selectCausaCaratula: causaCaratulaDropdwown.value,
+  selectJuzgadoInterviniente: juzgadoIntervinienteDropdwown.value,
+  selectArticulo: articulosDropdwown.value,
+  selectDelito: delitosDropdown.value,
+  selectUfiNro: ufiNroDropdown.value,
+  selectFiscalCargo:fiscalCargoDropdown.value,
+  selectAyudanteFiscal: ayudanteFiscalDropdown.value
+};
+
+const getDropdownModel = (item: string) => {
+  switch (item) {
+    case 'sitio':
+      return selectedSitio;
+    case 'delito':
+      return selectedDelito;
+    case 'modusOperandi':
+      return selectedModusOperandi;
+    case 'causaCaratula':
+      return selectedCausaCaratula;
+    case 'juzgadoInterviniente':
+      return selectedJuzgadoInterviniente;
+    case 'listboxCausaCaratula':
+      return selectedCausaCaratulaList;
+    case 'articulosRelacionados':
+      return selectedArticulosRelacionadosList;
+    case 'ufiNro':
+      return selectedUfiNro;
+    case 'fiscalCargo':
+      return selectedFiscalCargo;
+    case 'ayudanteFiscal':
+      return selectedAyudanteFiscal;
+    default:
+      return ref(null);
+  }
 };
 </script>
 <template>

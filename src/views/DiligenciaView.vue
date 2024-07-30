@@ -296,7 +296,7 @@ const navigateSuccessfully = async () => {
 const handleSave = async () => {
   // Reiniciar el estado de los errores
   Object.keys(missingFieldsEmpty).forEach((key) => {
-    missingFieldsEmpty[key] = false;
+    missingFieldsEmpty[key as keyof typeof missingFieldsEmpty] = false;
   });
 
   hasErrors.value = false;
@@ -338,13 +338,13 @@ const handleSave = async () => {
   }
 
   if (hasErrors.value) {
-    alert(
-      `Los siguientes campos están vacíos: ${Object.keys(missingFieldsEmpty)
-        .filter((key) => missingFieldsEmpty[key])
-        .join(', ')}`
-    );
-    return;
-  }
+  alert(
+    `Los siguientes campos están vacíos: ${Object.keys(missingFieldsEmpty)
+      .filter((key) => missingFieldsEmpty[key as keyof typeof missingFieldsEmpty])
+      .join(', ')}`
+  );
+  return;
+}
 
   await storeData();
 

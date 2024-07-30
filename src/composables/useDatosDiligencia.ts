@@ -80,10 +80,12 @@ const useDatosDiligencia = (actuacion: ref<string>) => {
 
   const processedAfectados = computed(() => {
     return afectados.value.map((a, index) => {
+      if (a.descripcionOrdenPublico) 
+        return ``;
       const isLast = index === afectados.value.length - 1;
       const separator = isLast ? '.' : ',';
       const apellidoNombre = getUpperCase(a.apellido) + ', ' + getTitleCase(a.nombre);
-      const documento = 'con ' + a.typeDocumento + ' Nº ' + String(a.nroDocumento);
+      const documento = a.typeDocumento && a.nroDocumento ? 'con ' + a.typeDocumento + ' Nº ' + String(a.nroDocumento) : '';
       const nacionalidad = 'de nacionalidad ' + a.nacionalidad;
       const edad = 'de ' + getAge(a.fecha) + ' años de edad.';
       const instruccion = a.instruccion + ',';
@@ -94,11 +96,14 @@ const useDatosDiligencia = (actuacion: ref<string>) => {
   });
 
   const processedVinculados = computed(() => {
+    
     return vinculados.value.map((v, index) => {
+      if (v.descripcionDesconocido) 
+        return ``;
       const isLast = index === vinculados.value.length - 1;
       const separator = isLast ? '.' : ',';
       const apellidoNombre = getUpperCase(v.apellido) + ', ' + getTitleCase(v.nombre);
-      const documento = 'con ' + v.typeDocumento + ' Nº ' + String(v.nroDocumento);
+      const documento = v.typeDocumento && v.nroDocumento ? 'con ' + v.typeDocumento + ' Nº ' + String(v.nroDocumento) : '';;
       const nacionalidad = 'de nacionalidad ' + v.nacionalidad;
       const edad = 'de ' + getAge(v.fecha) + ' años de edad.';
       const instruccion = v.instruccion + ',';

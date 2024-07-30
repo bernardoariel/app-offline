@@ -171,6 +171,10 @@ let [email] = defineField('email');
 let [profesion] = defineField('profesion');
 let [textAreaDescription,textAreaDescriptionAtrrs] = defineField('textAreaDescription');
 
+textAreaDescription.value = textAreaDescription.value !== undefined ? textAreaDescription.value : '';
+domicilio.value = domicilio.value !== undefined ? domicilio.value : '';
+
+
 const firsDateChangeDone = ref(true);
 const { editar, agregar, resetAllDropdown, initialValues } = useAfectados();
 

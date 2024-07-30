@@ -370,6 +370,7 @@ watch(selectedItem, (newVal: any) => {
             @change="(newValue) => handleDropdownChange('tipo', newValue)"
             placeholder="Seleccione Modelo"
             :color="false"
+            filter
             :error="errors.modeloSelect"
             v-bind="modeloSelectAttrs"
           />
@@ -385,6 +386,7 @@ watch(selectedItem, (newVal: any) => {
             :value="getInputValue('año')"
             @input="handleInputChange('año', $event)"
             @blur="() => handleBlur('año')"
+            :color="false"
           />
         </div>
         <div class="col-6">
@@ -395,6 +397,7 @@ watch(selectedItem, (newVal: any) => {
             :value="getInputValue('nroChasis')"
             @input="handleInputChange('nroChasis', $event)"
             @blur="() => handleBlur('nroChasis')"
+            :color="false"
           />
         </div>
         <div class="col-6">
@@ -405,6 +408,7 @@ watch(selectedItem, (newVal: any) => {
             :value="getInputValue('nroMotor')"
             @input="handleInputChange('nroMotor', $event)"
             @blur="() => handleBlur('nroMotor')"
+            :color="false"
           />
         </div>
         <div class="col-6">
@@ -415,6 +419,7 @@ watch(selectedItem, (newVal: any) => {
             :value="getInputValue('dominio')"
             @input="handleInputChange('dominio', $event)"
             @blur="() => handleBlur('dominio')"
+            :color="false"
           />
         </div>
         <div class="col-6">
@@ -425,6 +430,7 @@ watch(selectedItem, (newVal: any) => {
             :value="getInputValue('nroSerie')"
             @input="handleInputChange('nroSerie', $event)"
             @blur="() => handleBlur('nroSerie')"
+            :color="false"
           />
         </div>
         <div class="col-6">
@@ -435,6 +441,7 @@ watch(selectedItem, (newVal: any) => {
             :value="getInputValue('nroIMEI')"
             @input="handleInputChange('nroIMEI', $event)"
             @blur="() => handleBlur('nroIMEI')"
+            :color="false"
           />
         </div>
         <div class="col-6">
@@ -445,6 +452,7 @@ watch(selectedItem, (newVal: any) => {
             :value="getInputValue('nroAbonado')"
             @input="handleInputChange('nroAbonado', $event)"
             @blur="() => handleBlur('nroAbonado')"
+            :color="false"
           />
         </div>
         <div class="col-6">
@@ -455,6 +463,7 @@ watch(selectedItem, (newVal: any) => {
             :value="getInputValue('color')"
             @input="handleInputChange('color', $event)"
             @blur="() => handleBlur('color')"
+            :color="false"
           />
         </div>
         <div class="ml-auto mt-2 p-0">

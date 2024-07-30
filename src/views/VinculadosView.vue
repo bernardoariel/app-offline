@@ -95,7 +95,7 @@ const validationSchema = yup.object({
     name: yup
       .string()
       .required('Seleccione un tipo de denunciante')
-      .oneOf(['Acusado', 'Detenido'], 'Selecciones un tipo válido'),
+      .oneOf(['Acusado', 'Detenido','Extraviado'], 'Selecciones un tipo válido'),
   }),
   
   nacionalidadSelect: yup.object().shape({
@@ -158,6 +158,11 @@ let [telefono] = defineField('telefono');
 let [apodo] = defineField('apodo');
 let [profesion] = defineField('profesion');
 let [textAreaDescription,textAreaDescriptionAtrrs] = defineField('textAreaDescription');
+
+textAreaDescription.value = textAreaDescription.value !== undefined ? textAreaDescription.value : '';
+domicilio.value = domicilio.value !== undefined ? domicilio.value : '';
+
+
 const firsDateChangeDone = ref(true);
 
 const {

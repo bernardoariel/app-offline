@@ -24,7 +24,7 @@ const { fechaCreacion } = useActuacion()
 
 const useDatosDiligencia = (actuacion: ref<string>) => {
 
-  const { afectados, intervinientes, fechaCreacionaActuacion, itemSelected, dependenciaData: dependencia } = useItem();
+  const { afectados, intervinientes, fechaCreacionaActuacion, itemSelected, dependenciaData: dependencia, vinculados } = useItem();
 
   const isEditingHeader = ref<boolean>(false);
   const isEditingFooter = ref<boolean>(false);
@@ -74,11 +74,27 @@ const useDatosDiligencia = (actuacion: ref<string>) => {
 
   const dependenciaDataLocal = getDependenciaData() //datos local Storage
   // const dependenciaDataDB = JSON.parse(dependencia.value)// datos del item seleccionado, que esta en la db
-
+  const ufiValue = '140'
+  const fiscalValue = 'Messi, Lionel Andres'
 
   const processedAfectados = computed(() => {
     return afectados.value.map((a, index) => {
       const isLast = index === afectados.value.length - 1;
+      const separator = isLast ? '.' : ',';
+      const apellidoNombre = getUpperCase(a.apellido) + ', ' + getTitleCase(a.nombre);
+      const documento = 'con ' + a.typeDocumento + ' Nº ' + String(a.nroDocumento);
+      const nacionalidad = 'de nacionalidad ' + a.nacionalidad;
+      const edad = 'de ' + getAge(a.fecha) + ' años de edad.';
+      const instruccion = a.instruccion + ',';
+      const profesion = 'de profesion ' + a.profesion + ',';
+      const domicilio = 'con domicilio en ' + a.domicilioResidencia;
+      return `${getStyle(apellidoNombre)} ${getStyle(documento)} ${getStyle(nacionalidad)} ${getStyle(edad)} ${getStyle(instruccion)} ${getStyle(profesion)} ${getStyle(domicilio, isLast)}`;
+    }).join(' ');
+  });
+
+  const processedVinculados = computed(() => {
+    return vinculados.value.map((a, index) => {
+      const isLast = index === vinculados.value.length - 1;
       const separator = isLast ? '.' : ',';
       const apellidoNombre = getUpperCase(a.apellido) + ', ' + getTitleCase(a.nombre);
       const documento = 'con ' + a.typeDocumento + ' Nº ' + String(a.nroDocumento);
@@ -112,9 +128,11 @@ const useDatosDiligencia = (actuacion: ref<string>) => {
         .replace('@departamento', getStyle(dependenciaDataLocal.dependencia.departamento))
         .replace('@fechaactuacion', getStyle(convertDate(itemSelected.value ? fechaCreacionaActuacion.value : fechaCreacion.value)))
         .replace('@afectados', processedAfectados.value)
-        .replace('@intervinientes', processedIntervinientes.value);
-
-      footer = diligenciaSeleccionada.value.footer;
+        .replace('@intervinientes', processedIntervinientes.value)
+        .replace('@vinculados', processedVinculados.value);
+      footer = diligenciaSeleccionada.value.footer
+        .replace('@ufi', getStyle(ufiValue))
+        .replace('@fiscal', getStyle(fiscalValue));
 
       // Reemplazar palabras claves con estilos especiales
       ['HACE CONSTAR', 'DISPONE', 'CERTIFICO', 'CERTIFICA', 'DECLARO'].forEach((word) => {

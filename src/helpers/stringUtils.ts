@@ -31,3 +31,11 @@ export const getUpperCase = (word?:string) => {
     ? text.slice(0, maxLength) + '...'
     : text;
   }
+
+  export const separateCamelCase = (str) => {
+    return str
+      .replace(/([a-z])([A-Z])/g, '$1 $2') // Agrega un espacio antes de cada letra mayúscula que sigue a una minúscula
+      .replace(/([A-Z])([A-Z][a-z])/g, '$1 $2') // Agrega un espacio entre letras mayúsculas seguidas por minúsculas
+      .toLowerCase() // Convierte todo a minúsculas
+      .replace(/(^\w|\s\w)/g, m => m.toUpperCase()); // Convierte la primera letra de cada palabra a mayúsculas
+  };

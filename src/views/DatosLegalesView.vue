@@ -10,24 +10,40 @@ import {
   modusOperandiDropdwown,
   causaCaratulaDropdwown,
   juzgadoIntervinienteDropdwown,
+  articulosDropdwown,
+  delitosDropdown,
+  ufiNroDropdown,
+fiscalCargoDropdown,
+ayudanteFiscalDropdown
 } from '../helpers/getDropItems';
 import { getUpperCase } from '@/helpers/stringUtils';
 import useDatosLegales from '../composables/useDatosLegales';
 import type { DatosLegalesForm } from '../interfaces/datosLegalesForm.interface';
 import useLegalesState from '@/composables/useLegalesState';
 import useFieldState from '@/composables/useFieldsState';
-
+import { separateCamelCase } from '../helpers/stringUtils';
+interface Props {
+  datosLegalesItems?: string[];
+}
+const props = defineProps<Props>();
 const { markRecordDeleted } = useFieldState();
 const {
   selectedYear,
   selectedSitio,
+  selectedDelito,
   selectedModusOperandi,
   selectedCausaCaratula,
   selectedJuzgadoInterviniente,
-  selectedCausaCaratulaList,
+  selectedArticulo: selectedArticulosRelacionados,
   nroLegajo,
   itemsCausaCaratula,
   initialValuesDatosLegales,
+  itemsArticulosRelacionados,
+  selectedCausaCaratulaList,
+  selectedArticulosRelacionadosList,
+  selectedUfiNro,
+  selectedFiscalCargo,
+  selectedAyudanteFiscal
 } = useDatosLegales();
 const { addField, setFieldModified } = useLegalesState();
 
@@ -47,6 +63,22 @@ const handleDropdownChange = (
 
     setFieldModified(campo, true);
   }
+  // Actualizar las variables reactivas directamente
+  if (campo === 'selectSitio') {
+    selectedSitio.value = newValue.value;
+  } else if (campo === 'selectModusOperandi') {
+    selectedModusOperandi.value = newValue.value;
+  } else if (campo === 'selectDelito') {
+    selectedDelito.value = newValue.value;
+  } else if (campo === 'selectCausaCaratula') {
+    selectedCausaCaratula.value = newValue.value;
+  } else if (campo === 'selectJuzgadoInterviniente') {
+    selectedJuzgadoInterviniente.value = newValue.value;
+  } else if (campo === 'opcionesCausaCaratula') {
+    selectedCausaCaratula.value = newValue.value;
+  } else if (campo === 'selectArticulo') {
+    selectedArticulosRelacionados.value = newValue.value;
+  }
 };
 
 watch(selectedCausaCaratula, () => {
@@ -60,11 +92,31 @@ watch(selectedCausaCaratula, () => {
   selectedCausaCaratula.value = undefined;
 });
 
-const eliminarItem = (name: string) => {
-  if (itemsCausaCaratula.value === undefined) return;
-  itemsCausaCaratula.value = itemsCausaCaratula.value.filter(
-    (item) => item.name !== name
+watch(selectedArticulosRelacionados, () => {
+  if (!selectedArticulosRelacionados.value) return;
+
+  const itemExists = itemsArticulosRelacionados.value.some(
+    (item) => item.name === selectedArticulosRelacionados.value?.name
   );
+  if (!itemExists) itemsArticulosRelacionados.value.push(selectedArticulosRelacionados.value);
+
+  selectedArticulosRelacionados.value = undefined;
+});
+const eliminarItem = (name: string, type: string) => {
+  if (type === 'caratula') {
+    if (!itemsCausaCaratula.value) return;
+    itemsCausaCaratula.value = itemsCausaCaratula.value.filter(
+      (item) => item.name !== name
+    );
+    console.log('itemsCausaCaratula:', itemsCausaCaratula.value);
+  } else if (type === 'articulos') {
+    if (!itemsArticulosRelacionados.value) return;
+    itemsArticulosRelacionados.value = itemsArticulosRelacionados.value.filter(
+      (item) => item.name !== name
+    );
+    console.log('itemsArticulosRelacionados:', itemsArticulosRelacionados.value);
+  }
+
   markRecordDeleted();
 };
 
@@ -76,6 +128,71 @@ const handleInputChange = (campo: string | number, event: Event) => {
   formData.value = { ...formData.value, [campo]: valor };
   addField(campo.toString(), valor);
   setFieldModified(campo.toString(), true);
+};
+const getField = (type: string): keyof DatosLegalesForm => {
+  switch (type) {
+    case 'sitio':
+      return 'selectSitio';
+    case 'delito':
+      return 'selectDelito';
+    case 'modusOperandi':
+      return 'selectModusOperandi';
+    case 'causaCaratula':
+      return 'selectCausaCaratula';
+    case 'juzgadoInterviniente':
+      return 'selectJuzgadoInterviniente';
+    case 'listboxCausaCaratula':
+      return 'opcionesCausaCaratula';
+    case 'articulosRelacionados':
+      return 'selectArticulo';
+    case 'ufiNro':
+      return 'selectUfiNro';
+    case 'fiscalCargo':
+      return 'selectFiscalCargo';
+    case 'ayudanteFiscal':
+      return 'selectAyudanteFiscal';
+    default:
+      return '' as keyof DatosLegalesForm;
+  }
+};
+
+const dropdownItems: { [key: string]: any } = {
+  selectSitio: sitiosDropdwown.value,
+  selectModusOperandi: modusOperandiDropdwown.value,
+  selectCausaCaratula: causaCaratulaDropdwown.value,
+  selectJuzgadoInterviniente: juzgadoIntervinienteDropdwown.value,
+  selectArticulo: articulosDropdwown.value,
+  selectDelito: delitosDropdown.value,
+  selectUfiNro: ufiNroDropdown.value,
+  selectFiscalCargo:fiscalCargoDropdown.value,
+  selectAyudanteFiscal: ayudanteFiscalDropdown.value
+};
+
+const getDropdownModel = (item: string) => {
+  switch (item) {
+    case 'sitio':
+      return selectedSitio;
+    case 'delito':
+      return selectedDelito;
+    case 'modusOperandi':
+      return selectedModusOperandi;
+    case 'causaCaratula':
+      return selectedCausaCaratula;
+    case 'juzgadoInterviniente':
+      return selectedJuzgadoInterviniente;
+    case 'listboxCausaCaratula':
+      return selectedCausaCaratulaList;
+    case 'articulosRelacionados':
+      return selectedArticulosRelacionadosList;
+    case 'ufiNro':
+      return selectedUfiNro;
+    case 'fiscalCargo':
+      return selectedFiscalCargo;
+    case 'ayudanteFiscal':
+      return selectedAyudanteFiscal;
+    default:
+      return ref(null);
+  }
 };
 </script>
 <template>
@@ -104,94 +221,72 @@ const handleInputChange = (campo: string | number, event: Event) => {
       />
     </div>
     <!-- Sitio -->
-    <div class="col-12">
-      <label for="dropdown">Sitio</label>
-      <MyDropdown
-        :items="sitiosDropdwown"
-        v-model="selectedSitio"
-        placeholder="Seleccione un sitio"
-        optionLabel="name"
-        filter
-        color
-        @change="(newValue) => handleDropdownChange('selectSitio', newValue)"
-        class="w-full mt-2"
-      />
-    </div>
-    <!-- Modus Operandi -->
-    <div class="col-12">
-      <label for="dropdown">Modus operandi</label>
-      <MyDropdown
-        :items="modusOperandiDropdwown"
-        v-model="selectedModusOperandi"
-        placeholder="Seleccione Modus Operandi"
-        optionLabel="name"
-        filter
-        color
-        @change="
-          (newValue) => handleDropdownChange('selectModusOperandi', newValue)
-        "
-        class="w-full mt-2"
-      />
-    </div>
-    <!-- Modus Operandi -->
-    <div class="col-12">
-      <label for="dropdown">Causa Caratula</label>
-      <MyDropdown
-        :items="causaCaratulaDropdwown"
-        v-model="selectedCausaCaratula"
-        placeholder="Seleccione Causa Caratula"
-        optionLabel="name"
-        filter
-        color
-        @change="
-          (newValue) => handleDropdownChange('selectCausaCaratula', newValue)
-        "
-        class="w-full mt-2"
-      />
-    </div>
-    <div class="col-12">
+    <div v-for="(item, index) in props.datosLegalesItems!.slice(1)" :key="index" class="col-12">
+      <template  v-if="item !== 'listboxCausaCaratula' && item !== 'listboxArticulos'">
+        <label :for="item" class="capitalize">{{ separateCamelCase(item) }}</label>
+        <MyDropdown
+          :items="dropdownItems[getField(item)]"
+          v-model="getDropdownModel(item).value"
+          :placeholder="'Seleccione ' + separateCamelCase(item)"
+          optionLabel="name"
+          filter
+          color
+          @change="(newValue) => handleDropdownChange(getField(item), newValue)"
+          class="w-full mt-2"
+        />
+      </template>
       <Listbox
+        v-else-if="item === 'listboxCausaCaratula'"
         v-model="selectedCausaCaratulaList"
         :options="itemsCausaCaratula"
         optionLabel="name"
+        emptyMessage="No hay opciones seleccionadas"
         class="w-full"
       >
         <template #option="{ option }">
-          <div
-            class="flex align-content-center justify-content-between flex-wrap"
-          >
+          <div class="flex align-content-center justify-content-between flex-wrap">
             <div class="justify-content-between">
-              <span class="font-bold">{{
-                option.name ? getUpperCase(option.name) : ''
-              }}</span>
+              <span class="font-bold">
+                {{ option.name ? getUpperCase(option.name) : '' }}
+              </span>
             </div>
             <div class="justify-content-between">
               <Button
                 icon="pi pi-trash"
                 severity="danger"
-                @click="eliminarItem(option.name)"
+                @click="eliminarItem(option.name,'caratula')"
+              />
+            </div>
+          </div>
+        </template>
+      </Listbox>
+      <Listbox
+        v-else
+        v-model="selectedArticulosRelacionadosList"
+        :options="itemsArticulosRelacionados"
+        optionLabel="name"
+        emptyMessage="No hay opciones seleccionadas"
+        class="w-full"
+      >
+        <template #option="{ option }">
+          <div class="flex align-content-center justify-content-between flex-wrap">
+            <div class="justify-content-between">
+              <span class="font-bold">
+                {{ option.name ? getUpperCase(option.name) : '' }}
+              </span>
+            </div>
+            <div class="justify-content-between">
+              <Button
+                icon="pi pi-trash"
+                severity="danger"
+                @click="eliminarItem(option.name,'articulos')"
               />
             </div>
           </div>
         </template>
       </Listbox>
     </div>
-    <!-- UFI Nro. -->
-    <div class="col-12">
-      <label for="dropdown">Juzgado Interviniente</label>
-      <MyDropdown
-        :items="juzgadoIntervinienteDropdwown"
-        v-model="selectedJuzgadoInterviniente"
-        placeholder="Seleccione Juzgado Interviniente"
-        optionLabel="name"
-        filter
-        color
-        @change="
-          (newValue) =>
-            handleDropdownChange('selectJuzgadoInterviniente', newValue)
-        "
-        class="w-full mt-2"
-      />
-    </div>
+    
+    
   </div>
 </template>

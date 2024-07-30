@@ -233,8 +233,11 @@ const isAnyChange = computed(() => {
                 {{ props.actuacionData.titulo }}
               </div>
 
-              <small class="text-sm font-bold">
-                Nro. Legajo: {{ nroLegajo ? nroLegajo : '' }}
+              <small 
+              :class="{'text-orange-500': !nroLegajo, 'text-gray-500': nroLegajo}"
+              class="text-sm font-bold"
+              >
+                <i class="">{{ actuacionData.datosLegales.items[0]}}</i> {{  nroLegajo ? ': '+ nroLegajo : '' }}
               </small>
             </div>
 
@@ -320,7 +323,7 @@ const isAnyChange = computed(() => {
               </Card>
             </TabPanel>
             <TabPanel header="Datos Legales">
-              <DatosLegalesView />
+              <DatosLegalesView :datosLegalesItems="actuacionData.datosLegales.items" />
             </TabPanel>
           </TabView>
         </template>

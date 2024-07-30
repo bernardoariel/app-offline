@@ -3,7 +3,7 @@ import { ref } from "vue";
 import { mapToDropDownEfectos, mapToDropdownItems } from './dropUtils';
 import { departamentosDropdown } from "@/data/municipios";
 import { dependencias } from "@/data/dependencia";
-import { subcategorias, sitios, modusOperandi, causaCaratula, articulos, juzgadoInterviniente } from '../data/actuacionNew';
+import { subcategorias, sitios, modusOperandi, causaCaratula, articulosRelacionados, juzgadoInterviniente,delitos,ufiNro, ayudanteFiscal, fiscalCargo} from '../data/actuacionNew';
 
 
 export const afectadosDropdown = ref(mapToDropdownItems(afectados));
@@ -24,5 +24,10 @@ export const modelosCategoriasDropdown = ref(mapToDropDownEfectos(modelosCategor
 export const sitiosDropdwown = ref(mapToDropDownEfectos(sitios))
 export const modusOperandiDropdwown = ref(mapToDropDownEfectos(modusOperandi))
 export const causaCaratulaDropdwown = ref(mapToDropDownEfectos(causaCaratula))
-export const articulosDropdwown = ref(mapToDropDownEfectos(articulos))
+export const articulosDropdwown = ref(mapToDropDownEfectos(articulosRelacionados))
 export const juzgadoIntervinienteDropdwown = ref(mapToDropDownEfectos(juzgadoInterviniente))
+
+export const delitosDropdown = ref(mapToDropDownEfectos(delitos))
+export const ufiNroDropdown = ref(mapToDropDownEfectos(ufiNro))
+export const ayudanteFiscalDropdown = ref(mapToDropDownEfectos(ayudanteFiscal))
+export const fiscalCargoDropdown = ref(mapToDropDownEfectos(fiscalCargo))

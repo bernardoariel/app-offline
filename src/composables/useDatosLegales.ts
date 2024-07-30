@@ -1,6 +1,7 @@
 import { ref } from "vue"
 import type { DatosLegalesForm } from "@/interfaces/datosLegalesForm.interface"
 import type { DropDownInterface } from "@/interfaces/dropdown.interface"
+import { generateRandomNumber } from '../helpers/generateRandomNumber';
 
 
 let nroLegajo = ref<string | null>()
@@ -39,7 +40,7 @@ const useDatosLegales = () => {
     };
 
     const fakeValues = {
-        nroLegajo: '101',
+        nroLegajo: generateRandomNumber().toString(),
         selectedYear: { name: '2024' },
         selectedSitio: { name: 'Museo' },
         selectedModusOperandi: { name: ' Delito Rural' },

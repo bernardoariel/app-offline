@@ -132,7 +132,8 @@ const useDatosDiligencia = (actuacion: ref<string>) => {
         .replace('@vinculados', processedVinculados.value);
       footer = diligenciaSeleccionada.value.footer
         .replace('@ufi', getStyle(ufiValue))
-        .replace('@fiscal', getStyle(fiscalValue));
+        .replace('@fiscal', getStyle(fiscalValue))
+        .replace('@vinculados', processedVinculados.value);
 
       // Reemplazar palabras claves con estilos especiales
       ['HACE CONSTAR', 'DISPONE', 'CERTIFICO', 'CERTIFICA', 'DECLARO'].forEach((word) => {

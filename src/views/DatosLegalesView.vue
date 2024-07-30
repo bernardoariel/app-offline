@@ -210,66 +210,55 @@ const getDropdownModel = (item: string) => {
       />
     </div>
     <!-- Sitio -->
-    <div class="col-12">
-      <label for="dropdown">Sitio</label>
-      <MyDropdown
-        :items="sitiosDropdwown"
-        v-model="selectedSitio"
-        placeholder="Seleccione un sitio"
+    <div v-for="(item, index) in props.datosLegalesItems!.slice(1)" :key="index" class="col-12">
+      <label :for="item" class="capitalize">{{ item }}</label>
+      <MyDropdown v-if="item !== 'listboxCausaCaratula' && item !== 'listboxArticulos'"
+        :items="dropdownItems[getField(item)]"
+        v-model="getDropdownModel(item).value"
+        :placeholder="'Seleccione ' + item"
         optionLabel="name"
         filter
         color
-        @change="(newValue) => handleDropdownChange('selectSitio', newValue)"
+        @change="(newValue) => handleDropdownChange(getField(item), newValue)"
         class="w-full mt-2"
       />
-    </div>
-    <!-- Modus Operandi -->
-    <div class="col-12">
-      <label for="dropdown">Modus operandi</label>
-      <MyDropdown
-        :items="modusOperandiDropdwown"
-        v-model="selectedModusOperandi"
-        placeholder="Seleccione Modus Operandi"
-        optionLabel="name"
-        filter
-        color
-        @change="
-          (newValue) => handleDropdownChange('selectModusOperandi', newValue)
-        "
-        class="w-full mt-2"
-      />
-    </div>
-    <!-- Modus Operandi -->
-    <div class="col-12">
-      <label for="dropdown">Causa Caratula</label>
-      <MyDropdown
-        :items="causaCaratulaDropdwown"
-        v-model="selectedCausaCaratula"
-        placeholder="Seleccione Causa Caratula"
-        optionLabel="name"
-        filter
-        color
-        @change="
-          (newValue) => handleDropdownChange('selectCausaCaratula', newValue)
-        "
-        class="w-full mt-2"
-      />
-    </div>
-    <div class="col-12">
       <Listbox
+        v-else-if="item === 'listboxCausaCaratula'"
         v-model="selectedCausaCaratulaList"
         :options="itemsCausaCaratula"
         optionLabel="name"
         class="w-full"
       >
         <template #option="{ option }">
-          <div
-            class="flex align-content-center justify-content-between flex-wrap"
-          >
+          <div class="flex align-content-center justify-content-between flex-wrap">
             <div class="justify-content-between">
-              <span class="font-bold">{{
-                option.name ? getUpperCase(option.name) : ''
-              }}</span>
+              <span class="font-bold">
+                {{ option.name ? getUpperCase(option.name) : '' }}
+              </span>
+            </div>
+            <div class="justify-content-between">
+              <Button
+                icon="pi pi-trash"
+                severity="danger"
+                @click="eliminarItem(option.name)"
+              />
+            </div>
+          </div>
+        </template>
+      </Listbox>
+      <Listbox
+        v-else
+        v-model="selectedArticulosRelacionadosList"
+        :options="itemsArticulosRelacionados"
+        optionLabel="name"
+        class="w-full"
+      >
+        <template #option="{ option }">
+          <div class="flex align-content-center justify-content-between flex-wrap">
+            <div class="justify-content-between">
+              <span class="font-bold">
+                {{ option.name ? getUpperCase(option.name) : '' }}
+              </span>
             </div>
             <div class="justify-content-between">
               <Button
@@ -282,22 +271,7 @@ const getDropdownModel = (item: string) => {
         </template>
       </Listbox>
     </div>
-    <!-- UFI Nro. -->
-    <div class="col-12">
-      <label for="dropdown">Juzgado Interviniente</label>
-      <MyDropdown
-        :items="juzgadoIntervinienteDropdwown"
-        v-model="selectedJuzgadoInterviniente"
-        placeholder="Seleccione Juzgado Interviniente"
-        optionLabel="name"
-        filter
-        color
-        @change="
-          (newValue) =>
-            handleDropdownChange('selectJuzgadoInterviniente', newValue)
-        "
-        class="w-full mt-2"
-      />
-    </div>
+    
+    
   </div>
 </template>

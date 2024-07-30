@@ -31,6 +31,8 @@ const {
   nroLegajo,
   itemsCausaCaratula,
   initialValuesDatosLegales,
+  selectedDelito,
+  selectedArticulosRelacionados,
 } = useDatosLegales();
 const { addField, setFieldModified } = useLegalesState();
 
@@ -49,6 +51,22 @@ const handleDropdownChange = (
     };
 
     setFieldModified(campo, true);
+  }
+  // Actualizar las variables reactivas directamente
+  if (campo === 'selectSitio') {
+    selectedSitio.value = newValue.value;
+  } else if (campo === 'selectModusOperandi') {
+    selectedModusOperandi.value = newValue.value;
+  } else if (campo === 'selectDelito') {
+    selectedDelito.value = newValue.value;
+  } else if (campo === 'selectCausaCaratula') {
+    selectedCausaCaratula.value = newValue.value;
+  } else if (campo === 'selectJuzgadoInterviniente') {
+    selectedJuzgadoInterviniente.value = newValue.value;
+  } else if (campo === 'opcionesCausaCaratula') {
+    selectedCausaCaratula.value = newValue.value;
+  } else if (campo === 'selectArticulo') {
+    selectedArticulosRelacionados.value = newValue.value;
   }
 };
 

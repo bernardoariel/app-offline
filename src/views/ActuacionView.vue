@@ -320,7 +320,7 @@ const isAnyChange = computed(() => {
               </Card>
             </TabPanel>
             <TabPanel header="Datos Legales">
-              <DatosLegalesView />
+              <DatosLegalesView :datosLegalesItems="actuacionData.datosLegales.items" />
             </TabPanel>
           </TabView>
         </template>

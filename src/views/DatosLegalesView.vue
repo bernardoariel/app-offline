@@ -16,7 +16,10 @@ import useDatosLegales from '../composables/useDatosLegales';
 import type { DatosLegalesForm } from '../interfaces/datosLegalesForm.interface';
 import useLegalesState from '@/composables/useLegalesState';
 import useFieldState from '@/composables/useFieldsState';
-
+interface Props {
+  datosLegalesItems?: string[];
+}
+const props = defineProps<Props>();
 const { markRecordDeleted } = useFieldState();
 const {
   selectedYear,

@@ -353,7 +353,7 @@ export const actuaciones: TipoActuaciones = {
                 "valor": null,
             },
             "vinculados": {
-                "titulo": "Vinculados",
+                "titulo": "Extraviado/a",
                 "valor": ['Extraviado'],
             },
             "efectos": {

@@ -21,6 +21,7 @@ import useDatosLegales from '../composables/useDatosLegales';
 import type { DatosLegalesForm } from '../interfaces/datosLegalesForm.interface';
 import useLegalesState from '@/composables/useLegalesState';
 import useFieldState from '@/composables/useFieldsState';
+import { separateCamelCase } from '../helpers/stringUtils';
 interface Props {
   datosLegalesItems?: string[];
 }
@@ -211,17 +212,19 @@ const getDropdownModel = (item: string) => {
     </div>
     <!-- Sitio -->
     <div v-for="(item, index) in props.datosLegalesItems!.slice(1)" :key="index" class="col-12">
-      <label :for="item" class="capitalize">{{ item }}</label>
-      <MyDropdown v-if="item !== 'listboxCausaCaratula' && item !== 'listboxArticulos'"
-        :items="dropdownItems[getField(item)]"
-        v-model="getDropdownModel(item).value"
-        :placeholder="'Seleccione ' + item"
-        optionLabel="name"
-        filter
-        color
-        @change="(newValue) => handleDropdownChange(getField(item), newValue)"
-        class="w-full mt-2"
-      />
+      <template  v-if="item !== 'listboxCausaCaratula' && item !== 'listboxArticulos'">
+        <label :for="item" class="capitalize">{{ separateCamelCase(item) }}</label>
+        <MyDropdown
+          :items="dropdownItems[getField(item)]"
+          v-model="getDropdownModel(item).value"
+          :placeholder="'Seleccione ' + item"
+          optionLabel="name"
+          filter
+          color
+          @change="(newValue) => handleDropdownChange(getField(item), newValue)"
+          class="w-full mt-2"
+        />
+      </template>
       <Listbox
         v-else-if="item === 'listboxCausaCaratula'"
         v-model="selectedCausaCaratulaList"

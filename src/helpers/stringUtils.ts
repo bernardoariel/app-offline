@@ -31,3 +31,7 @@ export const getUpperCase = (word?:string) => {
     ? text.slice(0, maxLength) + '...'
     : text;
   }
+
+  export const separateCamelCase = (str)=> {
+    return str.replace(/([a-z])([A-Z])/g, '$1 $2');
+}

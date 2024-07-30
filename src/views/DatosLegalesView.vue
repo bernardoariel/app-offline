@@ -102,11 +102,21 @@ watch(selectedArticulosRelacionados, () => {
 
   selectedArticulosRelacionados.value = undefined;
 });
-const eliminarItem = (name: string) => {
-  if (itemsCausaCaratula.value === undefined) return;
-  itemsCausaCaratula.value = itemsCausaCaratula.value.filter(
-    (item) => item.name !== name
-  );
+const eliminarItem = (name: string, type: string) => {
+  if (type === 'caratula') {
+    if (!itemsCausaCaratula.value) return;
+    itemsCausaCaratula.value = itemsCausaCaratula.value.filter(
+      (item) => item.name !== name
+    );
+    console.log('itemsCausaCaratula:', itemsCausaCaratula.value);
+  } else if (type === 'articulos') {
+    if (!itemsArticulosRelacionados.value) return;
+    itemsArticulosRelacionados.value = itemsArticulosRelacionados.value.filter(
+      (item) => item.name !== name
+    );
+    console.log('itemsArticulosRelacionados:', itemsArticulosRelacionados.value);
+  }
+
   markRecordDeleted();
 };
 
@@ -217,7 +227,7 @@ const getDropdownModel = (item: string) => {
         <MyDropdown
           :items="dropdownItems[getField(item)]"
           v-model="getDropdownModel(item).value"
-          :placeholder="'Seleccione ' + item"
+          :placeholder="'Seleccione ' + separateCamelCase(item)"
           optionLabel="name"
           filter
           color
@@ -244,7 +254,7 @@ const getDropdownModel = (item: string) => {
               <Button
                 icon="pi pi-trash"
                 severity="danger"
-                @click="eliminarItem(option.name)"
+                @click="eliminarItem(option.name,'caratula')"
               />
             </div>
           </div>
@@ -269,7 +279,7 @@ const getDropdownModel = (item: string) => {
               <Button
                 icon="pi pi-trash"
                 severity="danger"
-                @click="eliminarItem(option.name)"
+                @click="eliminarItem(option.name,'articulos')"
               />
             </div>
           </div>

@@ -158,10 +158,7 @@ import useActuacion from '@/composables/useActuacion';
 import { useDialog } from '@/composables/useDialog';
 import useFieldState from '@/composables/useFieldsState';
 import useLegalesState from '@/composables/useLegalesState';
-import type {
-  DatosLegalesForm,
-  DatosLegales,
-} from '../interfaces/datosLegalesForm.interface';
+
 import useDatosLegales from '../composables/useDatosLegales';
 import useActuacionLoading from '@/composables/useActuacionLoading';
 

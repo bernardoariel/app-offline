@@ -1,5 +1,5 @@
 import type { SidebarLink } from '../components/SidebarMenu.vue';
-export const sidebarLinks:SidebarLink[] = [
+export const sidebarLinks: SidebarLink[] = [
   {
     path: '/',
     pathName: 'escritorio',
@@ -167,10 +167,10 @@ export const sidebarLinks:SidebarLink[] = [
     type: 'link',
     grupo: 'UFI DELITOS',
     props: { formType: "ufi-delitos-especiales", pageTitle: "UFI - DELITOS ESPECIALES" },
-    expanded:true,
+    expanded: true,
     subitems: [
       {
-        path: '/actuaciones/new/delitos-especiales-paradero/initial',
+        path: '/actuaciones/new/ufi-delitos-especiales-paradero/initial',
         pathName: 'especiales-paradero',
         titulo: 'Establecer Paradero',
         icon: 'pi-microsoft',
@@ -180,7 +180,7 @@ export const sidebarLinks:SidebarLink[] = [
         props: { formType: "especiales-paradero", pageTitle: "ESTABLECER PARADERO" },
       },
       {
-        path: '/actuaciones/new/delitos-especiales-médicas/initial',
+        path: '/actuaciones/new/ufi-delitos-especiales-médicas/initial',
         pathName: 'especiales-médicas',
         titulo: 'Emergencias Medicas',
         icon: 'pi-microsoft',
@@ -190,7 +190,7 @@ export const sidebarLinks:SidebarLink[] = [
         props: { formType: "especiales-médicas", pageTitle: "EMERGENCIAS MÉDICAS" },
       },
       {
-        path: '/actuaciones/new/delitos-especiales-vial/initial',
+        path: '/actuaciones/new/ufi-delitos-especiales-vial/initial',
         pathName: 'especiales-vial',
         titulo: 'Siniestro Vial',
         icon: 'pi-microsoft',
@@ -200,7 +200,7 @@ export const sidebarLinks:SidebarLink[] = [
         props: { formType: "especiales-vial", pageTitle: "SINIESTRO VIAL" },
       },
       {
-        path: '/actuaciones/new/delitos-especiales-ahorcamiento-suicidio/initial',
+        path: '/actuaciones/new/ufi-delitos-especiales-ahorcamiento-suicidio/initial',
         pathName: 'especiales-ahorcamiento-suicidio',
         titulo: 'Ahorcamiento o Suicidio',
         icon: 'pi-microsoft',
@@ -210,7 +210,7 @@ export const sidebarLinks:SidebarLink[] = [
         props: { formType: "especiales-ahorcamiento-suicidio", pageTitle: "AHORCAMIENTO O SUICIDIO" },
       },
       {
-        path: '/actuaciones/new/delitos-especiales-incendio-vivienda/initial',
+        path: '/actuaciones/new/ufi-delitos-especiales-incendio-vivienda/initial',
         pathName: 'especiales-incendio-vivienda',
         titulo: 'Incendio en Vivienda',
         icon: 'pi-microsoft',
@@ -220,7 +220,7 @@ export const sidebarLinks:SidebarLink[] = [
         props: { formType: "especiales-incendio-vivienda", pageTitle: "INCENDIO EN VIVIENDA" },
       },
       {
-        path: '/actuaciones/new/delitos-especiales-intoxicación/initial',
+        path: '/actuaciones/new/ufi-delitos-especiales-intoxicación/initial',
         pathName: 'especiales-intoxicación',
         titulo: 'Intoxicación',
         icon: 'pi-microsoft',

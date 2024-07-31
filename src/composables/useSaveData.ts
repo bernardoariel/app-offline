@@ -11,6 +11,7 @@ import type { DatosLegales } from '../interfaces/datosLegalesForm.interface';
 import { getDependenciaData } from '@/helpers/getDependencia';
 import { formatFecha } from '@/helpers/getFormatFecha';
 import { useFormCompleted } from './useFormCompleted';
+import useActuacionData from './useActuacionData';
 
 export interface dataActuacionForSave {
   id?: number;
@@ -27,6 +28,7 @@ export interface dataActuacionForSave {
 }
 
 const { fechaCreacion, getFormattedDate } = useActuacion();
+const { actuacionData } = useActuacionData()
 const { nombreActuacion, nroLegajo, selectedJuzgadoInterviniente } = useDatosLegales();
 const { validateForm } = useFormCompleted()
 const db = new Dexie('Siis') as any;
@@ -40,6 +42,7 @@ const useSaveData = () => {
   const success = ref(false);
 
   const saveData = async (data: dataActuacionForSave) => {
+
     const isValid = validateForm(nombreActuacion.value, data)
     data.relato = data.relato.replace(/\n/g, ' ');
     if (!isValid) {
@@ -52,7 +55,7 @@ const useSaveData = () => {
       await db.actuaciones.add({
         nroLegajoCompleto: nroLegajo.value,
         fechaCreacion: fechaCreacion.value,
-        nombreActuacion: nombreActuacion.value,
+        nombreActuacion: actuacionData.value?.titulo,
         juzgadoInterviniente: selectedJuzgadoInterviniente.value?.name || '',
         afectados: JSON.stringify(data.afectados),
         vinculados: JSON.stringify(data.vinculados),
@@ -116,7 +119,7 @@ const useSaveData = () => {
           id: actuacion.id,
           fechaCreacion: formatFecha(actuacion.fechaCreacion, 'fecha'),
           nroLegajoCompleto: actuacion.nroLegajoCompleto,
-          nombreActuacion: nombreActuacion.value,
+          nombreActuacion: actuacion.nombreActuacion,
           juzgadoInterviniente: actuacion.juzgadoInterviniente,
           afectados: JSON.parse(actuacion.afectados),
           vinculados: JSON.parse(actuacion.vinculados),

@@ -34,7 +34,7 @@ const {
   selectedModusOperandi,
   selectedCausaCaratula,
   selectedJuzgadoInterviniente,
-  selectedArticulo: selectedArticulosRelacionados,
+  selectedArticulosRelacionados,
   nroLegajo,
   itemsCausaCaratula,
   initialValuesDatosLegales,

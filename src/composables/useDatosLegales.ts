@@ -16,7 +16,7 @@ let selectedAyudanteFiscal = ref<DropDownInterface>()
 let selectedFiscalCargo = ref<DropDownInterface>()
 let selectedCausaCaratulaList = ref(null)
 let selectedArticulosRelacionadosList = ref(null)
-let selectedArticulo = ref<DropDownInterface>()
+let selectedArticulosRelacionados= ref<DropDownInterface>()
 let itemsCausaCaratula = ref<any[]>([])
 let itemsArticulosRelacionados = ref<any[]>([])
 let nombreActuacion = ref<string>('Sumario por denuncia')
@@ -28,7 +28,7 @@ const useDatosLegales = () => {
         selectYear: { name: '' },
         selectSitio: { name: '' },
         selectUfiNro: { name: '' },
-        selectArticulo: { name: '' },
+        selectArticuloRelacionado: { name: '' },
         selectModusOperandi: { name: '' },
         selectCausaCaratula: { name: '' },
         selectAyudanteFiscal: { name: '' },
@@ -51,7 +51,7 @@ const useDatosLegales = () => {
         itemsCausaCaratula: [{ name: 'Siniestro Vial' }, { name: 'Robo simple en grado de tentativa' }],
         itemsArticulosRelacionados: [{ name: '183\u00ba ' }, { name: 'Actuaciones por Denuncia' }],
         selectedJuzgadoInterviniente: { name: 'Unidad Fiscal de Prueba' },
-        selectArticulo:{ name: '178\u00b0 Portacion de arma blanca o contundente. ' }
+        selectedArticulosRelacionados:{ name: '178\u00b0 Portacion de arma blanca o contundente. ' }
     }
 
     const addDataFake = () => {
@@ -66,7 +66,7 @@ const useDatosLegales = () => {
         itemsCausaCaratula.value = fakeValues.itemsCausaCaratula;
         itemsArticulosRelacionados.value = fakeValues.itemsArticulosRelacionados;
         selectedJuzgadoInterviniente.value = fakeValues.selectedJuzgadoInterviniente;
-        selectedArticulo.value = fakeValues.selectArticulo
+        selectedArticulosRelacionados.value = fakeValues.selectedArticulosRelacionados
     };
 
     const resetData = () => {
@@ -82,7 +82,7 @@ const useDatosLegales = () => {
         selectedAyudanteFiscal.value = null
         selectedFiscalCargo.value = null;
         selectedUfiNro.value = null;
-        selectedArticulo.value = null;
+        selectedArticulosRelacionados.value = null;
         selectedArticulosRelacionadosList.value = null;
         itemsCausaCaratula.value = [];
         itemsArticulosRelacionados.value = [];
@@ -104,7 +104,7 @@ const useDatosLegales = () => {
         itemsCausaCaratula.value = datosLegales.opcionesCausaCaratula ? datosLegales.opcionesCausaCaratula.map(name => ({ name })) : [];
         itemsArticulosRelacionados.value = datosLegales.opcionesArticulosRelacionados ? datosLegales.opcionesArticulosRelacionados.map(name => ({ name })) : [];
         nombreActuacion.value = datosLegales.nombreActuacion || 'Sumario por denuncia';
-        selectedArticulo.value = datosLegales.selectArticulo ? { name: datosLegales.selectArticulo } : null;
+        selectedArticulosRelacionados.value = datosLegales.selectedArticulosRelacionados ? { name: datosLegales.selectedArticulosRelacionados } : null;
     };
     return {
         selectedYear,
@@ -114,7 +114,7 @@ const useDatosLegales = () => {
         selectedJuzgadoInterviniente,
         selectedCausaCaratulaList,
         selectedArticulosRelacionadosList,
-        selectedArticulo,
+        selectedArticulosRelacionados,
         selectedDelito,
         selectedUfiNro,
         selectedAyudanteFiscal,

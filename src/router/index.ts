@@ -25,10 +25,15 @@ const router = createRouter({
       component: ActuacionesView,
     },
     {
-      path: '/actuacion/personas/:tipo',
+      path: '/actuacion/personas/:tipo/:id?',
       name: 'formulario',
       component: FormActuacionVue,
-      props: true
+      props: (route) => {
+        console.log('route::: ', route);
+        const id = route.params.id ? +route.params.id : null;
+        return { tipo: route.params.tipo, id };
+      }
+
     },
     {
       path: '/actuaciones/new/:actuacion/initial',
@@ -66,12 +71,24 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  console.log('to::: ', to);
   if (to.name === 'actuaciones') {
     console.log('entro por actuaciones')
     isSavedChanges(to, from, next); 
   } else {
-    console.log('no entro')
-    next(); // Continuar la navegación para otras rutas
+    next()
+   /*  if (!to.params.id) {
+      console.log('no tengo id')
+      next({
+        name: to.name,
+        params: { ...to.params, id: from.params.id },
+        query: to.query, // mantener cualquier query param
+        hash: to.hash, // mantener cualquier hash
+      });
+    } else {
+      next()
+    } */
+
   }
 });
 

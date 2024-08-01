@@ -32,19 +32,10 @@ const actuacionName = ref(props.actuacionName);
 const actuacionData = ref(props.actuacionData)
 
 const activeButtonTab = ref(0);
-const {
-  agregarNuevoItem,
-  currentEditId,
-  toogleDateActuacion,
-  setFechaCreacion,
-} = useActuacion();
+const { agregarNuevoItem,currentEditId,toogleDateActuacion,setFechaCreacion} = useActuacion();
 const { set: setActuacionData } = useActuacionData();
 const { fetchActuacionById } = useSaveData();
-const {
-  resetData: resetDatosLegales,
-  setData: setDatosLegales,
-  nroLegajo,
-} = useDatosLegales();
+const {  resetData: resetDatosLegales, setData: setDatosLegales, nroLegajo} = useDatosLegales();
 const { setLoading } = useActuacionLoading();
 
 const {
@@ -59,8 +50,8 @@ const {
   isDiligenciaChange,
   resetDiliginciaChange,
 } = useFieldState();
-const { resetFields: resetLegalFields, isAnyFieldModified: isLegalModified } =
-  useLegalesState();
+
+const { resetFields: resetLegalFields, isAnyFieldModified: isLegalModified } = useLegalesState();
 const { addDataFake, resetData: resetDataLegal } = useDatosLegales();
 
 setActuacionData(props.actuacionData);
@@ -85,8 +76,7 @@ onActivated(async () => {
 const { setAll } = useItem();
 
 const { relato, isEditingHeader, resetRelato } = useDatosDiligencia(props.actuacionName);
-const { cardInformationKeys, cardInformation } =
-  useCardInformation(actuacionName);
+const { cardInformationKeys, cardInformation } = useCardInformation(actuacionName,actuacionData);
 const { missingFieldsEmpty, resetFieldsEmpty } = useCardValidation();
 const { prepararNuevoItem } = useItemValue();
 

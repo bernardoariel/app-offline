@@ -42,7 +42,7 @@ const router = createRouter({
       props: (route) => {
         const actuacionKey = route.params.actuacion
         const actuacionData = actuaciones[actuacionKey] || {};
-        return { actuacion: route.params.actuacion, actuacionData }
+        return { actuacionName: route.params.actuacion, actuacionData }
       }
     },
     {
@@ -61,7 +61,7 @@ const router = createRouter({
         const { id,actuacion } = route.params
         return { 
           id: +id,
-          actuacion,
+          actuacionName:actuacion,
           actuacionData
         }
       }

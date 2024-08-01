@@ -15,7 +15,6 @@ import useSaveData from '@/composables/useSaveData';
 import useItemValue from '@/composables/useItemValue';
 import useActuacionData from '@/composables/useActuacionData';
 import { useDialog } from '../composables/useDialog';
-import { useRouter, useRoute } from 'vue-router';
 import MyDialog from '@/components/elementos/MyModal.vue';
 import useFieldState from '@/composables/useFieldsState';
 import useLegalesState from '@/composables/useLegalesState';
@@ -24,13 +23,15 @@ import useCardValidation from '@/composables/useCardValidations';
 
 const { dialogState, confirmNavigation, hideDialog } = useDialog();
 interface Props {
-  actuacion: string;
   id?: number;
-  actuacionData?: any;
+  actuacionName: string;
+  actuacionData: any;
 }
 const props = defineProps<Props>();
-const actuacionRef = ref(props.actuacion);
-const active = ref(0);
+const actuacionName = ref(props.actuacionName);
+const actuacionData = ref(props.actuacionData)
+
+const activeButtonTab = ref(0);
 const {
   agregarNuevoItem,
   currentEditId,
@@ -83,11 +84,9 @@ onActivated(async () => {
 
 const { setAll } = useItem();
 
-const { relato, isEditingHeader, resetRelato } = useDatosDiligencia(
-  props.actuacion
-);
+const { relato, isEditingHeader, resetRelato } = useDatosDiligencia(props.actuacionName);
 const { cardInformationKeys, cardInformation } =
-  useCardInformation(actuacionRef);
+  useCardInformation(actuacionName);
 const { missingFieldsEmpty, resetFieldsEmpty } = useCardValidation();
 const { prepararNuevoItem } = useItemValue();
 
@@ -112,10 +111,10 @@ const resetAllStates = () => {
 };
 
 watch(
-  () => props.actuacion,
+  () => props.actuacionName,
   (newValue) => {
     setActuacionData(props.actuacionData);
-    actuacionRef.value = newValue;
+    actuacionName.value = newValue;
     resetAllStates();
   }
 );
@@ -166,6 +165,10 @@ watch(
     if (newVal === false) dialogState.value.pendingRoute = null;
   }
 );
+
+watch(() => props.actuacionData, (newData) => {
+  actuacionData.value = newData;
+});
 const isAnyChange = computed(() => {
   return (
     isUnsavedChange.value ||
@@ -257,18 +260,18 @@ const isAnyChange = computed(() => {
                 class="px-2"
               ></Tag>
               <Button
-                @click="active = 0"
+                @click="activeButtonTab = 0"
                 rounded
                 label="1"
                 class="button"
-                :outlined="active !== 0"
+                :outlined="activeButtonTab !== 0"
               />
               <Button
-                @click="active = 1"
+                @click="activeButtonTab = 1"
                 rounded
                 label="2"
                 class="button"
-                :outlined="active !== 1"
+                :outlined="activeButtonTab !== 1"
               />
             </div>
 
@@ -282,7 +285,7 @@ const isAnyChange = computed(() => {
           </div>
         </template>
         <template #content>
-          <TabView v-model:activeIndex="active">
+          <TabView v-model:activeIndex="activeButtonTab">
             <TabPanel header="Datos Requeridos">
               <Card
                 v-for="key in cardInformationKeys"
@@ -315,7 +318,7 @@ const isAnyChange = computed(() => {
                   <DataViewCard
                     :itemsCardValue="cardInformation[key]"
                     :data-key="key"
-                    :actuacion="actuacionRef"
+                    :actuacion="actuacionName"
                   />
                 </template>
               </Card>
@@ -328,7 +331,7 @@ const isAnyChange = computed(() => {
       </Card>
     </div>
     <div class="col">
-      <DiligenciaView :actuacion="actuacion" :id="props.id" />
+      <DiligenciaView :actuacion="actuacionName" :id="props.id" />
     </div>
   </div>
 </template>

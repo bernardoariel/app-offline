@@ -1,46 +1,57 @@
-import { reactive, ref, watch } from 'vue';
-import type { CardInformation } from '@/interfaces/cardInformation.interface';
-import useItems from './useItems';
+import { reactive, ref, watch } from "vue";
+import type { CardInformation } from "@/interfaces/cardInformation.interface";
+import useItems from "./useItems";
+
+const actuacionesRequierenInterviniente = [
+  'sumario-oficio',
+  'expediente-oficio',
+  'ufi-flagrancia',
+  'ufi-generica-oficio',
+  'ufi-propiedad-oficio',
+  'ufi-informatica-oficio',
+  'ufi-cavig',
+  'ufi-anivi'
+];
 
 const useCardInformation = (actuacionRef, actuacionData) => {
   const itemsCollection = useItems();
 
-  const cardInformation: CardInformation = reactive({});
-
-  const updateCardInformation = (data) => {
-    console.log('updateCardInformation called with data:', data);
-    if (data && data.tarjetas) {
-      console.log('tarjetas:', data.tarjetas);
-      Object.keys(data.tarjetas).forEach((key) => {
-        cardInformation[key] = {
-          titulo: data.tarjetas[key].titulo,
-          values: data.tarjetas[key].valor || [],
-          items: itemsCollection[key] || [],
-        };
-      });
-      console.log('Updated cardInformation:', cardInformation);
-    } else {
-      console.warn('Data or tarjetas is not defined');
-    }
-  };
-
-  // Llamada inicial
-  if (actuacionData && actuacionData.value) {
-    console.log('Initial actuacionData:', actuacionData.value);
-    updateCardInformation(actuacionData.value);
-  } else {
-    console.error('actuacionData is undefined');
-  }
-
-  // Observar cambios en actuacionData
-  watch(() => actuacionData.value, (newData) => {
-    console.log('actuacionData changed:', newData);
-    if (newData) {
-      updateCardInformation(newData);
-    }
+  const cardInformation: CardInformation = reactive({
+    afectados: { titulo: 'Afectados', items: itemsCollection.afectados },
+    vinculados: { titulo: 'Vinculados', items: itemsCollection.vinculados },
+    fecha: { titulo: 'Fecha', items: itemsCollection.fechaUbicacion },
+    efectos: { titulo: 'Efectos', items: itemsCollection.efectos },
+    personalInterviniente: { titulo: 'Personal Interviniente', items: itemsCollection.intervinientes }
   });
 
   const cardInformationKeys = ref(Object.keys(cardInformation) as (keyof typeof cardInformation)[]);
+
+ /*  const updateCardInformation = (data) => {
+    if (data && data.tarjetas) {
+      for (const key in cardInformation) {
+        if (!data.tarjetas.hasOwnProperty(key)) {
+          delete cardInformation[key];
+        }
+      }
+      console.log('Updated cardInformation:', cardInformation);
+    } 
+  }; */
+
+  /* // Llamada inicial
+  if (actuacionData?.value) {
+    updateCardInformation(actuacionData.value);
+  }  */
+
+  // Observar cambios en actuacionData
+/*   watch(
+    () => actuacionData?.value,
+    (newData) => {
+      if (newData) {
+        updateCardInformation(newData);
+      }
+    },
+    { immediate: true }
+  ); */
 
   // Actualizar cardInformationKeys cuando cardInformation cambia
   watch(cardInformation, () => {

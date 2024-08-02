@@ -292,7 +292,7 @@ const isAnyChange = computed(() => {
                 <template #title>
                   <div class="title-container">
                     <div class="font-medium text-3xl text-900">
-                      {{ cardInformation[key].titulo }}
+                      {{ cardInformation[key]?.titulo }}
                     </div>
 
                     <Button
@@ -306,6 +306,7 @@ const isAnyChange = computed(() => {
                 </template>
                 <template #content>
                   <DataViewCard
+                    v-if="cardInformation[key]"
                     :itemsCardValue="cardInformation[key]"
                     :data-key="key"
                     :actuacion="actuacionName"

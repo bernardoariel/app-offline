@@ -27,6 +27,7 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
     "@playwright/test": "^1.45.0",
     "@tsconfig/node18": "^18.2.2",
     "@types/node": "^18.19.3",

@@ -126,4 +126,4 @@ export const preliminaresOtrosLink = async (page:any) => {
     await page.getByRole('button', { name: '' }).click();
     await page.locator('div').filter({ hasText: /^PRELIMINARES$/ }).click();
     await page.getByRole('link', { name: ' Otros' }).click();
-}|
+}

@@ -100,7 +100,6 @@ router.beforeEach((to, from, next) => {
     isPersonSaved(to, from, next)
   } else {
     next()
-
   }
 });
 

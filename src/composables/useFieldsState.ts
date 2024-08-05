@@ -94,6 +94,16 @@ export default function useFieldState() {
     return statesID.some((state) => state.isModified);
   });
 
+  const isPristineState = computed(() => {
+    return statesID.some((state) => !state.pristine);
+  });
+
+  const resetPristine = () => {
+    statesID.forEach(state => {
+      state.pristine = true;
+    });
+  };
+
   const resetUnsavedChanges = () => {
     statesID.forEach(state => {
       state.isModified = false;
@@ -126,6 +136,8 @@ export default function useFieldState() {
     resetRecordDeleted: () => isRecordDeleted.value = false,
     setDiliginciaChange: () => isDiligenciaChange.value = true,
     resetDiliginciaChange: () => isDiligenciaChange.value = false,
-    isDiligenciaChange
+    isDiligenciaChange,
+    resetPristine,
+    isPristineState,
   };
 }

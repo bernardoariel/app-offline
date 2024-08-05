@@ -57,6 +57,7 @@ const {
   isRecordDeleted,
   isDiligenciaChange,
   resetDiliginciaChange,
+  resetPristine,
 } = useFieldState();
 const { resetFields: resetLegalFields, isAnyFieldModified: isLegalModified } =
   useLegalesState();
@@ -109,6 +110,7 @@ const resetAllStates = () => {
   resetLegalFields();
   resetDataLegal();
   resetRelato();
+  resetPristine();
 };
 
 watch(
@@ -231,11 +233,15 @@ const isAnyChange = computed(() => {
                 {{ props.actuacionData.titulo }}
               </div>
 
-              <small 
-              :class="{'text-orange-500': !nroLegajo, 'text-gray-500': nroLegajo}"
-              class="text-sm font-bold"
+              <small
+                :class="{
+                  'text-orange-500': !nroLegajo,
+                  'text-gray-500': nroLegajo,
+                }"
+                class="text-sm font-bold"
               >
-                <i class="">{{ actuacionData.datosLegales.items[0]}}</i> {{  nroLegajo ? ': '+ nroLegajo : '' }}
+                <i class="">{{ actuacionData.datosLegales.items[0] }}</i>
+                {{ nroLegajo ? ': ' + nroLegajo : '' }}
               </small>
             </div>
 
@@ -321,7 +327,9 @@ const isAnyChange = computed(() => {
               </Card>
             </TabPanel>
             <TabPanel header="Datos Legales">
-              <DatosLegalesView :datosLegalesItems="actuacionData.datosLegales.items" />
+              <DatosLegalesView
+                :datosLegalesItems="actuacionData.datosLegales.items"
+              />
             </TabPanel>
           </TabView>
         </template>

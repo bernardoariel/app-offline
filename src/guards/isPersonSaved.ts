@@ -2,7 +2,7 @@ import { useDialog } from '../composables/useDialog';
 import useFieldsState from '../composables/useFieldsState'
 
 const { showDialog, dialogState } = useDialog();
-const { isPristineState } = useFieldsState();
+const { isPristineState, statesID } = useFieldsState();
 
 
 export interface DialogHeader {
@@ -24,6 +24,21 @@ export interface DialogOptions {
     footer?: any;
 }
 
+const keyMap: { [key: string]: string } = {
+    // claveOriginal: 'Clave formateada'
+    typeDocumento: 'Tipo de documento',
+    fecha: 'Fecha de nacimiento',
+    estadoCivil: 'Estado Civil',
+    typeAfectado: 'Tipo de denunciante',
+    nroDocumento: 'Nro de doc',
+    typeSexo: 'Sexo',
+    domicilioResidencia: 'Domicilio'
+};
+
+const formatKey = (key: string) => {
+    return keyMap[key] || key;
+};;
+
 const isPersonSaved = (to, from, next) => {
 
     const pathFindGuard = ['personas'];
@@ -32,25 +47,31 @@ const isPersonSaved = (to, from, next) => {
     if (pathIncludesGuard && dialogState.value.pendingRoute === null) {
 
         if (pathIncludesGuard && isPristineState.value) {
-            console.log('pathIncludesGuard', pathIncludesGuard);
-            console.log('isUnsavedChanges', isPristineState.value);
-            console.log('to', to);
-            const optionDialog: DialogOptions = {
-                nameRouteToRedirect: to.path,
-                routeProp: 'path',
-                header: {
-                    title: 'Confirmación Necesaria'
-                },
-                body: {
-                    icon: 'pi pi-question-circle',
-                    answer: '¿Deseas salir sin guardar los cambios?',
-                    colorClass: 'text-red-400',
-                    comment: 'Los cambios no guardados se perderán...'
-                },
-                footer: {} // Completar más adelante según sea necesario
-            };
-            showDialog(optionDialog);
-            return;
+
+            const modifiedItem = statesID.find(item => Object.keys(item.modifiedData).length > 0);
+
+            if (modifiedItem) {
+                // Obtener las claves de modifiedData y formatearlas
+                const modifiedDataKeys = Object.keys(modifiedItem.modifiedData)
+                    .map(formatKey)
+                    .join(', ');
+                const optionDialog: DialogOptions = {
+                    nameRouteToRedirect: to.path,
+                    routeProp: 'path',
+                    header: {
+                        title: 'Confirmación Necesaria'
+                    },
+                    body: {
+                        icon: 'pi pi-exclamation-triangle',
+                        answer: '¿Estás seguro de que deseas continuar sin guardar?',
+                        colorClass: 'yellow',
+                        comment: `Tienes cambios sin guardar en los datos de ${modifiedDataKeys}`
+                    },
+                    footer: {} // Completar más adelante según sea necesario
+                };
+                showDialog(optionDialog);
+                return;
+            }
         }
     }
 

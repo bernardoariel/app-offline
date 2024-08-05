@@ -42,6 +42,14 @@ export default function useFieldState() {
     }
   };
 
+  const resetModifiedData = () => {
+    statesID.forEach(state => {
+      state.modifiedData = {};
+      state.isModified = false;
+      state.pristine = true;
+    });
+  };
+
   const findById = (id: string) => {
     const index = statesID.findIndex((state) => state.id === id);
     return {
@@ -139,5 +147,6 @@ export default function useFieldState() {
     isDiligenciaChange,
     resetPristine,
     isPristineState,
+    resetModifiedData
   };
 }

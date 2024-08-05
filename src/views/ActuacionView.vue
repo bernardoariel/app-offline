@@ -58,6 +58,7 @@ const {
   isDiligenciaChange,
   resetDiliginciaChange,
   resetPristine,
+  resetModifiedData,
 } = useFieldState();
 const { resetFields: resetLegalFields, isAnyFieldModified: isLegalModified } =
   useLegalesState();
@@ -111,6 +112,7 @@ const resetAllStates = () => {
   resetDataLegal();
   resetRelato();
   resetPristine();
+  resetModifiedData();
 };
 
 watch(

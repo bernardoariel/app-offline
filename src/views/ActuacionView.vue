@@ -30,7 +30,6 @@ interface Props {
 }
 const props = defineProps<Props>();
 const actuacionRef = ref(props.actuacion);
-const idRef = ref(props.id);
 const active = ref(0);
 const {
   agregarNuevoItem,
@@ -58,7 +57,6 @@ const {
   isRecordDeleted,
   isDiligenciaChange,
   resetDiliginciaChange,
-  resetStates,
 } = useFieldState();
 const { resetFields: resetLegalFields, isAnyFieldModified: isLegalModified } =
   useLegalesState();

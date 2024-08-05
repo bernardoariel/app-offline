@@ -208,6 +208,12 @@ const {
   itemsCausaCaratula,
   selectedModusOperandi,
   resetData: resetDatosLegales,
+  selectedUfiNro,
+  selectedFiscalCargo,
+  selectedAyudanteFiscal,
+  itemsArticulosRelacionados,
+  selectedDelito
+  
 } = useDatosLegales();
 const { dialogState } = useDialog();
 const {
@@ -266,6 +272,11 @@ const storeData = async () => {
     selectCausaCaratula: selectedCausaCaratula.value?.name || '',
     opcionesCausaCaratula: itemsCausaCaratula.value.map((item) => item.name),
     selectJuzgadoInterviniente: selectedJuzgadoInterviniente.value?.name || '',
+    selectUfiNro: selectedUfiNro.value?.name || '',
+    selectDelito: selectedDelito.value?.name || '',
+    selectFiscalCargo:selectedFiscalCargo.value?.name || '',
+    selectAyudanteFiscal:selectedAyudanteFiscal.value?.name || '',
+    opcionesArticulosRelacionados:itemsArticulosRelacionados.value.map((item) => item.name),
   };
 
   const data: dataActuacionForSave = {
@@ -277,7 +288,7 @@ const storeData = async () => {
     viewPdf: head + ' ' + body + ' ' + foot,
     pathName: route.params.actuacion as string,
     datosLegales,
-    relato: relato.value,
+    relato: relato.value
   };
 
   if (props.id) {

@@ -21,6 +21,7 @@ let actuaciones: any;
 
 onActivated(async () => {
   actuaciones = await fetchActuaciones();
+  console.log('actuaciones::: ', actuaciones);
   actuacionesList.value = actuaciones;
 });
 const onRowExpand = (event: { data: { name: any } }) => {

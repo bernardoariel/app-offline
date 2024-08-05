@@ -170,7 +170,7 @@ export const actuaciones: TipoActuaciones = {
             },
         },
         "datosLegales": {
-            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','AyudanteFiscal']
+            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','ayudanteFiscal']
         }
     },
     "ufi-anivi": {
@@ -200,7 +200,7 @@ export const actuaciones: TipoActuaciones = {
             },
         },
         "datosLegales": {
-            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','AyudanteFiscal']
+            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','ayudanteFiscal']
         }
     },
     "ufi-generica-denuncia": {
@@ -225,7 +225,7 @@ export const actuaciones: TipoActuaciones = {
             },
         },
         "datosLegales": {
-            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','AyudanteFiscal']
+            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','ayudanteFiscal']
         }
     },
     "ufi-generica-oficio": {
@@ -255,7 +255,7 @@ export const actuaciones: TipoActuaciones = {
             },
         },
         "datosLegales": {
-            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','AyudanteFiscal']
+            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','ayudanteFiscal']
         }
     },
     "ufi-informatica-denuncia": {
@@ -281,7 +281,7 @@ export const actuaciones: TipoActuaciones = {
             }
         },
         "datosLegales": {
-            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','AyudanteFiscal']
+            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','ayudanteFiscal']
         }
     },
     "ufi-informatica-oficio": {
@@ -311,7 +311,7 @@ export const actuaciones: TipoActuaciones = {
             },
         },
         "datosLegales": {
-            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','AyudanteFiscal']
+            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','ayudanteFiscal']
         }
     },
     "ufi-propiedad-denuncia": {
@@ -336,7 +336,7 @@ export const actuaciones: TipoActuaciones = {
             }
         },
         "datosLegales": {
-            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','AyudanteFiscal']
+            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','ayudanteFiscal']
         }
     },
     "ufi-delitos-especiales-paradero":{
@@ -353,7 +353,7 @@ export const actuaciones: TipoActuaciones = {
                 "valor": null,
             },
             "vinculados": {
-                "titulo": "Vinculados",
+                "titulo": "Extraviado/a",
                 "valor": ['Extraviado'],
             },
             "efectos": {
@@ -362,7 +362,7 @@ export const actuaciones: TipoActuaciones = {
             }
         },
         "datosLegales": {
-            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','AyudanteFiscal']
+            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','ayudanteFiscal']
         }
     },
     "ufi-delitos-especiales-médicas":{
@@ -388,7 +388,7 @@ export const actuaciones: TipoActuaciones = {
             },
         },
         "datosLegales": {
-            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','AyudanteFiscal']
+            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','ayudanteFiscal']
         }
     },
     "ufi-delitos-especiales-vial":{
@@ -418,7 +418,7 @@ export const actuaciones: TipoActuaciones = {
             },
         },
         "datosLegales": {
-            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','AyudanteFiscal']
+            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','ayudanteFiscal']
         }
     },
     "ufi-delitos-especiales-ahorcamiento-suicidio":{
@@ -444,7 +444,7 @@ export const actuaciones: TipoActuaciones = {
             },
         },
         "datosLegales": {
-            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','AyudanteFiscal']
+            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','ayudanteFiscal']
         }
     },
     "ufi-delitos-especiales-incendio-vivienda":{
@@ -470,7 +470,7 @@ export const actuaciones: TipoActuaciones = {
             },
         },
         "datosLegales": {
-            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','AyudanteFiscal']
+            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','ayudanteFiscal']
         }
     },
     "ufi-delitos-especiales-intoxicación":{
@@ -496,7 +496,7 @@ export const actuaciones: TipoActuaciones = {
             },
         },
         "datosLegales": {
-            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','AyudanteFiscal']
+            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','ayudanteFiscal']
         }
     },
     "preliminares-incendio-vivienda": {

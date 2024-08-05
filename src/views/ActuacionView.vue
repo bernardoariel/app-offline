@@ -197,7 +197,7 @@ const isAnyChange = computed(() => {
       >
         <div class="flex items-center w-full justify-between">
           <i
-            class="text-red-500 text-7xl mt-3 ml-5"
+            class="text-7xl mt-3 ml-5"
             :class="[dialogState.body.colorClass, dialogState.body.icon]"
           ></i>
           <p class="font-bold text-xl ml-4">

@@ -63,8 +63,8 @@ const isPersonSaved = (to, from, next) => {
                     },
                     body: {
                         icon: 'pi pi-exclamation-triangle',
-                        answer: '¿Estás seguro de que deseas continuar sin guardar?',
-                        colorClass: 'yellow',
+                        answer: '¿ Deseas continuar sin guardar ?',
+                        colorClass: 'text-orange-400',
                         comment: `Tienes cambios sin guardar en los datos de ${modifiedDataKeys}`
                     },
                     footer: {} // Completar más adelante según sea necesario

@@ -221,14 +221,14 @@ const isAnyChange = computed(() => {
               @click="handleClick"
             >
               <div class="text-3xl font-bold">
-                {{ props.actuacionData.titulo }}
+                {{ props.actuacionData?.titulo }}
               </div>
 
               <small 
               :class="{'text-orange-500': !nroLegajo, 'text-gray-500': nroLegajo}"
               class="text-sm font-bold"
               >
-                <i class="">{{ actuacionData.datosLegales.items[0]}}</i> {{  nroLegajo ? ': '+ nroLegajo : '' }}
+                <i class="">{{ props.actuacionData?.datosLegales?.items[0] }}</i> {{  nroLegajo ? ': '+ nroLegajo : '' }}
               </small>
             </div>
 
@@ -267,8 +267,6 @@ const isAnyChange = computed(() => {
 
             <div>
               <small class="text-sm">
-                <!--     <i :class="isAnyChange ? 'pi pi-exclamation-circle' : 'pi pi-check-circle'"
-                  :style="{ color: isAnyChange ? 'orange' : 'green' }"></i> -->
                 {{ isAnyChange ? ' Cambios Pendientes' : ' Sin Cambios' }}
               </small>
             </div>
@@ -315,7 +313,7 @@ const isAnyChange = computed(() => {
               </Card>
             </TabPanel>
             <TabPanel header="Datos Legales">
-              <DatosLegalesView :datosLegalesItems="actuacionData.datosLegales.items" />
+              <DatosLegalesView v-if="props.actuacionData?.datosLegales" :datosLegalesItems="props.actuacionData.datosLegales.items" />
             </TabPanel>
           </TabView>
         </template>
@@ -326,6 +324,7 @@ const isAnyChange = computed(() => {
     </div>
   </div>
 </template>
+
 <style scoped>
 .title-container {
   display: flex;

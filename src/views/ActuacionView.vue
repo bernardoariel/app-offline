@@ -211,7 +211,7 @@ const isAnyChange = computed(() => {
   </MyDialog>
   <div class="grid">
     <div class="col-5">
-      <Card>
+      <Card v-if="Object.keys(props.actuacionData).length > 0 ? true:false">
         <template #title>
           <div class="title-container">
             <div>

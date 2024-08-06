@@ -9,6 +9,7 @@ import isUserAllowed from '@/guards/isUserAllowed'
 import isUserAccessValid from '@/guards/isUserAccessValid'
 import { actuaciones } from '../data/tipoActuaciones';
 import isPersonSaved from '@/guards/isPersonSaved'
+import isAcuacionSaved from '@/guards/isActuacionSaved'
 
 
 
@@ -62,7 +63,7 @@ const router = createRouter({
         const { id, actuacion } = route.params
         return {
           id: +id,
-          actuacionName:actuacion,
+          actuacionName: actuacion,
           actuacionData
         }
       }
@@ -101,6 +102,16 @@ router.beforeEach((to, from, next) => {
   } else {
     next()
   }
+});
+
+router.beforeEach((to, from, next) => {
+  const fromActuacion = from.params.actuacion
+  const toActuacion = to.params.actuacion
+  if (fromActuacion && toActuacion && toActuacion !== fromActuacion) {
+    isAcuacionSaved(to, from, next);
+    return
+  }
+  next()
 });
 
 export default router

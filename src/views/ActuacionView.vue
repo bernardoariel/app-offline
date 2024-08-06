@@ -29,13 +29,22 @@ interface Props {
 }
 const props = defineProps<Props>();
 const actuacionName = ref(props.actuacionName);
-const actuacionData = ref(props.actuacionData)
+const actuacionData = ref(props.actuacionData);
 
 const activeButtonTab = ref(0);
-const { agregarNuevoItem,currentEditId,toogleDateActuacion,setFechaCreacion} = useActuacion();
+const {
+  agregarNuevoItem,
+  currentEditId,
+  toogleDateActuacion,
+  setFechaCreacion,
+} = useActuacion();
 const { set: setActuacionData } = useActuacionData();
 const { fetchActuacionById } = useSaveData();
-const {  resetData: resetDatosLegales, setData: setDatosLegales, nroLegajo} = useDatosLegales();
+const {
+  resetData: resetDatosLegales,
+  setData: setDatosLegales,
+  nroLegajo,
+} = useDatosLegales();
 const { setLoading } = useActuacionLoading();
 
 const {
@@ -49,9 +58,12 @@ const {
   isRecordDeleted,
   isDiligenciaChange,
   resetDiliginciaChange,
+  resetPristine,
+  resetModifiedData,
 } = useFieldState();
 
-const { resetFields: resetLegalFields, isAnyFieldModified: isLegalModified } = useLegalesState();
+const { resetFields: resetLegalFields, isAnyFieldModified: isLegalModified } =
+  useLegalesState();
 const { addDataFake, resetData: resetDataLegal } = useDatosLegales();
 
 setActuacionData(props.actuacionData);
@@ -75,8 +87,13 @@ onActivated(async () => {
 
 const { setAll } = useItem();
 
-const { relato, isEditingHeader, resetRelato } = useDatosDiligencia(props.actuacionName);
-const { cardInformationKeys, cardInformation } = useCardInformation(actuacionName,actuacionData);
+const { relato, isEditingHeader, resetRelato } = useDatosDiligencia(
+  props.actuacionName
+);
+const { cardInformationKeys, cardInformation } = useCardInformation(
+  actuacionName,
+  actuacionData
+);
 const { missingFieldsEmpty, resetFieldsEmpty } = useCardValidation();
 const { prepararNuevoItem } = useItemValue();
 
@@ -98,6 +115,8 @@ const resetAllStates = () => {
   resetLegalFields();
   resetDataLegal();
   resetRelato();
+  resetPristine();
+  resetModifiedData();
 };
 
 watch(
@@ -156,9 +175,12 @@ watch(
   }
 );
 
-watch(() => props.actuacionData, (newData) => {
-  actuacionData.value = newData;
-});
+watch(
+  () => props.actuacionData,
+  (newData) => {
+    actuacionData.value = newData;
+  }
+);
 const isAnyChange = computed(() => {
   return (
     isUnsavedChange.value ||
@@ -186,7 +208,7 @@ const isAnyChange = computed(() => {
       >
         <div class="flex items-center w-full justify-between">
           <i
-            class="text-red-500 text-7xl mt-3 ml-5"
+            class="text-7xl mt-3 ml-5"
             :class="[dialogState.body.colorClass, dialogState.body.icon]"
           ></i>
           <p class="font-bold text-xl ml-4">
@@ -224,11 +246,17 @@ const isAnyChange = computed(() => {
                 {{ props.actuacionData?.titulo }}
               </div>
 
-              <small 
-              :class="{'text-orange-500': !nroLegajo, 'text-gray-500': nroLegajo}"
-              class="text-sm font-bold"
+              <small
+                :class="{
+                  'text-orange-500': !nroLegajo,
+                  'text-gray-500': nroLegajo,
+                }"
+                class="text-sm font-bold"
               >
-                <i class="">{{ props.actuacionData?.datosLegales?.items[0] }}</i> {{  nroLegajo ? ': '+ nroLegajo : '' }}
+                <i class="">{{
+                  props.actuacionData?.datosLegales?.items[0]
+                }}</i>
+                {{ nroLegajo ? ': ' + nroLegajo : '' }}
               </small>
             </div>
 
@@ -313,7 +341,10 @@ const isAnyChange = computed(() => {
               </Card>
             </TabPanel>
             <TabPanel header="Datos Legales">
-              <DatosLegalesView v-if="props.actuacionData?.datosLegales" :datosLegalesItems="props.actuacionData.datosLegales.items" />
+              <DatosLegalesView
+                v-if="props.actuacionData?.datosLegales"
+                :datosLegalesItems="props.actuacionData.datosLegales.items"
+              />
             </TabPanel>
           </TabView>
         </template>

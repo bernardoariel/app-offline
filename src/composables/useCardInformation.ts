@@ -1,50 +1,77 @@
-import { reactive, ref, watch } from "vue"
+import { reactive, ref, watch } from "vue";
 import type { CardInformation } from "@/interfaces/cardInformation.interface";
 import useItems from "./useItems";
-const actuacionesRequierenInterviniente = [
-  'sumario-oficio',
-  'expediente-oficio',
-  'ufi-flagrancia',
-  'ufi-generica-oficio',
-  'ufi-propiedad-oficio',
-  'ufi-informatica-oficio',
-  'ufi-cavig',
-  'ufi-anivi'
-]
 
-const useCardInformation = (actuacionRef) => {
+const useCardInformation = (actuacionRef, actuacionData) => {
   const itemsCollection = useItems();
 
   const cardInformation: CardInformation = reactive({
-    afectados: { titulo: 'Afectados', items: itemsCollection.afectados },
-    vinculados: { titulo: 'Vinculados', items: itemsCollection.vinculados },
-    fecha: { titulo: 'Fecha', items: itemsCollection.fechaUbicacion },
-    efectos: { titulo: 'Efectos', items: itemsCollection.efectos },
-  });
-
-
-  const updatePersonalInterviniente = (actuacion) => {
-    if (actuacionesRequierenInterviniente.includes(actuacion)) {
-      cardInformation.personalInterviniente = { titulo: 'Personal Interviniente', items: itemsCollection.intervinientes };
-    } else {
-      delete cardInformation.personalInterviniente;
-    }
-  };
-
-  // Llamada inicial
-  updatePersonalInterviniente(actuacionRef.value);
-
-  // Observar cambios
-  watch(actuacionRef, (newActuacion) => {
-    updatePersonalInterviniente(newActuacion);
+    afectados: { titulo: 'Afectados', items: itemsCollection.afectados || [] },
+    vinculados: { titulo: 'Vinculados', items: itemsCollection.vinculados || [] },
+    fecha: { titulo: 'Fecha', items: itemsCollection.fechaUbicacion || [] },
+    efectos: { titulo: 'Efectos', items: itemsCollection.efectos || [] },
+    personalInterviniente: { titulo: 'Personal Interviniente', items: itemsCollection.intervinientes || [] }
   });
 
   const cardInformationKeys = ref(Object.keys(cardInformation) as (keyof typeof cardInformation)[]);
 
-  // Actualizar cardInformationKeys cuando cardInformation cambia
+  const updateCardInformation = (data) => {
+    if (!data || !data.tarjetas) {
+      console.warn('Data or tarjetas is not defined');
+      return;
+    }
+
+    // Eliminar propiedades que no están en `data.tarjetas`
+    for (const key in cardInformation) {
+      if (!data.tarjetas.hasOwnProperty(key)) {
+        delete cardInformation[key];
+      }
+    }
+
+    // Agregar o actualizar propiedades existentes
+    for (const key in data.tarjetas) {
+      if (cardInformation.hasOwnProperty(key)) {
+        cardInformation[key].titulo = data.tarjetas[key].titulo;
+        cardInformation[key].items = itemsCollection[key] || [];
+      } else {
+        cardInformation[key] = {
+          titulo: data.tarjetas[key].titulo,
+          items: itemsCollection[key] || []
+        };
+      }
+    }
+    console.log('Updated cardInformation:', cardInformation);
+    cardInformationKeys.value = Object.keys(cardInformation) as (keyof typeof cardInformation)[];
+    console.log('cardInformationKeys updated:', cardInformationKeys.value);
+  };
+
+  // Llamada inicial
+  if (actuacionData?.value) {
+    console.log('Initial actuacionData:', actuacionData.value);
+    updateCardInformation(actuacionData.value);
+  } else {
+    console.error('actuacionData is undefined or has no value');
+  }
+
+  // Observar cambios en actuacionData
+  watch(
+    () => actuacionData?.value,
+    (newData) => {
+      if (newData) {
+        console.log('New actuacionData:', newData);
+        updateCardInformation(newData);
+      } else {
+        console.error('New data is undefined or has no value');
+      }
+    },
+    { immediate: true, deep: true }
+  );
+
+  // Observar cambios en cardInformation para actualizar cardInformationKeys
   watch(cardInformation, () => {
     cardInformationKeys.value = Object.keys(cardInformation) as (keyof typeof cardInformation)[];
-  });
+    console.log('cardInformationKeys updated:', cardInformationKeys.value);
+  }, { deep: true });
 
   return {
     cardInformationKeys,

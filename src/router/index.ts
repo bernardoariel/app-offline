@@ -73,34 +73,32 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   console.log('to::: ', to);
+
   if (to.name === 'actuaciones') {
-    console.log('entro por actuaciones')
+    console.log('entro por actuaciones');
     isSavedChanges(to, from, next);
-  } else {
-    next()
-    /*  if (!to.params.id) {
-       console.log('no tengo id')
-       next({
-         name: to.name,
-         params: { ...to.params, id: from.params.id },
-         query: to.query, // mantener cualquier query param
-         hash: to.hash, // mantener cualquier hash
-       });
-     } else {
-       next()
-     } */
-
+    return;
   }
-});
 
-router.beforeEach((to, from, next) => {
-  console.log('to::: ', to);
   if (from.name === 'formulario') {
-    console.log('salgo de form revisar')
-    isPersonSaved(to, from, next)
-  } else {
-    next()
+    console.log('salgo de form revisar');
+    isPersonSaved(to, from, next);
+    return;
   }
+
+  if (!to.params.id && from.params.id) {
+    console.log('no tengo id');
+    next({
+      name: to.name,
+      params: { ...to.params, id: from.params.id },
+      query: to.query, // mantener cualquier query param
+      hash: to.hash, // mantener cualquier hash
+    });
+    return;
+  }
+
+  next();
 });
+
 
 export default router

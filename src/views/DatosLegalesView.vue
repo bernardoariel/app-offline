@@ -95,7 +95,6 @@ const getDynamicValidationSchema = () => {
   let schema = baseValidationSchema;
   const items = props.datosLegalesItems!.slice(1);
   items.forEach((item, index) => {  
-    console.log("item:::",item)
           if (item !== "causaCaratula" && item !== 'listboxCausaCaratula' && item !=='articulosRelacionados' && item !=='listboxArticulos'){
             if(dropdownItems[getField(item)]){
               schema = schema.shape({
@@ -201,7 +200,6 @@ const getNameAttrs = (item: string) => {
   }
 };
 const validateData = () => {
-  console.log("validaciones", values.values, errors)
   for (const key in values) {
     if (values[key]?.length === 0) {
       setValidValue(false);
@@ -221,9 +219,12 @@ const validateData = () => {
   const areKeysEqual = keys1.every(key => keys2.includes(key));
   if (props.datosLegalesItems?.includes("listboxArticulos")) {
     setValidValue(Object.keys(errors.value).length === 0 && areKeysEqual && !isListArticulosRelacionadosEmpty.value);
+    return
   } else if (props.datosLegalesItems?.includes("listboxCausaCaratula")) {
     setValidValue(Object.keys(errors.value).length === 0 && areKeysEqual && !isListCausasCaratulaEmpty.value);
+    return
   }
+
   setValidValue(Object.keys(errors.value).length === 0 && areKeysEqual);
 };
 

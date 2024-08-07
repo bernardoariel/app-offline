@@ -106,15 +106,16 @@ const getDynamicValidationSchema = () => {
                 .oneOf(dropdownItems[getField(item)]?.map((value: { name: any; }) => value.name), 'Seleccione una opción válida'),
               }),
             });
-            }else{
-              schema = schema.shape({
-              [item]: yup.object().shape({
-              name: yup
-                .string()
-                .required('Seleccione una opción válida')
-              }),
-            });
             }
+            // else{
+            //   schema = schema.shape({
+            //   [item]: yup.object().shape({
+            //   name: yup
+            //     .string()
+            //     .required('Seleccione una opción válida')
+            //   }),
+            // });
+            // }
            
           }
         });
@@ -200,6 +201,7 @@ const getNameAttrs = (item: string) => {
   }
 };
 const validateData = () => {
+  console.log("validaciones", values.values, errors)
   for (const key in values) {
     if (values[key]?.length === 0) {
       setValidValue(false);

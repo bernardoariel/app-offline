@@ -18,6 +18,7 @@ export interface DialogBody {
 
 export interface DialogOptions {
   nameRouteToRedirect?: string;
+  routeProp?: string;
   header: DialogHeader;
   body: DialogBody;
   footer?: any; //quizas lo usemos mas tarde
@@ -59,7 +60,7 @@ const isSavedChanges = (to, from, next) => {
           icon: 'pi pi-question-circle',
           answer: '¿Desea salir sin guardar los cambios?',
           colorClass: 'text-red-400',
-          comments: 'Los cambios no guardados se perderán.'
+          comment: 'Los cambios no guardados se perderán.'
         },
         footer: {} // Completar más adelante según sea necesario
       };

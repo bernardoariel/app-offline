@@ -8,6 +8,7 @@ import isSavedChanges from '@/guards/isSavedChanges';
 import isUserAllowed from '@/guards/isUserAllowed'
 import isUserAccessValid from '@/guards/isUserAccessValid'
 import { actuaciones } from '../data/tipoActuaciones';
+import isPersonSaved from '@/guards/isPersonSaved'
 
 
 
@@ -42,7 +43,7 @@ const router = createRouter({
       props: (route) => {
         const actuacionKey = route.params.actuacion
         const actuacionData = actuaciones[actuacionKey] || {};
-        return { actuacion: route.params.actuacion, actuacionData }
+        return { actuacionName: route.params.actuacion, actuacionData }
       }
     },
     {
@@ -58,10 +59,10 @@ const router = createRouter({
       props: (route) => {
         const actuacionKey = route.params.actuacion
         const actuacionData = actuaciones[actuacionKey] || {};
-        const { id,actuacion } = route.params
-        return { 
+        const { id, actuacion } = route.params
+        return {
           id: +id,
-          actuacion,
+          actuacionName:actuacion,
           actuacionData
         }
       }
@@ -72,24 +73,32 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   console.log('to::: ', to);
-  if (to.name === 'actuaciones') {
-    console.log('entro por actuaciones')
-    isSavedChanges(to, from, next); 
-  } else {
-    next()
-   /*  if (!to.params.id) {
-      console.log('no tengo id')
-      next({
-        name: to.name,
-        params: { ...to.params, id: from.params.id },
-        query: to.query, // mantener cualquier query param
-        hash: to.hash, // mantener cualquier hash
-      });
-    } else {
-      next()
-    } */
 
+  if (to.name === 'actuaciones') {
+    console.log('entro por actuaciones');
+    isSavedChanges(to, from, next);
+    return;
   }
+
+ /*  if (from.name === 'formulario') {
+    console.log('salgo de form revisar');
+    isPersonSaved(to, from, next);
+    return;
+  } */
+
+  if (!to.params.id && from.params.id) {
+    console.log('no tengo id');
+    next({
+      name: to.name,
+      params: { ...to.params, id: from.params.id },
+      query: to.query, // mantener cualquier query param
+      hash: to.hash, // mantener cualquier hash
+    });
+    return;
+  }
+
+  next();
 });
+
 
 export default router

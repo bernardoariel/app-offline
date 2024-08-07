@@ -339,6 +339,31 @@ export const actuaciones: TipoActuaciones = {
             "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','ayudanteFiscal']
         }
     },
+    "ufi-propiedad-oficio": {
+        titulo: 'UFI - DELITOS CONTRA LA PROPIEDAD POR OFICIO',
+        tituloAlternativo: 'UNIDADES FISCALES DE INVESTIGACIÓN DELITOS CONTRA LA PROPIEDAD POR OFICIO',
+        "tarjetas": {
+            "afectados": {
+                "titulo": "Afectados",
+                "valor": ['Denunciante', 'Damnificado'],
+            },
+            "fecha": {
+                "titulo": "Fecha, Hora y Ubicacion",
+                "valor": null,
+            },
+            "vinculados": {
+                "titulo": "Vinculados",
+                "valor": ['Aprehendido', 'Acusado'],
+            },
+            "efectos": {
+                "titulo": "Efectos",
+                "valor": ['Denunciado', 'Recuperado', 'Secuestrado'],
+            }
+        },
+        "datosLegales": {
+            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','ayudanteFiscal']
+        }
+    },
     "ufi-delitos-especiales-paradero":{
         titulo: 'UFI - ESTABLECER PARADERO',
         tituloAlternativo: 'UNIDADES FISCALES DE INVESTIGACION D.E ESTABLECER PARADERO',

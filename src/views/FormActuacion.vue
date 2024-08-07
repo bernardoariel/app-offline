@@ -16,6 +16,7 @@ const { prepararNuevoItem } = useItemValue()
 const route = useRoute();
 const router = useRouter()
 const tipo = ref(route.params.tipo);
+const id = ref(route.params.id);
 
 
 const handleNuevoItem = () => prepararNuevoItem()
@@ -26,6 +27,12 @@ watch(() => route.params.tipo, (newTipo) => {
   if (newTipo === tipo.value) return 
   tipo.value = newTipo; 
   
+});
+
+watch(() => route.params.id, (newId) => {
+  if (newId === id.value) return;
+  id.value = newId;
+  console.log('id.value::: ', id.value);
 });
 
 </script>

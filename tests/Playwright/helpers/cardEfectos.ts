@@ -3,17 +3,17 @@ import { test, expect } from "@playwright/test";
 
 export const cardEfectosDenunciado =  async (page:any) =>{
   await page.getByTestId('EfectosPlusButton').click();
-  await page.locator('#pv_id_15 svg').click();
+  await page.getByLabel('Seleccione tipo de efecto').click();
   await page.getByLabel('Denunciado').click();
-  await page.locator('#pv_id_16 div').click();
+  await page.getByLabel('Seleccione Categoría').click();
   await page.getByLabel('Vehiculos').click();
-  await page.locator('#pv_id_17 div').click();
+  await page.getByLabel('Seleccione Sub-Categoría').click();
   await page.getByLabel('auto').click();
-  await page.locator('#pv_id_18 svg').click();
+  await page.getByLabel('Seleccione Tipo', { exact: true }).click();
   await page.getByLabel('Todo terreno').click();
-  await page.locator('#pv_id_19 div').click();
+  await page.getByLabel('Seleccione Marca').click();
   await page.getByLabel('BMW').click();
-  await page.locator('#pv_id_20 div').click();
+  await page.getByLabel('Seleccione Modelo').click();
   await page.getByLabel('147').click();
   await page.locator('div').filter({ hasText: /^Año$/ }).getByRole('textbox').click();
   await page.locator('div').filter({ hasText: /^Año$/ }).getByRole('textbox').fill('2024');
@@ -34,17 +34,17 @@ export const cardEfectosDenunciado =  async (page:any) =>{
 
 export const cardEfectosSecuestrado =  async (page:any) =>{
     await page.getByTestId('EfectosPlusButton').click();
-    await page.locator('#pv_id_28 div').click();
+    await page.getByLabel('Seleccione tipo de efecto').click();
     await page.getByLabel('Secuestrado').click();
-    await page.locator('#pv_id_29 div').click();
+    await page.getByLabel('Seleccione Categoría').click();
     await page.getByLabel('Electrónica').click();
-    await page.locator('#pv_id_30 div').click();
+    await page.getByLabel('Seleccione Sub-Categoría').click();
     await page.getByLabel('Celulares y Teléfono').click();
-    await page.locator('#pv_id_31 div').click();
+    await page.getByLabel('Seleccione Tipo', { exact: true }).click();
     await page.getByLabel('Todo terreno').click();
-    await page.locator('#pv_id_32 div').click();
+    await page.getByLabel('Seleccione Marca').click();
     await page.getByLabel('Huawei').click();
-    await page.locator('#pv_id_33 div').click();
+    await page.getByLabel('Seleccione Modelo').click();
     await page.getByLabel('K71').click();
     await page.locator('div').filter({ hasText: /^Año$/ }).getByRole('textbox').click();
     await page.locator('div').filter({ hasText: /^Año$/ }).getByRole('textbox').fill('2023');
@@ -56,17 +56,17 @@ export const cardEfectosSecuestrado =  async (page:any) =>{
 
 export const cardEfectosRecuperado =  async (page:any) =>{
     await page.getByTestId('EfectosPlusButton').click();
-    await page.locator('#pv_id_28 div').click();
+    await page.getByLabel('Seleccione tipo de efecto').click();
     await page.getByLabel('Recuperado').click();
-    await page.locator('#pv_id_29 div').click();
+    await page.getByLabel('Seleccione Categoría').click();
     await page.getByLabel('Electrónica').click();
-    await page.locator('#pv_id_30 div').click();
+    await page.getByLabel('Seleccione Sub-Categoría').click();
     await page.getByLabel('Electrodomesticos').click();
-    await page.locator('#pv_id_31 div').click();
+    await page.getByLabel('Seleccione Tipo', { exact: true }).click();
     await page.getByLabel('Microonda').click();
-    await page.locator('#pv_id_32 div').click();
+    await page.getByLabel('Seleccione Marca').click();
     await page.getByLabel('Rockrider').click();
-    await page.locator('#pv_id_33 svg').click();
+    await page.getByLabel('Seleccione Modelo').click();
     await page.getByLabel('Blazer').click();
     await page.locator('div').filter({ hasText: /^Dominio$/ }).getByRole('textbox').click();
     await page.locator('div').filter({ hasText: /^Dominio$/ }).getByRole('textbox').fill('335132131');

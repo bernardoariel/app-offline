@@ -5,32 +5,39 @@ const firstName = faker.person.lastName("male");
 const lastName = faker.person.lastName("male");
 const adress = faker.location.streetAddress();
 const text = faker.lorem.sentence();
-const dni = faker.number.int(100000000);
+const dni = faker.number.int(10000000).toString();
 const number = faker.number.int(1000);
-const phoneNumber = faker.phone.number("54 9 555 ####");
+const phone = faker.phone.number();
+const phoneNumber = phone.replace(/\D/g, '');
 const email = faker.internet.email();
-const date = faker.date.past();
-const birthDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+const date = new Date(); // Supongamos que tienes un objeto Date
+const day = String(date.getDate()).padStart(2, '0'); // Asegura que el día tenga dos dígitos
+const month = String(date.getMonth() + 1).padStart(2, '0'); // Asegura que el mes tenga dos dígitos
+const year = date.getFullYear();
+const birthDate = `${day}${month}${year}`;
 const profession = faker.name.jobTitle();
 
 export const cardAfectados =  async (page:any) =>{
   await page.getByTestId('AfectadosPlusButton').click();
-  await page.locator('#pv_id_10 div').click();
+  await page.getByLabel('Seleccione tipo de denunciante').click();
   await page.getByLabel('Denunciante', { exact: true }).click();
   await page.getByText('Seleccione tipo de doc.').click();
   await page.getByLabel('DNI').click();
   await page.getByPlaceholder('Ingrese N° de doc').click();
+  console.log(dni);
   await page.getByPlaceholder('Ingrese N° de doc').fill(dni);
-  await page.locator('#pv_id_12 svg').click();
+  await page.getByLabel('Seleccione sexo').click();
   await page.getByLabel('Masculino').click();
   await page.getByPlaceholder('Ingrese apellido').click();
   await page.getByPlaceholder('Ingrese apellido').fill(lastName);
   await page.getByPlaceholder('Ingrese nombre').click();
   await page.getByPlaceholder('Ingrese nombre').fill(firstName);
-  await page.getByPlaceholder('Ingrese fecha').click(birthDate);
-  await page.locator('#pv_id_13 div').click();
+  console.log(birthDate);
+  await page.getByPlaceholder('Ingrese fecha').click();
+  await page.getByPlaceholder('Ingrese fecha').fill(birthDate);
+  await page.getByLabel('Nacionalidad').click();
   await page.getByLabel('Argentina').click();
-  await page.locator('#pv_id_14 div').click();
+  await page.getByLabel('Estado Civil').click();
   await page.getByLabel('Casado/a').click();
   await page.getByPlaceholder('Ingrese Domicilio de').click();
   await page.getByPlaceholder('Ingrese Domicilio de').fill(adress);
@@ -40,8 +47,12 @@ export const cardAfectados =  async (page:any) =>{
   await page.getByPlaceholder('Ingrese email').fill(email);
   await page.getByPlaceholder('Ingrese Profesión').click();
   await page.getByPlaceholder('Ingrese Profesión').fill(profession);
-  await page.locator('#pv_id_15 svg').click();
+  await page.getByLabel('Instrucción').click();
   await page.getByText('Secundaria').click();
   await page.getByLabel('Agregar').click();
   await page.getByRole('button', { name: '' }).click();
+  await expect(page.getByTestId('afectadosname').getByText(lastName)).toBeVisible();  
+  await expect(page.getByTestId('afectadosname').getByText(firstName)).toBeVisible();
+  await expect(page.getByTestId('afectadosname').getByText(dni)).toBeVisible();
+
 }

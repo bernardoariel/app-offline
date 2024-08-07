@@ -80,11 +80,11 @@ router.beforeEach((to, from, next) => {
     return;
   }
 
-  if (from.name === 'formulario') {
+ /*  if (from.name === 'formulario') {
     console.log('salgo de form revisar');
     isPersonSaved(to, from, next);
     return;
-  }
+  } */
 
   if (!to.params.id && from.params.id) {
     console.log('no tengo id');

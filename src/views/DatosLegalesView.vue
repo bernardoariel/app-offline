@@ -97,14 +97,25 @@ const getDynamicValidationSchema = () => {
   items.forEach((item, index) => {  
     console.log("item:::",item)
           if (item !== "causaCaratula" && item !== 'listboxCausaCaratula' && item !=='articulosRelacionados' && item !=='listboxArticulos'){
-            schema = schema.shape({
+            if(dropdownItems[getField(item)]){
+              schema = schema.shape({
               [item]: yup.object().shape({
               name: yup
                 .string()
                 .required('Seleccione una opción válida')
                 .oneOf(dropdownItems[getField(item)]?.map((value: { name: any; }) => value.name), 'Seleccione una opción válida'),
-            }),
-          });
+              }),
+            });
+            }else{
+              schema = schema.shape({
+              [item]: yup.object().shape({
+              name: yup
+                .string()
+                .required('Seleccione una opción válida')
+              }),
+            });
+            }
+           
           }
         });
   return schema;
@@ -376,7 +387,7 @@ const handleInputChange = (campo: string | number, event: Event) => {
           :options="itemsCausaCaratula"
           :class="{ 'is-invalid': isListCausasCaratulaEmpty }"
           optionLabel="name"
-          emptyMessage="No hay opciones seleccionadasdasf"
+          emptyMessage="No hay opciones seleccionadas"
           class="w-full"
         >
           <template #option="{ option }">

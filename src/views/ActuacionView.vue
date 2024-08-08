@@ -1,17 +1,14 @@
 <script lang="ts" setup>
-//actuacionView
-import { ref, watch, onActivated, computed, onDeactivated } from 'vue';
+import { ref, watch, onActivated, computed } from 'vue';
 import DataViewCard from '@/components/DataViewCard.vue';
 import DatosLegalesView from './DatosLegalesView.vue';
 import DiligenciaView from './DiligenciaView.vue';
+
 import useActuacion from '@/composables/useActuacion';
 import useCardInformation from '@/composables/useCardInformation';
-
 import useItem from '../composables/useItems';
-
 import useDatosLegales from '../composables/useDatosLegales';
 import useDatosDiligencia from '@/composables/useDatosDiligencia';
-import useSaveData from '@/composables/useSaveData';
 import useItemValue from '@/composables/useItemValue';
 import useActuacionData from '@/composables/useActuacionData';
 import { useDialog } from '../composables/useDialog';
@@ -20,6 +17,8 @@ import useFieldState from '@/composables/useFieldsState';
 import useLegalesState from '@/composables/useLegalesState';
 import useActuacionLoading from '@/composables/useActuacionLoading';
 import useCardValidation from '@/composables/useCardValidations';
+
+import { handleFetchActuacion } from '@/helpers/handleFetchActuacion';
 
 const { dialogState, confirmNavigation, hideDialog } = useDialog();
 interface Props {
@@ -32,19 +31,9 @@ const actuacionName = ref(props.actuacionName);
 const actuacionData = ref(props.actuacionData);
 
 const activeButtonTab = ref(0);
-const {
-  agregarNuevoItem,
-  currentEditId,
-  toogleDateActuacion,
-  setFechaCreacion,
-} = useActuacion();
+const { agregarNuevoItem, toogleDateActuacion } = useActuacion();
 const { set: setActuacionData } = useActuacionData();
-const { fetchActuacionById } = useSaveData();
-const {
-  resetData: resetDatosLegales,
-  setData: setDatosLegales,
-  nroLegajo,
-} = useDatosLegales();
+const { resetData: resetDatosLegales, nroLegajo } = useDatosLegales();
 const { setLoading } = useActuacionLoading();
 
 const {
@@ -73,16 +62,7 @@ onActivated(async () => {
     setLoading(false);
   }
   toogleDateActuacion();
-  if (props.id && !currentEditId.value) {
-    const data = await fetchActuacionById(props.id);
-    setAll(data); // info tabs1
-    setDatosLegales(data); // tabs2
-    setFechaCreacion(data.fechaCreacion);
-    relato.value = data.relato.replace(/['"]/g, '');
-    currentEditId.value = props.id;
-    setLoading(false);
-    resetFieldsEmpty();
-  }
+  await handleFetchActuacion(props.id, props.actuacionName);
 });
 
 const { setAll } = useItem();
@@ -94,12 +74,11 @@ const { cardInformationKeys, cardInformation } = useCardInformation(
   actuacionName,
   actuacionData
 );
-const { missingFieldsEmpty, resetFieldsEmpty } = useCardValidation();
+const { missingFieldsEmpty } = useCardValidation();
 const { prepararNuevoItem } = useItemValue();
 
 const handleClick = (event: { ctrlKey: any; altKey: any }) => {
   if (event.ctrlKey && event.altKey) {
-    // console.log(`Ctrl + Alt + Click detectado: ${actuacionRef}`);
     setAll();
     addDataFake();
     markNewRecordCreated();
@@ -133,7 +112,7 @@ watch(
   (newValue) => {
     resetAllStates();
   },
-  { immediate: true } // Esto asegura que el watcher se ejecute inmediatamente con el valor inicial
+  { immediate: true }
 );
 
 const handleNuevoItem = (key: string) => {
@@ -159,15 +138,15 @@ const dialogButtons = [
 
 const handleButtonClick = (action: string) => {
   if (action !== 'accept') {
-    // Manténgo al usuario en la página actual sin borrar los estados pendientes por guardar
     hideDialog();
     dialogState.value.pendingRoute = null;
     return;
   }
   isEditingHeader.value = !isEditingHeader.value;
   resetAllStates();
-  confirmNavigation(); // Proceder con la navegación
+  confirmNavigation();
 };
+
 watch(
   () => dialogState.value.isDialogVisible,
   (newVal) => {
@@ -181,6 +160,7 @@ watch(
     actuacionData.value = newData;
   }
 );
+
 const isAnyChange = computed(() => {
   return (
     isUnsavedChange.value ||
@@ -226,7 +206,7 @@ const isAnyChange = computed(() => {
   </MyDialog>
   <div class="grid">
     <div class="col-5">
-      <Card v-if="Object.keys(props.actuacionData).length > 0 ? true:false">
+      <Card v-if="Object.keys(props.actuacionData).length > 0 ? true : false">
         <template #title>
           <div class="title-container">
             <div>
@@ -361,19 +341,15 @@ const isAnyChange = computed(() => {
   align-items: center;
   position: relative;
 }
-.custom-title {
-  /* font-size: 28px; */ /* Ajusta el tamaño de la fuente según tus preferencias */
-  /* font-weight: 500;  */ /* Puedes ajustar el peso de la fuente según tus preferencias */
-  color: #333; /* Cambia el color del texto según tus preferencias */
-}
 .buttons-container {
   display: flex;
-  gap: 10px; /* Espacio entre los botones */
+  gap: 10px;
 }
 
 .color-border-top {
-  border-top: 1px solid #e9e9e984; /* Cambia el color y grosor del borde según necesites */
+  border-top: 1px solid #e9e9e984;
 }
+
 .modal-body {
   display: flex;
   flex-direction: column;

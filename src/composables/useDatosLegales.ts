@@ -43,14 +43,14 @@ const useDatosLegales = () => {
         nroLegajo: generateRandomNumber().toString(),
         selectedYear: { name: '2024' },
         selectedSitio: { name: 'Museo' },
-        selectedModusOperandi: { name: ' Delito Rural' },
-        selectedAyudanteFiscal: { name: 'Dra. Pacheco Cecilia' },
+        selectedModusOperandi: { name: 'Delito Rural' },
+        selectedAyudanteFiscal: { name: 'Dr Ghilardi Oscar Andres' },
         selectedFiscalCargo: { name: 'Dr. Shoar Aballay' },
         selectedUfiNro: { name: '1' },
         selectedDelito: { name: 'ACT.POR FALLECIMIENTO' },
         itemsCausaCaratula: [{ name: 'Siniestro Vial' }, { name: 'Robo simple en grado de tentativa' }],
         itemsArticulosRelacionados: [{ name: '183\u00ba ' }, { name: 'Actuaciones por Denuncia' }],
-        selectedJuzgadoInterviniente: { name: 'Unidad Fiscal de Prueba' },
+        selectedJuzgadoInterviniente: { name: 'TERCER JUZGADO EN LO CORRECCIONAL' },
         selectedArticulosRelacionados:{ name: '178\u00b0 Portacion de arma blanca o contundente. ' }
     }
 

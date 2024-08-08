@@ -27,7 +27,7 @@
             class="p-button"
             @click="handleSave"
             severity="warning"
-          />
+            :disabled="!isDataValid()"           />
         </div>
       </div>
 
@@ -165,11 +165,14 @@ import useActuacionLoading from '@/composables/useActuacionLoading';
 import Skeleton from 'primevue/skeleton';
 import useCardInformation from '@/composables/useCardInformation';
 import useCardValidation from '@/composables/useCardValidations';
+import useValidacionDatosLegales from '@/composables/useValidacionDatosLegales';
 
 interface Props {
   actuacion: string;
   id?: number;
 }
+
+const {isDataValid,setValidValue}=useValidacionDatosLegales()
 
 const props = defineProps<Props>();
 const router = useRouter();
@@ -236,7 +239,6 @@ const setHeaderFromProcessedIfEmpty = () => {
     headerContainer.value = processedHeaderText.value;
   }
 };
-
 const toggleHeader = () => {
   if (isEditingHeader.value) {
     setHeaderFromComputed();

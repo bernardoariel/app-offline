@@ -346,7 +346,7 @@ const handleInputChange = (campo: string | number, event: Event) => {
       />
     </div>
     <div class="col-3">
-      <label for="dropdown">year</label>
+      <label for="dropdown">Año</label>
       <MyDropdown
         class="w-full mt-2"
         :items="mapToDropdownItems(yearsActuacion)"

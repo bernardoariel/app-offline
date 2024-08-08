@@ -293,10 +293,8 @@ const isAnyChange = computed(() => {
               />
             </div>
 
-            <div>
-              <small class="text-sm">
-                {{ isAnyChange ? ' Cambios Pendientes' : ' Sin Cambios' }}
-              </small>
+            <div class="change-status" :title="isAnyChange ? 'Cambios Pendientes' : 'Sin Cambios'">
+              <i :class="isAnyChange ? 'pi pi-circle-fill' : 'pi pi-circle'"></i>
             </div>
           </div>
         </template>
@@ -361,6 +359,7 @@ const isAnyChange = computed(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 .custom-title {
   /* font-size: 28px; */ /* Ajusta el tamaño de la fuente según tus preferencias */
@@ -380,5 +379,12 @@ const isAnyChange = computed(() => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.change-status {
+  position: absolute;
+  top: -18px; /* Ajusta este valor según necesites */
+  right: -10px; /* Ajusta este valor según necesites */
+  font-size: 1.5rem; /* Tamaño del ícono */
+  /* cursor: pointer;  */
 }
 </style>

@@ -35,13 +35,11 @@ watch(
   (newId) => {
     if (newId === id.value) return;
     id.value = newId;
-    console.log('id.value::: ', id.value);
   }
 );
 
 onBeforeRouteLeave((to, from) => {
   if (from.name === 'formulario') {
-    console.log('salgo de form revisar');
     return isPersonSaved(to, from);
   }
 });

@@ -39,11 +39,10 @@ const formatKey = (key: string) => {
     return keyMap[key] || key;
 };;
 
-const isPersonSaved = (to, from, next) => {
+const isPersonSaved = (to, from) => {
 
     const pathFindGuard = ['personas'];
     const pathIncludesGuard = pathFindGuard.some(keyword => from.path.includes(keyword));
-    /* cuando quiero salir del la edicion o la creacion de un afectado */
     if (pathIncludesGuard && dialogState.value.pendingRoute === null) {
 
         if (pathIncludesGuard && isPristineState.value) {
@@ -55,22 +54,8 @@ const isPersonSaved = (to, from, next) => {
                 const modifiedDataKeys = Object.keys(modifiedItem.modifiedData)
                     .map(formatKey)
                     .join(', ');
-                const optionDialog: DialogOptions = {
-                    nameRouteToRedirect: to.path,
-                    routeProp: 'path',
-                    header: {
-                        title: 'Confirmación Necesaria'
-                    },
-                    body: {
-                        icon: 'pi pi-exclamation-triangle',
-                        answer: '¿ Deseas continuar sin guardar ?',
-                        colorClass: 'text-orange-400',
-                        comment: `Tienes cambios sin guardar en los datos de ${modifiedDataKeys}`
-                    },
-                    footer: {} // Completar más adelante según sea necesario
-                };
-                showDialog(optionDialog);
-                return;
+                alert(modifiedDataKeys)
+                return true;
             }
         }
     }
@@ -78,12 +63,10 @@ const isPersonSaved = (to, from, next) => {
     /* cuando tengo una ruta pendiente a navegar luego de mostrar el modal */
     if (dialogState.value.pendingRoute) {
         dialogState.value.pendingRoute = null;
-        next();
-        return;
+        return true;
     }
 
-    /* para todos las demas */
-    next();
+    return true
 };
 
 export default isPersonSaved;

@@ -90,7 +90,7 @@ const useSaveData = () => {
       await db.actuaciones.update(data.id, {
         nroLegajoCompleto: nroLegajo.value,
         // fechaCreacion: fechaCreacion.value,
-        nombreActuacion: nombreActuacion.value,
+        nombreActuacion: actuacionData.value?.titulo,
         juzgadoInterviniente: selectedJuzgadoInterviniente.value?.name || '',
         afectados: JSON.stringify(data.afectados),
         vinculados: JSON.stringify(data.vinculados),

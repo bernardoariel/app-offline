@@ -462,16 +462,16 @@ const convertStringToPhrase = (key: string): string => {
 
               <div class="flex-items">
                 <span class="font-bold">{{
-                  getUpperCase(item.subcategoria)
+                  getUpperCase(item.subcategoria.name)
                 }}</span>
                 <span class="ml-2"
-                  >{{ getTitleCase(item.tipo) }}-{{
-                    getTitleCase(item.marca)
-                  }}-{{ getTitleCase(item.modelo) }}</span
+                  >{{ getTitleCase(item.tipo.name) }}-{{
+                    getTitleCase(item.marca.name)
+                  }}-{{ getTitleCase(item.modelo.name) }}</span
                 >
                 <Tag
-                  :value="item.estado"
-                  :severity="getColorByAfectado(item.estado)"
+                  :value="item.estado.name"
+                  :severity="getColorByAfectado(item.estado.name)"
                   class="ml-5"
                 />
               </div>

@@ -80,6 +80,7 @@ const useSaveData = () => {
 
   const updateData = async (data: dataActuacionForSave) => {
     data.relato = data.relato.replace(/\n/g, ' ');
+    console.log(data,"guardando")
     if (typeof data.id !== 'number') {
       console.error('Invalid id:', data.id);
       error.value = 'Invalid id';

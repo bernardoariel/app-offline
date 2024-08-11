@@ -1,88 +1,84 @@
 <script lang="ts" setup>
-import { onActivated, ref, watch } from 'vue';
-import useEfectos from '@/composables/useEfectos';
-import useItemValue from '@/composables/useItemValue';
-import useFieldState from '@/composables/useFieldsState';
-import useActuacionData from '@/composables/useActuacionData';
-import * as yup from 'yup';
+import { onActivated, ref, watch } from "vue";
+import useEfectos from "@/composables/useEfectos";
+import useItemValue from "@/composables/useItemValue";
+import useFieldState from "@/composables/useFieldsState";
+import useActuacionData from "@/composables/useActuacionData";
+import * as yup from "yup";
 
-import MyDropdown from '@/components/elementos/MyDropdown.vue';
-import MyInput from '@/components/elementos/MyInput.vue';
+import MyDropdown from "@/components/elementos/MyDropdown.vue";
+import MyInput from "@/components/elementos/MyInput.vue";
 
-import type { Efectos } from '../interfaces/efecto.interface';
-import type { EfectosForm } from '../interfaces/efecto.interface';
+import type { Efectos } from "../interfaces/efecto.interface";
+import type { EfectosForm } from "../interfaces/efecto.interface";
 import {
   categoriasDropdown,
   marcasCategoriasDropdown,
   modelosCategoriasDropdown,
   subcategoriasDropdown,
   tipoCategoriasDropdown,
-} from '@/helpers/getDropItems';
+} from "@/helpers/getDropItems";
 
-import { mapToArray, mapToDropdownItems } from '@/helpers/dropUtils';
-import { useForm } from 'vee-validate';
+import { mapToArray, mapToDropdownItems } from "@/helpers/dropUtils";
+import { useForm } from "vee-validate";
 
 const validationSchema = yup.object({
   estadoSelect: yup.object().shape({
     name: yup
       .string()
-      .required('Seleccione un estado')
-      .oneOf(
-        ['Denunciado', 'Recuperado', 'Secuestrado'],
-        'Selecciones un tipo válido'
-      ),
+      .required("Seleccione un estado")
+      .oneOf(["Denunciado", "Recuperado", "Secuestrado"], "Selecciones un tipo válido"),
   }),
   categoriaSelect: yup.object().shape({
     name: yup
       .string()
-      .required('Seleccione una categoria')
-      .oneOf(
-        mapToArray(categoriasDropdown),
-        'Selecciones una categoria válida'
-      ),
+      .required("Seleccione una categoria")
+      .oneOf(mapToArray(categoriasDropdown), "Selecciones una categoria válida"),
   }),
   subCategoriaSelect: yup.object().shape({
     name: yup
       .string()
-      .required('Seleccione una sub categoria')
-      .oneOf(mapToArray(subcategoriasDropdown), 'Selecciones una subcategoria'),
+      .required("Seleccione una sub categoria")
+      .oneOf(mapToArray(subcategoriasDropdown), "Selecciones una subcategoria"),
   }),
   tipoSelect: yup.object().shape({
     name: yup
       .string()
-      .required('Seleccione un tipo')
-      .oneOf(mapToArray(tipoCategoriasDropdown), 'Selecciones un tipo válido'),
+      .required("Seleccione un tipo")
+      .oneOf(mapToArray(tipoCategoriasDropdown), "Selecciones un tipo válido"),
   }),
   modeloSelect: yup.object().shape({
     name: yup
       .string()
-      .required('Seleccione un modelo')
-      .oneOf(
-        mapToArray(modelosCategoriasDropdown),
-        'Selecciones un modelo válido'
-      ),
+      .required("Seleccione un modelo")
+      .oneOf(mapToArray(modelosCategoriasDropdown), "Selecciones un modelo válido"),
   }),
   marcaSelect: yup.object().shape({
     name: yup
       .string()
-      .required('Seleccione una marca')
-      .oneOf(
-        mapToArray(marcasCategoriasDropdown),
-        'Selecciones una marca válida'
-      ),
+      .required("Seleccione una marca")
+      .oneOf(mapToArray(marcasCategoriasDropdown), "Selecciones una marca válida"),
   }),
 });
 const { defineField, values, errors } = useForm({
   validationSchema,
 });
 
-let [estadoSelect, estadoSelectAttrs] = defineField('estadoSelect');
-let [categoriaSelect, categoriaSelectAttrs] = defineField('categoriaSelect');
-let [subCategoriaSelect, subCategoriaSelectAttrs] =
-  defineField('subCategoriaSelect');
-let [tipoSelect, tipoSelectAttrs] = defineField('tipoSelect');
-let [marcaSelect, marcaSelectAttrs] = defineField('marcaSelect');
-let [modeloSelect, modeloSelectAttrs] = defineField('modeloSelect');
+let [estadoSelect, estadoSelectAttrs] = defineField("estadoSelect");
+let [categoriaSelect, categoriaSelectAttrs] = defineField("categoriaSelect");
+let [subCategoriaSelect, subCategoriaSelectAttrs] = defineField("subCategoriaSelect");
+let [tipoSelect, tipoSelectAttrs] = defineField("tipoSelect");
+let [marcaSelect, marcaSelectAttrs] = defineField("marcaSelect");
+let [modeloSelect, modeloSelectAttrs] = defineField("modeloSelect");
+let [year]=defineField("year")
+let [nroChasis]=defineField("nroChasis")
+let [nroMotor]=defineField("nroMotor")
+let [nroSerie]=defineField("nroSerie")
+let [nroAbonado]=defineField("nroAbonado")
+let [color]=defineField("color")
+let [nroIMEI]=defineField("nroIMEI")
+let [dominio]=defineField("dominio")
+
 
 const {
   editar,
@@ -110,15 +106,14 @@ const {
 const { obtenerTarjeta } = useActuacionData();
 
 const formData = ref<EfectosForm>({ ...initialValues });
-const tarjetaValues = ref<string[]>(['']);
+const tarjetaValues = ref<string[]>([""]);
 
 onActivated(() => {
-  tarjetaValues.value = obtenerTarjeta('efectos')?.valor as string[];
+  tarjetaValues.value = obtenerTarjeta("efectos")?.valor as string[];
   if (selectedItem.value) {
     formData.value = { ...selectedItem.value };
     updateDataWithForm();
   }
-  console.log(mapToArray(categoriasDropdown));
 });
 const hasErrors = () => {
   const keys1 = Object.keys(validationSchema.fields);
@@ -129,12 +124,20 @@ const hasErrors = () => {
 };
 const updateDataWithForm = () => {
   if (formData) {
-    tipoSelect.value = { name: formData.value.tipo };
-    marcaSelect.value = { name: formData.value.marca };
-    modeloSelect.value = { name: formData.value.modelo };
-    categoriaSelect.value = { name: formData.value.categoria };
-    subCategoriaSelect.value = { name: formData.value.subcategoria };
-    estadoSelect.value = { name: formData.value.estado };
+    tipoSelect.value = { name: formData.value.tipo.name, key:formData.value.tipo.key };
+    marcaSelect.value = { name: formData.value.marca.name , key:formData.value.marca.key };
+    modeloSelect.value = { name: formData.value.modelo.name, key:formData.value.modelo.key  };
+    categoriaSelect.value = { name: formData.value.categoria.name, key:formData.value.categoria.key };
+    subCategoriaSelect.value = { name: formData.value.subcategoria.name, key: formData.value.subcategoria.key };
+    estadoSelect.value = { name: formData.value.estado.name, key: formData.value.estado.key };
+    year.value=formData.value.año ? formData.value.año: ""
+    color.value=formData.value.color ? formData.value.color: ""
+    nroChasis.value=formData.value.nroChasis ? formData.value.nroChasis: ""
+    nroAbonado.value=formData.value.nroAbonado ? formData.value.nroAbonado: ""
+    nroIMEI.value=formData.value.nroIMEI ? formData.value.nroIMEI: ""
+    nroMotor.value=formData.value.nroMotor ? formData.value.nroMotor: ""
+    nroSerie.value=formData.value.nroSerie ? formData.value.nroSerie: ""
+    dominio.value=formData.value.dominio ? formData.value.dominio: ""
   }
 };
 const handleDropdownChange = (
@@ -160,9 +163,8 @@ const handleDropdownChange = (
 
 const getInputValue = (campo: keyof EfectosForm) => {
   if (campo in formData.value) {
-    const modifiedData = statesID.find(
-      (state) => state.id === selectedItem.value?.id
-    )?.modifiedData;
+    const modifiedData = statesID.find((state) => state.id === selectedItem.value?.id)
+      ?.modifiedData;
     return modifiedData && modifiedData[campo] !== undefined
       ? modifiedData[campo]
       : formData.value[campo];
@@ -176,7 +178,7 @@ const handleInputChange = (campo: string | number, event: Event) => {
   const itemId = formData.value.id!;
   setPristineById(itemId, false);
 
-  const campoStr = typeof campo === 'number' ? campo.toString() : campo;
+  const campoStr = typeof campo === "number" ? campo.toString() : campo;
   setModifiedData(itemId, campoStr, valor);
 };
 
@@ -190,12 +192,12 @@ const handleBlur = (campo: keyof EfectosForm) => {
 const handleAgregarElemento = () => {
   if (!formData.value) return;
   const nuevoEfecto: Efectos = {
-    estado: estadoSelect.value.name,
-    categoria: categoriaSelect.value.name,
-    marca: marcaSelect.value.name,
-    modelo: modeloSelect.value.name,
-    subcategoria: subCategoriaSelect.value.name,
-    tipo: tipoSelect.value.name,
+    estado: {name:estadoSelect.value.name, key:estadoSelect.value.key},
+    categoria: {name:categoriaSelect.value.name, key:categoriaSelect.value.name},
+    marca: {name:marcaSelect.value.name, key:marcaSelect.value.key},
+    modelo:{name:modeloSelect.value.name, key:modeloSelect.value.key},
+    subcategoria:{name:subCategoriaSelect.value.name, key:subCategoriaSelect.value.key},
+    tipo: {name:tipoSelect.value.name, key:tipoSelect.value.key},
     año: formData.value.año,
     nroChasis: formData.value.nroChasis,
     nroMotor: formData.value.nroMotor,
@@ -209,12 +211,12 @@ const handleAgregarElemento = () => {
   agregar(nuevoEfecto);
   markNewRecordCreated();
   formData.value = { ...initialValues };
-  tipoSelect.value = { name: 'Seleccione un tipo' };
-  marcaSelect.value = { name: 'Seleccione una marca' };
-  modeloSelect.value = { name: 'Seleccione un modelo' };
-  categoriaSelect.value = { name: 'Seleccione una categoria' };
-  subCategoriaSelect.value = { name: 'Seleccione una subcategoria' };
-  estadoSelect.value = { name: 'Seleccione un estado' };
+  tipoSelect.value = { name: "Seleccione un tipo", key:""};
+  marcaSelect.value = { name: "Seleccione una marca", key:"" };
+  modeloSelect.value = { name: "Seleccione un modelo", key:"" };
+  categoriaSelect.value = { name: "Seleccione una categoria", key:"" };
+  subCategoriaSelect.value = { name: "Seleccione una subcategoria", key:"" };
+  estadoSelect.value = { name: "Seleccione un estado", key:"" };
 };
 
 const handleCancelar = () => {
@@ -225,19 +227,19 @@ const handleCancelar = () => {
 
 const handleModificarElemento = () => {
   if (hasErrors()) {
-    alert('Completa el formulario antes de guardar.');
+    alert("Completa el formulario antes de guardar.");
     return;
   }
   let itemStateEncontrado = guardarModificaciones(selectedItem.value!.id);
   let itemAEditar = {
     ...formData.value,
     id: formData.value.id,
-    estado: estadoSelect.value.name || '',
-    categoria: categoriaSelect.value.name || '',
-    marca: marcaSelect.value.name || '',
-    modelo: modeloSelect.value.name || '',
-    subcategoria: subCategoriaSelect.value.name || '',
-    tipo: tipoSelect.value?.name || '',
+    estado: {name:estadoSelect.value.name || "", key:estadoSelect.value.key},
+    categoria: {name:categoriaSelect.value.name || "", key:categoriaSelect.value.key},
+    marca: {name:marcaSelect.value.name || "", key:marcaSelect.value.key},
+    modelo: {name:modeloSelect.value.name || ""|| "", key:modeloSelect.value.key },
+    subcategoria: {name:subCategoriaSelect.value.name || "", key:subCategoriaSelect.value.key },
+    tipo: {name:tipoSelect.value?.name || "", key:subCategoriaSelect.value.key } ,
     ...itemStateEncontrado,
   };
   editar(itemAEditar);
@@ -245,19 +247,13 @@ const handleModificarElemento = () => {
 watch(selectedItem, (newVal: any) => {
   if (!newVal) {
     formData.value = { ...initialValues };
-    tipoSelect.value = { name: 'Seleccione un tipo' };
-    marcaSelect.value = { name: 'Seleccione una marca' };
-    modeloSelect.value = { name: 'Seleccione un modelo' };
-    categoriaSelect.value = { name: 'Seleccione una categoria' };
-    subCategoriaSelect.value = { name: 'Seleccione una subcategoria' };
-    estadoSelect.value = { name: 'Seleccione un estado' };
+    tipoSelect.value = { name: "Seleccione un tipo", key:"" };
+    marcaSelect.value = { name: "Seleccione una marca", key:"" };
+    modeloSelect.value = { name: "Seleccione un modelo", key:"" };
+    categoriaSelect.value = { name: "Seleccione una categoria", key:"" };
+    subCategoriaSelect.value = { name: "Seleccione una subcategoria", key:"" };
+    estadoSelect.value = { name: "Seleccione un estado", key:"" };
   } else {
-    // selectedEstado.value = { name: newVal.estado };
-    // selectedCategoria.value = { name: newVal.categoria };
-    // selectedMarca.value = { name: newVal.marca };
-    // selectedModelo.value = { name: newVal.modelo };
-    // selectedSubcategoria.value = { name: newVal.subcategoria };
-    // selectedTipo.value = { name: newVal.tipo };
     formData.value = { ...newVal };
     updateDataWithForm();
   }
@@ -298,10 +294,7 @@ watch(selectedItem, (newVal: any) => {
             :error="errors.categoriaSelect"
             v-bind="categoriaSelectAttrs"
           />
-          <span
-            class="text-red-400"
-            v-if="errors.categoriaSelect ? true : false"
-          >
+          <span class="text-red-400" v-if="errors.categoriaSelect ? true : false">
             {{ errors.categoriaSelect }}
           </span>
         </div>
@@ -318,10 +311,7 @@ watch(selectedItem, (newVal: any) => {
             :error="errors.subCategoriaSelect"
             v-bind="subCategoriaSelectAttrs"
           />
-          <span
-            class="text-red-400"
-            v-if="errors.subCategoriaSelect ? true : false"
-          >
+          <span class="text-red-400" v-if="errors.subCategoriaSelect ? true : false">
             {{ errors.subCategoriaSelect }}
           </span>
         </div>
@@ -348,9 +338,7 @@ watch(selectedItem, (newVal: any) => {
             class="mt-2"
             :items="marcasCategoriasDropdown"
             v-model="marcaSelect"
-            @change="
-              (newValue) => handleDropdownChange('subcategoria', newValue)
-            "
+            @change="(newValue) => handleDropdownChange('subcategoria', newValue)"
             placeholder="Seleccione Marca"
             filter
             :color="false"
@@ -383,29 +371,29 @@ watch(selectedItem, (newVal: any) => {
           <MyInput
             type="text"
             class="mt-2"
-            :value="getInputValue('año')"
+            v-model="year"
             @input="handleInputChange('año', $event)"
             @blur="() => handleBlur('año')"
             :color="false"
           />
         </div>
         <div class="col-6">
-          <label for="nroChasis">Nroº Chasis</label>
+          <label for="nroChasis">Nroº nroChasis</label>
           <MyInput
             type="text"
             class="mt-2"
-            :value="getInputValue('nroChasis')"
+             v-model="nroChasis"
             @input="handleInputChange('nroChasis', $event)"
             @blur="() => handleBlur('nroChasis')"
             :color="false"
           />
         </div>
         <div class="col-6">
-          <label for="nroMotor">Nroº Motor</label>
+          <label for="nroMotor">Nroº nroMotor</label>
           <MyInput
             type="text"
             class="mt-2"
-            :value="getInputValue('nroMotor')"
+            v-model="nroMotor"
             @input="handleInputChange('nroMotor', $event)"
             @blur="() => handleBlur('nroMotor')"
             :color="false"
@@ -416,7 +404,7 @@ watch(selectedItem, (newVal: any) => {
           <MyInput
             type="text"
             class="mt-2"
-            :value="getInputValue('dominio')"
+            v-model="dominio"
             @input="handleInputChange('dominio', $event)"
             @blur="() => handleBlur('dominio')"
             :color="false"
@@ -427,7 +415,7 @@ watch(selectedItem, (newVal: any) => {
           <MyInput
             type="text"
             class="mt-2"
-            :value="getInputValue('nroSerie')"
+            v-model="nroSerie"
             @input="handleInputChange('nroSerie', $event)"
             @blur="() => handleBlur('nroSerie')"
             :color="false"
@@ -438,7 +426,7 @@ watch(selectedItem, (newVal: any) => {
           <MyInput
             type="text"
             class="mt-2"
-            :value="getInputValue('nroIMEI')"
+            v-model="nroIMEI"
             @input="handleInputChange('nroIMEI', $event)"
             @blur="() => handleBlur('nroIMEI')"
             :color="false"
@@ -449,7 +437,7 @@ watch(selectedItem, (newVal: any) => {
           <MyInput
             type="text"
             class="mt-2"
-            :value="getInputValue('nroAbonado')"
+            v-model="nroAbonado"
             @input="handleInputChange('nroAbonado', $event)"
             @blur="() => handleBlur('nroAbonado')"
             :color="false"
@@ -460,7 +448,7 @@ watch(selectedItem, (newVal: any) => {
           <MyInput
             type="text"
             class="mt-2"
-            :value="getInputValue('color')"
+            v-model="color"
             @input="handleInputChange('color', $event)"
             @blur="() => handleBlur('color')"
             :color="false"

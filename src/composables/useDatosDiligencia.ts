@@ -126,10 +126,10 @@ const useDatosDiligencia = (actuacion: ref<string>) => {
   });
   const processedEfectos = computed(() => {
     return efectos.value.map((e, index) => {
-      const subcategoria = e.subcategoria || '';
-      const marca = e.marca || '';
-      const modelo = e.modelo || '';
-      const estado = e.estado || ''; // Asumimos que hay una propiedad estado que indica si el efecto es secuestrado
+      const subcategoria = e.subcategoria.name || '';
+      const marca = e.marca.name || '';
+      const modelo = e.modelo.name || '';
+      const estado = e.estado.name || ''; // Asumimos que hay una propiedad estado que indica si el efecto es secuestrado
 
       const textoSecuestro = estado.toLowerCase() === 'secuestrado' ? 'el secuestro de ' : '';
       return `${textoSecuestro}un/una ${subcategoria} Marca ${marca} Modelo ${modelo};`;

@@ -16,12 +16,12 @@ let selectedMarca = ref<DropDownInterface>()
 let selectedModelo = ref<DropDownInterface>()
 
 const initialValues: EfectosForm = {
-  estado: { name: '' },
-  categoria: { name: '' },
-  marca: { name: '' },
-  modelo: { name: '' },
-  subcategoria: { name: '' },
-  tipo: { name: '' },
+  estado: { name: '', key: '' },
+  categoria: { name: '', key: '' },
+  marca: { name: '', key: '' },
+  modelo: { name: '', key: '' },
+  subcategoria: { name: '', key: '' },
+  tipo: { name: '', key: '' },
   año: '',
   nroChasis: '',
   nroMotor: '',

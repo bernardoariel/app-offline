@@ -28,10 +28,10 @@ const route = useRoute();
 const id = ref(route.params.id);
 
 onActivated(async () => {
-  await handleFetchActuacion(id, 'sumario-denuncia');
+  if (itemsComputados.value.length === 0) {
+    await handleFetchActuacion(+id.value);
+  }
 });
-
-console.log('lista', itemsComputados);
 </script>
 <template>
   <div class="card flex flex-column justify-content-center">

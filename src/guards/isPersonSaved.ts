@@ -36,9 +36,9 @@ const isPersonSaved = (to, from) => {
                     routeProp: 'path',
                     header: { title: 'Cambios sin guardar' },
                     body: {
-                        icon: 'warning',
+                        icon: 'pi pi-exclamation-triangle',
                         comment: `Hay cambios sin guardar en los siguientes campos: ${modifiedDataKeys}`,
-                        colorClass: 'warning',
+                        colorClass: 'text-orange-400',
                         answer: '¿Desea salir sin guardar?'
                     },
                     footer: 'customFooterComponent'

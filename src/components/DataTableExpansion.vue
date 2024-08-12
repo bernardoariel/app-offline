@@ -288,7 +288,7 @@ const handleRejected = () => {
       </template>
       <template #empty>
         <div style="display: flex; justify-content: center; padding: 2rem">
-          <h2 class="text-white">No existen registros offline</h2>
+          <h2>No existen registros offline</h2>
         </div>
       </template>
     </DataTable>

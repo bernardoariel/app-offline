@@ -163,9 +163,9 @@ const handleSendRelato = (item, dataKey) => {
   }
   if (dataKey === 'efectos') {
     relato.value = `${relato.value} ${
-    item.estado.toUpperCase()}, ${item.categoria}, ${item.subcategoria} ${
-      item.marca
-    } ${item.modelo}, de tipo ${item.tipo}`;
+    item.estado.name.toUpperCase()}, ${item.categoria.name}, ${item.subcategoria.name} ${
+      item.marca.name
+    } ${item.modelo.name}, de tipo ${item.tipo.name}`;
   }
 };
 

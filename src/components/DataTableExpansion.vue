@@ -11,7 +11,6 @@ import MyConfirmPopup from './elementos/MyConfirmPopup.vue';
 const actuacionesList = ref();
 const expandedRows = ref([]);
 let actuaciones: any;
-const isLoading = ref(true);
 const toast = useToast();
 const router = useRouter();
 const selectedOption = ref('afectados');
@@ -20,10 +19,8 @@ const { fetchActuaciones, deleteActuacion } = useSaveData();
 const { activateComponent } = useActuacion();
 
 onActivated(async () => {
-  isLoading.value = true;
   actuaciones = await fetchActuaciones();
   actuacionesList.value = actuaciones;
-  isLoading.value = false;
 });
 const onRowExpand = (event: { data: { name: any } }) => {
   toast.add({
@@ -107,17 +104,7 @@ const handleRejected = () => {
 
 <template>
   <div class="card">
-    <div v-if="isLoading" style="display: flex; justify-content: center">
-      <h2 class="text-gray-600">Cargando...</h2>
-    </div>
-    <div
-      v-else-if="!actuacionesList || actuacionesList.length === 0"
-      style="display: flex; justify-content: center"
-    >
-      <h2 class="text-gray-400">No existen registros offline</h2>
-    </div>
     <DataTable
-      v-else
       class="my-custom-datatable"
       v-model:expandedRows="expandedRows"
       :value="actuacionesList"
@@ -297,6 +284,11 @@ const handleRejected = () => {
               <Column field="dependencia" header="Dependencia"></Column>
             </DataTable>
           </div>
+        </div>
+      </template>
+      <template #empty>
+        <div style="display: flex; justify-content: center; padding: 2rem">
+          <h2 class="text-white">No existen registros offline</h2>
         </div>
       </template>
     </DataTable>

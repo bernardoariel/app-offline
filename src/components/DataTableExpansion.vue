@@ -10,18 +10,16 @@ import MyConfirmPopup from './elementos/MyConfirmPopup.vue';
 
 const actuacionesList = ref();
 const expandedRows = ref([]);
+let actuaciones: any;
 const toast = useToast();
 const router = useRouter();
 const selectedOption = ref('afectados');
 const { generatePdf, pdfUrl } = useViewPdf();
 const { fetchActuaciones, deleteActuacion } = useSaveData();
 const { activateComponent } = useActuacion();
-const mensaje = ref('');
-let actuaciones: any;
 
 onActivated(async () => {
   actuaciones = await fetchActuaciones();
-  console.log('actuaciones::: ', actuaciones);
   actuacionesList.value = actuaciones;
 });
 const onRowExpand = (event: { data: { name: any } }) => {
@@ -62,44 +60,7 @@ const onEditActuacion = (id: number, nombreActuacion: string) => {
     params: { id, actuacion: nombreActuacion },
   });
 };
-
-interface buttonProps {
-  label: string;
-  class?: string;
-  icon?: string;
-  iconPos?: 'left' | 'right' | 'top' | 'bottom';
-  action: string;
-}
-const visible = ref(false);
 const actuacionIdToDelete = ref<number | null>(null);
-const deleteModalButtons = ref<buttonProps[]>([
-  {
-    label: 'Cancelar',
-    class: 'p-button-secondary',
-    icon: 'pi pi-times',
-    iconPos: 'left',
-    action: 'cancel',
-  },
-  {
-    label: 'Eliminar',
-    class: 'p-button-danger',
-    icon: 'pi pi-trash',
-    iconPos: 'left',
-    action: 'delete',
-  },
-]);
-
-const openDeleteConfirmation = (data: any) => {
-  console.log('data::: ', data);
-
-  actuacionIdToDelete.value = data.id;
-
-  visible.value = true;
-  mensaje.value = `
-    Actuacion con <span class="font-semibold">Fecha:</span> ${data.fechaCreacion}
-    <span class="font-semibold">Nro: </span> ${data.nroLegajoCompleto}<br/>
-    <span class="font-semibold">${data.nombreActuacion}</span>`;
-};
 
 const confirmConfig = ref({
   message: '¿Seguro que desea eliminar esta actuación?',
@@ -325,26 +286,12 @@ const handleRejected = () => {
           </div>
         </div>
       </template>
+      <template #empty>
+        <div style="display: flex; justify-content: center; padding: 2rem">
+          <h2>No existen registros offline</h2>
+        </div>
+      </template>
     </DataTable>
-
-    <!--  <MyModal
-            v-model:visible="visible"
-            title="Confirmar Eliminación"
-            :buttons="deleteModalButtons"
-            @button-click="handleDeleteConfirmation"
-            >
-            <template #body>
-
-                <div class="modal-body">
-                    <i class="pi pi-exclamation-triangle" :style="{ fontSize: '3rem', color: 'orange' }"></i>
-                    <p class="text-right font-bold">¿Deseas eliminar la siguiente actuación?</p>
-                </div>
-                <p class="text-center m-0 text-sm" v-html="mensaje"></p>
-                    
-                
-                
-            </template>
-        </MyModal> -->
     <MyConfirmPopup
       :config="confirmConfig"
       @accepted="handleAccepted"

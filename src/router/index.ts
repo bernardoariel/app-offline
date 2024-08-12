@@ -70,13 +70,11 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
 
   if (to.name === 'actuaciones') {
-    console.log('entro por actuaciones');
     isSavedChanges(to, from, next);
     return;
   }
 
   if (!to.params.id && from.params.id && to.name !== 'newActuacion') {
-    console.log('no tengo id');
     next({
       name: to.name,
       params: { ...to.params, id: from.params.id },

@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import type { DialogOptions } from '../guards/isSavedChanges';
+import type { DialogOptions } from '@/interfaces/dialogInterfaces';
 
 const dialogState = ref({
   isDialogVisible: false,
@@ -51,6 +51,7 @@ export function useDialog() {
       route[routeProp] = dialogState.value.pendingRoute;
       router.push(route);
       hideDialog();
+      return true
     }
   };
 

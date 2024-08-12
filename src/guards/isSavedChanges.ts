@@ -1,28 +1,10 @@
-import { useDialog } from '../composables/useDialog';
+import { computed } from 'vue';
+import { useDialog } from '@/composables/useDialog';
 import useFieldState from '@/composables/useFieldsState';
 import useLegalesState from '@/composables/useLegalesState';
-import { computed } from 'vue';
+import type { DialogOptions } from '@/interfaces/dialogInterfaces'
 
 const { showDialog, dialogState } = useDialog();
-
-export interface DialogHeader {
-  title: string;
-}
-
-export interface DialogBody {
-  icon: string;
-  answer: string;
-  colorClass: string;
-  comment: string;
-}
-
-export interface DialogOptions {
-  nameRouteToRedirect?: string;
-  routeProp?: string;
-  header: DialogHeader;
-  body: DialogBody;
-  footer?: any; //quizas lo usemos mas tarde
-}
 
 const {
   isUnsavedChange,

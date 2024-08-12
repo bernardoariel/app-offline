@@ -1,12 +1,19 @@
 <script setup lang="ts">
 //listBoxItems
-import { getUpperCase, getTitleCase, getTruncatedString } from '@/helpers/stringUtils';
+import {
+  getUpperCase,
+  getTitleCase,
+  getTruncatedString,
+} from '@/helpers/stringUtils';
 import { getColorByAfectado } from '@/helpers/getColorByAfectado';
 import { getColorByEstado } from '@/helpers/getColorByEstado';
 import { formatFecha } from '@/helpers/getFormatFecha';
 import useItemsComputados from '@/composables/useItemsComputados';
 import useItemValue from '@/composables/useItemValue';
 import useFieldState from '@/composables/useFieldsState';
+import { useRoute } from 'vue-router';
+import { onActivated, ref } from 'vue';
+import { handleFetchActuacion } from '@/helpers/handleFetchActuacion';
 
 const { itemsComputados, routeType, eliminarItem } = useItemsComputados();
 const { selectedItem } = useItemValue();
@@ -16,7 +23,15 @@ const getPristineById = (id: string) => {
   const found = statesID.find((state) => state.id === id);
   return found ? found.pristine : false;
 };
-console.log("lista", itemsComputados)
+const route = useRoute();
+
+const id = ref(route.params.id);
+
+onActivated(async () => {
+  if (itemsComputados.value.length === 0) {
+    await handleFetchActuacion(+id.value);
+  }
+});
 </script>
 <template>
   <div class="card flex flex-column justify-content-center">
@@ -32,7 +47,13 @@ console.log("lista", itemsComputados)
           <div class="left-column">
             <!-- Afectados y vinculados -->
             <div v-if="routeType === 'afectados' || routeType === 'vinculados'">
-              <div v-if="!option.descripcionDesconocido && !option.descripcionOrdenPublico" class="text-row">
+              <div
+                v-if="
+                  !option.descripcionDesconocido &&
+                  !option.descripcionOrdenPublico
+                "
+                class="text-row"
+              >
                 <span class="font-bold">{{
                   option.apellido ? getUpperCase(option.apellido) + ',' : ''
                 }}</span>
@@ -40,22 +61,22 @@ console.log("lista", itemsComputados)
                   option.nombre ? getTitleCase(option.nombre) : ''
                 }}</span>
                 <span class="ml-5">
-                  <i v-if="option.typeDocumento">{{ option.typeDocumento +  ': ' }}</i>
+                  <i v-if="option.typeDocumento">{{
+                    option.typeDocumento + ': '
+                  }}</i>
                   <i v-if="option.nroDocumento">{{ option.nroDocumento }}</i>
                 </span>
               </div>
               <div v-if="option.descripcionDesconocido" class="text-row">
                 <span class="font-bold">
-                  Persona de filiación desconocida: 
+                  Persona de filiación desconocida:
                 </span>
                 <span class="ml-2">{{
                   getTruncatedString(option.descripcionDesconocido, 40)
                 }}</span>
               </div>
               <div v-if="option.descripcionOrdenPublico" class="text-row">
-                <span class="font-bold">
-                  Orden público: 
-                </span>
+                <span class="font-bold"> Orden público: </span>
                 <span class="ml-2">{{
                   getTruncatedString(option.descripcionOrdenPublico, 40)
                 }}</span>

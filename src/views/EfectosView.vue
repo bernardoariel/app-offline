@@ -145,7 +145,7 @@ const handleDropdownChange = (
   newValue: { value: any; name: string }
 ) => {
   const name = newValue.value.name;
-
+  const key = newValue.value.key;
   if (campo in formData.value) {
     // Actualizar formData para que el campo específico tenga un objeto con la propiedad 'name' actualizada
     formData.value = {
@@ -156,7 +156,7 @@ const handleDropdownChange = (
     const itemId = formData.value.id!;
     if (itemId) {
       setPristineById(itemId, false);
-      setModifiedData(itemId, campo, name);
+      setModifiedData(itemId, campo, {name:name, key:key});
     }
   }
 };
@@ -185,7 +185,6 @@ const handleInputChange = (campo: string | number, event: Event) => {
 const handleBlur = (campo: keyof EfectosForm) => {
   const valor = getInputValue(campo);
   if (!selectedItem.value) return;
-
   setModifiedData(selectedItem.value!.id, campo, valor);
 };
 
@@ -217,6 +216,15 @@ const handleAgregarElemento = () => {
   categoriaSelect.value = { name: "Seleccione una categoria", key:"" };
   subCategoriaSelect.value = { name: "Seleccione una subcategoria", key:"" };
   estadoSelect.value = { name: "Seleccione un estado", key:"" };
+  year.value=""
+  color.value=""
+  nroChasis.value=""
+  nroAbonado.value=""
+  nroIMEI.value=""
+  nroMotor.value=""
+  nroSerie.value=""
+  dominio.value=""
+  // agregar cambios para reiniciar los valores al tocal el boton de agregar Nuevo. el valor del año se queda pegado
 };
 
 const handleCancelar = () => {
@@ -253,6 +261,14 @@ watch(selectedItem, (newVal: any) => {
     categoriaSelect.value = { name: "Seleccione una categoria", key:"" };
     subCategoriaSelect.value = { name: "Seleccione una subcategoria", key:"" };
     estadoSelect.value = { name: "Seleccione un estado", key:"" };
+    year.value=""
+    color.value=""
+    nroChasis.value=""
+    nroAbonado.value=""
+    nroIMEI.value=""
+    nroMotor.value=""
+    nroSerie.value=""
+    dominio.value=""
   } else {
     formData.value = { ...newVal };
     updateDataWithForm();
@@ -304,7 +320,7 @@ watch(selectedItem, (newVal: any) => {
             class="mt-2"
             :items="subcategoriasDropdown"
             v-model="subCategoriaSelect"
-            @change="(newValue) => handleDropdownChange('marca', newValue)"
+            @change="(newValue) => handleDropdownChange('subcategoria', newValue)"
             placeholder="Seleccione Sub-Categoría"
             filter
             :color="false"
@@ -321,7 +337,7 @@ watch(selectedItem, (newVal: any) => {
             class="mt-2"
             :items="tipoCategoriasDropdown"
             v-model="tipoSelect"
-            @change="(newValue) => handleDropdownChange('modelo', newValue)"
+            @change="(newValue) => handleDropdownChange('tipo', newValue)"
             placeholder="Seleccione Tipo"
             filter
             :color="false"
@@ -338,7 +354,7 @@ watch(selectedItem, (newVal: any) => {
             class="mt-2"
             :items="marcasCategoriasDropdown"
             v-model="marcaSelect"
-            @change="(newValue) => handleDropdownChange('subcategoria', newValue)"
+            @change="(newValue) => handleDropdownChange('marca', newValue)"
             placeholder="Seleccione Marca"
             filter
             :color="false"
@@ -355,7 +371,7 @@ watch(selectedItem, (newVal: any) => {
             class="mt-2"
             :items="modelosCategoriasDropdown"
             v-model="modeloSelect"
-            @change="(newValue) => handleDropdownChange('tipo', newValue)"
+            @change="(newValue) => handleDropdownChange('modelo', newValue)"
             placeholder="Seleccione Modelo"
             :color="false"
             filter

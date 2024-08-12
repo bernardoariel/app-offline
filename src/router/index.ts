@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, onBeforeRouteLeave } from 'vue-router'
 import ActuacionView from '@/views/ActuacionView.vue'
 import FormActuacionVue from '@/views/FormActuacion.vue'
 import ActuacionesView from '@/views/ActuacionesView.vue'
@@ -8,9 +8,6 @@ import isSavedChanges from '@/guards/isSavedChanges';
 import isUserAllowed from '@/guards/isUserAllowed'
 import isUserAccessValid from '@/guards/isUserAccessValid'
 import { actuaciones } from '../data/tipoActuaciones';
-import isPersonSaved from '@/guards/isPersonSaved'
-
-
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -30,7 +27,6 @@ const router = createRouter({
       name: 'formulario',
       component: FormActuacionVue,
       props: (route) => {
-        console.log('route::: ', route);
         const id = route.params.id ? +route.params.id : null;
         return { tipo: route.params.tipo, id };
       }
@@ -62,7 +58,7 @@ const router = createRouter({
         const { id, actuacion } = route.params
         return {
           id: +id,
-          actuacionName:actuacion,
+          actuacionName: actuacion,
           actuacionData
         }
       }
@@ -72,7 +68,6 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  console.log('to::: ', to);
 
   if (to.name === 'actuaciones') {
     console.log('entro por actuaciones');
@@ -80,13 +75,7 @@ router.beforeEach((to, from, next) => {
     return;
   }
 
-/*   if (from.name === 'formulario') {
-    console.log('salgo de form revisar');
-    isPersonSaved(to, from, next);
-    return;
-  }
- */
-  if (!to.params.id && from.params.id && to.name!== 'newActuacion' ) {
+  if (!to.params.id && from.params.id && to.name !== 'newActuacion') {
     console.log('no tengo id');
     next({
       name: to.name,
@@ -99,6 +88,7 @@ router.beforeEach((to, from, next) => {
 
   next();
 });
+
 
 
 export default router

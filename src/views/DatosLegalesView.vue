@@ -13,8 +13,8 @@ import {
   articulosDropdwown,
   delitosDropdown,
   ufiNroDropdown,
-fiscalCargoDropdown,
-ayudanteFiscalDropdown
+  fiscalCargoDropdown,
+  ayudanteFiscalDropdown,
 } from '../helpers/getDropItems';
 import { getUpperCase } from '@/helpers/stringUtils';
 import useDatosLegales from '../composables/useDatosLegales';
@@ -29,7 +29,7 @@ import useValidacionDatosLegales from '@/composables/useValidacionDatosLegales';
 interface Props {
   datosLegalesItems?: string[];
 }
-const {setValidValue}=useValidacionDatosLegales()
+const { setValidValue } = useValidacionDatosLegales();
 const props = defineProps<Props>();
 const { markRecordDeleted } = useFieldState();
 const {
@@ -48,10 +48,9 @@ const {
   selectedArticulosRelacionadosList,
   selectedUfiNro,
   selectedFiscalCargo,
-  selectedAyudanteFiscal
+  selectedAyudanteFiscal,
 } = useDatosLegales();
 let yearsActuacion: string[] = getYearsDrop();
-
 const { addField, setFieldModified } = useLegalesState();
 
 const getField = (type: string): string => {
@@ -63,7 +62,7 @@ const getField = (type: string): string => {
     case 'articulosRelacionados':
       return 'selectArticulo';
     default:
-      return type as  string;
+      return type as string;
   }
 };
 
@@ -75,12 +74,12 @@ const dropdownItems: { [key: string]: any } = {
   selectArticulo: articulosDropdwown.value,
   delito: delitosDropdown.value,
   ufiNro: ufiNroDropdown.value,
-  fiscalCargo:fiscalCargoDropdown.value,
-  ayudanteFiscal: ayudanteFiscalDropdown.value
+  fiscalCargo: fiscalCargoDropdown.value,
+  ayudanteFiscal: ayudanteFiscalDropdown.value,
 };
-const yearsActuacionStrings = yearsActuacion.map(year => year.toString());
+const yearsActuacionStrings = yearsActuacion.map((year) => year.toString());
 
-const baseValidationSchema  = yup.object({
+const baseValidationSchema = yup.object({
   legajo: yup.string().required(),
   year: yup.object().shape({
     name: yup
@@ -88,36 +87,44 @@ const baseValidationSchema  = yup.object({
       .required('Seleccione un año')
       .oneOf(yearsActuacionStrings, 'Seleccione una opción válida'),
   }),
-  
 });
 
 const getDynamicValidationSchema = () => {
   let schema = baseValidationSchema;
   const items = props.datosLegalesItems!.slice(1);
-  items.forEach((item, index) => {  
-          if (item !== "causaCaratula" && item !== 'listboxCausaCaratula' && item !=='articulosRelacionados' && item !=='listboxArticulos'){
-            if(dropdownItems[getField(item)]){
-              schema = schema.shape({
-              [item]: yup.object().shape({
-              name: yup
-                .string()
-                .required('Seleccione una opción válida')
-                .oneOf(dropdownItems[getField(item)]?.map((value: { name: any; }) => value.name), 'Seleccione una opción válida'),
-              }),
-            });
-            }
-            // else{
-            //   schema = schema.shape({
-            //   [item]: yup.object().shape({
-            //   name: yup
-            //     .string()
-            //     .required('Seleccione una opción válida')
-            //   }),
-            // });
-            // }
-           
-          }
+  items.forEach((item, index) => {
+    if (
+      item !== 'causaCaratula' &&
+      item !== 'listboxCausaCaratula' &&
+      item !== 'articulosRelacionados' &&
+      item !== 'listboxArticulos'
+    ) {
+      if (dropdownItems[getField(item)]) {
+        schema = schema.shape({
+          [item]: yup.object().shape({
+            name: yup
+              .string()
+              .required('Seleccione una opción válida')
+              .oneOf(
+                dropdownItems[getField(item)]?.map(
+                  (value: { name: any }) => value.name
+                ),
+                'Seleccione una opción válida'
+              ),
+          }),
         });
+      }
+      // else{
+      //   schema = schema.shape({
+      //   [item]: yup.object().shape({
+      //   name: yup
+      //     .string()
+      //     .required('Seleccione una opción válida')
+      //   }),
+      // });
+      // }
+    }
+  });
   return schema;
 };
 
@@ -138,10 +145,16 @@ let [year, yearAttrs] = defineField('year');
 let [sitio, sitioAttrs] = defineField('sitio');
 let [delito, delitoAttrs] = defineField('delito');
 let [modusOperandi, modusOperandiAttrs] = defineField('modusOperandi');
-let [selectCausaCaratula, selectCausaCaratulaAttrs] = defineField('selectCausaCaratula');
+let [selectCausaCaratula, selectCausaCaratulaAttrs] = defineField(
+  'selectCausaCaratula'
+);
 let [selectArticulo, selectArticuloAttrs] = defineField('selectArticulo');
-let [listboxCausaCaratula, listboxCausaCaratulaAttrs] = defineField('listboxCausaCaratula');
-let [juzgadoInterviniente, juzgadoIntervinienteAttrs] = defineField('juzgadoInterviniente');
+let [listboxCausaCaratula, listboxCausaCaratulaAttrs] = defineField(
+  'listboxCausaCaratula'
+);
+let [juzgadoInterviniente, juzgadoIntervinienteAttrs] = defineField(
+  'juzgadoInterviniente'
+);
 let [ayudanteFiscal, ayudanteFiscalAttrs] = defineField('ayudanteFiscal');
 let [ufiNro, ufiNroAttrs] = defineField('ufiNro');
 let [fiscalCargo, fiscalCargoAttrs] = defineField('fiscalCargo');
@@ -204,7 +217,6 @@ const validateData = () => {
     if (values[key]?.length === 0) {
       setValidValue(false);
       return;
-      
     }
   }
 
@@ -214,22 +226,32 @@ const validateData = () => {
       return;
     }
   }
-  const keys1 = Object.keys(validationSchema.fields).filter(key => key !== "year");
-  const keys2 = Object.keys(values).filter(key => key !== "year");
-  const areKeysEqual = keys1.every(key => keys2.includes(key));
-  if (props.datosLegalesItems?.includes("listboxArticulos")) {
-    setValidValue(Object.keys(errors.value).length === 0 && areKeysEqual && !isListArticulosRelacionadosEmpty.value);
-    return
-  } else if (props.datosLegalesItems?.includes("listboxCausaCaratula")) {
-    setValidValue(Object.keys(errors.value).length === 0 && areKeysEqual && !isListCausasCaratulaEmpty.value);
-    return
+  const keys1 = Object.keys(validationSchema.fields).filter(
+    (key) => key !== 'year'
+  );
+  const keys2 = Object.keys(values).filter((key) => key !== 'year');
+  const areKeysEqual = keys1.every((key) => keys2.includes(key));
+  if (props.datosLegalesItems?.includes('listboxArticulos')) {
+    setValidValue(
+      Object.keys(errors.value).length === 0 &&
+        areKeysEqual &&
+        !isListArticulosRelacionadosEmpty.value
+    );
+    return;
+  } else if (props.datosLegalesItems?.includes('listboxCausaCaratula')) {
+    setValidValue(
+      Object.keys(errors.value).length === 0 &&
+        areKeysEqual &&
+        !isListCausasCaratulaEmpty.value
+    );
+    return;
   }
 
   setValidValue(Object.keys(errors.value).length === 0 && areKeysEqual);
 };
 
-watch([values,errors], () => {
-  validateData()
+watch([values, errors], () => {
+  validateData();
 });
 
 let formData = ref<DatosLegalesForm>({ ...initialValuesDatosLegales });
@@ -275,19 +297,35 @@ watch(selectedCausaCaratula, () => {
   );
   if (!itemExists) itemsCausaCaratula.value.push(selectedCausaCaratula.value);
   selectedCausaCaratula.value = undefined;
-  validateData()
+  validateData();
 });
 watch(nroLegajo, () => {
- legajo.value=nroLegajo.value ? nroLegajo.value : ""
- sitio.value=selectedSitio.value? selectedSitio.value : {"name":"Seleccione una opción"}
- delito.value=selectedSitio.value ? selectedDelito.value : {"name":"Seleccione una opción"}
- year.value= selectedYear.value ? selectedYear.value : {"name":"Seleccione una opción"}
- modusOperandi.value = selectedModusOperandi.value ? selectedModusOperandi.value : {"name":"Seleccione una opción"}
- juzgadoInterviniente.value = selectedJuzgadoInterviniente.value ? selectedJuzgadoInterviniente.value : {"name":"Seleccione una opción"}
- ufiNro.value = selectedUfiNro.value ? selectedUfiNro.value : {"name":"Seleccione una opción"}
- fiscalCargo.value = selectedFiscalCargo.value ? selectedFiscalCargo.value : {"name":"Seleccione una opción"}
- ayudanteFiscal.value= selectedAyudanteFiscal.value ? selectedAyudanteFiscal.value : {"name":"Seleccione una opción"}
- validateData()
+  legajo.value = nroLegajo.value ? nroLegajo.value : '';
+  sitio.value = selectedSitio.value
+    ? selectedSitio.value
+    : { name: 'Seleccione una opción' };
+  delito.value = selectedSitio.value
+    ? selectedDelito.value
+    : { name: 'Seleccione una opción' };
+  year.value = selectedYear.value
+    ? selectedYear.value
+    : { name: 'Seleccione una opción' };
+  modusOperandi.value = selectedModusOperandi.value
+    ? selectedModusOperandi.value
+    : { name: 'Seleccione una opción' };
+  juzgadoInterviniente.value = selectedJuzgadoInterviniente.value
+    ? selectedJuzgadoInterviniente.value
+    : { name: 'Seleccione una opción' };
+  ufiNro.value = selectedUfiNro.value
+    ? selectedUfiNro.value
+    : { name: 'Seleccione una opción' };
+  fiscalCargo.value = selectedFiscalCargo.value
+    ? selectedFiscalCargo.value
+    : { name: 'Seleccione una opción' };
+  ayudanteFiscal.value = selectedAyudanteFiscal.value
+    ? selectedAyudanteFiscal.value
+    : { name: 'Seleccione una opción' };
+  validateData();
 });
 
 watch(selectedArticulosRelacionados, () => {
@@ -296,13 +334,13 @@ watch(selectedArticulosRelacionados, () => {
   const itemExists = itemsArticulosRelacionados.value.some(
     (item) => item.name === selectedArticulosRelacionados.value?.name
   );
-  if (!itemExists) itemsArticulosRelacionados.value.push(selectedArticulosRelacionados.value);
+  if (!itemExists)
+    itemsArticulosRelacionados.value.push(selectedArticulosRelacionados.value);
 
   selectedArticulosRelacionados.value = undefined;
-  validateData()
+  validateData();
 });
 const eliminarItem = (name: string, type: string) => {
-  
   if (type === 'caratula') {
     if (!itemsCausaCaratula.value) return;
     itemsCausaCaratula.value = itemsCausaCaratula.value.filter(
@@ -314,7 +352,7 @@ const eliminarItem = (name: string, type: string) => {
       (item) => item.name !== name
     );
   }
-  validateData()
+  validateData();
   markRecordDeleted();
 };
 
@@ -322,16 +360,14 @@ const handleInputChange = (campo: string | number, event: Event) => {
   const valor = (event.target as HTMLInputElement).value;
   if (campo === 'nroLegajo') {
     nroLegajo.value = valor;
-    legajo.value= valor
+    legajo.value = valor;
   }
   formData.value = { ...formData.value, [campo]: valor };
   addField(campo.toString(), valor);
   setFieldModified(campo.toString(), true);
 };
-
 </script>
 <template>
-
   <div class="grid">
     <div class="col-9">
       <label for="dropdown">Legajo N° / N° de extracto</label>
@@ -360,10 +396,17 @@ const handleInputChange = (campo: string | number, event: Event) => {
         @change="(newValue) => handleDropdownChange('selectYear', newValue)"
       />
     </div>
-    <!-- Sitio -->
-    <div v-for="(item, index) in props.datosLegalesItems!.slice(1)" :key="index" class="col-12">
-      <template  v-if="item !== 'listboxCausaCaratula' && item !== 'listboxArticulos'">
-        <label :for="item" class="capitalize">{{ separateCamelCase(item) }}</label>
+    <div
+      v-for="(item, index) in props.datosLegalesItems!.slice(1)"
+      :key="index"
+      class="col-12"
+    >
+      <template
+        v-if="item !== 'listboxCausaCaratula' && item !== 'listboxArticulos'"
+      >
+        <label :for="item" class="capitalize">{{
+          separateCamelCase(item)
+        }}</label>
         <MyDropdown
           :items="dropdownItems[getField(item)]"
           v-model="getDropdownModel(item).value"
@@ -375,16 +418,12 @@ const handleInputChange = (campo: string | number, event: Event) => {
           color
           @change="(newValue) => handleDropdownChange(getField(item), newValue)"
           class="w-full mt-2"
-          
         />
-        <span
-        class="text-red-400"
-        v-if="errors[getField(item)] ? true : false"
-      >
-      {{ errors[getField(item)] }}
+        <span class="text-red-400" v-if="errors[getField(item)] ? true : false">
+          {{ errors[getField(item)] }}
         </span>
       </template>
-      <div  v-else-if="item === 'listboxCausaCaratula'">
+      <div v-else-if="item === 'listboxCausaCaratula'">
         <Listbox
           v-model="selectedCausaCaratulaList"
           :options="itemsCausaCaratula"
@@ -394,7 +433,9 @@ const handleInputChange = (campo: string | number, event: Event) => {
           class="w-full"
         >
           <template #option="{ option }">
-            <div class="flex align-content-center justify-content-between flex-wrap">
+            <div
+              class="flex align-content-center justify-content-between flex-wrap"
+            >
               <div class="justify-content-between">
                 <span class="font-bold">
                   {{ option.name ? getUpperCase(option.name) : '' }}
@@ -404,17 +445,14 @@ const handleInputChange = (campo: string | number, event: Event) => {
                 <Button
                   icon="pi pi-trash"
                   severity="danger"
-                  @click="eliminarItem(option.name,'caratula')"
+                  @click="eliminarItem(option.name, 'caratula')"
                 />
               </div>
             </div>
           </template>
         </Listbox>
-        <span
-          class="text-red-400"
-          v-if="isListCausasCaratulaEmpty"
-          >
-            Seleccione al menos una causa
+        <span class="text-red-400" v-if="isListCausasCaratulaEmpty">
+          Seleccione al menos una causa
         </span>
       </div>
       <div v-else>
@@ -427,7 +465,9 @@ const handleInputChange = (campo: string | number, event: Event) => {
           class="w-full"
         >
           <template #option="{ option }">
-            <div class="flex align-content-center justify-content-between flex-wrap">
+            <div
+              class="flex align-content-center justify-content-between flex-wrap"
+            >
               <div class="justify-content-between">
                 <span class="font-bold">
                   {{ option.name ? getUpperCase(option.name) : '' }}
@@ -437,22 +477,17 @@ const handleInputChange = (campo: string | number, event: Event) => {
                 <Button
                   icon="pi pi-trash"
                   severity="danger"
-                  @click="eliminarItem(option.name,'articulos')"
+                  @click="eliminarItem(option.name, 'articulos')"
                 />
               </div>
             </div>
           </template>
         </Listbox>
-        <span
-        class="text-red-400"
-        v-if="isListArticulosRelacionadosEmpty"
-        >
+        <span class="text-red-400" v-if="isListArticulosRelacionadosEmpty">
           Seleccione al menos un articulo
-      </span>
+        </span>
       </div>
     </div>
-    
-    
   </div>
 </template>
 <style>

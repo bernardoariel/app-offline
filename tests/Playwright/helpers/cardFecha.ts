@@ -5,7 +5,7 @@ const adress = faker.location.streetAddress();
 
 
 export const cardFecha =  async (page:any) =>{
-    await page.getByTestId('FechaPlusButton').click();
+    await page.getByTestId('Fecha, Hora y UbicacionPlusButton').click();
   await page.getByPlaceholder('ingrese una calle').click();
   await page.getByPlaceholder('ingrese una calle').fill(adress);
   await page.getByPlaceholder('ingrese un número').click();

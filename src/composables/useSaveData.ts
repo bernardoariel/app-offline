@@ -10,7 +10,6 @@ import useDatosLegales from './useDatosLegales';
 import type { DatosLegales } from '../interfaces/datosLegalesForm.interface';
 import { getDependenciaData } from '@/helpers/getDependencia';
 import { formatFecha } from '@/helpers/getFormatFecha';
-import { useFormCompleted } from './useFormCompleted';
 import useActuacionData from './useActuacionData';
 
 export interface dataActuacionForSave {
@@ -30,7 +29,6 @@ export interface dataActuacionForSave {
 const { fechaCreacion, getFormattedDate } = useActuacion();
 const { actuacionData } = useActuacionData()
 const { nombreActuacion, nroLegajo, selectedJuzgadoInterviniente } = useDatosLegales();
-const { validateForm } = useFormCompleted()
 const db = new Dexie('Siis') as any;
 
 db.version(1).stores({
@@ -43,13 +41,7 @@ const useSaveData = () => {
 
   const saveData = async (data: dataActuacionForSave) => {
 
-    const isValid = validateForm(nombreActuacion.value, data)
     data.relato = data.relato.replace(/\n/g, ' ');
-    if (!isValid) {
-      alert('faltan datos')
-      success.value = false;
-      return
-    }
     try {
       await db.open();
       await db.actuaciones.add({
@@ -80,7 +72,6 @@ const useSaveData = () => {
 
   const updateData = async (data: dataActuacionForSave) => {
     data.relato = data.relato.replace(/\n/g, ' ');
-    console.log(data,"guardando")
     if (typeof data.id !== 'number') {
       console.error('Invalid id:', data.id);
       error.value = 'Invalid id';

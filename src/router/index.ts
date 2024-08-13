@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, onBeforeRouteLeave } from 'vue-router'
 import ActuacionView from '@/views/ActuacionView.vue'
 import FormActuacionVue from '@/views/FormActuacion.vue'
 import ActuacionesView from '@/views/ActuacionesView.vue'
@@ -8,8 +8,6 @@ import isSavedChanges from '@/guards/isSavedChanges';
 import isUserAllowed from '@/guards/isUserAllowed'
 import isUserAccessValid from '@/guards/isUserAccessValid'
 import { actuaciones } from '../data/tipoActuaciones';
-
-
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -29,7 +27,6 @@ const router = createRouter({
       name: 'formulario',
       component: FormActuacionVue,
       props: (route) => {
-        console.log('route::: ', route);
         const id = route.params.id ? +route.params.id : null;
         return { tipo: route.params.tipo, id };
       }
@@ -42,7 +39,7 @@ const router = createRouter({
       props: (route) => {
         const actuacionKey = route.params.actuacion
         const actuacionData = actuaciones[actuacionKey] || {};
-        return { actuacion: route.params.actuacion, actuacionData }
+        return { actuacionName: route.params.actuacion, actuacionData }
       }
     },
     {
@@ -58,10 +55,10 @@ const router = createRouter({
       props: (route) => {
         const actuacionKey = route.params.actuacion
         const actuacionData = actuaciones[actuacionKey] || {};
-        const { id,actuacion } = route.params
-        return { 
+        const { id, actuacion } = route.params
+        return {
           id: +id,
-          actuacion,
+          actuacionName: actuacion,
           actuacionData
         }
       }
@@ -71,25 +68,25 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  console.log('to::: ', to);
-  if (to.name === 'actuaciones') {
-    console.log('entro por actuaciones')
-    isSavedChanges(to, from, next); 
-  } else {
-    next()
-   /*  if (!to.params.id) {
-      console.log('no tengo id')
-      next({
-        name: to.name,
-        params: { ...to.params, id: from.params.id },
-        query: to.query, // mantener cualquier query param
-        hash: to.hash, // mantener cualquier hash
-      });
-    } else {
-      next()
-    } */
 
+  if (to.name === 'actuaciones') {
+    isSavedChanges(to, from, next);
+    return;
   }
+
+  if (!to.params.id && from.params.id && to.name !== 'newActuacion') {
+    next({
+      name: to.name,
+      params: { ...to.params, id: from.params.id },
+      query: to.query, // mantener cualquier query param
+      hash: to.hash, // mantener cualquier hash
+    });
+    return;
+  }
+
+  next();
 });
+
+
 
 export default router

@@ -1,27 +1,10 @@
-import { useDialog } from '../composables/useDialog';
+import { computed } from 'vue';
+import { useDialog } from '@/composables/useDialog';
 import useFieldState from '@/composables/useFieldsState';
 import useLegalesState from '@/composables/useLegalesState';
-import { computed } from 'vue';
+import type { DialogOptions } from '@/interfaces/dialogInterfaces'
 
 const { showDialog, dialogState } = useDialog();
-
-export interface DialogHeader {
-  title: string;
-}
-
-export interface DialogBody {
-  icon: string;
-  answer: string;
-  colorClass: string;
-  comment: string;
-}
-
-export interface DialogOptions {
-  nameRouteToRedirect?: string;
-  header: DialogHeader;
-  body: DialogBody;
-  footer?: any; //quizas lo usemos mas tarde
-}
 
 const {
   isUnsavedChange,
@@ -59,7 +42,7 @@ const isSavedChanges = (to, from, next) => {
           icon: 'pi pi-question-circle',
           answer: '¿Desea salir sin guardar los cambios?',
           colorClass: 'text-red-400',
-          comments: 'Los cambios no guardados se perderán.'
+          comment: 'Los cambios no guardados se perderán.'
         },
         footer: {} // Completar más adelante según sea necesario
       };

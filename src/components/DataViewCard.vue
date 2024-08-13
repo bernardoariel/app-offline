@@ -233,7 +233,66 @@ const convertStringToPhrase = (key: string): string => {
         </div>
         <div v-for="(item, index) in items" :key="index">
           <!-- Afectados y Vinculados -->
-          <div v-if="dataKey == 'afectados' || dataKey == 'vinculados'">
+          <div v-if="dataKey == 'vinculados'">
+            <div
+              class="flex-container"
+              :class="{ 'border-top-1 surface-border': index !== 0 }"
+            >
+              <div class="flex-items">
+                <Button
+                  icon="pi pi-pencil"
+                  @click="editProduct(item.id)"
+                  text
+                  rounded
+                  style="font-size: 1rem"
+                ></Button>
+              </div>
+
+              <div :class="['flex-items',{ 'my-4': item.descripcionDesconocido || item.descripcionOrdenPublico }]">
+                <span  v-if="!item.descripcionDesconocido && !item.descripcionOrdenPublico" class="font-bold">{{
+                  item.apellido ? getUpperCase(item.apellido) + ',' : ''
+                }}</span>
+                <span  v-if="!item.descripcionDesconocido && !item.descripcionOrdenPublico" class="ml-2">{{
+                  item.nombre ? getTitleCase(item.nombre) : 'Nuevo'
+                }}</span>
+                <span
+                  v-if="item.typeDocumento && item.nroDocumento"
+                  class="ml-5"
+                >
+                  <i>{{ item.typeDocumento + ': ' }}</i>
+                  <i>{{ item.nroDocumento }}</i>
+                </span>
+                <span  v-if="item.descripcionOrdenPublico" class="font-bold">
+                  Orden público: 
+                </span>
+                <span v-if="item.descripcionOrdenPublico">{{getTruncatedString(item.descripcionOrdenPublico, 20)}}</span>
+                <span v-if="item.descripcionDesconocido" class="font-bold">
+                  Persona de filiación desconocida: 
+                </span>
+                <span v-if="item.descripcionDesconocido">{{getTruncatedString(item.descripcionDesconocido, 20)}}</span>
+                <span v-if="item.typeAfectado && item.typeAfectado">
+                  <Tag
+                    :value="item.typeAfectado"
+                    class="ml-5"
+                    :severity="getColorByAfectado(item.typeAfectado)"
+                  ></Tag>
+                </span>
+              </div>
+
+              <div class="flex-items">
+                <ButtonOptions
+                  :tarjetaNombre="item.title"
+                  :item="item"
+                  :deleteItem="() => openDeleteConfirmation(item, dataKey)"
+                  :sendRelato="() => handleSendRelato(item, dataKey)"
+                />
+              </div>
+            </div>
+            <div class="linea-2">
+              <p class="text-xs">{{ item.domicilioResidencia }}</p>
+            </div>
+          </div>
+          <div v-else-if="dataKey == 'afectados'">
             <div
               class="flex-container"
               :class="{ 'border-top-1 surface-border': index !== 0 }"

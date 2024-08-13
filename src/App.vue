@@ -52,7 +52,7 @@ onMounted(() => {
     <div class="router-view-container">
       <RouterView v-slot="{ Component, route }">
         <keep-alive>
-          <component :is="Component" :key="route.name" />
+          <component :is="Component" :key="route.fullPath" />
         </keep-alive>
       </RouterView>
     </div>

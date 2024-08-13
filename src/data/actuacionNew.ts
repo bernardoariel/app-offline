@@ -1,72 +1,148 @@
 export const afectados = ['Denunciante y Damnificado', 'Denunciante', 'Damnificado'];
 export const documentos = ['DNI', 'Pasaporte'];
 export const sexo = ['Masculino', 'Femenino'];
-export const nacionalidad = ['Argentina','Chile','Brasil','Paraguay']
-export const estadoCivil = ['Casado/a','Divorciado/a','Separado/a','Soltero/a','Viudo/a']
-export const instruccion = ['Primaria','Secundaria','Terciaria','Universitaria','Sabe leer y sabe firmar','No sabe leer, no sabe firmar','No sabe leer, si sabe firmar']
-export const jerarquia = ['Agente', 'Cabo','Cabo Primero', 'Sargento', 'Sargento Primero','Sargento Ayudante','Sub Oficial Mayor','Sub Oficial Principal','Oficial Ayudante','Oficial Sub Inspector','Oficial Inspector','Oficial Principal','Sub Comisario','Comisario','Comisario Inspector','Comisario Mayor','Comisario General'];
-export const tipoEfecto = ['Denunciado','Secuestrado','Recuperado']
+export const nacionalidad = ['Argentina', 'Chile', 'Brasil', 'Paraguay']
+export const estadoCivil = ['Casado/a', 'Divorciado/a', 'Separado/a', 'Soltero/a', 'Viudo/a']
+export const instruccion = ['Primaria', 'Secundaria', 'Terciaria', 'Universitaria', 'Sabe leer y sabe firmar', 'No sabe leer, no sabe firmar', 'No sabe leer, si sabe firmar']
+export const jerarquia = ['Agente', 'Cabo', 'Cabo Primero', 'Sargento', 'Sargento Primero', 'Sargento Ayudante', 'Sub Oficial Mayor', 'Sub Oficial Principal', 'Oficial Ayudante', 'Oficial Sub Inspector', 'Oficial Inspector', 'Oficial Principal', 'Sub Comisario', 'Comisario', 'Comisario Inspector', 'Comisario Mayor', 'Comisario General'];
+export const tipoEfecto = ['Denunciado', 'Secuestrado', 'Recuperado']
 
-export const categorias =  [
+export const categorias = [
     {
-        "CategoriaID": "1223732c-0780-11ed-bb82-0eb8b69eb347",
-        "Nombre": "Vehiculos"
-    },
-    {
-        "CategoriaID": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
-        "Nombre": "Electr\u00f3nica"
-    },
-    {
-        "CategoriaID": "172ed85e-07d8-11ed-bb82-0eb8b69eb347",
-        "Nombre": "Herramientas y materiales de construccion"
-    },
-    {
-        "CategoriaID": "950b6a2c-144f-11ed-bb82-0eb8b69eb347",
-        "Nombre": "Instrumentos Musicales"
-    },
-    {
-        "CategoriaID": "f44f68f6-1455-11ed-bb82-0eb8b69eb347",
-        "Nombre": "Plomeria "
-    },
-    {
-        "CategoriaID": "e2e262ea-3ff1-11ed-8709-0e085dd00fab",
-        "Nombre": "Cuidado personal"
-    },
-    {
-        "CategoriaID": "13f1dbdb-411f-11ed-8709-0e085dd00fab",
-        "Nombre": "Ciclismo "
+        "CategoriaID": "07d8d6ac-e444-11ed-9f0f-0e3a1e34687f",
+        "Nombre": "Ropa y Accesorios"
     },
     {
         "CategoriaID": "080a3f7e-7c81-11ed-9b80-0e87116d214b",
         "Nombre": "Equipamiento para comercio"
     },
     {
-        "CategoriaID": "b5c5f933-a3b8-11ed-9b80-0e87116d214b",
-        "Nombre": "Hogar, Cocina,Muebles, Jard\u00edn y Sanitarios"
+        "CategoriaID": "0ea216e7-fcd9-11ee-8df7-0e3a1e34687f",
+        "Nombre": "BEBIDA"
     },
     {
-        "CategoriaID": "07d8d6ac-e444-11ed-9f0f-0e3a1e34687f",
-        "Nombre": "Ropa y Accesorios"
+        "CategoriaID": "1223732c-0780-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Vehiculos"
     },
     {
-        "CategoriaID": "42863589-314e-11ee-ba93-0e3a1e34687f",
-        "Nombre": "Deportes"
+        "CategoriaID": "13f1dbdb-411f-11ed-8709-0e085dd00fab",
+        "Nombre": "Ciclismo "
+    },
+    {
+        "CategoriaID": "172ed85e-07d8-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Herramientas y materiales de construccion"
     },
     {
         "CategoriaID": "389ad47d-36b9-11ee-ba93-0e3a1e34687f",
         "Nombre": "ARMAS "
     },
     {
+        "CategoriaID": "41e307c2-dbc6-11ee-8df7-0e3a1e34687f",
+        "Nombre": "Deportes y Fitness"
+    },
+    {
+        "CategoriaID": "42863589-314e-11ee-ba93-0e3a1e34687f",
+        "Nombre": "Deportes"
+    },
+    {
         "CategoriaID": "9404741c-772d-11ee-ba93-0e3a1e34687f",
         "Nombre": "Seguridad para el Hogar"
     },
     {
+        "CategoriaID": "950b6a2c-144f-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Instrumentos Musicales "
+    },
+    {
+        "CategoriaID": "b5c5f933-a3b8-11ed-9b80-0e87116d214b",
+        "Nombre": "Hogar, Cocina,Muebles, Jard\u00ed n y Sanitarios"
+    },
+    {
+        "CategoriaID": "d155eda1-03e5-11ef-8df7-0e3a1e34687f",
+        "Nombre": "Monedas y Billetes"
+    },
+    {
+        "CategoriaID": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Electr\u00f3nica"
+    },
+    {
+        "CategoriaID": "d485cd6b-fe4c-11ee-8df7-0e3a1e34687f",
+        "Nombre": "RESPUESTOS MECANICOS"
+    },
+    {
         "CategoriaID": "e1b693a1-b5fe-11ee-8df7-0e3a1e34687f",
         "Nombre": "Repuesto Mecanico"
+    },
+    {
+        "CategoriaID": "e2e262ea-3ff1-11ed-8709-0e085dd00fab",
+        "Nombre": "Cuidado personal"
+    },
+    {
+        "CategoriaID": "f44f68f6-1455-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Plomeria "
     }
 ]
 
 export const subcategorias = [
+    {
+        "SubcategoriaID": "013c0141-57c8-11ee-ba93-0e3a1e34687f",
+        "categoria": "Hogar, Cocina,Muebles, Jard\u00ed n y Sanitarios",
+        "id_categoria": "b5c5f933-a3b8-11ed-9b80-0e87116d214b",
+        "Nombre": "caja metalica"
+    },
+    {
+        "SubcategoriaID": "0ccafe24-8775-11ed-9b80-0e87116d214b",
+        "categoria": "Cuidado personal",
+        "id_categoria": "e2e262ea-3ff1-11ed-8709-0e085dd00fab",
+        "Nombre": "Salud"
+    },
+    {
+        "SubcategoriaID": "0d453a7c-3ff2-11ed-8709-0e085dd00fab",
+        "categoria": "Cuidado personal",
+        "id_categoria": "e2e262ea-3ff1-11ed-8709-0e085dd00fab",
+        "Nombre": "Higiene personal y accesorios"
+    },
+    {
+        "SubcategoriaID": "0d9c761b-07cb-11ed-bb82-0eb8b69eb347",
+        "categoria": "Electr\u00f3nica",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Celulares y Tel\u00e9fono "
+    },
+    {
+        "SubcategoriaID": "152e211b-d50a-11ee-8df7-0e3a1e34687f",
+        "categoria": "Hogar, Cocina,Muebles, Jard\u00ed n y Sanitarios",
+        "id_categoria": "b5c5f933-a3b8-11ed-9b80-0e87116d214b",
+        "Nombre": "carpa"
+    },
+    {
+        "SubcategoriaID": "183acec2-e79a-11ee-8df7-0e3a1e34687f",
+        "categoria": "Hogar, Cocina,Muebles, Jard\u00ed n y Sanitarios",
+        "id_categoria": "b5c5f933-a3b8-11ed-9b80-0e87116d214b",
+        "Nombre": "COCINA"
+    },
+    {
+        "SubcategoriaID": "1994313f-07cb-11ed-bb82-0eb8b69eb347",
+        "categoria": "Electr\u00f3nica",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Electrodomesticos"
+    },
+    {
+        "SubcategoriaID": "1c6404d9-1456-11ed-bb82-0eb8b69eb347",
+        "categoria": "Plomeria ",
+        "id_categoria": "f44f68f6-1455-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Bombas y Riego "
+    },
+    {
+        "SubcategoriaID": "1cf1504c-7c81-11ed-9b80-0e87116d214b",
+        "categoria": "Equipamiento para comercio",
+        "id_categoria": "080a3f7e-7c81-11ed-9b80-0e87116d214b",
+        "Nombre": "Electronico"
+    },
+    {
+        "SubcategoriaID": "1d4de257-dbb4-11ee-8df7-0e3a1e34687f",
+        "categoria": "Herramientas y materiales de construccion",
+        "id_categoria": "172ed85e-07d8-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Herramientas Electricas"
+    },
     {
         "SubcategoriaID": "1ea6a73c-0780-11ed-bb82-0eb8b69eb347",
         "categoria": "Vehiculos",
@@ -80,202 +156,16 @@ export const subcategorias = [
         "Nombre": "Moto"
     },
     {
-        "SubcategoriaID": "2b69277b-0780-11ed-bb82-0eb8b69eb347",
-        "categoria": "Vehiculos",
-        "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
-        "Nombre": "Bicicleta"
-    },
-    {
-        "SubcategoriaID": "0d9c761b-07cb-11ed-bb82-0eb8b69eb347",
-        "categoria": "Electr\u00f3nica",
-        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
-        "Nombre": "Celulares y Tel\u00e9fono "
-    },
-    {
-        "SubcategoriaID": "1994313f-07cb-11ed-bb82-0eb8b69eb347",
-        "categoria": "Electr\u00f3nica",
-        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
-        "Nombre": "Electrodomesticos"
-    },
-    {
-        "SubcategoriaID": "cb8c8acd-0908-11ed-bb82-0eb8b69eb347",
-        "categoria": "Electr\u00f3nica",
-        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
-        "Nombre": "Computacion"
-    },
-    {
-        "SubcategoriaID": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347",
-        "categoria": "Electr\u00f3nica",
-        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
-        "Nombre": "Audio y Video"
-    },
-    {
-        "SubcategoriaID": "5a298bfb-0bc5-11ed-bb82-0eb8b69eb347",
-        "categoria": "Vehiculos",
-        "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
-        "Nombre": "Camioneta"
-    },
-    {
-        "SubcategoriaID": "6342b43e-0bc5-11ed-bb82-0eb8b69eb347",
-        "categoria": "Vehiculos",
-        "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
-        "Nombre": "Camion"
-    },
-    {
-        "SubcategoriaID": "629ef2d3-0e80-11ed-bb82-0eb8b69eb347",
-        "categoria": "Electr\u00f3nica",
-        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
-        "Nombre": "Ventiladores"
-    },
-    {
-        "SubcategoriaID": "c04e870b-144f-11ed-bb82-0eb8b69eb347",
-        "categoria": "Instrumentos Musicales",
-        "id_categoria": "950b6a2c-144f-11ed-bb82-0eb8b69eb347",
-        "Nombre": "Instrumentos de Cuerdas"
-    },
-    {
-        "SubcategoriaID": "cf23d57d-144f-11ed-bb82-0eb8b69eb347",
-        "categoria": "Instrumentos Musicales",
-        "id_categoria": "950b6a2c-144f-11ed-bb82-0eb8b69eb347",
-        "Nombre": "Instrumentos de Viento"
-    },
-    {
-        "SubcategoriaID": "edc81750-144f-11ed-bb82-0eb8b69eb347",
-        "categoria": "Instrumentos Musicales",
-        "id_categoria": "950b6a2c-144f-11ed-bb82-0eb8b69eb347",
-        "Nombre": "Instrumento De Percusi\u00f3n "
-    },
-    {
-        "SubcategoriaID": "1c6404d9-1456-11ed-bb82-0eb8b69eb347",
-        "categoria": "Plomeria ",
-        "id_categoria": "f44f68f6-1455-11ed-bb82-0eb8b69eb347",
-        "Nombre": "Bombas y Riego "
-    },
-    {
-        "SubcategoriaID": "940fb2af-18cc-11ed-bb82-0eb8b69eb347",
-        "categoria": "Vehiculos",
-        "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
-        "Nombre": "Accesorios"
-    },
-    {
-        "SubcategoriaID": "68e19c2a-19cb-11ed-bb82-0eb8b69eb347",
-        "categoria": "Electr\u00f3nica",
-        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
-        "Nombre": "Tablet"
-    },
-    {
-        "SubcategoriaID": "f2cd8800-19d1-11ed-bb82-0eb8b69eb347",
-        "categoria": "Electr\u00f3nica",
-        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
-        "Nombre": "Cargador Portatil"
-    },
-    {
-        "SubcategoriaID": "0d453a7c-3ff2-11ed-8709-0e085dd00fab",
-        "categoria": "Cuidado personal",
-        "id_categoria": "e2e262ea-3ff1-11ed-8709-0e085dd00fab",
-        "Nombre": "Higiene personal y accesorios"
-    },
-    {
         "SubcategoriaID": "290cb7a7-411f-11ed-8709-0e085dd00fab",
         "categoria": "Ciclismo ",
         "id_categoria": "13f1dbdb-411f-11ed-8709-0e085dd00fab",
         "Nombre": "Accesorios para bicicleta "
     },
     {
-        "SubcategoriaID": "370aec5c-6c06-11ed-9b80-0e87116d214b",
-        "categoria": "Herramientas y materiales de construccion",
-        "id_categoria": "172ed85e-07d8-11ed-bb82-0eb8b69eb347",
-        "Nombre": "Herramientas"
-    },
-    {
-        "SubcategoriaID": "439a98c9-6c06-11ed-9b80-0e87116d214b",
-        "categoria": "Herramientas y materiales de construccion",
-        "id_categoria": "172ed85e-07d8-11ed-bb82-0eb8b69eb347",
-        "Nombre": "Materiales de construcci\u00f3n"
-    },
-    {
-        "SubcategoriaID": "4c9ad041-6c06-11ed-9b80-0e87116d214b",
-        "categoria": "Herramientas y materiales de construccion",
-        "id_categoria": "172ed85e-07d8-11ed-bb82-0eb8b69eb347",
-        "Nombre": "Maquinarias de construccion"
-    },
-    {
-        "SubcategoriaID": "1cf1504c-7c81-11ed-9b80-0e87116d214b",
-        "categoria": "Equipamiento para comercio",
-        "id_categoria": "080a3f7e-7c81-11ed-9b80-0e87116d214b",
-        "Nombre": "Electronico"
-    },
-    {
-        "SubcategoriaID": "d98c21b9-805a-11ed-9b80-0e87116d214b",
-        "categoria": "Electr\u00f3nica",
-        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
-        "Nombre": "Consolas y Videos Juegos"
-    },
-    {
-        "SubcategoriaID": "86985ec4-8771-11ed-9b80-0e87116d214b",
-        "categoria": "Electr\u00f3nica",
-        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
-        "Nombre": "Climatizaci\u00f3n"
-    },
-    {
-        "SubcategoriaID": "0ccafe24-8775-11ed-9b80-0e87116d214b",
-        "categoria": "Cuidado personal",
-        "id_categoria": "e2e262ea-3ff1-11ed-8709-0e085dd00fab",
-        "Nombre": "Salud"
-    },
-    {
-        "SubcategoriaID": "3bb1cc3e-a24f-11ed-9b80-0e87116d214b",
+        "SubcategoriaID": "2b69277b-0780-11ed-bb82-0eb8b69eb347",
         "categoria": "Vehiculos",
         "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
-        "Nombre": "Tractor"
-    },
-    {
-        "SubcategoriaID": "ceb1da00-a3b8-11ed-9b80-0e87116d214b",
-        "categoria": "Hogar, Cocina,Muebles, Jard\u00edn y Sanitarios",
-        "id_categoria": "b5c5f933-a3b8-11ed-9b80-0e87116d214b",
-        "Nombre": "Iluminaci\u00f3n para el Hogar"
-    },
-    {
-        "SubcategoriaID": "6bb7ff77-b90d-11ed-9f0f-0e3a1e34687f",
-        "categoria": "Hogar, Cocina,Muebles, Jard\u00edn y Sanitarios",
-        "id_categoria": "b5c5f933-a3b8-11ed-9b80-0e87116d214b",
-        "Nombre": "Elementos de Ba\u00f1o"
-    },
-    {
-        "SubcategoriaID": "902afffe-bd1d-11ed-9f0f-0e3a1e34687f",
-        "categoria": "Vehiculos",
-        "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
-        "Nombre": "Carroceria "
-    },
-    {
-        "SubcategoriaID": "b069dd65-de21-11ed-9f0f-0e3a1e34687f",
-        "categoria": "Hogar, Cocina,Muebles, Jard\u00edn y Sanitarios",
-        "id_categoria": "b5c5f933-a3b8-11ed-9b80-0e87116d214b",
-        "Nombre": "Motoguada\u00f1a"
-    },
-    {
-        "SubcategoriaID": "fdb9a556-de2a-11ed-9f0f-0e3a1e34687f",
-        "categoria": "Plomeria ",
-        "id_categoria": "f44f68f6-1455-11ed-bb82-0eb8b69eb347",
-        "Nombre": "Griferia"
-    },
-    {
-        "SubcategoriaID": "a133e378-deb6-11ed-9f0f-0e3a1e34687f",
-        "categoria": "Hogar, Cocina,Muebles, Jard\u00edn y Sanitarios",
-        "id_categoria": "b5c5f933-a3b8-11ed-9b80-0e87116d214b",
-        "Nombre": "Cocina, Bazar "
-    },
-    {
-        "SubcategoriaID": "73ba14da-e361-11ed-9f0f-0e3a1e34687f",
-        "categoria": "Electr\u00f3nica",
-        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
-        "Nombre": "Elementos de Energ\u00eda Renovables e Iluminaci\u00f3n "
-    },
-    {
-        "SubcategoriaID": "fd0afdeb-e431-11ed-9f0f-0e3a1e34687f",
-        "categoria": "Hogar, Cocina,Muebles, Jard\u00edn y Sanitarios",
-        "id_categoria": "b5c5f933-a3b8-11ed-9b80-0e87116d214b",
-        "Nombre": "Jard\u00edn "
+        "Nombre": "Bicicleta"
     },
     {
         "SubcategoriaID": "2c264837-e444-11ed-9f0f-0e3a1e34687f",
@@ -284,28 +174,142 @@ export const subcategorias = [
         "Nombre": "Equipaje, Bolsos y Carteras"
     },
     {
-        "SubcategoriaID": "90eb52e1-edba-11ed-9f0f-0e3a1e34687f",
-        "categoria": "Ropa y Accesorios",
-        "id_categoria": "07d8d6ac-e444-11ed-9f0f-0e3a1e34687f",
-        "Nombre": "Ropa"
+        "SubcategoriaID": "333bc8da-b5ff-11ee-8df7-0e3a1e34687f",
+        "categoria": "Repuesto Mecanico",
+        "id_categoria": "e1b693a1-b5fe-11ee-8df7-0e3a1e34687f",
+        "Nombre": "Cargador de Bateria"
+    },
+    {
+        "SubcategoriaID": "370aec5c-6c06-11ed-9b80-0e87116d214b",
+        "categoria": "Herramientas y materiales de construccion",
+        "id_categoria": "172ed85e-07d8-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Herramientas"
+    },
+    {
+        "SubcategoriaID": "3bb1cc3e-a24f-11ed-9b80-0e87116d214b",
+        "categoria": "Vehiculos",
+        "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Tractor"
     },
     {
         "SubcategoriaID": "3d35c50a-ee6f-11ed-9f0f-0e3a1e34687f",
-        "categoria": "Hogar, Cocina,Muebles, Jard\u00edn y Sanitarios",
+        "categoria": "Hogar, Cocina,Muebles, Jard\u00ed n y Sanitarios",
         "id_categoria": "b5c5f933-a3b8-11ed-9b80-0e87116d214b",
-        "Nombre": "Termotanques y Calefones"
+        "Nombre": "Termotanques, Calefones y garrafa"
     },
     {
-        "SubcategoriaID": "d28a44ca-ee78-11ed-9f0f-0e3a1e34687f",
-        "categoria": "Hogar, Cocina,Muebles, Jard\u00edn y Sanitarios",
+        "SubcategoriaID": "3e35d258-fcd9-11ee-8df7-0e3a1e34687f",
+        "categoria": "BEBIDA",
+        "id_categoria": "0ea216e7-fcd9-11ee-8df7-0e3a1e34687f",
+        "Nombre": "CON ALCOHOL"
+    },
+    {
+        "SubcategoriaID": "3eaf936f-87c1-11ee-ba93-0e3a1e34687f",
+        "categoria": "Vehiculos",
+        "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Cuatriciclo"
+    },
+    {
+        "SubcategoriaID": "439a98c9-6c06-11ed-9b80-0e87116d214b",
+        "categoria": "Herramientas y materiales de construccion",
+        "id_categoria": "172ed85e-07d8-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Materiales de construcci\u00f3n"
+    },
+    {
+        "SubcategoriaID": "469277c0-69cb-11ee-ba93-0e3a1e34687f",
+        "categoria": "Hogar, Cocina,Muebles, Jard\u00ed n y Sanitarios",
         "id_categoria": "b5c5f933-a3b8-11ed-9b80-0e87116d214b",
-        "Nombre": "Dispensadores y Purificadores"
+        "Nombre": "Muebles para el Hogar"
+    },
+    {
+        "SubcategoriaID": "4b4c63ce-5895-11ee-ba93-0e3a1e34687f",
+        "categoria": "Deportes",
+        "id_categoria": "42863589-314e-11ee-ba93-0e3a1e34687f",
+        "Nombre": "Ciclismo"
+    },
+    {
+        "SubcategoriaID": "4c4de100-77ea-11ee-ba93-0e3a1e34687f",
+        "categoria": "ARMAS ",
+        "id_categoria": "389ad47d-36b9-11ee-ba93-0e3a1e34687f",
+        "Nombre": "Aire Comprimido"
+    },
+    {
+        "SubcategoriaID": "4c9ad041-6c06-11ed-9b80-0e87116d214b",
+        "categoria": "Herramientas y materiales de construccion",
+        "id_categoria": "172ed85e-07d8-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Maquinarias de construccion"
+    },
+    {
+        "SubcategoriaID": "4d7d00fa-945f-11ee-ba93-0e3a1e34687f",
+        "categoria": "Vehiculos",
+        "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Cuatriciclo"
     },
     {
         "SubcategoriaID": "5024f649-314e-11ee-ba93-0e3a1e34687f",
         "categoria": "Deportes",
         "id_categoria": "42863589-314e-11ee-ba93-0e3a1e34687f",
         "Nombre": "Camping, Caza y Pesca"
+    },
+    {
+        "SubcategoriaID": "574d38c1-dbc6-11ee-8df7-0e3a1e34687f",
+        "categoria": "Deportes",
+        "id_categoria": "42863589-314e-11ee-ba93-0e3a1e34687f",
+        "Nombre": "Tenis, Padel y Squash"
+    },
+    {
+        "SubcategoriaID": "5a298bfb-0bc5-11ed-bb82-0eb8b69eb347",
+        "categoria": "Vehiculos",
+        "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Camioneta"
+    },
+    {
+        "SubcategoriaID": "61f34d6a-772f-11ee-ba93-0e3a1e34687f",
+        "categoria": "Equipamiento para comercio",
+        "id_categoria": "080a3f7e-7c81-11ed-9b80-0e87116d214b",
+        "Nombre": "Cobro y Control"
+    },
+    {
+        "SubcategoriaID": "629ef2d3-0e80-11ed-bb82-0eb8b69eb347",
+        "categoria": "Electr\u00f3nica",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Ventiladores"
+    },
+    {
+        "SubcategoriaID": "6342b43e-0bc5-11ed-bb82-0eb8b69eb347",
+        "categoria": "Vehiculos",
+        "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Camion"
+    },
+    {
+        "SubcategoriaID": "68e19c2a-19cb-11ed-bb82-0eb8b69eb347",
+        "categoria": "Electr\u00f3nica",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Tablet"
+    },
+    {
+        "SubcategoriaID": "6bb7ff77-b90d-11ed-9f0f-0e3a1e34687f",
+        "categoria": "Hogar, Cocina,Muebles, Jard\u00ed n y Sanitarios",
+        "id_categoria": "b5c5f933-a3b8-11ed-9b80-0e87116d214b",
+        "Nombre": "Elementos de Ba\u00f1o"
+    },
+    {
+        "SubcategoriaID": "6becea2d-1f67-11ef-9e2a-0e3a1e34687f",
+        "categoria": "Electr\u00f3nica",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Drone"
+    },
+    {
+        "SubcategoriaID": "72ef14ac-387c-11ef-9e2a-0e3a1e34687f",
+        "categoria": "Vehiculos",
+        "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Gato Hidraulico"
+    },
+    {
+        "SubcategoriaID": "73ba14da-e361-11ed-9f0f-0e3a1e34687f",
+        "categoria": "Electr\u00f3nica",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Elementos de Energ\u00ed a Renovables e Iluminaci\u00f3n "
     },
     {
         "SubcategoriaID": "758e91b5-36b9-11ee-ba93-0e3a1e34687f",
@@ -320,70 +324,34 @@ export const subcategorias = [
         "Nombre": "blanca"
     },
     {
-        "SubcategoriaID": "013c0141-57c8-11ee-ba93-0e3a1e34687f",
-        "categoria": "Hogar, Cocina,Muebles, Jard\u00edn y Sanitarios",
-        "id_categoria": "b5c5f933-a3b8-11ed-9b80-0e87116d214b",
-        "Nombre": "caja metalica"
-    },
-    {
-        "SubcategoriaID": "4b4c63ce-5895-11ee-ba93-0e3a1e34687f",
-        "categoria": "Deportes",
-        "id_categoria": "42863589-314e-11ee-ba93-0e3a1e34687f",
-        "Nombre": "Ciclismo"
-    },
-    {
-        "SubcategoriaID": "e733fe29-5c84-11ee-ba93-0e3a1e34687f",
-        "categoria": "Vehiculos",
-        "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
-        "Nombre": "Accesorios para vehiculos"
-    },
-    {
-        "SubcategoriaID": "469277c0-69cb-11ee-ba93-0e3a1e34687f",
-        "categoria": "Hogar, Cocina,Muebles, Jard\u00edn y Sanitarios",
-        "id_categoria": "b5c5f933-a3b8-11ed-9b80-0e87116d214b",
-        "Nombre": "Muebles para el Hogar"
-    },
-    {
-        "SubcategoriaID": "c6b7ac2f-772d-11ee-ba93-0e3a1e34687f",
-        "categoria": "Seguridad para el Hogar",
-        "id_categoria": "9404741c-772d-11ee-ba93-0e3a1e34687f",
-        "Nombre": "Herrajes de Seguridad"
-    },
-    {
-        "SubcategoriaID": "61f34d6a-772f-11ee-ba93-0e3a1e34687f",
-        "categoria": "Equipamiento para comercio",
-        "id_categoria": "080a3f7e-7c81-11ed-9b80-0e87116d214b",
-        "Nombre": "Cobro y Control"
-    },
-    {
-        "SubcategoriaID": "4c4de100-77ea-11ee-ba93-0e3a1e34687f",
-        "categoria": "ARMAS ",
-        "id_categoria": "389ad47d-36b9-11ee-ba93-0e3a1e34687f",
-        "Nombre": "Aire Comprimido"
-    },
-    {
-        "SubcategoriaID": "3eaf936f-87c1-11ee-ba93-0e3a1e34687f",
-        "categoria": "Vehiculos",
-        "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
-        "Nombre": "Cuatriciclo"
-    },
-    {
         "SubcategoriaID": "7d221d77-8d5b-11ee-ba93-0e3a1e34687f",
         "categoria": "Herramientas y materiales de construccion",
         "id_categoria": "172ed85e-07d8-11ed-bb82-0eb8b69eb347",
         "Nombre": "Aberturas"
     },
     {
-        "SubcategoriaID": "4d7d00fa-945f-11ee-ba93-0e3a1e34687f",
-        "categoria": "Vehiculos",
-        "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
-        "Nombre": "Cuatriciclo"
+        "SubcategoriaID": "86985ec4-8771-11ed-9b80-0e87116d214b",
+        "categoria": "Electr\u00f3nica",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Climatizaci\u00f3n"
     },
     {
-        "SubcategoriaID": "333bc8da-b5ff-11ee-8df7-0e3a1e34687f",
-        "categoria": "Repuesto Mecanico",
-        "id_categoria": "e1b693a1-b5fe-11ee-8df7-0e3a1e34687f",
-        "Nombre": "Cargador de Bateria"
+        "SubcategoriaID": "902afffe-bd1d-11ed-9f0f-0e3a1e34687f",
+        "categoria": "Vehiculos",
+        "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Carroceria "
+    },
+    {
+        "SubcategoriaID": "90eb52e1-edba-11ed-9f0f-0e3a1e34687f",
+        "categoria": "Ropa y Accesorios",
+        "id_categoria": "07d8d6ac-e444-11ed-9f0f-0e3a1e34687f",
+        "Nombre": "Ropa"
+    },
+    {
+        "SubcategoriaID": "940fb2af-18cc-11ed-bb82-0eb8b69eb347",
+        "categoria": "Vehiculos",
+        "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Accesorios"
     },
     {
         "SubcategoriaID": "9b065a4d-c6b8-11ee-8df7-0e3a1e34687f",
@@ -392,25 +360,169 @@ export const subcategorias = [
         "Nombre": "Colectivo"
     },
     {
-        "SubcategoriaID": "152e211b-d50a-11ee-8df7-0e3a1e34687f",
-        "categoria": "Hogar, Cocina,Muebles, Jard\u00edn y Sanitarios",
+        "SubcategoriaID": "a133e378-deb6-11ed-9f0f-0e3a1e34687f",
+        "categoria": "Hogar, Cocina,Muebles, Jard\u00ed n y Sanitarios",
         "id_categoria": "b5c5f933-a3b8-11ed-9b80-0e87116d214b",
-        "Nombre": "carpa"
+        "Nombre": "Cocina, Bazar "
+    },
+    {
+        "SubcategoriaID": "b069dd65-de21-11ed-9f0f-0e3a1e34687f",
+        "categoria": "Hogar, Cocina,Muebles, Jard\u00ed n y Sanitarios",
+        "id_categoria": "b5c5f933-a3b8-11ed-9b80-0e87116d214b",
+        "Nombre": "Motoguada\u00f1a"
+    },
+    {
+        "SubcategoriaID": "c04e870b-144f-11ed-bb82-0eb8b69eb347",
+        "categoria": "Instrumentos Musicales ",
+        "id_categoria": "950b6a2c-144f-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Instrumentos de Cuerdas"
+    },
+    {
+        "SubcategoriaID": "c6b7ac2f-772d-11ee-ba93-0e3a1e34687f",
+        "categoria": "Seguridad para el Hogar",
+        "id_categoria": "9404741c-772d-11ee-ba93-0e3a1e34687f",
+        "Nombre": "Herrajes de Seguridad"
+    },
+    {
+        "SubcategoriaID": "cb8c8acd-0908-11ed-bb82-0eb8b69eb347",
+        "categoria": "Electr\u00f3nica",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Computacion"
+    },
+    {
+        "SubcategoriaID": "ceb1da00-a3b8-11ed-9b80-0e87116d214b",
+        "categoria": "Hogar, Cocina,Muebles, Jard\u00ed n y Sanitarios",
+        "id_categoria": "b5c5f933-a3b8-11ed-9b80-0e87116d214b",
+        "Nombre": "Iluminaci\u00f3n para el Hogar"
+    },
+    {
+        "SubcategoriaID": "cf23d57d-144f-11ed-bb82-0eb8b69eb347",
+        "categoria": "Instrumentos Musicales ",
+        "id_categoria": "950b6a2c-144f-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Instrumentos de Viento"
+    },
+    {
+        "SubcategoriaID": "d28a44ca-ee78-11ed-9f0f-0e3a1e34687f",
+        "categoria": "Hogar, Cocina,Muebles, Jard\u00ed n y Sanitarios",
+        "id_categoria": "b5c5f933-a3b8-11ed-9b80-0e87116d214b",
+        "Nombre": "Dispensadores y Purificadores"
+    },
+    {
+        "SubcategoriaID": "d98c21b9-805a-11ed-9b80-0e87116d214b",
+        "categoria": "Electr\u00f3nica",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Consolas y Videos Juegos"
     },
     {
         "SubcategoriaID": "d9a2c774-d50b-11ee-8df7-0e3a1e34687f",
         "categoria": "Electr\u00f3nica",
         "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
         "Nombre": "rollo de cable"
+    },
+    {
+        "SubcategoriaID": "da8a46b9-dc7f-11ee-8df7-0e3a1e34687f",
+        "categoria": "Deportes",
+        "id_categoria": "42863589-314e-11ee-ba93-0e3a1e34687f",
+        "Nombre": "Monopatines y Scooters"
+    },
+    {
+        "SubcategoriaID": "dda4578d-03e5-11ef-8df7-0e3a1e34687f",
+        "categoria": "Monedas y Billetes",
+        "id_categoria": "d155eda1-03e5-11ef-8df7-0e3a1e34687f",
+        "Nombre": "Billete"
+    },
+    {
+        "SubcategoriaID": "e3292ef9-03e5-11ef-8df7-0e3a1e34687f",
+        "categoria": "Monedas y Billetes",
+        "id_categoria": "d155eda1-03e5-11ef-8df7-0e3a1e34687f",
+        "Nombre": "Moneda"
+    },
+    {
+        "SubcategoriaID": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347",
+        "categoria": "Electr\u00f3nica",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Audio y Video"
+    },
+    {
+        "SubcategoriaID": "e733fe29-5c84-11ee-ba93-0e3a1e34687f",
+        "categoria": "Vehiculos",
+        "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Accesorios para vehiculos"
+    },
+    {
+        "SubcategoriaID": "e9bbde25-fe4c-11ee-8df7-0e3a1e34687f",
+        "categoria": "Repuesto Mecanico",
+        "id_categoria": "e1b693a1-b5fe-11ee-8df7-0e3a1e34687f",
+        "Nombre": "BATERIA"
+    },
+    {
+        "SubcategoriaID": "edc81750-144f-11ed-bb82-0eb8b69eb347",
+        "categoria": "Instrumentos Musicales ",
+        "id_categoria": "950b6a2c-144f-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Instrumento De Percusi\u00f3n "
+    },
+    {
+        "SubcategoriaID": "f2cd8800-19d1-11ed-bb82-0eb8b69eb347",
+        "categoria": "Electr\u00f3nica",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Cargador Portatil"
+    },
+    {
+        "SubcategoriaID": "fd0afdeb-e431-11ed-9f0f-0e3a1e34687f",
+        "categoria": "Hogar, Cocina,Muebles, Jard\u00ed n y Sanitarios",
+        "id_categoria": "b5c5f933-a3b8-11ed-9b80-0e87116d214b",
+        "Nombre": "Jard\u00ed n "
+    },
+    {
+        "SubcategoriaID": "fdb9a556-de2a-11ed-9f0f-0e3a1e34687f",
+        "categoria": "Plomeria ",
+        "id_categoria": "f44f68f6-1455-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Griferia"
     }
 ]
 
 export const tipoCategorias = [
     {
-        "tipoID": "4d4775c3-0780-11ed-bb82-0eb8b69eb347",
-        "subcategoria": "Bicicleta",
-        "nombre": "Todo terreno",
-        "id_subcategoria": "2b69277b-0780-11ed-bb82-0eb8b69eb347"
+        "tipoID": "0019f33a-595e-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "Herramientas",
+        "nombre": "Elementos de Proteccion Personal",
+        "id_subcategoria": "370aec5c-6c06-11ed-9b80-0e87116d214b"
+    },
+    {
+        "tipoID": "01431184-2b9d-11ed-8709-0e085dd00fab",
+        "subcategoria": null,
+        "nombre": "Hacha  ",
+        "id_subcategoria": "4537674c-0883-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "031481bc-0909-11ed-bb82-0eb8b69eb347",
+        "subcategoria": "Computacion",
+        "nombre": "Netbook",
+        "id_subcategoria": "cb8c8acd-0908-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "055ade00-9775-11ed-9b80-0e87116d214b",
+        "subcategoria": "Moto",
+        "nombre": "500 cc",
+        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "05c6ee49-c618-11ee-8df7-0e3a1e34687f",
+        "subcategoria": "Electrodomesticos",
+        "nombre": "aire acondicionado",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "083fa2ce-33a1-11ed-8709-0e085dd00fab",
+        "subcategoria": "Electrodomesticos",
+        "nombre": "Anafe",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "086fbc5b-2fb5-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "Electrodomesticos",
+        "nombre": "Pava electica",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
     },
     {
         "tipoID": "08d5282b-0785-11ed-bb82-0eb8b69eb347",
@@ -419,9 +531,597 @@ export const tipoCategorias = [
         "id_subcategoria": "2b69277b-0780-11ed-bb82-0eb8b69eb347"
     },
     {
+        "tipoID": "08e8700f-03e6-11ef-8df7-0e3a1e34687f",
+        "subcategoria": "Billete",
+        "nombre": "Dolar",
+        "id_subcategoria": "dda4578d-03e5-11ef-8df7-0e3a1e34687f"
+    },
+    {
+        "tipoID": "0b250c20-3e80-11ed-8709-0e085dd00fab",
+        "subcategoria": null,
+        "nombre": "Periferica",
+        "id_subcategoria": "1f7d76a3-3e7a-11ed-8709-0e085dd00fab"
+    },
+    {
+        "tipoID": "0bc86997-ca90-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Bicicleta",
+        "nombre": "Europea",
+        "id_subcategoria": "2b69277b-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "0ce49ebb-1724-11ed-bb82-0eb8b69eb347",
+        "subcategoria": "Electrodomesticos",
+        "nombre": "plancha",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "0d700ebf-0884-11ed-bb82-0eb8b69eb347",
+        "subcategoria": null,
+        "nombre": "Plomeria",
+        "id_subcategoria": "4537674c-0883-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "0d9e63f5-9775-11ed-9b80-0e87116d214b",
+        "subcategoria": "Moto",
+        "nombre": "1000 cc",
+        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "0e327750-03e6-11ef-8df7-0e3a1e34687f",
+        "subcategoria": "Billete",
+        "nombre": "Peso Argentino",
+        "id_subcategoria": "dda4578d-03e5-11ef-8df7-0e3a1e34687f"
+    },
+    {
+        "tipoID": "0ea527ed-57c8-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "caja metalica",
+        "nombre": "Alcancia ",
+        "id_subcategoria": "013c0141-57c8-11ee-ba93-0e3a1e34687f"
+    },
+    {
+        "tipoID": "0eee81a4-0909-11ed-bb82-0eb8b69eb347",
+        "subcategoria": "Computacion",
+        "nombre": "Pc",
+        "id_subcategoria": "cb8c8acd-0908-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "0f99863a-3da7-11ed-8709-0e085dd00fab",
+        "subcategoria": "Moto",
+        "nombre": "scooters",
+        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "1048a903-e9bf-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Elementos de Energ\u00ed a Renovables e Iluminaci\u00f3n ",
+        "nombre": "Generador Electrico",
+        "id_subcategoria": "73ba14da-e361-11ed-9f0f-0e3a1e34687f"
+    },
+    {
+        "tipoID": "104ecab4-a3b5-11ed-9b80-0e87116d214b",
+        "subcategoria": "Electronico",
+        "nombre": "Walkie-talkie",
+        "id_subcategoria": "1cf1504c-7c81-11ed-9b80-0e87116d214b"
+    },
+    {
+        "tipoID": "106313fb-da0c-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Electrodomesticos",
+        "nombre": "Tostadoras",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "110f2dc7-d0a8-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Accesorios",
+        "nombre": "Tapa de rueda ",
+        "id_subcategoria": "940fb2af-18cc-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "11369539-f341-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Elementos de Ba\u00f1o",
+        "nombre": "Mochila de ba\u00f1o",
+        "id_subcategoria": "6bb7ff77-b90d-11ed-9f0f-0e3a1e34687f"
+    },
+    {
+        "tipoID": "116650ee-0b8c-11ee-9f0f-0e3a1e34687f",
+        "subcategoria": "Audio y Video",
+        "nombre": "Proyector Led",
+        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "11c7451d-2fb5-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "Electrodomesticos",
+        "nombre": "Tetera ",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "1282f907-de2b-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Griferia",
+        "nombre": "Monocomando",
+        "id_subcategoria": "fdb9a556-de2a-11ed-9f0f-0e3a1e34687f"
+    },
+    {
+        "tipoID": "1330a2eb-e432-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Jard\u00ed n ",
+        "nombre": "Cortadora de pasto",
+        "id_subcategoria": "fd0afdeb-e431-11ed-9f0f-0e3a1e34687f"
+    },
+    {
+        "tipoID": "13864403-be93-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Bicicleta",
+        "nombre": "Cross",
+        "id_subcategoria": "2b69277b-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "13d54625-2b1e-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "Jard\u00ed n ",
+        "nombre": "Motosierra",
+        "id_subcategoria": "fd0afdeb-e431-11ed-9f0f-0e3a1e34687f"
+    },
+    {
+        "tipoID": "14083756-0882-11ed-bb82-0eb8b69eb347",
+        "subcategoria": null,
+        "nombre": "Sensitiva",
+        "id_subcategoria": "c1f005fc-087f-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "156aa29d-723c-11ed-9b80-0e87116d214b",
+        "subcategoria": "Maquinarias de construccion",
+        "nombre": "Portatil",
+        "id_subcategoria": "4c9ad041-6c06-11ed-9b80-0e87116d214b"
+    },
+    {
+        "tipoID": "15832573-0909-11ed-bb82-0eb8b69eb347",
+        "subcategoria": "Computacion",
+        "nombre": "Impresoras",
+        "id_subcategoria": "cb8c8acd-0908-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "168cf535-0884-11ed-bb82-0eb8b69eb347",
+        "subcategoria": null,
+        "nombre": "Sensitiva",
+        "id_subcategoria": "3a6df3fc-0883-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "17ee0c2e-cf1f-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Moto",
+        "nombre": "190cc",
+        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "188f0243-3e80-11ed-8709-0e085dd00fab",
+        "subcategoria": null,
+        "nombre": "Sumergibles",
+        "id_subcategoria": "1f7d76a3-3e7a-11ed-8709-0e085dd00fab"
+    },
+    {
+        "tipoID": "1ba9dc21-723c-11ed-9b80-0e87116d214b",
+        "subcategoria": "Maquinarias de construccion",
+        "nombre": "Manual",
+        "id_subcategoria": "4c9ad041-6c06-11ed-9b80-0e87116d214b"
+    },
+    {
+        "tipoID": "1d582f57-8621-11ed-9b80-0e87116d214b",
+        "subcategoria": "Camioneta",
+        "nombre": "Rodado",
+        "id_subcategoria": "5a298bfb-0bc5-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "1d775bd3-7c86-11ed-9b80-0e87116d214b",
+        "subcategoria": "Audio y Video",
+        "nombre": "LUCES PARA EVENTOS  ",
+        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "1e07ac82-c480-11ee-8df7-0e3a1e34687f",
+        "subcategoria": "Computacion",
+        "nombre": "TECLADO",
+        "id_subcategoria": "cb8c8acd-0908-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "1fdd0d00-1450-11ed-bb82-0eb8b69eb347",
+        "subcategoria": "Instrumentos de Cuerdas",
+        "nombre": "Bajo ",
+        "id_subcategoria": "c04e870b-144f-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "1fee625c-f328-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Elementos de Ba\u00f1o",
+        "nombre": "Lava manos",
+        "id_subcategoria": "6bb7ff77-b90d-11ed-9f0f-0e3a1e34687f"
+    },
+    {
+        "tipoID": "20423209-4818-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "Climatizaci\u00f3n",
+        "nombre": "Estufa",
+        "id_subcategoria": "86985ec4-8771-11ed-9b80-0e87116d214b"
+    },
+    {
+        "tipoID": "206f1318-e443-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Jard\u00ed n ",
+        "nombre": "Desmalazadora",
+        "id_subcategoria": "fd0afdeb-e431-11ed-9f0f-0e3a1e34687f"
+    },
+    {
+        "tipoID": "207f376f-0884-11ed-bb82-0eb8b69eb347",
+        "subcategoria": null,
+        "nombre": "Compresor",
+        "id_subcategoria": "4aed8277-0883-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "20ffb449-516e-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "De fuego",
+        "nombre": "Larga",
+        "id_subcategoria": "758e91b5-36b9-11ee-ba93-0e3a1e34687f"
+    },
+    {
+        "tipoID": "215f6a3c-00bd-11ef-8df7-0e3a1e34687f",
+        "subcategoria": "Electrodomesticos",
+        "nombre": "Lavarropa",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "2181b79f-3e80-11ed-8709-0e085dd00fab",
+        "subcategoria": null,
+        "nombre": "Centrifugas",
+        "id_subcategoria": "1f7d76a3-3e7a-11ed-8709-0e085dd00fab"
+    },
+    {
+        "tipoID": "21d4f372-f4cb-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Iluminaci\u00f3n para el Hogar",
+        "nombre": "Alargue",
+        "id_subcategoria": "ceb1da00-a3b8-11ed-9b80-0e87116d214b"
+    },
+    {
+        "tipoID": "22179ea9-966b-11ed-9b80-0e87116d214b",
+        "subcategoria": "auto",
+        "nombre": "Sedan",
+        "id_subcategoria": "1ea6a73c-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "227026ef-d50a-11ee-8df7-0e3a1e34687f",
+        "subcategoria": "Electrodomesticos",
+        "nombre": "parlante",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "23188c69-bd1e-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Carroceria ",
+        "nombre": "Semirremolque",
+        "id_subcategoria": "902afffe-bd1d-11ed-9f0f-0e3a1e34687f"
+    },
+    {
+        "tipoID": "2340f245-0cf8-11ed-bb82-0eb8b69eb347",
+        "subcategoria": "Audio y Video",
+        "nombre": "Partantes de vehiculo",
+        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "247e3463-8773-11ed-9b80-0e87116d214b",
+        "subcategoria": "Ventiladores",
+        "nombre": "Ventilador de pie",
+        "id_subcategoria": "629ef2d3-0e80-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "252c4fa7-2c84-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "Cocina, Bazar ",
+        "nombre": "Juego de comedor ",
+        "id_subcategoria": "a133e378-deb6-11ed-9f0f-0e3a1e34687f"
+    },
+    {
+        "tipoID": "260473ed-f3e8-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Elementos de Ba\u00f1o",
+        "nombre": "Tapa de inodoro",
+        "id_subcategoria": "6bb7ff77-b90d-11ed-9f0f-0e3a1e34687f"
+    },
+    {
+        "tipoID": "2679a0c6-0884-11ed-bb82-0eb8b69eb347",
+        "subcategoria": null,
+        "nombre": "Aspiradoras",
+        "id_subcategoria": "4aed8277-0883-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "26ca9fde-ba4b-11ee-8df7-0e3a1e34687f",
+        "subcategoria": "auto",
+        "nombre": "Rueda de Auxilio ",
+        "id_subcategoria": "1ea6a73c-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "27a108cb-1444-11ed-bb82-0eb8b69eb347",
+        "subcategoria": null,
+        "nombre": "sierra de arco ",
+        "id_subcategoria": "4537674c-0883-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "27ca7d28-dbb4-11ee-8df7-0e3a1e34687f",
+        "subcategoria": "Herramientas Electricas",
+        "nombre": "Hidro Lavadora",
+        "id_subcategoria": "1d4de257-dbb4-11ee-8df7-0e3a1e34687f"
+    },
+    {
+        "tipoID": "2b87e944-966b-11ed-9b80-0e87116d214b",
+        "subcategoria": "auto",
+        "nombre": "Hatchback",
+        "id_subcategoria": "1ea6a73c-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "2c685750-ea9b-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Iluminaci\u00f3n para el Hogar",
+        "nombre": "Luz de emergencia ",
+        "id_subcategoria": "ceb1da00-a3b8-11ed-9b80-0e87116d214b"
+    },
+    {
+        "tipoID": "2d3f8ae9-8773-11ed-9b80-0e87116d214b",
+        "subcategoria": "Ventiladores",
+        "nombre": "Ventilador de techo ",
+        "id_subcategoria": "629ef2d3-0e80-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "2e5647cc-95ac-11ed-9b80-0e87116d214b",
+        "subcategoria": "Audio y Video",
+        "nombre": "Radio",
+        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "2efe5c95-579c-11ed-9b80-0e87116d214b",
+        "subcategoria": "Computacion",
+        "nombre": "Tablet",
+        "id_subcategoria": "cb8c8acd-0908-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "320e5145-0884-11ed-bb82-0eb8b69eb347",
+        "subcategoria": null,
+        "nombre": "Hormigonera",
+        "id_subcategoria": "4aed8277-0883-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "330bd9c8-0909-11ed-bb82-0eb8b69eb347",
+        "subcategoria": "Audio y Video",
+        "nombre": "Parlante portatil",
+        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "334a3cea-966b-11ed-9b80-0e87116d214b",
+        "subcategoria": "auto",
+        "nombre": "Coupe",
+        "id_subcategoria": "1ea6a73c-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "3587a6de-bd1e-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Carroceria ",
+        "nombre": "Carro",
+        "id_subcategoria": "902afffe-bd1d-11ed-9f0f-0e3a1e34687f"
+    },
+    {
+        "tipoID": "35a8218a-411f-11ed-8709-0e085dd00fab",
+        "subcategoria": "Accesorios para bicicleta ",
+        "nombre": "Casco",
+        "id_subcategoria": "290cb7a7-411f-11ed-8709-0e085dd00fab"
+    },
+    {
+        "tipoID": "378587e9-a24e-11ed-9b80-0e87116d214b",
+        "subcategoria": "Moto",
+        "nombre": "Urbana",
+        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "387d48ff-966b-11ed-9b80-0e87116d214b",
+        "subcategoria": "auto",
+        "nombre": "SUV",
+        "id_subcategoria": "1ea6a73c-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "399f5c16-0e1a-11ed-bb82-0eb8b69eb347",
+        "subcategoria": "Audio y Video",
+        "nombre": "Camara fimadora",
+        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "39ae881b-1450-11ed-bb82-0eb8b69eb347",
+        "subcategoria": "Instrumentos de Cuerdas",
+        "nombre": "Guitarra ",
+        "id_subcategoria": "c04e870b-144f-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "3b87dfc1-dbb5-11ee-8df7-0e3a1e34687f",
+        "subcategoria": "Audio y Video",
+        "nombre": "Camara Fotografica",
+        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "3b9b0c25-fcda-11ee-8df7-0e3a1e34687f",
+        "subcategoria": "CON ALCOHOL",
+        "nombre": "EN LATA",
+        "id_subcategoria": "3e35d258-fcd9-11ee-8df7-0e3a1e34687f"
+    },
+    {
+        "tipoID": "3bb201f3-14bd-11ed-bb82-0eb8b69eb347",
+        "subcategoria": null,
+        "nombre": "Destornillador ",
+        "id_subcategoria": "4537674c-0883-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "3d2a1c77-8776-11ed-9b80-0e87116d214b",
+        "subcategoria": "Higiene personal y accesorios",
+        "nombre": "Cortadora de pelo",
+        "id_subcategoria": "0d453a7c-3ff2-11ed-8709-0e085dd00fab"
+    },
+    {
+        "tipoID": "3e2c6f52-3ff3-11ed-8709-0e085dd00fab",
+        "subcategoria": "Higiene personal y accesorios",
+        "nombre": "Secador de pelo",
+        "id_subcategoria": "0d453a7c-3ff2-11ed-8709-0e085dd00fab"
+    },
+    {
+        "tipoID": "3e639e9f-a165-11ed-9b80-0e87116d214b",
+        "subcategoria": "Electrodomesticos",
+        "nombre": "Batidora",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "3ede0835-fcda-11ee-8df7-0e3a1e34687f",
+        "subcategoria": "CON ALCOHOL",
+        "nombre": "EN LATA",
+        "id_subcategoria": "3e35d258-fcd9-11ee-8df7-0e3a1e34687f"
+    },
+    {
+        "tipoID": "3fd43456-7c81-11ed-9b80-0e87116d214b",
+        "subcategoria": "Electronico",
+        "nombre": "Balanza",
+        "id_subcategoria": "1cf1504c-7c81-11ed-9b80-0e87116d214b"
+    },
+    {
+        "tipoID": "4047ca95-966b-11ed-9b80-0e87116d214b",
+        "subcategoria": "auto",
+        "nombre": "Station Wagon",
+        "id_subcategoria": "1ea6a73c-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "436060ad-1456-11ed-bb82-0eb8b69eb347",
+        "subcategoria": "Bombas y Riego ",
+        "nombre": "Bomba de Agua Perif\u00e9rica",
+        "id_subcategoria": "1c6404d9-1456-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "49142bb2-dab9-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Electronico",
+        "nombre": "Alarma",
+        "id_subcategoria": "1cf1504c-7c81-11ed-9b80-0e87116d214b"
+    },
+    {
+        "tipoID": "4a420b1e-ee6f-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Termotanques, Calefones y garrafa",
+        "nombre": "Termotanques",
+        "id_subcategoria": "3d35c50a-ee6f-11ed-9f0f-0e3a1e34687f"
+    },
+    {
+        "tipoID": "4b4cd7d2-3ff3-11ed-8709-0e085dd00fab",
+        "subcategoria": "Higiene personal y accesorios",
+        "nombre": "Plancha de pelo",
+        "id_subcategoria": "0d453a7c-3ff2-11ed-8709-0e085dd00fab"
+    },
+    {
+        "tipoID": "4b69b4af-0909-11ed-bb82-0eb8b69eb347",
+        "subcategoria": "Audio y Video",
+        "nombre": "Estereo",
+        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "4d038309-966b-11ed-9b80-0e87116d214b",
+        "subcategoria": "auto",
+        "nombre": "Crossover",
+        "id_subcategoria": "1ea6a73c-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "4d4775c3-0780-11ed-bb82-0eb8b69eb347",
+        "subcategoria": "Bicicleta",
+        "nombre": "Todo terreno",
+        "id_subcategoria": "2b69277b-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "4dcb2f7f-d234-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": null,
+        "nombre": "Rueda",
+        "id_subcategoria": "3cdfd7bc-d234-11ed-9f0f-0e3a1e34687f"
+    },
+    {
+        "tipoID": "4e3d089a-a1bd-11ed-9b80-0e87116d214b",
+        "subcategoria": "Moto",
+        "nombre": "600",
+        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "4e8c25f7-806c-11ed-9b80-0e87116d214b",
+        "subcategoria": "Moto",
+        "nombre": "125 cc",
+        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "53729567-966b-11ed-9b80-0e87116d214b",
+        "subcategoria": "auto",
+        "nombre": "Convertibles",
+        "id_subcategoria": "1ea6a73c-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "53bde225-fcda-11ee-8df7-0e3a1e34687f",
+        "subcategoria": "CON ALCOHOL",
+        "nombre": "EN LATA",
+        "id_subcategoria": "3e35d258-fcd9-11ee-8df7-0e3a1e34687f"
+    },
+    {
+        "tipoID": "5632719b-8139-11ed-9b80-0e87116d214b",
+        "subcategoria": "Moto",
+        "nombre": "250 cc",
+        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "57116033-3dd1-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "Jard\u00ed n ",
+        "nombre": "ALMOHADONES",
+        "id_subcategoria": "fd0afdeb-e431-11ed-9f0f-0e3a1e34687f"
+    },
+    {
+        "tipoID": "573af87e-8072-11ed-9b80-0e87116d214b",
+        "subcategoria": "Camioneta",
+        "nombre": "Pick Up",
+        "id_subcategoria": "5a298bfb-0bc5-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "5771568d-7a68-11ed-9b80-0e87116d214b",
+        "subcategoria": "Moto",
+        "nombre": "110cc",
+        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "58b773e7-966b-11ed-9b80-0e87116d214b",
+        "subcategoria": "auto",
+        "nombre": "MPV",
+        "id_subcategoria": "1ea6a73c-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "58fe02d9-945f-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "Cuatriciclo",
+        "nombre": "Arenero",
+        "id_subcategoria": "3eaf936f-87c1-11ee-ba93-0e3a1e34687f"
+    },
+    {
+        "tipoID": "5921d9bf-17e0-11ed-bb82-0eb8b69eb347",
+        "subcategoria": "Audio y Video",
+        "nombre": "Reproductor de Dvd",
+        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "597f1e73-69cb-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "Muebles para el Hogar",
+        "nombre": "Placard",
+        "id_subcategoria": "469277c0-69cb-11ee-ba93-0e3a1e34687f"
+    },
+    {
+        "tipoID": "5ac030de-6231-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "Jard\u00ed n ",
+        "nombre": "Cercos y Tranqueras",
+        "id_subcategoria": "fd0afdeb-e431-11ed-9f0f-0e3a1e34687f"
+    },
+    {
+        "tipoID": "5c55f25b-8139-11ed-9b80-0e87116d214b",
+        "subcategoria": "Moto",
+        "nombre": "260 cc",
+        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
         "tipoID": "64240806-07ba-11ed-bb82-0eb8b69eb347",
         "subcategoria": "Moto",
         "nombre": "Enduro",
+        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "671c150e-f3e8-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Elementos de Ba\u00f1o",
+        "nombre": "Tapa de mochila de inodoro",
+        "id_subcategoria": "6bb7ff77-b90d-11ed-9f0f-0e3a1e34687f"
+    },
+    {
+        "tipoID": "672effa2-8709-11ed-9b80-0e87116d214b",
+        "subcategoria": "Moto",
+        "nombre": "Cuatriciclo ",
         "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
     },
     {
@@ -431,172 +1131,16 @@ export const tipoCategorias = [
         "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
     },
     {
-        "tipoID": "88f2b9ca-07cc-11ed-bb82-0eb8b69eb347",
-        "subcategoria": "Electrodomesticos",
-        "nombre": "Televisor LED",
-        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
+        "tipoID": "679d5c4d-57c7-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "Accesorios",
+        "nombre": "GUANTES",
+        "id_subcategoria": "940fb2af-18cc-11ed-bb82-0eb8b69eb347"
     },
     {
-        "tipoID": "94e7d473-07cc-11ed-bb82-0eb8b69eb347",
-        "subcategoria": "Electrodomesticos",
-        "nombre": "Televisor LCD",
-        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "9e108b62-07cc-11ed-bb82-0eb8b69eb347",
-        "subcategoria": "Electrodomesticos",
-        "nombre": "Heladera",
-        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "aa658d2d-07cc-11ed-bb82-0eb8b69eb347",
-        "subcategoria": "Electrodomesticos",
-        "nombre": "Microonda",
-        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "eeab0a58-07cd-11ed-bb82-0eb8b69eb347",
-        "subcategoria": "Climatizaci\u00f3n",
-        "nombre": "Aire acondicionado portatil",
-        "id_subcategoria": "86985ec4-8771-11ed-9b80-0e87116d214b"
-    },
-    {
-        "tipoID": "9c3125b1-07ce-11ed-bb82-0eb8b69eb347",
-        "subcategoria": "Celulares y Tel\u00e9fono ",
-        "nombre": "Tactil",
-        "id_subcategoria": "0d9c761b-07cb-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "e6299363-07d7-11ed-bb82-0eb8b69eb347",
-        "subcategoria": "Climatizaci\u00f3n",
-        "nombre": "Caloventor",
-        "id_subcategoria": "86985ec4-8771-11ed-9b80-0e87116d214b"
-    },
-    {
-        "tipoID": "14083756-0882-11ed-bb82-0eb8b69eb347",
-        "subcategoria": null,
-        "nombre": "Sensitiva",
-        "id_subcategoria": "c1f005fc-087f-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "86c862eb-0883-11ed-bb82-0eb8b69eb347",
-        "subcategoria": null,
-        "nombre": "Taladro",
-        "id_subcategoria": "3a6df3fc-0883-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "a792528a-0883-11ed-bb82-0eb8b69eb347",
-        "subcategoria": null,
-        "nombre": "Caladora",
-        "id_subcategoria": "3a6df3fc-0883-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "ad9ff467-0883-11ed-bb82-0eb8b69eb347",
-        "subcategoria": null,
-        "nombre": "Soldadora",
-        "id_subcategoria": "3a6df3fc-0883-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "c7984cac-0883-11ed-bb82-0eb8b69eb347",
-        "subcategoria": null,
-        "nombre": "Sierra Circular ",
-        "id_subcategoria": "3a6df3fc-0883-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "cf356e14-0883-11ed-bb82-0eb8b69eb347",
-        "subcategoria": null,
-        "nombre": "Pistola de calor ",
-        "id_subcategoria": "3a6df3fc-0883-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "e0bdfaf8-0883-11ed-bb82-0eb8b69eb347",
-        "subcategoria": null,
-        "nombre": "Pulidora",
-        "id_subcategoria": "3a6df3fc-0883-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "f1631dd7-0883-11ed-bb82-0eb8b69eb347",
-        "subcategoria": null,
-        "nombre": "Pinza, tenaza y alicates",
-        "id_subcategoria": "4537674c-0883-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "0d700ebf-0884-11ed-bb82-0eb8b69eb347",
-        "subcategoria": null,
-        "nombre": "Plomeria",
-        "id_subcategoria": "4537674c-0883-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "168cf535-0884-11ed-bb82-0eb8b69eb347",
-        "subcategoria": null,
-        "nombre": "Sensitiva",
-        "id_subcategoria": "3a6df3fc-0883-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "207f376f-0884-11ed-bb82-0eb8b69eb347",
-        "subcategoria": null,
-        "nombre": "Compresor",
-        "id_subcategoria": "4aed8277-0883-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "2679a0c6-0884-11ed-bb82-0eb8b69eb347",
-        "subcategoria": null,
-        "nombre": "Aspiradoras",
-        "id_subcategoria": "4aed8277-0883-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "320e5145-0884-11ed-bb82-0eb8b69eb347",
-        "subcategoria": null,
-        "nombre": "Hormigonera",
-        "id_subcategoria": "4aed8277-0883-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "891599e0-08ff-11ed-bb82-0eb8b69eb347",
-        "subcategoria": null,
-        "nombre": "Amoladora",
-        "id_subcategoria": "3a6df3fc-0883-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "fb158549-0908-11ed-bb82-0eb8b69eb347",
-        "subcategoria": "Computacion",
-        "nombre": "Notebook",
-        "id_subcategoria": "cb8c8acd-0908-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "031481bc-0909-11ed-bb82-0eb8b69eb347",
-        "subcategoria": "Computacion",
-        "nombre": "Netbook",
-        "id_subcategoria": "cb8c8acd-0908-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "0eee81a4-0909-11ed-bb82-0eb8b69eb347",
-        "subcategoria": "Computacion",
-        "nombre": "Pc",
-        "id_subcategoria": "cb8c8acd-0908-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "15832573-0909-11ed-bb82-0eb8b69eb347",
-        "subcategoria": "Computacion",
-        "nombre": "Impresoras",
-        "id_subcategoria": "cb8c8acd-0908-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "330bd9c8-0909-11ed-bb82-0eb8b69eb347",
-        "subcategoria": "Audio y Video",
-        "nombre": "Parlante portatil",
-        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "4b69b4af-0909-11ed-bb82-0eb8b69eb347",
-        "subcategoria": "Audio y Video",
-        "nombre": "Estereo",
-        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "af6ccc48-0c33-11ed-bb82-0eb8b69eb347",
-        "subcategoria": "Computacion",
-        "nombre": "Monitor",
-        "id_subcategoria": "cb8c8acd-0908-11ed-bb82-0eb8b69eb347"
+        "tipoID": "69bfd6fd-314e-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "Camping, Caza y Pesca",
+        "nombre": "Riel ",
+        "id_subcategoria": "5024f649-314e-11ee-ba93-0e3a1e34687f"
     },
     {
         "tipoID": "69cfe40f-0c71-11ed-bb82-0eb8b69eb347",
@@ -605,256 +1149,166 @@ export const tipoCategorias = [
         "id_subcategoria": "2b69277b-0780-11ed-bb82-0eb8b69eb347"
     },
     {
-        "tipoID": "2340f245-0cf8-11ed-bb82-0eb8b69eb347",
-        "subcategoria": "Audio y Video",
-        "nombre": "Partantes de vehiculo",
-        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347"
+        "tipoID": "6b9fa6de-b5ff-11ee-8df7-0e3a1e34687f",
+        "subcategoria": "Cargador de Bateria",
+        "nombre": "Cargador 12 Volts",
+        "id_subcategoria": "333bc8da-b5ff-11ee-8df7-0e3a1e34687f"
     },
     {
-        "tipoID": "dfa198da-0e17-11ed-bb82-0eb8b69eb347",
-        "subcategoria": "Bicicleta",
-        "nombre": "Generico Bicicleta",
-        "id_subcategoria": "2b69277b-0780-11ed-bb82-0eb8b69eb347"
+        "tipoID": "6bbe8220-772f-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "Cobro y Control",
+        "nombre": "Caja Registradora",
+        "id_subcategoria": "61f34d6a-772f-11ee-ba93-0e3a1e34687f"
     },
     {
-        "tipoID": "399f5c16-0e1a-11ed-bb82-0eb8b69eb347",
-        "subcategoria": "Audio y Video",
-        "nombre": "Camara fimadora",
-        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347"
+        "tipoID": "6bc1d6ee-77ea-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "Aire Comprimido",
+        "nombre": "Pistola",
+        "id_subcategoria": "4c4de100-77ea-11ee-ba93-0e3a1e34687f"
     },
     {
-        "tipoID": "c117c4e4-1343-11ed-bb82-0eb8b69eb347",
-        "subcategoria": "Audio y Video",
-        "nombre": "consola de videojuego ",
-        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "d1c38d5b-1343-11ed-bb82-0eb8b69eb347",
-        "subcategoria": "Audio y Video",
-        "nombre": "equipo de audio ",
-        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "27a108cb-1444-11ed-bb82-0eb8b69eb347",
-        "subcategoria": null,
-        "nombre": "sierra de arco ",
-        "id_subcategoria": "4537674c-0883-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "1fdd0d00-1450-11ed-bb82-0eb8b69eb347",
-        "subcategoria": "Instrumentos de Cuerdas",
-        "nombre": "Bajo ",
-        "id_subcategoria": "c04e870b-144f-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "39ae881b-1450-11ed-bb82-0eb8b69eb347",
-        "subcategoria": "Instrumentos de Cuerdas",
-        "nombre": "Guitarra ",
-        "id_subcategoria": "c04e870b-144f-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "436060ad-1456-11ed-bb82-0eb8b69eb347",
-        "subcategoria": "Bombas y Riego ",
-        "nombre": "Bomba de Agua Perif\u00e9rica",
-        "id_subcategoria": "1c6404d9-1456-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "3bb201f3-14bd-11ed-bb82-0eb8b69eb347",
-        "subcategoria": null,
-        "nombre": "Destornillador ",
-        "id_subcategoria": "4537674c-0883-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "0ce49ebb-1724-11ed-bb82-0eb8b69eb347",
-        "subcategoria": "Electrodomesticos",
-        "nombre": "plancha",
-        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "b763158e-1728-11ed-bb82-0eb8b69eb347",
-        "subcategoria": "Celulares y Tel\u00e9fono ",
-        "nombre": "con teclado ",
-        "id_subcategoria": "0d9c761b-07cb-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "5921d9bf-17e0-11ed-bb82-0eb8b69eb347",
-        "subcategoria": "Audio y Video",
-        "nombre": "Reproductor de Dvd",
-        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "d7cc3a2e-17f0-11ed-bb82-0eb8b69eb347",
-        "subcategoria": "Audio y Video",
-        "nombre": "c\u00e1maras de vigilancia ",
-        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "c155dd06-18cc-11ed-bb82-0eb8b69eb347",
-        "subcategoria": null,
-        "nombre": "Asiento de seguridad",
-        "id_subcategoria": "50b8f8bf-0883-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "d8f5aa3d-19c8-11ed-bb82-0eb8b69eb347",
-        "subcategoria": null,
-        "nombre": "Anchada",
-        "id_subcategoria": "4537674c-0883-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "a6f9260b-259d-11ed-8709-0e085dd00fab",
-        "subcategoria": "Audio y Video",
-        "nombre": "amplificador de potencia ",
-        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "feefec1c-259d-11ed-8709-0e085dd00fab",
-        "subcategoria": null,
-        "nombre": "caretilla",
-        "id_subcategoria": "4aed8277-0883-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "b9f69b0f-2882-11ed-8709-0e085dd00fab",
+        "tipoID": "6f3fdfe2-7770-11ee-ba93-0e3a1e34687f",
         "subcategoria": "auto",
-        "nombre": "auto",
+        "nombre": "bocina de estereo ",
         "id_subcategoria": "1ea6a73c-0780-11ed-bb82-0eb8b69eb347"
     },
     {
-        "tipoID": "cc5fab27-28b2-11ed-8709-0e085dd00fab",
-        "subcategoria": "Audio y Video",
-        "nombre": "Radiograbador",
-        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "ed4d51a6-28b2-11ed-8709-0e085dd00fab",
+        "tipoID": "71ce0f95-a16a-11ed-9b80-0e87116d214b",
         "subcategoria": "Electrodomesticos",
-        "nombre": "Secarropa",
+        "nombre": "Procesadora",
         "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
     },
     {
-        "tipoID": "d9f32e08-2b9c-11ed-8709-0e085dd00fab",
-        "subcategoria": null,
-        "nombre": "Pico ",
-        "id_subcategoria": "4537674c-0883-11ed-bb82-0eb8b69eb347"
+        "tipoID": "71f84d6f-f3e8-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Elementos de Ba\u00f1o",
+        "nombre": "Accesorios de ba\u00f1o",
+        "id_subcategoria": "6bb7ff77-b90d-11ed-9f0f-0e3a1e34687f"
     },
     {
-        "tipoID": "e4f7b5c6-2b9c-11ed-8709-0e085dd00fab",
-        "subcategoria": null,
-        "nombre": "Pala ",
-        "id_subcategoria": "4537674c-0883-11ed-bb82-0eb8b69eb347"
+        "tipoID": "724ae267-d236-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Accesorios",
+        "nombre": "Ruedas",
+        "id_subcategoria": "940fb2af-18cc-11ed-bb82-0eb8b69eb347"
     },
     {
-        "tipoID": "01431184-2b9d-11ed-8709-0e085dd00fab",
-        "subcategoria": null,
-        "nombre": "Hacha  ",
-        "id_subcategoria": "4537674c-0883-11ed-bb82-0eb8b69eb347"
+        "tipoID": "727ebe6f-a24f-11ed-9b80-0e87116d214b",
+        "subcategoria": "Tractor",
+        "nombre": "Cargas pesadas",
+        "id_subcategoria": "3bb1cc3e-a24f-11ed-9b80-0e87116d214b"
     },
     {
-        "tipoID": "083fa2ce-33a1-11ed-8709-0e085dd00fab",
+        "tipoID": "72c80f6f-74d0-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "Salud",
+        "nombre": "PAF",
+        "id_subcategoria": "0ccafe24-8775-11ed-9b80-0e87116d214b"
+    },
+    {
+        "tipoID": "7330b9ec-7fdd-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "Jard\u00ed n ",
+        "nombre": "toruguita ",
+        "id_subcategoria": "fd0afdeb-e431-11ed-9f0f-0e3a1e34687f"
+    },
+    {
+        "tipoID": "74a45719-9c04-11ed-9b80-0e87116d214b",
         "subcategoria": "Electrodomesticos",
-        "nombre": "Anafe",
+        "nombre": "Aspiradora",
         "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
     },
     {
-        "tipoID": "ad4e2d1b-33a1-11ed-8709-0e085dd00fab",
-        "subcategoria": "Accesorios",
-        "nombre": "Pistola pulverizadora",
-        "id_subcategoria": "940fb2af-18cc-11ed-bb82-0eb8b69eb347"
+        "tipoID": "7542857a-32ea-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "Equipaje, Bolsos y Carteras",
+        "nombre": "Mochila",
+        "id_subcategoria": "2c264837-e444-11ed-9f0f-0e3a1e34687f"
     },
     {
-        "tipoID": "de5de446-33a2-11ed-8709-0e085dd00fab",
-        "subcategoria": "Accesorios",
-        "nombre": "Bater\u00eda de auto",
-        "id_subcategoria": "940fb2af-18cc-11ed-bb82-0eb8b69eb347"
+        "tipoID": "7b7808d4-ea81-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Elementos de Ba\u00f1o",
+        "nombre": "Bidet",
+        "id_subcategoria": "6bb7ff77-b90d-11ed-9f0f-0e3a1e34687f"
     },
     {
-        "tipoID": "0f99863a-3da7-11ed-8709-0e085dd00fab",
-        "subcategoria": "Moto",
-        "nombre": "scooters",
-        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
+        "tipoID": "7b937d6c-e2aa-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Bombas y Riego ",
+        "nombre": "Bomba de agua sumergible",
+        "id_subcategoria": "1c6404d9-1456-11ed-bb82-0eb8b69eb347"
     },
     {
-        "tipoID": "8bd6ab7f-3e7f-11ed-8709-0e085dd00fab",
+        "tipoID": "7dcd59dd-1ace-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "Iluminaci\u00f3n para el Hogar",
+        "nombre": "farola ",
+        "id_subcategoria": "ceb1da00-a3b8-11ed-9b80-0e87116d214b"
+    },
+    {
+        "tipoID": "7e15753e-57b9-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "blanca",
+        "nombre": "FACON",
+        "id_subcategoria": "7b8eb399-36b9-11ee-ba93-0e3a1e34687f"
+    },
+    {
+        "tipoID": "7e82aac1-edbc-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Cocina, Bazar ",
+        "nombre": "Olla",
+        "id_subcategoria": "a133e378-deb6-11ed-9f0f-0e3a1e34687f"
+    },
+    {
+        "tipoID": "801dfdc1-e361-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Elementos de Energ\u00ed a Renovables e Iluminaci\u00f3n ",
+        "nombre": "Paneles Solares",
+        "id_subcategoria": "73ba14da-e361-11ed-9f0f-0e3a1e34687f"
+    },
+    {
+        "tipoID": "817b4600-5895-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "Ciclismo",
+        "nombre": "Cuadro de Bicicleta",
+        "id_subcategoria": "4b4c63ce-5895-11ee-ba93-0e3a1e34687f"
+    },
+    {
+        "tipoID": "83b50f4f-74d0-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "Salud",
+        "nombre": "MEDICAMENTO",
+        "id_subcategoria": "0ccafe24-8775-11ed-9b80-0e87116d214b"
+    },
+    {
+        "tipoID": "86c862eb-0883-11ed-bb82-0eb8b69eb347",
         "subcategoria": null,
-        "nombre": "Generico",
-        "id_subcategoria": "1f7d76a3-3e7a-11ed-8709-0e085dd00fab"
-    },
-    {
-        "tipoID": "0b250c20-3e80-11ed-8709-0e085dd00fab",
-        "subcategoria": null,
-        "nombre": "Periferica",
-        "id_subcategoria": "1f7d76a3-3e7a-11ed-8709-0e085dd00fab"
-    },
-    {
-        "tipoID": "188f0243-3e80-11ed-8709-0e085dd00fab",
-        "subcategoria": null,
-        "nombre": "Sumergibles",
-        "id_subcategoria": "1f7d76a3-3e7a-11ed-8709-0e085dd00fab"
-    },
-    {
-        "tipoID": "2181b79f-3e80-11ed-8709-0e085dd00fab",
-        "subcategoria": null,
-        "nombre": "Centrifugas",
-        "id_subcategoria": "1f7d76a3-3e7a-11ed-8709-0e085dd00fab"
-    },
-    {
-        "tipoID": "3e2c6f52-3ff3-11ed-8709-0e085dd00fab",
-        "subcategoria": "Higiene personal y accesorios",
-        "nombre": "Secador de pelo",
-        "id_subcategoria": "0d453a7c-3ff2-11ed-8709-0e085dd00fab"
-    },
-    {
-        "tipoID": "4b4cd7d2-3ff3-11ed-8709-0e085dd00fab",
-        "subcategoria": "Higiene personal y accesorios",
-        "nombre": "Plancha de pelo",
-        "id_subcategoria": "0d453a7c-3ff2-11ed-8709-0e085dd00fab"
-    },
-    {
-        "tipoID": "35a8218a-411f-11ed-8709-0e085dd00fab",
-        "subcategoria": "Accesorios para bicicleta ",
-        "nombre": "Casco",
-        "id_subcategoria": "290cb7a7-411f-11ed-8709-0e085dd00fab"
-    },
-    {
-        "tipoID": "9a37b875-44bd-11ed-9b80-0e87116d214b",
-        "subcategoria": null,
-        "nombre": "Gato hudraulico",
+        "nombre": "Taladro",
         "id_subcategoria": "3a6df3fc-0883-11ed-bb82-0eb8b69eb347"
     },
     {
-        "tipoID": "2efe5c95-579c-11ed-9b80-0e87116d214b",
-        "subcategoria": "Computacion",
-        "nombre": "Tablet",
-        "id_subcategoria": "cb8c8acd-0908-11ed-bb82-0eb8b69eb347"
+        "tipoID": "884fdc47-8d5b-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "Aberturas",
+        "nombre": "Ventana",
+        "id_subcategoria": "7d221d77-8d5b-11ee-ba93-0e3a1e34687f"
     },
     {
-        "tipoID": "9b8e044f-6c07-11ed-9b80-0e87116d214b",
-        "subcategoria": "Herramientas",
-        "nombre": "Portatil",
-        "id_subcategoria": "370aec5c-6c06-11ed-9b80-0e87116d214b"
+        "tipoID": "88f2b9ca-07cc-11ed-bb82-0eb8b69eb347",
+        "subcategoria": "Electrodomesticos",
+        "nombre": "Televisor LED",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
     },
     {
-        "tipoID": "a21e5384-6c07-11ed-9b80-0e87116d214b",
-        "subcategoria": "Herramientas",
-        "nombre": "Manual",
-        "id_subcategoria": "370aec5c-6c06-11ed-9b80-0e87116d214b"
+        "tipoID": "891599e0-08ff-11ed-bb82-0eb8b69eb347",
+        "subcategoria": null,
+        "nombre": "Amoladora",
+        "id_subcategoria": "3a6df3fc-0883-11ed-bb82-0eb8b69eb347"
     },
     {
-        "tipoID": "a8e960eb-6c07-11ed-9b80-0e87116d214b",
-        "subcategoria": "Herramientas",
-        "nombre": "Estacionarias",
-        "id_subcategoria": "370aec5c-6c06-11ed-9b80-0e87116d214b"
+        "tipoID": "89712816-57b9-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "De fuego",
+        "nombre": "MUNICIONES ",
+        "id_subcategoria": "758e91b5-36b9-11ee-ba93-0e3a1e34687f"
     },
     {
-        "tipoID": "bf5ce5d7-6c07-11ed-9b80-0e87116d214b",
-        "subcategoria": "Herramientas",
-        "nombre": "Accesorio",
-        "id_subcategoria": "370aec5c-6c06-11ed-9b80-0e87116d214b"
+        "tipoID": "8aef3980-36b9-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "De fuego",
+        "nombre": "Corta",
+        "id_subcategoria": "758e91b5-36b9-11ee-ba93-0e3a1e34687f"
     },
     {
-        "tipoID": "c85328df-6c07-11ed-9b80-0e87116d214b",
-        "subcategoria": "Herramientas",
-        "nombre": "Bomba de agua",
-        "id_subcategoria": "370aec5c-6c06-11ed-9b80-0e87116d214b"
+        "tipoID": "8b229c1c-8b7f-11ed-9b80-0e87116d214b",
+        "subcategoria": "Bicicleta",
+        "nombre": "Ruta",
+        "id_subcategoria": "2b69277b-0780-11ed-bb82-0eb8b69eb347"
     },
     {
         "tipoID": "8b3418bd-7187-11ed-9b80-0e87116d214b",
@@ -863,154 +1317,58 @@ export const tipoCategorias = [
         "id_subcategoria": "439a98c9-6c06-11ed-9b80-0e87116d214b"
     },
     {
-        "tipoID": "156aa29d-723c-11ed-9b80-0e87116d214b",
-        "subcategoria": "Maquinarias de construccion",
-        "nombre": "Portatil",
-        "id_subcategoria": "4c9ad041-6c06-11ed-9b80-0e87116d214b"
+        "tipoID": "8b6f0b6d-b90d-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Elementos de Ba\u00f1o",
+        "nombre": "Inodoro",
+        "id_subcategoria": "6bb7ff77-b90d-11ed-9f0f-0e3a1e34687f"
     },
     {
-        "tipoID": "1ba9dc21-723c-11ed-9b80-0e87116d214b",
-        "subcategoria": "Maquinarias de construccion",
-        "nombre": "Manual",
-        "id_subcategoria": "4c9ad041-6c06-11ed-9b80-0e87116d214b"
+        "tipoID": "8bd6ab7f-3e7f-11ed-8709-0e085dd00fab",
+        "subcategoria": null,
+        "nombre": "Generico",
+        "id_subcategoria": "1f7d76a3-3e7a-11ed-8709-0e085dd00fab"
     },
     {
-        "tipoID": "5771568d-7a68-11ed-9b80-0e87116d214b",
-        "subcategoria": "Moto",
-        "nombre": "110cc",
-        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
+        "tipoID": "8dc4dfb3-8d5b-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "Aberturas",
+        "nombre": "Puerta",
+        "id_subcategoria": "7d221d77-8d5b-11ee-ba93-0e3a1e34687f"
     },
     {
-        "tipoID": "e1d2ca31-7ae1-11ed-9b80-0e87116d214b",
-        "subcategoria": "Moto",
-        "nombre": "150 cc",
-        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
+        "tipoID": "8fa3279f-b6e7-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Electrodomesticos",
+        "nombre": "Cocina",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
     },
     {
-        "tipoID": "3fd43456-7c81-11ed-9b80-0e87116d214b",
-        "subcategoria": "Electronico",
-        "nombre": "Balanza",
-        "id_subcategoria": "1cf1504c-7c81-11ed-9b80-0e87116d214b"
+        "tipoID": "9042f3af-dbc6-11ee-8df7-0e3a1e34687f",
+        "subcategoria": "Tenis, Padel y Squash",
+        "nombre": "Paleta de padel",
+        "id_subcategoria": "574d38c1-dbc6-11ee-8df7-0e3a1e34687f"
     },
     {
-        "tipoID": "1d775bd3-7c86-11ed-9b80-0e87116d214b",
-        "subcategoria": "Audio y Video",
-        "nombre": "LUCES PARA EVENTOS  ",
-        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347"
+        "tipoID": "91fdad12-e444-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Equipaje, Bolsos y Carteras",
+        "nombre": "Valijas",
+        "id_subcategoria": "2c264837-e444-11ed-9f0f-0e3a1e34687f"
     },
     {
-        "tipoID": "f43ace7b-7fbe-11ed-9b80-0e87116d214b",
-        "subcategoria": "Moto",
-        "nombre": "200 cc",
-        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
+        "tipoID": "9360d544-1f69-11ef-9e2a-0e3a1e34687f",
+        "subcategoria": "Drone",
+        "nombre": "Drone",
+        "id_subcategoria": "6becea2d-1f67-11ef-9e2a-0e3a1e34687f"
     },
     {
-        "tipoID": "cc9f3190-805b-11ed-9b80-0e87116d214b",
-        "subcategoria": "Consolas y Videos Juegos",
-        "nombre": "Consola",
-        "id_subcategoria": "d98c21b9-805a-11ed-9b80-0e87116d214b"
+        "tipoID": "93ecefeb-387c-11ef-9e2a-0e3a1e34687f",
+        "subcategoria": "Gato Hidraulico",
+        "nombre": "Carrito",
+        "id_subcategoria": "72ef14ac-387c-11ef-9e2a-0e3a1e34687f"
     },
     {
-        "tipoID": "4e8c25f7-806c-11ed-9b80-0e87116d214b",
-        "subcategoria": "Moto",
-        "nombre": "125 cc",
-        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "573af87e-8072-11ed-9b80-0e87116d214b",
-        "subcategoria": "Camioneta",
-        "nombre": "Pick Up",
-        "id_subcategoria": "5a298bfb-0bc5-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "5632719b-8139-11ed-9b80-0e87116d214b",
-        "subcategoria": "Moto",
-        "nombre": "250 cc",
-        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "5c55f25b-8139-11ed-9b80-0e87116d214b",
-        "subcategoria": "Moto",
-        "nombre": "260 cc",
-        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "b5cae709-8144-11ed-9b80-0e87116d214b",
-        "subcategoria": "Moto",
-        "nombre": "50 cc",
-        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "ba1e59fc-8144-11ed-9b80-0e87116d214b",
-        "subcategoria": "Moto",
-        "nombre": "70 cc",
-        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "ce1b3a48-8210-11ed-9b80-0e87116d214b",
-        "subcategoria": "Bicicleta",
-        "nombre": "Rodado 26",
-        "id_subcategoria": "2b69277b-0780-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "d4f6f9a3-8210-11ed-9b80-0e87116d214b",
-        "subcategoria": "Bicicleta",
-        "nombre": "Rodado 29",
-        "id_subcategoria": "2b69277b-0780-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "df00368f-8538-11ed-9b80-0e87116d214b",
-        "subcategoria": "Moto",
-        "nombre": "90cc",
-        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "1d582f57-8621-11ed-9b80-0e87116d214b",
-        "subcategoria": "Camioneta",
-        "nombre": "Rodado",
-        "id_subcategoria": "5a298bfb-0bc5-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "672effa2-8709-11ed-9b80-0e87116d214b",
-        "subcategoria": "Moto",
-        "nombre": "Cuatriciclo ",
-        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "b15c8946-8771-11ed-9b80-0e87116d214b",
-        "subcategoria": "Climatizaci\u00f3n",
-        "nombre": "Aire acondicionado de ventana",
-        "id_subcategoria": "86985ec4-8771-11ed-9b80-0e87116d214b"
-    },
-    {
-        "tipoID": "b98c26b8-8771-11ed-9b80-0e87116d214b",
-        "subcategoria": "Climatizaci\u00f3n",
-        "nombre": "Aire acondicionado split",
-        "id_subcategoria": "86985ec4-8771-11ed-9b80-0e87116d214b"
-    },
-    {
-        "tipoID": "247e3463-8773-11ed-9b80-0e87116d214b",
-        "subcategoria": "Ventiladores",
-        "nombre": "Ventilador de pie",
-        "id_subcategoria": "629ef2d3-0e80-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "2d3f8ae9-8773-11ed-9b80-0e87116d214b",
-        "subcategoria": "Ventiladores",
-        "nombre": "Ventilador de techo ",
-        "id_subcategoria": "629ef2d3-0e80-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "99c2885a-8775-11ed-9b80-0e87116d214b",
-        "subcategoria": "Salud",
-        "nombre": "Nebulizador",
-        "id_subcategoria": "0ccafe24-8775-11ed-9b80-0e87116d214b"
-    },
-    {
-        "tipoID": "3d2a1c77-8776-11ed-9b80-0e87116d214b",
-        "subcategoria": "Higiene personal y accesorios",
-        "nombre": "Cortadora de pelo",
-        "id_subcategoria": "0d453a7c-3ff2-11ed-8709-0e085dd00fab"
+        "tipoID": "94e7d473-07cc-11ed-bb82-0eb8b69eb347",
+        "subcategoria": "Electrodomesticos",
+        "nombre": "Televisor LCD",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
     },
     {
         "tipoID": "9839c7f7-8776-11ed-9b80-0e87116d214b",
@@ -1019,9 +1377,63 @@ export const tipoCategorias = [
         "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347"
     },
     {
-        "tipoID": "af75c823-8776-11ed-9b80-0e87116d214b",
+        "tipoID": "99c2885a-8775-11ed-9b80-0e87116d214b",
+        "subcategoria": "Salud",
+        "nombre": "Nebulizador",
+        "id_subcategoria": "0ccafe24-8775-11ed-9b80-0e87116d214b"
+    },
+    {
+        "tipoID": "9a37b875-44bd-11ed-9b80-0e87116d214b",
+        "subcategoria": null,
+        "nombre": "Gato hudraulico",
+        "id_subcategoria": "3a6df3fc-0883-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "9b8e044f-6c07-11ed-9b80-0e87116d214b",
+        "subcategoria": "Herramientas",
+        "nombre": "Portatil",
+        "id_subcategoria": "370aec5c-6c06-11ed-9b80-0e87116d214b"
+    },
+    {
+        "tipoID": "9bd7249f-edba-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Ropa",
+        "nombre": "Deportiva",
+        "id_subcategoria": "90eb52e1-edba-11ed-9f0f-0e3a1e34687f"
+    },
+    {
+        "tipoID": "9c3125b1-07ce-11ed-bb82-0eb8b69eb347",
+        "subcategoria": "Celulares y Tel\u00e9fono ",
+        "nombre": "Tactil",
+        "id_subcategoria": "0d9c761b-07cb-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "9c642328-b64b-11ee-8df7-0e3a1e34687f",
+        "subcategoria": "Electrodomesticos",
+        "nombre": "Artefactos para el cabello",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "9de4e841-bd1d-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Carroceria ",
+        "nombre": "Acoplados ",
+        "id_subcategoria": "902afffe-bd1d-11ed-9f0f-0e3a1e34687f"
+    },
+    {
+        "tipoID": "9e108b62-07cc-11ed-bb82-0eb8b69eb347",
+        "subcategoria": "Electrodomesticos",
+        "nombre": "Heladera",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "9e6ae8cd-d3c7-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Bicicleta",
+        "nombre": "Clasica",
+        "id_subcategoria": "2b69277b-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "a028044a-c481-11ee-8df7-0e3a1e34687f",
         "subcategoria": "Audio y Video",
-        "nombre": "Auriculares",
+        "nombre": "home theatre",
         "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347"
     },
     {
@@ -1031,274 +1443,10 @@ export const tipoCategorias = [
         "id_subcategoria": "6342b43e-0bc5-11ed-bb82-0eb8b69eb347"
     },
     {
-        "tipoID": "c2a72522-8ab9-11ed-9b80-0e87116d214b",
-        "subcategoria": "Camioneta",
-        "nombre": "Utilitario",
-        "id_subcategoria": "5a298bfb-0bc5-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "f7f6ae7d-8b6f-11ed-9b80-0e87116d214b",
-        "subcategoria": "Electrodomesticos",
-        "nombre": "Smart TV",
-        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "8b229c1c-8b7f-11ed-9b80-0e87116d214b",
-        "subcategoria": "Bicicleta",
-        "nombre": "Ruta",
-        "id_subcategoria": "2b69277b-0780-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "b14fdc0c-919d-11ed-9b80-0e87116d214b",
-        "subcategoria": "Electrodomesticos",
-        "nombre": "Licuadora",
-        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "c0c2a1cd-93fc-11ed-9b80-0e87116d214b",
-        "subcategoria": "Moto",
-        "nombre": "100 cc ",
-        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "2e5647cc-95ac-11ed-9b80-0e87116d214b",
-        "subcategoria": "Audio y Video",
-        "nombre": "Radio",
-        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "22179ea9-966b-11ed-9b80-0e87116d214b",
-        "subcategoria": "auto",
-        "nombre": "Sedan",
-        "id_subcategoria": "1ea6a73c-0780-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "2b87e944-966b-11ed-9b80-0e87116d214b",
-        "subcategoria": "auto",
-        "nombre": "Hatchback",
-        "id_subcategoria": "1ea6a73c-0780-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "334a3cea-966b-11ed-9b80-0e87116d214b",
-        "subcategoria": "auto",
-        "nombre": "Coupe",
-        "id_subcategoria": "1ea6a73c-0780-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "387d48ff-966b-11ed-9b80-0e87116d214b",
-        "subcategoria": "auto",
-        "nombre": "SUV",
-        "id_subcategoria": "1ea6a73c-0780-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "4047ca95-966b-11ed-9b80-0e87116d214b",
-        "subcategoria": "auto",
-        "nombre": "Station Wagon",
-        "id_subcategoria": "1ea6a73c-0780-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "4d038309-966b-11ed-9b80-0e87116d214b",
-        "subcategoria": "auto",
-        "nombre": "Crossover",
-        "id_subcategoria": "1ea6a73c-0780-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "53729567-966b-11ed-9b80-0e87116d214b",
-        "subcategoria": "auto",
-        "nombre": "Convertibles",
-        "id_subcategoria": "1ea6a73c-0780-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "58b773e7-966b-11ed-9b80-0e87116d214b",
-        "subcategoria": "auto",
-        "nombre": "MPV",
-        "id_subcategoria": "1ea6a73c-0780-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "f967ee5f-9774-11ed-9b80-0e87116d214b",
-        "subcategoria": "Moto",
-        "nombre": "400 cc",
-        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "055ade00-9775-11ed-9b80-0e87116d214b",
-        "subcategoria": "Moto",
-        "nombre": "500 cc",
-        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "0d9e63f5-9775-11ed-9b80-0e87116d214b",
-        "subcategoria": "Moto",
-        "nombre": "1000 cc",
-        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "74a45719-9c04-11ed-9b80-0e87116d214b",
-        "subcategoria": "Electrodomesticos",
-        "nombre": "Aspiradora",
-        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "3e639e9f-a165-11ed-9b80-0e87116d214b",
-        "subcategoria": "Electrodomesticos",
-        "nombre": "Batidora",
-        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "71ce0f95-a16a-11ed-9b80-0e87116d214b",
-        "subcategoria": "Electrodomesticos",
-        "nombre": "Procesadora",
-        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "4e3d089a-a1bd-11ed-9b80-0e87116d214b",
-        "subcategoria": "Moto",
-        "nombre": "600",
-        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "378587e9-a24e-11ed-9b80-0e87116d214b",
-        "subcategoria": "Moto",
-        "nombre": "Urbana",
-        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "727ebe6f-a24f-11ed-9b80-0e87116d214b",
-        "subcategoria": "Tractor",
-        "nombre": "Cargas pesadas",
-        "id_subcategoria": "3bb1cc3e-a24f-11ed-9b80-0e87116d214b"
-    },
-    {
-        "tipoID": "104ecab4-a3b5-11ed-9b80-0e87116d214b",
-        "subcategoria": "Electronico",
-        "nombre": "Walkie-talkie",
-        "id_subcategoria": "1cf1504c-7c81-11ed-9b80-0e87116d214b"
-    },
-    {
-        "tipoID": "cfa23181-a3b7-11ed-9b80-0e87116d214b",
-        "subcategoria": "Celulares y Tel\u00e9fono ",
-        "nombre": "Handies y Radiofrecuencia",
-        "id_subcategoria": "0d9c761b-07cb-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "fa89cb1e-a3b8-11ed-9b80-0e87116d214b",
-        "subcategoria": "Iluminaci\u00f3n para el Hogar",
-        "nombre": "Reflector ",
-        "id_subcategoria": "ceb1da00-a3b8-11ed-9b80-0e87116d214b"
-    },
-    {
-        "tipoID": "e3a12108-a6f8-11ed-9b80-0e87116d214b",
-        "subcategoria": "Audio y Video",
-        "nombre": "Microfono",
-        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "8fa3279f-b6e7-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Electrodomesticos",
-        "nombre": "Cocina",
-        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "8b6f0b6d-b90d-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Elementos de Ba\u00f1o",
-        "nombre": "Inodoro",
-        "id_subcategoria": "6bb7ff77-b90d-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "9de4e841-bd1d-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Carroceria ",
-        "nombre": "Acoplados ",
-        "id_subcategoria": "902afffe-bd1d-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "23188c69-bd1e-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Carroceria ",
-        "nombre": "Semirremolque",
-        "id_subcategoria": "902afffe-bd1d-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "3587a6de-bd1e-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Carroceria ",
-        "nombre": "Carro",
-        "id_subcategoria": "902afffe-bd1d-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "13864403-be93-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Bicicleta",
-        "nombre": "Cross",
-        "id_subcategoria": "2b69277b-0780-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "f704cf41-c264-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Computacion",
-        "nombre": "Cables y accesorios ",
-        "id_subcategoria": "cb8c8acd-0908-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "0bc86997-ca90-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Bicicleta",
-        "nombre": "Europea",
-        "id_subcategoria": "2b69277b-0780-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "17ee0c2e-cf1f-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Moto",
-        "nombre": "190cc",
-        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "110f2dc7-d0a8-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Accesorios",
-        "nombre": "Tapa de rueda ",
-        "id_subcategoria": "940fb2af-18cc-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "4dcb2f7f-d234-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": null,
-        "nombre": "Rueda",
-        "id_subcategoria": "3cdfd7bc-d234-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "724ae267-d236-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Accesorios",
-        "nombre": "Ruedas",
-        "id_subcategoria": "940fb2af-18cc-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "9e6ae8cd-d3c7-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Bicicleta",
-        "nombre": "Clasica",
-        "id_subcategoria": "2b69277b-0780-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "f051bb9d-d93a-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Instrumento De Percusi\u00f3n ",
-        "nombre": "Bombo",
-        "id_subcategoria": "edc81750-144f-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "106313fb-da0c-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Electrodomesticos",
-        "nombre": "Tostadoras",
-        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "49142bb2-dab9-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Electronico",
-        "nombre": "Alarma",
-        "id_subcategoria": "1cf1504c-7c81-11ed-9b80-0e87116d214b"
-    },
-    {
-        "tipoID": "c4cffd84-de21-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Motoguada\u00f1a",
-        "nombre": "desmalezadora",
-        "id_subcategoria": "b069dd65-de21-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "1282f907-de2b-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Griferia",
-        "nombre": "Monocomando",
-        "id_subcategoria": "fdb9a556-de2a-11ed-9f0f-0e3a1e34687f"
+        "tipoID": "a21e5384-6c07-11ed-9b80-0e87116d214b",
+        "subcategoria": "Herramientas",
+        "nombre": "Manual",
+        "id_subcategoria": "370aec5c-6c06-11ed-9b80-0e87116d214b"
     },
     {
         "tipoID": "a250fc45-deb4-11ed-9f0f-0e3a1e34687f",
@@ -1307,459 +1455,27 @@ export const tipoCategorias = [
         "id_subcategoria": "370aec5c-6c06-11ed-9b80-0e87116d214b"
     },
     {
-        "tipoID": "c495f969-deb6-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Cocina, Bazar ",
-        "nombre": "Garrafa ",
-        "id_subcategoria": "a133e378-deb6-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "7b937d6c-e2aa-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Bombas y Riego ",
-        "nombre": "Bomba de agua sumergible",
-        "id_subcategoria": "1c6404d9-1456-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "801dfdc1-e361-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Elementos de Energ\u00eda Renovables e Iluminaci\u00f3n ",
-        "nombre": "Paneles Solares",
-        "id_subcategoria": "73ba14da-e361-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "1330a2eb-e432-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Jard\u00edn ",
-        "nombre": "Cortadora de pasto",
-        "id_subcategoria": "fd0afdeb-e431-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "d94b2f1d-e43b-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Jard\u00edn ",
-        "nombre": "Podadora de altura telescopica",
-        "id_subcategoria": "fd0afdeb-e431-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "206f1318-e443-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Jard\u00edn ",
-        "nombre": "Desmalazadora",
-        "id_subcategoria": "fd0afdeb-e431-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "91fdad12-e444-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Equipaje, Bolsos y Carteras",
-        "nombre": "Valijas",
-        "id_subcategoria": "2c264837-e444-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "ecca0560-e448-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Cocina, Bazar ",
-        "nombre": "Anafe El\u00e9ctrica",
-        "id_subcategoria": "a133e378-deb6-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "e4b1fe37-e8f5-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Cocina, Bazar ",
-        "nombre": "Juego de cubiertos",
-        "id_subcategoria": "a133e378-deb6-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "1048a903-e9bf-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Elementos de Energ\u00eda Renovables e Iluminaci\u00f3n ",
-        "nombre": "Generador Electrico",
-        "id_subcategoria": "73ba14da-e361-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "7b7808d4-ea81-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Elementos de Ba\u00f1o",
-        "nombre": "Bidet",
-        "id_subcategoria": "6bb7ff77-b90d-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "2c685750-ea9b-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Iluminaci\u00f3n para el Hogar",
-        "nombre": "Luz de emergencia ",
-        "id_subcategoria": "ceb1da00-a3b8-11ed-9b80-0e87116d214b"
-    },
-    {
-        "tipoID": "9bd7249f-edba-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Ropa",
-        "nombre": "Deportiva",
-        "id_subcategoria": "90eb52e1-edba-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "7e82aac1-edbc-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Cocina, Bazar ",
-        "nombre": "Olla",
-        "id_subcategoria": "a133e378-deb6-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "4a420b1e-ee6f-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Termotanques y Calefones",
-        "nombre": "Termotanques",
-        "id_subcategoria": "3d35c50a-ee6f-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "e0a9441e-ee78-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Dispensadores y Purificadores",
-        "nombre": "Filtro de agua",
-        "id_subcategoria": "d28a44ca-ee78-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "d5bbd25c-f011-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Iluminaci\u00f3n para el Hogar",
-        "nombre": "Reflector",
-        "id_subcategoria": "ceb1da00-a3b8-11ed-9b80-0e87116d214b"
-    },
-    {
-        "tipoID": "1fee625c-f328-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Elementos de Ba\u00f1o",
-        "nombre": "Lava manos",
-        "id_subcategoria": "6bb7ff77-b90d-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "d6f83ee9-f333-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Elementos de Ba\u00f1o",
-        "nombre": "Mochila de inodoro",
-        "id_subcategoria": "6bb7ff77-b90d-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "11369539-f341-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Elementos de Ba\u00f1o",
-        "nombre": "Mochila de ba\u00f1o",
-        "id_subcategoria": "6bb7ff77-b90d-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "c48d59f3-f3e2-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Elementos de Ba\u00f1o",
-        "nombre": "Pie de lavamanos",
-        "id_subcategoria": "6bb7ff77-b90d-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "260473ed-f3e8-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Elementos de Ba\u00f1o",
-        "nombre": "Tapa de inodoro",
-        "id_subcategoria": "6bb7ff77-b90d-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "671c150e-f3e8-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Elementos de Ba\u00f1o",
-        "nombre": "Tapa de mochila de inodoro",
-        "id_subcategoria": "6bb7ff77-b90d-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "71f84d6f-f3e8-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Elementos de Ba\u00f1o",
-        "nombre": "Accesorios de ba\u00f1o",
-        "id_subcategoria": "6bb7ff77-b90d-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "21d4f372-f4cb-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Iluminaci\u00f3n para el Hogar",
-        "nombre": "Alargue",
-        "id_subcategoria": "ceb1da00-a3b8-11ed-9b80-0e87116d214b"
-    },
-    {
-        "tipoID": "ce96fd59-f4cb-11ed-9f0f-0e3a1e34687f",
-        "subcategoria": "Instrumentos de Cuerdas",
-        "nombre": "Guitarra",
-        "id_subcategoria": "c04e870b-144f-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "116650ee-0b8c-11ee-9f0f-0e3a1e34687f",
+        "tipoID": "a6f9260b-259d-11ed-8709-0e085dd00fab",
         "subcategoria": "Audio y Video",
-        "nombre": "Proyector Led",
+        "nombre": "amplificador de potencia ",
         "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347"
     },
     {
-        "tipoID": "7dcd59dd-1ace-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "Iluminaci\u00f3n para el Hogar",
-        "nombre": "farola ",
-        "id_subcategoria": "ceb1da00-a3b8-11ed-9b80-0e87116d214b"
+        "tipoID": "a792528a-0883-11ed-bb82-0eb8b69eb347",
+        "subcategoria": null,
+        "nombre": "Caladora",
+        "id_subcategoria": "3a6df3fc-0883-11ed-bb82-0eb8b69eb347"
     },
     {
-        "tipoID": "cc0a3244-2188-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "Materiales de construcci\u00f3n",
-        "nombre": "Bobina de cable de Cobre",
-        "id_subcategoria": "439a98c9-6c06-11ed-9b80-0e87116d214b"
-    },
-    {
-        "tipoID": "fdb3ad95-2191-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "Ropa",
-        "nombre": "Zapatillas",
-        "id_subcategoria": "90eb52e1-edba-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "13d54625-2b1e-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "Jard\u00edn ",
-        "nombre": "Motosierra",
-        "id_subcategoria": "fd0afdeb-e431-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "bcc86d61-2bc4-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "Ropa",
-        "nombre": "Abrigo",
-        "id_subcategoria": "90eb52e1-edba-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "aba91f3e-2bca-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "Accesorios",
-        "nombre": "CASCO",
-        "id_subcategoria": "940fb2af-18cc-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "252c4fa7-2c84-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "Cocina, Bazar ",
-        "nombre": "Juego de comedor ",
-        "id_subcategoria": "a133e378-deb6-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "086fbc5b-2fb5-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "Electrodomesticos",
-        "nombre": "Pava electica",
-        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "11c7451d-2fb5-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "Electrodomesticos",
-        "nombre": "Tetera ",
-        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "69bfd6fd-314e-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "Camping, Caza y Pesca",
-        "nombre": "Riel ",
-        "id_subcategoria": "5024f649-314e-11ee-ba93-0e3a1e34687f"
-    },
-    {
-        "tipoID": "7542857a-32ea-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "Equipaje, Bolsos y Carteras",
-        "nombre": "Mochila",
-        "id_subcategoria": "2c264837-e444-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "cc19d611-352e-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "Equipaje, Bolsos y Carteras",
-        "nombre": "Billetera",
-        "id_subcategoria": "2c264837-e444-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "c8960fb0-3540-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "Ropa",
-        "nombre": "Camisa",
-        "id_subcategoria": "90eb52e1-edba-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "8aef3980-36b9-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "De fuego",
-        "nombre": "Corta",
-        "id_subcategoria": "758e91b5-36b9-11ee-ba93-0e3a1e34687f"
-    },
-    {
-        "tipoID": "57116033-3dd1-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "Jard\u00edn ",
-        "nombre": "ALMOHADONES",
-        "id_subcategoria": "fd0afdeb-e431-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "20423209-4818-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "Climatizaci\u00f3n",
-        "nombre": "Estufa",
-        "id_subcategoria": "86985ec4-8771-11ed-9b80-0e87116d214b"
-    },
-    {
-        "tipoID": "20ffb449-516e-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "De fuego",
-        "nombre": "Larga",
-        "id_subcategoria": "758e91b5-36b9-11ee-ba93-0e3a1e34687f"
-    },
-    {
-        "tipoID": "7e15753e-57b9-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "blanca",
-        "nombre": "FACON",
-        "id_subcategoria": "7b8eb399-36b9-11ee-ba93-0e3a1e34687f"
-    },
-    {
-        "tipoID": "89712816-57b9-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "De fuego",
-        "nombre": "MUNICIONES ",
-        "id_subcategoria": "758e91b5-36b9-11ee-ba93-0e3a1e34687f"
-    },
-    {
-        "tipoID": "679d5c4d-57c7-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "Accesorios",
-        "nombre": "GUANTES",
-        "id_subcategoria": "940fb2af-18cc-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "0ea527ed-57c8-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "caja metalica",
-        "nombre": "Alcancia ",
-        "id_subcategoria": "013c0141-57c8-11ee-ba93-0e3a1e34687f"
-    },
-    {
-        "tipoID": "817b4600-5895-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "Ciclismo",
-        "nombre": "Cuadro de Bicicleta",
-        "id_subcategoria": "4b4c63ce-5895-11ee-ba93-0e3a1e34687f"
-    },
-    {
-        "tipoID": "0019f33a-595e-11ee-ba93-0e3a1e34687f",
+        "tipoID": "a8e960eb-6c07-11ed-9b80-0e87116d214b",
         "subcategoria": "Herramientas",
-        "nombre": "Elementos de Proteccion Personal",
+        "nombre": "Estacionarias",
         "id_subcategoria": "370aec5c-6c06-11ed-9b80-0e87116d214b"
     },
     {
-        "tipoID": "d7e97de8-5c76-11ee-ba93-0e3a1e34687f",
+        "tipoID": "aa658d2d-07cc-11ed-bb82-0eb8b69eb347",
         "subcategoria": "Electrodomesticos",
-        "nombre": "Balanza",
-        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "f2efac17-5c84-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "Accesorios para vehiculos",
-        "nombre": "Casco de Moto",
-        "id_subcategoria": "e733fe29-5c84-11ee-ba93-0e3a1e34687f"
-    },
-    {
-        "tipoID": "5ac030de-6231-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "Jard\u00edn ",
-        "nombre": "Cercos y Tranqueras",
-        "id_subcategoria": "fd0afdeb-e431-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "bfad7bbd-62ca-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "Iluminaci\u00f3n para el Hogar",
-        "nombre": "LUZ DE EMERGENCIA",
-        "id_subcategoria": "ceb1da00-a3b8-11ed-9b80-0e87116d214b"
-    },
-    {
-        "tipoID": "597f1e73-69cb-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "Muebles para el Hogar",
-        "nombre": "Placard",
-        "id_subcategoria": "469277c0-69cb-11ee-ba93-0e3a1e34687f"
-    },
-    {
-        "tipoID": "f7b0e1f1-71bf-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "Accesorios",
-        "nombre": "encendedor",
-        "id_subcategoria": "940fb2af-18cc-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "72c80f6f-74d0-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "Salud",
-        "nombre": "PAF",
-        "id_subcategoria": "0ccafe24-8775-11ed-9b80-0e87116d214b"
-    },
-    {
-        "tipoID": "83b50f4f-74d0-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "Salud",
-        "nombre": "MEDICAMENTO",
-        "id_subcategoria": "0ccafe24-8775-11ed-9b80-0e87116d214b"
-    },
-    {
-        "tipoID": "6bbe8220-772f-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "Cobro y Control",
-        "nombre": "Caja Registradora",
-        "id_subcategoria": "61f34d6a-772f-11ee-ba93-0e3a1e34687f"
-    },
-    {
-        "tipoID": "ba97dfc0-7740-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "Herrajes de Seguridad",
-        "nombre": "Candado ",
-        "id_subcategoria": "c6b7ac2f-772d-11ee-ba93-0e3a1e34687f"
-    },
-    {
-        "tipoID": "6f3fdfe2-7770-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "auto",
-        "nombre": "bocina de estereo ",
-        "id_subcategoria": "1ea6a73c-0780-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "6bc1d6ee-77ea-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "Aire Comprimido",
-        "nombre": "Pistola",
-        "id_subcategoria": "4c4de100-77ea-11ee-ba93-0e3a1e34687f"
-    },
-    {
-        "tipoID": "7330b9ec-7fdd-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "Jard\u00edn ",
-        "nombre": "toruguita ",
-        "id_subcategoria": "fd0afdeb-e431-11ed-9f0f-0e3a1e34687f"
-    },
-    {
-        "tipoID": "c4557a83-8483-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "Herramientas",
-        "nombre": "Cargador de Baterias",
-        "id_subcategoria": "370aec5c-6c06-11ed-9b80-0e87116d214b"
-    },
-    {
-        "tipoID": "884fdc47-8d5b-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "Aberturas",
-        "nombre": "Ventana",
-        "id_subcategoria": "7d221d77-8d5b-11ee-ba93-0e3a1e34687f"
-    },
-    {
-        "tipoID": "8dc4dfb3-8d5b-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "Aberturas",
-        "nombre": "Puerta",
-        "id_subcategoria": "7d221d77-8d5b-11ee-ba93-0e3a1e34687f"
-    },
-    {
-        "tipoID": "58fe02d9-945f-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "Cuatriciclo",
-        "nombre": "Arenero",
-        "id_subcategoria": "3eaf936f-87c1-11ee-ba93-0e3a1e34687f"
-    },
-    {
-        "tipoID": "ae021127-950f-11ee-ba93-0e3a1e34687f",
-        "subcategoria": "auto",
-        "nombre": "CAPTUR",
-        "id_subcategoria": "1ea6a73c-0780-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "6b9fa6de-b5ff-11ee-8df7-0e3a1e34687f",
-        "subcategoria": "Cargador de Bateria",
-        "nombre": "Cargador 12 Volts",
-        "id_subcategoria": "333bc8da-b5ff-11ee-8df7-0e3a1e34687f"
-    },
-    {
-        "tipoID": "9c642328-b64b-11ee-8df7-0e3a1e34687f",
-        "subcategoria": "Electrodomesticos",
-        "nombre": "Artefactos para el cabello",
-        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "f59b4aca-b949-11ee-8df7-0e3a1e34687f",
-        "subcategoria": "Electrodomesticos",
-        "nombre": "Bucleadora",
-        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "26ca9fde-ba4b-11ee-8df7-0e3a1e34687f",
-        "subcategoria": "auto",
-        "nombre": "Rueda de Auxilio ",
-        "id_subcategoria": "1ea6a73c-0780-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "b3f55976-bb93-11ee-8df7-0e3a1e34687f",
-        "subcategoria": "Electrodomesticos",
-        "nombre": "camara",
-        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "1e07ac82-c480-11ee-8df7-0e3a1e34687f",
-        "subcategoria": "Computacion",
-        "nombre": "TECLADO",
-        "id_subcategoria": "cb8c8acd-0908-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "a028044a-c481-11ee-8df7-0e3a1e34687f",
-        "subcategoria": "Audio y Video",
-        "nombre": "home theatre",
-        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347"
-    },
-    {
-        "tipoID": "05c6ee49-c618-11ee-8df7-0e3a1e34687f",
-        "subcategoria": "Electrodomesticos",
-        "nombre": "aire acondicionado",
+        "nombre": "Microonda",
         "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
     },
     {
@@ -1769,1688 +1485,2298 @@ export const tipoCategorias = [
         "id_subcategoria": "9b065a4d-c6b8-11ee-8df7-0e3a1e34687f"
     },
     {
-        "tipoID": "227026ef-d50a-11ee-8df7-0e3a1e34687f",
+        "tipoID": "aba91f3e-2bca-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "Accesorios",
+        "nombre": "CASCO",
+        "id_subcategoria": "940fb2af-18cc-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "ad4e2d1b-33a1-11ed-8709-0e085dd00fab",
+        "subcategoria": "Accesorios",
+        "nombre": "Pistola pulverizadora",
+        "id_subcategoria": "940fb2af-18cc-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "ad9ff467-0883-11ed-bb82-0eb8b69eb347",
+        "subcategoria": null,
+        "nombre": "Soldadora",
+        "id_subcategoria": "3a6df3fc-0883-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "ae021127-950f-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "auto",
+        "nombre": "CAPTUR",
+        "id_subcategoria": "1ea6a73c-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "af6ccc48-0c33-11ed-bb82-0eb8b69eb347",
+        "subcategoria": "Computacion",
+        "nombre": "Monitor",
+        "id_subcategoria": "cb8c8acd-0908-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "af75c823-8776-11ed-9b80-0e87116d214b",
+        "subcategoria": "Audio y Video",
+        "nombre": "Auriculares",
+        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "b090b94e-120c-11ef-9e2a-0e3a1e34687f",
+        "subcategoria": "Camioneta",
+        "nombre": "Vehiculo",
+        "id_subcategoria": "5a298bfb-0bc5-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "b0bcc017-120c-11ef-9e2a-0e3a1e34687f",
+        "subcategoria": "Camioneta",
+        "nombre": "Vehiculo",
+        "id_subcategoria": "5a298bfb-0bc5-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "b14fdc0c-919d-11ed-9b80-0e87116d214b",
         "subcategoria": "Electrodomesticos",
-        "nombre": "parlante",
+        "nombre": "Licuadora",
         "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "b15c8946-8771-11ed-9b80-0e87116d214b",
+        "subcategoria": "Climatizaci\u00f3n",
+        "nombre": "Aire acondicionado de ventana",
+        "id_subcategoria": "86985ec4-8771-11ed-9b80-0e87116d214b"
+    },
+    {
+        "tipoID": "b3f55976-bb93-11ee-8df7-0e3a1e34687f",
+        "subcategoria": "Electrodomesticos",
+        "nombre": "camara",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "b5cae709-8144-11ed-9b80-0e87116d214b",
+        "subcategoria": "Moto",
+        "nombre": "50 cc",
+        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "b763158e-1728-11ed-bb82-0eb8b69eb347",
+        "subcategoria": "Celulares y Tel\u00e9fono ",
+        "nombre": "con teclado ",
+        "id_subcategoria": "0d9c761b-07cb-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "b98c26b8-8771-11ed-9b80-0e87116d214b",
+        "subcategoria": "Climatizaci\u00f3n",
+        "nombre": "Aire acondicionado split",
+        "id_subcategoria": "86985ec4-8771-11ed-9b80-0e87116d214b"
+    },
+    {
+        "tipoID": "b9f69b0f-2882-11ed-8709-0e085dd00fab",
+        "subcategoria": "auto",
+        "nombre": "auto",
+        "id_subcategoria": "1ea6a73c-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "ba1e59fc-8144-11ed-9b80-0e87116d214b",
+        "subcategoria": "Moto",
+        "nombre": "70 cc",
+        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "ba97dfc0-7740-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "Herrajes de Seguridad",
+        "nombre": "Candado ",
+        "id_subcategoria": "c6b7ac2f-772d-11ee-ba93-0e3a1e34687f"
+    },
+    {
+        "tipoID": "bcc86d61-2bc4-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "Ropa",
+        "nombre": "Abrigo",
+        "id_subcategoria": "90eb52e1-edba-11ed-9f0f-0e3a1e34687f"
+    },
+    {
+        "tipoID": "bf5ce5d7-6c07-11ed-9b80-0e87116d214b",
+        "subcategoria": "Herramientas",
+        "nombre": "Accesorio",
+        "id_subcategoria": "370aec5c-6c06-11ed-9b80-0e87116d214b"
+    },
+    {
+        "tipoID": "bfad7bbd-62ca-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "Iluminaci\u00f3n para el Hogar",
+        "nombre": "LUZ DE EMERGENCIA",
+        "id_subcategoria": "ceb1da00-a3b8-11ed-9b80-0e87116d214b"
+    },
+    {
+        "tipoID": "c0c2a1cd-93fc-11ed-9b80-0e87116d214b",
+        "subcategoria": "Moto",
+        "nombre": "100 cc ",
+        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "c117c4e4-1343-11ed-bb82-0eb8b69eb347",
+        "subcategoria": "Audio y Video",
+        "nombre": "consola de videojuego ",
+        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "c155dd06-18cc-11ed-bb82-0eb8b69eb347",
+        "subcategoria": null,
+        "nombre": "Asiento de seguridad",
+        "id_subcategoria": "50b8f8bf-0883-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "c2a72522-8ab9-11ed-9b80-0e87116d214b",
+        "subcategoria": "Camioneta",
+        "nombre": "Utilitario",
+        "id_subcategoria": "5a298bfb-0bc5-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "c4557a83-8483-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "Herramientas",
+        "nombre": "Cargador de Baterias",
+        "id_subcategoria": "370aec5c-6c06-11ed-9b80-0e87116d214b"
+    },
+    {
+        "tipoID": "c48d59f3-f3e2-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Elementos de Ba\u00f1o",
+        "nombre": "Pie de lavamanos",
+        "id_subcategoria": "6bb7ff77-b90d-11ed-9f0f-0e3a1e34687f"
+    },
+    {
+        "tipoID": "c495f969-deb6-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Cocina, Bazar ",
+        "nombre": "Garrafa ",
+        "id_subcategoria": "a133e378-deb6-11ed-9f0f-0e3a1e34687f"
+    },
+    {
+        "tipoID": "c4cffd84-de21-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Motoguada\u00f1a",
+        "nombre": "desmalezadora",
+        "id_subcategoria": "b069dd65-de21-11ed-9f0f-0e3a1e34687f"
+    },
+    {
+        "tipoID": "c7984cac-0883-11ed-bb82-0eb8b69eb347",
+        "subcategoria": null,
+        "nombre": "Sierra Circular ",
+        "id_subcategoria": "3a6df3fc-0883-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "c85328df-6c07-11ed-9b80-0e87116d214b",
+        "subcategoria": "Herramientas",
+        "nombre": "Bomba de agua",
+        "id_subcategoria": "370aec5c-6c06-11ed-9b80-0e87116d214b"
+    },
+    {
+        "tipoID": "c8960fb0-3540-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "Ropa",
+        "nombre": "Camisa",
+        "id_subcategoria": "90eb52e1-edba-11ed-9f0f-0e3a1e34687f"
+    },
+    {
+        "tipoID": "c9d59b26-fcd8-11ee-8df7-0e3a1e34687f",
+        "subcategoria": "Herramientas",
+        "nombre": "PALA DE MANO ",
+        "id_subcategoria": "370aec5c-6c06-11ed-9b80-0e87116d214b"
+    },
+    {
+        "tipoID": "caad0fcd-ec7a-11ee-8df7-0e3a1e34687f",
+        "subcategoria": "Electrodomesticos",
+        "nombre": "Horno Electrico",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "cbc7e89c-dc83-11ee-8df7-0e3a1e34687f",
+        "subcategoria": "Moto",
+        "nombre": "Monorueda electrico",
+        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "cc0a3244-2188-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "Materiales de construcci\u00f3n",
+        "nombre": "Bobina de cable de Cobre",
+        "id_subcategoria": "439a98c9-6c06-11ed-9b80-0e87116d214b"
+    },
+    {
+        "tipoID": "cc19d611-352e-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "Equipaje, Bolsos y Carteras",
+        "nombre": "Billetera",
+        "id_subcategoria": "2c264837-e444-11ed-9f0f-0e3a1e34687f"
+    },
+    {
+        "tipoID": "cc5fab27-28b2-11ed-8709-0e085dd00fab",
+        "subcategoria": "Audio y Video",
+        "nombre": "Radiograbador",
+        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "cc9f3190-805b-11ed-9b80-0e87116d214b",
+        "subcategoria": "Consolas y Videos Juegos",
+        "nombre": "Consola",
+        "id_subcategoria": "d98c21b9-805a-11ed-9b80-0e87116d214b"
+    },
+    {
+        "tipoID": "ce1b3a48-8210-11ed-9b80-0e87116d214b",
+        "subcategoria": "Bicicleta",
+        "nombre": "Rodado 26",
+        "id_subcategoria": "2b69277b-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "ce96fd59-f4cb-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Instrumentos de Cuerdas",
+        "nombre": "Guitarra",
+        "id_subcategoria": "c04e870b-144f-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "cf356e14-0883-11ed-bb82-0eb8b69eb347",
+        "subcategoria": null,
+        "nombre": "Pistola de calor ",
+        "id_subcategoria": "3a6df3fc-0883-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "cfa23181-a3b7-11ed-9b80-0e87116d214b",
+        "subcategoria": "Celulares y Tel\u00e9fono ",
+        "nombre": "Handies y Radiofrecuencia",
+        "id_subcategoria": "0d9c761b-07cb-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "cfcb4d6d-e922-11ee-8df7-0e3a1e34687f",
+        "subcategoria": "Computacion",
+        "nombre": "TABLET",
+        "id_subcategoria": "cb8c8acd-0908-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "d1c38d5b-1343-11ed-bb82-0eb8b69eb347",
+        "subcategoria": "Audio y Video",
+        "nombre": "equipo de audio ",
+        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "d4f6f9a3-8210-11ed-9b80-0e87116d214b",
+        "subcategoria": "Bicicleta",
+        "nombre": "Rodado 29",
+        "id_subcategoria": "2b69277b-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "d5bbd25c-f011-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Iluminaci\u00f3n para el Hogar",
+        "nombre": "Reflector",
+        "id_subcategoria": "ceb1da00-a3b8-11ed-9b80-0e87116d214b"
+    },
+    {
+        "tipoID": "d6f83ee9-f333-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Elementos de Ba\u00f1o",
+        "nombre": "Mochila de inodoro",
+        "id_subcategoria": "6bb7ff77-b90d-11ed-9f0f-0e3a1e34687f"
+    },
+    {
+        "tipoID": "d7cc3a2e-17f0-11ed-bb82-0eb8b69eb347",
+        "subcategoria": "Audio y Video",
+        "nombre": "c\u00e1maras de vigilancia ",
+        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "d7e97de8-5c76-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "Electrodomesticos",
+        "nombre": "Balanza",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "d8f5aa3d-19c8-11ed-bb82-0eb8b69eb347",
+        "subcategoria": null,
+        "nombre": "Anchada",
+        "id_subcategoria": "4537674c-0883-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "d94b2f1d-e43b-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Jard\u00ed n ",
+        "nombre": "Podadora de altura telescopica",
+        "id_subcategoria": "fd0afdeb-e431-11ed-9f0f-0e3a1e34687f"
+    },
+    {
+        "tipoID": "d9d9c499-fcd8-11ee-8df7-0e3a1e34687f",
+        "subcategoria": "Herramientas",
+        "nombre": "ANCHADA",
+        "id_subcategoria": "370aec5c-6c06-11ed-9b80-0e87116d214b"
+    },
+    {
+        "tipoID": "d9f32e08-2b9c-11ed-8709-0e085dd00fab",
+        "subcategoria": null,
+        "nombre": "Pico ",
+        "id_subcategoria": "4537674c-0883-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "de5de446-33a2-11ed-8709-0e085dd00fab",
+        "subcategoria": "Accesorios",
+        "nombre": "Bater\u00ed a de auto",
+        "id_subcategoria": "940fb2af-18cc-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "df00368f-8538-11ed-9b80-0e87116d214b",
+        "subcategoria": "Moto",
+        "nombre": "90cc",
+        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "dfa198da-0e17-11ed-bb82-0eb8b69eb347",
+        "subcategoria": "Bicicleta",
+        "nombre": "Generico Bicicleta",
+        "id_subcategoria": "2b69277b-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "e0a9441e-ee78-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Dispensadores y Purificadores",
+        "nombre": "Filtro de agua",
+        "id_subcategoria": "d28a44ca-ee78-11ed-9f0f-0e3a1e34687f"
+    },
+    {
+        "tipoID": "e0bdfaf8-0883-11ed-bb82-0eb8b69eb347",
+        "subcategoria": null,
+        "nombre": "Pulidora",
+        "id_subcategoria": "3a6df3fc-0883-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "e1d2ca31-7ae1-11ed-9b80-0e87116d214b",
+        "subcategoria": "Moto",
+        "nombre": "150 cc",
+        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "e3a12108-a6f8-11ed-9b80-0e87116d214b",
+        "subcategoria": "Audio y Video",
+        "nombre": "Microfono",
+        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "e4b1fe37-e8f5-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Cocina, Bazar ",
+        "nombre": "Juego de cubiertos",
+        "id_subcategoria": "a133e378-deb6-11ed-9f0f-0e3a1e34687f"
+    },
+    {
+        "tipoID": "e4f7b5c6-2b9c-11ed-8709-0e085dd00fab",
+        "subcategoria": null,
+        "nombre": "Pala ",
+        "id_subcategoria": "4537674c-0883-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "e6299363-07d7-11ed-bb82-0eb8b69eb347",
+        "subcategoria": "Climatizaci\u00f3n",
+        "nombre": "Caloventor",
+        "id_subcategoria": "86985ec4-8771-11ed-9b80-0e87116d214b"
+    },
+    {
+        "tipoID": "ecca0560-e448-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Cocina, Bazar ",
+        "nombre": "Anafe El\u00e9ctrica",
+        "id_subcategoria": "a133e378-deb6-11ed-9f0f-0e3a1e34687f"
+    },
+    {
+        "tipoID": "ed4d51a6-28b2-11ed-8709-0e085dd00fab",
+        "subcategoria": "Electrodomesticos",
+        "nombre": "Secarropa",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "eeab0a58-07cd-11ed-bb82-0eb8b69eb347",
+        "subcategoria": "Climatizaci\u00f3n",
+        "nombre": "Aire acondicionado portatil",
+        "id_subcategoria": "86985ec4-8771-11ed-9b80-0e87116d214b"
+    },
+    {
+        "tipoID": "f051bb9d-d93a-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Instrumento De Percusi\u00f3n ",
+        "nombre": "Bombo",
+        "id_subcategoria": "edc81750-144f-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "f1631dd7-0883-11ed-bb82-0eb8b69eb347",
+        "subcategoria": null,
+        "nombre": "Pinza, tenaza y alicates",
+        "id_subcategoria": "4537674c-0883-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "f2efac17-5c84-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "Accesorios para vehiculos",
+        "nombre": "Casco de Moto",
+        "id_subcategoria": "e733fe29-5c84-11ee-ba93-0e3a1e34687f"
+    },
+    {
+        "tipoID": "f43ace7b-7fbe-11ed-9b80-0e87116d214b",
+        "subcategoria": "Moto",
+        "nombre": "200 cc",
+        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "f59b4aca-b949-11ee-8df7-0e3a1e34687f",
+        "subcategoria": "Electrodomesticos",
+        "nombre": "Bucleadora",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "f704cf41-c264-11ed-9f0f-0e3a1e34687f",
+        "subcategoria": "Computacion",
+        "nombre": "Cables y accesorios ",
+        "id_subcategoria": "cb8c8acd-0908-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "f7b0e1f1-71bf-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "Accesorios",
+        "nombre": "encendedor",
+        "id_subcategoria": "940fb2af-18cc-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "f7d346bf-e923-11ee-8df7-0e3a1e34687f",
+        "subcategoria": "Herramientas",
+        "nombre": "MAQUINA DE CORTAR PASTO",
+        "id_subcategoria": "370aec5c-6c06-11ed-9b80-0e87116d214b"
+    },
+    {
+        "tipoID": "f7f6ae7d-8b6f-11ed-9b80-0e87116d214b",
+        "subcategoria": "Electrodomesticos",
+        "nombre": "Smart TV",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "f967ee5f-9774-11ed-9b80-0e87116d214b",
+        "subcategoria": "Moto",
+        "nombre": "400 cc",
+        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "fa89cb1e-a3b8-11ed-9b80-0e87116d214b",
+        "subcategoria": "Iluminaci\u00f3n para el Hogar",
+        "nombre": "Reflector ",
+        "id_subcategoria": "ceb1da00-a3b8-11ed-9b80-0e87116d214b"
+    },
+    {
+        "tipoID": "fb158549-0908-11ed-bb82-0eb8b69eb347",
+        "subcategoria": "Computacion",
+        "nombre": "Notebook",
+        "id_subcategoria": "cb8c8acd-0908-11ed-bb82-0eb8b69eb347"
+    },
+    {
+        "tipoID": "fb606f19-e85c-11ee-8df7-0e3a1e34687f",
+        "subcategoria": "Electronico",
+        "nombre": "Cortadora de Fiambre",
+        "id_subcategoria": "1cf1504c-7c81-11ed-9b80-0e87116d214b"
+    },
+    {
+        "tipoID": "fdb3ad95-2191-11ee-ba93-0e3a1e34687f",
+        "subcategoria": "Ropa",
+        "nombre": "Zapatillas",
+        "id_subcategoria": "90eb52e1-edba-11ed-9f0f-0e3a1e34687f"
+    },
+    {
+        "tipoID": "feefec1c-259d-11ed-8709-0e085dd00fab",
+        "subcategoria": null,
+        "nombre": "caretilla",
+        "id_subcategoria": "4aed8277-0883-11ed-bb82-0eb8b69eb347"
     }
 ]
 
 export const marcasCategorias = [
-
-        {
-            "MarcaID": "c940d0ec-9caf-11ed-9b80-0e87116d214b",
-            "nombre": " Blaupunnkt"
-        },
-        {
-            "MarcaID": "8ebb594e-ff12-11ec-bb82-0eb8b69eb347",
-            "nombre": " Rockrider"
-        },
-        {
-            "MarcaID": "6cb5fb75-c501-11ee-8df7-0e3a1e34687f",
-            "nombre": " Siemens"
-        },
-        {
-            "MarcaID": "6c778e81-aab2-11ec-816d-16c2a030bb97",
-            "nombre": "adidas"
-        },
-        {
-            "MarcaID": "13f06c74-cc6e-11ec-acbc-16c2a030bb97",
-            "nombre": "Admiral"
-        },
-        {
-            "MarcaID": "1b00f43d-0c7a-11ed-bb82-0eb8b69eb347",
-            "nombre": "AIWA"
-        },
-        {
-            "MarcaID": "640d8c40-cc78-11ec-acbc-16c2a030bb97",
-            "nombre": "alcatel"
-        },
-        {
-            "MarcaID": "131b5a73-f327-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Algas"
-        },
-        {
-            "MarcaID": "abedb1c8-e448-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Amwood"
-        },
-        {
-            "MarcaID": "579f550a-9dd1-11ed-9b80-0e87116d214b",
-            "nombre": "Angle grinder"
-        },
-        {
-            "MarcaID": "9b105dd7-0c33-11ed-bb82-0eb8b69eb347",
-            "nombre": "AOC"
-        },
-        {
-            "MarcaID": "0203b547-7ae2-11ed-9b80-0e87116d214b",
-            "nombre": "Appia"
-        },
-        {
-            "MarcaID": "28bb0dac-cc74-11ec-acbc-16c2a030bb97",
-            "nombre": "Apple"
-        },
-        {
-            "MarcaID": "64071ebf-b51d-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Appotech"
-        },
-        {
-            "MarcaID": "a07ed027-9293-11ed-9b80-0e87116d214b",
-            "nombre": "Archos"
-        },
-        {
-            "MarcaID": "7a51277c-e385-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Aretha"
-        },
-        {
-            "MarcaID": "fb900d32-5918-11ed-9b80-0e87116d214b",
-            "nombre": "Aser "
-        },
-        {
-            "MarcaID": "1c5803c9-6f6c-11ed-9b80-0e87116d214b",
-            "nombre": "Astermaq"
-        },
-        {
-            "MarcaID": "e9ca4514-cc76-11ec-acbc-16c2a030bb97",
-            "nombre": "Asus"
-        },
-        {
-            "MarcaID": "0ed5bc86-7f8d-11ed-9b80-0e87116d214b",
-            "nombre": "Atma"
-        },
-        {
-            "MarcaID": "5b155ab5-87d8-11ed-9b80-0e87116d214b",
-            "nombre": "Audi"
-        },
-        {
-            "MarcaID": "3c567db2-9b34-11ed-9b80-0e87116d214b",
-            "nombre": "B52"
-        },
-        {
-            "MarcaID": "f8381197-36b8-11ee-ba93-0e3a1e34687f",
-            "nombre": "Bagual"
-        },
-        {
-            "MarcaID": "28f129e1-0475-11ee-9f0f-0e3a1e34687f",
-            "nombre": "Baic"
-        },
-        {
-            "MarcaID": "585e7026-8c4b-11ed-9b80-0e87116d214b",
-            "nombre": "Bajaj"
-        },
-        {
-            "MarcaID": "81cea9c5-53e4-11ee-ba93-0e3a1e34687f",
-            "nombre": "Batan"
-        },
-        {
-            "MarcaID": "88cbada8-9775-11ed-9b80-0e87116d214b",
-            "nombre": "Benelli "
-        },
-        {
-            "MarcaID": "2cfe2019-9bf1-11ed-9b80-0e87116d214b",
-            "nombre": "Benq"
-        },
-        {
-            "MarcaID": "390585d5-cc77-11ec-acbc-16c2a030bb97",
-            "nombre": "BGH"
-        },
-        {
-            "MarcaID": "fc072074-2b01-11ee-ba93-0e3a1e34687f",
-            "nombre": "BIANCHI"
-        },
-        {
-            "MarcaID": "49c4a481-c49e-11ec-8878-16c2a030bb97",
-            "nombre": "Black & Decker"
-        },
-        {
-            "MarcaID": "c89b04de-33a0-11ed-8709-0e085dd00fab",
-            "nombre": "Black Panther"
-        },
-        {
-            "MarcaID": "5878da4b-cc74-11ec-acbc-16c2a030bb97",
-            "nombre": "BlackBerry"
-        },
-        {
-            "MarcaID": "bf402f61-0dc8-11ed-bb82-0eb8b69eb347",
-            "nombre": "Blaupunnkt"
-        },
-        {
-            "MarcaID": "3bf629e6-cc74-11ec-acbc-16c2a030bb97",
-            "nombre": "BLU"
-        },
-        {
-            "MarcaID": "7c55c450-7770-11ee-ba93-0e3a1e34687f",
-            "nombre": "Bluline"
-        },
-        {
-            "MarcaID": "6f99744e-0da5-11ed-bb82-0eb8b69eb347",
-            "nombre": "BMW"
-        },
-        {
-            "MarcaID": "915e0437-3f35-11ed-8709-0e085dd00fab",
-            "nombre": "Boga"
-        },
-        {
-            "MarcaID": "30809ce7-ff8f-11ec-bb82-0eb8b69eb347",
-            "nombre": "Boit"
-        },
-        {
-            "MarcaID": "9571ca06-0900-11ed-bb82-0eb8b69eb347",
-            "nombre": "Bolt"
-        },
-        {
-            "MarcaID": "2f7c374a-95a4-11ed-9b80-0e87116d214b",
-            "nombre": "Bosch"
-        },
-        {
-            "MarcaID": "dd6cc31a-8765-11ed-9b80-0e87116d214b",
-            "nombre": "Boxer"
-        },
-        {
-            "MarcaID": "2a31c9c1-7fb3-11ed-9b80-0e87116d214b",
-            "nombre": "Brava "
-        },
-        {
-            "MarcaID": "a3904e13-e540-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Bremen"
-        },
-        {
-            "MarcaID": "66809033-df7b-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Brico"
-        },
-        {
-            "MarcaID": "45f1e060-58b5-11ed-9b80-0e87116d214b",
-            "nombre": "Briket"
-        },
-        {
-            "MarcaID": "58ee2dca-b6e6-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Brisson"
-        },
-        {
-            "MarcaID": "e6a80bb7-3505-11ed-8709-0e085dd00fab",
-            "nombre": "Bta"
-        },
-        {
-            "MarcaID": "f5a9904d-14b8-11ed-bb82-0eb8b69eb347",
-            "nombre": "Bulit"
-        },
-        {
-            "MarcaID": "9afe62a9-197d-11ed-bb82-0eb8b69eb347",
-            "nombre": "Burmeister"
-        },
-        {
-            "MarcaID": "6d0a1644-b6e7-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Byby"
-        },
-        {
-            "MarcaID": "0d1663ab-58ad-11ed-9b80-0e87116d214b",
-            "nombre": "Canon"
-        },
-        {
-            "MarcaID": "ef39b5a9-eeb8-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Capea"
-        },
-        {
-            "MarcaID": "a6021325-950f-11ee-ba93-0e3a1e34687f",
-            "nombre": "CAPTUR"
-        },
-        {
-            "MarcaID": "57f21910-77fa-11ee-ba93-0e3a1e34687f",
-            "nombre": "Caroline"
-        },
-        {
-            "MarcaID": "4093c688-cc77-11ec-acbc-16c2a030bb97",
-            "nombre": "Cat"
-        },
-        {
-            "MarcaID": "97671714-9b19-11ed-9b80-0e87116d214b",
-            "nombre": "CDR"
-        },
-        {
-            "MarcaID": "9366e865-7a6b-11ed-9b80-0e87116d214b",
-            "nombre": "Cerro"
-        },
-        {
-            "MarcaID": "de1e4a34-a8b0-11ed-9b80-0e87116d214b",
-            "nombre": "Cherry"
-        },
-        {
-            "MarcaID": "3e4a6b39-99a7-11ed-9b80-0e87116d214b",
-            "nombre": "Chery"
-        },
-        {
-            "MarcaID": "7ccfb985-0da5-11ed-bb82-0eb8b69eb347",
-            "nombre": "Chevrolet "
-        },
-        {
-            "MarcaID": "e58403bb-ea9c-11ed-9f0f-0e3a1e34687f",
-            "nombre": "CHROME-VAMADIUM"
-        },
-        {
-            "MarcaID": "16e86423-b206-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Chrysler"
-        },
-        {
-            "MarcaID": "56f0deab-a28e-11ed-9b80-0e87116d214b",
-            "nombre": "chunlan "
-        },
-        {
-            "MarcaID": "18e402d5-a1bb-11ed-9b80-0e87116d214b",
-            "nombre": "Ciclon"
-        },
-        {
-            "MarcaID": "d9d2ea57-9272-11ed-9b80-0e87116d214b",
-            "nombre": "Ciclopall"
-        },
-        {
-            "MarcaID": "8654d627-0da5-11ed-bb82-0eb8b69eb347",
-            "nombre": "Citroen"
-        },
-        {
-            "MarcaID": "f8647cfb-b51f-11ec-8878-16c2a030bb97",
-            "nombre": "Citroen 2"
-        },
-        {
-            "MarcaID": "084f5a7b-b3bb-11ee-8df7-0e3a1e34687f",
-            "nombre": "Clarao"
-        },
-        {
-            "MarcaID": "00d839d6-cef9-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Colner"
-        },
-        {
-            "MarcaID": "c50bb327-31e6-11ed-8709-0e085dd00fab",
-            "nombre": "Commodore"
-        },
-        {
-            "MarcaID": "e200e7cb-55fb-11ed-9b80-0e87116d214b",
-            "nombre": "Compaq"
-        },
-        {
-            "MarcaID": "b99f3105-85f3-11ed-9b80-0e87116d214b",
-            "nombre": "Conarco"
-        },
-        {
-            "MarcaID": "4060d38d-abbe-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Continental"
-        },
-        {
-            "MarcaID": "25ecd88d-cc6e-11ec-acbc-16c2a030bb97",
-            "nombre": "Cool"
-        },
-        {
-            "MarcaID": "ae533427-79a4-11ed-9b80-0e87116d214b",
-            "nombre": "Coolpad"
-        },
-        {
-            "MarcaID": "64d8e7b0-3548-11ed-8709-0e085dd00fab",
-            "nombre": "Coradir"
-        },
-        {
-            "MarcaID": "91352338-bd1e-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Cormetal"
-        },
-        {
-            "MarcaID": "3f701db3-b520-11ec-8878-16c2a030bb97",
-            "nombre": "Corven "
-        },
-        {
-            "MarcaID": "51f7117a-77fa-11ee-ba93-0e3a1e34687f",
-            "nombre": "Cosquin"
-        },
-        {
-            "MarcaID": "0a32bfb4-c481-11ee-8df7-0e3a1e34687f",
-            "nombre": "coventry"
-        },
-        {
-            "MarcaID": "ca5c8a4a-f590-11ed-9f0f-0e3a1e34687f",
-            "nombre": "CRATE"
-        },
-        {
-            "MarcaID": "382bf3ed-55fc-11ed-9b80-0e87116d214b",
-            "nombre": "Cromax"
-        },
-        {
-            "MarcaID": "af498a5c-1446-11ed-bb82-0eb8b69eb347",
-            "nombre": "Crossmaster"
-        },
-        {
-            "MarcaID": "69b25e3c-de00-11ed-9f0f-0e3a1e34687f",
-            "nombre": "CROW"
-        },
-        {
-            "MarcaID": "afcc20bb-2323-11ed-bb82-0eb8b69eb347",
-            "nombre": "Crown Mustang"
-        },
-        {
-            "MarcaID": "e1608820-314d-11ee-ba93-0e3a1e34687f",
-            "nombre": "CYPRES"
-        },
-        {
-            "MarcaID": "f8526fb1-85fc-11ed-9b80-0e87116d214b",
-            "nombre": "CZERWENT"
-        },
-        {
-            "MarcaID": "227fa1a6-e777-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Dacia"
-        },
-        {
-            "MarcaID": "3980877d-8d04-11ed-9b80-0e87116d214b",
-            "nombre": "Daelim"
-        },
-        {
-            "MarcaID": "90864cc9-e43a-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Daewo"
-        },
-        {
-            "MarcaID": "b232008d-c36c-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Daewoo"
-        },
-        {
-            "MarcaID": "618088df-8776-11ed-9b80-0e87116d214b",
-            "nombre": "DAIHATSU"
-        },
-        {
-            "MarcaID": "442a470b-8483-11ee-ba93-0e3a1e34687f",
-            "nombre": "Datrak"
-        },
-        {
-            "MarcaID": "e1f7803d-f327-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Deca"
-        },
-        {
-            "MarcaID": "3c3decb9-40b8-11ed-8709-0e085dd00fab",
-            "nombre": "Dell"
-        },
-        {
-            "MarcaID": "a0086af7-7636-11ed-9b80-0e87116d214b",
-            "nombre": "Depot"
-        },
-        {
-            "MarcaID": "10fba233-a24f-11ed-9b80-0e87116d214b",
-            "nombre": "Deutz"
-        },
-        {
-            "MarcaID": "e6ccb3f2-7c7f-11ed-9b80-0e87116d214b",
-            "nombre": "Dewalt"
-        },
-        {
-            "MarcaID": "a3878b39-42c5-11ee-ba93-0e3a1e34687f",
-            "nombre": "DIAMON"
-        },
-        {
-            "MarcaID": "cfbbaca0-5920-11ed-9b80-0e87116d214b",
-            "nombre": "Diamond"
-        },
-        {
-            "MarcaID": "40878015-7fdd-11ee-ba93-0e3a1e34687f",
-            "nombre": "DIBRA"
-        },
-        {
-            "MarcaID": "743e5e52-9b2f-11ed-9b80-0e87116d214b",
-            "nombre": "Digital Pocket "
-        },
-        {
-            "MarcaID": "8aee4586-0da5-11ed-bb82-0eb8b69eb347",
-            "nombre": "Dodge"
-        },
-        {
-            "MarcaID": "3cb02c9c-3505-11ed-8709-0e085dd00fab",
-            "nombre": "Dogo "
-        },
-        {
-            "MarcaID": "a440d279-cef7-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Dorwin Pagio"
-        },
-        {
-            "MarcaID": "1f5b5474-7f8d-11ed-9b80-0e87116d214b",
-            "nombre": "Dowen Pagio"
-        },
-        {
-            "MarcaID": "5ed6ae2d-28b2-11ed-8709-0e085dd00fab",
-            "nombre": "Drean"
-        },
-        {
-            "MarcaID": "f2a043ec-14b3-11ed-bb82-0eb8b69eb347",
-            "nombre": "Dropforged"
-        },
-        {
-            "MarcaID": "71789987-b520-11ec-8878-16c2a030bb97",
-            "nombre": "Ducati"
-        },
-        {
-            "MarcaID": "c4afa96b-0dc8-11ed-bb82-0eb8b69eb347",
-            "nombre": "Durabrand"
-        },
-        {
-            "MarcaID": "c6026a21-03cf-11ed-bb82-0eb8b69eb347",
-            "nombre": "ECOS"
-        },
-        {
-            "MarcaID": "2cfd876b-14be-11ed-bb82-0eb8b69eb347",
-            "nombre": "Edunec"
-        },
-        {
-            "MarcaID": "e7bb5aa6-1458-11ed-bb82-0eb8b69eb347",
-            "nombre": "Einhell "
-        },
-        {
-            "MarcaID": "7fda758e-e8ed-11ed-9f0f-0e3a1e34687f",
-            "nombre": "EMTOP"
-        },
-        {
-            "MarcaID": "e4b43cb6-b1c0-11ec-816d-16c2a030bb97",
-            "nombre": "Enduro"
-        },
-        {
-            "MarcaID": "64fcda50-edbc-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Essen"
-        },
-        {
-            "MarcaID": "38ee61c4-09d5-11ed-bb82-0eb8b69eb347",
-            "nombre": "ete"
-        },
-        {
-            "MarcaID": "c99e7737-c3fb-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Euro Sound"
-        },
-        {
-            "MarcaID": "1d7cdf92-c4c8-11ed-9f0f-0e3a1e34687f",
-            "nombre": "everest"
-        },
-        {
-            "MarcaID": "cbc8262d-5bbd-11ee-ba93-0e3a1e34687f",
-            "nombre": "Exer"
-        },
-        {
-            "MarcaID": "bb82706d-03cf-11ed-bb82-0eb8b69eb347",
-            "nombre": "EXER USA "
-        },
-        {
-            "MarcaID": "08220d5a-cc6e-11ec-acbc-16c2a030bb97",
-            "nombre": "Exo"
-        },
-        {
-            "MarcaID": "ed57ab24-ac84-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Explorer"
-        },
-        {
-            "MarcaID": "6a7cd406-9dcc-11ed-9b80-0e87116d214b",
-            "nombre": "FAMA"
-        },
-        {
-            "MarcaID": "319c67f4-7af9-11ed-9b80-0e87116d214b",
-            "nombre": "Fema"
-        },
-        {
-            "MarcaID": "92d1c22d-b90d-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Ferrum"
-        },
-        {
-            "MarcaID": "908b8520-0da5-11ed-bb82-0eb8b69eb347",
-            "nombre": "Fiat"
-        },
-        {
-            "MarcaID": "1b44531d-ff04-11ec-bb82-0eb8b69eb347",
-            "nombre": "Firebird"
-        },
-        {
-            "MarcaID": "5830c89d-e2aa-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Fluster"
-        },
-        {
-            "MarcaID": "caf88dbc-0da5-11ed-bb82-0eb8b69eb347",
-            "nombre": "Ford"
-        },
-        {
-            "MarcaID": "7088e51c-5573-11ed-9b80-0e87116d214b",
-            "nombre": "Fosil"
-        },
-        {
-            "MarcaID": "b9c8eb67-90dc-11ed-9b80-0e87116d214b",
-            "nombre": "Fuji"
-        },
-        {
-            "MarcaID": "3229135e-e8ee-11ed-9f0f-0e3a1e34687f",
-            "nombre": "FULLPLAST"
-        },
-        {
-            "MarcaID": "2620f4f8-de2b-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Fv"
-        },
-        {
-            "MarcaID": "09fe31bb-18cc-11ed-bb82-0eb8b69eb347",
-            "nombre": "Galube"
-        },
-        {
-            "MarcaID": "95d2892e-c250-11ec-8878-16c2a030bb97",
-            "nombre": "GAMMA"
-        },
-        {
-            "MarcaID": "531a9e04-a2ea-11ed-9b80-0e87116d214b",
-            "nombre": "Garrelli"
-        },
-        {
-            "MarcaID": "5b4b16d8-20d0-11ee-ba93-0e3a1e34687f",
-            "nombre": "GHERARDI"
-        },
-        {
-            "MarcaID": "18b21c02-d885-11ed-9f0f-0e3a1e34687f",
-            "nombre": "GHERARUI"
-        },
-        {
-            "MarcaID": "dcd0c464-ff1a-11ec-bb82-0eb8b69eb347",
-            "nombre": "Giant"
-        },
-        {
-            "MarcaID": "2cd22a4a-b520-11ec-8878-16c2a030bb97",
-            "nombre": "Gilera"
-        },
-        {
-            "MarcaID": "187ecac5-7f8d-11ed-9b80-0e87116d214b",
-            "nombre": "Gladiator"
-        },
-        {
-            "MarcaID": "068d4f39-8b7e-11ed-9b80-0e87116d214b",
-            "nombre": "GLOCK"
-        },
-        {
-            "MarcaID": "ac4b2bdd-c7d8-11ed-9f0f-0e3a1e34687f",
-            "nombre": "GRIBON"
-        },
-        {
-            "MarcaID": "d0535ea7-8860-11ed-9b80-0e87116d214b",
-            "nombre": "GT"
-        },
-        {
-            "MarcaID": "2252af1c-0a98-11ed-bb82-0eb8b69eb347",
-            "nombre": "GTX"
-        },
-        {
-            "MarcaID": "ca1093f4-3da6-11ed-8709-0e085dd00fab",
-            "nombre": "Guerrero "
-        },
-        {
-            "MarcaID": "2015642c-0bb1-11ee-9f0f-0e3a1e34687f",
-            "nombre": "Guitar"
-        },
-        {
-            "MarcaID": "dc6b897e-0a98-11ed-bb82-0eb8b69eb347",
-            "nombre": "Gyda"
-        },
-        {
-            "MarcaID": "a1293560-3064-11ee-ba93-0e3a1e34687f",
-            "nombre": "HALCON"
-        },
-        {
-            "MarcaID": "62c87d2c-c49e-11ec-8878-16c2a030bb97",
-            "nombre": "Handi Works"
-        },
-        {
-            "MarcaID": "61d828c4-df8c-11ed-9f0f-0e3a1e34687f",
-            "nombre": "HandyAre"
-        },
-        {
-            "MarcaID": "884d3b04-c24e-11ec-8878-16c2a030bb97",
-            "nombre": "Harrison"
-        },
-        {
-            "MarcaID": "9ca67696-3064-11ee-ba93-0e3a1e34687f",
-            "nombre": "HAWK"
-        },
-        {
-            "MarcaID": "a521bf79-40fb-11ee-ba93-0e3a1e34687f",
-            "nombre": "Hero Puch"
-        },
-        {
-            "MarcaID": "2bc149d1-db6d-11ec-acbc-16c2a030bb97",
-            "nombre": "HISENCE"
-        },
-        {
-            "MarcaID": "bad772db-1451-11ed-bb82-0eb8b69eb347",
-            "nombre": "Hitachi "
-        },
-        {
-            "MarcaID": "73998d73-959b-11ed-9b80-0e87116d214b",
-            "nombre": "Home y Life "
-        },
-        {
-            "MarcaID": "845724bc-b520-11ec-8878-16c2a030bb97",
-            "nombre": "Honda"
-        },
-        {
-            "MarcaID": "605eef93-17f0-11ed-bb82-0eb8b69eb347",
-            "nombre": "House Safe  "
-        },
-        {
-            "MarcaID": "39819f80-c25c-11ec-8878-16c2a030bb97",
-            "nombre": "HP"
-        },
-        {
-            "MarcaID": "2e8094cd-cc74-11ec-acbc-16c2a030bb97",
-            "nombre": "HTC"
-        },
-        {
-            "MarcaID": "0f858113-cc74-11ec-acbc-16c2a030bb97",
-            "nombre": "Huawei"
-        },
-        {
-            "MarcaID": "4706f4d9-db6d-11ec-acbc-16c2a030bb97",
-            "nombre": "HYUNDAI"
-        },
-        {
-            "MarcaID": "6c0abfa6-cef8-11ed-9f0f-0e3a1e34687f",
-            "nombre": "IKA"
-        },
-        {
-            "MarcaID": "1e1ea413-cc6e-11ec-acbc-16c2a030bb97",
-            "nombre": "Ilo"
-        },
-        {
-            "MarcaID": "ae033fda-74d7-11ee-ba93-0e3a1e34687f",
-            "nombre": "Ilock"
-        },
-        {
-            "MarcaID": "d7b422ab-e3b8-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Imsa "
-        },
-        {
-            "MarcaID": "78e28a8b-d282-11ee-8df7-0e3a1e34687f",
-            "nombre": "India"
-        },
-        {
-            "MarcaID": "39b5c459-fa2c-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Iphone"
-        },
-        {
-            "MarcaID": "79080da5-8d0f-11ed-9b80-0e87116d214b",
-            "nombre": "Isma"
-        },
-        {
-            "MarcaID": "c66e9e5b-bd0b-11ed-9f0f-0e3a1e34687f",
-            "nombre": "iveco"
-        },
-        {
-            "MarcaID": "67aa57b6-4683-11ee-ba93-0e3a1e34687f",
-            "nombre": "IWNDIS"
-        },
-        {
-            "MarcaID": "61644191-91fa-11ed-9b80-0e87116d214b",
-            "nombre": "Jeep"
-        },
-        {
-            "MarcaID": "1d64297e-ba70-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Jeep Willys"
-        },
-        {
-            "MarcaID": "69dad5b5-06e1-11ee-9f0f-0e3a1e34687f",
-            "nombre": "Jensen"
-        },
-        {
-            "MarcaID": "129112cc-db91-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Jialing"
-        },
-        {
-            "MarcaID": "4a81372c-883d-11ed-9b80-0e87116d214b",
-            "nombre": "Jincheng"
-        },
-        {
-            "MarcaID": "a2303fc9-daba-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Jordan"
-        },
-        {
-            "MarcaID": "b64fa9ec-a7af-11ed-9b80-0e87116d214b",
-            "nombre": "Jortan"
-        },
-        {
-            "MarcaID": "5205292d-8d04-11ed-9b80-0e87116d214b",
-            "nombre": "Juki"
-        },
-        {
-            "MarcaID": "102ab3c2-9b39-11ed-9b80-0e87116d214b",
-            "nombre": "Jvc"
-        },
-        {
-            "MarcaID": "3a2fdcd1-919e-11ed-9b80-0e87116d214b",
-            "nombre": "Kanji "
-        },
-        {
-            "MarcaID": "6590e6c9-8d56-11ed-9b80-0e87116d214b",
-            "nombre": "KAWASAKI"
-        },
-        {
-            "MarcaID": "31b5d8b8-937f-11ee-ba93-0e3a1e34687f",
-            "nombre": "kazz"
-        },
-        {
-            "MarcaID": "f29231d3-cc99-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Keeway"
-        },
-        {
-            "MarcaID": "49eb2f7e-b520-11ec-8878-16c2a030bb97",
-            "nombre": "Keller "
-        },
-        {
-            "MarcaID": "51262e57-7237-11ed-9b80-0e87116d214b",
-            "nombre": "Kelvinator"
-        },
-        {
-            "MarcaID": "6a61e930-28b2-11ed-8709-0e085dd00fab",
-            "nombre": "Ken Brown"
-        },
-        {
-            "MarcaID": "25e201d2-a1bb-11ed-9b80-0e87116d214b",
-            "nombre": "Kenia"
-        },
-        {
-            "MarcaID": "614bf146-075e-11ed-bb82-0eb8b69eb347",
-            "nombre": "Kessel"
-        },
-        {
-            "MarcaID": "b2ddd5fb-984b-11ed-9b80-0e87116d214b",
-            "nombre": "Kia"
-        },
-        {
-            "MarcaID": "79bdb5c0-c24c-11ec-8878-16c2a030bb97",
-            "nombre": "KIOTO"
-        },
-        {
-            "MarcaID": "b5b4c5ae-51cf-11ee-ba93-0e3a1e34687f",
-            "nombre": "Klatter"
-        },
-        {
-            "MarcaID": "a56d3025-0c31-11ed-bb82-0eb8b69eb347",
-            "nombre": "KLO"
-        },
-        {
-            "MarcaID": "ae5b9758-4c14-11ed-9b80-0e87116d214b",
-            "nombre": "Kodak"
-        },
-        {
-            "MarcaID": "0502b6a1-c502-11ee-8df7-0e3a1e34687f",
-            "nombre": "kOLKE"
-        },
-        {
-            "MarcaID": "ad8f5209-7ae3-11ed-9b80-0e87116d214b",
-            "nombre": "Konisa"
-        },
-        {
-            "MarcaID": "69c59d3f-85f3-11ed-9b80-0e87116d214b",
-            "nombre": "Kordax"
-        },
-        {
-            "MarcaID": "7684f2c0-77ea-11ee-ba93-0e3a1e34687f",
-            "nombre": "Krico"
-        },
-        {
-            "MarcaID": "10362884-a6e9-11ed-9b80-0e87116d214b",
-            "nombre": "KTM"
-        },
-        {
-            "MarcaID": "bd503684-33a0-11ed-8709-0e085dd00fab",
-            "nombre": "Kushiro"
-        },
-        {
-            "MarcaID": "c4d11039-852c-11ed-9b80-0e87116d214b",
-            "nombre": "Kymco"
-        },
-        {
-            "MarcaID": "7d60e059-8a41-11ee-ba93-0e3a1e34687f",
-            "nombre": "Lamborghini"
-        },
-        {
-            "MarcaID": "e2fac86e-484c-11ee-ba93-0e3a1e34687f",
-            "nombre": "Land Rover "
-        },
-        {
-            "MarcaID": "eeb3b130-8203-11ed-9b80-0e87116d214b",
-            "nombre": "Legnano"
-        },
-        {
-            "MarcaID": "2e43c678-cc77-11ec-acbc-16c2a030bb97",
-            "nombre": "Lenovo"
-        },
-        {
-            "MarcaID": "4fe05636-17fa-11ed-bb82-0eb8b69eb347",
-            "nombre": "lesen for"
-        },
-        {
-            "MarcaID": "ed106fe3-9b2e-11ed-9b80-0e87116d214b",
-            "nombre": "Lets Generation"
-        },
-        {
-            "MarcaID": "393931df-be09-11ed-9f0f-0e3a1e34687f",
-            "nombre": "lexsen"
-        },
-        {
-            "MarcaID": "3017eec8-c238-11ec-8878-16c2a030bb97",
-            "nombre": "LG"
-        },
-        {
-            "MarcaID": "665dcadb-7c86-11ed-9b80-0e87116d214b",
-            "nombre": "Lifu Japan"
-        },
-        {
-            "MarcaID": "856b10d7-0e80-11ed-bb82-0eb8b69eb347",
-            "nombre": "Liliana"
-        },
-        {
-            "MarcaID": "a596ff8a-74d7-11ee-ba93-0e3a1e34687f",
-            "nombre": "Lipari"
-        },
-        {
-            "MarcaID": "027e38d4-0e25-11ed-bb82-0eb8b69eb347",
-            "nombre": "Look"
-        },
-        {
-            "MarcaID": "88e739cb-e552-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Lucki"
-        },
-        {
-            "MarcaID": "d8017a96-7c7f-11ed-9b80-0e87116d214b",
-            "nombre": "Lusqtoff"
-        },
-        {
-            "MarcaID": "3a11b1e7-c385-11ed-9f0f-0e3a1e34687f",
-            "nombre": "lynx"
-        },
-        {
-            "MarcaID": "a6a0de2e-c1fc-11ed-9f0f-0e3a1e34687f",
-            "nombre": "MAGEFESA "
-        },
-        {
-            "MarcaID": "c91a806a-683d-11ee-ba93-0e3a1e34687f",
-            "nombre": "Mahely"
-        },
-        {
-            "MarcaID": "2f6c8827-7c80-11ed-9b80-0e87116d214b",
-            "nombre": "Makita"
-        },
-        {
-            "MarcaID": "c1eee9ef-afbc-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Marzano"
-        },
-        {
-            "MarcaID": "2bdf5b67-9cb4-11ed-9b80-0e87116d214b",
-            "nombre": "Master G"
-        },
-        {
-            "MarcaID": "bb55e704-7ae6-11ed-9b80-0e87116d214b",
-            "nombre": "Maverick"
-        },
-        {
-            "MarcaID": "87adebd0-8dbd-11ed-9b80-0e87116d214b",
-            "nombre": "Maxam"
-        },
-        {
-            "MarcaID": "2ba764ec-142d-11ee-ba93-0e3a1e34687f",
-            "nombre": "Maxsonic"
-        },
-        {
-            "MarcaID": "c30337df-7f04-11ee-ba93-0e3a1e34687f",
-            "nombre": "MCCARTHY "
-        },
-        {
-            "MarcaID": "6e91705c-4f3e-11ed-9b80-0e87116d214b",
-            "nombre": "Meilda"
-        },
-        {
-            "MarcaID": "ec8dc5fb-0da5-11ed-bb82-0eb8b69eb347",
-            "nombre": "Mercedes Benz"
-        },
-        {
-            "MarcaID": "aaf3b0dc-b51e-11ec-8878-16c2a030bb97",
-            "nombre": "Mercedes Benz 2"
-        },
-        {
-            "MarcaID": "d63ba2a4-3128-11ee-ba93-0e3a1e34687f",
-            "nombre": "Metabo"
-        },
-        {
-            "MarcaID": "3d412d5b-9274-11ed-9b80-0e87116d214b",
-            "nombre": "Metalciclo"
-        },
-        {
-            "MarcaID": "fd74c309-19c8-11ed-bb82-0eb8b69eb347",
-            "nombre": "Microsoft"
-        },
-        {
-            "MarcaID": "e6480b49-8865-11ee-ba93-0e3a1e34687f",
-            "nombre": "Midea"
-        },
-        {
-            "MarcaID": "9d659b33-c250-11ec-8878-16c2a030bb97",
-            "nombre": "Miller"
-        },
-        {
-            "MarcaID": "416c0f74-01f3-11ed-bb82-0eb8b69eb347",
-            "nombre": "Milwaukee"
-        },
-        {
-            "MarcaID": "02a2ed94-a4ec-11ed-9b80-0e87116d214b",
-            "nombre": "Mini"
-        },
-        {
-            "MarcaID": "c69689bf-e43a-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Mini-Compresor"
-        },
-        {
-            "MarcaID": "bea00f18-abbf-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Minisonic"
-        },
-        {
-            "MarcaID": "74085aca-741d-11ee-ba93-0e3a1e34687f",
-            "nombre": "miracle"
-        },
-        {
-            "MarcaID": "b45a6568-fd5e-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Mitsubishi"
-        },
-        {
-            "MarcaID": "23a7549a-9cb4-11ed-9b80-0e87116d214b",
-            "nombre": "Mlab"
-        },
-        {
-            "MarcaID": "ca4193fa-307e-11ee-ba93-0e3a1e34687f",
-            "nombre": "Modenas"
-        },
-        {
-            "MarcaID": "97d6de99-820a-11ed-9b80-0e87116d214b",
-            "nombre": "Mondial"
-        },
-        {
-            "MarcaID": "8f468f13-ce22-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Monster Energy"
-        },
-        {
-            "MarcaID": "8c985736-2bc4-11ee-ba93-0e3a1e34687f",
-            "nombre": "MONTAGNE "
-        },
-        {
-            "MarcaID": "813a8f18-2e1c-11ee-ba93-0e3a1e34687f",
-            "nombre": "MONTERREY"
-        },
-        {
-            "MarcaID": "68b990a5-09e0-11ee-9f0f-0e3a1e34687f",
-            "nombre": "Montrial"
-        },
-        {
-            "MarcaID": "06ac01e4-7f8d-11ed-9b80-0e87116d214b",
-            "nombre": "Moon"
-        },
-        {
-            "MarcaID": "65e1fb13-4f23-11ed-9b80-0e87116d214b",
-            "nombre": "Moove"
-        },
-        {
-            "MarcaID": "cf3604e3-683d-11ee-ba93-0e3a1e34687f",
-            "nombre": "Mossberg"
-        },
-        {
-            "MarcaID": "d857ea4e-d93e-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Mota"
-        },
-        {
-            "MarcaID": "15a7ba06-b520-11ec-8878-16c2a030bb97",
-            "nombre": "Motomel "
-        },
-        {
-            "MarcaID": "9d8fb13f-352f-11ee-ba93-0e3a1e34687f",
-            "nombre": "Motor Oil"
-        },
-        {
-            "MarcaID": "e8ab015f-aaab-11ec-816d-16c2a030bb97",
-            "nombre": "Motorola"
-        },
-        {
-            "MarcaID": "c3d8baa9-33a0-11ed-8709-0e085dd00fab",
-            "nombre": "Moura"
-        },
-        {
-            "MarcaID": "c0a88f34-bacc-11ee-8df7-0e3a1e34687f",
-            "nombre": "Mouser"
-        },
-        {
-            "MarcaID": "b6269e1a-f016-11ed-9f0f-0e3a1e34687f",
-            "nombre": "MTI"
-        },
-        {
-            "MarcaID": "018d0995-c4d9-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Net Runner"
-        },
-        {
-            "MarcaID": "96f6947a-33a8-11ed-8709-0e085dd00fab",
-            "nombre": "Nex"
-        },
-        {
-            "MarcaID": "95514df9-aab0-11ec-816d-16c2a030bb97",
-            "nombre": "nike"
-        },
-        {
-            "MarcaID": "b04bbf4b-b51e-11ec-8878-16c2a030bb97",
-            "nombre": "Nissan "
-        },
-        {
-            "MarcaID": "ebbadee0-e43b-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Niwa"
-        },
-        {
-            "MarcaID": "2e7c281e-a3ba-11ed-9b80-0e87116d214b",
-            "nombre": "No especificado "
-        },
-        {
-            "MarcaID": "9c1066de-24ac-11ed-bb82-0eb8b69eb347",
-            "nombre": "Noblex "
-        },
-        {
-            "MarcaID": "a702453c-c47f-11ee-8df7-0e3a1e34687f",
-            "nombre": "NOGA"
-        },
-        {
-            "MarcaID": "12f8e394-cc74-11ec-acbc-16c2a030bb97",
-            "nombre": "Nokia"
-        },
-        {
-            "MarcaID": "8577122a-5f9f-11ed-9b80-0e87116d214b",
-            "nombre": "Nordic "
-        },
-        {
-            "MarcaID": "d3d69f78-3ff2-11ed-8709-0e085dd00fab",
-            "nombre": "NOVA"
-        },
-        {
-            "MarcaID": "4bc7e8d0-edc0-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Nova electrick"
-        },
-        {
-            "MarcaID": "ddb1c017-f011-11ed-9f0f-0e3a1e34687f",
-            "nombre": "novalucce"
-        },
-        {
-            "MarcaID": "6b2bc56b-9b19-11ed-9b80-0e87116d214b",
-            "nombre": "Novatech"
-        },
-        {
-            "MarcaID": "7ec00215-cc6e-11ec-acbc-16c2a030bb97",
-            "nombre": "Novik"
-        },
-        {
-            "MarcaID": "8ebe9dfa-8538-11ed-9b80-0e87116d214b",
-            "nombre": "Okinoi"
-        },
-        {
-            "MarcaID": "d74b90e5-8d05-11ed-9b80-0e87116d214b",
-            "nombre": "Olmo"
-        },
-        {
-            "MarcaID": "a5b81987-14d1-11ed-bb82-0eb8b69eb347",
-            "nombre": "Only"
-        },
-        {
-            "MarcaID": "372825e6-be88-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Opaltech"
-        },
-        {
-            "MarcaID": "6dfe885f-ce22-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Orbea"
-        },
-        {
-            "MarcaID": "4af22812-77fa-11ee-ba93-0e3a1e34687f",
-            "nombre": "Orbis"
-        },
-        {
-            "MarcaID": "c02dc854-a622-11ed-9b80-0e87116d214b",
-            "nombre": "Oruz-Car"
-        },
-        {
-            "MarcaID": "ef35409c-cf3b-11ed-9f0f-0e3a1e34687f",
-            "nombre": "OXFORD"
-        },
-        {
-            "MarcaID": "543628b3-03cb-11ed-bb82-0eb8b69eb347",
-            "nombre": "PAMPITA "
-        },
-        {
-            "MarcaID": "3f790c9d-3877-11ed-8709-0e085dd00fab",
-            "nombre": "Panacom"
-        },
-        {
-            "MarcaID": "06344cd6-cc77-11ec-acbc-16c2a030bb97",
-            "nombre": "Panasonic"
-        },
-        {
-            "MarcaID": "f8dc8dbf-cc76-11ec-acbc-16c2a030bb97",
-            "nombre": "Pantech"
-        },
-        {
-            "MarcaID": "7e4f9505-b2c0-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Papagno"
-        },
-        {
-            "MarcaID": "4fa0b009-c24e-11ec-8878-16c2a030bb97",
-            "nombre": "Park Tech"
-        },
-        {
-            "MarcaID": "72211e6e-b6e7-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Patrick"
-        },
-        {
-            "MarcaID": "03e89dab-19c9-11ed-bb82-0eb8b69eb347",
-            "nombre": "Performance"
-        },
-        {
-            "MarcaID": "2b0e19a4-9b4e-11ee-ba93-0e3a1e34687f",
-            "nombre": "Petri"
-        },
-        {
-            "MarcaID": "f0dbcca9-b51f-11ec-8878-16c2a030bb97",
-            "nombre": "Peugeot "
-        },
-        {
-            "MarcaID": "d1b13026-3da3-11ed-8709-0e085dd00fab",
-            "nombre": "Philco "
-        },
-        {
-            "MarcaID": "4d8b1208-13ee-11ed-bb82-0eb8b69eb347",
-            "nombre": "Philips"
-        },
-        {
-            "MarcaID": "745f10ee-db6c-11ec-acbc-16c2a030bb97",
-            "nombre": "PIONEER"
-        },
-        {
-            "MarcaID": "c6afc6c9-de2e-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Pirelli"
-        },
-        {
-            "MarcaID": "ed4eb183-8059-11ed-9b80-0e87116d214b",
-            "nombre": "PlayStation"
-        },
-        {
-            "MarcaID": "e953edb3-45bd-11ee-ba93-0e3a1e34687f",
-            "nombre": "Polaroid"
-        },
-        {
-            "MarcaID": "a6019128-2323-11ed-bb82-0eb8b69eb347",
-            "nombre": "Positron"
-        },
-        {
-            "MarcaID": "43437ef0-d3b7-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Potenza"
-        },
-        {
-            "MarcaID": "11d91ec9-7235-11ed-9b80-0e87116d214b",
-            "nombre": "Pro-Bass"
-        },
-        {
-            "MarcaID": "d33c4b08-b949-11ee-8df7-0e3a1e34687f",
-            "nombre": "Pronova"
-        },
-        {
-            "MarcaID": "df705fea-8775-11ed-9b80-0e87116d214b",
-            "nombre": "Pulmoneb"
-        },
-        {
-            "MarcaID": "0b9d1e3a-db91-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Puma"
-        },
-        {
-            "MarcaID": "367d33d9-516e-11ee-ba93-0e3a1e34687f",
-            "nombre": "Punta Alta"
-        },
-        {
-            "MarcaID": "c7183155-ca92-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Pure cuy"
-        },
-        {
-            "MarcaID": "e5425631-44bd-11ed-9b80-0e87116d214b",
-            "nombre": "Qkl"
-        },
-        {
-            "MarcaID": "d200650a-33a0-11ed-8709-0e085dd00fab",
-            "nombre": "Qual"
-        },
-        {
-            "MarcaID": "806c18eb-3f35-11ed-8709-0e085dd00fab",
-            "nombre": "Quantum"
-        },
-        {
-            "MarcaID": "23f1629f-cfd5-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Radar "
-        },
-        {
-            "MarcaID": "05d290f4-fa74-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Raec"
-        },
-        {
-            "MarcaID": "9a6ca1c3-0e23-11ed-bb82-0eb8b69eb347",
-            "nombre": "Raleigh"
-        },
-        {
-            "MarcaID": "edaedb81-2b01-11ee-ba93-0e3a1e34687f",
-            "nombre": "RALLY"
-        },
-        {
-            "MarcaID": "d7d14461-1451-11ed-bb82-0eb8b69eb347",
-            "nombre": "Ranger"
-        },
-        {
-            "MarcaID": "aa7cae36-bd1c-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Rastrojero"
-        },
-        {
-            "MarcaID": "f68df3f9-b7b7-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Rawser"
-        },
-        {
-            "MarcaID": "13582a45-db6d-11ec-acbc-16c2a030bb97",
-            "nombre": "RCA"
-        },
-        {
-            "MarcaID": "fd8ebbd1-0e23-11ed-bb82-0eb8b69eb347",
-            "nombre": "Relaigh"
-        },
-        {
-            "MarcaID": "07000fa9-0da6-11ed-bb82-0eb8b69eb347",
-            "nombre": "Renault"
-        },
-        {
-            "MarcaID": "2254723e-83ee-11ee-ba93-0e3a1e34687f",
-            "nombre": "REPMAN"
-        },
-        {
-            "MarcaID": "7d12a066-7e1a-11ed-9b80-0e87116d214b",
-            "nombre": "Road Rider"
-        },
-        {
-            "MarcaID": "17e8a6ea-c4a2-11ec-8878-16c2a030bb97",
-            "nombre": "Robust "
-        },
-        {
-            "MarcaID": "4343136d-7c80-11ed-9b80-0e87116d214b",
-            "nombre": "Roeust"
-        },
-        {
-            "MarcaID": "1aa3e570-6f70-11ed-9b80-0e87116d214b",
-            "nombre": "Ross"
-        },
-        {
-            "MarcaID": "144de636-b7b8-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Rowser"
-        },
-        {
-            "MarcaID": "1dd64cb8-c5a1-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Saavedra"
-        },
-        {
-            "MarcaID": "bda10de9-f4cb-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Samick"
-        },
-        {
-            "MarcaID": "0b15a939-b931-11ec-8878-16c2a030bb97",
-            "nombre": "Samsung"
-        },
-        {
-            "MarcaID": "19cee6ff-cc6e-11ec-acbc-16c2a030bb97",
-            "nombre": "Sanyo"
-        },
-        {
-            "MarcaID": "ea33c2f6-516e-11ee-ba93-0e3a1e34687f",
-            "nombre": "Saurio"
-        },
-        {
-            "MarcaID": "27553cef-6e9c-11ee-ba93-0e3a1e34687f",
-            "nombre": "Schwnn"
-        },
-        {
-            "MarcaID": "e0413041-2b01-11ee-ba93-0e3a1e34687f",
-            "nombre": "SCOTT"
-        },
-        {
-            "MarcaID": "03882fac-e8f6-11ed-9f0f-0e3a1e34687f",
-            "nombre": "SEINERLING"
-        },
-        {
-            "MarcaID": "31ff96fa-9b39-11ed-9b80-0e87116d214b",
-            "nombre": "Senon  "
-        },
-        {
-            "MarcaID": "e21a9219-8860-11ed-9b80-0e87116d214b",
-            "nombre": "SHIMANO"
-        },
-        {
-            "MarcaID": "cb262547-a6f8-11ed-9b80-0e87116d214b",
-            "nombre": "Shure"
-        },
-        {
-            "MarcaID": "deb263af-dac8-11ed-9f0f-0e3a1e34687f",
-            "nombre": "siambreta"
-        },
-        {
-            "MarcaID": "fe9ea3a6-f340-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Sifolimp"
-        },
-        {
-            "MarcaID": "b4d7a235-ff9c-11ec-bb82-0eb8b69eb347",
-            "nombre": "SIN MARCA "
-        },
-        {
-            "MarcaID": "a2bd79a7-b5fe-11ee-8df7-0e3a1e34687f",
-            "nombre": "Sincrolamp"
-        },
-        {
-            "MarcaID": "4594e8c5-0b8c-11ee-9f0f-0e3a1e34687f",
-            "nombre": "Sixelectric"
-        },
-        {
-            "MarcaID": "0e800319-e6a9-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Skigo"
-        },
-        {
-            "MarcaID": "81fa9dd4-23b9-11ed-bb82-0eb8b69eb347",
-            "nombre": "Skil"
-        },
-        {
-            "MarcaID": "15326f8e-57e6-11ed-9b80-0e87116d214b",
-            "nombre": "Slp"
-        },
-        {
-            "MarcaID": "1e2ef565-cc77-11ec-acbc-16c2a030bb97",
-            "nombre": "Sony"
-        },
-        {
-            "MarcaID": "1b92f032-cc74-11ec-acbc-16c2a030bb97",
-            "nombre": "Sony Ericsson"
-        },
-        {
-            "MarcaID": "87dda4ee-db6c-11ec-acbc-16c2a030bb97",
-            "nombre": "SONY XPLOD"
-        },
-        {
-            "MarcaID": "87c3a6db-af07-11ee-8df7-0e3a1e34687f",
-            "nombre": "Speaker"
-        },
-        {
-            "MarcaID": "ef183ece-e8f5-11ed-9f0f-0e3a1e34687f",
-            "nombre": "STAINLESS STEEL"
-        },
-        {
-            "MarcaID": "5d1d1f4b-77fa-11ee-ba93-0e3a1e34687f",
-            "nombre": "Stan Electric"
-        },
-        {
-            "MarcaID": "98d8ea8c-23b9-11ed-bb82-0eb8b69eb347",
-            "nombre": "Stanley"
-        },
-        {
-            "MarcaID": "4ba36ca9-a7b1-11ed-9b80-0e87116d214b",
-            "nombre": "Stihl"
-        },
-        {
-            "MarcaID": "fc56be56-888c-11ee-ba93-0e3a1e34687f",
-            "nombre": "Storm"
-        },
-        {
-            "MarcaID": "c6dff44c-ee7a-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Studioz"
-        },
-        {
-            "MarcaID": "a021f38a-95b2-11ed-9b80-0e87116d214b",
-            "nombre": "Sumo"
-        },
-        {
-            "MarcaID": "bb809498-c8ec-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Sunny"
-        },
-        {
-            "MarcaID": "b3b49505-5c76-11ee-ba93-0e3a1e34687f",
-            "nombre": "Super Power"
-        },
-        {
-            "MarcaID": "e80bc2f3-8326-11ed-9b80-0e87116d214b",
-            "nombre": "Surrey"
-        },
-        {
-            "MarcaID": "14711350-0da6-11ed-bb82-0eb8b69eb347",
-            "nombre": "Suzuki"
-        },
-        {
-            "MarcaID": "668edd24-c3f8-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Takuma"
-        },
-        {
-            "MarcaID": "43dda455-2f92-11ed-8709-0e085dd00fab",
-            "nombre": "TAMASHI"
-        },
-        {
-            "MarcaID": "b4f8787e-c762-11ed-9f0f-0e3a1e34687f",
-            "nombre": "TAON"
-        },
-        {
-            "MarcaID": "a68301c7-df87-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Tawak "
-        },
-        {
-            "MarcaID": "fcff84a9-db6c-11ec-acbc-16c2a030bb97",
-            "nombre": "TCL"
-        },
-        {
-            "MarcaID": "503e8872-2eff-11ed-8709-0e085dd00fab",
-            "nombre": "TECH"
-        },
-        {
-            "MarcaID": "a6fb0add-be98-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Teknial"
-        },
-        {
-            "MarcaID": "909d0ed8-9291-11ed-9b80-0e87116d214b",
-            "nombre": "Telefunken"
-        },
-        {
-            "MarcaID": "010e71bd-95bb-11ed-9b80-0e87116d214b",
-            "nombre": "Teltron"
-        },
-        {
-            "MarcaID": "92e7a52a-c250-11ec-8878-16c2a030bb97",
-            "nombre": "Telwin"
-        },
-        {
-            "MarcaID": "64516cc8-8b7d-11ed-9b80-0e87116d214b",
-            "nombre": "THUNDER"
-        },
-        {
-            "MarcaID": "26d71831-09cd-11ed-bb82-0eb8b69eb347",
-            "nombre": "Timek"
-        },
-        {
-            "MarcaID": "d7291659-8b7b-11ed-9b80-0e87116d214b",
-            "nombre": "TKL"
-        },
-        {
-            "MarcaID": "7a2947ae-ce22-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Tomaselli"
-        },
-        {
-            "MarcaID": "67bc9022-db6d-11ec-acbc-16c2a030bb97",
-            "nombre": "TONOMAC "
-        },
-        {
-            "MarcaID": "383166db-cc6e-11ec-acbc-16c2a030bb97",
-            "nombre": "TopMega"
-        },
-        {
-            "MarcaID": "9ae17be3-7636-11ed-9b80-0e87116d214b",
-            "nombre": "Toshiba"
-        },
-        {
-            "MarcaID": "fb822e4e-e442-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Toyama"
-        },
-        {
-            "MarcaID": "181b94ce-0da6-11ed-bb82-0eb8b69eb347",
-            "nombre": "Toyota"
-        },
-        {
-            "MarcaID": "16e74be7-f3e8-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Traful"
-        },
-        {
-            "MarcaID": "065db5fc-35f5-11ee-ba93-0e3a1e34687f",
-            "nombre": "Tramontina"
-        },
-        {
-            "MarcaID": "676d6e55-8a9f-11ed-9b80-0e87116d214b",
-            "nombre": "Treck Marlin"
-        },
-        {
-            "MarcaID": "ea76db0c-8859-11ed-9b80-0e87116d214b",
-            "nombre": "Trek"
-        },
-        {
-            "MarcaID": "7ab49be0-fa88-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Triangle"
-        },
-        {
-            "MarcaID": "2143b1c6-2b9d-11ed-8709-0e085dd00fab",
-            "nombre": "Trupers "
-        },
-        {
-            "MarcaID": "9e35d065-a0fb-11ed-9b80-0e87116d214b",
-            "nombre": "Tvs"
-        },
-        {
-            "MarcaID": "fa68c0a1-98cf-11ed-9b80-0e87116d214b",
-            "nombre": "Unifon"
-        },
-        {
-            "MarcaID": "a68d7214-3540-11ee-ba93-0e3a1e34687f",
-            "nombre": "Uniform"
-        },
-        {
-            "MarcaID": "ccd2d115-33a0-11ed-8709-0e085dd00fab",
-            "nombre": "Ursus Trotter"
-        },
-        {
-            "MarcaID": "282ae851-981a-11ed-9b80-0e87116d214b",
-            "nombre": "Vaic"
-        },
-        {
-            "MarcaID": "c384b176-cb25-11ec-acbc-16c2a030bb97",
-            "nombre": "Vairo"
-        },
-        {
-            "MarcaID": "7caba44e-3dd1-11ee-ba93-0e3a1e34687f",
-            "nombre": "Velimotor"
-        },
-        {
-            "MarcaID": "3b6addf9-011e-11ed-bb82-0eb8b69eb347",
-            "nombre": "Venzo"
-        },
-        {
-            "MarcaID": "c7546b02-a167-11ed-9b80-0e87116d214b",
-            "nombre": "Vinco"
-        },
-        {
-            "MarcaID": "db4e6c23-c501-11ee-8df7-0e3a1e34687f",
-            "nombre": "VIVO"
-        },
-        {
-            "MarcaID": "62615fc4-77fa-11ee-ba93-0e3a1e34687f",
-            "nombre": "Volcan"
-        },
-        {
-            "MarcaID": "30dee76b-0da6-11ed-bb82-0eb8b69eb347",
-            "nombre": "Volkswagen"
-        },
-        {
-            "MarcaID": "c62083ca-8071-11ed-9b80-0e87116d214b",
-            "nombre": "Volkswagen2"
-        },
-        {
-            "MarcaID": "6f7f6747-9b51-11ee-ba93-0e3a1e34687f",
-            "nombre": "Volvo"
-        },
-        {
-            "MarcaID": "8fb54ac2-d2e8-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Vulcano"
-        },
-        {
-            "MarcaID": "7159cbd2-fa88-11ed-9f0f-0e3a1e34687f",
-            "nombre": "West Lake "
-        },
-        {
-            "MarcaID": "e4bbad46-3084-11ee-ba93-0e3a1e34687f",
-            "nombre": "Westinghouse"
-        },
-        {
-            "MarcaID": "5bbfeb22-d282-11ee-8df7-0e3a1e34687f",
-            "nombre": "Will"
-        },
-        {
-            "MarcaID": "f06e73f6-919d-11ed-9b80-0e87116d214b",
-            "nombre": "Winco "
-        },
-        {
-            "MarcaID": "c1a142e1-1765-11ed-bb82-0eb8b69eb347",
-            "nombre": "WINGS"
-        },
-        {
-            "MarcaID": "4aae3cdd-57b6-11ee-ba93-0e3a1e34687f",
-            "nombre": "WINTRACK"
-        },
-        {
-            "MarcaID": "4d28f186-c1ad-11ed-9f0f-0e3a1e34687f",
-            "nombre": "x-view"
-        },
-        {
-            "MarcaID": "92531bd6-d2f5-11ed-9f0f-0e3a1e34687f",
-            "nombre": "XAEA"
-        },
-        {
-            "MarcaID": "414c6e98-805a-11ed-9b80-0e87116d214b",
-            "nombre": "Xbox"
-        },
-        {
-            "MarcaID": "4d1a8aa3-cc74-11ec-acbc-16c2a030bb97",
-            "nombre": "Xiaomi"
-        },
-        {
-            "MarcaID": "e3b8f25f-ec55-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Xtm"
-        },
-        {
-            "MarcaID": "42a39cc7-be88-11ed-9f0f-0e3a1e34687f",
-            "nombre": "Xtreme"
-        },
-        {
-            "MarcaID": "58f12149-b520-11ec-8878-16c2a030bb97",
-            "nombre": "Yamaha "
-        },
-        {
-            "MarcaID": "bcd137ee-7f04-11ee-ba93-0e3a1e34687f",
-            "nombre": "YOSEMITE"
-        },
-        {
-            "MarcaID": "88ec14a7-f324-11ed-9f0f-0e3a1e34687f",
-            "nombre": "YPF"
-        },
-        {
-            "MarcaID": "676f7c2b-b520-11ec-8878-16c2a030bb97",
-            "nombre": "Zanella "
-        },
-        {
-            "MarcaID": "77f5db7f-2882-11ed-8709-0e085dd00fab",
-            "nombre": "Zenith"
-        },
-        {
-            "MarcaID": "6302f3be-df8b-11ed-9f0f-0e3a1e34687f",
-            "nombre": "ZOMAX"
-        },
-        {
-            "MarcaID": "36a2a48c-cc74-11ec-acbc-16c2a030bb97",
-            "nombre": "ZTE"
-        }
-    
+    {
+        "MarcaID": "c940d0ec-9caf-11ed-9b80-0e87116d214b",
+        "nombre": " Blaupunnkt"
+    },
+    {
+        "MarcaID": "8ebb594e-ff12-11ec-bb82-0eb8b69eb347",
+        "nombre": " Rockrider"
+    },
+    {
+        "MarcaID": "6cb5fb75-c501-11ee-8df7-0e3a1e34687f",
+        "nombre": " Siemens"
+    },
+    {
+        "MarcaID": "6c778e81-aab2-11ec-816d-16c2a030bb97",
+        "nombre": "adidas"
+    },
+    {
+        "MarcaID": "13f06c74-cc6e-11ec-acbc-16c2a030bb97",
+        "nombre": "Admiral"
+    },
+    {
+        "MarcaID": "ab3fce13-dbc6-11ee-8df7-0e3a1e34687f",
+        "nombre": "AIR IMPACT"
+    },
+    {
+        "MarcaID": "ff83a999-dc83-11ee-8df7-0e3a1e34687f",
+        "nombre": "Airwhell"
+    },
+    {
+        "MarcaID": "1b00f43d-0c7a-11ed-bb82-0eb8b69eb347",
+        "nombre": "AIWA"
+    },
+    {
+        "MarcaID": "640d8c40-cc78-11ec-acbc-16c2a030bb97",
+        "nombre": "alcatel"
+    },
+    {
+        "MarcaID": "131b5a73-f327-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Algas"
+    },
+    {
+        "MarcaID": "abedb1c8-e448-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Amwood"
+    },
+    {
+        "MarcaID": "579f550a-9dd1-11ed-9b80-0e87116d214b",
+        "nombre": "Angle grinder"
+    },
+    {
+        "MarcaID": "9b105dd7-0c33-11ed-bb82-0eb8b69eb347",
+        "nombre": "AOC"
+    },
+    {
+        "MarcaID": "0203b547-7ae2-11ed-9b80-0e87116d214b",
+        "nombre": "Appia"
+    },
+    {
+        "MarcaID": "28bb0dac-cc74-11ec-acbc-16c2a030bb97",
+        "nombre": "Apple"
+    },
+    {
+        "MarcaID": "64071ebf-b51d-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Appotech"
+    },
+    {
+        "MarcaID": "a07ed027-9293-11ed-9b80-0e87116d214b",
+        "nombre": "Archos"
+    },
+    {
+        "MarcaID": "7a51277c-e385-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Aretha"
+    },
+    {
+        "MarcaID": "fb900d32-5918-11ed-9b80-0e87116d214b",
+        "nombre": "Aser "
+    },
+    {
+        "MarcaID": "1c5803c9-6f6c-11ed-9b80-0e87116d214b",
+        "nombre": "Astermaq"
+    },
+    {
+        "MarcaID": "e9ca4514-cc76-11ec-acbc-16c2a030bb97",
+        "nombre": "Asus"
+    },
+    {
+        "MarcaID": "0ed5bc86-7f8d-11ed-9b80-0e87116d214b",
+        "nombre": "Atma"
+    },
+    {
+        "MarcaID": "5b155ab5-87d8-11ed-9b80-0e87116d214b",
+        "nombre": "Audi"
+    },
+    {
+        "MarcaID": "3c567db2-9b34-11ed-9b80-0e87116d214b",
+        "nombre": "B52"
+    },
+    {
+        "MarcaID": "f8381197-36b8-11ee-ba93-0e3a1e34687f",
+        "nombre": "Bagual"
+    },
+    {
+        "MarcaID": "28f129e1-0475-11ee-9f0f-0e3a1e34687f",
+        "nombre": "Baic"
+    },
+    {
+        "MarcaID": "585e7026-8c4b-11ed-9b80-0e87116d214b",
+        "nombre": "Bajaj"
+    },
+    {
+        "MarcaID": "75a25cad-da65-11ee-8df7-0e3a1e34687f",
+        "nombre": "BANGHÓ "
+    },
+    {
+        "MarcaID": "81cea9c5-53e4-11ee-ba93-0e3a1e34687f",
+        "nombre": "Batan"
+    },
+    {
+        "MarcaID": "88cbada8-9775-11ed-9b80-0e87116d214b",
+        "nombre": "Benelli "
+    },
+    {
+        "MarcaID": "2cfe2019-9bf1-11ed-9b80-0e87116d214b",
+        "nombre": "Benq"
+    },
+    {
+        "MarcaID": "390585d5-cc77-11ec-acbc-16c2a030bb97",
+        "nombre": "BGH"
+    },
+    {
+        "MarcaID": "fc072074-2b01-11ee-ba93-0e3a1e34687f",
+        "nombre": "BIANCHI"
+    },
+    {
+        "MarcaID": "49c4a481-c49e-11ec-8878-16c2a030bb97",
+        "nombre": "Black & Decker"
+    },
+    {
+        "MarcaID": "c89b04de-33a0-11ed-8709-0e085dd00fab",
+        "nombre": "Black Panther"
+    },
+    {
+        "MarcaID": "5878da4b-cc74-11ec-acbc-16c2a030bb97",
+        "nombre": "BlackBerry"
+    },
+    {
+        "MarcaID": "bf402f61-0dc8-11ed-bb82-0eb8b69eb347",
+        "nombre": "Blaupunnkt"
+    },
+    {
+        "MarcaID": "3bf629e6-cc74-11ec-acbc-16c2a030bb97",
+        "nombre": "BLU"
+    },
+    {
+        "MarcaID": "7c55c450-7770-11ee-ba93-0e3a1e34687f",
+        "nombre": "Bluline"
+    },
+    {
+        "MarcaID": "6f99744e-0da5-11ed-bb82-0eb8b69eb347",
+        "nombre": "BMW"
+    },
+    {
+        "MarcaID": "915e0437-3f35-11ed-8709-0e085dd00fab",
+        "nombre": "Boga"
+    },
+    {
+        "MarcaID": "30809ce7-ff8f-11ec-bb82-0eb8b69eb347",
+        "nombre": "Boit"
+    },
+    {
+        "MarcaID": "9571ca06-0900-11ed-bb82-0eb8b69eb347",
+        "nombre": "Bolt"
+    },
+    {
+        "MarcaID": "2f7c374a-95a4-11ed-9b80-0e87116d214b",
+        "nombre": "Bosch"
+    },
+    {
+        "MarcaID": "dd6cc31a-8765-11ed-9b80-0e87116d214b",
+        "nombre": "Boxer"
+    },
+    {
+        "MarcaID": "2a31c9c1-7fb3-11ed-9b80-0e87116d214b",
+        "nombre": "Brava "
+    },
+    {
+        "MarcaID": "a3904e13-e540-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Bremen"
+    },
+    {
+        "MarcaID": "66809033-df7b-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Brico"
+    },
+    {
+        "MarcaID": "45f1e060-58b5-11ed-9b80-0e87116d214b",
+        "nombre": "Briket"
+    },
+    {
+        "MarcaID": "58ee2dca-b6e6-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Brisson"
+    },
+    {
+        "MarcaID": "11f6dc19-db03-11ee-8df7-0e3a1e34687f",
+        "nombre": "BRONX"
+    },
+    {
+        "MarcaID": "e6a80bb7-3505-11ed-8709-0e085dd00fab",
+        "nombre": "Bta"
+    },
+    {
+        "MarcaID": "f5a9904d-14b8-11ed-bb82-0eb8b69eb347",
+        "nombre": "Bulit"
+    },
+    {
+        "MarcaID": "9afe62a9-197d-11ed-bb82-0eb8b69eb347",
+        "nombre": "Burmeister"
+    },
+    {
+        "MarcaID": "6d0a1644-b6e7-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Byby"
+    },
+    {
+        "MarcaID": "2290aa17-e79a-11ee-8df7-0e3a1e34687f",
+        "nombre": "CANDOR"
+    },
+    {
+        "MarcaID": "0d1663ab-58ad-11ed-9b80-0e87116d214b",
+        "nombre": "Canon"
+    },
+    {
+        "MarcaID": "ef39b5a9-eeb8-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Capea"
+    },
+    {
+        "MarcaID": "a6021325-950f-11ee-ba93-0e3a1e34687f",
+        "nombre": "CAPTUR"
+    },
+    {
+        "MarcaID": "57f21910-77fa-11ee-ba93-0e3a1e34687f",
+        "nombre": "Caroline"
+    },
+    {
+        "MarcaID": "4093c688-cc77-11ec-acbc-16c2a030bb97",
+        "nombre": "Cat"
+    },
+    {
+        "MarcaID": "97671714-9b19-11ed-9b80-0e87116d214b",
+        "nombre": "CDR"
+    },
+    {
+        "MarcaID": "9366e865-7a6b-11ed-9b80-0e87116d214b",
+        "nombre": "Cerro"
+    },
+    {
+        "MarcaID": "de1e4a34-a8b0-11ed-9b80-0e87116d214b",
+        "nombre": "Cherry"
+    },
+    {
+        "MarcaID": "3e4a6b39-99a7-11ed-9b80-0e87116d214b",
+        "nombre": "Chery"
+    },
+    {
+        "MarcaID": "7ccfb985-0da5-11ed-bb82-0eb8b69eb347",
+        "nombre": "Chevrolet "
+    },
+    {
+        "MarcaID": "e58403bb-ea9c-11ed-9f0f-0e3a1e34687f",
+        "nombre": "CHROME-VAMADIUM"
+    },
+    {
+        "MarcaID": "16e86423-b206-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Chrysler"
+    },
+    {
+        "MarcaID": "56f0deab-a28e-11ed-9b80-0e87116d214b",
+        "nombre": "chunlan "
+    },
+    {
+        "MarcaID": "18e402d5-a1bb-11ed-9b80-0e87116d214b",
+        "nombre": "Ciclon"
+    },
+    {
+        "MarcaID": "d9d2ea57-9272-11ed-9b80-0e87116d214b",
+        "nombre": "Ciclopall"
+    },
+    {
+        "MarcaID": "8654d627-0da5-11ed-bb82-0eb8b69eb347",
+        "nombre": "Citroen"
+    },
+    {
+        "MarcaID": "f8647cfb-b51f-11ec-8878-16c2a030bb97",
+        "nombre": "Citroen 2"
+    },
+    {
+        "MarcaID": "084f5a7b-b3bb-11ee-8df7-0e3a1e34687f",
+        "nombre": "Clarao"
+    },
+    {
+        "MarcaID": "00d839d6-cef9-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Colner"
+    },
+    {
+        "MarcaID": "c50bb327-31e6-11ed-8709-0e085dd00fab",
+        "nombre": "Commodore"
+    },
+    {
+        "MarcaID": "e200e7cb-55fb-11ed-9b80-0e87116d214b",
+        "nombre": "Compaq"
+    },
+    {
+        "MarcaID": "b99f3105-85f3-11ed-9b80-0e87116d214b",
+        "nombre": "Conarco"
+    },
+    {
+        "MarcaID": "4060d38d-abbe-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Continental"
+    },
+    {
+        "MarcaID": "25ecd88d-cc6e-11ec-acbc-16c2a030bb97",
+        "nombre": "Cool"
+    },
+    {
+        "MarcaID": "ae533427-79a4-11ed-9b80-0e87116d214b",
+        "nombre": "Coolpad"
+    },
+    {
+        "MarcaID": "64d8e7b0-3548-11ed-8709-0e085dd00fab",
+        "nombre": "Coradir"
+    },
+    {
+        "MarcaID": "91352338-bd1e-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Cormetal"
+    },
+    {
+        "MarcaID": "3f701db3-b520-11ec-8878-16c2a030bb97",
+        "nombre": "Corven "
+    },
+    {
+        "MarcaID": "51f7117a-77fa-11ee-ba93-0e3a1e34687f",
+        "nombre": "Cosquin"
+    },
+    {
+        "MarcaID": "0a32bfb4-c481-11ee-8df7-0e3a1e34687f",
+        "nombre": "coventry"
+    },
+    {
+        "MarcaID": "ca5c8a4a-f590-11ed-9f0f-0e3a1e34687f",
+        "nombre": "CRATE"
+    },
+    {
+        "MarcaID": "382bf3ed-55fc-11ed-9b80-0e87116d214b",
+        "nombre": "Cromax"
+    },
+    {
+        "MarcaID": "af498a5c-1446-11ed-bb82-0eb8b69eb347",
+        "nombre": "Crossmaster"
+    },
+    {
+        "MarcaID": "69b25e3c-de00-11ed-9f0f-0e3a1e34687f",
+        "nombre": "CROW"
+    },
+    {
+        "MarcaID": "afcc20bb-2323-11ed-bb82-0eb8b69eb347",
+        "nombre": "Crown Mustang"
+    },
+    {
+        "MarcaID": "e1608820-314d-11ee-ba93-0e3a1e34687f",
+        "nombre": "CYPRES"
+    },
+    {
+        "MarcaID": "f8526fb1-85fc-11ed-9b80-0e87116d214b",
+        "nombre": "CZERWENT"
+    },
+    {
+        "MarcaID": "227fa1a6-e777-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Dacia"
+    },
+    {
+        "MarcaID": "3980877d-8d04-11ed-9b80-0e87116d214b",
+        "nombre": "Daelim"
+    },
+    {
+        "MarcaID": "90864cc9-e43a-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Daewo"
+    },
+    {
+        "MarcaID": "b232008d-c36c-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Daewoo"
+    },
+    {
+        "MarcaID": "618088df-8776-11ed-9b80-0e87116d214b",
+        "nombre": "DAIHATSU"
+    },
+    {
+        "MarcaID": "442a470b-8483-11ee-ba93-0e3a1e34687f",
+        "nombre": "Datrak"
+    },
+    {
+        "MarcaID": "e1f7803d-f327-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Deca"
+    },
+    {
+        "MarcaID": "3c3decb9-40b8-11ed-8709-0e085dd00fab",
+        "nombre": "Dell"
+    },
+    {
+        "MarcaID": "a0086af7-7636-11ed-9b80-0e87116d214b",
+        "nombre": "Depot"
+    },
+    {
+        "MarcaID": "10fba233-a24f-11ed-9b80-0e87116d214b",
+        "nombre": "Deutz"
+    },
+    {
+        "MarcaID": "e6ccb3f2-7c7f-11ed-9b80-0e87116d214b",
+        "nombre": "Dewalt"
+    },
+    {
+        "MarcaID": "a3878b39-42c5-11ee-ba93-0e3a1e34687f",
+        "nombre": "DIAMON"
+    },
+    {
+        "MarcaID": "cfbbaca0-5920-11ed-9b80-0e87116d214b",
+        "nombre": "Diamond"
+    },
+    {
+        "MarcaID": "40878015-7fdd-11ee-ba93-0e3a1e34687f",
+        "nombre": "DIBRA"
+    },
+    {
+        "MarcaID": "743e5e52-9b2f-11ed-9b80-0e87116d214b",
+        "nombre": "Digital Pocket "
+    },
+    {
+        "MarcaID": "8aee4586-0da5-11ed-bb82-0eb8b69eb347",
+        "nombre": "Dodge"
+    },
+    {
+        "MarcaID": "3cb02c9c-3505-11ed-8709-0e085dd00fab",
+        "nombre": "Dogo "
+    },
+    {
+        "MarcaID": "a440d279-cef7-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Dorwin Pagio"
+    },
+    {
+        "MarcaID": "1f5b5474-7f8d-11ed-9b80-0e87116d214b",
+        "nombre": "Dowen Pagio"
+    },
+    {
+        "MarcaID": "5ed6ae2d-28b2-11ed-8709-0e085dd00fab",
+        "nombre": "Drean"
+    },
+    {
+        "MarcaID": "f2a043ec-14b3-11ed-bb82-0eb8b69eb347",
+        "nombre": "Dropforged"
+    },
+    {
+        "MarcaID": "71789987-b520-11ec-8878-16c2a030bb97",
+        "nombre": "Ducati"
+    },
+    {
+        "MarcaID": "16c08a73-37bd-11ef-9e2a-0e3a1e34687f",
+        "nombre": "Dunlop"
+    },
+    {
+        "MarcaID": "c4afa96b-0dc8-11ed-bb82-0eb8b69eb347",
+        "nombre": "Durabrand"
+    },
+    {
+        "MarcaID": "c6026a21-03cf-11ed-bb82-0eb8b69eb347",
+        "nombre": "ECOS"
+    },
+    {
+        "MarcaID": "2cfd876b-14be-11ed-bb82-0eb8b69eb347",
+        "nombre": "Edunec"
+    },
+    {
+        "MarcaID": "e7bb5aa6-1458-11ed-bb82-0eb8b69eb347",
+        "nombre": "Einhell "
+    },
+    {
+        "MarcaID": "12ec29c7-da32-11ee-8df7-0e3a1e34687f",
+        "nombre": "Eloic"
+    },
+    {
+        "MarcaID": "7fda758e-e8ed-11ed-9f0f-0e3a1e34687f",
+        "nombre": "EMTOP"
+    },
+    {
+        "MarcaID": "e4b43cb6-b1c0-11ec-816d-16c2a030bb97",
+        "nombre": "Enduro"
+    },
+    {
+        "MarcaID": "64fcda50-edbc-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Essen"
+    },
+    {
+        "MarcaID": "38ee61c4-09d5-11ed-bb82-0eb8b69eb347",
+        "nombre": "ete"
+    },
+    {
+        "MarcaID": "c99e7737-c3fb-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Euro Sound"
+    },
+    {
+        "MarcaID": "1d7cdf92-c4c8-11ed-9f0f-0e3a1e34687f",
+        "nombre": "everest"
+    },
+    {
+        "MarcaID": "cbc8262d-5bbd-11ee-ba93-0e3a1e34687f",
+        "nombre": "Exer"
+    },
+    {
+        "MarcaID": "bb82706d-03cf-11ed-bb82-0eb8b69eb347",
+        "nombre": "EXER USA "
+    },
+    {
+        "MarcaID": "08220d5a-cc6e-11ec-acbc-16c2a030bb97",
+        "nombre": "Exo"
+    },
+    {
+        "MarcaID": "ed57ab24-ac84-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Explorer"
+    },
+    {
+        "MarcaID": "6a7cd406-9dcc-11ed-9b80-0e87116d214b",
+        "nombre": "FAMA"
+    },
+    {
+        "MarcaID": "319c67f4-7af9-11ed-9b80-0e87116d214b",
+        "nombre": "Fema"
+    },
+    {
+        "MarcaID": "92d1c22d-b90d-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Ferrum"
+    },
+    {
+        "MarcaID": "908b8520-0da5-11ed-bb82-0eb8b69eb347",
+        "nombre": "Fiat"
+    },
+    {
+        "MarcaID": "c2aa99f6-fc01-11ee-8df7-0e3a1e34687f",
+        "nombre": "FIORENZA"
+    },
+    {
+        "MarcaID": "1b44531d-ff04-11ec-bb82-0eb8b69eb347",
+        "nombre": "Firebird"
+    },
+    {
+        "MarcaID": "5830c89d-e2aa-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Fluster"
+    },
+    {
+        "MarcaID": "caf88dbc-0da5-11ed-bb82-0eb8b69eb347",
+        "nombre": "Ford"
+    },
+    {
+        "MarcaID": "7088e51c-5573-11ed-9b80-0e87116d214b",
+        "nombre": "Fosil"
+    },
+    {
+        "MarcaID": "b9c8eb67-90dc-11ed-9b80-0e87116d214b",
+        "nombre": "Fuji"
+    },
+    {
+        "MarcaID": "3229135e-e8ee-11ed-9f0f-0e3a1e34687f",
+        "nombre": "FULLPLAST"
+    },
+    {
+        "MarcaID": "ced721a1-dcb6-11ee-8df7-0e3a1e34687f",
+        "nombre": "FULSAR"
+    },
+    {
+        "MarcaID": "2620f4f8-de2b-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Fv"
+    },
+    {
+        "MarcaID": "09fe31bb-18cc-11ed-bb82-0eb8b69eb347",
+        "nombre": "Galube"
+    },
+    {
+        "MarcaID": "95d2892e-c250-11ec-8878-16c2a030bb97",
+        "nombre": "GAMMA"
+    },
+    {
+        "MarcaID": "531a9e04-a2ea-11ed-9b80-0e87116d214b",
+        "nombre": "Garrelli"
+    },
+    {
+        "MarcaID": "5b4b16d8-20d0-11ee-ba93-0e3a1e34687f",
+        "nombre": "GHERARDI"
+    },
+    {
+        "MarcaID": "18b21c02-d885-11ed-9f0f-0e3a1e34687f",
+        "nombre": "GHERARUI"
+    },
+    {
+        "MarcaID": "dcd0c464-ff1a-11ec-bb82-0eb8b69eb347",
+        "nombre": "Giant"
+    },
+    {
+        "MarcaID": "2cd22a4a-b520-11ec-8878-16c2a030bb97",
+        "nombre": "Gilera"
+    },
+    {
+        "MarcaID": "187ecac5-7f8d-11ed-9b80-0e87116d214b",
+        "nombre": "Gladiator"
+    },
+    {
+        "MarcaID": "068d4f39-8b7e-11ed-9b80-0e87116d214b",
+        "nombre": "GLOCK"
+    },
+    {
+        "MarcaID": "ac4b2bdd-c7d8-11ed-9f0f-0e3a1e34687f",
+        "nombre": "GRIBON"
+    },
+    {
+        "MarcaID": "d0535ea7-8860-11ed-9b80-0e87116d214b",
+        "nombre": "GT"
+    },
+    {
+        "MarcaID": "2252af1c-0a98-11ed-bb82-0eb8b69eb347",
+        "nombre": "GTX"
+    },
+    {
+        "MarcaID": "ca1093f4-3da6-11ed-8709-0e085dd00fab",
+        "nombre": "Guerrero "
+    },
+    {
+        "MarcaID": "2015642c-0bb1-11ee-9f0f-0e3a1e34687f",
+        "nombre": "Guitar"
+    },
+    {
+        "MarcaID": "dc6b897e-0a98-11ed-bb82-0eb8b69eb347",
+        "nombre": "Gyda"
+    },
+    {
+        "MarcaID": "44d78ad4-d64e-11ee-8df7-0e3a1e34687f",
+        "nombre": "H.Q.S."
+    },
+    {
+        "MarcaID": "a1293560-3064-11ee-ba93-0e3a1e34687f",
+        "nombre": "HALCON"
+    },
+    {
+        "MarcaID": "62c87d2c-c49e-11ec-8878-16c2a030bb97",
+        "nombre": "Handi Works"
+    },
+    {
+        "MarcaID": "61d828c4-df8c-11ed-9f0f-0e3a1e34687f",
+        "nombre": "HandyAre"
+    },
+    {
+        "MarcaID": "192a100e-1f66-11ef-9e2a-0e3a1e34687f",
+        "nombre": "HAOBOSS"
+    },
+    {
+        "MarcaID": "884d3b04-c24e-11ec-8878-16c2a030bb97",
+        "nombre": "Harrison"
+    },
+    {
+        "MarcaID": "9ca67696-3064-11ee-ba93-0e3a1e34687f",
+        "nombre": "HAWK"
+    },
+    {
+        "MarcaID": "a521bf79-40fb-11ee-ba93-0e3a1e34687f",
+        "nombre": "Hero Puch"
+    },
+    {
+        "MarcaID": "2bc149d1-db6d-11ec-acbc-16c2a030bb97",
+        "nombre": "HISENCE"
+    },
+    {
+        "MarcaID": "bad772db-1451-11ed-bb82-0eb8b69eb347",
+        "nombre": "Hitachi "
+    },
+    {
+        "MarcaID": "73998d73-959b-11ed-9b80-0e87116d214b",
+        "nombre": "Home y Life "
+    },
+    {
+        "MarcaID": "845724bc-b520-11ec-8878-16c2a030bb97",
+        "nombre": "Honda"
+    },
+    {
+        "MarcaID": "605eef93-17f0-11ed-bb82-0eb8b69eb347",
+        "nombre": "House Safe  "
+    },
+    {
+        "MarcaID": "39819f80-c25c-11ec-8878-16c2a030bb97",
+        "nombre": "HP"
+    },
+    {
+        "MarcaID": "2e8094cd-cc74-11ec-acbc-16c2a030bb97",
+        "nombre": "HTC"
+    },
+    {
+        "MarcaID": "0f858113-cc74-11ec-acbc-16c2a030bb97",
+        "nombre": "Huawei"
+    },
+    {
+        "MarcaID": "f8fe97d7-e914-11ee-8df7-0e3a1e34687f",
+        "nombre": "HYMYKO"
+    },
+    {
+        "MarcaID": "4706f4d9-db6d-11ec-acbc-16c2a030bb97",
+        "nombre": "HYUNDAI"
+    },
+    {
+        "MarcaID": "6c0abfa6-cef8-11ed-9f0f-0e3a1e34687f",
+        "nombre": "IKA"
+    },
+    {
+        "MarcaID": "1e1ea413-cc6e-11ec-acbc-16c2a030bb97",
+        "nombre": "Ilo"
+    },
+    {
+        "MarcaID": "ae033fda-74d7-11ee-ba93-0e3a1e34687f",
+        "nombre": "Ilock"
+    },
+    {
+        "MarcaID": "d7b422ab-e3b8-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Imsa "
+    },
+    {
+        "MarcaID": "78e28a8b-d282-11ee-8df7-0e3a1e34687f",
+        "nombre": "India"
+    },
+    {
+        "MarcaID": "39b5c459-fa2c-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Iphone"
+    },
+    {
+        "MarcaID": "79080da5-8d0f-11ed-9b80-0e87116d214b",
+        "nombre": "Isma"
+    },
+    {
+        "MarcaID": "0516ae3e-120c-11ef-9e2a-0e3a1e34687f",
+        "nombre": "ISUZU"
+    },
+    {
+        "MarcaID": "c66e9e5b-bd0b-11ed-9f0f-0e3a1e34687f",
+        "nombre": "iveco"
+    },
+    {
+        "MarcaID": "67aa57b6-4683-11ee-ba93-0e3a1e34687f",
+        "nombre": "IWNDIS"
+    },
+    {
+        "MarcaID": "61644191-91fa-11ed-9b80-0e87116d214b",
+        "nombre": "Jeep"
+    },
+    {
+        "MarcaID": "1d64297e-ba70-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Jeep Willys"
+    },
+    {
+        "MarcaID": "69dad5b5-06e1-11ee-9f0f-0e3a1e34687f",
+        "nombre": "Jensen"
+    },
+    {
+        "MarcaID": "129112cc-db91-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Jialing"
+    },
+    {
+        "MarcaID": "4a81372c-883d-11ed-9b80-0e87116d214b",
+        "nombre": "Jincheng"
+    },
+    {
+        "MarcaID": "a2303fc9-daba-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Jordan"
+    },
+    {
+        "MarcaID": "b64fa9ec-a7af-11ed-9b80-0e87116d214b",
+        "nombre": "Jortan"
+    },
+    {
+        "MarcaID": "5205292d-8d04-11ed-9b80-0e87116d214b",
+        "nombre": "Juki"
+    },
+    {
+        "MarcaID": "102ab3c2-9b39-11ed-9b80-0e87116d214b",
+        "nombre": "Jvc"
+    },
+    {
+        "MarcaID": "3a2fdcd1-919e-11ed-9b80-0e87116d214b",
+        "nombre": "Kanji "
+    },
+    {
+        "MarcaID": "bf27fcf3-dfb2-11ee-8df7-0e3a1e34687f",
+        "nombre": "Kanji Home "
+    },
+    {
+        "MarcaID": "6590e6c9-8d56-11ed-9b80-0e87116d214b",
+        "nombre": "KAWASAKI"
+    },
+    {
+        "MarcaID": "31b5d8b8-937f-11ee-ba93-0e3a1e34687f",
+        "nombre": "kazz"
+    },
+    {
+        "MarcaID": "f29231d3-cc99-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Keeway"
+    },
+    {
+        "MarcaID": "49eb2f7e-b520-11ec-8878-16c2a030bb97",
+        "nombre": "Keller "
+    },
+    {
+        "MarcaID": "51262e57-7237-11ed-9b80-0e87116d214b",
+        "nombre": "Kelvinator"
+    },
+    {
+        "MarcaID": "6a61e930-28b2-11ed-8709-0e085dd00fab",
+        "nombre": "Ken Brown"
+    },
+    {
+        "MarcaID": "25e201d2-a1bb-11ed-9b80-0e87116d214b",
+        "nombre": "Kenia"
+    },
+    {
+        "MarcaID": "614bf146-075e-11ed-bb82-0eb8b69eb347",
+        "nombre": "Kessel"
+    },
+    {
+        "MarcaID": "b2ddd5fb-984b-11ed-9b80-0e87116d214b",
+        "nombre": "Kia"
+    },
+    {
+        "MarcaID": "79bdb5c0-c24c-11ec-8878-16c2a030bb97",
+        "nombre": "KIOTO"
+    },
+    {
+        "MarcaID": "b5b4c5ae-51cf-11ee-ba93-0e3a1e34687f",
+        "nombre": "Klatter"
+    },
+    {
+        "MarcaID": "a56d3025-0c31-11ed-bb82-0eb8b69eb347",
+        "nombre": "KLO"
+    },
+    {
+        "MarcaID": "ae5b9758-4c14-11ed-9b80-0e87116d214b",
+        "nombre": "Kodak"
+    },
+    {
+        "MarcaID": "0502b6a1-c502-11ee-8df7-0e3a1e34687f",
+        "nombre": "kOLKE"
+    },
+    {
+        "MarcaID": "ad8f5209-7ae3-11ed-9b80-0e87116d214b",
+        "nombre": "Konisa"
+    },
+    {
+        "MarcaID": "69c59d3f-85f3-11ed-9b80-0e87116d214b",
+        "nombre": "Kordax"
+    },
+    {
+        "MarcaID": "7684f2c0-77ea-11ee-ba93-0e3a1e34687f",
+        "nombre": "Krico"
+    },
+    {
+        "MarcaID": "10362884-a6e9-11ed-9b80-0e87116d214b",
+        "nombre": "KTM"
+    },
+    {
+        "MarcaID": "bd503684-33a0-11ed-8709-0e085dd00fab",
+        "nombre": "Kushiro"
+    },
+    {
+        "MarcaID": "c4d11039-852c-11ed-9b80-0e87116d214b",
+        "nombre": "Kymco"
+    },
+    {
+        "MarcaID": "7d60e059-8a41-11ee-ba93-0e3a1e34687f",
+        "nombre": "Lamborghini"
+    },
+    {
+        "MarcaID": "e2fac86e-484c-11ee-ba93-0e3a1e34687f",
+        "nombre": "Land Rover "
+    },
+    {
+        "MarcaID": "eeb3b130-8203-11ed-9b80-0e87116d214b",
+        "nombre": "Legnano"
+    },
+    {
+        "MarcaID": "2e43c678-cc77-11ec-acbc-16c2a030bb97",
+        "nombre": "Lenovo"
+    },
+    {
+        "MarcaID": "4fe05636-17fa-11ed-bb82-0eb8b69eb347",
+        "nombre": "lesen for"
+    },
+    {
+        "MarcaID": "ed106fe3-9b2e-11ed-9b80-0e87116d214b",
+        "nombre": "Lets Generation"
+    },
+    {
+        "MarcaID": "393931df-be09-11ed-9f0f-0e3a1e34687f",
+        "nombre": "lexsen"
+    },
+    {
+        "MarcaID": "3017eec8-c238-11ec-8878-16c2a030bb97",
+        "nombre": "LG"
+    },
+    {
+        "MarcaID": "665dcadb-7c86-11ed-9b80-0e87116d214b",
+        "nombre": "Lifu Japan"
+    },
+    {
+        "MarcaID": "856b10d7-0e80-11ed-bb82-0eb8b69eb347",
+        "nombre": "Liliana"
+    },
+    {
+        "MarcaID": "a596ff8a-74d7-11ee-ba93-0e3a1e34687f",
+        "nombre": "Lipari"
+    },
+    {
+        "MarcaID": "027e38d4-0e25-11ed-bb82-0eb8b69eb347",
+        "nombre": "Look"
+    },
+    {
+        "MarcaID": "88e739cb-e552-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Lucki"
+    },
+    {
+        "MarcaID": "722f5537-e85c-11ee-8df7-0e3a1e34687f",
+        "nombre": "Lumenac"
+    },
+    {
+        "MarcaID": "d8017a96-7c7f-11ed-9b80-0e87116d214b",
+        "nombre": "Lusqtoff"
+    },
+    {
+        "MarcaID": "3a11b1e7-c385-11ed-9f0f-0e3a1e34687f",
+        "nombre": "lynx"
+    },
+    {
+        "MarcaID": "a6a0de2e-c1fc-11ed-9f0f-0e3a1e34687f",
+        "nombre": "MAGEFESA "
+    },
+    {
+        "MarcaID": "c91a806a-683d-11ee-ba93-0e3a1e34687f",
+        "nombre": "Mahely"
+    },
+    {
+        "MarcaID": "2f6c8827-7c80-11ed-9b80-0e87116d214b",
+        "nombre": "Makita"
+    },
+    {
+        "MarcaID": "c1eee9ef-afbc-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Marzano"
+    },
+    {
+        "MarcaID": "2bdf5b67-9cb4-11ed-9b80-0e87116d214b",
+        "nombre": "Master G"
+    },
+    {
+        "MarcaID": "bb55e704-7ae6-11ed-9b80-0e87116d214b",
+        "nombre": "Maverick"
+    },
+    {
+        "MarcaID": "87adebd0-8dbd-11ed-9b80-0e87116d214b",
+        "nombre": "Maxam"
+    },
+    {
+        "MarcaID": "2ba764ec-142d-11ee-ba93-0e3a1e34687f",
+        "nombre": "Maxsonic"
+    },
+    {
+        "MarcaID": "c30337df-7f04-11ee-ba93-0e3a1e34687f",
+        "nombre": "MCCARTHY "
+    },
+    {
+        "MarcaID": "6e91705c-4f3e-11ed-9b80-0e87116d214b",
+        "nombre": "Meilda"
+    },
+    {
+        "MarcaID": "ec8dc5fb-0da5-11ed-bb82-0eb8b69eb347",
+        "nombre": "Mercedes Benz"
+    },
+    {
+        "MarcaID": "aaf3b0dc-b51e-11ec-8878-16c2a030bb97",
+        "nombre": "Mercedes Benz 2"
+    },
+    {
+        "MarcaID": "d63ba2a4-3128-11ee-ba93-0e3a1e34687f",
+        "nombre": "Metabo"
+    },
+    {
+        "MarcaID": "3d412d5b-9274-11ed-9b80-0e87116d214b",
+        "nombre": "Metalciclo"
+    },
+    {
+        "MarcaID": "fd74c309-19c8-11ed-bb82-0eb8b69eb347",
+        "nombre": "Microsoft"
+    },
+    {
+        "MarcaID": "e6480b49-8865-11ee-ba93-0e3a1e34687f",
+        "nombre": "Midea"
+    },
+    {
+        "MarcaID": "9d659b33-c250-11ec-8878-16c2a030bb97",
+        "nombre": "Miller"
+    },
+    {
+        "MarcaID": "416c0f74-01f3-11ed-bb82-0eb8b69eb347",
+        "nombre": "Milwaukee"
+    },
+    {
+        "MarcaID": "02a2ed94-a4ec-11ed-9b80-0e87116d214b",
+        "nombre": "Mini"
+    },
+    {
+        "MarcaID": "c69689bf-e43a-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Mini-Compresor"
+    },
+    {
+        "MarcaID": "bea00f18-abbf-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Minisonic"
+    },
+    {
+        "MarcaID": "74085aca-741d-11ee-ba93-0e3a1e34687f",
+        "nombre": "miracle"
+    },
+    {
+        "MarcaID": "b45a6568-fd5e-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Mitsubishi"
+    },
+    {
+        "MarcaID": "353274c1-d9b0-11ee-8df7-0e3a1e34687f",
+        "nombre": "Mk2000"
+    },
+    {
+        "MarcaID": "23a7549a-9cb4-11ed-9b80-0e87116d214b",
+        "nombre": "Mlab"
+    },
+    {
+        "MarcaID": "ca4193fa-307e-11ee-ba93-0e3a1e34687f",
+        "nombre": "Modenas"
+    },
+    {
+        "MarcaID": "97d6de99-820a-11ed-9b80-0e87116d214b",
+        "nombre": "Mondial"
+    },
+    {
+        "MarcaID": "8f468f13-ce22-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Monster Energy"
+    },
+    {
+        "MarcaID": "8c985736-2bc4-11ee-ba93-0e3a1e34687f",
+        "nombre": "MONTAGNE "
+    },
+    {
+        "MarcaID": "813a8f18-2e1c-11ee-ba93-0e3a1e34687f",
+        "nombre": "MONTERREY"
+    },
+    {
+        "MarcaID": "68b990a5-09e0-11ee-9f0f-0e3a1e34687f",
+        "nombre": "Montrial"
+    },
+    {
+        "MarcaID": "06ac01e4-7f8d-11ed-9b80-0e87116d214b",
+        "nombre": "Moon"
+    },
+    {
+        "MarcaID": "65e1fb13-4f23-11ed-9b80-0e87116d214b",
+        "nombre": "Moove"
+    },
+    {
+        "MarcaID": "cf3604e3-683d-11ee-ba93-0e3a1e34687f",
+        "nombre": "Mossberg"
+    },
+    {
+        "MarcaID": "4852fd6b-d9b0-11ee-8df7-0e3a1e34687f",
+        "nombre": "Mosso"
+    },
+    {
+        "MarcaID": "d857ea4e-d93e-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Mota"
+    },
+    {
+        "MarcaID": "15a7ba06-b520-11ec-8878-16c2a030bb97",
+        "nombre": "Motomel "
+    },
+    {
+        "MarcaID": "9d8fb13f-352f-11ee-ba93-0e3a1e34687f",
+        "nombre": "Motor Oil"
+    },
+    {
+        "MarcaID": "e8ab015f-aaab-11ec-816d-16c2a030bb97",
+        "nombre": "Motorola"
+    },
+    {
+        "MarcaID": "c3d8baa9-33a0-11ed-8709-0e085dd00fab",
+        "nombre": "Moura"
+    },
+    {
+        "MarcaID": "c0a88f34-bacc-11ee-8df7-0e3a1e34687f",
+        "nombre": "Mouser"
+    },
+    {
+        "MarcaID": "b6269e1a-f016-11ed-9f0f-0e3a1e34687f",
+        "nombre": "MTI"
+    },
+    {
+        "MarcaID": "018d0995-c4d9-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Net Runner"
+    },
+    {
+        "MarcaID": "96f6947a-33a8-11ed-8709-0e085dd00fab",
+        "nombre": "Nex"
+    },
+    {
+        "MarcaID": "95514df9-aab0-11ec-816d-16c2a030bb97",
+        "nombre": "nike"
+    },
+    {
+        "MarcaID": "403e2e32-d9b0-11ee-8df7-0e3a1e34687f",
+        "nombre": "Niner"
+    },
+    {
+        "MarcaID": "b04bbf4b-b51e-11ec-8878-16c2a030bb97",
+        "nombre": "Nissan "
+    },
+    {
+        "MarcaID": "ebbadee0-e43b-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Niwa"
+    },
+    {
+        "MarcaID": "2e7c281e-a3ba-11ed-9b80-0e87116d214b",
+        "nombre": "No especificado "
+    },
+    {
+        "MarcaID": "9c1066de-24ac-11ed-bb82-0eb8b69eb347",
+        "nombre": "Noblex "
+    },
+    {
+        "MarcaID": "a702453c-c47f-11ee-8df7-0e3a1e34687f",
+        "nombre": "NOGA"
+    },
+    {
+        "MarcaID": "12f8e394-cc74-11ec-acbc-16c2a030bb97",
+        "nombre": "Nokia"
+    },
+    {
+        "MarcaID": "8577122a-5f9f-11ed-9b80-0e87116d214b",
+        "nombre": "Nordic "
+    },
+    {
+        "MarcaID": "d3d69f78-3ff2-11ed-8709-0e085dd00fab",
+        "nombre": "NOVA"
+    },
+    {
+        "MarcaID": "4bc7e8d0-edc0-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Nova electrick"
+    },
+    {
+        "MarcaID": "ddb1c017-f011-11ed-9f0f-0e3a1e34687f",
+        "nombre": "novalucce"
+    },
+    {
+        "MarcaID": "6b2bc56b-9b19-11ed-9b80-0e87116d214b",
+        "nombre": "Novatech"
+    },
+    {
+        "MarcaID": "7ec00215-cc6e-11ec-acbc-16c2a030bb97",
+        "nombre": "Novik"
+    },
+    {
+        "MarcaID": "8ebe9dfa-8538-11ed-9b80-0e87116d214b",
+        "nombre": "Okinoi"
+    },
+    {
+        "MarcaID": "d74b90e5-8d05-11ed-9b80-0e87116d214b",
+        "nombre": "Olmo"
+    },
+    {
+        "MarcaID": "a5b81987-14d1-11ed-bb82-0eb8b69eb347",
+        "nombre": "Only"
+    },
+    {
+        "MarcaID": "372825e6-be88-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Opaltech"
+    },
+    {
+        "MarcaID": "6dfe885f-ce22-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Orbea"
+    },
+    {
+        "MarcaID": "4af22812-77fa-11ee-ba93-0e3a1e34687f",
+        "nombre": "Orbis"
+    },
+    {
+        "MarcaID": "c02dc854-a622-11ed-9b80-0e87116d214b",
+        "nombre": "Oruz-Car"
+    },
+    {
+        "MarcaID": "ef35409c-cf3b-11ed-9f0f-0e3a1e34687f",
+        "nombre": "OXFORD"
+    },
+    {
+        "MarcaID": "1e1e8c37-dfae-11ee-8df7-0e3a1e34687f",
+        "nombre": "Pagoda"
+    },
+    {
+        "MarcaID": "543628b3-03cb-11ed-bb82-0eb8b69eb347",
+        "nombre": "PAMPITA "
+    },
+    {
+        "MarcaID": "3f790c9d-3877-11ed-8709-0e085dd00fab",
+        "nombre": "Panacom"
+    },
+    {
+        "MarcaID": "06344cd6-cc77-11ec-acbc-16c2a030bb97",
+        "nombre": "Panasonic"
+    },
+    {
+        "MarcaID": "f8dc8dbf-cc76-11ec-acbc-16c2a030bb97",
+        "nombre": "Pantech"
+    },
+    {
+        "MarcaID": "7e4f9505-b2c0-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Papagno"
+    },
+    {
+        "MarcaID": "4fa0b009-c24e-11ec-8878-16c2a030bb97",
+        "nombre": "Park Tech"
+    },
+    {
+        "MarcaID": "72211e6e-b6e7-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Patrick"
+    },
+    {
+        "MarcaID": "03e89dab-19c9-11ed-bb82-0eb8b69eb347",
+        "nombre": "Performance"
+    },
+    {
+        "MarcaID": "30e6ef7f-d9b0-11ee-8df7-0e3a1e34687f",
+        "nombre": "Petit"
+    },
+    {
+        "MarcaID": "2b0e19a4-9b4e-11ee-ba93-0e3a1e34687f",
+        "nombre": "Petri"
+    },
+    {
+        "MarcaID": "f0dbcca9-b51f-11ec-8878-16c2a030bb97",
+        "nombre": "Peugeot "
+    },
+    {
+        "MarcaID": "d1b13026-3da3-11ed-8709-0e085dd00fab",
+        "nombre": "Philco "
+    },
+    {
+        "MarcaID": "4d8b1208-13ee-11ed-bb82-0eb8b69eb347",
+        "nombre": "Philips"
+    },
+    {
+        "MarcaID": "745f10ee-db6c-11ec-acbc-16c2a030bb97",
+        "nombre": "PIONEER"
+    },
+    {
+        "MarcaID": "c6afc6c9-de2e-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Pirelli"
+    },
+    {
+        "MarcaID": "ed4eb183-8059-11ed-9b80-0e87116d214b",
+        "nombre": "PlayStation"
+    },
+    {
+        "MarcaID": "e953edb3-45bd-11ee-ba93-0e3a1e34687f",
+        "nombre": "Polaroid"
+    },
+    {
+        "MarcaID": "a6019128-2323-11ed-bb82-0eb8b69eb347",
+        "nombre": "Positron"
+    },
+    {
+        "MarcaID": "43437ef0-d3b7-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Potenza"
+    },
+    {
+        "MarcaID": "11d91ec9-7235-11ed-9b80-0e87116d214b",
+        "nombre": "Pro-Bass"
+    },
+    {
+        "MarcaID": "d33c4b08-b949-11ee-8df7-0e3a1e34687f",
+        "nombre": "Pronova"
+    },
+    {
+        "MarcaID": "df705fea-8775-11ed-9b80-0e87116d214b",
+        "nombre": "Pulmoneb"
+    },
+    {
+        "MarcaID": "0b9d1e3a-db91-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Puma"
+    },
+    {
+        "MarcaID": "367d33d9-516e-11ee-ba93-0e3a1e34687f",
+        "nombre": "Punta Alta"
+    },
+    {
+        "MarcaID": "c7183155-ca92-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Pure cuy"
+    },
+    {
+        "MarcaID": "e5425631-44bd-11ed-9b80-0e87116d214b",
+        "nombre": "Qkl"
+    },
+    {
+        "MarcaID": "d200650a-33a0-11ed-8709-0e085dd00fab",
+        "nombre": "Qual"
+    },
+    {
+        "MarcaID": "806c18eb-3f35-11ed-8709-0e085dd00fab",
+        "nombre": "Quantum"
+    },
+    {
+        "MarcaID": "23f1629f-cfd5-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Radar "
+    },
+    {
+        "MarcaID": "05d290f4-fa74-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Raec"
+    },
+    {
+        "MarcaID": "9a6ca1c3-0e23-11ed-bb82-0eb8b69eb347",
+        "nombre": "Raleigh"
+    },
+    {
+        "MarcaID": "edaedb81-2b01-11ee-ba93-0e3a1e34687f",
+        "nombre": "RALLY"
+    },
+    {
+        "MarcaID": "d7d14461-1451-11ed-bb82-0eb8b69eb347",
+        "nombre": "Ranger"
+    },
+    {
+        "MarcaID": "aa7cae36-bd1c-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Rastrojero"
+    },
+    {
+        "MarcaID": "f68df3f9-b7b7-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Rawser"
+    },
+    {
+        "MarcaID": "13582a45-db6d-11ec-acbc-16c2a030bb97",
+        "nombre": "RCA"
+    },
+    {
+        "MarcaID": "fd8ebbd1-0e23-11ed-bb82-0eb8b69eb347",
+        "nombre": "Relaigh"
+    },
+    {
+        "MarcaID": "07000fa9-0da6-11ed-bb82-0eb8b69eb347",
+        "nombre": "Renault"
+    },
+    {
+        "MarcaID": "2254723e-83ee-11ee-ba93-0e3a1e34687f",
+        "nombre": "REPMAN"
+    },
+    {
+        "MarcaID": "7d12a066-7e1a-11ed-9b80-0e87116d214b",
+        "nombre": "Road Rider"
+    },
+    {
+        "MarcaID": "17e8a6ea-c4a2-11ec-8878-16c2a030bb97",
+        "nombre": "Robust "
+    },
+    {
+        "MarcaID": "4343136d-7c80-11ed-9b80-0e87116d214b",
+        "nombre": "Roeust"
+    },
+    {
+        "MarcaID": "1aa3e570-6f70-11ed-9b80-0e87116d214b",
+        "nombre": "Ross"
+    },
+    {
+        "MarcaID": "144de636-b7b8-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Rowser"
+    },
+    {
+        "MarcaID": "454d1a08-d9b0-11ee-8df7-0e3a1e34687f",
+        "nombre": "Rustik"
+    },
+    {
+        "MarcaID": "1dd64cb8-c5a1-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Saavedra"
+    },
+    {
+        "MarcaID": "bda10de9-f4cb-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Samick"
+    },
+    {
+        "MarcaID": "0b15a939-b931-11ec-8878-16c2a030bb97",
+        "nombre": "Samsung"
+    },
+    {
+        "MarcaID": "19cee6ff-cc6e-11ec-acbc-16c2a030bb97",
+        "nombre": "Sanyo"
+    },
+    {
+        "MarcaID": "ea33c2f6-516e-11ee-ba93-0e3a1e34687f",
+        "nombre": "Saurio"
+    },
+    {
+        "MarcaID": "97759990-eaaa-11ee-8df7-0e3a1e34687f",
+        "nombre": "Scania "
+    },
+    {
+        "MarcaID": "8e7e9566-fcda-11ee-8df7-0e3a1e34687f",
+        "nombre": "SCHNEIDER"
+    },
+    {
+        "MarcaID": "27553cef-6e9c-11ee-ba93-0e3a1e34687f",
+        "nombre": "Schwnn"
+    },
+    {
+        "MarcaID": "e0413041-2b01-11ee-ba93-0e3a1e34687f",
+        "nombre": "SCOTT"
+    },
+    {
+        "MarcaID": "03882fac-e8f6-11ed-9f0f-0e3a1e34687f",
+        "nombre": "SEINERLING"
+    },
+    {
+        "MarcaID": "31ff96fa-9b39-11ed-9b80-0e87116d214b",
+        "nombre": "Senon  "
+    },
+    {
+        "MarcaID": "e21a9219-8860-11ed-9b80-0e87116d214b",
+        "nombre": "SHIMANO"
+    },
+    {
+        "MarcaID": "cb262547-a6f8-11ed-9b80-0e87116d214b",
+        "nombre": "Shure"
+    },
+    {
+        "MarcaID": "deb263af-dac8-11ed-9f0f-0e3a1e34687f",
+        "nombre": "siambreta"
+    },
+    {
+        "MarcaID": "fe9ea3a6-f340-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Sifolimp"
+    },
+    {
+        "MarcaID": "b4d7a235-ff9c-11ec-bb82-0eb8b69eb347",
+        "nombre": "SIN MARCA "
+    },
+    {
+        "MarcaID": "a2bd79a7-b5fe-11ee-8df7-0e3a1e34687f",
+        "nombre": "Sincrolamp"
+    },
+    {
+        "MarcaID": "4594e8c5-0b8c-11ee-9f0f-0e3a1e34687f",
+        "nombre": "Sixelectric"
+    },
+    {
+        "MarcaID": "0e800319-e6a9-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Skigo"
+    },
+    {
+        "MarcaID": "81fa9dd4-23b9-11ed-bb82-0eb8b69eb347",
+        "nombre": "Skil"
+    },
+    {
+        "MarcaID": "15326f8e-57e6-11ed-9b80-0e87116d214b",
+        "nombre": "Slp"
+    },
+    {
+        "MarcaID": "d1ebc3f9-dbbb-11ee-8df7-0e3a1e34687f",
+        "nombre": "SOAP"
+    },
+    {
+        "MarcaID": "1e2ef565-cc77-11ec-acbc-16c2a030bb97",
+        "nombre": "Sony"
+    },
+    {
+        "MarcaID": "1b92f032-cc74-11ec-acbc-16c2a030bb97",
+        "nombre": "Sony Ericsson"
+    },
+    {
+        "MarcaID": "87dda4ee-db6c-11ec-acbc-16c2a030bb97",
+        "nombre": "SONY XPLOD"
+    },
+    {
+        "MarcaID": "87c3a6db-af07-11ee-8df7-0e3a1e34687f",
+        "nombre": "Speaker"
+    },
+    {
+        "MarcaID": "5057878f-d9b0-11ee-8df7-0e3a1e34687f",
+        "nombre": "Specialized"
+    },
+    {
+        "MarcaID": "ef183ece-e8f5-11ed-9f0f-0e3a1e34687f",
+        "nombre": "STAINLESS STEEL"
+    },
+    {
+        "MarcaID": "5d1d1f4b-77fa-11ee-ba93-0e3a1e34687f",
+        "nombre": "Stan Electric"
+    },
+    {
+        "MarcaID": "98d8ea8c-23b9-11ed-bb82-0eb8b69eb347",
+        "nombre": "Stanley"
+    },
+    {
+        "MarcaID": "4ba36ca9-a7b1-11ed-9b80-0e87116d214b",
+        "nombre": "Stihl"
+    },
+    {
+        "MarcaID": "b6701a97-dbc6-11ee-8df7-0e3a1e34687f",
+        "nombre": "STL CUSTOM"
+    },
+    {
+        "MarcaID": "fc56be56-888c-11ee-ba93-0e3a1e34687f",
+        "nombre": "Storm"
+    },
+    {
+        "MarcaID": "c6dff44c-ee7a-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Studioz"
+    },
+    {
+        "MarcaID": "a021f38a-95b2-11ed-9b80-0e87116d214b",
+        "nombre": "Sumo"
+    },
+    {
+        "MarcaID": "bb809498-c8ec-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Sunny"
+    },
+    {
+        "MarcaID": "b3b49505-5c76-11ee-ba93-0e3a1e34687f",
+        "nombre": "Super Power"
+    },
+    {
+        "MarcaID": "e80bc2f3-8326-11ed-9b80-0e87116d214b",
+        "nombre": "Surrey"
+    },
+    {
+        "MarcaID": "14711350-0da6-11ed-bb82-0eb8b69eb347",
+        "nombre": "Suzuki"
+    },
+    {
+        "MarcaID": "668edd24-c3f8-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Takuma"
+    },
+    {
+        "MarcaID": "43dda455-2f92-11ed-8709-0e085dd00fab",
+        "nombre": "TAMASHI"
+    },
+    {
+        "MarcaID": "b4f8787e-c762-11ed-9f0f-0e3a1e34687f",
+        "nombre": "TAON"
+    },
+    {
+        "MarcaID": "a91022c6-3879-11ef-9e2a-0e3a1e34687f",
+        "nombre": "Targa"
+    },
+    {
+        "MarcaID": "a68301c7-df87-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Tawak "
+    },
+    {
+        "MarcaID": "fcff84a9-db6c-11ec-acbc-16c2a030bb97",
+        "nombre": "TCL"
+    },
+    {
+        "MarcaID": "503e8872-2eff-11ed-8709-0e085dd00fab",
+        "nombre": "TECH"
+    },
+    {
+        "MarcaID": "a6fb0add-be98-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Teknial"
+    },
+    {
+        "MarcaID": "909d0ed8-9291-11ed-9b80-0e87116d214b",
+        "nombre": "Telefunken"
+    },
+    {
+        "MarcaID": "010e71bd-95bb-11ed-9b80-0e87116d214b",
+        "nombre": "Teltron"
+    },
+    {
+        "MarcaID": "92e7a52a-c250-11ec-8878-16c2a030bb97",
+        "nombre": "Telwin"
+    },
+    {
+        "MarcaID": "64516cc8-8b7d-11ed-9b80-0e87116d214b",
+        "nombre": "THUNDER"
+    },
+    {
+        "MarcaID": "cd6df378-00bc-11ef-8df7-0e3a1e34687f",
+        "nombre": "Thunder-pro"
+    },
+    {
+        "MarcaID": "26d71831-09cd-11ed-bb82-0eb8b69eb347",
+        "nombre": "Timek"
+    },
+    {
+        "MarcaID": "d7291659-8b7b-11ed-9b80-0e87116d214b",
+        "nombre": "TKL"
+    },
+    {
+        "MarcaID": "7a2947ae-ce22-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Tomaselli"
+    },
+    {
+        "MarcaID": "67bc9022-db6d-11ec-acbc-16c2a030bb97",
+        "nombre": "TONOMAC "
+    },
+    {
+        "MarcaID": "383166db-cc6e-11ec-acbc-16c2a030bb97",
+        "nombre": "TopMega"
+    },
+    {
+        "MarcaID": "9ae17be3-7636-11ed-9b80-0e87116d214b",
+        "nombre": "Toshiba"
+    },
+    {
+        "MarcaID": "fb822e4e-e442-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Toyama"
+    },
+    {
+        "MarcaID": "181b94ce-0da6-11ed-bb82-0eb8b69eb347",
+        "nombre": "Toyota"
+    },
+    {
+        "MarcaID": "16e74be7-f3e8-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Traful"
+    },
+    {
+        "MarcaID": "065db5fc-35f5-11ee-ba93-0e3a1e34687f",
+        "nombre": "Tramontina"
+    },
+    {
+        "MarcaID": "676d6e55-8a9f-11ed-9b80-0e87116d214b",
+        "nombre": "Treck Marlin"
+    },
+    {
+        "MarcaID": "ea76db0c-8859-11ed-9b80-0e87116d214b",
+        "nombre": "Trek"
+    },
+    {
+        "MarcaID": "7ab49be0-fa88-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Triangle"
+    },
+    {
+        "MarcaID": "2143b1c6-2b9d-11ed-8709-0e085dd00fab",
+        "nombre": "Trupers "
+    },
+    {
+        "MarcaID": "9e35d065-a0fb-11ed-9b80-0e87116d214b",
+        "nombre": "Tvs"
+    },
+    {
+        "MarcaID": "5b0f635e-f748-11ee-8df7-0e3a1e34687f",
+        "nombre": "Under armour"
+    },
+    {
+        "MarcaID": "3c140f8b-272b-11ef-9e2a-0e3a1e34687f",
+        "nombre": "Unibike"
+    },
+    {
+        "MarcaID": "fa68c0a1-98cf-11ed-9b80-0e87116d214b",
+        "nombre": "Unifon"
+    },
+    {
+        "MarcaID": "a68d7214-3540-11ee-ba93-0e3a1e34687f",
+        "nombre": "Uniform"
+    },
+    {
+        "MarcaID": "ccd2d115-33a0-11ed-8709-0e085dd00fab",
+        "nombre": "Ursus Trotter"
+    },
+    {
+        "MarcaID": "282ae851-981a-11ed-9b80-0e87116d214b",
+        "nombre": "Vaic"
+    },
+    {
+        "MarcaID": "c384b176-cb25-11ec-acbc-16c2a030bb97",
+        "nombre": "Vairo"
+    },
+    {
+        "MarcaID": "7caba44e-3dd1-11ee-ba93-0e3a1e34687f",
+        "nombre": "Velimotor"
+    },
+    {
+        "MarcaID": "3b6addf9-011e-11ed-bb82-0eb8b69eb347",
+        "nombre": "Venzo"
+    },
+    {
+        "MarcaID": "5d6f0ad2-dda4-11ee-8df7-0e3a1e34687f",
+        "nombre": "Vikingo"
+    },
+    {
+        "MarcaID": "c7546b02-a167-11ed-9b80-0e87116d214b",
+        "nombre": "Vinco"
+    },
+    {
+        "MarcaID": "db4e6c23-c501-11ee-8df7-0e3a1e34687f",
+        "nombre": "VIVO"
+    },
+    {
+        "MarcaID": "62615fc4-77fa-11ee-ba93-0e3a1e34687f",
+        "nombre": "Volcan"
+    },
+    {
+        "MarcaID": "30dee76b-0da6-11ed-bb82-0eb8b69eb347",
+        "nombre": "Volkswagen"
+    },
+    {
+        "MarcaID": "c62083ca-8071-11ed-9b80-0e87116d214b",
+        "nombre": "Volkswagen2"
+    },
+    {
+        "MarcaID": "6f7f6747-9b51-11ee-ba93-0e3a1e34687f",
+        "nombre": "Volvo"
+    },
+    {
+        "MarcaID": "8fb54ac2-d2e8-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Vulcano"
+    },
+    {
+        "MarcaID": "7159cbd2-fa88-11ed-9f0f-0e3a1e34687f",
+        "nombre": "West Lake "
+    },
+    {
+        "MarcaID": "e4bbad46-3084-11ee-ba93-0e3a1e34687f",
+        "nombre": "Westinghouse"
+    },
+    {
+        "MarcaID": "5bbfeb22-d282-11ee-8df7-0e3a1e34687f",
+        "nombre": "Will"
+    },
+    {
+        "MarcaID": "f06e73f6-919d-11ed-9b80-0e87116d214b",
+        "nombre": "Winco "
+    },
+    {
+        "MarcaID": "c1a142e1-1765-11ed-bb82-0eb8b69eb347",
+        "nombre": "WINGS"
+    },
+    {
+        "MarcaID": "4aae3cdd-57b6-11ee-ba93-0e3a1e34687f",
+        "nombre": "WINTRACK"
+    },
+    {
+        "MarcaID": "4d28f186-c1ad-11ed-9f0f-0e3a1e34687f",
+        "nombre": "x-view"
+    },
+    {
+        "MarcaID": "92531bd6-d2f5-11ed-9f0f-0e3a1e34687f",
+        "nombre": "XAEA"
+    },
+    {
+        "MarcaID": "414c6e98-805a-11ed-9b80-0e87116d214b",
+        "nombre": "Xbox"
+    },
+    {
+        "MarcaID": "4d1a8aa3-cc74-11ec-acbc-16c2a030bb97",
+        "nombre": "Xiaomi"
+    },
+    {
+        "MarcaID": "e3b8f25f-ec55-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Xtm"
+    },
+    {
+        "MarcaID": "42a39cc7-be88-11ed-9f0f-0e3a1e34687f",
+        "nombre": "Xtreme"
+    },
+    {
+        "MarcaID": "58f12149-b520-11ec-8878-16c2a030bb97",
+        "nombre": "Yamaha "
+    },
+    {
+        "MarcaID": "bcd137ee-7f04-11ee-ba93-0e3a1e34687f",
+        "nombre": "YOSEMITE"
+    },
+    {
+        "MarcaID": "88ec14a7-f324-11ed-9f0f-0e3a1e34687f",
+        "nombre": "YPF"
+    },
+    {
+        "MarcaID": "49dbe6a0-0df5-11ef-9e2a-0e3a1e34687f",
+        "nombre": "Zafari"
+    },
+    {
+        "MarcaID": "676f7c2b-b520-11ec-8878-16c2a030bb97",
+        "nombre": "Zanella "
+    },
+    {
+        "MarcaID": "4a21cbd2-eabe-11ee-8df7-0e3a1e34687f",
+        "nombre": "Zaskar"
+    },
+    {
+        "MarcaID": "77f5db7f-2882-11ed-8709-0e085dd00fab",
+        "nombre": "Zenith"
+    },
+    {
+        "MarcaID": "6302f3be-df8b-11ed-9f0f-0e3a1e34687f",
+        "nombre": "ZOMAX"
+    },
+    {
+        "MarcaID": "36a2a48c-cc74-11ec-acbc-16c2a030bb97",
+        "nombre": "ZTE"
+    }
 ]
 
 export const modelosCategorias = [
@@ -3521,6 +3847,17 @@ export const modelosCategorias = [
         "subcategorias": "auto"
     },
     {
+        "ModeloID": "013361db-1f65-11ef-9e2a-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "102ab3c2-9b39-11ed-9b80-0e87116d214b",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347",
+        "Nombre": "LT-39DA530",
+        "id_tipo": "Jvc",
+        "tipo": "Televisor LED",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Electrodomesticos"
+    },
+    {
         "ModeloID": "02c99945-a6f9-11ed-9b80-0e87116d214b",
         "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
         "id_marca": "cb262547-a6f8-11ed-9b80-0e87116d214b",
@@ -3550,8 +3887,8 @@ export const modelosCategorias = [
         "Nombre": "JNW-27",
         "id_tipo": "Niwa",
         "tipo": "Podadora de altura telescopica",
-        "categorias": "Hogar, Cocina,Muebles, Jard\u00edn y Sanitarios",
-        "subcategorias": "Jard\u00edn "
+        "categorias": "Hogar, Cocina,Muebles, Jard\u00ed n y Sanitarios",
+        "subcategorias": "Jard\u00ed n "
     },
     {
         "ModeloID": "0371180c-3553-11ed-8709-0e085dd00fab",
@@ -3660,7 +3997,7 @@ export const modelosCategorias = [
         "Nombre": "45Kg",
         "id_tipo": "YPF",
         "tipo": "Garrafa ",
-        "categorias": "Hogar, Cocina,Muebles, Jard\u00edn y Sanitarios",
+        "categorias": "Hogar, Cocina,Muebles, Jard\u00ed n y Sanitarios",
         "subcategorias": "Cocina, Bazar "
     },
     {
@@ -3873,6 +4210,17 @@ export const modelosCategorias = [
         "subcategorias": "auto"
     },
     {
+        "ModeloID": "0b67230b-00bd-11ef-8df7-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "cd6df378-00bc-11ef-8df7-0e3a1e34687f",
+        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Dynamic Spearkears",
+        "id_tipo": "Thunder-pro",
+        "tipo": "Parlante portatil",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Audio y Video"
+    },
+    {
         "ModeloID": "0bea0989-91bd-11ed-9b80-0e87116d214b",
         "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
         "id_marca": "e8ab015f-aaab-11ec-816d-16c2a030bb97",
@@ -3937,6 +4285,17 @@ export const modelosCategorias = [
         "tipo": "Todo terreno",
         "categorias": "Vehiculos",
         "subcategorias": "Bicicleta"
+    },
+    {
+        "ModeloID": "0cbd4a17-1f6a-11ef-9e2a-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "4d8b1208-13ee-11ed-bb82-0eb8b69eb347",
+        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347",
+        "Nombre": "TANX50/77",
+        "id_tipo": "Philips",
+        "tipo": "equipo de audio ",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Audio y Video"
     },
     {
         "ModeloID": "0d2cf505-af08-11ee-8df7-0e3a1e34687f",
@@ -4104,6 +4463,17 @@ export const modelosCategorias = [
         "subcategorias": "auto"
     },
     {
+        "ModeloID": "117dad6b-d64e-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "c4afa96b-0dc8-11ed-bb82-0eb8b69eb347",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347",
+        "Nombre": "TV-DB14",
+        "id_tipo": "Durabrand",
+        "tipo": "Televisor",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Electrodomesticos"
+    },
+    {
         "ModeloID": "118b46de-95be-11ed-9b80-0e87116d214b",
         "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
         "id_marca": "e8ab015f-aaab-11ec-816d-16c2a030bb97",
@@ -4124,6 +4494,17 @@ export const modelosCategorias = [
         "tipo": "Tactil",
         "categorias": "Electr\u00f3nica",
         "subcategorias": "Celulares y Tel\u00e9fono "
+    },
+    {
+        "ModeloID": "11998e09-e923-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "0b15a939-b931-11ec-8878-16c2a030bb97",
+        "id_subcategoria": "cb8c8acd-0908-11ed-bb82-0eb8b69eb347",
+        "Nombre": "SN-T210",
+        "id_tipo": "Samsung",
+        "tipo": "Tablet",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Computacion"
     },
     {
         "ModeloID": "1209e0ab-878f-11ed-9b80-0e87116d214b",
@@ -4273,7 +4654,7 @@ export const modelosCategorias = [
         "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
         "id_marca": "4d8b1208-13ee-11ed-bb82-0eb8b69eb347",
         "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347",
-        "Nombre": "32PFL3414\/77",
+        "Nombre": "32PFL3414/77",
         "id_tipo": "Philips",
         "tipo": null,
         "categorias": "Electr\u00f3nica",
@@ -4320,6 +4701,17 @@ export const modelosCategorias = [
         "Nombre": "Fibra \u00f3ptica ",
         "id_tipo": "SIN MARCA ",
         "tipo": "Cables y accesorios ",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Computacion"
+    },
+    {
+        "ModeloID": "186d4fa8-dc80-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "0b15a939-b931-11ec-8878-16c2a030bb97",
+        "id_subcategoria": "cb8c8acd-0908-11ed-bb82-0eb8b69eb347",
+        "Nombre": "943NWX",
+        "id_tipo": "Samsung",
+        "tipo": "Monitor",
         "categorias": "Electr\u00f3nica",
         "subcategorias": "Computacion"
     },
@@ -4482,7 +4874,7 @@ export const modelosCategorias = [
         "id_categoria": "172ed85e-07d8-11ed-bb82-0eb8b69eb347",
         "id_marca": "05d290f4-fa74-11ed-9f0f-0e3a1e34687f",
         "id_subcategoria": "370aec5c-6c06-11ed-9b80-0e87116d214b",
-        "Nombre": "ZIJ13\/42",
+        "Nombre": "ZIJ13/42",
         "id_tipo": "Raec",
         "tipo": "Portatil",
         "categorias": "Herramientas y materiales de construccion",
@@ -4504,7 +4896,7 @@ export const modelosCategorias = [
         "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
         "id_marca": "4d8b1208-13ee-11ed-bb82-0eb8b69eb347",
         "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347",
-        "Nombre": "21PT8468C\/77",
+        "Nombre": "21PT8468C/77",
         "id_tipo": "Philips",
         "tipo": "Televisor",
         "categorias": "Electr\u00f3nica",
@@ -4687,11 +5079,22 @@ export const modelosCategorias = [
         "subcategorias": "Moto"
     },
     {
+        "ModeloID": "220f6d16-dbc3-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "0ed5bc86-7f8d-11ed-9b80-0e87116d214b",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347",
+        "Nombre": "P6118VN",
+        "id_tipo": "Atma",
+        "tipo": "Pava electica",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Electrodomesticos"
+    },
+    {
         "ModeloID": "221202be-9028-11ed-9b80-0e87116d214b",
         "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
         "id_marca": "0b15a939-b931-11ec-8878-16c2a030bb97",
         "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347",
-        "Nombre": "42PFL3007D\/77",
+        "Nombre": "42PFL3007D/77",
         "id_tipo": "Samsung",
         "tipo": "Televisor LED",
         "categorias": "Electr\u00f3nica",
@@ -4713,7 +5116,7 @@ export const modelosCategorias = [
         "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
         "id_marca": "4d8b1208-13ee-11ed-bb82-0eb8b69eb347",
         "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347",
-        "Nombre": "42PFL3008D\/77",
+        "Nombre": "42PFL3008D/77",
         "id_tipo": "Philips",
         "tipo": "Televisor",
         "categorias": "Electr\u00f3nica",
@@ -4735,7 +5138,7 @@ export const modelosCategorias = [
         "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
         "id_marca": "4d8b1208-13ee-11ed-bb82-0eb8b69eb347",
         "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347",
-        "Nombre": "32PHG5101\/77",
+        "Nombre": "32PHG5101/77",
         "id_tipo": "Philips",
         "tipo": "Televisor",
         "categorias": "Electr\u00f3nica",
@@ -4856,7 +5259,7 @@ export const modelosCategorias = [
         "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
         "id_marca": "4d8b1208-13ee-11ed-bb82-0eb8b69eb347",
         "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347",
-        "Nombre": "FWM664X\/77",
+        "Nombre": "FWM664X/77",
         "id_tipo": "Philips",
         "tipo": "equipo de audio ",
         "categorias": "Electr\u00f3nica",
@@ -4881,7 +5284,7 @@ export const modelosCategorias = [
         "Nombre": "Cuchillo",
         "id_tipo": "Tramontina",
         "tipo": "Juego de cubiertos",
-        "categorias": "Hogar, Cocina,Muebles, Jard\u00edn y Sanitarios",
+        "categorias": "Hogar, Cocina,Muebles, Jard\u00ed n y Sanitarios",
         "subcategorias": "Cocina, Bazar "
     },
     {
@@ -4960,6 +5363,17 @@ export const modelosCategorias = [
         "tipo": "Tactil",
         "categorias": "Electr\u00f3nica",
         "subcategorias": "Celulares y Tel\u00e9fono "
+    },
+    {
+        "ModeloID": "2b8fbd99-db33-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "75a25cad-da65-11ee-8df7-0e3a1e34687f",
+        "id_subcategoria": "cb8c8acd-0908-11ed-bb82-0eb8b69eb347",
+        "Nombre": "M76X0S",
+        "id_tipo": "BANGHÓ ",
+        "tipo": "Notebook",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Computacion"
     },
     {
         "ModeloID": "2bff5600-c664-11ed-9f0f-0e3a1e34687f",
@@ -5178,8 +5592,8 @@ export const modelosCategorias = [
         "Nombre": "CG260E",
         "id_tipo": "Toyama",
         "tipo": "Desmalazadora",
-        "categorias": "Hogar, Cocina,Muebles, Jard\u00edn y Sanitarios",
-        "subcategorias": "Jard\u00edn "
+        "categorias": "Hogar, Cocina,Muebles, Jard\u00ed n y Sanitarios",
+        "subcategorias": "Jard\u00ed n "
     },
     {
         "ModeloID": "31daca0e-c501-11ee-8df7-0e3a1e34687f",
@@ -5235,6 +5649,17 @@ export const modelosCategorias = [
         "tipo": "auto",
         "categorias": "Vehiculos",
         "subcategorias": "auto"
+    },
+    {
+        "ModeloID": "32daaee5-eabf-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "172ed85e-07d8-11ed-bb82-0eb8b69eb347",
+        "id_marca": "ced721a1-dcb6-11ee-8df7-0e3a1e34687f",
+        "id_subcategoria": "4c9ad041-6c06-11ed-9b80-0e87116d214b",
+        "Nombre": "2700",
+        "id_tipo": "FULSAR",
+        "tipo": "Manual",
+        "categorias": "Herramientas y materiales de construccion",
+        "subcategorias": "Maquinarias de construccion"
     },
     {
         "ModeloID": "330ea52d-83a9-11ed-9b80-0e87116d214b",
@@ -5488,6 +5913,17 @@ export const modelosCategorias = [
         "tipo": "Tactil",
         "categorias": "Electr\u00f3nica",
         "subcategorias": "Celulares y Tel\u00e9fono "
+    },
+    {
+        "ModeloID": "3a71bc6b-dfae-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "1e1e8c37-dfae-11ee-8df7-0e3a1e34687f",
+        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347",
+        "Nombre": "PGD2024",
+        "id_tipo": "Pagoda",
+        "tipo": "Parlante portatil",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Audio y Video"
     },
     {
         "ModeloID": "3aab0e6b-92ae-11ed-9b80-0e87116d214b",
@@ -5765,6 +6201,17 @@ export const modelosCategorias = [
         "subcategorias": "Consolas y Videos Juegos"
     },
     {
+        "ModeloID": "4398ad93-00bd-11ef-8df7-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "3017eec8-c238-11ec-8878-16c2a030bb97",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347",
+        "Nombre": "turbodrum",
+        "id_tipo": "LG",
+        "tipo": "Lavarropa",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Electrodomesticos"
+    },
+    {
         "ModeloID": "43adb339-b901-11ed-9f0f-0e3a1e34687f",
         "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
         "id_marca": "676f7c2b-b520-11ec-8878-16c2a030bb97",
@@ -5851,6 +6298,17 @@ export const modelosCategorias = [
         "tipo": "amplificador de potencia ",
         "categorias": "Electr\u00f3nica",
         "subcategorias": "Audio y Video"
+    },
+    {
+        "ModeloID": "4542cba0-dbb1-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "390585d5-cc77-11ec-acbc-16c2a030bb97",
+        "id_subcategoria": "cb8c8acd-0908-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Schoolmate 17SF20GM7",
+        "id_tipo": "BGH",
+        "tipo": "Netbook",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Computacion"
     },
     {
         "ModeloID": "4573325b-913c-11ed-9b80-0e87116d214b",
@@ -6018,6 +6476,17 @@ export const modelosCategorias = [
         "subcategorias": "Herramientas"
     },
     {
+        "ModeloID": "49ecbbbd-dfb3-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "bf27fcf3-dfb2-11ee-8df7-0e3a1e34687f",
+        "id_subcategoria": "629ef2d3-0e80-11ed-bb82-0eb8b69eb347",
+        "Nombre": "KJH- FM1811",
+        "id_tipo": "Kanji Home ",
+        "tipo": "Ventilador de pie",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Ventiladores"
+    },
+    {
         "ModeloID": "4a337cba-a6d8-11ed-9b80-0e87116d214b",
         "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
         "id_marca": "9366e865-7a6b-11ed-9b80-0e87116d214b",
@@ -6069,7 +6538,7 @@ export const modelosCategorias = [
         "Nombre": "Reflector Al\u00f3geno",
         "id_tipo": "No especificado ",
         "tipo": "Reflector ",
-        "categorias": "Hogar, Cocina,Muebles, Jard\u00edn y Sanitarios",
+        "categorias": "Hogar, Cocina,Muebles, Jard\u00ed n y Sanitarios",
         "subcategorias": "Iluminaci\u00f3n para el Hogar"
     },
     {
@@ -6161,6 +6630,39 @@ export const modelosCategorias = [
         "subcategorias": "Celulares y Tel\u00e9fono "
     },
     {
+        "ModeloID": "4f097013-e923-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "0b15a939-b931-11ec-8878-16c2a030bb97",
+        "id_subcategoria": "cb8c8acd-0908-11ed-bb82-0eb8b69eb347",
+        "Nombre": "SM-T560",
+        "id_tipo": "Samsung",
+        "tipo": "Tablet",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Computacion"
+    },
+    {
+        "ModeloID": "4f20055b-0255-11ef-8df7-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "72211e6e-b6e7-11ed-9f0f-0e3a1e34687f",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347",
+        "Nombre": "CPK06B",
+        "id_tipo": "Patrick",
+        "tipo": "Secarropa",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Electrodomesticos"
+    },
+    {
+        "ModeloID": "4f38a8f4-e924-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "172ed85e-07d8-11ed-bb82-0eb8b69eb347",
+        "id_marca": "17e8a6ea-c4a2-11ec-8878-16c2a030bb97",
+        "id_subcategoria": "370aec5c-6c06-11ed-9b80-0e87116d214b",
+        "Nombre": "SPEED",
+        "id_tipo": "Robust ",
+        "tipo": "MAQUINA DE CORTAR PASTO",
+        "categorias": "Herramientas y materiales de construccion",
+        "subcategorias": "Herramientas"
+    },
+    {
         "ModeloID": "4fb43151-ac74-11ed-9f0f-0e3a1e34687f",
         "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
         "id_marca": "15a7ba06-b520-11ec-8878-16c2a030bb97",
@@ -6170,6 +6672,17 @@ export const modelosCategorias = [
         "tipo": "110cc",
         "categorias": "Vehiculos",
         "subcategorias": "Moto"
+    },
+    {
+        "ModeloID": "4fda025b-dfa1-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "fcff84a9-db6c-11ec-acbc-16c2a030bb97",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347",
+        "Nombre": "L4256500",
+        "id_tipo": "TCL",
+        "tipo": "Televisor LED",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Electrodomesticos"
     },
     {
         "ModeloID": "4fed33b1-0c23-11ed-bb82-0eb8b69eb347",
@@ -6726,7 +7239,7 @@ export const modelosCategorias = [
         "id_categoria": "172ed85e-07d8-11ed-bb82-0eb8b69eb347",
         "id_marca": "43437ef0-d3b7-11ed-9f0f-0e3a1e34687f",
         "id_subcategoria": "370aec5c-6c06-11ed-9b80-0e87116d214b",
-        "Nombre": "ID 2\/1513",
+        "Nombre": "ID 2/1513",
         "id_tipo": "Potenza",
         "tipo": "Portatil",
         "categorias": "Herramientas y materiales de construccion",
@@ -6764,6 +7277,28 @@ export const modelosCategorias = [
         "tipo": "Portatil",
         "categorias": "Herramientas y materiales de construccion",
         "subcategorias": "Herramientas"
+    },
+    {
+        "ModeloID": "6044917a-00bd-11ef-8df7-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "4d8b1208-13ee-11ed-bb82-0eb8b69eb347",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347",
+        "Nombre": "GC 1703",
+        "id_tipo": "Philips",
+        "tipo": "plancha",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Electrodomesticos"
+    },
+    {
+        "ModeloID": "609f5066-d64e-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "44d78ad4-d64e-11ee-8df7-0e3a1e34687f",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347",
+        "Nombre": "CT-1410",
+        "id_tipo": "H.Q.S.",
+        "tipo": "Televisor LED",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Electrodomesticos"
     },
     {
         "ModeloID": "61665c64-8af8-11ed-9b80-0e87116d214b",
@@ -6819,6 +7354,17 @@ export const modelosCategorias = [
         "tipo": "auto",
         "categorias": "Vehiculos",
         "subcategorias": "auto"
+    },
+    {
+        "ModeloID": "62ec348d-d9b0-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
+        "id_marca": "403e2e32-d9b0-11ee-8df7-0e3a1e34687f",
+        "id_subcategoria": "2b69277b-0780-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Tuner",
+        "id_tipo": "Niner",
+        "tipo": "Todo terreno",
+        "categorias": "Vehiculos",
+        "subcategorias": "Bicicleta"
     },
     {
         "ModeloID": "63030909-91fb-11ed-9b80-0e87116d214b",
@@ -6898,6 +7444,17 @@ export const modelosCategorias = [
         "subcategorias": "Celulares y Tel\u00e9fono "
     },
     {
+        "ModeloID": "64a827ba-dfa1-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "0b15a939-b931-11ec-8878-16c2a030bb97",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347",
+        "Nombre": "1N40D5500RE",
+        "id_tipo": "Samsung",
+        "tipo": "Televisor LED",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Electrodomesticos"
+    },
+    {
         "ModeloID": "65053503-91d0-11ed-9b80-0e87116d214b",
         "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
         "id_marca": "30dee76b-0da6-11ed-bb82-0eb8b69eb347",
@@ -6940,6 +7497,17 @@ export const modelosCategorias = [
         "tipo": "150 cc",
         "categorias": "Vehiculos",
         "subcategorias": "Moto"
+    },
+    {
+        "ModeloID": "67de5d6e-e923-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "0b15a939-b931-11ec-8878-16c2a030bb97",
+        "id_subcategoria": "cb8c8acd-0908-11ed-bb82-0eb8b69eb347",
+        "Nombre": "SM-T810",
+        "id_tipo": "Samsung",
+        "tipo": "Tablet",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Computacion"
     },
     {
         "ModeloID": "67e9a9cf-a7b1-11ed-9b80-0e87116d214b",
@@ -6993,7 +7561,7 @@ export const modelosCategorias = [
         "Nombre": "AW-3257",
         "id_tipo": "Amwood",
         "tipo": "Anafe El\u00e9ctrica",
-        "categorias": "Hogar, Cocina,Muebles, Jard\u00edn y Sanitarios",
+        "categorias": "Hogar, Cocina,Muebles, Jard\u00ed n y Sanitarios",
         "subcategorias": "Cocina, Bazar "
     },
     {
@@ -7050,6 +7618,17 @@ export const modelosCategorias = [
         "tipo": "Monitor",
         "categorias": "Electr\u00f3nica",
         "subcategorias": "Computacion"
+    },
+    {
+        "ModeloID": "6b9d17b5-e924-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "1e2ef565-cc77-11ec-acbc-16c2a030bb97",
+        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347",
+        "Nombre": "HCDSHAKEX30",
+        "id_tipo": "Sony",
+        "tipo": "equipo de audio ",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Audio y Video"
     },
     {
         "ModeloID": "6bdd7c0b-9022-11ed-9b80-0e87116d214b",
@@ -7635,6 +8214,17 @@ export const modelosCategorias = [
         "subcategorias": "auto"
     },
     {
+        "ModeloID": "7b073857-e88d-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
+        "id_marca": "7ccfb985-0da5-11ed-bb82-0eb8b69eb347",
+        "id_subcategoria": "1ea6a73c-0780-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Spin",
+        "id_tipo": "Chevrolet ",
+        "tipo": "Sedan",
+        "categorias": "Vehiculos",
+        "subcategorias": "auto"
+    },
+    {
         "ModeloID": "7b44a969-9028-11ed-9b80-0e87116d214b",
         "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
         "id_marca": "d200650a-33a0-11ed-8709-0e085dd00fab",
@@ -7661,7 +8251,7 @@ export const modelosCategorias = [
         "id_categoria": "172ed85e-07d8-11ed-bb82-0eb8b69eb347",
         "id_marca": "d8017a96-7c7f-11ed-9b80-0e87116d214b",
         "id_subcategoria": "370aec5c-6c06-11ed-9b80-0e87116d214b",
-        "Nombre": "ST-1X\/DIN3-11",
+        "Nombre": "ST-1X/DIN3-11",
         "id_tipo": "Lusqtoff",
         "tipo": "Portatil",
         "categorias": "Herramientas y materiales de construccion",
@@ -7732,6 +8322,17 @@ export const modelosCategorias = [
         "tipo": "250 cc",
         "categorias": "Vehiculos",
         "subcategorias": "Moto"
+    },
+    {
+        "ModeloID": "7e05801d-dbc4-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "13f06c74-cc6e-11ec-acbc-16c2a030bb97",
+        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347",
+        "Nombre": "LLPB053408C5",
+        "id_tipo": "Admiral",
+        "tipo": "Estereo",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Audio y Video"
     },
     {
         "ModeloID": "7e27c01e-be74-11ed-9f0f-0e3a1e34687f",
@@ -7998,6 +8599,17 @@ export const modelosCategorias = [
         "subcategorias": "auto"
     },
     {
+        "ModeloID": "890c9721-e924-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "9c1066de-24ac-11ed-bb82-0eb8b69eb347",
+        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347",
+        "Nombre": "MNT390",
+        "id_tipo": "Noblex ",
+        "tipo": "Parlante portatil",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Audio y Video"
+    },
+    {
         "ModeloID": "8956975a-8d0f-11ed-9b80-0e87116d214b",
         "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
         "id_marca": "79080da5-8d0f-11ed-9b80-0e87116d214b",
@@ -8152,6 +8764,17 @@ export const modelosCategorias = [
         "subcategorias": "Moto"
     },
     {
+        "ModeloID": "8d660933-e921-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "0b15a939-b931-11ec-8878-16c2a030bb97",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347",
+        "Nombre": "ON46H6203AG ",
+        "id_tipo": "Samsung",
+        "tipo": "Televisor LED",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Electrodomesticos"
+    },
+    {
         "ModeloID": "8d774cbf-bde7-11ed-9f0f-0e3a1e34687f",
         "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
         "id_marca": "676f7c2b-b520-11ec-8878-16c2a030bb97",
@@ -8207,6 +8830,17 @@ export const modelosCategorias = [
         "subcategorias": "Moto"
     },
     {
+        "ModeloID": "8f332a1e-d64d-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
+        "id_marca": "d1b13026-3da3-11ed-8709-0e085dd00fab",
+        "id_subcategoria": "2b69277b-0780-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Escape 29",
+        "id_tipo": "Philco ",
+        "tipo": "Todo terreno",
+        "categorias": "Vehiculos",
+        "subcategorias": "Bicicleta"
+    },
+    {
         "ModeloID": "8f52b608-902e-11ed-9b80-0e87116d214b",
         "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
         "id_marca": "1aa3e570-6f70-11ed-9b80-0e87116d214b",
@@ -8244,7 +8878,7 @@ export const modelosCategorias = [
         "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
         "id_marca": "4d8b1208-13ee-11ed-bb82-0eb8b69eb347",
         "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347",
-        "Nombre": "43PFD6917\/77",
+        "Nombre": "43PFD6917/77",
         "id_tipo": "Philips",
         "tipo": "Smart TV",
         "categorias": "Electr\u00f3nica",
@@ -8293,6 +8927,17 @@ export const modelosCategorias = [
         "tipo": "Tactil",
         "categorias": "Electr\u00f3nica",
         "subcategorias": "Celulares y Tel\u00e9fono "
+    },
+    {
+        "ModeloID": "9334ef6a-da65-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "75a25cad-da65-11ee-8df7-0e3a1e34687f",
+        "id_subcategoria": "cb8c8acd-0908-11ed-bb82-0eb8b69eb347",
+        "Nombre": "SUMA 1025",
+        "id_tipo": "BANGHÓ ",
+        "tipo": "Netbook",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Computacion"
     },
     {
         "ModeloID": "9334f345-ea81-11ed-9f0f-0e3a1e34687f",
@@ -8453,7 +9098,7 @@ export const modelosCategorias = [
         "id_categoria": "172ed85e-07d8-11ed-bb82-0eb8b69eb347",
         "id_marca": "66809033-df7b-11ed-9f0f-0e3a1e34687f",
         "id_subcategoria": "370aec5c-6c06-11ed-9b80-0e87116d214b",
-        "Nombre": "T\/005",
+        "Nombre": "T/005",
         "id_tipo": "Brico",
         "tipo": "Portatil",
         "categorias": "Herramientas y materiales de construccion",
@@ -8713,6 +9358,17 @@ export const modelosCategorias = [
         "subcategorias": "Audio y Video"
     },
     {
+        "ModeloID": "9b255628-ec7d-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "c99e7737-c3fb-11ed-9f0f-0e3a1e34687f",
+        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347",
+        "Nombre": "Trilley Sparher",
+        "id_tipo": "Euro Sound",
+        "tipo": "Parlante portatil",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Audio y Video"
+    },
+    {
         "ModeloID": "9b8bbd3e-eb8d-11ed-9f0f-0e3a1e34687f",
         "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
         "id_marca": "30dee76b-0da6-11ed-bb82-0eb8b69eb347",
@@ -8783,7 +9439,7 @@ export const modelosCategorias = [
         "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
         "id_marca": "4d8b1208-13ee-11ed-bb82-0eb8b69eb347",
         "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347",
-        "Nombre": "HD 1487\/A",
+        "Nombre": "HD 1487/A",
         "id_tipo": "Philips",
         "tipo": "plancha",
         "categorias": "Electr\u00f3nica",
@@ -8944,6 +9600,17 @@ export const modelosCategorias = [
         "subcategorias": "Audio y Video"
     },
     {
+        "ModeloID": "a32af257-dda4-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
+        "id_marca": "5d6f0ad2-dda4-11ee-8df7-0e3a1e34687f",
+        "id_subcategoria": "25097216-0780-11ed-bb82-0eb8b69eb347",
+        "Nombre": "CDI",
+        "id_tipo": "Vikingo",
+        "tipo": "Urbana",
+        "categorias": "Vehiculos",
+        "subcategorias": "Moto"
+    },
+    {
         "ModeloID": "a37ad64b-7a31-11ed-9b80-0e87116d214b",
         "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
         "id_marca": "15a7ba06-b520-11ec-8878-16c2a030bb97",
@@ -9021,6 +9688,17 @@ export const modelosCategorias = [
         "subcategorias": "Celulares y Tel\u00e9fono "
     },
     {
+        "ModeloID": "a506feb7-d64d-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
+        "id_marca": "ea76db0c-8859-11ed-9b80-0e87116d214b",
+        "id_subcategoria": "2b69277b-0780-11ed-bb82-0eb8b69eb347",
+        "Nombre": "6700",
+        "id_tipo": "Trek",
+        "tipo": "Todo terreno",
+        "categorias": "Vehiculos",
+        "subcategorias": "Bicicleta"
+    },
+    {
         "ModeloID": "a51967cc-c48c-11ec-8878-16c2a030bb97",
         "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
         "id_marca": "e8ab015f-aaab-11ec-816d-16c2a030bb97",
@@ -9050,7 +9728,7 @@ export const modelosCategorias = [
         "Nombre": "Andina",
         "id_tipo": "Ferrum",
         "tipo": "Inodoro",
-        "categorias": "Hogar, Cocina,Muebles, Jard\u00edn y Sanitarios",
+        "categorias": "Hogar, Cocina,Muebles, Jard\u00ed n y Sanitarios",
         "subcategorias": "Elementos de Ba\u00f1o"
     },
     {
@@ -9107,6 +9785,17 @@ export const modelosCategorias = [
         "tipo": "Parlante portatil",
         "categorias": "Electr\u00f3nica",
         "subcategorias": "Audio y Video"
+    },
+    {
+        "ModeloID": "a666f55f-eaaa-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
+        "id_marca": "97759990-eaaa-11ee-8df7-0e3a1e34687f",
+        "id_subcategoria": "9b065a4d-c6b8-11ee-8df7-0e3a1e34687f",
+        "Nombre": "K400",
+        "id_tipo": "Scania ",
+        "tipo": "Transporte de Pasajeros",
+        "categorias": "Vehiculos",
+        "subcategorias": "Colectivo"
     },
     {
         "ModeloID": "a6ac7a90-86ff-11ed-9b80-0e87116d214b",
@@ -9241,6 +9930,17 @@ export const modelosCategorias = [
         "subcategorias": "Bicicleta"
     },
     {
+        "ModeloID": "ab3fcdbe-fcda-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "0ea216e7-fcd9-11ee-8df7-0e3a1e34687f",
+        "id_marca": "8e7e9566-fcda-11ee-8df7-0e3a1e34687f",
+        "id_subcategoria": "3e35d258-fcd9-11ee-8df7-0e3a1e34687f",
+        "Nombre": "CERVEZA",
+        "id_tipo": "SCHNEIDER",
+        "tipo": "EN LATA",
+        "categorias": "BEBIDA",
+        "subcategorias": "CON ALCOHOL"
+    },
+    {
         "ModeloID": "ab8aa943-9816-11ed-9b80-0e87116d214b",
         "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
         "id_marca": "676f7c2b-b520-11ec-8878-16c2a030bb97",
@@ -9289,7 +9989,7 @@ export const modelosCategorias = [
         "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
         "id_marca": "28bb0dac-cc74-11ec-acbc-16c2a030bb97",
         "id_subcategoria": "cb8c8acd-0908-11ed-bb82-0eb8b69eb347",
-        "Nombre": "IPAD MIINI MD534LE\/A",
+        "Nombre": "IPAD MIINI MD534LE/A",
         "id_tipo": "Apple",
         "tipo": "Tablet",
         "categorias": "Electr\u00f3nica",
@@ -9450,6 +10150,17 @@ export const modelosCategorias = [
         "subcategorias": "Celulares y Tel\u00e9fono "
     },
     {
+        "ModeloID": "b05ba7a1-e923-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "13582a45-db6d-11ec-acbc-16c2a030bb97",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347",
+        "Nombre": "ANDSOFXUHD-F",
+        "id_tipo": "RCA",
+        "tipo": "Televisor LED",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Electrodomesticos"
+    },
+    {
         "ModeloID": "b124fdb0-83a7-11ed-9b80-0e87116d214b",
         "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
         "id_marca": "30dee76b-0da6-11ed-bb82-0eb8b69eb347",
@@ -9514,6 +10225,17 @@ export const modelosCategorias = [
         "tipo": "auto",
         "categorias": "Vehiculos",
         "subcategorias": "auto"
+    },
+    {
+        "ModeloID": "b62bec7e-e921-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "3017eec8-c238-11ec-8878-16c2a030bb97",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347",
+        "Nombre": "42LN5400 SA",
+        "id_tipo": "LG",
+        "tipo": "Televisor LED",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Electrodomesticos"
     },
     {
         "ModeloID": "b648e6fe-9819-11ed-9b80-0e87116d214b",
@@ -9591,6 +10313,17 @@ export const modelosCategorias = [
         "tipo": "Tactil",
         "categorias": "Electr\u00f3nica",
         "subcategorias": "Celulares y Tel\u00e9fono "
+    },
+    {
+        "ModeloID": "b93c8c03-dbb1-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "2e43c678-cc77-11ec-acbc-16c2a030bb97",
+        "id_subcategoria": "cb8c8acd-0908-11ed-bb82-0eb8b69eb347",
+        "Nombre": "VISION",
+        "id_tipo": "Lenovo",
+        "tipo": "Netbook",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Computacion"
     },
     {
         "ModeloID": "b948f04c-9925-11ed-9b80-0e87116d214b",
@@ -9813,6 +10546,17 @@ export const modelosCategorias = [
         "subcategorias": "Moto"
     },
     {
+        "ModeloID": "bfe95134-e91e-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "9c1066de-24ac-11ed-bb82-0eb8b69eb347",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347",
+        "Nombre": "326818h",
+        "id_tipo": "Noblex ",
+        "tipo": "Televisor LED",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Electrodomesticos"
+    },
+    {
         "ModeloID": "c014f1bb-c1b2-11ed-9f0f-0e3a1e34687f",
         "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
         "id_marca": "0b15a939-b931-11ec-8878-16c2a030bb97",
@@ -9941,8 +10685,8 @@ export const modelosCategorias = [
         "Nombre": "R 45",
         "id_tipo": "DIBRA",
         "tipo": "Cortadora de pasto",
-        "categorias": "Hogar, Cocina,Muebles, Jard\u00edn y Sanitarios",
-        "subcategorias": "Jard\u00edn "
+        "categorias": "Hogar, Cocina,Muebles, Jard\u00ed n y Sanitarios",
+        "subcategorias": "Jard\u00ed n "
     },
     {
         "ModeloID": "c4ff087e-bb93-11ee-8df7-0e3a1e34687f",
@@ -9971,7 +10715,7 @@ export const modelosCategorias = [
         "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
         "id_marca": "4d8b1208-13ee-11ed-bb82-0eb8b69eb347",
         "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347",
-        "Nombre": "DVP3600X\/77",
+        "Nombre": "DVP3600X/77",
         "id_tipo": "Philips",
         "tipo": "Reproductor de Dvd",
         "categorias": "Electr\u00f3nica",
@@ -10048,7 +10792,7 @@ export const modelosCategorias = [
         "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
         "id_marca": "4d8b1208-13ee-11ed-bb82-0eb8b69eb347",
         "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347",
-        "Nombre": "39PFG4109\/77",
+        "Nombre": "39PFG4109/77",
         "id_tipo": "Philips",
         "tipo": "Televisor LED",
         "categorias": "Electr\u00f3nica",
@@ -10081,7 +10825,7 @@ export const modelosCategorias = [
         "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
         "id_marca": "4d8b1208-13ee-11ed-bb82-0eb8b69eb347",
         "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347",
-        "Nombre": "MCM166\/77",
+        "Nombre": "MCM166/77",
         "id_tipo": "Philips",
         "tipo": "equipo de audio ",
         "categorias": "Electr\u00f3nica",
@@ -10196,6 +10940,17 @@ export const modelosCategorias = [
         "tipo": "Parlante portatil",
         "categorias": "Electr\u00f3nica",
         "subcategorias": "Audio y Video"
+    },
+    {
+        "ModeloID": "cac4441f-dbcc-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
+        "id_marca": "9ca67696-3064-11ee-ba93-0e3a1e34687f",
+        "id_subcategoria": "e733fe29-5c84-11ee-ba93-0e3a1e34687f",
+        "Nombre": "R51",
+        "id_tipo": "HAWK",
+        "tipo": "Casco de Moto",
+        "categorias": "Vehiculos",
+        "subcategorias": "Accesorios para vehiculos"
     },
     {
         "ModeloID": "cace51cf-8773-11ed-9b80-0e87116d214b",
@@ -10396,6 +11151,17 @@ export const modelosCategorias = [
         "subcategorias": "Herramientas"
     },
     {
+        "ModeloID": "d08dc8f7-dbb1-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "1e2ef565-cc77-11ec-acbc-16c2a030bb97",
+        "id_subcategoria": "cb8c8acd-0908-11ed-bb82-0eb8b69eb347",
+        "Nombre": "AVIO",
+        "id_tipo": "Sony",
+        "tipo": "Netbook",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Computacion"
+    },
+    {
         "ModeloID": "d0ba38db-82fd-11ed-9b80-0e87116d214b",
         "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
         "id_marca": "07000fa9-0da6-11ed-bb82-0eb8b69eb347",
@@ -10572,6 +11338,17 @@ export const modelosCategorias = [
         "subcategorias": "auto"
     },
     {
+        "ModeloID": "d657bc5c-da3f-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "e2e262ea-3ff1-11ed-8709-0e085dd00fab",
+        "id_marca": "95d2892e-c250-11ec-8878-16c2a030bb97",
+        "id_subcategoria": "0d453a7c-3ff2-11ed-8709-0e085dd00fab",
+        "Nombre": "Eloic",
+        "id_tipo": "GAMMA",
+        "tipo": "Secador de pelo",
+        "categorias": "Cuidado personal",
+        "subcategorias": "Higiene personal y accesorios"
+    },
+    {
         "ModeloID": "d69861df-de27-11ed-9f0f-0e3a1e34687f",
         "id_categoria": "172ed85e-07d8-11ed-bb82-0eb8b69eb347",
         "id_marca": "b4d7a235-ff9c-11ec-bb82-0eb8b69eb347",
@@ -10645,7 +11422,7 @@ export const modelosCategorias = [
         "Nombre": "D520ECO",
         "id_tipo": "Daewoo",
         "tipo": null,
-        "categorias": "Hogar, Cocina,Muebles, Jard\u00edn y Sanitarios",
+        "categorias": "Hogar, Cocina,Muebles, Jard\u00ed n y Sanitarios",
         "subcategorias": "Motoguada\u00f1a"
     },
     {
@@ -10680,6 +11457,17 @@ export const modelosCategorias = [
         "tipo": "plancha",
         "categorias": "Electr\u00f3nica",
         "subcategorias": "Electrodomesticos"
+    },
+    {
+        "ModeloID": "da60a456-dbc6-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "42863589-314e-11ee-ba93-0e3a1e34687f",
+        "id_marca": "ab3fce13-dbc6-11ee-8df7-0e3a1e34687f",
+        "id_subcategoria": "574d38c1-dbc6-11ee-8df7-0e3a1e34687f",
+        "Nombre": "6.1",
+        "id_tipo": "AIR IMPACT",
+        "tipo": "Paleta de padel",
+        "categorias": "Deportes",
+        "subcategorias": "Tenis, Padel y Squash"
     },
     {
         "ModeloID": "da6775ee-b2d0-11ed-9f0f-0e3a1e34687f",
@@ -10781,6 +11569,17 @@ export const modelosCategorias = [
         "subcategorias": "Celulares y Tel\u00e9fono "
     },
     {
+        "ModeloID": "ddb8f298-e921-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "fcff84a9-db6c-11ec-acbc-16c2a030bb97",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347",
+        "Nombre": "D3260D",
+        "id_tipo": "TCL",
+        "tipo": "Televisor LED",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Electrodomesticos"
+    },
+    {
         "ModeloID": "de87a1f5-9816-11ed-9b80-0e87116d214b",
         "id_categoria": "1223732c-0780-11ed-bb82-0eb8b69eb347",
         "id_marca": "ca1093f4-3da6-11ed-8709-0e085dd00fab",
@@ -10801,6 +11600,17 @@ export const modelosCategorias = [
         "tipo": "Todo terreno",
         "categorias": "Vehiculos",
         "subcategorias": "Bicicleta"
+    },
+    {
+        "ModeloID": "df34d084-1f69-11ef-9e2a-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "192a100e-1f66-11ef-9e2a-0e3a1e34687f",
+        "id_subcategoria": "6becea2d-1f67-11ef-9e2a-0e3a1e34687f",
+        "Nombre": "Drone",
+        "id_tipo": "HAOBOSS",
+        "tipo": "Drone",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Drone"
     },
     {
         "ModeloID": "dfa547bb-98db-11ed-9b80-0e87116d214b",
@@ -11074,7 +11884,7 @@ export const modelosCategorias = [
         "Nombre": "Segtt",
         "id_tipo": "SIN MARCA ",
         "tipo": null,
-        "categorias": "Instrumentos Musicales",
+        "categorias": "Instrumentos Musicales ",
         "subcategorias": "Instrumentos de Cuerdas"
     },
     {
@@ -11206,7 +12016,7 @@ export const modelosCategorias = [
         "Nombre": "10Kg",
         "id_tipo": "YPF",
         "tipo": "Garrafa ",
-        "categorias": "Hogar, Cocina,Muebles, Jard\u00edn y Sanitarios",
+        "categorias": "Hogar, Cocina,Muebles, Jard\u00ed n y Sanitarios",
         "subcategorias": "Cocina, Bazar "
     },
     {
@@ -11313,7 +12123,7 @@ export const modelosCategorias = [
         "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
         "id_marca": "4d8b1208-13ee-11ed-bb82-0eb8b69eb347",
         "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347",
-        "Nombre": "20PT4331\/77R",
+        "Nombre": "20PT4331/77R",
         "id_tipo": "Philips",
         "tipo": "Televisor",
         "categorias": "Electr\u00f3nica",
@@ -11349,7 +12159,7 @@ export const modelosCategorias = [
         "Nombre": "WH-HP220SSD",
         "id_tipo": "Westinghouse",
         "tipo": "Anafe El\u00e9ctrica",
-        "categorias": "Hogar, Cocina,Muebles, Jard\u00edn y Sanitarios",
+        "categorias": "Hogar, Cocina,Muebles, Jard\u00ed n y Sanitarios",
         "subcategorias": "Cocina, Bazar "
     },
     {
@@ -11450,6 +12260,17 @@ export const modelosCategorias = [
         "tipo": "Notebook",
         "categorias": "Electr\u00f3nica",
         "subcategorias": "Computacion"
+    },
+    {
+        "ModeloID": "f3def79b-ec7b-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "c4afa96b-0dc8-11ed-bb82-0eb8b69eb347",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347",
+        "Nombre": "TY281A",
+        "id_tipo": "Durabrand",
+        "tipo": "Horno Electrico",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Electrodomesticos"
     },
     {
         "ModeloID": "f40139c4-ce67-11ed-9f0f-0e3a1e34687f",
@@ -11635,7 +12456,7 @@ export const modelosCategorias = [
         "Nombre": "15Kg",
         "id_tipo": "YPF",
         "tipo": "Garrafa ",
-        "categorias": "Hogar, Cocina,Muebles, Jard\u00edn y Sanitarios",
+        "categorias": "Hogar, Cocina,Muebles, Jard\u00ed n y Sanitarios",
         "subcategorias": "Cocina, Bazar "
     },
     {
@@ -11848,6 +12669,28 @@ export const modelosCategorias = [
         "subcategorias": "Celulares y Tel\u00e9fono "
     },
     {
+        "ModeloID": "fe8d5e54-dbb9-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "ae5b9758-4c14-11ed-9b80-0e87116d214b",
+        "id_subcategoria": "e48bf4bb-0908-11ed-bb82-0eb8b69eb347",
+        "Nombre": "PIXPRO",
+        "id_tipo": "Kodak",
+        "tipo": "Camara Fotografica",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Audio y Video"
+    },
+    {
+        "ModeloID": "fecdf53c-e921-11ee-8df7-0e3a1e34687f",
+        "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
+        "id_marca": "b232008d-c36c-11ed-9f0f-0e3a1e34687f",
+        "id_subcategoria": "1994313f-07cb-11ed-bb82-0eb8b69eb347",
+        "Nombre": "SWLED-244DG",
+        "id_tipo": "Daewoo",
+        "tipo": "Televisor LED",
+        "categorias": "Electr\u00f3nica",
+        "subcategorias": "Electrodomesticos"
+    },
+    {
         "ModeloID": "ffa92304-91e4-11ed-9b80-0e87116d214b",
         "id_categoria": "d1da85a9-07ca-11ed-bb82-0eb8b69eb347",
         "id_marca": "e8ab015f-aaab-11ec-816d-16c2a030bb97",
@@ -11862,7 +12705,721 @@ export const modelosCategorias = [
 
 export const sitios = [
     {
-        "TipoSitioID": "sitio-id-0102",
+        "TipoSitioID": "c11ce6c0-6ea8-11ee-ba93-0e3a1e34687f",
+        "FechaCreacion": "2023-10-19 14:55:56",
+        "FechaEliminacion": null,
+        "Nombre": "Sitio de prueba",
+        "Descripcion": "probando"
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0001",
+        "FechaCreacion": "2023-08-30 18:33:24",
+        "FechaEliminacion": null,
+        "Nombre": "Baldio",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0002",
+        "FechaCreacion": "2023-08-30 18:33:25",
+        "FechaEliminacion": null,
+        "Nombre": "Banco",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0003",
+        "FechaCreacion": "2023-08-30 18:33:25",
+        "FechaEliminacion": null,
+        "Nombre": "Bar",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0004",
+        "FechaCreacion": "2023-08-30 18:33:26",
+        "FechaEliminacion": null,
+        "Nombre": "Basurero Municipal",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0005",
+        "FechaCreacion": "2023-08-30 18:33:26",
+        "FechaEliminacion": null,
+        "Nombre": "Biblioteca",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0006",
+        "FechaCreacion": "2023-08-30 18:33:27",
+        "FechaEliminacion": null,
+        "Nombre": "Bodega",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0007",
+        "FechaCreacion": "2023-08-30 18:33:27",
+        "FechaEliminacion": null,
+        "Nombre": "Boliche",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0008",
+        "FechaCreacion": "2023-08-30 18:33:28",
+        "FechaEliminacion": null,
+        "Nombre": "Camping",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0009",
+        "FechaCreacion": "2023-08-30 18:33:29",
+        "FechaEliminacion": null,
+        "Nombre": "Camping Municipal",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0010",
+        "FechaCreacion": "2023-08-30 18:33:29",
+        "FechaEliminacion": null,
+        "Nombre": "Canal",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0011",
+        "FechaCreacion": "2023-08-30 18:33:30",
+        "FechaEliminacion": null,
+        "Nombre": "Cancha",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0012",
+        "FechaCreacion": "2023-08-30 18:33:30",
+        "FechaEliminacion": null,
+        "Nombre": "Cantera",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0013",
+        "FechaCreacion": "2023-08-30 18:33:31",
+        "FechaEliminacion": null,
+        "Nombre": "Carcel",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0014",
+        "FechaCreacion": "2023-08-30 18:33:31",
+        "FechaEliminacion": null,
+        "Nombre": "Carro de Comidas",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0015",
+        "FechaCreacion": "2023-08-30 18:33:32",
+        "FechaEliminacion": null,
+        "Nombre": "Casa de Comercio",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0016",
+        "FechaCreacion": "2023-08-30 18:33:32",
+        "FechaEliminacion": null,
+        "Nombre": "Casa Rodante",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0017",
+        "FechaCreacion": "2023-08-30 18:33:33",
+        "FechaEliminacion": null,
+        "Nombre": "Casino",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0018",
+        "FechaCreacion": "2023-08-30 18:33:33",
+        "FechaEliminacion": null,
+        "Nombre": "Cementerio",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0019",
+        "FechaCreacion": "2023-08-30 18:33:34",
+        "FechaEliminacion": null,
+        "Nombre": "Centro Asistencial",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0020",
+        "FechaCreacion": "2023-08-30 18:33:34",
+        "FechaEliminacion": null,
+        "Nombre": "Centro Comercial",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0021",
+        "FechaCreacion": "2023-08-30 18:33:35",
+        "FechaEliminacion": null,
+        "Nombre": "Centro de Jubilados",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0022",
+        "FechaCreacion": "2023-08-30 18:33:36",
+        "FechaEliminacion": null,
+        "Nombre": "CIC (Centro Integrado)",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0023",
+        "FechaCreacion": "2023-08-30 18:33:36",
+        "FechaEliminacion": null,
+        "Nombre": "Clinica M\u00e9dica",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0024",
+        "FechaCreacion": "2023-08-30 18:33:37",
+        "FechaEliminacion": null,
+        "Nombre": "Club",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0025",
+        "FechaCreacion": "2023-08-30 18:33:37",
+        "FechaEliminacion": null,
+        "Nombre": "Cocheras",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0026",
+        "FechaCreacion": "2023-08-30 18:33:38",
+        "FechaEliminacion": null,
+        "Nombre": "Comisaria",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0027",
+        "FechaCreacion": "2023-08-30 18:33:38",
+        "FechaEliminacion": null,
+        "Nombre": "Complejo Caba\u00f1as",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0028",
+        "FechaCreacion": "2023-08-30 18:33:39",
+        "FechaEliminacion": null,
+        "Nombre": "Concecionaria",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0029",
+        "FechaCreacion": "2023-08-30 18:33:39",
+        "FechaEliminacion": null,
+        "Nombre": "Consultorios",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0030",
+        "FechaCreacion": "2023-08-30 18:33:40",
+        "FechaEliminacion": null,
+        "Nombre": "Corral\u00f3n",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0031",
+        "FechaCreacion": "2023-08-30 18:33:40",
+        "FechaEliminacion": null,
+        "Nombre": "Correo",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0032",
+        "FechaCreacion": "2023-08-30 18:33:41",
+        "FechaEliminacion": null,
+        "Nombre": "Dep\u00f3sito",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0033",
+        "FechaCreacion": "2023-08-30 18:33:41",
+        "FechaEliminacion": null,
+        "Nombre": "Desarmadero",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0034",
+        "FechaCreacion": "2023-08-30 18:33:42",
+        "FechaEliminacion": null,
+        "Nombre": "Diferimiento",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0035",
+        "FechaCreacion": "2023-08-30 18:33:43",
+        "FechaEliminacion": null,
+        "Nombre": "Dique y R\u00ed o",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0036",
+        "FechaCreacion": "2023-08-30 18:33:43",
+        "FechaEliminacion": null,
+        "Nombre": "Edificios",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0037",
+        "FechaCreacion": "2023-08-30 18:33:44",
+        "FechaEliminacion": null,
+        "Nombre": "Empresa",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0038",
+        "FechaCreacion": "2023-08-30 18:33:44",
+        "FechaEliminacion": null,
+        "Nombre": "Escriban\u00ed a",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0039",
+        "FechaCreacion": "2023-08-30 18:33:45",
+        "FechaEliminacion": null,
+        "Nombre": "Escuela",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0040",
+        "FechaCreacion": "2023-08-30 18:33:45",
+        "FechaEliminacion": null,
+        "Nombre": "Estaci\u00f3n de Servicio",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0041",
+        "FechaCreacion": "2023-08-30 18:33:46",
+        "FechaEliminacion": null,
+        "Nombre": "Estacionamiento",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0042",
+        "FechaCreacion": "2023-08-30 18:33:46",
+        "FechaEliminacion": null,
+        "Nombre": "Estadio",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0043",
+        "FechaCreacion": "2023-08-30 18:33:47",
+        "FechaEliminacion": null,
+        "Nombre": "Ex Cavic",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0044",
+        "FechaCreacion": "2023-08-30 18:33:47",
+        "FechaEliminacion": null,
+        "Nombre": "Exterior Negocio",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0045",
+        "FechaCreacion": "2023-08-30 18:33:48",
+        "FechaEliminacion": null,
+        "Nombre": "Exterior Vivienda",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0046",
+        "FechaCreacion": "2023-08-30 18:33:49",
+        "FechaEliminacion": null,
+        "Nombre": "F\u00e1brica",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0047",
+        "FechaCreacion": "2023-08-30 18:33:49",
+        "FechaEliminacion": null,
+        "Nombre": "Facultad",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0048",
+        "FechaCreacion": "2023-08-30 18:33:50",
+        "FechaEliminacion": null,
+        "Nombre": "Farmacia",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0049",
+        "FechaCreacion": "2023-08-30 18:33:50",
+        "FechaEliminacion": null,
+        "Nombre": "Ferreteria",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0050",
+        "FechaCreacion": "2023-08-30 18:33:51",
+        "FechaEliminacion": null,
+        "Nombre": "Financiera",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0051",
+        "FechaCreacion": "2023-08-30 18:33:51",
+        "FechaEliminacion": null,
+        "Nombre": "Finca",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0052",
+        "FechaCreacion": "2023-08-30 18:33:52",
+        "FechaEliminacion": null,
+        "Nombre": "Galeria",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0053",
+        "FechaCreacion": "2023-08-30 18:33:52",
+        "FechaEliminacion": null,
+        "Nombre": "Galp\u00f3n",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0054",
+        "FechaCreacion": "2023-08-30 18:33:53",
+        "FechaEliminacion": null,
+        "Nombre": "Gimnasio",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0055",
+        "FechaCreacion": "2023-08-30 18:33:53",
+        "FechaEliminacion": null,
+        "Nombre": "Gomeria",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0056",
+        "FechaCreacion": "2023-08-30 18:33:54",
+        "FechaEliminacion": null,
+        "Nombre": "Heladeria",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0057",
+        "FechaCreacion": "2023-08-30 18:33:55",
+        "FechaEliminacion": null,
+        "Nombre": "Hogar de Ancianos",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0058",
+        "FechaCreacion": "2023-08-30 18:33:55",
+        "FechaEliminacion": null,
+        "Nombre": "Hogar de Menores",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0059",
+        "FechaCreacion": "2023-08-30 18:33:56",
+        "FechaEliminacion": null,
+        "Nombre": "Hospital Dpto",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0060",
+        "FechaCreacion": "2023-08-30 18:33:56",
+        "FechaEliminacion": null,
+        "Nombre": "Hospital M. Quiroga",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0061",
+        "FechaCreacion": "2023-08-30 18:33:57",
+        "FechaEliminacion": null,
+        "Nombre": "Hospital Mental",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0062",
+        "FechaCreacion": "2023-08-30 18:33:57",
+        "FechaEliminacion": null,
+        "Nombre": "Hospital Rawson",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0063",
+        "FechaCreacion": "2023-08-30 18:33:58",
+        "FechaEliminacion": null,
+        "Nombre": "Hotel",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0064",
+        "FechaCreacion": "2023-08-30 18:33:58",
+        "FechaEliminacion": null,
+        "Nombre": "Iglesia",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0065",
+        "FechaCreacion": "2023-08-30 18:33:59",
+        "FechaEliminacion": null,
+        "Nombre": "Inmobiliaria",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0066",
+        "FechaCreacion": "2023-08-30 18:33:59",
+        "FechaEliminacion": null,
+        "Nombre": "Instituci\u00f3n Privada",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0067",
+        "FechaCreacion": "2023-08-30 18:34:00",
+        "FechaEliminacion": null,
+        "Nombre": "INT. DIM 22",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0068",
+        "FechaCreacion": "2023-08-30 18:34:01",
+        "FechaEliminacion": null,
+        "Nombre": "Interior Ambulancia",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0069",
+        "FechaCreacion": "2023-08-30 18:34:01",
+        "FechaEliminacion": null,
+        "Nombre": "Interior Auditorio",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0070",
+        "FechaCreacion": "2023-08-30 18:34:02",
+        "FechaEliminacion": null,
+        "Nombre": "Interior Autom\u00f3vil",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0071",
+        "FechaCreacion": "2023-08-30 18:34:02",
+        "FechaEliminacion": null,
+        "Nombre": "Interior Cajero Automatico",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0072",
+        "FechaCreacion": "2023-08-30 18:34:03",
+        "FechaEliminacion": null,
+        "Nombre": "Interior Cami\u00f3n",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0073",
+        "FechaCreacion": "2023-08-30 18:34:04",
+        "FechaEliminacion": null,
+        "Nombre": "Interior Camioneta",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0074",
+        "FechaCreacion": "2023-08-30 18:34:04",
+        "FechaEliminacion": null,
+        "Nombre": "Interior Cementerio",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0075",
+        "FechaCreacion": "2023-08-30 18:34:05",
+        "FechaEliminacion": null,
+        "Nombre": "Interior Chacarita",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0076",
+        "FechaCreacion": "2023-08-30 18:34:05",
+        "FechaEliminacion": null,
+        "Nombre": "Interior Cine",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0077",
+        "FechaCreacion": "2023-08-30 18:34:06",
+        "FechaEliminacion": null,
+        "Nombre": "Interior Colectivo",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0078",
+        "FechaCreacion": "2023-08-30 18:34:06",
+        "FechaEliminacion": null,
+        "Nombre": "Interior Cyber",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0079",
+        "FechaCreacion": "2023-08-30 18:34:07",
+        "FechaEliminacion": null,
+        "Nombre": "Interior Empresa",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0080",
+        "FechaCreacion": "2023-08-30 18:34:07",
+        "FechaEliminacion": null,
+        "Nombre": "Interior F\u00e1brica",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0081",
+        "FechaCreacion": "2023-08-30 18:34:08",
+        "FechaEliminacion": null,
+        "Nombre": "Interior Jardin Maternal",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0082",
+        "FechaCreacion": "2023-08-30 18:34:08",
+        "FechaEliminacion": null,
+        "Nombre": "Interior Kiosko",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0083",
+        "FechaCreacion": "2023-08-30 18:34:09",
+        "FechaEliminacion": null,
+        "Nombre": "Interior Lavadero",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0084",
+        "FechaCreacion": "2023-08-30 18:34:10",
+        "FechaEliminacion": null,
+        "Nombre": "Interior Loteo",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0085",
+        "FechaCreacion": "2023-08-30 18:34:10",
+        "FechaEliminacion": null,
+        "Nombre": "Interior Maquina Vial",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0086",
+        "FechaCreacion": "2023-08-30 18:34:11",
+        "FechaEliminacion": null,
+        "Nombre": "Interior Negocio",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0087",
+        "FechaCreacion": "2023-08-30 18:34:11",
+        "FechaEliminacion": null,
+        "Nombre": "Interior Peluqueria",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0088",
+        "FechaCreacion": "2023-08-30 18:34:12",
+        "FechaEliminacion": null,
+        "Nombre": "Interior Radio",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0089",
+        "FechaCreacion": "2023-08-30 18:34:12",
+        "FechaEliminacion": null,
+        "Nombre": "Interior Remis",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0090",
+        "FechaCreacion": "2023-08-30 18:34:13",
+        "FechaEliminacion": null,
+        "Nombre": "Interior Sal\u00f3n",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0091",
+        "FechaCreacion": "2023-08-30 18:34:13",
+        "FechaEliminacion": null,
+        "Nombre": "Interior Tapiceria",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0092",
+        "FechaCreacion": "2023-08-30 18:34:14",
+        "FechaEliminacion": null,
+        "Nombre": "Interior Vivienda",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0093",
+        "FechaCreacion": "2023-08-30 18:34:14",
+        "FechaEliminacion": null,
+        "Nombre": "Juzgado",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0094",
+        "FechaCreacion": "2023-08-30 18:34:15",
+        "FechaEliminacion": null,
+        "Nombre": "Laboratorio",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0095",
+        "FechaCreacion": "2023-08-30 18:34:15",
+        "FechaEliminacion": null,
+        "Nombre": "Locutorio",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0096",
+        "FechaCreacion": "2023-08-30 18:34:16",
+        "FechaEliminacion": null,
+        "Nombre": "M\u00e1quinas Viales",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0097",
+        "FechaCreacion": "2023-08-30 18:34:17",
+        "FechaEliminacion": null,
+        "Nombre": "Matadero",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0098",
+        "FechaCreacion": "2023-08-30 18:34:17",
+        "FechaEliminacion": null,
+        "Nombre": "Mercado del Abasto",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0099",
+        "FechaCreacion": "2023-08-30 18:34:18",
+        "FechaEliminacion": null,
+        "Nombre": "Mina",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0100",
+        "FechaCreacion": "2023-08-30 18:34:18",
+        "FechaEliminacion": null,
+        "Nombre": "M\u00f3vil Policial",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0101",
+        "FechaCreacion": "2023-08-30 18:34:19",
+        "FechaEliminacion": null,
+        "Nombre": "Municipalidad",
+        "Descripcion": null
+    },
+    {
+        "TipoSitioID": "tipo-sitio-id-0102",
         "FechaCreacion": "2023-08-30 18:34:19",
         "FechaEliminacion": null,
         "Nombre": "Museo",
@@ -12054,7 +13611,7 @@ export const sitios = [
         "TipoSitioID": "tipo-sitio-id-0129",
         "FechaCreacion": "2023-08-30 18:34:34",
         "FechaEliminacion": null,
-        "Nombre": "V\u00eda P\u00fablica",
+        "Nombre": "V\u00ed a P\u00FAblica",
         "Descripcion": null
     },
     {
@@ -12142,7 +13699,7 @@ export const modusOperandi = [
     {
         "TipomodusoperandiID": "4286e071-a3c5-11ec-816d-16c2a030bb97",
         "Descripcion": null,
-        "Nombre": "ASALTO C\/ARMA BLANCA"
+        "Nombre": "ASALTO C/ARMA BLANCA"
     },
     {
         "TipomodusoperandiID": "4334f093-b603-11ec-8878-16c2a030bb97",
@@ -12152,12 +13709,12 @@ export const modusOperandi = [
     {
         "TipomodusoperandiID": "439b8182-a3c5-11ec-816d-16c2a030bb97",
         "Descripcion": null,
-        "Nombre": "ASALTO C\/ARMA DE FUEGO"
+        "Nombre": "ASALTO C/ARMA DE FUEGO"
     },
     {
         "TipomodusoperandiID": "455f3094-a3c5-11ec-816d-16c2a030bb97",
         "Descripcion": null,
-        "Nombre": "ASALTO C\/VIOLENCIAS"
+        "Nombre": "ASALTO C/VIOLENCIAS"
     },
     {
         "TipomodusoperandiID": "459f9bf9-ce39-11ed-9f0f-0e3a1e34687f",
@@ -12167,12 +13724,12 @@ export const modusOperandi = [
     {
         "TipomodusoperandiID": "467a24b7-a3c5-11ec-816d-16c2a030bb97",
         "Descripcion": null,
-        "Nombre": "ASALTO E\/CONTUNDENTE"
+        "Nombre": "ASALTO E/CONTUNDENTE"
     },
     {
         "TipomodusoperandiID": "4796105c-a3c5-11ec-816d-16c2a030bb97",
         "Descripcion": null,
-        "Nombre": "ASALTO M\/ARMADA"
+        "Nombre": "ASALTO M/ARMADA"
     },
     {
         "TipomodusoperandiID": "496cf61d-a3c5-11ec-816d-16c2a030bb97",
@@ -12192,7 +13749,7 @@ export const modusOperandi = [
     {
         "TipomodusoperandiID": "4b9c017e-a3c5-11ec-816d-16c2a030bb97",
         "Descripcion": null,
-        "Nombre": "DA\u00d1O"
+        "Nombre": "DAÑO"
     },
     {
         "TipomodusoperandiID": "4d6928f6-a3c5-11ec-816d-16c2a030bb97",
@@ -12227,12 +13784,12 @@ export const modusOperandi = [
     {
         "TipomodusoperandiID": "53c1d441-a3c5-11ec-816d-16c2a030bb97",
         "Descripcion": null,
-        "Nombre": "INGESTA S\/TOXICA"
+        "Nombre": "INGESTA S/TOXICA"
     },
     {
         "TipomodusoperandiID": "558a4ab4-a3c5-11ec-816d-16c2a030bb97",
         "Descripcion": null,
-        "Nombre": "INGRESO S\/VIOLENCIA"
+        "Nombre": "INGRESO S/VIOLENCIA"
     },
     {
         "TipomodusoperandiID": "56a846aa-a3c5-11ec-816d-16c2a030bb97",
@@ -12297,7 +13854,7 @@ export const modusOperandi = [
     {
         "TipomodusoperandiID": "62f99d35-a3c5-11ec-816d-16c2a030bb97",
         "Descripcion": null,
-        "Nombre": "ROBO C\/FZA FISICA"
+        "Nombre": "ROBO C/FZA FISICA"
     },
     {
         "TipomodusoperandiID": "64323247-a3c5-11ec-816d-16c2a030bb97",
@@ -12377,7 +13934,7 @@ export const modusOperandi = [
     {
         "TipomodusoperandiID": "7309e943-a3c5-11ec-816d-16c2a030bb97",
         "Descripcion": null,
-        "Nombre": "ROTURA\/VIOLENCIA"
+        "Nombre": "ROTURA/VIOLENCIA"
     },
     {
         "TipomodusoperandiID": "7426b668-a3c5-11ec-816d-16c2a030bb97",
@@ -12487,7 +14044,7 @@ export const modusOperandi = [
     {
         "TipomodusoperandiID": "a5ff5534-ce39-11ed-9f0f-0e3a1e34687f",
         "Descripcion": null,
-        "Nombre": "Llave Falsa o Ganz\u00b7a"
+        "Nombre": "Llave Falsa o Ganz·a"
     },
     {
         "TipomodusoperandiID": "abd6cf0c-ce39-11ed-9f0f-0e3a1e34687f",
@@ -12497,7 +14054,7 @@ export const modusOperandi = [
     {
         "TipomodusoperandiID": "b5d8a88d-ce3b-11ed-9f0f-0e3a1e34687f",
         "Descripcion": null,
-        "Nombre": "Rotura de V\u00eddrio"
+        "Nombre": "Rotura de V\u00ed drio"
     },
     {
         "TipomodusoperandiID": "bac10eb3-ce39-11ed-9f0f-0e3a1e34687f",
@@ -12583,376 +14140,1120 @@ export const modusOperandi = [
 
 export const causaCaratula = [
     {
-        "TipocausacaratulaID": "b41735b3-da24-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "TENT. SUSTRACION MENORES",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "abd718dd-da24-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "TENT. HURTO",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "e0cb2626-7ade-11ed-9b80-0e87116d214b",
+        "TipocausacaratulaID": 'd804f01e-a3ca-11ec-816d-16c2a030bb97',
         "Descripcion": null,
-        "Nombre": "Tenencia ileg\u00edtima de arma de fuego",
-        "TipoCaratula": "Delito"
+        "Nombre": 'VIOLACION DE SECRETO',
+        "TipoCaratula": 'Causa Caratula'
     },
     {
-        "TipocausacaratulaID": "4ffb5ac8-d8b5-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "Siniestro vial",
-        "Nombre": "Siniestro vial",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "452392ea-7adc-11ed-9b80-0e87116d214b",
-        "Descripcion": "Robo Simple en Grado de Tentativa ",
-        "Nombre": "Robo Simple en Grado de Tentativa ",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "d3ba8907-da24-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "ROBO CON ARMA BLANCA",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "b8bd07bb-1112-11ee-ba93-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "ROBO ARREBATO",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "d451f431-7adb-11ed-9b80-0e87116d214b",
-        "Descripcion": "Robo agravado por ser en poblado y en banda con participaci\u00f3n de menores",
-        "Nombre": "Robo agravado por ser en poblado y en banda con participaci\u00f3n de menores",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "eb21e7be-7adb-11ed-9b80-0e87116d214b",
-        "Descripcion": "Robo Agravado por escalamiento con la participaci\u00f3n de menores",
-        "Nombre": "Robo Agravado por escalamiento con la participaci\u00f3n de menores",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "aef74fd0-7adc-11ed-9b80-0e87116d214b",
+        "TipocausacaratulaID": 'd6ed3f61-a3ca-11ec-816d-16c2a030bb97',
         "Descripcion": null,
-        "Nombre": "Robo Agravado por escalamiento ",
-        "TipoCaratula": "Delito"
+        "Nombre": 'VIOLACION DE DOMICILIO',
+        "TipoCaratula": 'Causa Caratula'
     },
     {
-        "TipocausacaratulaID": "59aa54e9-7adc-11ed-9b80-0e87116d214b",
+        "TipocausacaratulaID": 'd5242bbe-a3ca-11ec-816d-16c2a030bb97',
         "Descripcion": null,
-        "Nombre": "ROBO AGRAVADO POR EL USO DE ARMA DE FUEGO Y POR HABERSE COMETIDO EN BANDA",
-        "TipoCaratula": "Delito"
+        "Nombre": 'VIOLACION',
+        "TipoCaratula": 'Causa Caratula'
     },
     {
-        "TipocausacaratulaID": "880ab227-da27-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "Robo Agravado Por Efracci\u00f3n",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "a6c64dda-642f-11ed-9b80-0e87116d214b",
-        "Descripcion": "Robo Agravado Por la  Participaci\u00f3n de un Menor de Edad",
-        "Nombre": "Robo Agravado Part. de un Menor Edad",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "98fdaa53-642f-11ed-9b80-0e87116d214b",
-        "Descripcion": "Robo Agravado",
-        "Nombre": "Robo Agravado",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "61ebb2e7-8dc2-11ed-9b80-0e87116d214b",
+        "TipocausacaratulaID": 'd409d034-a3ca-11ec-816d-16c2a030bb97',
         "Descripcion": null,
-        "Nombre": "Robo",
-        "TipoCaratula": "Delito"
+        "Nombre": 'USURPACION DE AGUA',
+        "TipoCaratula": 'Causa Caratula'
     },
     {
-        "TipocausacaratulaID": "fa5c9d19-7adb-11ed-9b80-0e87116d214b",
-        "Descripcion": "Privaci\u00f3n Ileg\u00edtima de la libertad ",
-        "Nombre": "Privaci\u00f3n Ileg\u00edtima de la libertad ",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "0b13dc8e-7adc-11ed-9b80-0e87116d214b",
-        "Descripcion": "Lesiones leves agravadas por violencia intrafamiliar y de genero ",
-        "Nombre": "Lesiones leves agravadas por violencia intrafamiliar y de genero ",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "cff6e5f1-7ade-11ed-9b80-0e87116d214b",
+        "TipocausacaratulaID": 'd2cfa72a-a3ca-11ec-816d-16c2a030bb97',
         "Descripcion": null,
-        "Nombre": "Lesiones leves agravadas por ser en contexto de violencia intrafamiliar",
-        "TipoCaratula": "Delito"
+        "Nombre": 'USURPACION',
+        "TipoCaratula": 'Causa Caratula'
     },
     {
-        "TipocausacaratulaID": "732d90d7-da20-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "Lesiones Graves en Prejuicio",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "56309ff3-da27-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "LESIONES EN RI\u00d1A",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "5b419f2d-da27-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "LESIONES ART.92",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "4c222a02-da27-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "LESIONES ART. 94 (MALA PRAXIS)",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "610cb74f-da27-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "LESIONES ART. 94",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "6719cb61-da27-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "LESIONES ART. 91",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "6d1f8e60-da27-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "LESIONES ART. 89",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "986fa7e9-7adb-11ed-9b80-0e87116d214b",
-        "Descripcion": "Lesiones 89\u00b0 en contexto de violencia intrafamiliar y da\u00f1o",
-        "Nombre": "Lesiones 89\u00b0 en contexto de violencia intrafamiliar y da\u00f1o",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "46873a79-da27-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "LESIONES 89 (VIOLENCIA FLIAR)",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "af54ec28-7adb-11ed-9b80-0e87116d214b",
-        "Descripcion": "Hurto Simple",
-        "Nombre": "Hurto Simple",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "6dee3781-6425-11ed-9b80-0e87116d214b",
-        "Descripcion": "Hurto en Grado  de Tentativa",
-        "Nombre": "Hurto en Grado  de Tentativa",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "6ca2ac95-7adc-11ed-9b80-0e87116d214b",
+        "TipocausacaratulaID": 'd1093a53-a3ca-11ec-816d-16c2a030bb97',
         "Descripcion": null,
-        "Nombre": "Hurto Calificado por Escalamiento ",
-        "TipoCaratula": "Delito"
+        "Nombre": 'USURA',
+        "TipoCaratula": 'Causa Caratula'
     },
     {
-        "TipocausacaratulaID": "1f8f88af-da27-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "HURTO CALIFICADO",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": 'b661c0c9-f57f-11ed-9f0f-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'TENTATIVA DE SECUESTRO',
+        "TipoCaratula": 'Causa Caratula'
     },
     {
-        "TipocausacaratulaID": "70dc2d2a-da21-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "Hurto Calificado",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "2a59f720-c29a-11ed-9f0f-0e3a1e34687f",
-        "Descripcion": "Homicidio Culposo",
-        "Nombre": "Homicidio Culposo",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "2a9ed224-da27-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "HOMICIDIO ART. 84",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "2f9ef7bd-da27-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "HOMICIDIO ART. 80 AGRAVADO",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "3581ed27-da27-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "HOMICIDIO ART. 79",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "3bb99083-da27-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "HOMICIDIO ART 80",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "89c46fd7-da26-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "FALTA AL DEBER FUNC PUB",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "f4753b09-7ade-11ed-9b80-0e87116d214b",
+        "TipocausacaratulaID": 'cfd5d8e8-a3ca-11ec-816d-16c2a030bb97',
         "Descripcion": null,
-        "Nombre": "Falsificaci\u00f3n de documento",
-        "TipoCaratula": "Delito"
+        "Nombre": 'TENT.EXTORCION',
+        "TipoCaratula": 'Causa Caratula'
     },
     {
-        "TipocausacaratulaID": "8f6d728b-da26-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "FALLECIMIENTO SIN ASIST.",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "9731f92d-da26-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "EXTORSION",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "9d926cb2-da26-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "EXHIBICIONES OBSCENAS",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "823bd33b-da26-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "EVASION",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "ae99267b-edca-11ee-8df7-0e3a1e34687f",
-        "Descripcion": ".",
-        "Nombre": "ESTAFA RN GRADO DE TENTATIVA ",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "cd713f8e-8762-11ed-9b80-0e87116d214b",
+        "TipocausacaratulaID": 'ceb4c065-a3ca-11ec-816d-16c2a030bb97',
         "Descripcion": null,
-        "Nombre": "Estafa",
-        "TipoCaratula": "Delito"
+        "Nombre": 'TENT. VIOLACION',
+        "TipoCaratula": 'Causa Caratula'
     },
     {
-        "TipocausacaratulaID": "7bff2f8c-9e46-11ed-9b80-0e87116d214b",
-        "Descripcion": "Establecer Paradero",
-        "Nombre": "Establecer Paradero",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "785482c3-7adc-11ed-9b80-0e87116d214b",
+        "TipocausacaratulaID": 'cce38f01-a3ca-11ec-816d-16c2a030bb97',
         "Descripcion": null,
-        "Nombre": "Desobediencia a una orden judicial ",
-        "TipoCaratula": "Delito"
+        "Nombre": 'TENT. SUSTRACCION MENORES',
+        "TipoCaratula": 'Causa Caratula'
     },
     {
-        "TipocausacaratulaID": "e8964826-e165-11ed-9f0f-0e3a1e34687f",
+        "TipocausacaratulaID": 'cbce2105-a3ca-11ec-816d-16c2a030bb97',
         "Descripcion": null,
-        "Nombre": "Desobediencia a uan orden judicial y da\u00f1\u00f3 agravado en concurso real ",
-        "TipoCaratula": "Delito"
+        "Nombre": 'TENT. SUICIDIO',
+        "TipoCaratula": 'Causa Caratula'
     },
     {
-        "TipocausacaratulaID": "eaa977df-7ade-11ed-9b80-0e87116d214b",
+        "TipocausacaratulaID": 'cab7c237-a3ca-11ec-816d-16c2a030bb97',
         "Descripcion": null,
-        "Nombre": "Da\u00f1o agravado, resistencia a la Autoridad y violaci\u00f3n de domicilio",
-        "TipoCaratula": "Delito"
+        "Nombre": 'TENT. ROBO',
+        "TipoCaratula": 'Causa Caratula'
     },
     {
-        "TipocausacaratulaID": "b692c36b-7adb-11ed-9b80-0e87116d214b",
-        "Descripcion": "Da\u00f1o",
-        "Nombre": "Da\u00f1o",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "79b4889a-da26-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "COHECHO",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "e3f3011e-c2a8-11ee-8df7-0e3a1e34687f",
-        "Descripcion": ".",
-        "Nombre": "COACCION",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "7a1daad2-da20-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "Caida Casual",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "6ba3b439-da26-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "AMENAZAS Y LESIONES 89",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "6542bc46-16e0-11ee-ba93-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "AMENAZAS",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "5eca6397-da26-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "Actuaciones por hallazgo",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "8952ebb5-9e46-11ed-9b80-0e87116d214b",
-        "Descripcion": "Actuaciones por fuga",
-        "Nombre": "Actuaciones por fuga",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "4444cb49-da26-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "ACTUACIONES POR DENUNCIA",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "f76c3037-f449-11ed-9f0f-0e3a1e34687f",
+        "TipocausacaratulaID": 'c8f72fca-a3ca-11ec-816d-16c2a030bb97',
         "Descripcion": null,
-        "Nombre": "Actuaciones por Denuncia ",
-        "TipoCaratula": "Delito"
+        "Nombre": 'TENT. ILEGITIMA DE LIBERTAD',
+        "TipoCaratula": 'Causa Caratula'
     },
     {
-        "TipocausacaratulaID": "4ac9dc6e-da26-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "ACT.POR FALLECIMIENTO",
-        "TipoCaratula": "Delito"
-    },
-    {
-        "TipocausacaratulaID": "c8176028-7adc-11ed-9b80-0e87116d214b",
+        "TipocausacaratulaID": 'c7d7a41e-a3ca-11ec-816d-16c2a030bb97',
         "Descripcion": null,
-        "Nombre": "Abuso sexual con acceso carnal agravado por el vinculo ",
-        "TipoCaratula": "Delito"
+        "Nombre": 'TENT. HURTO',
+        "TipoCaratula": 'Causa Caratula'
     },
     {
-        "TipocausacaratulaID": "2c02fcda-da26-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "ABORTO",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": 'c6c00d68-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'TENT. HOMICIDIO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'c4fca259-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'TENT. EVASI\u00f3N',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'c3e26c9f-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'TEN.ARMAS/EXP.',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'c2c502bc-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'SUSTRACCION  MENORES',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'c0f825e1-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'SUPRESION DEL ESTADO CIVIL DE',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'bfdb70b9-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'SUPRESION DE LA IDENTIDAD',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'bebecc3c-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'SUPR.Y SUPOS ESTADO CIVIL',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'bce3e0d9-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'SUICIDIO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'bbc9c991-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'SECUESTRO EXTORSIVO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'bab16a46-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'ROBO SEGUIDO DE MUERTE',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '36ca6807-ce61-11ec-acbc-16c2a030bb97',
+        "Descripcion": 'ROBO SEGUIDO DE ESTAFA',
+        "Nombre": 'ROBO SEGUIDO DE ESTAFA',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '74a52f5d-cd47-11ec-acbc-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'ROBO EN GRADO DE TENTATIVA ',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '61d48daa-2ea0-11ed-8709-0e085dd00fab',
+        "Descripcion": null,
+        "Nombre": 'ROBO CON ARMA BLANCA',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '152f94a8-a5e8-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'ROBO ARREBATO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'a7dbafba-ea71-11ed-9f0f-0e3a1e34687f',
+        "Descripcion": 'Robo agravado por uso de arma blanca',
+        "Nombre": 'Robo agravado por uso de arma blanca',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '85580713-1112-11ee-ba93-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'ROBO AGRAVADO POR LA PARTICIPACION DE UN MENOR ',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '893692c0-285d-11ed-8709-0e085dd00fab',
+        "Descripcion": null,
+        "Nombre": 'ROBO AGRAVADO POR HABER COMETIDO EN BNADA Y EN POBLADO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '129999ab-247a-11ed-bb82-0eb8b69eb347',
+        "Descripcion": null,
+        "Nombre": 'ROBO AGRAVADO POR EL USO DE ARMA DE FUEGO Y POR HABERSE COMETIDO EN BANDA',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'e86229d3-8567-11ed-9b80-0e87116d214b',
+        "Descripcion": null,
+        "Nombre": 'Robo agravado por el uso de arma de fuego',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'c5b29a16-70f4-11ed-9b80-0e87116d214b',
+        "Descripcion": null,
+        "Nombre": 'Robo Agravado por el Uso de Arma blanca',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '97618aa9-0955-11ed-bb82-0eb8b69eb347',
+        "Descripcion": null,
+        "Nombre": 'Robo Agravado Por Efracci\u00f3n ',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '606ee20d-cd47-11ec-acbc-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'ROBO AGRAVADO EN GRADO DE TENTATIVA ',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'b8e185cf-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'ROBO AGRAVADO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'b7c04cfe-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'ROBO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'b6a58795-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'REVEL.SECRETO PROF.',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'b4e157d9-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'REVEL. ACTUAC. SECRETAS',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'b3c628e3-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'RETENCION INDEBIDA',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'b2a92164-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'RESIST. O DESOB. A FUNC PUBLICO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'b0d6870b-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'REMISION DE SUMARIO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'af97f3f1-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'RAPTO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'ae787ccb-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'QUEBRANTAR INHABILITACION',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'acb350a5-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'PRIV.ILEG.LIBERTAD',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'ab97461a-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'PEDIDO DE SECUESTRO DE MOVILIDAD',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '7e60bfe0-f58f-11ed-9f0f-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'PEDIDO DE CAPTURA',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'aa7e600d-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'Pedido De Captura',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'a8bfd4b5-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'PECULADO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'a79e252f-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'OTRA CAUSA',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'a6859cf5-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'ORDENES DEL DIA',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'a4c7bcaa-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'MUERTE DUDOSA',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'a3ac5873-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LEY Nra 24410(INTENTO DE SECUESTRO)',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'a28dc7a1-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LEY N 24270 NO CONTAC MENOR',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'a0c4c7ab-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LEY ELECTORAL Nra 5636',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '9fa805fb-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LEY DEL DEPORTE Nra 23184',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '9e8aab1e-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LEY DE ARMAS Y EXPLOSIVOS',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '054fc731-d203-11ec-acbc-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LEY 989-E (VIOLENCIA FAMILIAR)',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '9cc4044c-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LEY 7943 - VIOLENCIA FAMILIAR',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '9ba9ef81-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LEY 7819- ART. 195- MERODEO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '9a8de17b-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LEY 7819- ART. 123',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '98a67307-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LEY 7819- ART. 119- EXIB COND',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '97899ffb-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LEY 7819- ART. 118- ESCANDALO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '9662d7cf-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LEY 7819- ART. 117- OFEN. MORA',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '9499a629-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LEY 7819- ART. 113- DIST. VIA',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '93806965-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LEY 7819 -ART .124 -PROSTITUCION',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '925ad264-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LEY 7819 -ART .100 -NEGACION D',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '907b44d2-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LEY 7819',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '8f4684b6-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LEY 7196',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '8e0f7435-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LEY 6542 VIOL CONT LA MUJER',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '8c4c9e38-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LEY 24.481-PATENTES-',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '8b2a4c6e-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LEY 24 192 DEL DEPORTE',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '8a0c9c35-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LEY 23737 ESTUPEFACIENTES',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '884a11e1-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LEY 22.362-MARCAS-',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '362dc46b-4cb0-11ed-9b80-0e87116d214b',
+        "Descripcion": 'Perros peligrosos',
+        "Nombre": 'Ley 2190-L',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '8729444d-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LEY 17671 IDENTIFICACION Y REG',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '860bea01-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LEY 14346 MALTRATO ANIMALES',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '844928a0-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LEY 13944 INASISTENCIAFAMILIAR',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '83330e56-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LEY 11.723 (PROP. INTELECTUAL)',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '646adf1e-e8d2-11ec-bb82-0eb8b69eb347',
+        "Descripcion": null,
+        "Nombre": 'LESIONES Y DAÑOS',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '70e547cd-85ff-11ed-9b80-0e87116d214b',
+        "Descripcion": 'uno a otro',
+        "Nombre": 'Lesiones Reciprocas',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '59d52d23-4ccd-11ed-9b80-0e87116d214b',
+        "Descripcion": null,
+        "Nombre": 'Lesiones Leves Agravadas por el v\u00ed nculo en contexto de violencia intrafamiliar y de genero',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '765bed32-da21-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'Lesiones Leves',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '820f2a8d-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LESIONES EN RIÑA',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '802f0c84-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LESIONES ART.92',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '7f12a553-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LESIONES ART. 94',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '7e005549-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LESIONES ART. 91',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '7c301e47-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LESIONES ART. 90',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '7b122091-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LESIONES ART. 89',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'a321b547-4d50-11ed-9b80-0e87116d214b',
+        "Descripcion": 'Lesiones 89\u00b0 e Infracci\u00f3n a Ley 2190-L',
+        "Nombre": 'Lesiones 89\u00b0 e Infracci\u00f3n a Ley 2190-L',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '79ee9f2b-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LESIONES 89 (VIOLENCIA FLIAR)',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '78295bbd-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LESIONES  ART. 94 (MALA PRAXIS)',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '7713181b-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'LESIONES',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '75fbcfce-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'INTIMIDACION PUBLICA',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '7418af75-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'INSTIGACION A COMETER DELITOS',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '72fb35aa-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'INFRACCION LEY(11.179) MEDICAMENTOS',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '13d524d6-1af6-11ef-9e2a-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'Infraccion de Ley Nacional 14.346 de Proteccion Animal',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'e16e21c9-a5e9-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '.',
+        "Nombre": 'INFRACCION AL ART. 109 DE LEY 941-R',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '34a782f4-a5ea-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'INFRACCION A ART. 109 DE LEY 941-R',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '71e06a6a-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'INF.ART. 246 (USURPACION DE AUTO)',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '701f7011-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'INF. ART. 194',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '6efa7d57-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'INF. ART. 193 BIS',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '6ddb69d6-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'INF.  LEY  6542 - VIOL.  FAMILIAR',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '6c0999ae-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'INDUCCION A LA FUGA',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '6aef9692-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'INCENDIO CULPOSO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '69ce1037-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'INCENDIO  SEGUIDO DE MUERTE',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '680b58b4-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'INCENDIO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '304860a6-cb33-11ec-acbc-16c2a030bb97',
+        "Descripcion": 'LEY 24.270',
+        "Nombre": 'IMPEDIMIENTO DE CONTACTO ',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '4c59434e-ff79-11ec-bb82-0eb8b69eb347',
+        "Descripcion": 'HURTO SIMPLE',
+        "Nombre": 'HURTO SIMPLE',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '80157ec2-cd47-11ec-acbc-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'HURTO EN GRADO DE TENTATIVA',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'd127e611-d5ee-11ec-acbc-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'HURTO CALIFICADO POR ESCALAMIENTO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '503b0fbf-2f8c-11ed-8709-0e085dd00fab',
+        "Descripcion": 'HURTO CALIFICADO EN GRADO DE TENTATIVA',
+        "Nombre": 'HURTO CALIFICADO EN GRADO DE TENTATIVA',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '66ed0504-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'HURTO CALIFICADO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '65cc26e8-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'HURTO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '640bb168-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'HOMICIDIO CULPOSO (SIN INTENCI\u00f3N)',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '376b695f-bcf0-11ed-9f0f-0e3a1e34687f',
+        "Descripcion": 'culposo',
+        "Nombre": 'Homicidio Culposo',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '62ec077d-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'HOMICIDIO ART. 84',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '61d0c561-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'HOMICIDIO ART. 80 AGRAVADO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '60165abc-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'HOMICIDIO ART. 79',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '5f02890e-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'HOMICIDIO ART 80',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '5df343a0-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'HOMICIDIO ART . 81 ATENUADO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '5c32b3f6-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'FALTA AL DEBER FUNC PUB',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '5b0b765b-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'FALSIFICACI\u00f3N',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '59d5ba3f-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'FALSA DENUNCIA',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '57e6846c-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'FALS. DOC. PUBLICO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '56c3a2b0-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'FALS. DE MONEDA',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '558a903b-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'FALLECIMIENTO SIN ASIST.',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '53c0dd76-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'EXTORSION',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '52a4e1a9-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'EXHIBICIONES OBSCENAS',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '5180cfda-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'EXACCIONES ILEGALES',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '4f9b86dc-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'EVASION',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '4e774244-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'ESTUPRO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '4d56bcbe-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'ESTAFA ATENUADA',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '4b974e19-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'ESTAFA',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'f01f7392-4a76-11ef-b47c-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'encubrimiento agravado por el \u00e1nimo de lucro ',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '4a7b0ee6-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'ENCUBRIMIENTO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '495fb3c7-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'E./CHEQUE SIN FONDO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '479e536f-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'DEST DE DOC PUBLICO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '466ef3b2-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'DESOBEDIENCIA  OFICIO JUDICIAL',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '454fc42e-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'DEPOSITO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '43843897-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'DELITOS C/ESTADO CIVIL',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '425a2d88-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'DELITO C/SEGURIDAD PUBLICA',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '41406e65-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'DELITO C/ SALUD PUBLICA',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '3f7a2dae-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'DELIT.C.HONESTIDAD',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '3e6abefd-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'DEFRAUDACION',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '32a5c6cd-d2b1-11ec-acbc-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'DAÑO AGRAVADO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '3d4cc1e0-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'DAÑO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '3b685097-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'CORRUPCION DE MENORES',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '3a49ed4b-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'CORRUPCION',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '392cc803-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'COHECHO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '37630387-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": 'COACCION',
+        "Nombre": 'COACCION',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '3640d895-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'CIGARRILOS CLANDESTINOS',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '9f491791-9273-11ed-9b80-0e87116d214b',
+        "Descripcion": null,
+        "Nombre": 'CAIDA CASUAL',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '35259dbe-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'C/INT. SEXUAL',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '33663d22-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'ATENT. Y RESIS. AUTORIDAD',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'c4d65c59-7757-11ee-ba93-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'Art. 26 - Clausura ',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '0eca7298-1e29-11ed-bb82-0eb8b69eb347',
+        "Descripcion": 'apropiacion indebida',
+        "Nombre": 'Apropiacion indebida',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '3248ad2c-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'APREMIOS ILEGALES',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '312bf0f2-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'AMPLIACION DE SUMARIO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '0849da81-26d9-11ed-8709-0e085dd00fab',
+        "Descripcion": null,
+        "Nombre": 'AMENAZAS Y LESIONES 89',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '7d95d77a-dae8-11ec-acbc-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'AMENAZAS Y DESOBEDIENCIA A UN OFICIO JUDICIAL',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'a87b1bff-23db-11ed-bb82-0eb8b69eb347',
+        "Descripcion": null,
+        "Nombre": 'AMENAZAS AGRAVAS POR EL USO DE ARMA BLANCA',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '2f696a30-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'AMENAZAS',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '2e471ab5-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'ALLANAMIENTO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'f85eda30-9273-11ed-9b80-0e87116d214b',
+        "Descripcion": null,
+        "Nombre": 'Acuaciones Preliminares por Siniestro Vial',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'db0195aa-9273-11ed-9b80-0e87116d214b',
+        "Descripcion": 'Actuaciones Preliminares por Incendio en Vivienda',
+        "Nombre": 'Actuaciones Preliminares por Incendio en Vivienda',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '02ebe1a3-9274-11ed-9b80-0e87116d214b',
+        "Descripcion": 'Actuaciones Preliminares por Incendio Automotor',
+        "Nombre": 'Actuaciones Preliminares por Incendio Automotor',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'f0087305-9273-11ed-9b80-0e87116d214b',
+        "Descripcion": 'Actuaciones Preliminares por Fuga de Menor',
+        "Nombre": 'Actuaciones Preliminares por Fuga de Menor',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'e613e50f-9273-11ed-9b80-0e87116d214b',
+        "Descripcion": 'Actuaciones Preliminares por Caida Casual',
+        "Nombre": 'Actuaciones Preliminares por Caida Casual',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '0ed9a20e-9274-11ed-9b80-0e87116d214b',
+        "Descripcion": 'Actuaciones Preliminares para Establecer Procedencia',
+        "Nombre": 'Actuaciones Preliminares para Establecer Procedencia',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'f235b50e-2592-11ed-8709-0e085dd00fab',
+        "Descripcion": null,
+        "Nombre": 'actuaciones por hallazgo ',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '2d2939a1-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'ACTUACIONES POR FUGA DE HOGAR',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '7e3b4e20-1ef4-11ed-bb82-0eb8b69eb347',
+        "Descripcion": null,
+        "Nombre": 'actuaciones por denuncia ',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '898e7bb5-b5f9-11ec-8878-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'ACTUACIONES POR DENUNCIA ',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '899edf1f-e296-11ed-9f0f-0e3a1e34687f',
+        "Descripcion": null,
+        "Nombre": 'ACTUACIONES POR ACCIDENTE DOMÉSTICO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '6673ff7e-bf59-11ec-8878-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'ACTUACIONES PARA ESTABLECER PROCEDENCIA',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '91f9ab55-b5f9-11ec-8878-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'ACTUACIONES INVESTIGATIVAS',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '2b6ff555-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'ACT.POR FALLECIMIENTO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '2a5c76f3-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'ACT.PARA ESTABLECER PARADERO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '2939449d-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'ACT. DESAP. DE PERSONA',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '2771bc5b-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'ABUSO DE ARMA',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '2655493e-a3ca-11ec-816d-16c2a030bb97',
+        "Descripcion": null,
+        "Nombre": 'ABORTO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'ec7d10fc-ca5f-11ec-acbc-16c2a030bb97',
+        "Descripcion": 'HURTO DE GANADO',
+        "Nombre": 'ABIGEATO',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": 'e82c8b62-0ea6-11ed-bb82-0eb8b69eb347',
+        "Descripcion": '149',
+        "Nombre": '149 BIS DELITO CONTRA LA LIBERTAD ',
+        "TipoCaratula": 'Causa Caratula'
+    },
+    {
+        "TipocausacaratulaID": '7017bac3-09cd-11ed-bb82-0eb8b69eb347',
+        "Descripcion": null,
+        "Nombre": ' incidentes en el Instituto Nazario Benavides',
+        "TipoCaratula": 'Causa Caratula'
     }
 ]
 
@@ -12964,6 +15265,14 @@ export const juzgadoInterviniente = [
         "Nombre": "UNIDAD FISCAL PRUEBA",
         "Telefono": "0000000",
         "Domicilio": "DOMICILIO DE PRUEBA"
+    },
+    {
+        "JuzgadoID": "15d795b6-1dff-11ef-9e2a-0e3a1e34687f",
+        "Fechainivig": "2024-05-29 18:04:49",
+        "Fechafinvig": null,
+        "Nombre": "UFI del Norte",
+        "Telefono": "",
+        "Domicilio": ""
     },
     {
         "JuzgadoID": "18462de6-cc9a-11e4-8df1-0090f58f4f32",
@@ -12993,7 +15302,7 @@ export const juzgadoInterviniente = [
         "JuzgadoID": "277b768c-651d-11ee-ba93-0e3a1e34687f",
         "Fechainivig": "2023-10-07 11:23:58",
         "Fechafinvig": null,
-        "Nombre": " OF. JUD. PENAL DE NI\u00d1EZ Y ADOL DE SEGUNDA NOM.",
+        "Nombre": " OF. JUD. PENAL DE NIÑEZ Y ADOL DE SEGUNDA NOM.",
         "Telefono": "",
         "Domicilio": ""
     },
@@ -13001,7 +15310,7 @@ export const juzgadoInterviniente = [
         "JuzgadoID": "3783ba3f-9d62-11ec-816d-16c2a030bb97",
         "Fechainivig": "2022-03-06 15:29:30",
         "Fechafinvig": null,
-        "Nombre": "JUZGADO DE FALTAS DE TERCERA NOMINACI\u00d3N",
+        "Nombre": "JUZGADO DE FALTAS DE TERCERA NOMINACIÓN",
         "Telefono": null,
         "Domicilio": null
     },
@@ -13153,7 +15462,7 @@ export const juzgadoInterviniente = [
         "JuzgadoID": "4e2500da-b6fa-11ec-8878-16c2a030bb97",
         "Fechainivig": "2022-04-08 05:11:11",
         "Fechafinvig": null,
-        "Nombre": "PRIMER JUZGADO PENAL DE NI\u00d1EZ Y ADOLESCENCIA",
+        "Nombre": "PRIMER JUZGADO PENAL DE NIÑEZ Y ADOLESCENCIA",
         "Telefono": null,
         "Domicilio": null
     },
@@ -13169,7 +15478,7 @@ export const juzgadoInterviniente = [
         "JuzgadoID": "4fc9bcf0-9d62-11ec-816d-16c2a030bb97",
         "Fechainivig": "2022-03-06 15:30:11",
         "Fechafinvig": null,
-        "Nombre": "JUZGADO DE FALTAS DE SEGUNDA NOMINACI\u00d3N",
+        "Nombre": "JUZGADO DE FALTAS DE SEGUNDA NOMINACIÓN",
         "Telefono": null,
         "Domicilio": null
     },
@@ -13179,13 +15488,13 @@ export const juzgadoInterviniente = [
         "Fechafinvig": null,
         "Nombre": "JUZGADO DE MENORES JACHAL",
         "Telefono": null,
-        "Domicilio": " DE LA SEGUNDA CIRCUNSCRIPCI\u00d3N JUDICIAL"
+        "Domicilio": " DE LA SEGUNDA CIRCUNSCRIPCIÓN JUDICIAL"
     },
     {
         "JuzgadoID": "693f2f95-b6fa-11ec-8878-16c2a030bb97",
         "Fechainivig": "2022-04-08 05:11:56",
         "Fechafinvig": null,
-        "Nombre": "SEGUNDO JUZGADO PENAL DE NI\u00d1EZ Y ADOLESCENCIA",
+        "Nombre": "SEGUNDO JUZGADO PENAL DE NIÑEZ Y ADOLESCENCIA",
         "Telefono": null,
         "Domicilio": null
     },
@@ -13193,9 +15502,9 @@ export const juzgadoInterviniente = [
         "JuzgadoID": "8507eda2-c649-11ec-8878-16c2a030bb97",
         "Fechainivig": "2022-04-27 13:46:00",
         "Fechafinvig": null,
-        "Nombre": "JUEZ DE INSTRUCCI\u00d3N JACHAL",
+        "Nombre": "JUEZ DE INSTRUCCIÓN JACHAL",
         "Telefono": null,
-        "Domicilio": "DE LA SEGUNDA CIRCUNSCRIPCI\u00d3N JUDICIAL"
+        "Domicilio": "DE LA SEGUNDA CIRCUNSCRIPCIÓN JUDICIAL"
     },
     {
         "JuzgadoID": "88a3dd7d-1f29-11e5-8d32-c46e1f155593",
@@ -13259,13 +15568,13 @@ export const juzgadoInterviniente = [
         "Fechafinvig": null,
         "Nombre": "JUEZ DE CORRECCIONAL JACHAL ",
         "Telefono": null,
-        "Domicilio": "DE LA SEGUNDA CIRCUNSCRIPCI\u00d3N JUDICIAL"
+        "Domicilio": "DE LA SEGUNDA CIRCUNSCRIPCIÓN JUDICIAL"
     },
     {
         "JuzgadoID": "a34d323a-c649-11ec-8878-16c2a030bb97",
         "Fechainivig": "2022-04-27 13:46:51",
         "Fechafinvig": null,
-        "Nombre": "JUZGADO DE PAZ DE J\u00c1CHAL",
+        "Nombre": "JUZGADO DE PAZ DE JÁCHAL",
         "Telefono": null,
         "Domicilio": null
     },
@@ -13281,7 +15590,7 @@ export const juzgadoInterviniente = [
         "JuzgadoID": "acc16d30-651c-11ee-ba93-0e3a1e34687f",
         "Fechainivig": "2023-10-07 11:20:32",
         "Fechafinvig": null,
-        "Nombre": " OF. JUD. PENAL DE NI\u00d1EZ Y ADOL DE PRIMERA NOM.",
+        "Nombre": " OF. JUD. PENAL DE NIÑEZ Y ADOL DE PRIMERA NOM.",
         "Telefono": "",
         "Domicilio": ""
     },
@@ -13377,7 +15686,7 @@ export const juzgadoInterviniente = [
         "JuzgadoID": "ff29d9c7-8db0-11ec-816d-16c2a030bb97",
         "Fechainivig": "2022-02-14 16:13:07",
         "Fechafinvig": null,
-        "Nombre": "JUZGADO DE FALTAS DE PRIMERA NOMINACI\u00d3N",
+        "Nombre": "JUZGADO DE FALTAS DE PRIMERA NOMINACIÓN",
         "Telefono": "123",
         "Domicilio": "DOMICILIO"
     }
@@ -13387,882 +15696,848 @@ export const articulosRelacionados = [
     {
         "ArticulosID": "01671da7-cc69-11ec-acbc-16c2a030bb97",
         "Numeroarticulo": "195\u00b0 Merodeo",
-        "nombre": "195\u00b0 Merodeo",
         "Codigo": "LEY N\u00b0 941-R"
     },
     {
         "ArticulosID": "048288b9-0cdd-11ed-bb82-0eb8b69eb347",
         "Numeroarticulo": "11\u00b0",
-        "nombre": "11\u00b0",
         "Codigo": "Art. 11\u00b0 Intervenci\u00f3n del Juez de Menores."
     },
     {
         "ArticulosID": "06cb4728-cf1e-11ec-acbc-16c2a030bb97",
         "Numeroarticulo": "ART 77\u00b0 de la ley 24449",
-        "nombre": "ART 77\u00b0 de la ley 24449",
         "Codigo": "TR\u00c1NSITO"
     },
     {
         "ArticulosID": "0afc85b7-b60f-11ec-8878-16c2a030bb97",
         "Numeroarticulo": "98\u00b0 Inobservancia de disposiciones legales ",
-        "nombre": "98\u00b0 Inobservancia de disposiciones legales ",
         "Codigo": "LEY N\u00b0  941-R "
     },
     {
         "ArticulosID": "0bfcf202-b5f7-11ec-8878-16c2a030bb97",
         "Numeroarticulo": "108\u00b0 Discriminaci\u00f3n ",
-        "nombre": "108\u00b0 Discriminaci\u00f3n ",
         "Codigo": "Ley N\u00b0 941-R"
     },
     {
         "ArticulosID": "117e7578-1ff0-11ee-ba93-0e3a1e34687f",
         "Numeroarticulo": "170\u00b0 Animales Peligrosos o Sueltos",
-        "nombre": "170\u00b0 Animales Peligrosos o Sueltos",
         "Codigo": "Ley N\u00b0 941-R"
     },
     {
         "ArticulosID": "12110411-9d53-11ec-816d-16c2a030bb97",
-        "Numeroarticulo": "134\u00ba Estado de ebriedad",
-        "nombre": "134\u00ba Estado de ebriedad",
-        "Codigo": "Ley N\u00ba 941-R"
+        "Numeroarticulo": "134º Estado de ebriedad",
+        "Codigo": "Ley Nº 941-R"
     },
     {
         "ArticulosID": "14c9dd3c-cb50-11ee-8df7-0e3a1e34687f",
         "Numeroarticulo": "Art181\u00b0 Inc. de Normas sobre edificacion",
-        "nombre": "Art181\u00b0 Inc. de Normas sobre edificacion",
         "Codigo": "Art181\u00b0 Inc. de Normas sobre edificacion"
     },
     {
         "ArticulosID": "19182a34-2a52-11ed-8709-0e085dd00fab",
         "Numeroarticulo": "Art 23\u00b0",
-        "nombre": "Art 23\u00b0",
         "Codigo": "687-p"
     },
     {
         "ArticulosID": "2132ead1-9d53-11ec-816d-16c2a030bb97",
-        "Numeroarticulo": "135\u00ba Prohibici\u00f3n de beber en la v\u00eda publica",
-        "nombre": "135\u00ba Prohibici\u00f3n de beber en la v\u00eda publica",
-        "Codigo": "Ley N \u00ba 941-R"
+        "Numeroarticulo": "135º Prohibici\u00f3n de beber en la v\u00ed a publica",
+        "Codigo": "Ley N º 941-R"
     },
     {
         "ArticulosID": "216690a0-aade-11ed-9f0f-0e3a1e34687f",
         "Numeroarticulo": "162\u00b0",
-        "nombre": "162\u00b0",
         "Codigo": "941-R"
     },
     {
         "ArticulosID": "246908ca-28bc-11ed-8709-0e085dd00fab",
         "Numeroarticulo": "Articulo 65 ",
-        "nombre": "Articulo 65 ",
         "Codigo": "Ley 24449 "
     },
     {
         "ArticulosID": "26ef62c9-8f2f-11ec-816d-16c2a030bb97",
-        "Numeroarticulo": "157\u00ba Operaciones de cambio",
-        "nombre": "157\u00ba Operaciones de cambio",
-        "Codigo": "Ley N\u00ba 941-R"
+        "Numeroarticulo": "157º Operaciones de cambio",
+        "Codigo": "Ley Nº 941-R"
     },
     {
         "ArticulosID": "2b658c3e-c104-11ec-8878-16c2a030bb97",
         "Numeroarticulo": "113\u00b0 - inc C ",
-        "nombre": "113\u00b0 - inc C ",
         "Codigo": "LEY N\u00b0 941-R"
     },
     {
         "ArticulosID": "337344d9-b5f7-11ec-8878-16c2a030bb97",
         "Numeroarticulo": "111\u00b0 Patota ",
-        "nombre": "111\u00b0 Patota ",
         "Codigo": "Ley N\u00b0 941 -R"
     },
     {
         "ArticulosID": "3d204e62-3521-11ee-ba93-0e3a1e34687f",
         "Numeroarticulo": "109\u00b0",
-        "nombre": "109\u00b0",
         "Codigo": "Ley 941-R"
     },
     {
         "ArticulosID": "44b1228c-8e67-11ec-816d-16c2a030bb97",
         "Numeroarticulo": "100 \u00b0 Negaci\u00f3n de Datos",
-        "nombre": "100 \u00b0 Negaci\u00f3n de Datos",
-        "Codigo": "Ley N\u00ba 941-R"
+        "Codigo": "Ley Nº 941-R"
     },
     {
         "ArticulosID": "463c3be8-5957-11ed-9b80-0e87116d214b",
         "Numeroarticulo": "99",
-        "nombre": "99",
         "Codigo": "Arti 99 cod de falta"
     },
     {
         "ArticulosID": "49a5c84f-bbe8-11ec-8878-16c2a030bb97",
         "Numeroarticulo": "178\u00b0 Portacion de arma blanca o contundente. ",
-        "nombre": "178\u00b0 Portacion de arma blanca o contundente. ",
         "Codigo": "Ley N\u00b0 941-R "
     },
     {
         "ArticulosID": "4e5c8b5e-f7fc-11ed-9f0f-0e3a1e34687f",
         "Numeroarticulo": "Art 192 aprovechamiento malicioso de credito",
-        "nombre": "Art 192 aprovechamiento malicioso de credito",
         "Codigo": "Art 192 aprovechamiento malicioso de credito"
     },
     {
         "ArticulosID": "5ce767ca-a5e9-11ee-8df7-0e3a1e34687f",
         "Numeroarticulo": "INFRACCION DEL ART. 109",
-        "nombre": "INFRACCION DEL ART. 109",
         "Codigo": "DE LEY 941-R"
     },
     {
         "ArticulosID": "633dbae1-08f9-11ed-bb82-0eb8b69eb347",
         "Numeroarticulo": "Art 11\u00b0 Responsabilidad de los padres",
-        "nombre": "Art 11\u00b0 Responsabilidad de los padres",
         "Codigo": "art 11"
     },
     {
         "ArticulosID": "648a5e7a-c4a0-11ec-8878-16c2a030bb97",
         "Numeroarticulo": "194 Intromisi\u00f3n indebida en campo o pro. ajena",
-        "nombre": "194 Intromisi\u00f3n indebida en campo o pro. ajena",
         "Codigo": "LEY 941-R"
     },
     {
         "ArticulosID": "6a6a49e6-6c2d-11ee-ba93-0e3a1e34687f",
         "Numeroarticulo": "142\u00b0 Expedido de bebidas alcoh\u00f3licas ",
-        "nombre": "142\u00b0 Expedido de bebidas alcoh\u00f3licas ",
         "Codigo": "Ley 941-R"
     },
     {
         "ArticulosID": "72980292-cb32-11ec-acbc-16c2a030bb97",
         "Numeroarticulo": "LEY 2005-L",
-        "nombre": "LEY 2005-L",
         "Codigo": "LEY 2005-L"
     },
     {
         "ArticulosID": "751f9e89-1426-11ee-ba93-0e3a1e34687f",
         "Numeroarticulo": "188\u00b0 Tenencia injustificada ",
-        "nombre": "188\u00b0 Tenencia injustificada ",
         "Codigo": "188\u00b0"
     },
     {
         "ArticulosID": "772b4818-e5d4-11ed-9f0f-0e3a1e34687f",
         "Numeroarticulo": "210",
-        "nombre": "210",
         "Codigo": "941-R"
     },
     {
         "ArticulosID": "78449ed0-a0cc-11ec-816d-16c2a030bb97",
         "Numeroarticulo": "202\u00b0 Falta de Custodia de Alineados",
-        "nombre": "202\u00b0 Falta de Custodia de Alineados",
-        "Codigo": "LEY N\u00ba 941-R"
+        "Codigo": "LEY Nº 941-R"
     },
     {
         "ArticulosID": "7930fa1d-ff7a-11ec-bb82-0eb8b69eb347",
         "Numeroarticulo": "Art. 209 ",
-        "nombre": "Art. 209 ",
         "Codigo": "Poda,tala. erradicaci\u00f3n de arbolado publico"
     },
     {
         "ArticulosID": "7c18e7f3-ddc9-11ec-acbc-16c2a030bb97",
-        "Numeroarticulo": "ART\u00cdCULO 104\u00b0 LEY 941-R",
-        "nombre": "ART\u00cdCULO 104\u00b0 LEY 941-R",
+        "Numeroarticulo": "ARTÍCULO 104\u00b0 LEY 941-R",
         "Codigo": "LEY 941-R"
     },
     {
         "ArticulosID": "7cc83b4f-cb32-11ec-acbc-16c2a030bb97",
         "Numeroarticulo": "LEY 2190-L",
-        "nombre": "LEY 2190-L",
         "Codigo": "LEY 2190-L"
     },
     {
         "ArticulosID": "860ab24e-8ffa-11ec-816d-16c2a030bb97",
-        "Numeroarticulo": "127 \u00ba Actos  de prostituci\u00f3n u oferta sexual",
-        "nombre": "127 \u00ba Actos  de prostituci\u00f3n u oferta sexual",
-        "Codigo": "Ley N\u00ba 941-R"
+        "Numeroarticulo": "127 º Actos  de prostituci\u00f3n u oferta sexual",
+        "Codigo": "Ley Nº 941-R"
     },
     {
         "ArticulosID": "9c4da043-150e-11ed-bb82-0eb8b69eb347",
         "Numeroarticulo": "196\u00b0 Reventa de entradas",
-        "nombre": "196\u00b0 Reventa de entradas",
         "Codigo": "ley 941-R"
     },
     {
         "ArticulosID": "9d452ffa-a21c-11ec-816d-16c2a030bb97",
         "Numeroarticulo": " 109\u00b0 Hostigamiento. Maltrato. Amenazas. Golpes ",
-        "nombre": " 109\u00b0 Hostigamiento. Maltrato. Amenazas. Golpes ",
         "Codigo": "LEY N\u00b0 941-R"
     },
     {
         "ArticulosID": "a5619481-1fe4-11ee-ba93-0e3a1e34687f",
         "Numeroarticulo": "206\u00b0 Destruccion de Faunas ",
-        "nombre": "206\u00b0 Destruccion de Faunas ",
         "Codigo": "Ley 941-R"
     },
     {
         "ArticulosID": "a6790e73-843a-11ec-816d-16c2a030bb97",
-        "Numeroarticulo": "169\u00ba Arrojamiento de residuos, gases, fuego",
-        "nombre": "169\u00ba Arrojamiento de residuos, gases, fuego",
-        "Codigo": "LEY N\u00ba 941-R"
+        "Numeroarticulo": "169º Arrojamiento de residuos, gases, fuego",
+        "Codigo": "LEY Nº 941-R"
     },
     {
         "ArticulosID": "b1130ed1-4047-11ed-8709-0e085dd00fab",
-        "Numeroarticulo": " Art\u00edculo 197. Aprovechamiento abusivo de aguas",
-        "nombre": " Art\u00edculo 197. Aprovechamiento abusivo de aguas",
+        "Numeroarticulo": " Art\u00ed culo 197. Aprovechamiento abusivo de aguas",
         "Codigo": "codigo de faltas de la provincia de San Juan "
     },
     {
         "ArticulosID": "b40a5e0b-843a-11ec-816d-16c2a030bb97",
-        "Numeroarticulo": "137\u00ba Abuso de sustancias estupefacientes ",
-        "nombre": "137\u00ba Abuso de sustancias estupefacientes ",
-        "Codigo": "LEY N\u00ba 941-R"
+        "Numeroarticulo": "137º Abuso de sustancias estupefacientes ",
+        "Codigo": "LEY Nº 941-R"
     },
     {
         "ArticulosID": "b54bf5f1-8df3-11ec-816d-16c2a030bb97",
-        "Numeroarticulo": "113\u00ba Actos turbatorios y des\u00f3rdenes",
-        "nombre": "113\u00ba Actos turbatorios y des\u00f3rdenes",
-        "Codigo": "LEY N\u00ba 941-R"
+        "Numeroarticulo": "113º Actos turbatorios y des\u00f3rdenes",
+        "Codigo": "LEY Nº 941-R"
     },
     {
         "ArticulosID": "be514a11-9fc6-11ec-816d-16c2a030bb97",
-        "Numeroarticulo": "187\u00b0 Perjuicio a la propiedad p\u00fablica o privada",
-        "nombre": "187\u00b0 Perjuicio a la propiedad p\u00fablica o privada",
+        "Numeroarticulo": "187\u00b0 Perjuicio a la propiedad p\u00FAblica o privada",
         "Codigo": "LEY N\u00b0 941- R"
     },
     {
         "ArticulosID": "bede71a9-15ad-11ee-ba93-0e3a1e34687f",
         "Numeroarticulo": "Art. 182\u00b0",
-        "nombre": "Art. 182\u00b0",
         "Codigo": "."
     },
     {
         "ArticulosID": "c1c6b445-28b5-11ed-8709-0e085dd00fab",
         "Numeroarticulo": "124\u00b0 Prostituci\u00f3n escandalosa",
-        "nombre": "124\u00b0 Prostituci\u00f3n escandalosa",
         "Codigo": "LEY N\u00b0 941-R"
     },
     {
         "ArticulosID": "c2dd6572-2310-11ed-bb82-0eb8b69eb347",
         "Numeroarticulo": "Art. 204\u00b0 Uso indebido de agua ",
-        "nombre": "Art. 204\u00b0 Uso indebido de agua ",
         "Codigo": "Ley 941-r "
     },
     {
         "ArticulosID": "c4663c60-0203-11ee-9f0f-0e3a1e34687f",
         "Numeroarticulo": "Art 172\u00b0 Entorpecimiento de servicios esenciales",
-        "nombre": "Art 172\u00b0 Entorpecimiento de servicios esenciales",
         "Codigo": "Art 172\u00b0 Entorpecimiento de servicios esenciales"
+    },
+    {
+        "ArticulosID": "c4b74d31-1c1d-11ef-9e2a-0e3a1e34687f",
+        "Numeroarticulo": "articulo 113 \u00b0 nciso \"J\"",
+        "Codigo": "Ley 941-R"
     },
     {
         "ArticulosID": "c5799baa-b771-11ec-8878-16c2a030bb97",
         "Numeroarticulo": "72\u00b0 BIS. Animales Sueltos. Medidas preventivas ",
-        "nombre": "72\u00b0 BIS. Animales Sueltos. Medidas preventivas ",
         "Codigo": "LEY N\u00b0 941-R"
     },
     {
         "ArticulosID": "c92df587-9d51-11ec-816d-16c2a030bb97",
-        "Numeroarticulo": "117\u00ba Ofensas a la moral p\u00fablica",
-        "nombre": "117\u00ba Ofensas a la moral p\u00fablica",
-        "Codigo": "LEY N\u00ba 941-R"
+        "Numeroarticulo": "117º Ofensas a la moral p\u00FAblica",
+        "Codigo": "LEY Nº 941-R"
     },
     {
         "ArticulosID": "c93a47c7-8ea1-11ec-816d-16c2a030bb97",
-        "Numeroarticulo": "115\u00ba - Juegos deportivos en la v\u00eda p\u00fablica",
-        "nombre": "115\u00ba - Juegos deportivos en la v\u00eda p\u00fablica",
-        "Codigo": "LEY N\u00ba 941-R"
+        "Numeroarticulo": "115º - Juegos deportivos en la v\u00ed a p\u00FAblica",
+        "Codigo": "LEY Nº 941-R"
     },
     {
         "ArticulosID": "d0917e3e-39fb-11ed-8709-0e085dd00fab",
         "Numeroarticulo": "Art 89 lesiones  y resistencia a la autoridad ",
-        "nombre": "Art 89 lesiones  y resistencia a la autoridad ",
         "Codigo": "CPA"
+    },
+    {
+        "ArticulosID": "d1f79d3e-1c1d-11ef-9e2a-0e3a1e34687f",
+        "Numeroarticulo": "Articulo 213 Inciso \"A\"",
+        "Codigo": "Ley 941-R"
     },
     {
         "ArticulosID": "d6824861-6c2c-11ee-ba93-0e3a1e34687f",
         "Numeroarticulo": "139\u00b0 Incumpliendo de la legislaci\u00f3n especial",
-        "nombre": "139\u00b0 Incumpliendo de la legislaci\u00f3n especial",
         "Codigo": " Ley 941-R"
     },
     {
         "ArticulosID": "d8750046-8e71-11ec-816d-16c2a030bb97",
-        "Numeroarticulo": "138\u00ba Ebriedad habitual y toxicoman\u00eda",
-        "nombre": "138\u00ba Ebriedad habitual y toxicoman\u00eda",
-        "Codigo": "LEY N\u00ba 941-R"
+        "Numeroarticulo": "138º Ebriedad habitual y toxicoman\u00ed a",
+        "Codigo": "LEY Nº 941-R"
     },
     {
         "ArticulosID": "df141665-a8d1-11ed-9b80-0e87116d214b",
-        "Numeroarticulo": "183\u00ba ",
-        "nombre": "183\u00ba ",
+        "Numeroarticulo": "183º ",
         "Codigo": "941-R"
     },
     {
         "ArticulosID": "df809960-1ef4-11ed-bb82-0eb8b69eb347",
         "Numeroarticulo": "Actuaciones por Denuncia ",
-        "nombre": "Actuaciones por Denuncia ",
         "Codigo": "941-r"
+    },
+    {
+        "ArticulosID": "dfa1111f-1c1d-11ef-9e2a-0e3a1e34687f",
+        "Numeroarticulo": "Articulo 213\u00b0 Inciso \"B\"",
+        "Codigo": "Ley 941-R"
     },
     {
         "ArticulosID": "e0607d61-499e-11ed-9b80-0e87116d214b",
         "Numeroarticulo": "Art 197\u00b0 Aprovechamiento abusivo de aguas",
-        "nombre": "Art 197\u00b0 Aprovechamiento abusivo de aguas",
         "Codigo": "ley 941-R"
     },
     {
         "ArticulosID": "e1d9a615-a23d-11ed-9b80-0e87116d214b",
         "Numeroarticulo": "146\u00b0",
-        "nombre": "146\u00b0",
         "Codigo": "LR-941"
     },
     {
         "ArticulosID": "e55b7a27-2b20-11ed-8709-0e085dd00fab",
         "Numeroarticulo": "Art. 131",
-        "nombre": "Art. 131",
         "Codigo": "C.P.A"
     },
     {
         "ArticulosID": "e7abdbff-a21c-11ec-816d-16c2a030bb97",
         "Numeroarticulo": "110\u00b0 Ri\u00f1a",
-        "nombre": "110\u00b0 Ri\u00f1a",
         "Codigo": "LEY N\u00b0 941-R"
     },
     {
         "ArticulosID": "ebb9c4e0-9d52-11ec-816d-16c2a030bb97",
-        "Numeroarticulo": "118\u00ba Esc\u00e1ndalo p\u00fablico",
-        "nombre": "118\u00ba Esc\u00e1ndalo p\u00fablico",
-        "Codigo": "LEY N\u00ba 941-R"
+        "Numeroarticulo": "118º Esc\u00e1ndalo p\u00FAblico",
+        "Codigo": "LEY Nº 941-R"
+    },
+    {
+        "ArticulosID": "ee2d6bb0-1c1d-11ef-9e2a-0e3a1e34687f",
+        "Numeroarticulo": "Articulo 213\u00b0 Inciso \"C\"",
+        "Codigo": "Ley 941-R"
     },
     {
         "ArticulosID": "f30b77c7-7757-11ee-ba93-0e3a1e34687f",
         "Numeroarticulo": "ART. 26 - CLAUSURA ",
-        "nombre": "ART. 26 - CLAUSURA ",
         "Codigo": "ley 941 - r"
     },
     {
         "ArticulosID": "f43fc7ca-6d9d-11ed-9b80-0e87116d214b",
         "Numeroarticulo": "168\u00b0 Destrucci\u00f3n o deterioro de se\u00f1ales",
-        "nombre": "168\u00b0 Destrucci\u00f3n o deterioro de se\u00f1ales",
         "Codigo": "Ley 941-R"
     },
     {
         "ArticulosID": "f95fed0b-481d-11ed-9b80-0e87116d214b",
         "Numeroarticulo": "Art 32\u00b0",
-        "nombre": "Art 32\u00b0",
         "Codigo": "Ley 687-p"
     },
     {
         "ArticulosID": "facc9e97-9d6a-11ec-816d-16c2a030bb97",
-        "Numeroarticulo": "117\u00ba BIS Difunda a trav\u00e9s de medios electr\u00f3nicos",
-        "nombre": "117\u00ba BIS Difunda a trav\u00e9s de medios electr\u00f3nicos",
-        "Codigo": "LEY N\u00ba 941-R"
+        "Numeroarticulo": "117º BIS Difunda a trav\u00e9s de medios electr\u00f3nicos",
+        "Codigo": "LEY Nº 941-R"
     }
 ]
+
 export const ayudanteFiscal = [
     {
-        "PersonalfiscalID": "042e4575-c84b-11ed-9f0f-0e3a1e34687f",
-        "Denominacion": "Dr Ghilardi Oscar Andres",
-        "nombre": "Dr Ghilardi Oscar Andres",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": '042e4575-c84b-11ed-9f0f-0e3a1e34687f',
+        "Denominacion": 'Dr Ghilardi Oscar Andres',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr Ghilardi Oscar Andres'
     },
     {
-        "PersonalfiscalID": "0a910417-5918-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dr. Miguel Gay ",
-        "nombre": "Dr. Miguel Gay ",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": '0a910417-5918-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dr. Miguel Gay ',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Miguel Gay '
     },
     {
-        "PersonalfiscalID": "0b3b3429-95a9-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dra. Pacheco Cecilia",
-        "nombre": "Dra. Pacheco Cecilia",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": '0b3b3429-95a9-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dra. Pacheco Cecilia',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dra. Pacheco Cecilia'
     },
     {
-        "PersonalfiscalID": "0f8def62-4ccd-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dr. Pe\u00f1a David",
-        "nombre": "Dr. Pe\u00f1a David",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": '0f8def62-4ccd-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dr. Pe\u00f1a David',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Pe\u00f1a David'
     },
     {
-        "PersonalfiscalID": "12cb7ac9-6d93-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dr Nicolia Francisco",
-        "nombre": "Dr Nicolia Francisco",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": '12cb7ac9-6d93-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dr Nicolia Francisco',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr Nicolia Francisco'
     },
     {
-        "PersonalfiscalID": "1689958e-95d4-11ed-9b80-0e87116d214b",
-        "Denominacion": "Ferrer Pablo Alfredo",
-        "nombre": "Ferrer Pablo Alfredo",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": '1689958e-95d4-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Ferrer Pablo Alfredo',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Ferrer Pablo Alfredo'
     },
     {
-        "PersonalfiscalID": "169a845a-5918-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dr. Jos\u00e9 Plaza ",
-        "nombre": "Dr. Jos\u00e9 Plaza ",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": '169a845a-5918-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dr. Jos\u00e9 Plaza ',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Jos\u00e9 Plaza '
     },
     {
-        "PersonalfiscalID": "18e3fa3f-df3b-11ee-8df7-0e3a1e34687f",
-        "Denominacion": "Elizondo Adrian ",
-        "nombre": "Elizondo Adrian ",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": '18e3fa3f-df3b-11ee-8df7-0e3a1e34687f',
+        "Denominacion": 'Elizondo Adrian ',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Elizondo Adrian '
     },
     {
-        "PersonalfiscalID": "1c4934fc-d673-11ee-8df7-0e3a1e34687f",
-        "Denominacion": "Dr. Salinas Jorge",
-        "nombre": "Dr. Salinas Jorge",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": '1c4934fc-d673-11ee-8df7-0e3a1e34687f',
+        "Denominacion": 'Dr. Salinas Jorge',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Salinas Jorge'
     },
     {
-        "PersonalfiscalID": "2fa640f7-dc9a-11ee-8df7-0e3a1e34687f",
-        "Denominacion": "Dra. Blanco Gabriela ",
-        "nombre": "Dra. Blanco Gabriela ",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": '2fa640f7-dc9a-11ee-8df7-0e3a1e34687f',
+        "Denominacion": 'Dra. Blanco Gabriela ',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dra. Blanco Gabriela '
     },
     {
-        "PersonalfiscalID": "4004c14f-e162-11ed-9f0f-0e3a1e34687f",
-        "Denominacion": "Dr. Codorniu Mario",
-        "nombre": "Dr. Codorniu Mario",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": '4004c14f-e162-11ed-9f0f-0e3a1e34687f',
+        "Denominacion": 'Dr. Codorniu Mario',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Codorniu Mario'
     },
     {
-        "PersonalfiscalID": "45513631-5918-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dr. Juan Galvez",
-        "nombre": "Dr. Juan Galvez",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": '45513631-5918-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dr. Juan Galvez',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Juan Galvez'
     },
     {
-        "PersonalfiscalID": "4be54f08-eac4-11ed-9f0f-0e3a1e34687f",
-        "Denominacion": "Dr Poblete Fabricio",
-        "nombre": "Dr Poblete Fabricio",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": '4be54f08-eac4-11ed-9f0f-0e3a1e34687f',
+        "Denominacion": 'Dr Poblete Fabricio',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr Poblete Fabricio'
     },
     {
-        "PersonalfiscalID": "52e2868e-5918-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dr. Eduardo Martinez Yanzon",
-        "nombre": "Dr. Eduardo Martinez Yanzon",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": '52e2868e-5918-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dr. Eduardo Martinez Yanzon',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Eduardo Martinez Yanzon'
     },
     {
-        "PersonalfiscalID": "53bf8499-1441-11ee-ba93-0e3a1e34687f",
-        "Denominacion": "Dr. Oropel Oscar Santiago",
-        "nombre": "Dr. Oropel Oscar Santiago",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": '53bf8499-1441-11ee-ba93-0e3a1e34687f',
+        "Denominacion": 'Dr. Oropel Oscar Santiago',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Oropel Oscar Santiago'
     },
     {
-        "PersonalfiscalID": "54bbd1d9-5919-11ed-9b80-0e87116d214b",
-        "Denominacion": "dra. Ingrid Schott",
-        "nombre": "dra. Ingrid Schott",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": '54bbd1d9-5919-11ed-9b80-0e87116d214b',
+        "Denominacion": 'dra. Ingrid Schott',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'dra. Ingrid Schott'
     },
     {
-        "PersonalfiscalID": "59411647-8c88-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dr. Shoar Aballay ",
-        "nombre": "Dr. Shoar Aballay ",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": '59411647-8c88-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dr. Shoar Aballay ',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Shoar Aballay '
     },
     {
-        "PersonalfiscalID": "5c5f8325-5918-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dra. Claudia Galante",
-        "nombre": "Dra. Claudia Galante",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": '5c5f8325-5918-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dra. Claudia Galante',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dra. Claudia Galante'
     },
     {
-        "PersonalfiscalID": "5e0265be-17a6-11ef-9e2a-0e3a1e34687f",
-        "Denominacion": "Mario Quiroga",
-        "nombre": "Mario Quiroga",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": '5e0265be-17a6-11ef-9e2a-0e3a1e34687f',
+        "Denominacion": 'Mario Quiroga',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Mario Quiroga'
     },
     {
-        "PersonalfiscalID": "5f332df2-373d-11ef-9e2a-0e3a1e34687f",
-        "Denominacion": "Dr. Miranda Sebastian",
-        "nombre": "Dr. Miranda Sebastian",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": '5f332df2-373d-11ef-9e2a-0e3a1e34687f',
+        "Denominacion": 'Dr. Miranda Sebastian',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Miranda Sebastian'
     },
     {
-        "PersonalfiscalID": "64fa9dcf-17a6-11ef-9e2a-0e3a1e34687f",
-        "Denominacion": "Carlos Ortiz",
-        "nombre": "Carlos Ortiz",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": '64fa9dcf-17a6-11ef-9e2a-0e3a1e34687f',
+        "Denominacion": 'Carlos Ortiz',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Carlos Ortiz'
     },
     {
-        "PersonalfiscalID": "65805c75-5919-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dr. Duilio Ejarque",
-        "nombre": "Dr. Duilio Ejarque",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": '65805c75-5919-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dr. Duilio Ejarque',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Duilio Ejarque'
     },
     {
-        "PersonalfiscalID": "6f791044-96c7-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dr. Eiben Ezequiel",
-        "nombre": "Dr. Eiben Ezequiel",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": '6f791044-96c7-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dr. Eiben Ezequiel',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Eiben Ezequiel'
     },
     {
-        "PersonalfiscalID": "7831ed9b-5919-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dr. Roberto Marcucci",
-        "nombre": "Dr. Roberto Marcucci",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": '749e05ee-50e4-11ef-b47c-0e3a1e34687f',
+        "Denominacion": 'Elizondo Adrian',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Elizondo Adrian'
     },
     {
-        "PersonalfiscalID": "7eeb927f-aa4d-11ed-9f0f-0e3a1e34687f",
-        "Denominacion": "Dr. Miranda Carlos",
-        "nombre": "Dr. Miranda Carlos",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": '7831ed9b-5919-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dr. Roberto Marcucci',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Roberto Marcucci'
     },
     {
-        "PersonalfiscalID": "7fa371d8-ce7d-11ed-9f0f-0e3a1e34687f",
-        "Denominacion": "Dra Riveros Rosana",
-        "nombre": "Dra Riveros Rosana",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": '7eeb927f-aa4d-11ed-9f0f-0e3a1e34687f',
+        "Denominacion": 'Dr. Miranda Carlos',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Miranda Carlos'
     },
     {
-        "PersonalfiscalID": "841d7818-d691-11ee-8df7-0e3a1e34687f",
-        "Denominacion": "Dr.Pereira Federico",
-        "nombre": "Dr.Pereira Federico",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": '7fa371d8-ce7d-11ed-9f0f-0e3a1e34687f',
+        "Denominacion": 'Dra Riveros Rosana',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dra Riveros Rosana'
     },
     {
-        "PersonalfiscalID": "8c80ff66-5919-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dr. Nicolas Shiattino",
-        "nombre": "Dr. Nicolas Shiattino",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": '841d7818-d691-11ee-8df7-0e3a1e34687f',
+        "Denominacion": 'Dr.Pereira Federico',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr.Pereira Federico'
     },
     {
-        "PersonalfiscalID": "8e88ee3c-7564-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dra Cangialosi Cecilia",
-        "nombre": "Dra Cangialosi Cecilia",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": '8c80ff66-5919-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dr. Nicolas Shiattino',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Nicolas Shiattino'
     },
     {
-        "PersonalfiscalID": "960d36e4-4a76-11ef-b47c-0e3a1e34687f",
-        "Denominacion": "DR. MATTAR JUAN MARTIN",
-        "nombre": "DR. MATTAR JUAN MARTIN",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": '8e88ee3c-7564-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dra Cangialosi Cecilia',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dra Cangialosi Cecilia'
     },
     {
-        "PersonalfiscalID": "970e873c-f449-11ed-9f0f-0e3a1e34687f",
-        "Denominacion": "Dr. Cabrera Gema",
-        "nombre": "Dr. Cabrera Gema",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": '960d36e4-4a76-11ef-b47c-0e3a1e34687f',
+        "Denominacion": 'DR. MATTAR JUAN MARTIN',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'DR. MATTAR JUAN MARTIN'
     },
     {
-        "PersonalfiscalID": "98d1d023-5919-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dr. Ricardo Juarez Prieto",
-        "nombre": "Dr. Ricardo Juarez Prieto",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": '970e873c-f449-11ed-9f0f-0e3a1e34687f',
+        "Denominacion": 'Dr. Cabrera Gema',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Cabrera Gema'
     },
     {
-        "PersonalfiscalID": "9d3cc7f6-5918-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dra. Claudia Carignano",
-        "nombre": "Dra. Claudia Carignano",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": '98d1d023-5919-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dr. Ricardo Juarez Prieto',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Ricardo Juarez Prieto'
     },
     {
-        "PersonalfiscalID": "a01bebe3-da29-11ee-8df7-0e3a1e34687f",
-        "Denominacion": "Dr. Rodriguez Carlos",
-        "nombre": "Dr. Rodriguez Carlos",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": '9d3cc7f6-5918-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dra. Claudia Carignano',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dra. Claudia Carignano'
     },
     {
-        "PersonalfiscalID": "a33b56f5-5919-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dr. Renato Roca",
-        "nombre": "Dr. Renato Roca",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": 'a01bebe3-da29-11ee-8df7-0e3a1e34687f',
+        "Denominacion": 'Dr. Rodriguez Carlos',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Rodriguez Carlos'
     },
     {
-        "PersonalfiscalID": "a9689dcb-8dc2-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dr. Eden Martin",
-        "nombre": "Dr. Eden Martin",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": 'a33b56f5-5919-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dr. Renato Roca',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Renato Roca'
     },
     {
-        "PersonalfiscalID": "aade8d8a-5919-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dr. Francisco Bruno",
-        "nombre": "Dr. Francisco Bruno",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": 'a9689dcb-8dc2-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dr. Eden Martin',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Eden Martin'
     },
     {
-        "PersonalfiscalID": "aadf43c0-6d9e-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dr. Nicolia Francisco",
-        "nombre": "Dr. Nicolia Francisco",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": 'aade8d8a-5919-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dr. Francisco Bruno',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Francisco Bruno'
     },
     {
-        "PersonalfiscalID": "ab97826b-92c1-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dr. Teja Mariano",
-        "nombre": "Dr. Teja Mariano",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": 'aadf43c0-6d9e-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dr. Nicolia Francisco',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Nicolia Francisco'
     },
     {
-        "PersonalfiscalID": "aeb67405-da29-11ee-8df7-0e3a1e34687f",
-        "Denominacion": "Dra. Ginestar Adriana",
-        "nombre": "Dra. Ginestar Adriana",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": 'ab97826b-92c1-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dr. Teja Mariano',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Teja Mariano'
     },
     {
-        "PersonalfiscalID": "b35c8555-a0d1-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dr. Garc\u00eda Thomas",
-        "nombre": "Dr. Garc\u00eda Thomas",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": 'aeb67405-da29-11ee-8df7-0e3a1e34687f',
+        "Denominacion": 'Dra. Ginestar Adriana',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dra. Ginestar Adriana'
     },
     {
-        "PersonalfiscalID": "b38de3d0-ff06-11ec-bb82-0eb8b69eb347",
-        "Denominacion": "Dr. Carlos C\u00e1ceres",
-        "nombre": "Dr. Carlos C\u00e1ceres",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": 'b35c8555-a0d1-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dr. Garc\u00ed a Thomas',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Garc\u00ed a Thomas'
     },
     {
-        "PersonalfiscalID": "b8d73615-ff06-11ec-bb82-0eb8b69eb347",
-        "Denominacion": "Dr. Solera Alejandro",
-        "nombre": "Dr. Solera Alejandro",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": 'b38de3d0-ff06-11ec-bb82-0eb8b69eb347',
+        "Denominacion": 'Dr. Carlos C\u00e1ceres',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Carlos C\u00e1ceres'
     },
     {
-        "PersonalfiscalID": "b953f9c1-5918-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dr. Mario Panetta Soppelsa",
-        "nombre": "Dr. Mario Panetta Soppelsa",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": 'b8d73615-ff06-11ec-bb82-0eb8b69eb347',
+        "Denominacion": 'Dr. Solera Alejandro',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Solera Alejandro'
     },
     {
-        "PersonalfiscalID": "b978acdc-d772-11ee-8df7-0e3a1e34687f",
-        "Denominacion": "Dr. Cabral Rodrigo",
-        "nombre": "Dr. Cabral Rodrigo",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": 'b953f9c1-5918-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dr. Mario Panetta Soppelsa',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Mario Panetta Soppelsa'
     },
     {
-        "PersonalfiscalID": "bdfc61d3-16df-11ee-ba93-0e3a1e34687f",
-        "Denominacion": "-",
-        "nombre": "-",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": 'b978acdc-d772-11ee-8df7-0e3a1e34687f',
+        "Denominacion": 'Dr. Cabral Rodrigo',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Cabral Rodrigo'
     },
     {
-        "PersonalfiscalID": "be10322b-d7c3-11ee-8df7-0e3a1e34687f",
-        "Denominacion": "Dr. Varas Alejandro",
-        "nombre": "Dr. Varas Alejandro",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": 'bdfc61d3-16df-11ee-ba93-0e3a1e34687f',
+        "Denominacion": '-',
+        "Jerarquia": 'Ayudante',
+        "nombre": '-'
     },
     {
-        "PersonalfiscalID": "be66711e-77bf-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dr. Sergio Cuneo",
-        "nombre": "Dr. Sergio Cuneo",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": 'be10322b-d7c3-11ee-8df7-0e3a1e34687f',
+        "Denominacion": 'Dr. Varas Alejandro',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Varas Alejandro'
     },
     {
-        "PersonalfiscalID": "be944ab7-ff06-11ec-bb82-0eb8b69eb347",
-        "Denominacion": "Dr. Cristian Gerarduzzi",
-        "nombre": "Dr. Cristian Gerarduzzi",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": 'be66711e-77bf-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dr. Sergio Cuneo',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Sergio Cuneo'
     },
     {
-        "PersonalfiscalID": "c3fe32e0-ff06-11ec-bb82-0eb8b69eb347",
-        "Denominacion": "DR. Lafont Rodrigo",
-        "nombre": "DR. Lafont Rodrigo",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": 'be944ab7-ff06-11ec-bb82-0eb8b69eb347',
+        "Denominacion": 'Dr. Cristian Gerarduzzi',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Cristian Gerarduzzi'
     },
     {
-        "PersonalfiscalID": "c5e1582f-fc27-11ee-8df7-0e3a1e34687f",
-        "Denominacion": "Dr. Vale Alejandro",
-        "nombre": "Dr. Vale Alejandro",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": 'c3fe32e0-ff06-11ec-bb82-0eb8b69eb347',
+        "Denominacion": 'DR. Lafont Rodrigo',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'DR. Lafont Rodrigo'
     },
     {
-        "PersonalfiscalID": "c75e115a-f8b1-11ed-9f0f-0e3a1e34687f",
-        "Denominacion": "Dr. Eduardo Garcia",
-        "nombre": "Dr. Eduardo Garcia",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": 'c5e1582f-fc27-11ee-8df7-0e3a1e34687f',
+        "Denominacion": 'Dr. Vale Alejandro',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Vale Alejandro'
     },
     {
-        "PersonalfiscalID": "cdadcfb6-5919-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dr. Francisco Micheltonera ",
-        "nombre": "Dr. Francisco Micheltonera ",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": 'c75e115a-f8b1-11ed-9f0f-0e3a1e34687f',
+        "Denominacion": 'Dr. Eduardo Garcia',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Eduardo Garcia'
     },
     {
-        "PersonalfiscalID": "d6572ca4-087b-11ef-8bfb-0e3a1e34687f",
-        "Denominacion": "Videla Rodrigo",
-        "nombre": "Videla Rodrigo",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": 'cdadcfb6-5919-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dr. Francisco Micheltonera ',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Francisco Micheltonera '
     },
     {
-        "PersonalfiscalID": "da1eec46-5919-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dr. Francisco Pizarro",
-        "nombre": "Dr. Francisco Pizarro",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": 'd6572ca4-087b-11ef-8bfb-0e3a1e34687f',
+        "Denominacion": 'Videla Rodrigo',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Videla Rodrigo'
     },
     {
-        "PersonalfiscalID": "dca7d7c2-7842-11ee-ba93-0e3a1e34687f",
-        "Denominacion": "Dr. Bustos Marcelo",
-        "nombre": "Dr. Bustos Marcelo",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": 'da1eec46-5919-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dr. Francisco Pizarro',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Francisco Pizarro'
     },
     {
-        "PersonalfiscalID": "dd6958b0-087b-11ef-8bfb-0e3a1e34687f",
-        "Denominacion": "Orellano Pablo",
-        "nombre": "Orellano Pablo",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": 'dca7d7c2-7842-11ee-ba93-0e3a1e34687f',
+        "Denominacion": 'Dr. Bustos Marcelo',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Bustos Marcelo'
     },
     {
-        "PersonalfiscalID": "ef229ba7-5917-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dr. Alberto Martinez",
-        "nombre": "Dr. Alberto Martinez",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": 'dd6958b0-087b-11ef-8bfb-0e3a1e34687f',
+        "Denominacion": 'Orellano Pablo',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Orellano Pablo'
     },
     {
-        "PersonalfiscalID": "f51e7f7d-1602-11ef-9e2a-0e3a1e34687f",
-        "Denominacion": "Jorge Sanchez",
-        "nombre": "Jorge Sanchez",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": 'ef229ba7-5917-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dr. Alberto Martinez',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Alberto Martinez'
     },
     {
-        "PersonalfiscalID": "f68b7785-5917-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dr. Cristian Catalano ",
-        "nombre": "Dr. Cristian Catalano ",
-        "Jerarquia": "Ayudante"
+        "PersonalfiscalID": 'f51e7f7d-1602-11ef-9e2a-0e3a1e34687f',
+        "Denominacion": 'Jorge Sanchez',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Jorge Sanchez'
+    },
+    {
+        "PersonalfiscalID": 'f68b7785-5917-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dr. Cristian Catalano ',
+        "Jerarquia": 'Ayudante',
+        "nombre": 'Dr. Cristian Catalano '
     }
 ]
 export const fiscalCargo = [
     {
-        "PersonalfiscalID": "0b021bda-6d93-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dr. Catalano Cristian ",
-        "nombre": "Dr. Catalano Cristian ",
-        "Jerarquia": "Fiscal"
+        "PersonalfiscalID": '0b021bda-6d93-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dr. Catalano Cristian ',
+        "Jerarquia": 'Fiscal',
+        "nombre": 'Dr. Catalano Cristian '
     },
     {
-        "PersonalfiscalID": "0fc38b3e-86ba-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dr. Shoar Aballay",
-        "nombre": "Dr. Shoar Aballay",
-        "Jerarquia": "Fiscal"
+        "PersonalfiscalID": '0fc38b3e-86ba-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dr. Shoar Aballay',
+        "Jerarquia": 'Fiscal',
+        "nombre": 'Dr. Shoar Aballay'
     },
     {
-        "PersonalfiscalID": "159d607f-ff05-11ec-bb82-0eb8b69eb347",
-        "Denominacion": "Dr. Adrian Riveros",
-        "nombre": "Dr. Adrian Riveros",
-        "Jerarquia": "Fiscal"
+        "PersonalfiscalID": '159d607f-ff05-11ec-bb82-0eb8b69eb347',
+        "Denominacion": 'Dr. Adrian Riveros',
+        "Jerarquia": 'Fiscal',
+        "nombre": 'Dr. Adrian Riveros'
     },
     {
-        "PersonalfiscalID": "17bd942e-f1f9-11ee-8df7-0e3a1e34687f",
-        "Denominacion": "Dr Videla Rodrigo",
-        "nombre": "Dr Videla Rodrigo",
-        "Jerarquia": "Fiscal"
+        "PersonalfiscalID": '17bd942e-f1f9-11ee-8df7-0e3a1e34687f',
+        "Denominacion": 'Dr Videla Rodrigo',
+        "Jerarquia": 'Fiscal',
+        "nombre": 'Dr Videla Rodrigo'
     },
     {
-        "PersonalfiscalID": "1bf9b159-86ba-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dr. Gaston Salvio",
-        "nombre": "Dr. Gaston Salvio",
-        "Jerarquia": "Fiscal"
+        "PersonalfiscalID": '1bf9b159-86ba-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dr. Gaston Salvio',
+        "Jerarquia": 'Fiscal',
+        "nombre": 'Dr. Gaston Salvio'
     },
     {
-        "PersonalfiscalID": "2108cf54-5918-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dr. Ignacio Achem",
-        "nombre": "Dr. Ignacio Achem",
-        "Jerarquia": "Fiscal"
+        "PersonalfiscalID": '2108cf54-5918-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dr. Ignacio Achem',
+        "Jerarquia": 'Fiscal',
+        "nombre": 'Dr. Ignacio Achem'
     },
     {
-        "PersonalfiscalID": "2a9604cb-7564-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dra Pringles Daniela",
-        "nombre": "Dra Pringles Daniela",
-        "Jerarquia": "Fiscal"
+        "PersonalfiscalID": '2a9604cb-7564-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dra Pringles Daniela',
+        "Jerarquia": 'Fiscal',
+        "nombre": 'Dra Pringles Daniela'
     },
     {
-        "PersonalfiscalID": "4ab6c286-5916-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dra. Virginia Branca",
-        "nombre": "Dra. Virginia Branca",
-        "Jerarquia": "Fiscal"
+        "PersonalfiscalID": '4ab6c286-5916-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dra. Virginia Branca',
+        "Jerarquia": 'Fiscal',
+        "nombre": 'Dra. Virginia Branca'
     },
     {
-        "PersonalfiscalID": "5039390f-c84c-11ed-9f0f-0e3a1e34687f",
-        "Denominacion": "Dra Galante Yanina",
-        "nombre": "Dra Galante Yanina",
-        "Jerarquia": "Fiscal"
+        "PersonalfiscalID": '5039390f-c84c-11ed-9f0f-0e3a1e34687f',
+        "Denominacion": 'Dra Galante Yanina',
+        "Jerarquia": 'Fiscal',
+        "nombre": 'Dra Galante Yanina'
     },
     {
-        "PersonalfiscalID": "53d560cb-5916-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dra. Claudia Salica",
-        "nombre": "Dra. Claudia Salica",
-        "Jerarquia": "Fiscal"
+        "PersonalfiscalID": '53d560cb-5916-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dra. Claudia Salica',
+        "Jerarquia": 'Fiscal',
+        "nombre": 'Dra. Claudia Salica'
     },
     {
-        "PersonalfiscalID": "5dcc366f-5916-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dr. Roberto Ginsbert",
-        "nombre": "Dr. Roberto Ginsbert",
-        "Jerarquia": "Fiscal"
+        "PersonalfiscalID": '5dcc366f-5916-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dr. Roberto Ginsbert',
+        "Jerarquia": 'Fiscal',
+        "nombre": 'Dr. Roberto Ginsbert'
     },
     {
-        "PersonalfiscalID": "6c4d7de6-d8b5-11ee-8df7-0e3a1e34687f",
-        "Denominacion": "Dr. Micheltorena Francisco",
-        "nombre": "Dr. Micheltorena Francisco",
-        "Jerarquia": "Fiscal"
+        "PersonalfiscalID": '6c4d7de6-d8b5-11ee-8df7-0e3a1e34687f',
+        "Denominacion": 'Dr. Micheltorena Francisco',
+        "Jerarquia": 'Fiscal',
+        "nombre": 'Dr. Micheltorena Francisco'
     },
     {
-        "PersonalfiscalID": "76e55071-ce7d-11ed-9f0f-0e3a1e34687f",
-        "Denominacion": "Dr Rodr\u00edguez Carlos",
-        "nombre": "Dr Rodr\u00edguez Carlos",
-        "Jerarquia": "Fiscal"
+        "PersonalfiscalID": '76e55071-ce7d-11ed-9f0f-0e3a1e34687f',
+        "Denominacion": 'Dr Rodr\u00ed guez Carlos',
+        "Jerarquia": 'Fiscal',
+        "nombre": 'Dr Rodr\u00ed guez Carlos'
     },
     {
-        "PersonalfiscalID": "7c5c8e84-2d73-11ef-9e2a-0e3a1e34687f",
-        "Denominacion": "Alejandra Veronica Bazan ",
-        "nombre": "Alejandra Veronica Bazan ",
-        "Jerarquia": "Fiscal"
+        "PersonalfiscalID": '7c5c8e84-2d73-11ef-9e2a-0e3a1e34687f',
+        "Denominacion": 'Alejandra Veronica Bazan ',
+        "Jerarquia": 'Fiscal',
+        "nombre": 'Alejandra Veronica Bazan '
     },
     {
-        "PersonalfiscalID": "814c0f20-5919-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dr. Eduardo Gallastegui",
-        "nombre": "Dr. Eduardo Gallastegui",
-        "Jerarquia": "Fiscal"
+        "PersonalfiscalID": '814c0f20-5919-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dr. Eduardo Gallastegui',
+        "Jerarquia": 'Fiscal',
+        "nombre": 'Dr. Eduardo Gallastegui'
     },
     {
-        "PersonalfiscalID": "8503131c-8dc2-11ed-9b80-0e87116d214b",
-        "Denominacion": "Fiscal en turno",
-        "nombre": "Fiscal en turno",
-        "Jerarquia": "Fiscal"
+        "PersonalfiscalID": '8503131c-8dc2-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Fiscal en turno',
+        "Jerarquia": 'Fiscal',
+        "nombre": 'Fiscal en turno'
     },
     {
-        "PersonalfiscalID": "9d9d0264-5916-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dra. Valentina Bucciarelli",
-        "nombre": "Dra. Valentina Bucciarelli",
-        "Jerarquia": "Fiscal"
+        "PersonalfiscalID": '9d9d0264-5916-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dra. Valentina Bucciarelli',
+        "Jerarquia": 'Fiscal',
+        "nombre": 'Dra. Valentina Bucciarelli'
     },
     {
-        "PersonalfiscalID": "9eb42219-6d9e-11ed-9b80-0e87116d214b",
-        "Denominacion": " Dr. Catalano Cristian",
-        "nombre": " Dr. Catalano Cristian",
-        "Jerarquia": "Fiscal"
+        "PersonalfiscalID": '9eb42219-6d9e-11ed-9b80-0e87116d214b',
+        "Denominacion": ' Dr. Catalano Cristian',
+        "Jerarquia": 'Fiscal',
+        "nombre": ' Dr. Catalano Cristian'
     },
     {
-        "PersonalfiscalID": "a8dc325b-ff06-11ec-bb82-0eb8b69eb347",
-        "Denominacion": "Dr. Ivan Grassi",
-        "nombre": "Dr. Ivan Grassi",
-        "Jerarquia": "Fiscal"
+        "PersonalfiscalID": 'a8dc325b-ff06-11ec-bb82-0eb8b69eb347',
+        "Denominacion": 'Dr. Ivan Grassi',
+        "Jerarquia": 'Fiscal',
+        "nombre": 'Dr. Ivan Grassi'
     },
     {
-        "PersonalfiscalID": "ae42c5b9-ff06-11ec-bb82-0eb8b69eb347",
-        "Denominacion": "DR. Pablo Martin",
-        "nombre": "DR. Pablo Martin",
-        "Jerarquia": "Fiscal"
+        "PersonalfiscalID": 'ae42c5b9-ff06-11ec-bb82-0eb8b69eb347',
+        "Denominacion": 'DR. Pablo Martin',
+        "Jerarquia": 'Fiscal',
+        "nombre": 'DR. Pablo Martin'
     },
     {
-        "PersonalfiscalID": "aec23992-5916-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dr. Ra\u00fal Jos\u00e9 Iglesia Galante",
-        "nombre": "Dr. Ra\u00fal Jos\u00e9 Iglesia Galante",
-        "Jerarquia": "Fiscal"
+        "PersonalfiscalID": 'aec23992-5916-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dr. Ra\u00FAl Jos\u00e9 Iglesia Galante',
+        "Jerarquia": 'Fiscal',
+        "nombre": 'Dr. Ra\u00FAl Jos\u00e9 Iglesia Galante'
     },
     {
-        "PersonalfiscalID": "b4e9cbc6-16df-11ee-ba93-0e3a1e34687f",
-        "Denominacion": "Dr. Mattar Alejandro",
-        "nombre": "Dr. Mattar Alejandro",
-        "Jerarquia": "Fiscal"
+        "PersonalfiscalID": 'b4e9cbc6-16df-11ee-ba93-0e3a1e34687f',
+        "Denominacion": 'Dr. Mattar Alejandro',
+        "Jerarquia": 'Fiscal',
+        "nombre": 'Dr. Mattar Alejandro'
     },
     {
-        "PersonalfiscalID": "c61e93bd-da21-11ee-8df7-0e3a1e34687f",
-        "Denominacion": "Dr. Gerarduzzi Cristian",
-        "nombre": "Dr. Gerarduzzi Cristian",
-        "Jerarquia": "Fiscal"
+        "PersonalfiscalID": 'c61e93bd-da21-11ee-8df7-0e3a1e34687f',
+        "Denominacion": 'Dr. Gerarduzzi Cristian',
+        "Jerarquia": 'Fiscal',
+        "nombre": 'Dr. Gerarduzzi Cristian'
     },
     {
-        "PersonalfiscalID": "eca8c5de-1af5-11ef-9e2a-0e3a1e34687f",
-        "Denominacion": "Bazan Alejandra",
-        "nombre": "Bazan Alejandra",
-        "Jerarquia": "Fiscal"
+        "PersonalfiscalID": 'eca8c5de-1af5-11ef-9e2a-0e3a1e34687f',
+        "Denominacion": 'Bazan Alejandra',
+        "Jerarquia": 'Fiscal',
+        "nombre": 'Bazan Alejandra'
     },
     {
-        "PersonalfiscalID": "ffeef281-5917-11ed-9b80-0e87116d214b",
-        "Denominacion": "Dra. Daniela Pringles",
-        "nombre": "Dra. Daniela Pringles",
-        "Jerarquia": "Fiscal"
+        "PersonalfiscalID": 'ffeef281-5917-11ed-9b80-0e87116d214b',
+        "Denominacion": 'Dra. Daniela Pringles',
+        "Jerarquia": 'Fiscal',
+        "nombre": 'Dra. Daniela Pringles'
     }
 ]
 
@@ -14284,406 +16559,416 @@ export const ufiNro = [
         "nombre": "4"
     },
     {
-        "ufiID": "5",
+        "ufiID": "ufi54fb5-c013-11ec-8878-16c2a030bb97",
         "nombre": "En Turno"
     },
+    {
+        "ufiID": "ufi64fb5-c013-11ec-8878-16c2a030bb97",
+        "nombre": "UFI UNICA JACHAL- IGLESIA"
+    }
 ]
 
 export const delitos = [
     {
-        "TipocausacaratulaID": "b41735b3-da24-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "TENT. SUSTRACION MENORES",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": 'e367493d-4ffa-11ef-b47c-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'Usurpaci\u00f3n de autoridad',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "abd718dd-da24-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "TENT. HURTO",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": 'b41735b3-da24-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'TENT. SUSTRACION MENORES',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "e0cb2626-7ade-11ed-9b80-0e87116d214b",
+        "TipocausacaratulaID": 'abd718dd-da24-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'TENT. HURTO',
+        "TipoCaratula": 'Delito'
+    },
+    {
+        "TipocausacaratulaID": 'e0cb2626-7ade-11ed-9b80-0e87116d214b',
         "Descripcion": null,
-        "Nombre": "Tenencia ileg\u00edtima de arma de fuego",
-        "TipoCaratula": "Delito"
+        "Nombre": 'Tenencia ileg\u00ed tima de arma de fuego',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "4ffb5ac8-d8b5-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "Siniestro vial",
-        "Nombre": "Siniestro vial",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '4ffb5ac8-d8b5-11ee-8df7-0e3a1e34687f',
+        "Descripcion": 'Siniestro vial',
+        "Nombre": 'Siniestro vial',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "452392ea-7adc-11ed-9b80-0e87116d214b",
-        "Descripcion": "Robo Simple en Grado de Tentativa ",
-        "Nombre": "Robo Simple en Grado de Tentativa ",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '452392ea-7adc-11ed-9b80-0e87116d214b',
+        "Descripcion": 'Robo Simple en Grado de Tentativa ',
+        "Nombre": 'Robo Simple en Grado de Tentativa ',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "d3ba8907-da24-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "ROBO CON ARMA BLANCA",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": 'd3ba8907-da24-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'ROBO CON ARMA BLANCA',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "b8bd07bb-1112-11ee-ba93-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "ROBO ARREBATO",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": 'b8bd07bb-1112-11ee-ba93-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'ROBO ARREBATO',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "d451f431-7adb-11ed-9b80-0e87116d214b",
-        "Descripcion": "Robo agravado por ser en poblado y en banda con participaci\u00f3n de menores",
-        "Nombre": "Robo agravado por ser en poblado y en banda con participaci\u00f3n de menores",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": 'd451f431-7adb-11ed-9b80-0e87116d214b',
+        "Descripcion": 'Robo agravado por ser en poblado y en banda con participaci\u00f3n de menores',
+        "Nombre": 'Robo agravado por ser en poblado y en banda con participaci\u00f3n de menores',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "eb21e7be-7adb-11ed-9b80-0e87116d214b",
-        "Descripcion": "Robo Agravado por escalamiento con la participaci\u00f3n de menores",
-        "Nombre": "Robo Agravado por escalamiento con la participaci\u00f3n de menores",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": 'eb21e7be-7adb-11ed-9b80-0e87116d214b',
+        "Descripcion": 'Robo Agravado por escalamiento con la participaci\u00f3n de menores',
+        "Nombre": 'Robo Agravado por escalamiento con la participaci\u00f3n de menores',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "aef74fd0-7adc-11ed-9b80-0e87116d214b",
+        "TipocausacaratulaID": 'aef74fd0-7adc-11ed-9b80-0e87116d214b',
         "Descripcion": null,
-        "Nombre": "Robo Agravado por escalamiento ",
-        "TipoCaratula": "Delito"
+        "Nombre": 'Robo Agravado por escalamiento ',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "59aa54e9-7adc-11ed-9b80-0e87116d214b",
+        "TipocausacaratulaID": '59aa54e9-7adc-11ed-9b80-0e87116d214b',
         "Descripcion": null,
-        "Nombre": "ROBO AGRAVADO POR EL USO DE ARMA DE FUEGO Y POR HABERSE COMETIDO EN BANDA",
-        "TipoCaratula": "Delito"
+        "Nombre": 'ROBO AGRAVADO POR EL USO DE ARMA DE FUEGO Y POR HABERSE COMETIDO EN BANDA',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "880ab227-da27-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "Robo Agravado Por Efracci\u00f3n",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '880ab227-da27-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'Robo Agravado Por Efracci\u00f3n',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "a6c64dda-642f-11ed-9b80-0e87116d214b",
-        "Descripcion": "Robo Agravado Por la  Participaci\u00f3n de un Menor de Edad",
-        "Nombre": "Robo Agravado Part. de un Menor Edad",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": 'a6c64dda-642f-11ed-9b80-0e87116d214b',
+        "Descripcion": 'Robo Agravado Por la  Participaci\u00f3n de un Menor de Edad',
+        "Nombre": 'Robo Agravado Part. de un Menor Edad',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "98fdaa53-642f-11ed-9b80-0e87116d214b",
-        "Descripcion": "Robo Agravado",
-        "Nombre": "Robo Agravado",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '98fdaa53-642f-11ed-9b80-0e87116d214b',
+        "Descripcion": 'Robo Agravado',
+        "Nombre": 'Robo Agravado',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "61ebb2e7-8dc2-11ed-9b80-0e87116d214b",
+        "TipocausacaratulaID": '61ebb2e7-8dc2-11ed-9b80-0e87116d214b',
         "Descripcion": null,
-        "Nombre": "Robo",
-        "TipoCaratula": "Delito"
+        "Nombre": 'Robo',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "492cb091-20df-11ef-9e2a-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "Pto Hurto",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '492cb091-20df-11ef-9e2a-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'Pto Hurto',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "fa5c9d19-7adb-11ed-9b80-0e87116d214b",
-        "Descripcion": "Privaci\u00f3n Ileg\u00edtima de la libertad ",
-        "Nombre": "Privaci\u00f3n Ileg\u00edtima de la libertad ",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": 'fa5c9d19-7adb-11ed-9b80-0e87116d214b',
+        "Descripcion": 'Privaci\u00f3n Ileg\u00ed tima de la libertad ',
+        "Nombre": 'Privaci\u00f3n Ileg\u00ed tima de la libertad ',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "0b13dc8e-7adc-11ed-9b80-0e87116d214b",
-        "Descripcion": "Lesiones leves agravadas por violencia intrafamiliar y de genero ",
-        "Nombre": "Lesiones leves agravadas por violencia intrafamiliar y de genero ",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '0b13dc8e-7adc-11ed-9b80-0e87116d214b',
+        "Descripcion": 'Lesiones leves agravadas por violencia intrafamiliar y de genero ',
+        "Nombre": 'Lesiones leves agravadas por violencia intrafamiliar y de genero ',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "cff6e5f1-7ade-11ed-9b80-0e87116d214b",
+        "TipocausacaratulaID": 'cff6e5f1-7ade-11ed-9b80-0e87116d214b',
         "Descripcion": null,
-        "Nombre": "Lesiones leves agravadas por ser en contexto de violencia intrafamiliar",
-        "TipoCaratula": "Delito"
+        "Nombre": 'Lesiones leves agravadas por ser en contexto de violencia intrafamiliar',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "732d90d7-da20-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "Lesiones Graves en Prejuicio",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '732d90d7-da20-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'Lesiones Graves en Prejuicio',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "56309ff3-da27-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "LESIONES EN RI\u00d1A",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '56309ff3-da27-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'LESIONES EN RIÑA',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "5b419f2d-da27-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "LESIONES ART.92",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '5b419f2d-da27-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'LESIONES ART.92',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "4c222a02-da27-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "LESIONES ART. 94 (MALA PRAXIS)",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '4c222a02-da27-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'LESIONES ART. 94 (MALA PRAXIS)',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "610cb74f-da27-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "LESIONES ART. 94",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '610cb74f-da27-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'LESIONES ART. 94',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "6719cb61-da27-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "LESIONES ART. 91",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '6719cb61-da27-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'LESIONES ART. 91',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "6d1f8e60-da27-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "LESIONES ART. 89",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '6d1f8e60-da27-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'LESIONES ART. 89',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "986fa7e9-7adb-11ed-9b80-0e87116d214b",
-        "Descripcion": "Lesiones 89\u00b0 en contexto de violencia intrafamiliar y da\u00f1o",
-        "Nombre": "Lesiones 89\u00b0 en contexto de violencia intrafamiliar y da\u00f1o",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '986fa7e9-7adb-11ed-9b80-0e87116d214b',
+        "Descripcion": 'Lesiones 89\u00b0 en contexto de violencia intrafamiliar y da\u00f1o',
+        "Nombre": 'Lesiones 89\u00b0 en contexto de violencia intrafamiliar y da\u00f1o',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "46873a79-da27-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "LESIONES 89 (VIOLENCIA FLIAR)",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '46873a79-da27-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'LESIONES 89 (VIOLENCIA FLIAR)',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "af54ec28-7adb-11ed-9b80-0e87116d214b",
-        "Descripcion": "Hurto Simple",
-        "Nombre": "Hurto Simple",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": 'af54ec28-7adb-11ed-9b80-0e87116d214b',
+        "Descripcion": 'Hurto Simple',
+        "Nombre": 'Hurto Simple',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "6dee3781-6425-11ed-9b80-0e87116d214b",
-        "Descripcion": "Hurto en Grado  de Tentativa",
-        "Nombre": "Hurto en Grado  de Tentativa",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '6dee3781-6425-11ed-9b80-0e87116d214b',
+        "Descripcion": 'Hurto en Grado  de Tentativa',
+        "Nombre": 'Hurto en Grado  de Tentativa',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "6ca2ac95-7adc-11ed-9b80-0e87116d214b",
+        "TipocausacaratulaID": '6ca2ac95-7adc-11ed-9b80-0e87116d214b',
         "Descripcion": null,
-        "Nombre": "Hurto Calificado por Escalamiento ",
-        "TipoCaratula": "Delito"
+        "Nombre": 'Hurto Calificado por Escalamiento ',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "1f8f88af-da27-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "HURTO CALIFICADO",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '1f8f88af-da27-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'HURTO CALIFICADO',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "70dc2d2a-da21-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "Hurto Calificado",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '70dc2d2a-da21-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'Hurto Calificado',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "2a59f720-c29a-11ed-9f0f-0e3a1e34687f",
-        "Descripcion": "Homicidio Culposo",
-        "Nombre": "Homicidio Culposo",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '2a59f720-c29a-11ed-9f0f-0e3a1e34687f',
+        "Descripcion": 'Homicidio Culposo',
+        "Nombre": 'Homicidio Culposo',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "2a9ed224-da27-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "HOMICIDIO ART. 84",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '2a9ed224-da27-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'HOMICIDIO ART. 84',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "2f9ef7bd-da27-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "HOMICIDIO ART. 80 AGRAVADO",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '2f9ef7bd-da27-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'HOMICIDIO ART. 80 AGRAVADO',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "3581ed27-da27-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "HOMICIDIO ART. 79",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '3581ed27-da27-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'HOMICIDIO ART. 79',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "3bb99083-da27-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "HOMICIDIO ART 80",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '3bb99083-da27-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'HOMICIDIO ART 80',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "89c46fd7-da26-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "FALTA AL DEBER FUNC PUB",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '89c46fd7-da26-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'FALTA AL DEBER FUNC PUB',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "f4753b09-7ade-11ed-9b80-0e87116d214b",
+        "TipocausacaratulaID": 'f4753b09-7ade-11ed-9b80-0e87116d214b',
         "Descripcion": null,
-        "Nombre": "Falsificaci\u00f3n de documento",
-        "TipoCaratula": "Delito"
+        "Nombre": 'Falsificaci\u00f3n de documento',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "8f6d728b-da26-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "FALLECIMIENTO SIN ASIST.",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '8f6d728b-da26-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'FALLECIMIENTO SIN ASIST.',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "9731f92d-da26-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "EXTORSION",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '9731f92d-da26-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'EXTORSION',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "9d926cb2-da26-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "EXHIBICIONES OBSCENAS",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '9d926cb2-da26-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'EXHIBICIONES OBSCENAS',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "823bd33b-da26-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "EVASION",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '823bd33b-da26-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'EVASION',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "ae99267b-edca-11ee-8df7-0e3a1e34687f",
-        "Descripcion": ".",
-        "Nombre": "ESTAFA RN GRADO DE TENTATIVA ",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": 'ae99267b-edca-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '.',
+        "Nombre": 'ESTAFA RN GRADO DE TENTATIVA ',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "cd713f8e-8762-11ed-9b80-0e87116d214b",
+        "TipocausacaratulaID": 'cd713f8e-8762-11ed-9b80-0e87116d214b',
         "Descripcion": null,
-        "Nombre": "Estafa",
-        "TipoCaratula": "Delito"
+        "Nombre": 'Estafa',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "f064f081-0ec0-11ef-9e2a-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "Establecer Procedencia",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": 'f064f081-0ec0-11ef-9e2a-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'Establecer Procedencia',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "7bff2f8c-9e46-11ed-9b80-0e87116d214b",
-        "Descripcion": "Establecer Paradero",
-        "Nombre": "Establecer Paradero",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '7bff2f8c-9e46-11ed-9b80-0e87116d214b',
+        "Descripcion": 'Establecer Paradero',
+        "Nombre": 'Establecer Paradero',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "785482c3-7adc-11ed-9b80-0e87116d214b",
+        "TipocausacaratulaID": '785482c3-7adc-11ed-9b80-0e87116d214b',
         "Descripcion": null,
-        "Nombre": "Desobediencia a una orden judicial ",
-        "TipoCaratula": "Delito"
+        "Nombre": 'Desobediencia a una orden judicial ',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "e8964826-e165-11ed-9f0f-0e3a1e34687f",
+        "TipocausacaratulaID": 'e8964826-e165-11ed-9f0f-0e3a1e34687f',
         "Descripcion": null,
-        "Nombre": "Desobediencia a uan orden judicial y da\u00f1\u00f3 agravado en concurso real ",
-        "TipoCaratula": "Delito"
+        "Nombre": 'Desobediencia a uan orden judicial y da\u00f1\u00f3 agravado en concurso real ',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "eaa977df-7ade-11ed-9b80-0e87116d214b",
+        "TipocausacaratulaID": 'eaa977df-7ade-11ed-9b80-0e87116d214b',
         "Descripcion": null,
-        "Nombre": "Da\u00f1o agravado, resistencia a la Autoridad y violaci\u00f3n de domicilio",
-        "TipoCaratula": "Delito"
+        "Nombre": 'Da\u00f1o agravado, resistencia a la Autoridad y violaci\u00f3n de domicilio',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "b692c36b-7adb-11ed-9b80-0e87116d214b",
-        "Descripcion": "Da\u00f1o",
-        "Nombre": "Da\u00f1o",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": 'b692c36b-7adb-11ed-9b80-0e87116d214b',
+        "Descripcion": 'Da\u00f1o',
+        "Nombre": 'Da\u00f1o',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "79b4889a-da26-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "COHECHO",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '79b4889a-da26-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'COHECHO',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "e3f3011e-c2a8-11ee-8df7-0e3a1e34687f",
-        "Descripcion": ".",
-        "Nombre": "COACCION",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": 'e3f3011e-c2a8-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '.',
+        "Nombre": 'COACCION',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "7a1daad2-da20-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "Caida Casual",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '7a1daad2-da20-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'Caida Casual',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "6ba3b439-da26-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "AMENAZAS Y LESIONES 89",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '6ba3b439-da26-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'AMENAZAS Y LESIONES 89',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "a1337538-2e70-11ef-9e2a-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "Amenazas y Da\u00f1o",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": 'a1337538-2e70-11ef-9e2a-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'Amenazas y Da\u00f1o',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "6542bc46-16e0-11ee-ba93-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "AMENAZAS",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '6542bc46-16e0-11ee-ba93-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'AMENAZAS',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "5eca6397-da26-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "Actuaciones por hallazgo",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '5eca6397-da26-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'Actuaciones por hallazgo',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "8952ebb5-9e46-11ed-9b80-0e87116d214b",
-        "Descripcion": "Actuaciones por fuga",
-        "Nombre": "Actuaciones por fuga",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '8952ebb5-9e46-11ed-9b80-0e87116d214b',
+        "Descripcion": 'Actuaciones por fuga',
+        "Nombre": 'Actuaciones por fuga',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "4444cb49-da26-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "ACTUACIONES POR DENUNCIA",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '4444cb49-da26-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'ACTUACIONES POR DENUNCIA',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "f76c3037-f449-11ed-9f0f-0e3a1e34687f",
+        "TipocausacaratulaID": 'f76c3037-f449-11ed-9f0f-0e3a1e34687f',
         "Descripcion": null,
-        "Nombre": "Actuaciones por Denuncia ",
-        "TipoCaratula": "Delito"
+        "Nombre": 'Actuaciones por Denuncia ',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "4ac9dc6e-da26-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "ACT.POR FALLECIMIENTO",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '4ac9dc6e-da26-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'ACT.POR FALLECIMIENTO',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "c8176028-7adc-11ed-9b80-0e87116d214b",
+        "TipocausacaratulaID": 'c8176028-7adc-11ed-9b80-0e87116d214b',
         "Descripcion": null,
-        "Nombre": "Abuso sexual con acceso carnal agravado por el vinculo ",
-        "TipoCaratula": "Delito"
+        "Nombre": 'Abuso sexual con acceso carnal agravado por el vinculo ',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "2c02fcda-da26-11ee-8df7-0e3a1e34687f",
-        "Descripcion": "",
-        "Nombre": "ABORTO",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '2c02fcda-da26-11ee-8df7-0e3a1e34687f',
+        "Descripcion": '',
+        "Nombre": 'ABORTO',
+        "TipoCaratula": 'Delito'
     },
     {
-        "TipocausacaratulaID": "141bcd5f-087c-11ef-8bfb-0e3a1e34687f",
-        "Descripcion": "En grado de Tentativa del CPA",
-        "Nombre": "Abigeato en grado de Tentativa del CPA",
-        "TipoCaratula": "Delito"
+        "TipocausacaratulaID": '141bcd5f-087c-11ef-8bfb-0e3a1e34687f',
+        "Descripcion": 'En grado de Tentativa del CPA',
+        "Nombre": 'Abigeato en grado de Tentativa del CPA',
+        "TipoCaratula": 'Delito'
     }
 ]

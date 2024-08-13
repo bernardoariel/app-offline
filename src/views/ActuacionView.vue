@@ -1,49 +1,39 @@
 <script lang="ts" setup>
-//actuacionView
-import { ref, watch, onActivated, computed, onDeactivated } from 'vue';
+import { ref, watch, onActivated, computed } from 'vue';
 import DataViewCard from '@/components/DataViewCard.vue';
 import DatosLegalesView from './DatosLegalesView.vue';
 import DiligenciaView from './DiligenciaView.vue';
+
 import useActuacion from '@/composables/useActuacion';
 import useCardInformation from '@/composables/useCardInformation';
-
 import useItem from '../composables/useItems';
-
 import useDatosLegales from '../composables/useDatosLegales';
 import useDatosDiligencia from '@/composables/useDatosDiligencia';
-import useSaveData from '@/composables/useSaveData';
 import useItemValue from '@/composables/useItemValue';
 import useActuacionData from '@/composables/useActuacionData';
 import { useDialog } from '../composables/useDialog';
-import { useRouter, useRoute } from 'vue-router';
 import MyDialog from '@/components/elementos/MyModal.vue';
 import useFieldState from '@/composables/useFieldsState';
 import useLegalesState from '@/composables/useLegalesState';
 import useActuacionLoading from '@/composables/useActuacionLoading';
 import useCardValidation from '@/composables/useCardValidations';
 
+import { handleFetchActuacion } from '@/helpers/handleFetchActuacion';
+
 const { dialogState, confirmNavigation, hideDialog } = useDialog();
 interface Props {
-  actuacion: string;
   id?: number;
-  actuacionData?: any;
+  actuacionName: string;
+  actuacionData: any;
 }
 const props = defineProps<Props>();
-const actuacionRef = ref(props.actuacion);
-const active = ref(0);
-const {
-  agregarNuevoItem,
-  currentEditId,
-  toogleDateActuacion,
-  setFechaCreacion,
-} = useActuacion();
+const actuacionName = ref(props.actuacionName);
+const actuacionData = ref(props.actuacionData);
+
+const activeButtonTab = ref(0);
+const { agregarNuevoItem, toogleDateActuacion } = useActuacion();
 const { set: setActuacionData } = useActuacionData();
-const { fetchActuacionById } = useSaveData();
-const {
-  resetData: resetDatosLegales,
-  setData: setDatosLegales,
-  nroLegajo,
-} = useDatosLegales();
+const { resetData: resetDatosLegales, nroLegajo } = useDatosLegales();
 const { setLoading } = useActuacionLoading();
 
 const {
@@ -57,7 +47,10 @@ const {
   isRecordDeleted,
   isDiligenciaChange,
   resetDiliginciaChange,
+  resetPristine,
+  resetModifiedData,
 } = useFieldState();
+
 const { resetFields: resetLegalFields, isAnyFieldModified: isLegalModified } =
   useLegalesState();
 const { addDataFake, resetData: resetDataLegal } = useDatosLegales();
@@ -69,31 +62,23 @@ onActivated(async () => {
     setLoading(false);
   }
   toogleDateActuacion();
-  if (props.id && !currentEditId.value) {
-    const data = await fetchActuacionById(props.id);
-    setAll(data); // info tabs1
-    setDatosLegales(data); // tabs2
-    setFechaCreacion(data.fechaCreacion);
-    relato.value = data.relato.replace(/['"]/g, '');
-    currentEditId.value = props.id;
-    setLoading(false);
-    resetFieldsEmpty();
-  }
+  await handleFetchActuacion(props.id, props.actuacionName);
 });
 
 const { setAll } = useItem();
 
 const { relato, isEditingHeader, resetRelato } = useDatosDiligencia(
-  props.actuacion
+  props.actuacionName
 );
-const { cardInformationKeys, cardInformation } =
-  useCardInformation(actuacionRef);
-const { missingFieldsEmpty, resetFieldsEmpty } = useCardValidation();
+const { cardInformationKeys, cardInformation } = useCardInformation(
+  actuacionName,
+  actuacionData
+);
+const { missingFieldsEmpty } = useCardValidation();
 const { prepararNuevoItem } = useItemValue();
 
 const handleClick = (event: { ctrlKey: any; altKey: any }) => {
   if (event.ctrlKey && event.altKey) {
-    // console.log(`Ctrl + Alt + Click detectado: ${actuacionRef}`);
     setAll();
     addDataFake();
     markNewRecordCreated();
@@ -109,13 +94,15 @@ const resetAllStates = () => {
   resetLegalFields();
   resetDataLegal();
   resetRelato();
+  resetPristine();
+  resetModifiedData();
 };
 
 watch(
-  () => props.actuacion,
+  () => props.actuacionName,
   (newValue) => {
     setActuacionData(props.actuacionData);
-    actuacionRef.value = newValue;
+    actuacionName.value = newValue;
     resetAllStates();
   }
 );
@@ -125,7 +112,7 @@ watch(
   (newValue) => {
     resetAllStates();
   },
-  { immediate: true } // Esto asegura que el watcher se ejecute inmediatamente con el valor inicial
+  { immediate: true }
 );
 
 const handleNuevoItem = (key: string) => {
@@ -151,21 +138,29 @@ const dialogButtons = [
 
 const handleButtonClick = (action: string) => {
   if (action !== 'accept') {
-    // Manténgo al usuario en la página actual sin borrar los estados pendientes por guardar
     hideDialog();
     dialogState.value.pendingRoute = null;
     return;
   }
   isEditingHeader.value = !isEditingHeader.value;
   resetAllStates();
-  confirmNavigation(); // Proceder con la navegación
+  confirmNavigation();
 };
+
 watch(
   () => dialogState.value.isDialogVisible,
   (newVal) => {
     if (newVal === false) dialogState.value.pendingRoute = null;
   }
 );
+
+watch(
+  () => props.actuacionData,
+  (newData) => {
+    actuacionData.value = newData;
+  }
+);
+
 const isAnyChange = computed(() => {
   return (
     isUnsavedChange.value ||
@@ -193,7 +188,7 @@ const isAnyChange = computed(() => {
       >
         <div class="flex items-center w-full justify-between">
           <i
-            class="text-red-500 text-7xl mt-3 ml-5"
+            class="text-7xl mt-3 ml-5"
             :class="[dialogState.body.colorClass, dialogState.body.icon]"
           ></i>
           <p class="font-bold text-xl ml-4">
@@ -211,7 +206,7 @@ const isAnyChange = computed(() => {
   </MyDialog>
   <div class="grid">
     <div class="col-5">
-      <Card>
+      <Card v-if="Object.keys(props.actuacionData).length > 0 ? true : false">
         <template #title>
           <div class="title-container">
             <div>
@@ -228,14 +223,20 @@ const isAnyChange = computed(() => {
               @click="handleClick"
             >
               <div class="text-3xl font-bold">
-                {{ props.actuacionData.titulo }}
+                {{ props.actuacionData?.titulo }}
               </div>
 
-              <small 
-              :class="{'text-orange-500': !nroLegajo, 'text-gray-500': nroLegajo}"
-              class="text-sm font-bold"
+              <small
+                :class="{
+                  'text-orange-500': !nroLegajo,
+                  'text-gray-500': nroLegajo,
+                }"
+                class="text-sm font-bold"
               >
-                <i class="">{{ actuacionData.datosLegales.items[0]}}</i> {{  nroLegajo ? ': '+ nroLegajo : '' }}
+                <i class="">{{
+                  props.actuacionData?.datosLegales?.items[0]
+                }}</i>
+                {{ nroLegajo ? ': ' + nroLegajo : '' }}
               </small>
             </div>
 
@@ -257,32 +258,33 @@ const isAnyChange = computed(() => {
                 class="px-2"
               ></Tag>
               <Button
-                @click="active = 0"
+                @click="activeButtonTab = 0"
                 rounded
                 label="1"
                 class="button"
-                :outlined="active !== 0"
+                :outlined="activeButtonTab !== 0"
               />
               <Button
-                @click="active = 1"
+                @click="activeButtonTab = 1"
                 rounded
                 label="2"
                 class="button"
-                :outlined="active !== 1"
+                :outlined="activeButtonTab !== 1"
               />
             </div>
 
-            <div>
-              <small class="text-sm">
-                <!--     <i :class="isAnyChange ? 'pi pi-exclamation-circle' : 'pi pi-check-circle'"
-                  :style="{ color: isAnyChange ? 'orange' : 'green' }"></i> -->
-                {{ isAnyChange ? ' Cambios Pendientes' : ' Sin Cambios' }}
-              </small>
+            <div
+              class="change-status"
+              :title="isAnyChange ? 'Cambios Pendientes' : 'Sin Cambios'"
+            >
+              <i
+                :class="isAnyChange ? 'pi pi-circle-fill' : 'pi pi-circle'"
+              ></i>
             </div>
           </div>
         </template>
         <template #content>
-          <TabView v-model:activeIndex="active">
+          <TabView v-model:activeIndex="activeButtonTab">
             <TabPanel header="Datos Requeridos">
               <Card
                 v-for="key in cardInformationKeys"
@@ -299,7 +301,7 @@ const isAnyChange = computed(() => {
                 <template #title>
                   <div class="title-container">
                     <div class="font-medium text-3xl text-900">
-                      {{ cardInformation[key].titulo }}
+                      {{ cardInformation[key]?.titulo }}
                     </div>
 
                     <Button
@@ -314,48 +316,56 @@ const isAnyChange = computed(() => {
                 </template>
                 <template #content>
                   <DataViewCard
+                    v-if="cardInformation[key]"
                     :itemsCardValue="cardInformation[key]"
                     :data-key="key"
-                    :actuacion="actuacionRef"
+                    :actuacion="actuacionName"
                   />
                 </template>
               </Card>
             </TabPanel>
             <TabPanel header="Datos Legales">
-              <DatosLegalesView :datosLegalesItems="actuacionData.datosLegales.items" />
+              <DatosLegalesView
+                v-if="props.actuacionData?.datosLegales"
+                :datosLegalesItems="props.actuacionData.datosLegales.items"
+              />
             </TabPanel>
           </TabView>
         </template>
       </Card>
     </div>
     <div class="col">
-      <DiligenciaView :actuacion="actuacion" :id="props.id" />
+      <DiligenciaView :actuacion="actuacionName" :id="props.id" />
     </div>
   </div>
 </template>
+
 <style scoped>
 .title-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-.custom-title {
-  /* font-size: 28px; */ /* Ajusta el tamaño de la fuente según tus preferencias */
-  /* font-weight: 500;  */ /* Puedes ajustar el peso de la fuente según tus preferencias */
-  color: #333; /* Cambia el color del texto según tus preferencias */
+  position: relative;
 }
 .buttons-container {
   display: flex;
-  gap: 10px; /* Espacio entre los botones */
+  gap: 10px;
 }
 
 .color-border-top {
-  border-top: 1px solid #e9e9e984; /* Cambia el color y grosor del borde según necesites */
+  border-top: 1px solid #e9e9e984;
 }
+
 .modal-body {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.change-status {
+  position: absolute;
+  top: -18px;
+  right: -10px;
+  font-size: 1.5rem;
 }
 </style>

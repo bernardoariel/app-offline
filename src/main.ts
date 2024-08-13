@@ -46,6 +46,7 @@ import ConfirmationService from 'primevue/confirmationservice';
 
 import 'primeicons/primeicons.css';
 import useTheme from './composables/useTheme'
+import { useStorageData } from './composables/useStorageData'
 
 const app = createApp(App)
 
@@ -97,6 +98,8 @@ db.version(1).stores({
 });
 //  */
 const { currentTheme } = useTheme()
+const { obtenerDatos } = useStorageData()
+obtenerDatos()
 app.mount('#app')
 
 

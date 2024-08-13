@@ -40,14 +40,11 @@ const useCardInformation = (actuacionRef, actuacionData) => {
         };
       }
     }
-    console.log('Updated cardInformation:', cardInformation);
     cardInformationKeys.value = Object.keys(cardInformation) as (keyof typeof cardInformation)[];
-    console.log('cardInformationKeys updated:', cardInformationKeys.value);
   };
 
   // Llamada inicial
   if (actuacionData?.value) {
-    console.log('Initial actuacionData:', actuacionData.value);
     updateCardInformation(actuacionData.value);
   } else {
     console.error('actuacionData is undefined or has no value');
@@ -58,7 +55,6 @@ const useCardInformation = (actuacionRef, actuacionData) => {
     () => actuacionData?.value,
     (newData) => {
       if (newData) {
-        console.log('New actuacionData:', newData);
         updateCardInformation(newData);
       } else {
         console.error('New data is undefined or has no value');
@@ -70,7 +66,6 @@ const useCardInformation = (actuacionRef, actuacionData) => {
   // Observar cambios en cardInformation para actualizar cardInformationKeys
   watch(cardInformation, () => {
     cardInformationKeys.value = Object.keys(cardInformation) as (keyof typeof cardInformation)[];
-    console.log('cardInformationKeys updated:', cardInformationKeys.value);
   }, { deep: true });
 
   return {

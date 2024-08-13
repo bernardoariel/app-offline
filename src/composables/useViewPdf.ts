@@ -1,5 +1,5 @@
-import pdfMake from 'pdfmake/build/pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
+// import pdfMake from 'pdfmake/build/pdfmake';
+// import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { customFonts } from '../components/reports/fonts/customFonts.ts';
 import type { StyleDictionary, TDocumentDefinitions } from '../components/reports/interfaces/pdfmake';
 import { headerSection, bodySection } from '../components/reports/sections/index';
@@ -74,7 +74,10 @@ export const useViewPdf = () => {
           },
           pageMargins: [40, 60, 40, 60] 
         };
-
+        if (!pdfMake) {
+          console.error('pdfMake is not defined');
+          return;
+        }
         pdfMake.createPdf(docDefinition, null, fonts).getBlob((blob) => {
           const url = URL.createObjectURL(blob);
           pdfUrl.value = url;

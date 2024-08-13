@@ -118,30 +118,31 @@ export const fechaUbicacioFake = [
 ]
 
 export const efectosFake = [
+ 
   {
-    "estado":"Denunciado",
-    "categoria":"Vehiculos",
-    "marca":" Rockrider",
-    "modelo":"Blazer",
-    "subcategoria":"Moto",
-    "tipo":"Competicion",
+    "estado":{name:"Denunciado", key:""},
+    "categoria":{name:"Vehiculos", key:"223732c-0780-11ed-bb82-0eb8b69eb347"},
+    "marca": {name:"Rockrider", key:"8ebb594e-ff12-11ec-bb82-0eb8b69eb347"},
+    "modelo":{name:"Blazer", key:"0030905b-9bf1-11ed-9b80-0e87116d214b"},
+    "subcategoria":{name:"Camioneta", key:"5a298bfb-0bc5-11ed-bb82-0eb8b69eb347"},
+    "tipo":{name:"Pick Up", key:"Chevrolet "},
     "id":"64a888c4-5b79-4414-9a21-cd9a30b7059e"
   },
   {
-    "estado":"Denunciado",
-    "categoria":"Electrónica",
-    "marca":"Sanyo",
-    "modelo":"SM-G532M",
-    "subcategoria":"Electrodomesticos",
-    "tipo":"Televisor",
+    "estado":{name:"Denunciado", key:""},
+    "categoria":{name:"Electrónica", key:"d1da85a9-07ca-11ed-bb82-0eb8b69eb347"},
+    "marca":{name:"Sanyo", key:"19cee6ff-cc6e-11ec-acbc-16c2a030bb97"},
+    "modelo":{name:"SM-G532M", key:"0a1e830a-90ee-11ed-9b80-0e87116d214b"},
+    "subcategoria":{name:"Celulares y Tel\u00e9fono ", key:"0d9c761b-07cb-11ed-bb82-0eb8b69eb347"},
+    "tipo":{name:"Tactil", key:"Samsung"},
     "id":"9355289c-08a0-43ba-8131-6c18d02de812"
   },{
-    "estado":"Denunciado",
-    "categoria":"Instrumentos Musicales",
-    "marca":"Samick",
-    "modelo":"Street",
-    "subcategoria":"Instrumentos de Cuerdas",
-    "tipo":"Guitarra ",
+    "estado":{name:"Denunciado", key:""},
+    "categoria":{name:"Instrumentos Musicales",key:"950b6a2c-144f-11ed-bb82-0eb8b69eb347"},
+    "marca":{name:"Samick", key:"bda10de9-f4cb-11ed-9f0f-0e3a1e34687f"},
+    "modelo":{name:"Street", key:"7b8d770a-8789-11ed-9b80-0e87116d214b"},
+    "subcategoria":{name:"Instrumentos de Cuerdas", key:"c04e870b-144f-11ed-bb82-0eb8b69eb347"},
+    "tipo":{name:"Guitarra", key:"ce96fd59-f4cb-11ed-9f0f-0e3a1e34687f"},
     "id":"fbfec497-d07c-4004-a927-8d65b230fc5c"
   }]
 export const intervinientesFake = [

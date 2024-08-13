@@ -8,9 +8,11 @@ export const mapToDropDownEfectos =(array:any) => {
 
     return array.map((objeto: any) => {
         const name = objeto.Nombre || objeto.nombre; 
+        const key = objeto.CategoriaID || objeto.id_categoria || objeto.tipoID || objeto.ModeloID; 
         return {
             ...objeto,
-            name: name
+            name: name,
+            key: key
         };
     });
     

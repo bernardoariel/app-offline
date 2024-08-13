@@ -12,21 +12,21 @@ interface PrimaryAttributes {
 }
 
 export interface EfectosForm extends PrimaryAttributes {
-    estado: { name: string };
-    categoria: { name: string };
-    subcategoria: { name: string };
-    tipo: { name: string };
-    marca: { name: string };
-    modelo: { name: string };
+    estado: { name: string, key:string};
+    categoria: { name: string, key:string};
+    subcategoria: { name: string,  key:string };
+    tipo: { name: string, key:string };
+    marca: { name: string, key:string };
+    modelo: { name: string, key:string };
 }
 
 export interface Efectos extends PrimaryAttributes {
-    estado: string;
-    categoria: string;
-    subcategoria: string;
-    tipo: string;
-    marca: string;
-    modelo: string;
+    estado: { name: string, key:string};
+    categoria: { name: string, key:string};
+    subcategoria: { name: string,  key:string };
+    tipo: { name: string, key:string };
+    marca: { name: string, key:string };
+    modelo: { name: string, key:string };
 }
 export interface Efecto {
     titulo: string,

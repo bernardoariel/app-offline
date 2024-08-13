@@ -27,7 +27,8 @@
             class="p-button"
             @click="handleSave"
             severity="warning"
-            :disabled="!isDataValid()"           />
+            :disabled="!isDataValid()"
+          />
         </div>
       </div>
 
@@ -166,13 +167,15 @@ import Skeleton from 'primevue/skeleton';
 import useCardInformation from '@/composables/useCardInformation';
 import useCardValidation from '@/composables/useCardValidations';
 import useValidacionDatosLegales from '@/composables/useValidacionDatosLegales';
+import useActuacionData from '@/composables/useActuacionData';
 
 interface Props {
   actuacion: string;
   id?: number;
 }
 
-const {isDataValid,setValidValue}=useValidacionDatosLegales()
+const { isDataValid, setValidValue } = useValidacionDatosLegales();
+const { actuacionData } = useActuacionData();
 
 const props = defineProps<Props>();
 const router = useRouter();
@@ -215,8 +218,7 @@ const {
   selectedFiscalCargo,
   selectedAyudanteFiscal,
   itemsArticulosRelacionados,
-  selectedDelito
-  
+  selectedDelito,
 } = useDatosLegales();
 const { dialogState } = useDialog();
 const {
@@ -227,7 +229,7 @@ const {
   resetDiliginciaChange,
 } = useFieldState();
 const { resetFields: resetLegalFields } = useLegalesState();
-const { cardInformationKeys } = useCardInformation(actuacionRef);
+const { cardInformationKeys } = useCardInformation(actuacionRef, actuacionData);
 const { setField, missingFieldsEmpty, hasErrors } = useCardValidation();
 const setHeaderFromComputed = () => {
   headerContainer.value = headerTextComputed.value;
@@ -276,9 +278,11 @@ const storeData = async () => {
     selectJuzgadoInterviniente: selectedJuzgadoInterviniente.value?.name || '',
     selectUfiNro: selectedUfiNro.value?.name || '',
     selectDelito: selectedDelito.value?.name || '',
-    selectFiscalCargo:selectedFiscalCargo.value?.name || '',
-    selectAyudanteFiscal:selectedAyudanteFiscal.value?.name || '',
-    opcionesArticulosRelacionados:itemsArticulosRelacionados.value.map((item) => item.name),
+    selectFiscalCargo: selectedFiscalCargo.value?.name || '',
+    selectAyudanteFiscal: selectedAyudanteFiscal.value?.name || '',
+    opcionesArticulosRelacionados: itemsArticulosRelacionados.value.map(
+      (item) => item.name
+    ),
   };
 
   const data: dataActuacionForSave = {
@@ -290,7 +294,7 @@ const storeData = async () => {
     viewPdf: head + ' ' + body + ' ' + foot,
     pathName: route.params.actuacion as string,
     datosLegales,
-    relato: relato.value
+    relato: relato.value,
   };
 
   if (props.id) {
@@ -351,13 +355,15 @@ const handleSave = async () => {
   }
 
   if (hasErrors.value) {
-  alert(
-    `Los siguientes campos están vacíos: ${Object.keys(missingFieldsEmpty)
-      .filter((key) => missingFieldsEmpty[key as keyof typeof missingFieldsEmpty])
-      .join(', ')}`
-  );
-  return;
-}
+    alert(
+      `Los siguientes campos están vacíos: ${Object.keys(missingFieldsEmpty)
+        .filter(
+          (key) => missingFieldsEmpty[key as keyof typeof missingFieldsEmpty]
+        )
+        .join(', ')}`
+    );
+    return;
+  }
 
   await storeData();
 

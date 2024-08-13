@@ -12,7 +12,7 @@ export function useStorageData() {
 
       const data = JSON.parse(dataGuardada);
       dependencia.value = data.dependencia;
-      usuario.value = data.usuario;
+      usuario.value = data.usuario.tipoUsuario;
       return
     }
 

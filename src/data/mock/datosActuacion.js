@@ -121,7 +121,7 @@ export const efectosFake = [
  
   {
     "estado":{name:"Denunciado", key:""},
-    "categoria":{name:"Vehiculos", key:"223732c-0780-11ed-bb82-0eb8b69eb347"},
+    "categoria":{name:"Vehiculos", key:"1223732c-0780-11ed-bb82-0eb8b69eb347"},
     "marca": {name:"Rockrider", key:"8ebb594e-ff12-11ec-bb82-0eb8b69eb347"},
     "modelo":{name:"Blazer", key:"0030905b-9bf1-11ed-9b80-0e87116d214b"},
     "subcategoria":{name:"Camioneta", key:"5a298bfb-0bc5-11ed-bb82-0eb8b69eb347"},

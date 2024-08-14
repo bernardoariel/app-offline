@@ -255,6 +255,7 @@ watch([values, errors], () => {
 });
 
 let formData = ref<DatosLegalesForm>({ ...initialValuesDatosLegales });
+
 const handleDropdownChange = (
   campo: string,
   newValue: { value: any; name: string }

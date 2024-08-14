@@ -60,6 +60,7 @@ setActuacionData(props.actuacionData);
 onActivated(async () => {
   if (!props.id) {
     setLoading(false);
+    resetAllStates();
   }
   toogleDateActuacion();
   await handleFetchActuacion(props.id, props.actuacionName);

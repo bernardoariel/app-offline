@@ -149,9 +149,6 @@ const useSaveData = () => {
       const actuacion = await db.actuaciones.where({ id }).first();
       if (actuacion) {
         await db.actuaciones.delete(actuacion.id);
-        console.log('Actuación eliminada:', actuacion);
-      } else {
-        console.log('No se encontró la actuación con id:', id);
       }
     } catch (err) {
       console.error('Error al eliminar actuación:', err);

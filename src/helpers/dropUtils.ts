@@ -4,10 +4,10 @@ export const mapToDropdownItems = (array: any) => {
         return array.map((item: any) => ({ name: item }));
 };
 
-export const mapToDropDownEfectos =(array:any, tipo?:string) => {
+export const mapToDropDownEfectos = (array: any, tipo?: string) => {
     return array.map((objeto: any) => {
-        const { Nombre, nombre, CategoriaID, SubcategoriaID, tipoID, MarcaID, ModeloID } = objeto;
-        const name = Nombre || nombre; 
+        const { Nombre, nombre, CategoriaID, SubcategoriaID, tipoID, MarcaID, ModeloID, Numeroarticulo } = objeto;
+        const name = Nombre || nombre || Numeroarticulo;
         let key = '';
         if (tipo) {
             switch (tipo) {
@@ -34,10 +34,10 @@ export const mapToDropDownEfectos =(array:any, tipo?:string) => {
             key: key
         };
     });
-    
+
 }
 
-export const mapToArray=(dropDownValues:any)=>{
-    if(dropDownValues)
+export const mapToArray = (dropDownValues: any) => {
+    if (dropDownValues)
         return dropDownValues.value.map(item => item.name)
 }

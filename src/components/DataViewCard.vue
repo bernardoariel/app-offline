@@ -52,7 +52,6 @@ const editProduct = (productId: any) => {
 };
 
 const deleteItem = (productId: any) => {
-  console.log('productId', productId);
   const index = props.itemsCardValue.items.findIndex(
     (item) => item.id === productId
   );
@@ -89,7 +88,6 @@ const deleteModalButtons = ref<buttonProps[]>([
   },
 ]);
 const openDeleteConfirmation = (item, dataKey) => {
-  // console.log("askldjflkasdfjl")
   itemType.value = item;
   itemToDelete.value = item.id;
   visible.value = true;

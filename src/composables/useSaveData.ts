@@ -40,7 +40,6 @@ const useSaveData = () => {
   const success = ref(false);
 
   const saveData = async (data: dataActuacionForSave) => {
-
     data.relato = data.relato.replace(/\n/g, ' ');
     try {
       await db.open();

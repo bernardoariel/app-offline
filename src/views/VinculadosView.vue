@@ -31,23 +31,24 @@ const { obtenerTarjeta } = useActuacionData();
 const isPersonaDesconocida = ref<boolean>(false);
 // const textAreaDescription  = ref<string>("");
 
-
 const validationSchema = yup.object({
   nombre: yup.string().required().min(3),
   apellido: yup.string().required().min(3),
   domicilio: yup.string().required().min(8),
-  textAreaDescription: yup.string().test(
+  textAreaDescription: yup
+    .string()
+    .test(
       'required test',
       'La descripción debe tener al menos 5 caracteres',
       (value) => {
-        if (isPersonaDesconocida.value){
+        if (isPersonaDesconocida.value) {
           if (!value) return false;
-          if(value.length >=5){
-            return true
+          if (value.length >= 5) {
+            return true;
           }
-          return false
-        }else{
-          return true
+          return false;
+        } else {
+          return true;
         }
       }
     ),
@@ -95,9 +96,12 @@ const validationSchema = yup.object({
     name: yup
       .string()
       .required('Seleccione un tipo de denunciante')
-      .oneOf(['Acusado', 'Detenido','Extraviado'], 'Selecciones un tipo válido'),
+      .oneOf(
+        ['Acusado', 'Detenido', 'Extraviado'],
+        'Selecciones un tipo válido'
+      ),
   }),
-  
+
   nacionalidadSelect: yup.object().shape({
     name: yup
       .string()
@@ -128,13 +132,14 @@ const { defineField, values, errors } = useForm({
 });
 
 const hasErrors = () => {
-  if(isPersonaDesconocida.value && textAreaDescription.value){
-    if (textAreaDescription.value.length>=5)
-      return false
+  if (isPersonaDesconocida.value && textAreaDescription.value) {
+    if (textAreaDescription.value.length >= 5) return false;
   }
   const keys1 = Object.keys(validationSchema.fields);
   const keys2 = Object.keys(values);
-  const areKeysEqual =keys1.length-1 <= keys2.length && keys1.every((key)  => key === "textAreaDescription" || keys2.includes(key))
+  const areKeysEqual =
+    keys1.length - 1 <= keys2.length &&
+    keys1.every((key) => key === 'textAreaDescription' || keys2.includes(key));
   return Object.keys(errors.value).length > 0 || !areKeysEqual;
 };
 
@@ -157,11 +162,13 @@ let [fechaNacimiento, fechaNacimientoAttrs] = defineField('fechaNacimiento');
 let [telefono] = defineField('telefono');
 let [apodo] = defineField('apodo');
 let [profesion] = defineField('profesion');
-let [textAreaDescription,textAreaDescriptionAtrrs] = defineField('textAreaDescription');
+let [textAreaDescription, textAreaDescriptionAtrrs] = defineField(
+  'textAreaDescription'
+);
 
-textAreaDescription.value = textAreaDescription.value !== undefined ? textAreaDescription.value : '';
+textAreaDescription.value =
+  textAreaDescription.value !== undefined ? textAreaDescription.value : '';
 domicilio.value = domicilio.value !== undefined ? domicilio.value : '';
-
 
 const firsDateChangeDone = ref(true);
 
@@ -202,7 +209,7 @@ let formData = ref<VinculadosForm>({
   telefono: '',
   profesion: '',
   apodo: '',
-  descripcionDesconocido:''
+  descripcionDesconocido: '',
 });
 const tarjetaValues = ref<string[]>([]);
 onActivated(() => {
@@ -223,19 +230,28 @@ const updateDataWithForm = () => {
     nombre.value = formData.value.nombre;
     domicilio.value = formData.value.domicilioResidencia;
     sexoSelect.value = { name: formData.value.typeSexo || 'Seleccione sexo' };
-    tipoDenuncianteSelect.value = { name: formData?.value?.typeAfectado || 'Seleccione tipo' };
-    tipoDocSelect.value = { name: formData?.value?.typeDocumento || 'Seleccione tipo'  };
-    nacionalidadSelect.value = { name: formData?.value?.nacionalidad || 'Nacionalidad'};
-    estadoCivilSelect.value = { name: formData?.value?.estadoCivil || 'Estado Civil' };
-    instruccionSelect.value = { name: formData?.value?.instruccion || 'Instrucción' };
+    tipoDenuncianteSelect.value = {
+      name: formData?.value?.typeAfectado || 'Seleccione tipo',
+    };
+    tipoDocSelect.value = {
+      name: formData?.value?.typeDocumento || 'Seleccione tipo',
+    };
+    nacionalidadSelect.value = {
+      name: formData?.value?.nacionalidad || 'Nacionalidad',
+    };
+    estadoCivilSelect.value = {
+      name: formData?.value?.estadoCivil || 'Estado Civil',
+    };
+    instruccionSelect.value = {
+      name: formData?.value?.instruccion || 'Instrucción',
+    };
     nroDocumento.value = formData.value.nroDocumento;
     fechaNacimiento.value = formData.value.fecha;
-    if(formData.value.descripcionDesconocido){
-      textAreaDescription.value= formData.value.descripcionDesconocido
-      isPersonaDesconocida.value=true
-    }else{
-      isPersonaDesconocida.value=false
-
+    if (formData.value.descripcionDesconocido) {
+      textAreaDescription.value = formData.value.descripcionDesconocido;
+      isPersonaDesconocida.value = true;
+    } else {
+      isPersonaDesconocida.value = false;
     }
   }
 };
@@ -304,47 +320,46 @@ const handleBlur = (campo: keyof VinculadosForm) => {
 
 const handleAgregarElemento = () => {
   if (hasErrors()) return;
-  let nuevoItem: Vinculados 
-  if(isPersonaDesconocida.value){
+  let nuevoItem: Vinculados;
+  if (isPersonaDesconocida.value) {
     nuevoItem = {
-    apodo: "",
-    nroDocumento: "",
-    apellido: "",
-    nombre: "",
-    fecha: "",
-    domicilioResidencia: "",
-    telefono: "",
-    profesion: "",
-    typeAfectado: "Acusado",
-    typeDocumento:"",
-    typeSexo: "",
-    nacionalidad: "",
-    estadoCivil: "",
-    instruccion:"",
-    descripcionDesconocido: textAreaDescription.value
-  };
-  isPersonaDesconocida.value=false
-  }
-  else{
+      apodo: '',
+      nroDocumento: '',
+      apellido: '',
+      nombre: '',
+      fecha: '',
+      domicilioResidencia: '',
+      telefono: '',
+      profesion: '',
+      typeAfectado: 'Acusado',
+      typeDocumento: '',
+      typeSexo: '',
+      nacionalidad: '',
+      estadoCivil: '',
+      instruccion: '',
+      descripcionDesconocido: textAreaDescription.value,
+    };
+    isPersonaDesconocida.value = false;
+  } else {
     nuevoItem = {
-    apodo: formData.value.apodo,
-    nroDocumento: formData.value.nroDocumento,
-    apellido: formData.value.apellido,
-    nombre: formData.value.nombre,
-    fecha: formData.value.fecha,
-    domicilioResidencia: formData.value.domicilioResidencia,
-    telefono: formData.value.telefono,
-    profesion: formData.value.profesion,
-    typeAfectado: tipoDenuncianteSelect.value.name,
-    typeDocumento:tipoDocSelect?.value?.name || '',
-    typeSexo: sexoSelect.value.name,
-    nacionalidad: nacionalidadSelect.value.name,
-    estadoCivil: estadoCivilSelect.value.name,
-    instruccion: instruccionSelect.value.name,
-    descripcionDesconocido: ''
-  };
+      apodo: formData.value.apodo,
+      nroDocumento: formData.value.nroDocumento,
+      apellido: formData.value.apellido,
+      nombre: formData.value.nombre,
+      fecha: formData.value.fecha,
+      domicilioResidencia: formData.value.domicilioResidencia,
+      telefono: formData.value.telefono,
+      profesion: formData.value.profesion,
+      typeAfectado: tipoDenuncianteSelect.value.name,
+      typeDocumento: tipoDocSelect?.value?.name || '',
+      typeSexo: sexoSelect.value.name,
+      nacionalidad: nacionalidadSelect.value.name,
+      estadoCivil: estadoCivilSelect.value.name,
+      instruccion: instruccionSelect.value.name,
+      descripcionDesconocido: '',
+    };
   }
-  
+
   agregar(nuevoItem);
   markNewRecordCreated();
   formData.value = { ...initialValues };
@@ -362,7 +377,7 @@ const handleAgregarElemento = () => {
   instruccionSelect.value = { name: 'instrucción' };
   nroDocumento.value = '';
   fechaNacimiento.value = '';
-  textAreaDescription.value=''
+  textAreaDescription.value = '';
 };
 
 const handleCancelar = () => {
@@ -377,35 +392,41 @@ const handleModificarElemento = () => {
     return;
   }
   let itemStateEncontrado = guardarModificaciones(selectedItem.value!.id);
-  let itemAEditar = {}
-  
-  if(isPersonaDesconocida.value){
-      itemAEditar={
+  let itemAEditar = {};
+
+  if (isPersonaDesconocida.value) {
+    itemAEditar = {
       id: formData.value.id,
-      typeAfectado: 'Acusado' ,
-      descripcionDesconocido: textAreaDescription.value ||'',
+      typeAfectado: 'Acusado',
+      descripcionDesconocido: textAreaDescription.value || '',
       ...itemStateEncontrado,
+    };
+  } else {
+    {
+      itemAEditar = {
+        id: formData.value.id,
+        nroDocumento: nroDocumento.value || '',
+        apellido: apellido.value || '',
+        nombre: nombre.value || '',
+        fecha: fechaNacimiento.value || '',
+        domicilioResidencia: domicilio.value || '',
+        telefono: formData.value.telefono || '',
+        profesion: formData.value.profesion || '',
+        apodo: formData.value.apodo || '',
+        typeAfectado: tipoDenuncianteSelect.value.name || '',
+        typeDocumento:
+          tipoDocSelect.value.name == 'Seleccione tipo'
+            ? ''
+            : tipoDocSelect.value.name || '',
+        typeSexo: sexoSelect.value.name || '',
+        nacionalidad: nacionalidadSelect.value.name || '',
+        estadoCivil: estadoCivilSelect.value.name || '',
+        instruccion: instruccionSelect.value.name || '',
+        descripcionDesconocido: textAreaDescription.value || '',
+        ...itemStateEncontrado,
       };
-    }else{
-      {itemAEditar={id: formData.value.id,
-      nroDocumento: nroDocumento.value || '',
-      apellido: apellido.value || '',
-      nombre: nombre.value || '',
-      fecha: fechaNacimiento.value || '',
-      domicilioResidencia: domicilio.value || '',
-      telefono: formData.value.telefono || '',
-      profesion: formData.value.profesion || '',
-      apodo: formData.value.apodo || '',
-      typeAfectado: tipoDenuncianteSelect.value.name || '',
-      typeDocumento: tipoDocSelect.value.name =='Seleccione tipo' ? '': tipoDocSelect.value.name || '',
-      typeSexo: sexoSelect.value.name || '',
-      nacionalidad: nacionalidadSelect.value.name || '',
-      estadoCivil: estadoCivilSelect.value.name || '',
-      instruccion: instruccionSelect.value.name || '',
-      descripcionDesconocido: textAreaDescription.value ||'',
-      ...itemStateEncontrado,}
-  };
     }
+  }
   editar(itemAEditar);
 };
 watch(selectedItem, (newVal: any) => {
@@ -426,8 +447,8 @@ watch(selectedItem, (newVal: any) => {
     telefono.value = '';
     profesion.value = '';
     apodo.value = '';
-    textAreaDescription.value= ''
-    isPersonaDesconocida.value=false
+    textAreaDescription.value = '';
+    isPersonaDesconocida.value = false;
   } else {
     formData.value = { ...newVal };
     updateDataWithForm();
@@ -438,7 +459,7 @@ watch(selectedItem, (newVal: any) => {
   <Card>
     <template #content>
       <div class="grid">
-        <div class="grid" v-if="!isPersonaDesconocida" >
+        <div class="grid" v-if="!isPersonaDesconocida">
           <div class="col-12">
             <!-- <pre>{{ values }}</pre> -->
             <label for="dropdown">Seleccione tipo de Denunciante</label>
@@ -475,7 +496,10 @@ watch(selectedItem, (newVal: any) => {
               placeholder="Seleccione tipo de doc."
               filter
             />
-            <span class="text-red-400" v-if="errors.tipoDocSelect ? true : false">
+            <span
+              class="text-red-400"
+              v-if="errors.tipoDocSelect ? true : false"
+            >
               {{ errors.tipoDocSelect }}
             </span>
           </div>
@@ -661,74 +685,72 @@ watch(selectedItem, (newVal: any) => {
               :color="false"
             />
           </div>
-      </div>
-      <div  class="col-12" v-else >
-        <p class="mb-0">Descripción:</p>
-        <MyTextArea 
-          class="w-full max-w-4xl"  
-          @input="handleInputChange('descripcionDesconocido', $event)"  
-          v-model="textAreaDescription"
-          v-bind="textAreaDescriptionAtrrs" 
-          :error="errors.textAreaDescription"
-          variant="filled"
-           rows="5"
-            cols="60" />
-
-      </div>
-          <div class="col-3">
-            <div class="flex align-items-center">
-              <Checkbox 
-                v-model="isPersonaDesconocida" 
-                :binary="true" 
-                value="filacionDesconocida" />
-              <p class="ml-2">Persona de filiación desconocida</p>
+        </div>
+        <div class="col-12" v-else>
+          <p class="mb-0">Descripción:</p>
+          <MyTextArea
+            class="w-full max-w-4xl"
+            @input="handleInputChange('descripcionDesconocido', $event)"
+            v-model="textAreaDescription"
+            v-bind="textAreaDescriptionAtrrs"
+            :error="errors.textAreaDescription"
+            variant="filled"
+            rows="5"
+            cols="60"
+          />
+        </div>
+        <div class="col-3">
+          <div class="flex align-items-center">
+            <Checkbox
+              v-model="isPersonaDesconocida"
+              :binary="true"
+              value="filacionDesconocida"
+            />
+            <p class="ml-2">Persona de filiación desconocida</p>
+          </div>
+        </div>
+        <div class="col-6"></div>
+        <div class="col-3">
+          <div class="flex align-items-center justify-content-end">
+            <Button
+              label="Agregar"
+              v-if="!selectedItem"
+              :disabled="hasErrors()"
+              @click="handleAgregarElemento()"
+            >
+            </Button>
+            <div v-else>
+              <Button
+                :disabled="isEditing(selectedItem!.id)"
+                label="Cancelar"
+                icon="pi pi-times"
+                severity="secondary"
+                outlined
+                aria-label="Cancel"
+                class="mr-3"
+                @click="handleCancelar"
+              ></Button>
+              <Button
+                label="Guardar Cambios"
+                :disabled="isEditing(selectedItem!.id)"
+                @click="handleModificarElemento()"
+                severity="warning"
+              ></Button>
             </div>
           </div>
-          <div class="col-6">
-          </div>
-          <div class="col-3">
-            <div class="flex align-items-center  justify-content-end">
-                <Button
-                label="Agregar"
-                v-if="!selectedItem"
-                :disabled="hasErrors()"
-                @click="handleAgregarElemento()"
-              >
-              </Button>
-              <div v-else>
-                <Button
-                  :disabled="isEditing(selectedItem!.id)"
-                  label="Cancelar"
-                  icon="pi pi-times"
-                  severity="secondary"
-                  outlined
-                  aria-label="Cancel"
-                  class="mr-3"
-                  @click="handleCancelar"
-                ></Button>
-                <Button
-                  label="Guardar Cambios"
-                  :disabled="isEditing(selectedItem!.id)"
-                  @click="handleModificarElemento()"
-                  severity="warning"
-                ></Button>
-              </div>
-            </div>
-          
-          </div>
-        
+        </div>
       </div>
-      <pre>
+      <!-- <pre>
           <span v-for="(id, pristine) in statesID" key="id">
             ID: {{id}}, Pristine: {{ pristine }}
           </span>
-        </pre>
+        </pre> -->
     </template>
   </Card>
 </template>
 
 <style scoped>
-.test{
+.test {
   align-items: center;
 }
 </style>

@@ -16,7 +16,7 @@ let selectedAyudanteFiscal = ref<DropDownInterface>()
 let selectedFiscalCargo = ref<DropDownInterface>()
 let selectedCausaCaratulaList = ref(null)
 let selectedArticulosRelacionadosList = ref(null)
-let selectedArticulosRelacionados= ref<DropDownInterface>()
+let selectedArticulosRelacionados = ref<DropDownInterface>()
 let itemsCausaCaratula = ref<any[]>([])
 let itemsArticulosRelacionados = ref<any[]>([])
 let nombreActuacion = ref<string>('Sumario por denuncia')
@@ -51,7 +51,7 @@ const useDatosLegales = () => {
         itemsCausaCaratula: [{ name: 'Siniestro Vial' }, { name: 'Robo simple en grado de tentativa' }],
         itemsArticulosRelacionados: [{ name: '183\u00ba ' }, { name: 'Actuaciones por Denuncia' }],
         selectedJuzgadoInterviniente: { name: 'TERCER JUZGADO EN LO CORRECCIONAL' },
-        selectedArticulosRelacionados:{ name: '178\u00b0 Portacion de arma blanca o contundente. ' }
+        selectedArticulosRelacionados: { name: '178\u00b0 Portacion de arma blanca o contundente. ' }
     }
 
     const addDataFake = () => {

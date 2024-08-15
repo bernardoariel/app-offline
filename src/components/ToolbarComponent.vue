@@ -23,7 +23,10 @@ watch(route, () => {
   checkRoute();
 });
 
-const checkRoute = () => (showCalendar.value = route.name != 'actuaciones');
+const checkRoute = () => {
+  showCalendar.value =
+    route.name !== 'actuaciones' && route.name !== 'editActuacion';
+};
 const actualizarFechaCreacion = (fechaSeleccionada: Date) => {
   setFechaCreacion(fechaSeleccionada);
 };

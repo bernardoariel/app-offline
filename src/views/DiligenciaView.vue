@@ -22,13 +22,13 @@
             onLabel="Ocultar Pdf"
             offLabel="Ver Pdf"
           />
-          <Button
+          <!-- <Button
             label="Registrar"
             class="p-button"
             @click="handleSave"
             severity="warning"
             :disabled="!isDataValid()"
-          />
+          /> -->
         </div>
       </div>
 

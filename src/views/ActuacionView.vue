@@ -19,6 +19,7 @@ import useActuacionLoading from '@/composables/useActuacionLoading';
 import useCardValidation from '@/composables/useCardValidations';
 
 import { handleFetchActuacion } from '@/helpers/handleFetchActuacion';
+import ToolbarActuacion from '@/components/ToolbarActuacion.vue';
 
 const { dialogState, confirmNavigation, hideDialog } = useDialog();
 interface Props {
@@ -31,7 +32,12 @@ const actuacionName = ref(props.actuacionName);
 const actuacionData = ref(props.actuacionData);
 
 const activeButtonTab = ref(0);
-const { agregarNuevoItem, toogleDateActuacion } = useActuacion();
+const {
+  agregarNuevoItem,
+  toogleDateActuacion,
+  fechaCreacion,
+  setFechaCreacion,
+} = useActuacion();
 const { set: setActuacionData } = useActuacionData();
 const { resetData: resetDatosLegales, nroLegajo } = useDatosLegales();
 const { setLoading } = useActuacionLoading();
@@ -171,6 +177,14 @@ const isAnyChange = computed(() => {
     isDiligenciaChange.value
   );
 });
+
+const today = ref<Date | null>(new Date());
+const actualizarFechaCreacion = (fechaSeleccionada: Date) => {
+  setFechaCreacion(fechaSeleccionada);
+};
+watch(fechaCreacion, (newValue) => {
+  today.value = newValue ? new Date(newValue) : null;
+});
 </script>
 
 <template>
@@ -205,41 +219,13 @@ const isAnyChange = computed(() => {
     </template>
   </MyDialog>
   <div class="grid">
+    <div class="col-12 header-container">
+      <ToolbarActuacion />
+    </div>
     <div class="col-5">
       <Card v-if="Object.keys(props.actuacionData).length > 0 ? true : false">
-        <template #title>
-          <div class="title-container">
-            <div>
-              <Button
-                label="Cancelar"
-                icon="pi pi-arrow-circle-left"
-                severity="secondary"
-                rounded
-                @click="$router.replace({ name: 'actuaciones' })"
-              />
-            </div>
-            <div
-              class="font-medium text-center text-3xl text-900"
-              @click="handleClick"
-            >
-              <div class="text-3xl font-bold">
-                {{ props.actuacionData?.titulo }}
-              </div>
-
-              <small
-                :class="{
-                  'text-orange-500': !nroLegajo,
-                  'text-gray-500': nroLegajo,
-                }"
-                class="text-sm font-bold"
-              >
-                <i class="">{{
-                  props.actuacionData?.datosLegales?.items[0]
-                }}</i>
-                {{ nroLegajo ? ': ' + nroLegajo : '' }}
-              </small>
-            </div>
-
+        <template #content>
+          <div class="flex gap-2 justify-content-end relative">
             <div class="buttons-container">
               <Tag
                 @click="handleClick"
@@ -272,18 +258,12 @@ const isAnyChange = computed(() => {
                 :outlined="activeButtonTab !== 1"
               />
             </div>
-
-            <div
-              class="change-status"
-              :title="isAnyChange ? 'Cambios Pendientes' : 'Sin Cambios'"
-            >
+            <div class="change-status">
               <i
                 :class="isAnyChange ? 'pi pi-circle-fill' : 'pi pi-circle'"
               ></i>
             </div>
           </div>
-        </template>
-        <template #content>
           <TabView v-model:activeIndex="activeButtonTab">
             <TabPanel header="Datos Requeridos">
               <Card
@@ -348,7 +328,9 @@ const isAnyChange = computed(() => {
 }
 .buttons-container {
   display: flex;
+  justify-content: end;
   gap: 10px;
+  width: 100%;
 }
 
 .color-border-top {

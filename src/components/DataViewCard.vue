@@ -93,8 +93,8 @@ const openDeleteConfirmation = (item, dataKey) => {
   visible.value = true;
   if (dataKey === 'efectos') {
     mensaje.value = `
-    <span class="font-semibold">${item.categoria}</span><span>, ${item.marca}</span><br/>
-    modelo <span class="font-semibold">${item.modelo}`;
+    <span class="font-semibold">${item.categoria.name}</span><span>, ${item.marca.name}</span><br/>
+    modelo <span class="font-semibold">${item.modelo.name}`;
     return;
   }
   if (dataKey === 'fecha') {

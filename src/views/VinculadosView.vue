@@ -27,7 +27,7 @@ import { useForm } from 'vee-validate';
 const { editar, agregar, initialValues } = useVinculados();
 
 const { selectedItem } = useItemValue();
-const { obtenerTarjeta } = useActuacionData();
+const { obtenerTarjeta, actuacionData } = useActuacionData();
 const isPersonaDesconocida = ref<boolean>(false);
 // const textAreaDescription  = ref<string>("");
 
@@ -97,7 +97,7 @@ const validationSchema = yup.object({
       .string()
       .required('Seleccione un tipo de denunciante')
       .oneOf(
-        ['Acusado', 'Detenido', 'Extraviado', 'Aprehendido'],
+        actuacionData.value?.tarjetas['vinculados']['valor'],
         'Selecciones un tipo válido'
       ),
   }),

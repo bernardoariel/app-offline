@@ -24,9 +24,9 @@ export const actuaciones: TipoActuaciones = {
             }
         },
         "datosLegales": {
-            "items":['N° de sumario / N° de extracto','sitio','modusOperandi','causaCaratula','listboxCausaCaratula','juzgadoInterviniente']
+            "items": ['N° de sumario / N° de extracto', 'sitio', 'modusOperandi', 'causaCaratula', 'listboxCausaCaratula', 'juzgadoInterviniente']
         }
-        
+
     },
     "sumario-oficio": {
         titulo: 'Sumario por Oficio',
@@ -55,7 +55,7 @@ export const actuaciones: TipoActuaciones = {
             },
         },
         "datosLegales": {
-            "items": ['Nº de sumario / Nº de extracto', 'sitio', 'modusOperandi', 'causaCaratula', 'listboxCausaCaratula','juzgadoInterviniente']
+            "items": ['Nº de sumario / Nº de extracto', 'sitio', 'modusOperandi', 'causaCaratula', 'listboxCausaCaratula', 'juzgadoInterviniente']
         }
     },
     "expediente-denuncia": {
@@ -140,7 +140,7 @@ export const actuaciones: TipoActuaciones = {
             },
         },
         "datosLegales": {
-            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','ayudanteFiscal']
+            "items": ['LEGAJO N° / N° de extracto', 'sitio', 'modusOperandi', 'delito', 'ufiNro', 'fiscalCargo', 'ayudanteFiscal']
         }
     },
     "ufi-cavig": {
@@ -170,7 +170,7 @@ export const actuaciones: TipoActuaciones = {
             },
         },
         "datosLegales": {
-            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','ayudanteFiscal']
+            "items": ['LEGAJO N° / N° de extracto', 'sitio', 'modusOperandi', 'delito', 'ufiNro', 'fiscalCargo', 'ayudanteFiscal']
         }
     },
     "ufi-anivi": {
@@ -200,7 +200,7 @@ export const actuaciones: TipoActuaciones = {
             },
         },
         "datosLegales": {
-            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','ayudanteFiscal']
+            "items": ['LEGAJO N° / N° de extracto', 'sitio', 'modusOperandi', 'delito', 'ufiNro', 'fiscalCargo', 'ayudanteFiscal']
         }
     },
     "ufi-generica-denuncia": {
@@ -225,7 +225,7 @@ export const actuaciones: TipoActuaciones = {
             },
         },
         "datosLegales": {
-            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','ayudanteFiscal']
+            "items": ['LEGAJO N° / N° de extracto', 'sitio', 'modusOperandi', 'delito', 'ufiNro', 'fiscalCargo', 'ayudanteFiscal']
         }
     },
     "ufi-generica-oficio": {
@@ -255,7 +255,7 @@ export const actuaciones: TipoActuaciones = {
             },
         },
         "datosLegales": {
-            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','ayudanteFiscal']
+            "items": ['LEGAJO N° / N° de extracto', 'sitio', 'modusOperandi', 'delito', 'ufiNro', 'fiscalCargo', 'ayudanteFiscal']
         }
     },
     "ufi-informatica-denuncia": {
@@ -281,7 +281,7 @@ export const actuaciones: TipoActuaciones = {
             }
         },
         "datosLegales": {
-            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','ayudanteFiscal']
+            "items": ['LEGAJO N° / N° de extracto', 'sitio', 'modusOperandi', 'delito', 'ufiNro', 'fiscalCargo', 'ayudanteFiscal']
         }
     },
     "ufi-informatica-oficio": {
@@ -311,7 +311,7 @@ export const actuaciones: TipoActuaciones = {
             },
         },
         "datosLegales": {
-            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','ayudanteFiscal']
+            "items": ['LEGAJO N° / N° de extracto', 'sitio', 'modusOperandi', 'delito', 'ufiNro', 'fiscalCargo', 'ayudanteFiscal']
         }
     },
     "ufi-propiedad-denuncia": {
@@ -336,7 +336,7 @@ export const actuaciones: TipoActuaciones = {
             }
         },
         "datosLegales": {
-            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','ayudanteFiscal']
+            "items": ['LEGAJO N° / N° de extracto', 'sitio', 'modusOperandi', 'delito', 'ufiNro', 'fiscalCargo', 'ayudanteFiscal']
         }
     },
     "ufi-propiedad-oficio": {
@@ -361,10 +361,10 @@ export const actuaciones: TipoActuaciones = {
             }
         },
         "datosLegales": {
-            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','ayudanteFiscal']
+            "items": ['LEGAJO N° / N° de extracto', 'sitio', 'modusOperandi', 'delito', 'ufiNro', 'fiscalCargo', 'ayudanteFiscal']
         }
     },
-    "ufi-delitos-especiales-paradero":{
+    "ufi-delitos-especiales-paradero": {
         titulo: 'UFI - ESTABLECER PARADERO',
         tituloAlternativo: 'UNIDADES FISCALES DE INVESTIGACION D.E ESTABLECER PARADERO',
         "tarjetas": {
@@ -387,10 +387,10 @@ export const actuaciones: TipoActuaciones = {
             }
         },
         "datosLegales": {
-            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','ayudanteFiscal']
+            "items": ['LEGAJO N° / N° de extracto', 'sitio', 'modusOperandi', 'delito', 'ufiNro', 'fiscalCargo', 'ayudanteFiscal']
         }
     },
-    "ufi-delitos-especiales-médicas":{
+    "ufi-delitos-especiales-médicas": {
         titulo: 'UFI - EMERGENCIAS MÉDICAS',
         tituloAlternativo: 'UNIDADES FISCALES DE INVESTIGACION D.E EMERGENCIAS MEDICAS',
         "tarjetas": {
@@ -413,10 +413,10 @@ export const actuaciones: TipoActuaciones = {
             },
         },
         "datosLegales": {
-            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','ayudanteFiscal']
+            "items": ['LEGAJO N° / N° de extracto', 'sitio', 'modusOperandi', 'delito', 'ufiNro', 'fiscalCargo', 'ayudanteFiscal']
         }
     },
-    "ufi-delitos-especiales-vial":{
+    "ufi-delitos-especiales-vial": {
         titulo: 'UFI - SINIESTRO VIAL',
         tituloAlternativo: 'UNIDADES FISCALES DE INVESTIGACION D.E SINIESTRO VIAL',
         "tarjetas": {
@@ -443,10 +443,10 @@ export const actuaciones: TipoActuaciones = {
             },
         },
         "datosLegales": {
-            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','ayudanteFiscal']
+            "items": ['LEGAJO N° / N° de extracto', 'sitio', 'modusOperandi', 'delito', 'ufiNro', 'fiscalCargo', 'ayudanteFiscal']
         }
     },
-    "ufi-delitos-especiales-ahorcamiento-suicidio":{
+    "ufi-delitos-especiales-ahorcamiento-suicidio": {
         titulo: 'UFI - AHORCAMIENTO O SUICIDIO',
         tituloAlternativo: 'UNIDADES FISCALES DE INVESTIGACION D.E AHORCAMIENTO O SUICIDIO',
         "tarjetas": {
@@ -469,10 +469,10 @@ export const actuaciones: TipoActuaciones = {
             },
         },
         "datosLegales": {
-            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','ayudanteFiscal']
+            "items": ['LEGAJO N° / N° de extracto', 'sitio', 'modusOperandi', 'delito', 'ufiNro', 'fiscalCargo', 'ayudanteFiscal']
         }
     },
-    "ufi-delitos-especiales-incendio-vivienda":{
+    "ufi-delitos-especiales-incendio-vivienda": {
         titulo: 'UFI - INCENDIO EN VIVIENDA',
         tituloAlternativo: 'UNIDADES FISCALES DE INVESTIGACION D.E INCENDIO EN VIVIENDA',
         "tarjetas": {
@@ -495,10 +495,10 @@ export const actuaciones: TipoActuaciones = {
             },
         },
         "datosLegales": {
-            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','ayudanteFiscal']
+            "items": ['LEGAJO N° / N° de extracto', 'sitio', 'modusOperandi', 'delito', 'ufiNro', 'fiscalCargo', 'ayudanteFiscal']
         }
     },
-    "ufi-delitos-especiales-intoxicación":{
+    "ufi-delitos-especiales-intoxicación": {
         titulo: 'UFI - INTOXICACIÓN',
         tituloAlternativo: 'UNIDADES FISCALES DE INVESTIGACION D.E INTOXICACION',
         "tarjetas": {
@@ -521,7 +521,7 @@ export const actuaciones: TipoActuaciones = {
             },
         },
         "datosLegales": {
-            "items":['LEGAJO N° / N° de extracto','sitio','modusOperandi','delito','ufiNro','fiscalCargo','ayudanteFiscal']
+            "items": ['LEGAJO N° / N° de extracto', 'sitio', 'modusOperandi', 'delito', 'ufiNro', 'fiscalCargo', 'ayudanteFiscal']
         }
     },
     "preliminares-incendio-vivienda": {
@@ -553,7 +553,7 @@ export const actuaciones: TipoActuaciones = {
             "items": ['ACT. Preliminares N° / N° de extracto', 'sitio', 'modusOperandi', 'causaCaratula', 'listboxCausaCaratula', 'interviniente']
         }
     },
-    "preliminares-procendencia":{
+    "preliminares-procendencia": {
         titulo: 'ACTUACIONES PRELIMINARES - ESTABLECER PROCEDENCIA',
         tituloAlternativo: 'ACTUACION PRELIMINAR PARA ESTABLECER PROCEDENCIAS',
         "tarjetas": {
@@ -582,7 +582,7 @@ export const actuaciones: TipoActuaciones = {
             "items": ['ACT. Preliminares N° / N° de extracto', 'sitio', 'modusOperandi', 'causaCaratula', 'listboxCausaCaratula', 'interviniente']
         }
     },
-    "preliminares-fuga":{
+    "preliminares-fuga": {
         titulo: 'ACTUACIONES PRELIMINARES - FUGA DE MENOR',
         tituloAlternativo: 'ACTUACION PRELIMINAR POR FUGA DE MENOR',
         "tarjetas": {
@@ -611,7 +611,7 @@ export const actuaciones: TipoActuaciones = {
             "items": ['ACT. Preliminares N° / N° de extracto', 'sitio', 'modusOperandi', 'causaCaratula', 'listboxCausaCaratula', 'interviniente']
         }
     },
-    "preliminares-siniestro":{
+    "preliminares-siniestro": {
         titulo: 'ACTUACIONES PRELIMINARES - SINIESTRO VIAL',
         tituloAlternativo: 'ACTUACION PRELIMINAR POR SINIESTRO VIAL',
         "tarjetas": {
@@ -636,7 +636,7 @@ export const actuaciones: TipoActuaciones = {
             "items": ['ACT. Preliminares N° / N° de extracto', 'sitio', 'modusOperandi', 'causaCaratula', 'listboxCausaCaratula', 'interviniente']
         }
     },
-    "preliminares-caida":{
+    "preliminares-caida": {
         titulo: 'ACTUACIONES PRELIMINARES - CAÍDA CASUAL',
         tituloAlternativo: 'ACTUACION PRELIMINAR POR CAIDA CASUAL',
         "tarjetas": {
@@ -686,7 +686,7 @@ export const actuaciones: TipoActuaciones = {
             "items": ['ACT. Preliminares N° / N° de extracto', 'sitio', 'modusOperandi', 'causaCaratula', 'listboxCausaCaratula', 'interviniente']
         }
     },
-    "preliminares-tentativa":{
+    "preliminares-tentativa": {
         titulo: 'ACTUACIONES PRELIMINARES - TENTATIVA DE SUICIDIO',
         tituloAlternativo: 'ACTUACION PRELIMINAR POR TENTATIVA DE SUICIDIO',
         "tarjetas": {

@@ -21,6 +21,7 @@ import {
 
 import { mapToArray, mapToDropdownItems } from '@/helpers/dropUtils';
 import { useForm } from 'vee-validate';
+const { obtenerTarjeta, actuacionData } = useActuacionData();
 
 const validationSchema = yup.object({
   estadoSelect: yup.object().shape({
@@ -28,7 +29,7 @@ const validationSchema = yup.object({
       .string()
       .required('Seleccione un estado')
       .oneOf(
-        ['Denunciado', 'Recuperado', 'Secuestrado'],
+        actuacionData.value?.tarjetas['efectos']['valor']!,
         'Selecciones un tipo válido'
       ),
   }),
@@ -115,7 +116,6 @@ const {
   cancelarModificaciones,
   markNewRecordCreated,
 } = useFieldState();
-const { obtenerTarjeta } = useActuacionData();
 
 const formData = ref<EfectosForm>({ ...initialValues });
 const tarjetaValues = ref<string[]>(['']);

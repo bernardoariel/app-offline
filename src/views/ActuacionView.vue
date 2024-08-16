@@ -103,11 +103,6 @@ const resetBackStates = () => {
   resetUnsavedChanges();
   resetNewRecordCreated();
   resetRecordDeleted();
-  // resetDiliginciaChange();
-  // resetDatosLegales();
-  // resetLegalFields();
-  // resetDataLegal();
-  // resetRelato();
   resetPristine();
   resetModifiedData();
 };

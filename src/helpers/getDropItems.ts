@@ -15,11 +15,11 @@ export const instruccionDropdown = ref(mapToDropdownItems(instruccion));
 export const municipiosDropdown = ref(mapToDropdownItems(departamentosDropdown));
 export const jerarquiaDropdown = ref(mapToDropdownItems(jerarquia))
 export const dependenciaDropdown = ref(mapToDropdownItems(dependencias))
-export const categoriasDropdown = ref(mapToDropDownEfectos(categorias))
-export const subcategoriasDropdown = ref(mapToDropDownEfectos(subcategorias))
-export const tipoCategoriasDropdown = ref(mapToDropDownEfectos(tipoCategorias))
-export const marcasCategoriasDropdown = ref(mapToDropDownEfectos(marcasCategorias))
-export const modelosCategoriasDropdown = ref(mapToDropDownEfectos(modelosCategorias))
+export const categoriasDropdown = ref(mapToDropDownEfectos(categorias,"categorias"))
+export const subcategoriasDropdown = ref(mapToDropDownEfectos(subcategorias, "sub-categorias"))
+export const tipoCategoriasDropdown = ref(mapToDropDownEfectos(tipoCategorias, "tipo-categorias"))
+export const marcasCategoriasDropdown = ref(mapToDropDownEfectos(marcasCategorias, "marcas"))
+export const modelosCategoriasDropdown = ref(mapToDropDownEfectos(modelosCategorias, "modelo"))
 
 export const sitiosDropdwown = ref(mapToDropDownEfectos(sitios))
 export const modusOperandiDropdwown = ref(mapToDropDownEfectos(modusOperandi))

@@ -323,11 +323,11 @@ watch(selectedItem, (newVal: any) => {
           </div>
         </div>
       </div>
-      <pre>
+      <!-- <pre>
         <span v-for="state in statesID" :key="state.id">
           ID: {{ state.id }}, Pristine: {{ state.pristine }}
         </span>
-      </pre>
+      </pre> -->
     </template>
   </Card>
 </template>

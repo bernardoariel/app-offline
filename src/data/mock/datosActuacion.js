@@ -121,11 +121,11 @@ export const efectosFake = [
  
   {
     "estado":{name:"Denunciado", key:""},
-    "categoria":{name:"Vehiculos", key:"223732c-0780-11ed-bb82-0eb8b69eb347"},
+    "categoria":{name:"Vehiculos", key:"1223732c-0780-11ed-bb82-0eb8b69eb347"},
     "marca": {name:"Rockrider", key:"8ebb594e-ff12-11ec-bb82-0eb8b69eb347"},
     "modelo":{name:"Blazer", key:"0030905b-9bf1-11ed-9b80-0e87116d214b"},
     "subcategoria":{name:"Camioneta", key:"5a298bfb-0bc5-11ed-bb82-0eb8b69eb347"},
-    "tipo":{name:"Pick Up", key:"Chevrolet "},
+    "tipo":{name:"Pick Up", key:"573af87e-8072-11ed-9b80-0e87116d214b"},
     "id":"64a888c4-5b79-4414-9a21-cd9a30b7059e"
   },
   {
@@ -134,7 +134,7 @@ export const efectosFake = [
     "marca":{name:"Sanyo", key:"19cee6ff-cc6e-11ec-acbc-16c2a030bb97"},
     "modelo":{name:"SM-G532M", key:"0a1e830a-90ee-11ed-9b80-0e87116d214b"},
     "subcategoria":{name:"Celulares y Tel\u00e9fono ", key:"0d9c761b-07cb-11ed-bb82-0eb8b69eb347"},
-    "tipo":{name:"Tactil", key:"Samsung"},
+    "tipo":{name:"Tactil", key:"9c3125b1-07ce-11ed-bb82-0eb8b69eb347"},
     "id":"9355289c-08a0-43ba-8131-6c18d02de812"
   },{
     "estado":{name:"Denunciado", key:""},

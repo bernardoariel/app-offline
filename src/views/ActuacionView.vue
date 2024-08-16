@@ -34,7 +34,6 @@ const actuacionData = ref(props.actuacionData);
 const activeButtonTab = ref(0);
 const { agregarNuevoItem, toogleDateActuacion } = useActuacion();
 const { set: setActuacionData } = useActuacionData();
-const { resetData: resetDatosLegales, nroLegajo } = useDatosLegales();
 const { setLoading } = useActuacionLoading();
 
 const {
@@ -54,7 +53,7 @@ const {
 
 const { resetFields: resetLegalFields, isAnyFieldModified: isLegalModified } =
   useLegalesState();
-const { addDataFake, resetData: resetDataLegal } = useDatosLegales();
+const { addDataFake, resetData: resetDataLegal, nroLegajo } = useDatosLegales();
 
 setActuacionData(props.actuacionData);
 
@@ -92,7 +91,6 @@ const resetAllStates = () => {
   resetNewRecordCreated();
   resetRecordDeleted();
   resetDiliginciaChange();
-  resetDatosLegales();
   resetLegalFields();
   resetDataLegal();
   resetRelato();
@@ -103,11 +101,6 @@ const resetBackStates = () => {
   resetUnsavedChanges();
   resetNewRecordCreated();
   resetRecordDeleted();
-  // resetDiliginciaChange();
-  // resetDatosLegales();
-  // resetLegalFields();
-  // resetDataLegal();
-  // resetRelato();
   resetPristine();
   resetModifiedData();
 };

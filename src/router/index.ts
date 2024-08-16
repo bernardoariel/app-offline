@@ -83,11 +83,6 @@ router.beforeEach((to, from, next) => {
     });
     return;
   }
-  if (from.name && from.params.actuacion !== to.params.actuacion) {
-    isSavedChanges(to, from, next)
-    return
-  }
-
   next();
 });
 

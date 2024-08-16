@@ -19,7 +19,8 @@ import useActuacionLoading from '@/composables/useActuacionLoading';
 import useCardValidation from '@/composables/useCardValidations';
 
 import { handleFetchActuacion } from '@/helpers/handleFetchActuacion';
-
+import { useRoute } from 'vue-router';
+const router = useRoute();
 const { dialogState, confirmNavigation, hideDialog } = useDialog();
 interface Props {
   id?: number;
@@ -85,6 +86,7 @@ const handleClick = (event: { ctrlKey: any; altKey: any }) => {
     relato.value = 'esto es una prueba del relato';
   }
 };
+
 const resetAllStates = () => {
   resetUnsavedChanges();
   resetNewRecordCreated();
@@ -94,6 +96,18 @@ const resetAllStates = () => {
   resetLegalFields();
   resetDataLegal();
   resetRelato();
+  resetPristine();
+  resetModifiedData();
+};
+const resetBackStates = () => {
+  resetUnsavedChanges();
+  resetNewRecordCreated();
+  resetRecordDeleted();
+  // resetDiliginciaChange();
+  // resetDatosLegales();
+  // resetLegalFields();
+  // resetDataLegal();
+  // resetRelato();
   resetPristine();
   resetModifiedData();
 };
@@ -143,7 +157,11 @@ const handleButtonClick = (action: string) => {
     return;
   }
   isEditingHeader.value = !isEditingHeader.value;
-  resetAllStates();
+  if (router.name === 'formulario') {
+    resetBackStates();
+  } else {
+    resetAllStates();
+  }
   confirmNavigation();
 };
 

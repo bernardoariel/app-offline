@@ -102,7 +102,7 @@ const validationSchema = yup.object({
       .string()
       .required('Seleccione un tipo de denunciante')
       .oneOf(
-        ['Denunciante y Damnificado', 'Denunciante', 'Damnificado', 'Protagonista', 'Acompañante', 'Peatón'],
+        actuacionData.value?.tarjetas['afectados']['valor']!,
         'Selecciones un tipo válido'
       ),
   }),
@@ -229,12 +229,14 @@ const tarjetaValues = ref<string[]>([]);
 
 onActivated(() => {
   tarjetaValues.value = obtenerTarjeta('afectados')?.valor as string[];
-  if (actuacionData.value?.tarjetas.afectados.ordenPublico) {
-    actuacionHasOrdenPublico.value = true;
-    if (actuacionData.value?.tarjetas.afectados.ordenPublico === 'check') {
-      isOrdenPublico.value = true;
-    } else isOrdenPublico.value = false;
-  }
+  // if (actuacionData.value?.tarjetas.afectados.ordenPublico) {
+  //   actuacionHasOrdenPublico.value = true;
+  //   if (actuacionData.value?.tarjetas.afectados.ordenPublico === 'check') {
+  //     isOrdenPublico.value = true;
+  //   } else isOrdenPublico.value = false;
+  // }
+  actuacionHasOrdenPublico.value = true;
+  isOrdenPublico.value = true;
   if (selectedItem.value) {
     formData.value = { ...selectedItem.value };
     updateDataWithForm(formData);
@@ -274,10 +276,9 @@ const handleDropdownChange = (
 ) => {
   const name = newValue.value.name;
   if (campo in formData.value) {
-    // Actualizar formData para que el campo específico tenga un objeto con la propiedad 'name' actualizada
     formData.value = {
       ...formData.value,
-      [campo]: { name }, // Asigna un objeto con 'name' a campo
+      [campo]: { name }, 
     };
 
     const itemId = formData.value.id!;
@@ -457,6 +458,7 @@ watch(selectedItem, (newVal: any) => {
     instruccionSelect.value = { name: 'instrucción' };
     nroDocumento.value = '';
     fechaNacimiento.value = '';
+    isOrdenPublico.value = false;
   } else {
     formData.value = { ...newVal };
     updateDataWithForm(formData);

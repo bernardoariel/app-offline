@@ -149,23 +149,15 @@ import useDatosDiligencia from '@/composables/useDatosDiligencia';
 import { getUpperCase } from '@/helpers/stringUtils';
 import { ref, watch, onActivated, onDeactivated } from 'vue';
 import useNewActuacion from '../composables/useNewActuacion';
-import useSaveData from '../composables/useSaveData';
-import useItem from '@/composables/useItems';
-import { useRouter, useRoute } from 'vue-router';
 import { useViewPdf } from '../composables/useViewPdf';
 import PdfViewer from '@/components/reports/PdfViewer.vue';
-import type { dataActuacionForSave } from '../composables/useSaveData';
-import useActuacion from '@/composables/useActuacion';
-import { useDialog } from '@/composables/useDialog';
 import useFieldState from '@/composables/useFieldsState';
 import useLegalesState from '@/composables/useLegalesState';
 
-import useDatosLegales from '../composables/useDatosLegales';
 import useActuacionLoading from '@/composables/useActuacionLoading';
 
 import Skeleton from 'primevue/skeleton';
 import useCardInformation from '@/composables/useCardInformation';
-import useCardValidation from '@/composables/useCardValidations';
 import useValidacionDatosLegales from '@/composables/useValidacionDatosLegales';
 import useActuacionData from '@/composables/useActuacionData';
 
@@ -174,12 +166,9 @@ interface Props {
   id?: number;
 }
 
-const { isDataValid, setValidValue } = useValidacionDatosLegales();
 const { actuacionData } = useActuacionData();
 
 const props = defineProps<Props>();
-const router = useRouter();
-const route = useRoute();
 const actuacionRef = ref(props.actuacion);
 
 const { generatePdf } = useViewPdf();
@@ -201,26 +190,7 @@ const {
 const { isLoading } = useActuacionLoading();
 
 const { isEditedHeader, isEditedFooter } = useNewActuacion();
-const { isActuationInit, currentEditId } = useActuacion();
-const { saveData, updateData } = useSaveData();
-const { afectados, efectos, fechaUbicacion, intervinientes, vinculados } =
-  useItem();
-const {
-  nroLegajo,
-  selectedCausaCaratula,
-  selectedSitio,
-  selectedYear,
-  selectedJuzgadoInterviniente,
-  itemsCausaCaratula,
-  selectedModusOperandi,
-  resetData: resetDatosLegales,
-  selectedUfiNro,
-  selectedFiscalCargo,
-  selectedAyudanteFiscal,
-  itemsArticulosRelacionados,
-  selectedDelito,
-} = useDatosLegales();
-const { dialogState } = useDialog();
+
 const {
   resetNewRecordCreated,
   resetRecordDeleted,
@@ -229,8 +199,6 @@ const {
   resetDiliginciaChange,
 } = useFieldState();
 const { resetFields: resetLegalFields } = useLegalesState();
-const { cardInformationKeys } = useCardInformation(actuacionRef, actuacionData);
-const { setField, missingFieldsEmpty, hasErrors } = useCardValidation();
 const setHeaderFromComputed = () => {
   headerContainer.value = headerTextComputed.value;
   isEditedHeader.value = true;
@@ -261,118 +229,6 @@ const toggleFooter = () => {
     }
   }
   isEditingFooter.value = !isEditingFooter.value;
-};
-
-const storeData = async () => {
-  const head = headerContainer.value || processedHeaderText.value;
-  const body = relato.value;
-  const foot = footerContainer.value || processedFooterText.value;
-
-  const datosLegales = {
-    nroLegajo: nroLegajo.value?.toString() || '',
-    selectYear: selectedYear.value?.name || '',
-    selectSitio: selectedSitio.value?.name || '',
-    selectModusOperandi: selectedModusOperandi.value?.name || '',
-    selectCausaCaratula: selectedCausaCaratula.value?.name || '',
-    opcionesCausaCaratula: itemsCausaCaratula.value.map((item) => item.name),
-    selectJuzgadoInterviniente: selectedJuzgadoInterviniente.value?.name || '',
-    selectUfiNro: selectedUfiNro.value?.name || '',
-    selectDelito: selectedDelito.value?.name || '',
-    selectFiscalCargo: selectedFiscalCargo.value?.name || '',
-    selectAyudanteFiscal: selectedAyudanteFiscal.value?.name || '',
-    opcionesArticulosRelacionados: itemsArticulosRelacionados.value.map(
-      (item) => item.name
-    ),
-  };
-
-  const data: dataActuacionForSave = {
-    afectados: afectados.value,
-    vinculados: vinculados.value,
-    fechaUbicacion: fechaUbicacion.value,
-    efectos: efectos.value,
-    personalInterviniente: intervinientes.value ?? [],
-    viewPdf: head + ' ' + body + ' ' + foot,
-    pathName: route.params.actuacion as string,
-    datosLegales,
-    relato: relato.value,
-  };
-
-  if (props.id) {
-    data.id = props.id;
-    updateData(data);
-    return;
-  }
-
-  await saveData(data);
-};
-
-const navigateSuccessfully = async () => {
-  await router.push({ name: 'actuaciones' });
-};
-
-const handleSave = async () => {
-  // Reiniciar el estado de los errores
-  Object.keys(missingFieldsEmpty).forEach((key) => {
-    missingFieldsEmpty[key as keyof typeof missingFieldsEmpty] = false;
-  });
-
-  hasErrors.value = false;
-
-  if (
-    cardInformationKeys.value.includes('afectados') &&
-    (!afectados.value || afectados.value.length === 0)
-  ) {
-    setField('afectados', true);
-    hasErrors.value = true;
-  }
-  if (
-    cardInformationKeys.value.includes('vinculados') &&
-    (!vinculados.value || vinculados.value.length === 0)
-  ) {
-    missingFieldsEmpty.vinculados = true;
-    hasErrors.value = true;
-  }
-  if (
-    cardInformationKeys.value.includes('fecha') &&
-    (!fechaUbicacion.value || fechaUbicacion.value.length === 0)
-  ) {
-    missingFieldsEmpty.fecha = true;
-    hasErrors.value = true;
-  }
-  if (
-    cardInformationKeys.value.includes('efectos') &&
-    (!efectos.value || efectos.value.length === 0)
-  ) {
-    missingFieldsEmpty.efectos = true;
-    hasErrors.value = true;
-  }
-  if (
-    cardInformationKeys.value.includes('personalInterviniente') &&
-    (!intervinientes.value || intervinientes.value.length === 0)
-  ) {
-    missingFieldsEmpty.personalInterviniente = true;
-    hasErrors.value = true;
-  }
-
-  if (hasErrors.value) {
-    alert(
-      `Los siguientes campos están vacíos: ${Object.keys(missingFieldsEmpty)
-        .filter(
-          (key) => missingFieldsEmpty[key as keyof typeof missingFieldsEmpty]
-        )
-        .join(', ')}`
-    );
-    return;
-  }
-
-  await storeData();
-
-  isVisible.value = false;
-  isActuationInit.value = false;
-  currentEditId.value = null;
-  dialogState.value.allowNavigation = true;
-  resetAllStates();
-  await navigateSuccessfully();
 };
 
 onActivated(() => {

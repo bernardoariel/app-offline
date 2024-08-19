@@ -232,7 +232,7 @@ watch(fechaCreacion, (newValue) => {
   </MyDialog>
   <div class="grid">
     <div class="col-12 header-container">
-      <ToolbarActuacion />
+      <ToolbarActuacion :actuacion="actuacionName" :id="id" />
     </div>
     <div class="col-5">
       <Card v-if="Object.keys(props.actuacionData).length > 0 ? true : false">
@@ -357,7 +357,7 @@ watch(fechaCreacion, (newValue) => {
 }
 .change-status {
   position: absolute;
-  top: -18px;
+  top: -33px;
   right: -10px;
   font-size: 1.5rem;
 }

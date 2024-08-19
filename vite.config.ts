@@ -13,10 +13,10 @@ export default defineConfig({
       targets: [
         {
           src: 'node_modules/primeicons/fonts/*',
-          dest: 'builded-app-offline/assets/fonts'
+          dest: 'assets/fonts'
         }, {
           src: 'node_modules/primeicons/primeicons.css',
-          dest: 'builded-app-offline/assets'
+          dest: 'assets'
         }
       ]
     }),
@@ -36,9 +36,9 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        entryFileNames: 'builded-app-offline/assets/[name].js',
-        chunkFileNames: 'builded-app-offline/assets/[name].js',
-        assetFileNames: 'builded-app-offline/assets/[name].[ext]',
+        entryFileNames: 'assets/[name].js',
+        chunkFileNames: 'assets/[name].js',
+        assetFileNames: 'assets/[name].[ext]',
       },
     },
     minify: false,

@@ -1,5 +1,7 @@
 import { getBase64ImageFromURL } from '../../../helpers/getBase64Image';
 import { useStorageData } from '../../../composables/useStorageData';
+import logoPoliciaPath from '@/assets/logo-policia-de-san-juan.png';
+import logoSeguridadPath from '@/assets/police.png';
 
 export const headerSection = async () => {
     try {
@@ -14,9 +16,10 @@ export const headerSection = async () => {
             const data = JSON.parse(dataGuardada);
             dependencia = data.dependencia;
         }
-        const logoPolicia = await getBase64ImageFromURL('src/assets/logo-policia-de-san-juan.png');
-        const logoSeguridad = await getBase64ImageFromURL('src/assets/police.png');
-
+        // const logoPolicia = await getBase64ImageFromURL('src/assets/logo-policia-de-san-juan.png');
+        // const logoSeguridad = await getBase64ImageFromURL('src/assets/police.png');
+        const logoPolicia = await getBase64ImageFromURL(logoPoliciaPath);
+        const logoSeguridad = await getBase64ImageFromURL(logoSeguridadPath);
         return {
             columns: [
                 {

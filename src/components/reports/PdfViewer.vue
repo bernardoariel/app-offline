@@ -26,11 +26,16 @@ const embedPdf = () => {
     });
   }
 };
+
 const generateAndEmbedPdf = async () => {
-  await generatePdf();
-  embedPdf();
+  try {
+    await generatePdf();
+    embedPdf();
+  } catch (error) {
+    console.error("Error generating and embedding PDF:", error);
+  }
 };
-// necesita que el onmount
+
 onMounted(() => {
   generateAndEmbedPdf();
 });
@@ -38,6 +43,7 @@ onMounted(() => {
 onActivated(() => {
   generateAndEmbedPdf();
 });
+
 watch(pdfUrl, (newUrl) => {
   if (newUrl) {
     embedPdf();

@@ -1,4 +1,4 @@
-interface PrimaryAttributes{
+interface PrimaryAttributes {
     id?: string,
     nroDocumento: string,
     apellido: string,
@@ -11,16 +11,19 @@ interface PrimaryAttributes{
 }
 
 
-export interface AfectadosForm extends PrimaryAttributes{
-    typeAfectado: {name:string},
-    typeDocumento: {name:string},
-    typeSexo: {name:string},
-    nacionalidad: {name:string},
-    estadoCivil: {name:string},
-    instruccion: {name:string},
-    descripcionOrdenPublico?: string
+export interface AfectadosForm extends PrimaryAttributes {
+    typeAfectado: { name: string },
+    typeDocumento: { name: string },
+    typeSexo: { name: string },
+    nacionalidad: { name: string },
+    estadoCivil: { name: string },
+    instruccion: { name: string },
+    descripcionOrdenPublico?: string,
+    showDocument: { name: string },
+    hasEstudies: { name: string },
+    observaciones?: string,
 }
-export interface Afectados extends PrimaryAttributes{
+export interface Afectados extends PrimaryAttributes {
     typeAfectado: string,
     typeDocumento: string,
     typeSexo: string,
@@ -28,10 +31,12 @@ export interface Afectados extends PrimaryAttributes{
     estadoCivil: string,
     instruccion: string,
     descripcionOrdenPublico?: string
+    showDocument: string,
+    hasEstudies: string,
+    observaciones?: string,
+}
 
-}  
-
-export interface Afectado{
+export interface Afectado {
     titulo: string,
     valor: string[]
 }

@@ -19,7 +19,8 @@ import {
   nacionalidadDropdown,
   estadoCivilDropdown,
   instruccionDropdown,
-  afectadosDropdown,
+  showDocumentDropdown,
+  hasEstudiesDropdown,
 } from '@/helpers/getDropItems';
 import { mapToArray, mapToDropdownItems } from '@/helpers/dropUtils';
 import useNewActuacion from '@/composables/useNewActuacion';
@@ -174,6 +175,9 @@ let [profesion] = defineField('profesion');
 let [textAreaDescription, textAreaDescriptionAtrrs] = defineField(
   'textAreaDescription'
 );
+let [observaciones] = defineField('observaciones');
+let [showDocumentSelect] = defineField('showDocumentSelect');
+let [hasEstudiesSelect] = defineField('hasEstudiesSelect');
 
 textAreaDescription.value =
   textAreaDescription.value !== undefined ? textAreaDescription.value : '';
@@ -224,6 +228,13 @@ let formData = ref<AfectadosForm>({
   email: '',
   profesion: '',
   descripcionOrdenPublico: '',
+  observaciones: '',
+  hasEstudies: {
+    name: 'SI',
+  },
+  showDocument: {
+    name: 'SI',
+  },
 });
 const tarjetaValues = ref<string[]>([]);
 
@@ -260,6 +271,9 @@ const updateDataWithForm = (form: any) => {
     estadoCivilSelect.value = { name: formData.value.estadoCivil };
     instruccionSelect.value = { name: formData.value.instruccion };
     nroDocumento.value = formData.value.nroDocumento;
+    observaciones.value = formData.value.observaciones;
+    hasEstudiesSelect.value = { name: formData.value.hasEstudies };
+    showDocumentSelect.value = { name: formData.value.showDocument };
     fechaNacimiento.value = formData.value.fecha;
     if (formData.value.descripcionOrdenPublico) {
       textAreaDescription.value = formData.value.descripcionOrdenPublico;
@@ -278,7 +292,7 @@ const handleDropdownChange = (
   if (campo in formData.value) {
     formData.value = {
       ...formData.value,
-      [campo]: { name }, 
+      [campo]: { name },
     };
 
     const itemId = formData.value.id!;
@@ -348,6 +362,9 @@ const handleAgregarElemento = () => {
       estadoCivil: '',
       instruccion: '',
       descripcionOrdenPublico: textAreaDescription.value,
+      observaciones: '',
+      showDocument: '',
+      hasEstudies: '',
     };
     isOrdenPublico.value = false;
   } else {
@@ -367,6 +384,9 @@ const handleAgregarElemento = () => {
       estadoCivil: estadoCivilSelect.value.name,
       instruccion: instruccionSelect.value.name,
       descripcionOrdenPublico: '',
+      observaciones: observaciones.value.observaciones,
+      showDocument: showDocumentSelect.value.name,
+      hasEstudies: hasEstudiesSelect.value.name,
     };
   }
 
@@ -389,6 +409,9 @@ const handleAgregarElemento = () => {
   profesion.value = '';
   email.value = '';
   textAreaDescription.value = '';
+  observaciones.value = '';
+  showDocumentSelect.value = { name: 'Seleccione SI/NO' };
+  hasEstudiesSelect.value = { name: 'Seleccione SI/NO' };
   resetAllDropdown();
   resetIsEditedHeader();
 };
@@ -434,6 +457,8 @@ const handleModificarElemento = () => {
       nacionalidad: nacionalidadSelect.value.name || '',
       estadoCivil: estadoCivilSelect.value.name || '',
       instruccion: instruccionSelect.value.name || '',
+      observaciones: observaciones.value.name || '',
+
       ...itemStateEncontrado,
     };
   }
@@ -458,6 +483,9 @@ watch(selectedItem, (newVal: any) => {
     instruccionSelect.value = { name: 'instrucción' };
     nroDocumento.value = '';
     fechaNacimiento.value = '';
+    observaciones.value = '';
+    showDocumentSelect.value = { name: 'Seleccione SI/NO' };
+    hasEstudiesSelect.value = { name: 'Seleccione SI/NO' };
     isOrdenPublico.value = false;
   } else {
     formData.value = { ...newVal };
@@ -573,6 +601,18 @@ watch(selectedItem, (newVal: any) => {
             />
           </div>
           <div class="col-3">
+            <label for="dropdown">Exhibe Documento?</label>
+            <MyDropdown
+              class="mt-2"
+              :items="showDocumentDropdown"
+              v-model="showDocumentSelect"
+              placeholder="Seleccione SI/NO"
+              @change="handleDropdownChange('showDocument', $event)"
+              :color="false"
+              filter
+            />
+          </div>
+          <div class="col-3">
             <label for="dropdown">Fecha de nac.</label>
             <MyInputMask
               class="mt-2 w-full"
@@ -606,7 +646,19 @@ watch(selectedItem, (newVal: any) => {
               {{ errors.nacionalidadSelect }}
             </span>
           </div>
-          <div class="col-3">
+          <div class="col-4">
+            <label for="dropdown">Tiene Estudios?</label>
+            <MyDropdown
+              class="mt-2"
+              :items="hasEstudiesDropdown"
+              v-model="hasEstudiesSelect"
+              placeholder="Seleccione SI/NO"
+              @change="handleDropdownChange('hasEstudies', $event)"
+              :color="false"
+              filter
+            />
+          </div>
+          <div class="col-4">
             <label for="dropdown">Estado Civil</label>
             <MyDropdown
               class="mt-2"
@@ -696,6 +748,17 @@ watch(selectedItem, (newVal: any) => {
               {{ errors.instruccionSelect }}
             </span>
           </div>
+          <div class="col-12">
+            <label for="dropdown">Observaciones</label>
+            <MyTextArea
+              class="mt-2 w-full"
+              placeholder="Ingrese observaciones"
+              @input="handleInputChange('observaciones', $event)"
+              @blur="() => handleBlur('observaciones')"
+              v-model="observaciones"
+              :color="false"
+            />
+          </div>
         </div>
         <div class="col-12" v-else>
           <p class="mb-0">Descripción:</p>
@@ -722,6 +785,16 @@ watch(selectedItem, (newVal: any) => {
         </div>
         <div class="col-6"></div>
         <div class="col-3">
+          <Button
+            label="ver"
+            @click="
+              () => {
+                console.log('FormData', formData);
+                console.log('item:', selectedItem);
+              }
+            "
+            severity="warning"
+          ></Button>
           <div class="flex align-items-center justify-content-end">
             <Button
               label="Agregar"
@@ -730,6 +803,7 @@ watch(selectedItem, (newVal: any) => {
               @click="handleAgregarElemento()"
             >
             </Button>
+
             <div v-else>
               <Button
                 :disabled="isEditing(selectedItem!.id)"
@@ -751,11 +825,6 @@ watch(selectedItem, (newVal: any) => {
           </div>
         </div>
       </div>
-      <!-- <pre>
-          <span v-for="(id, pristine) in statesID" key="id">
-            ID: {{ id }}, Pristine: {{ pristine }}
-          </span>
-        </pre> -->
     </template>
   </Card>
 </template>

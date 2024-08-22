@@ -22,6 +22,7 @@ export interface AfectadosForm extends PrimaryAttributes {
     showDocument: { name: string },
     hasEstudies: { name: string },
     observaciones?: string,
+    vinculo?:string
 }
 export interface Afectados extends PrimaryAttributes {
     typeAfectado: string,
@@ -34,6 +35,7 @@ export interface Afectados extends PrimaryAttributes {
     showDocument: string,
     hasEstudies: string,
     observaciones?: string,
+    vinculo?:string
 }
 
 export interface Afectado {

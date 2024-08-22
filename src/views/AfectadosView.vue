@@ -32,9 +32,11 @@ const { obtenerTarjeta, actuacionData } = useActuacionData();
 const { setField } = useCardValidation();
 const isOrdenPublico = ref<boolean>(false);
 const actuacionHasOrdenPublico = ref<boolean>(false);
-  const observaciones = ref<string | undefined>('');
-  const showDocumentSelect = ref({name: 'SI'});
-  const hasEstudiesSelect = ref({name:'SI'});
+const observaciones = ref<string | undefined>('');
+const showDocumentSelect = ref({name: 'SI'});
+const hasEstudiesSelect = ref({name:'SI'});
+const vinculo = ref<string | undefined>('')
+const showInputVinculo = ref<boolean>(false)
 
 const validationSchema = yup.object({
   nombre: yup.string().required().min(3),
@@ -235,6 +237,7 @@ let formData = ref<AfectadosForm>({
   showDocument: {
     name: 'SI',
   },
+  vinculo:''
 });
 const tarjetaValues = ref<string[]>([]);
 
@@ -276,6 +279,7 @@ const updateDataWithForm = (form: any) => {
     observaciones.value = formData.value.observaciones;
     hasEstudiesSelect.value = formData.value.hasEstudies ;
     showDocumentSelect.value = formData.value.showDocument;
+    vinculo.value = formData.value.vinculo;
     fechaNacimiento.value = formData.value.fecha;
     if (formData.value.descripcionOrdenPublico) {
       textAreaDescription.value = formData.value.descripcionOrdenPublico;
@@ -367,6 +371,7 @@ const handleAgregarElemento = () => {
       observaciones: '',
       showDocument: '',
       hasEstudies: '',
+      vinculo: ''
     };
     isOrdenPublico.value = false;
   } else {
@@ -389,6 +394,7 @@ const handleAgregarElemento = () => {
       observaciones: observaciones.value,
       showDocument: showDocumentSelect.value.name,
       hasEstudies: hasEstudiesSelect.value.name,
+      vinculo: vinculo.value
     };
   }
 
@@ -414,6 +420,7 @@ const handleAgregarElemento = () => {
   observaciones.value = '';
   showDocumentSelect.value = { name: 'Seleccione SI/NO' };
   hasEstudiesSelect.value = { name: 'Seleccione SI/NO' };
+  vinculo.value = ''
   resetAllDropdown();
   resetIsEditedHeader();
 };
@@ -462,6 +469,7 @@ const handleModificarElemento = () => {
       observaciones: observaciones.value,
       showDocument: showDocumentSelect.value.name || '',
       hasEstudies: hasEstudiesSelect.value.name || '',
+      vinculo: vinculo.value,
 
       ...itemStateEncontrado,
     };
@@ -494,6 +502,14 @@ watch(selectedItem, (newVal: any) => {
   } else {
     formData.value = { ...newVal };
     updateDataWithForm(formData);
+  }
+});
+
+watch(tipoDenuncianteSelect, (newVal: any) => {
+  if(newVal.name === 'Denunciante') {
+    showInputVinculo.value = true
+  }else{
+    showInputVinculo.value = false
   }
 });
 </script>
@@ -650,6 +666,17 @@ watch(selectedItem, (newVal: any) => {
             >
               {{ errors.nacionalidadSelect }}
             </span>
+          </div>
+          <div class="col-3" v-if="showInputVinculo">
+            <label for="dropdown">Vínculo</label>
+            <MyInput
+              class="mt-2 w-full"
+              placeholder="Ingrese vínculo con la victima"
+              @input="handleInputChange('vinculo', $event)"
+              @blur="() => handleBlur('vinculo')"
+              v-model="vinculo as string"
+              :color="false"
+            />
           </div>
           <div class="col-4">
             <label for="dropdown">Estado Civil</label>

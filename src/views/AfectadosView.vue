@@ -258,8 +258,6 @@ onActivated(() => {
 });
 
 const updateDataWithForm = (form: any) => {
-  console.log(form)
-  console.log(formData.value)
   if (form) {
     telefono.value = formData.value.telefono;
     profesion.value = formData.value.profesion;
@@ -277,8 +275,8 @@ const updateDataWithForm = (form: any) => {
     instruccionSelect.value = { name: formData.value.instruccion };
     nroDocumento.value = formData.value.nroDocumento;
     observaciones.value = formData.value.observaciones;
-    hasEstudiesSelect.value = formData.value.hasEstudies ;
-    showDocumentSelect.value = formData.value.showDocument;
+    hasEstudiesSelect.value = {name: formData.value.hasEstudies} ;
+    showDocumentSelect.value = {name: formData.value.showDocument};
     vinculo.value = formData.value.vinculo;
     fechaNacimiento.value = formData.value.fecha;
     if (formData.value.descripcionOrdenPublico) {
@@ -499,6 +497,7 @@ watch(selectedItem, (newVal: any) => {
     showDocumentSelect.value = { name: 'Seleccione SI/NO' };
     hasEstudiesSelect.value = { name: 'Seleccione SI/NO' };
     isOrdenPublico.value = false;
+    vinculo.value = ''
   } else {
     formData.value = { ...newVal };
     updateDataWithForm(formData);
@@ -510,6 +509,7 @@ watch(tipoDenuncianteSelect, (newVal: any) => {
     showInputVinculo.value = true
   }else{
     showInputVinculo.value = false
+    vinculo.value = ''
   }
 });
 </script>

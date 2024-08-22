@@ -77,6 +77,9 @@ export const vinculadosFake = [
     estadoCivil: 'Soltero/a',
     instruccion: 'No sabe leer, si sabe firmar',
     id: 'a123b456-c789-d012-e345-f67890g123h4',
+    hasEstudies: 'NO',
+    showDocument: 'SI',
+    observaciones: 'bbbb',
   },
   {
     apodo: 'la Dama',
@@ -94,6 +97,9 @@ export const vinculadosFake = [
     estadoCivil: 'Casado/a',
     instruccion: 'Sabe leer y sabe firmar',
     id: 'b234c567-d890-e123-f456-g78901h234i5',
+    hasEstudies: 'SI',
+    showDocument: 'NO',
+    observaciones: 'aaaa',
   },
   {
     apodo: 'one',
@@ -111,6 +117,9 @@ export const vinculadosFake = [
     estadoCivil: 'Divorciado/a',
     instruccion: 'No sabe leer, no sabe firmar',
     id: 'c345d678-e901-f234-g567-h89012i345j6',
+    hasEstudies: 'NO',
+    showDocument: 'NO',
+    observaciones: 'cccc',
   },
 ];
 

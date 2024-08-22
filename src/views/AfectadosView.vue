@@ -458,6 +458,8 @@ const handleModificarElemento = () => {
       estadoCivil: estadoCivilSelect.value.name || '',
       instruccion: instruccionSelect.value.name || '',
       observaciones: observaciones.value.name || '',
+      showDocument: showDocumentSelect.value.name || '',
+      hasEstudies: hasEstudiesSelect.value.name || '',
 
       ...itemStateEncontrado,
     };
@@ -499,7 +501,6 @@ watch(selectedItem, (newVal: any) => {
       <div class="grid">
         <div class="grid" v-if="!isOrdenPublico">
           <div class="col-12">
-            <!-- <pre>{{ values }}</pre> -->
             <label for="dropdown">Seleccione tipo de Denunciante</label>
             <MyDropdown
               class="mt-2"
@@ -541,7 +542,8 @@ watch(selectedItem, (newVal: any) => {
               {{ errors.tipoDocSelect }}
             </span>
           </div>
-          <div class="col-4">
+          
+          <div class="col-3">
             <label for="dropdown">N° de doc.</label>
             <MyInput
               type="text"
@@ -555,7 +557,7 @@ watch(selectedItem, (newVal: any) => {
               @blur="() => handleBlur('nroDocumento')"
             />
           </div>
-          <div class="col-4">
+          <div class="col-3">
             <label for="dropdown">Sexo</label>
             <MyDropdown
               class="mt-2"
@@ -571,6 +573,18 @@ watch(selectedItem, (newVal: any) => {
             <span class="text-red-400" v-if="errors.sexoSelect ? true : false">
               {{ errors.sexoSelect }}
             </span>
+          </div>
+          <div class="col-2">
+            <label for="dropdown">¿Exhibe el Documento?</label>
+            <MyDropdown
+              class="mt-2"
+              :items="showDocumentDropdown"
+              v-model="showDocumentSelect"
+              placeholder="Seleccione SI/NO"
+              @change="handleDropdownChange('showDocument', $event)"
+              :color="false"
+              filter
+            />
           </div>
           <div class="col-6">
             <label for="dropdown">Apellido</label>
@@ -600,18 +614,7 @@ watch(selectedItem, (newVal: any) => {
               @blur="() => handleBlur('nombre')"
             />
           </div>
-          <div class="col-3">
-            <label for="dropdown">Exhibe Documento?</label>
-            <MyDropdown
-              class="mt-2"
-              :items="showDocumentDropdown"
-              v-model="showDocumentSelect"
-              placeholder="Seleccione SI/NO"
-              @change="handleDropdownChange('showDocument', $event)"
-              :color="false"
-              filter
-            />
-          </div>
+         
           <div class="col-3">
             <label for="dropdown">Fecha de nac.</label>
             <MyInputMask
@@ -647,18 +650,6 @@ watch(selectedItem, (newVal: any) => {
             </span>
           </div>
           <div class="col-4">
-            <label for="dropdown">Tiene Estudios?</label>
-            <MyDropdown
-              class="mt-2"
-              :items="hasEstudiesDropdown"
-              v-model="hasEstudiesSelect"
-              placeholder="Seleccione SI/NO"
-              @change="handleDropdownChange('hasEstudies', $event)"
-              :color="false"
-              filter
-            />
-          </div>
-          <div class="col-4">
             <label for="dropdown">Estado Civil</label>
             <MyDropdown
               class="mt-2"
@@ -691,7 +682,7 @@ watch(selectedItem, (newVal: any) => {
               :color="false"
             />
           </div>
-          <div class="col-3">
+          <div class="col-2">
             <label for="dropdown">Teléfono</label>
             <MyInput
               type="number"
@@ -716,7 +707,7 @@ watch(selectedItem, (newVal: any) => {
               :color="false"
             />
           </div>
-          <div class="col-3">
+          <div class="col-2">
             <label for="dropdown">Profesión</label>
             <MyInput
               type="text"
@@ -726,6 +717,18 @@ watch(selectedItem, (newVal: any) => {
               @input="handleInputChange('profesion', $event)"
               @blur="() => handleBlur('profesion')"
               :color="false"
+            />
+          </div>
+          <div class="col-2">
+            <label for="dropdown">¿Tiene Estudios?</label>
+            <MyDropdown
+              class="mt-2"
+              :items="hasEstudiesDropdown"
+              v-model="hasEstudiesSelect"
+              placeholder="Seleccione SI/NO"
+              @change="handleDropdownChange('hasEstudies', $event)"
+              :color="false"
+              filter
             />
           </div>
           <div class="col-3">
@@ -785,16 +788,6 @@ watch(selectedItem, (newVal: any) => {
         </div>
         <div class="col-6"></div>
         <div class="col-3">
-          <Button
-            label="ver"
-            @click="
-              () => {
-                console.log('FormData', formData);
-                console.log('item:', selectedItem);
-              }
-            "
-            severity="warning"
-          ></Button>
           <div class="flex align-items-center justify-content-end">
             <Button
               label="Agregar"

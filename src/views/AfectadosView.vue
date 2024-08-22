@@ -32,6 +32,9 @@ const { obtenerTarjeta, actuacionData } = useActuacionData();
 const { setField } = useCardValidation();
 const isOrdenPublico = ref<boolean>(false);
 const actuacionHasOrdenPublico = ref<boolean>(false);
+  const observaciones = ref<string | undefined>('');
+  const showDocumentSelect = ref({name: 'SI'});
+  const hasEstudiesSelect = ref({name:'SI'});
 
 const validationSchema = yup.object({
   nombre: yup.string().required().min(3),
@@ -175,9 +178,6 @@ let [profesion] = defineField('profesion');
 let [textAreaDescription, textAreaDescriptionAtrrs] = defineField(
   'textAreaDescription'
 );
-let [observaciones] = defineField('observaciones');
-let [showDocumentSelect] = defineField('showDocumentSelect');
-let [hasEstudiesSelect] = defineField('hasEstudiesSelect');
 
 textAreaDescription.value =
   textAreaDescription.value !== undefined ? textAreaDescription.value : '';
@@ -255,6 +255,8 @@ onActivated(() => {
 });
 
 const updateDataWithForm = (form: any) => {
+  console.log(form)
+  console.log(formData.value)
   if (form) {
     telefono.value = formData.value.telefono;
     profesion.value = formData.value.profesion;
@@ -272,8 +274,8 @@ const updateDataWithForm = (form: any) => {
     instruccionSelect.value = { name: formData.value.instruccion };
     nroDocumento.value = formData.value.nroDocumento;
     observaciones.value = formData.value.observaciones;
-    hasEstudiesSelect.value = { name: formData.value.hasEstudies };
-    showDocumentSelect.value = { name: formData.value.showDocument };
+    hasEstudiesSelect.value = formData.value.hasEstudies ;
+    showDocumentSelect.value = formData.value.showDocument;
     fechaNacimiento.value = formData.value.fecha;
     if (formData.value.descripcionOrdenPublico) {
       textAreaDescription.value = formData.value.descripcionOrdenPublico;
@@ -384,7 +386,7 @@ const handleAgregarElemento = () => {
       estadoCivil: estadoCivilSelect.value.name,
       instruccion: instruccionSelect.value.name,
       descripcionOrdenPublico: '',
-      observaciones: observaciones.value.observaciones,
+      observaciones: observaciones.value,
       showDocument: showDocumentSelect.value.name,
       hasEstudies: hasEstudiesSelect.value.name,
     };
@@ -457,7 +459,7 @@ const handleModificarElemento = () => {
       nacionalidad: nacionalidadSelect.value.name || '',
       estadoCivil: estadoCivilSelect.value.name || '',
       instruccion: instruccionSelect.value.name || '',
-      observaciones: observaciones.value.name || '',
+      observaciones: observaciones.value,
       showDocument: showDocumentSelect.value.name || '',
       hasEstudies: hasEstudiesSelect.value.name || '',
 
@@ -758,7 +760,7 @@ watch(selectedItem, (newVal: any) => {
               placeholder="Ingrese observaciones"
               @input="handleInputChange('observaciones', $event)"
               @blur="() => handleBlur('observaciones')"
-              v-model="observaciones"
+              v-model="observaciones as string"
               :color="false"
             />
           </div>

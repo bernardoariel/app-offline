@@ -189,6 +189,7 @@ const firsDateChangeDone = ref(true);
 const { editar, agregar, resetAllDropdown, initialValues } = useAfectados();
 
 const { selectedItem } = useItemValue();
+console.log(selectedItem.value)
 const { resetIsEditedHeader } = useNewActuacion();
 
 const {
@@ -416,8 +417,8 @@ const handleAgregarElemento = () => {
   email.value = '';
   textAreaDescription.value = '';
   observaciones.value = '';
-  showDocumentSelect.value = { name: 'Seleccione SI/NO' };
-  hasEstudiesSelect.value = { name: 'Seleccione SI/NO' };
+  showDocumentSelect.value = { name: 'SI' };
+  hasEstudiesSelect.value = { name: 'SI' };
   vinculo.value = ''
   resetAllDropdown();
   resetIsEditedHeader();
@@ -494,8 +495,8 @@ watch(selectedItem, (newVal: any) => {
     nroDocumento.value = '';
     fechaNacimiento.value = '';
     observaciones.value = '';
-    showDocumentSelect.value = { name: 'Seleccione SI/NO' };
-    hasEstudiesSelect.value = { name: 'Seleccione SI/NO' };
+    showDocumentSelect.value = { name: 'SI' };
+    hasEstudiesSelect.value = { name: 'SI' };
     isOrdenPublico.value = false;
     vinculo.value = ''
   } else {

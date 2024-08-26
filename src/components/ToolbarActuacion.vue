@@ -230,7 +230,7 @@ const handleSave = async () => {
 
 <template>
   <Toolbar class="toolbar-custom ">
-    <template #start>
+    <template #start >
       <div class="flex">
         <Button
           label="Cancelar"
@@ -247,18 +247,13 @@ const handleSave = async () => {
     </template>
 
     <template #center>
-      <div
-        class="font-medium text-center text-3xl text-900"
-        @click="handleClick"
-      >
-        <div class="text-3xl font-bold">
+        <div class="text-3xl font-bold" @click="handleClick">
           {{ actuacionData?.titulo }}
         </div>
-      </div>
     </template>
 
-    <template #end>
-      <div class="header-end">
+    <template #end >
+      <div class="header-end" >
         <MyCalendar
           v-if="showCalendar"
           v-model="today"
@@ -288,7 +283,9 @@ const handleSave = async () => {
 .header-end {
   display: flex;
   align-items: center;
+  justify-content: end;
   gap: 10px;
+  width: 400px;
 }
 
 .flex {

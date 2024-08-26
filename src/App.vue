@@ -99,7 +99,7 @@ p {
   padding: 0.5rem;
 }
 .router-view-container {
-  margin-top: 70px;
+  margin-top: 50px;
 }
 .button {
   width: 2rem;

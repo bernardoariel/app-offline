@@ -229,7 +229,7 @@ const handleSave = async () => {
 </script>
 
 <template>
-  <Toolbar class="toolbar-custom">
+  <Toolbar class="toolbar-custom ">
     <template #start>
       <div class="flex">
         <Button
@@ -283,7 +283,6 @@ const handleSave = async () => {
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem;
-  background-color: #f8f9fa;
 }
 
 .header-end {

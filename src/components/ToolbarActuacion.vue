@@ -15,6 +15,8 @@ import useCardInformation from '@/composables/useCardInformation';
 import useLegalesState from '@/composables/useLegalesState';
 import useSaveData from '@/composables/useSaveData';
 import type { dataActuacion } from '@/composables/useSaveData';
+import useValidacionDatosLegales from '@/composables/useValidacionDatosLegales';
+
 
 interface Props {
   actuacion: string;
@@ -39,6 +41,7 @@ const {
   selectedDelito,
 } = useDatosLegales();
 
+const {isDataValid} = useValidacionDatosLegales()
 const { fechaCreacion, setFechaCreacion, isActuationInit, currentEditId } =
   useActuacion();
 const {
@@ -266,6 +269,7 @@ const handleSave = async () => {
           class="p-button"
           severity="primary"
           @click="handleSave"
+          :disabled="!isDataValid()"
         />
       </div>
     </template>

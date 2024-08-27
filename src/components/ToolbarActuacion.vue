@@ -277,7 +277,7 @@ const handleSave = async () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem;
+  padding: 1.1rem;
 }
 
 .header-end {

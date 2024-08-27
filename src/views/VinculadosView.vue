@@ -31,6 +31,9 @@ const { editar, agregar, initialValues } = useVinculados();
 const { selectedItem } = useItemValue();
 const { obtenerTarjeta, actuacionData } = useActuacionData();
 const isPersonaDesconocida = ref<boolean>(false);
+const observaciones = ref<string | undefined>('');
+const showDocumentSelect = ref({name: 'SI'});
+const hasEstudiesSelect = ref({name:'SI'});
 // const textAreaDescription  = ref<string>("");
 
 const validationSchema = yup.object({
@@ -167,9 +170,6 @@ let [profesion] = defineField('profesion');
 let [textAreaDescription, textAreaDescriptionAtrrs] = defineField(
   'textAreaDescription'
 );
-let [observaciones] = defineField('observaciones');
-let [showDocumentSelect] = defineField('showDocumentSelect');
-let [hasEstudiesSelect] = defineField('hasEstudiesSelect');
 
 textAreaDescription.value =
   textAreaDescription.value !== undefined ? textAreaDescription.value : '';
@@ -375,7 +375,7 @@ const handleAgregarElemento = () => {
       estadoCivil: estadoCivilSelect.value.name,
       instruccion: instruccionSelect.value.name,
       descripcionDesconocido: '',
-      observaciones: observaciones.value.observaciones,
+      observaciones: observaciones.value,
       showDocument: showDocumentSelect.value.name,
       hasEstudies: hasEstudiesSelect.value.name,
     };
@@ -400,8 +400,8 @@ const handleAgregarElemento = () => {
   fechaNacimiento.value = '';
   textAreaDescription.value = '';
   observaciones.value = '';
-  showDocumentSelect.value = { name: 'Seleccione SI/NO' };
-  hasEstudiesSelect.value = { name: 'Seleccione SI/NO' };
+  showDocumentSelect.value = { name: 'SI' };
+  hasEstudiesSelect.value = { name: 'SI' };
 };
 
 const handleCancelar = () => {
@@ -447,7 +447,7 @@ const handleModificarElemento = () => {
         estadoCivil: estadoCivilSelect.value.name || '',
         instruccion: instruccionSelect.value.name || '',
         descripcionDesconocido: textAreaDescription.value || '',
-        observaciones: observaciones.value.name || '',
+        observaciones: observaciones.value,
         showDocument: showDocumentSelect.value.name || '',
         hasEstudies: hasEstudiesSelect.value.name || '',
         ...itemStateEncontrado,
@@ -476,8 +476,8 @@ watch(selectedItem, (newVal: any) => {
     apodo.value = '';
     textAreaDescription.value = '';
     observaciones.value = '';
-    showDocumentSelect.value = { name: 'Seleccione SI/NO' };
-    hasEstudiesSelect.value = { name: 'Seleccione SI/NO' };
+    showDocumentSelect.value = { name: 'SI' };
+    hasEstudiesSelect.value = { name: 'SI' };
     isPersonaDesconocida.value = false;
   } else {
     formData.value = { ...newVal };

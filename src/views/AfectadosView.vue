@@ -229,14 +229,12 @@ const tarjetaValues = ref<string[]>([]);
 
 onActivated(() => {
   tarjetaValues.value = obtenerTarjeta('afectados')?.valor as string[];
-  // if (actuacionData.value?.tarjetas.afectados.ordenPublico) {
-  //   actuacionHasOrdenPublico.value = true;
-  //   if (actuacionData.value?.tarjetas.afectados.ordenPublico === 'check') {
-  //     isOrdenPublico.value = true;
-  //   } else isOrdenPublico.value = false;
-  // }
-  actuacionHasOrdenPublico.value = true;
-  isOrdenPublico.value = true;
+  if (actuacionData.value?.tarjetas.afectados.ordenPublico) {
+    actuacionHasOrdenPublico.value = true;
+    isOrdenPublico.value = false;
+  }else{
+    actuacionHasOrdenPublico.value = false;
+  }
   if (selectedItem.value) {
     formData.value = { ...selectedItem.value };
     updateDataWithForm(formData);

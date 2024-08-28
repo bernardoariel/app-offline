@@ -42,8 +42,8 @@ const checkRoute = () => {
       </div>
     </template>
 
-    <template #end>
+    <!-- <template #end>
       <SidebarRight icono="pi-bars" position="right" color-icono="secondary" />
-    </template>
+    </template> -->
   </Toolbar>
 </template>

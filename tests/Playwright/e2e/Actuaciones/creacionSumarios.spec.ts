@@ -5,12 +5,13 @@ import { cardFecha } from "../../helpers/cardFecha"
 import { cardVinculados } from "../../helpers/cardVinculado"
 import { sumarioOficioLink , sumarioDenunciaLink } from "../../helpers/sidebar"
 import { datosLegalesSumarioDenuncia } from "../../helpers/datosLegales"
+import { initializeAuthorizedUser } from "../../helpers/initializeAuthorizedUser"
 import { pdfView , registrar } from "../../helpers/registrar"
 
 
 test.describe("Creación de actuaciones tipo sumario", () => {
   test("Creación de Sumario Oficio", async ({ page }) => {
-    await page.goto("/");
+    await initializeAuthorizedUser(page)
     await sumarioOficioLink(page)
     await cardAfectados(page)
     await cardFecha(page)
@@ -19,7 +20,7 @@ test.describe("Creación de actuaciones tipo sumario", () => {
     await datosLegalesSumarioDenuncia(page)
   });
   test("Creación de Sumario Denuncia", async ({ page }) => {
-    await page.goto("/");
+    await initializeAuthorizedUser(page)
     await sumarioDenunciaLink(page)
     await cardAfectados(page)
     await cardFecha(page)

@@ -17,17 +17,17 @@ export const cardEfectosDenunciado =  async (page:any) =>{
   await page.getByLabel('147').click();
   await page.locator('div').filter({ hasText: /^Año$/ }).getByRole('textbox').click();
   await page.locator('div').filter({ hasText: /^Año$/ }).getByRole('textbox').fill('2024');
-  await page.locator('div').filter({ hasText: /^Nroº Chasis$/ }).getByRole('textbox').click();
-  await page.locator('div').filter({ hasText: /^Nroº Chasis$/ }).getByRole('textbox').fill('3216532136531');
-  await page.locator('div').filter({ hasText: /^Nroº Motor$/ }).getByRole('textbox').click();
-  await page.locator('div').filter({ hasText: /^Nroº Motor$/ }).getByRole('textbox').fill('3216513213651');
-  await page.locator('div').filter({ hasText: /^Dominio$/ }).getByRole('textbox').click();
-  await page.locator('div').filter({ hasText: /^Dominio$/ }).getByRole('textbox').fill('sdf354');
-  await page.locator('div').filter({ hasText: /^Nroº Serie$/ }).getByRole('textbox').click();
-  await page.locator('div').filter({ hasText: /^Nroº Serie$/ }).getByRole('textbox').fill('2135132165131');
-  await page.locator('div').filter({ hasText: /^Nroº IMEI$/ }).getByRole('textbox').click();
-  await page.locator('div').filter({ hasText: /^Nroº IMEI$/ }).getByRole('textbox').fill('98798796546431');
-  await page.locator('div').filter({ hasText: /^Nroº Abonado$/ }).getByRole('textbox').click();
+  // await page.locator('div').filter({ hasText: /^Nroº Chasis$/ }).getByRole('textbox').click();
+  // await page.locator('div').filter({ hasText: /^Nroº Chasis$/ }).getByRole('textbox').fill('3216532136531');
+  // await page.locator('div').filter({ hasText: /^Nroº Motor$/ }).getByRole('textbox').click();
+  // await page.locator('div').filter({ hasText: /^Nroº Motor$/ }).getByRole('textbox').fill('3216513213651');
+  // await page.locator('div').filter({ hasText: /^Dominio$/ }).getByRole('textbox').click();
+  // await page.locator('div').filter({ hasText: /^Dominio$/ }).getByRole('textbox').fill('sdf354');
+  // await page.locator('div').filter({ hasText: /^Nroº Serie$/ }).getByRole('textbox').click();
+  // await page.locator('div').filter({ hasText: /^Nroº Serie$/ }).getByRole('textbox').fill('2135132165131');
+  // await page.locator('div').filter({ hasText: /^Nroº IMEI$/ }).getByRole('textbox').click();
+  // await page.locator('div').filter({ hasText: /^Nroº IMEI$/ }).getByRole('textbox').fill('98798796546431');
+  // await page.locator('div').filter({ hasText: /^Nroº Abonado$/ }).getByRole('textbox').click();
   await page.getByLabel('Agregar').click();
   await page.getByRole('button', { name: '' }).click();
 }

@@ -33,11 +33,16 @@ export default function useFieldState() {
   };
 
   const setModifiedData = (id: string | number, campo: string, valor: any) => {
-
     if (!id) return
     const index = statesID.findIndex((state) => state.id === id);
     if (index !== -1) {
-      statesID[index].modifiedData[campo] = valor;
+      if(valor.name){
+        statesID[index].modifiedData[campo] = {name:valor.name, key:valor.key};
+      }
+      else { 
+       statesID[index].modifiedData[campo] = valor;
+      }
+
       statesID[index].isModified = true;
     }
   };

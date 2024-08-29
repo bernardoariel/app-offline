@@ -62,8 +62,8 @@ const router = createRouter({
           actuacionData
         }
       }
-    }
-
+    },
+    { path: '/:pathMatch(.*)*', redirect: '/actuaciones/list' }
   ]
 })
 
@@ -83,7 +83,6 @@ router.beforeEach((to, from, next) => {
     });
     return;
   }
-
   next();
 });
 

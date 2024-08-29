@@ -18,7 +18,7 @@ if (themeLink) {
 
   if (themeHref) {
     // El CSS del tema se ha cargado correctamente
-    console.log('El tema se ha cargado correctamente:', themeHref);
+    // console.log('El tema se ha cargado correctamente:', themeHref);
   } else {
     console.error('El atributo href del enlace del tema está vacío.');
   }
@@ -99,7 +99,7 @@ p {
   padding: 0.5rem;
 }
 .router-view-container {
-  margin-top: 70px;
+  margin-top: 50px;
 }
 .button {
   width: 2rem;

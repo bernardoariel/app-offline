@@ -12,9 +12,9 @@ const useItemValue = () => {
 
   const prepararNuevoItem = () => selectedItem.value = null
 
-  watch(selectedItem, (newVal) => {
-    console.log("SelectedItem ha cambiado:", newVal);
-  });
+  // watch(selectedItem, (newVal) => {
+  //   // console.log("SelectedItem ha cambiado:", newVal);
+  // });
 
   return {
     prepararNuevoItem,

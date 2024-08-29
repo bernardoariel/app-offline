@@ -27,8 +27,7 @@ import MyInputMask from '@/components/elementos/MyInputMask.vue';
 import useCardValidation from '@/composables/useCardValidations';
 import Checkbox from 'primevue/checkbox';
 
-
-const { obtenerTarjeta , actuacionData} = useActuacionData();
+const { obtenerTarjeta, actuacionData } = useActuacionData();
 const { setField } = useCardValidation();
 const isOrdenPublico = ref<boolean>(false);
 const actuacionHasOrdenPublico = ref<boolean>(false);
@@ -41,18 +40,20 @@ const validationSchema = yup.object({
   //   .number()
   //   .required('Ingrese un número documento válido')
   //   .min(5000000, 'Ingrese un número documento válido'),
-  textAreaDescription: yup.string().test(
+  textAreaDescription: yup
+    .string()
+    .test(
       'required test',
       'La descripción debe tener al menos 5 caracteres',
       (value) => {
-        if (isOrdenPublico.value){
+        if (isOrdenPublico.value) {
           if (!value) return false;
-          if(value.length >=5){
-            return true
+          if (value.length >= 5) {
+            return true;
           }
-          return false
-        }else{
-          return true
+          return false;
+        } else {
+          return true;
         }
       }
     ),
@@ -101,7 +102,7 @@ const validationSchema = yup.object({
       .string()
       .required('Seleccione un tipo de denunciante')
       .oneOf(
-        ['Denunciante y Damnificado', 'Denunciante', 'Damnificado'],
+        actuacionData.value?.tarjetas['afectados']['valor']!,
         'Selecciones un tipo válido'
       ),
   }),
@@ -140,13 +141,14 @@ const { defineField, values, errors } = useForm({
   validationSchema,
 });
 const hasErrors = () => {
-  if(isOrdenPublico.value && textAreaDescription.value){
-    if (textAreaDescription.value.length>=5)
-      return false
+  if (isOrdenPublico.value && textAreaDescription.value) {
+    if (textAreaDescription.value.length >= 5) return false;
   }
   const keys1 = Object.keys(validationSchema.fields);
   const keys2 = Object.keys(values);
-  const areKeysEqual = keys1.length-1 <= keys2.length && keys1.every((key) => keys2.includes(key));
+  const areKeysEqual =
+    keys1.length - 1 <= keys2.length &&
+    keys1.every((key) => keys2.includes(key));
   return Object.keys(errors.value).length > 0 || !areKeysEqual;
 };
 
@@ -169,11 +171,13 @@ let [fechaNacimiento, fechaNacimientoAttrs] = defineField('fechaNacimiento');
 let [telefono] = defineField('telefono');
 let [email] = defineField('email');
 let [profesion] = defineField('profesion');
-let [textAreaDescription,textAreaDescriptionAtrrs] = defineField('textAreaDescription');
+let [textAreaDescription, textAreaDescriptionAtrrs] = defineField(
+  'textAreaDescription'
+);
 
-textAreaDescription.value = textAreaDescription.value !== undefined ? textAreaDescription.value : '';
+textAreaDescription.value =
+  textAreaDescription.value !== undefined ? textAreaDescription.value : '';
 domicilio.value = domicilio.value !== undefined ? domicilio.value : '';
-
 
 const firsDateChangeDone = ref(true);
 const { editar, agregar, resetAllDropdown, initialValues } = useAfectados();
@@ -219,21 +223,18 @@ let formData = ref<AfectadosForm>({
   telefono: '',
   email: '',
   profesion: '',
-  descripcionOrdenPublico:'',
+  descripcionOrdenPublico: '',
 });
 const tarjetaValues = ref<string[]>([]);
 
 onActivated(() => {
   tarjetaValues.value = obtenerTarjeta('afectados')?.valor as string[];
-  console.log(actuacionData.value?.tarjetas.afectados.ordenPublico,"set")
-  if(actuacionData.value?.tarjetas.afectados.ordenPublico){
-    actuacionHasOrdenPublico.value=true;
-    if (actuacionData.value?.tarjetas.afectados.ordenPublico==="check"){
-      isOrdenPublico.value=true
-    }else
-      isOrdenPublico.value=false
+  if (actuacionData.value?.tarjetas.afectados.ordenPublico) {
+    actuacionHasOrdenPublico.value = true;
+    isOrdenPublico.value = false;
+  }else{
+    actuacionHasOrdenPublico.value = false;
   }
-  // console.log("tarjetaAfectados_______", tarjetaValues.value)
   if (selectedItem.value) {
     formData.value = { ...selectedItem.value };
     updateDataWithForm(formData);
@@ -258,12 +259,12 @@ const updateDataWithForm = (form: any) => {
     instruccionSelect.value = { name: formData.value.instruccion };
     nroDocumento.value = formData.value.nroDocumento;
     fechaNacimiento.value = formData.value.fecha;
-    if(formData.value.descripcionOrdenPublico){
-      textAreaDescription.value= formData.value.descripcionOrdenPublico
-      isOrdenPublico.value=true
-    }else{
-      textAreaDescription.value=""
-      isOrdenPublico.value=false
+    if (formData.value.descripcionOrdenPublico) {
+      textAreaDescription.value = formData.value.descripcionOrdenPublico;
+      isOrdenPublico.value = true;
+    } else {
+      textAreaDescription.value = '';
+      isOrdenPublico.value = false;
     }
   }
 };
@@ -273,10 +274,9 @@ const handleDropdownChange = (
 ) => {
   const name = newValue.value.name;
   if (campo in formData.value) {
-    // Actualizar formData para que el campo específico tenga un objeto con la propiedad 'name' actualizada
     formData.value = {
       ...formData.value,
-      [campo]: { name }, // Asigna un objeto con 'name' a campo
+      [campo]: { name }, 
     };
 
     const itemId = formData.value.id!;
@@ -328,27 +328,27 @@ const handleBlur = (campo: keyof AfectadosForm) => {
 
 const handleAgregarElemento = () => {
   if (hasErrors()) return;
-   let nuevoItem: Afectados
-   if(isOrdenPublico.value){
+  let nuevoItem: Afectados;
+  if (isOrdenPublico.value) {
     nuevoItem = {
-      nroDocumento: "",
-      apellido: "",
-      nombre: "",
-      fecha: "",
-      domicilioResidencia: "",
-      telefono: "",
-      email:"",
-      profesion: "",
-      typeAfectado: "Damnificado",
-      typeDocumento: "",
-      typeSexo: "",
-      nacionalidad: "",
-      estadoCivil: "",
-      instruccion: "",
-      descripcionOrdenPublico: textAreaDescription.value
+      nroDocumento: '',
+      apellido: '',
+      nombre: '',
+      fecha: '',
+      domicilioResidencia: '',
+      telefono: '',
+      email: '',
+      profesion: '',
+      typeAfectado: 'Damnificado',
+      typeDocumento: '',
+      typeSexo: '',
+      nacionalidad: '',
+      estadoCivil: '',
+      instruccion: '',
+      descripcionOrdenPublico: textAreaDescription.value,
     };
-    isOrdenPublico.value = false
-   }else{
+    isOrdenPublico.value = false;
+  } else {
     nuevoItem = {
       nroDocumento: nroDocumento.value,
       apellido: apellido.value,
@@ -364,10 +364,9 @@ const handleAgregarElemento = () => {
       nacionalidad: nacionalidadSelect.value.name,
       estadoCivil: estadoCivilSelect.value.name,
       instruccion: instruccionSelect.value.name,
-      descripcionOrdenPublico: ''
+      descripcionOrdenPublico: '',
     };
-   }
-    
+  }
 
   agregar(nuevoItem);
   markNewRecordCreated();
@@ -405,16 +404,15 @@ const handleModificarElemento = () => {
   }
 
   let itemStateEncontrado = guardarModificaciones(selectedItem.value!.id);
-  let itemAEditar= {}
-  console.log('itemStateEncontrado::: ', itemStateEncontrado);
-  if (isOrdenPublico.value){
-    itemAEditar={
+  let itemAEditar = {};
+  if (isOrdenPublico.value) {
+    itemAEditar = {
       id: formData.value.id,
-      typeAfectado: 'Damnificado' ,
-      descripcionOrdenPublico: textAreaDescription.value ||'',
+      typeAfectado: 'Damnificado',
+      descripcionOrdenPublico: textAreaDescription.value || '',
       ...itemStateEncontrado,
-    }
-  }else{
+    };
+  } else {
     itemAEditar = {
       id: formData.value.id,
       nroDocumento: nroDocumento.value || '',
@@ -427,9 +425,9 @@ const handleModificarElemento = () => {
       profesion: formData.value.profesion || '',
       typeAfectado: tipoDenuncianteSelect.value.name || '',
       typeDocumento:
-      tipoDocSelect.value.name == 'Seleccione tipo'
-        ? ''
-        : tipoDocSelect.value.name || '',
+        tipoDocSelect.value.name == 'Seleccione tipo'
+          ? ''
+          : tipoDocSelect.value.name || '',
       typeSexo: sexoSelect.value.name || '',
       nacionalidad: nacionalidadSelect.value.name || '',
       estadoCivil: estadoCivilSelect.value.name || '',
@@ -458,6 +456,7 @@ watch(selectedItem, (newVal: any) => {
     instruccionSelect.value = { name: 'instrucción' };
     nroDocumento.value = '';
     fechaNacimiento.value = '';
+    isOrdenPublico.value = false;
   } else {
     formData.value = { ...newVal };
     updateDataWithForm(formData);
@@ -505,7 +504,10 @@ watch(selectedItem, (newVal: any) => {
               placeholder="Seleccione tipo de doc."
               filter
             />
-            <span class="text-red-400" v-if="errors.tipoDocSelect ? true : false">
+            <span
+              class="text-red-400"
+              v-if="errors.tipoDocSelect ? true : false"
+            >
               {{ errors.tipoDocSelect }}
             </span>
           </div>
@@ -693,65 +695,65 @@ watch(selectedItem, (newVal: any) => {
             </span>
           </div>
         </div>
-        <div  class="col-12" v-else >
+        <div class="col-12" v-else>
           <p class="mb-0">Descripción:</p>
-          <MyTextArea 
-            class="w-full max-w-4xl"  
-            @input="handleInputChange('descripcionOrdenPublico', $event)"  
+          <MyTextArea
+            class="w-full max-w-4xl"
+            @input="handleInputChange('descripcionOrdenPublico', $event)"
             v-model="textAreaDescription"
-            v-bind="textAreaDescriptionAtrrs" 
+            v-bind="textAreaDescriptionAtrrs"
             :error="errors.textAreaDescription"
             variant="filled"
-             rows="5"
-              cols="60" />
-  
+            rows="5"
+            cols="60"
+          />
         </div>
         <div class="col-3">
           <div class="flex align-items-center" v-if="actuacionHasOrdenPublico">
-            <Checkbox 
-              v-model="isOrdenPublico" 
-              :binary="true" 
-              value="filacionDesconocida" />
+            <Checkbox
+              v-model="isOrdenPublico"
+              :binary="true"
+              value="filacionDesconocida"
+            />
             <p class="ml-2">Orden Público</p>
           </div>
         </div>
-        <div class="col-6">
-        </div>
+        <div class="col-6"></div>
         <div class="col-3">
-            <div class="flex align-items-center  justify-content-end">
+          <div class="flex align-items-center justify-content-end">
+            <Button
+              label="Agregar"
+              :disabled="hasErrors()"
+              v-if="!selectedItem"
+              @click="handleAgregarElemento()"
+            >
+            </Button>
+            <div v-else>
               <Button
-                label="Agregar"
-                :disabled="hasErrors()"
-                v-if="!selectedItem"
-                @click="handleAgregarElemento()"
-              >
-              </Button>
-              <div v-else>
-                <Button
-                  :disabled="isEditing(selectedItem!.id)"
-                  label="Cancelar"
-                  icon="pi pi-times"
-                  severity="secondary"
-                  outlined
-                  aria-label="Cancel"
-                  class="mr-3"
-                  @click="handleCancelar"
-                ></Button>
-                <Button
-                  label="Guardar Cambios"
-                  :disabled="isEditing(selectedItem!.id)"
-                  @click="handleModificarElemento()"
-                  severity="warning"
-                ></Button>
-              </div>
+                :disabled="isEditing(selectedItem!.id)"
+                label="Cancelar"
+                icon="pi pi-times"
+                severity="secondary"
+                outlined
+                aria-label="Cancel"
+                class="mr-3"
+                @click="handleCancelar"
+              ></Button>
+              <Button
+                label="Guardar Cambios"
+                :disabled="isEditing(selectedItem!.id)"
+                @click="handleModificarElemento()"
+                severity="warning"
+              ></Button>
+            </div>
           </div>
         </div>
       </div>
-      <pre>
+      <!-- <pre>
           <span v-for="(id, pristine) in statesID" key="id">
             ID: {{ id }}, Pristine: {{ pristine }}
           </span>
-        </pre>
+        </pre> -->
     </template>
   </Card>
 </template>

@@ -21,6 +21,7 @@ import {
 
 import { mapToArray, mapToDropdownItems } from '@/helpers/dropUtils';
 import { useForm } from 'vee-validate';
+const { obtenerTarjeta, actuacionData } = useActuacionData();
 
 const validationSchema = yup.object({
   estadoSelect: yup.object().shape({
@@ -28,7 +29,7 @@ const validationSchema = yup.object({
       .string()
       .required('Seleccione un estado')
       .oneOf(
-        ['Denunciado', 'Recuperado', 'Secuestrado'],
+        actuacionData.value?.tarjetas['efectos']['valor']!,
         'Selecciones un tipo válido'
       ),
   }),
@@ -83,6 +84,14 @@ let [subCategoriaSelect, subCategoriaSelectAttrs] =
 let [tipoSelect, tipoSelectAttrs] = defineField('tipoSelect');
 let [marcaSelect, marcaSelectAttrs] = defineField('marcaSelect');
 let [modeloSelect, modeloSelectAttrs] = defineField('modeloSelect');
+let [year] = defineField('year');
+let [nroChasis] = defineField('nroChasis');
+let [nroMotor] = defineField('nroMotor');
+let [nroSerie] = defineField('nroSerie');
+let [nroAbonado] = defineField('nroAbonado');
+let [color] = defineField('color');
+let [nroIMEI] = defineField('nroIMEI');
+let [dominio] = defineField('dominio');
 
 const {
   editar,
@@ -107,7 +116,6 @@ const {
   cancelarModificaciones,
   markNewRecordCreated,
 } = useFieldState();
-const { obtenerTarjeta } = useActuacionData();
 
 const formData = ref<EfectosForm>({ ...initialValues });
 const tarjetaValues = ref<string[]>(['']);
@@ -118,7 +126,6 @@ onActivated(() => {
     formData.value = { ...selectedItem.value };
     updateDataWithForm();
   }
-  console.log(mapToArray(categoriasDropdown));
 });
 const hasErrors = () => {
   const keys1 = Object.keys(validationSchema.fields);
@@ -129,12 +136,40 @@ const hasErrors = () => {
 };
 const updateDataWithForm = () => {
   if (formData) {
-    tipoSelect.value = { name: formData.value.tipo };
-    marcaSelect.value = { name: formData.value.marca };
-    modeloSelect.value = { name: formData.value.modelo };
-    categoriaSelect.value = { name: formData.value.categoria };
-    subCategoriaSelect.value = { name: formData.value.subcategoria };
-    estadoSelect.value = { name: formData.value.estado };
+    tipoSelect.value = {
+      name: formData.value.tipo.name,
+      key: formData.value.tipo.key,
+    };
+    marcaSelect.value = {
+      name: formData.value.marca.name,
+      key: formData.value.marca.key,
+    };
+    modeloSelect.value = {
+      name: formData.value.modelo.name,
+      key: formData.value.modelo.key,
+    };
+    categoriaSelect.value = {
+      name: formData.value.categoria.name,
+      key: formData.value.categoria.key,
+    };
+    subCategoriaSelect.value = {
+      name: formData.value.subcategoria.name,
+      key: formData.value.subcategoria.key,
+    };
+    estadoSelect.value = {
+      name: formData.value.estado.name,
+      key: formData.value.estado.key,
+    };
+    year.value = formData.value.año ? formData.value.año : '';
+    color.value = formData.value.color ? formData.value.color : '';
+    nroChasis.value = formData.value.nroChasis ? formData.value.nroChasis : '';
+    nroAbonado.value = formData.value.nroAbonado
+      ? formData.value.nroAbonado
+      : '';
+    nroIMEI.value = formData.value.nroIMEI ? formData.value.nroIMEI : '';
+    nroMotor.value = formData.value.nroMotor ? formData.value.nroMotor : '';
+    nroSerie.value = formData.value.nroSerie ? formData.value.nroSerie : '';
+    dominio.value = formData.value.dominio ? formData.value.dominio : '';
   }
 };
 const handleDropdownChange = (
@@ -142,7 +177,7 @@ const handleDropdownChange = (
   newValue: { value: any; name: string }
 ) => {
   const name = newValue.value.name;
-
+  const key = newValue.value.key;
   if (campo in formData.value) {
     // Actualizar formData para que el campo específico tenga un objeto con la propiedad 'name' actualizada
     formData.value = {
@@ -153,7 +188,7 @@ const handleDropdownChange = (
     const itemId = formData.value.id!;
     if (itemId) {
       setPristineById(itemId, false);
-      setModifiedData(itemId, campo, name);
+      setModifiedData(itemId, campo, { name: name, key: key });
     }
   }
 };
@@ -183,19 +218,24 @@ const handleInputChange = (campo: string | number, event: Event) => {
 const handleBlur = (campo: keyof EfectosForm) => {
   const valor = getInputValue(campo);
   if (!selectedItem.value) return;
-
   setModifiedData(selectedItem.value!.id, campo, valor);
 };
 
 const handleAgregarElemento = () => {
   if (!formData.value) return;
   const nuevoEfecto: Efectos = {
-    estado: estadoSelect.value.name,
-    categoria: categoriaSelect.value.name,
-    marca: marcaSelect.value.name,
-    modelo: modeloSelect.value.name,
-    subcategoria: subCategoriaSelect.value.name,
-    tipo: tipoSelect.value.name,
+    estado: { name: estadoSelect.value.name, key: estadoSelect.value.key },
+    categoria: {
+      name: categoriaSelect.value.name,
+      key: categoriaSelect.value.name,
+    },
+    marca: { name: marcaSelect.value.name, key: marcaSelect.value.key },
+    modelo: { name: modeloSelect.value.name, key: modeloSelect.value.key },
+    subcategoria: {
+      name: subCategoriaSelect.value.name,
+      key: subCategoriaSelect.value.key,
+    },
+    tipo: { name: tipoSelect.value.name, key: tipoSelect.value.key },
     año: formData.value.año,
     nroChasis: formData.value.nroChasis,
     nroMotor: formData.value.nroMotor,
@@ -209,12 +249,21 @@ const handleAgregarElemento = () => {
   agregar(nuevoEfecto);
   markNewRecordCreated();
   formData.value = { ...initialValues };
-  tipoSelect.value = { name: 'Seleccione un tipo' };
-  marcaSelect.value = { name: 'Seleccione una marca' };
-  modeloSelect.value = { name: 'Seleccione un modelo' };
-  categoriaSelect.value = { name: 'Seleccione una categoria' };
-  subCategoriaSelect.value = { name: 'Seleccione una subcategoria' };
-  estadoSelect.value = { name: 'Seleccione un estado' };
+  tipoSelect.value = { name: 'Seleccione un tipo', key: '' };
+  marcaSelect.value = { name: 'Seleccione una marca', key: '' };
+  modeloSelect.value = { name: 'Seleccione un modelo', key: '' };
+  categoriaSelect.value = { name: 'Seleccione una categoria', key: '' };
+  subCategoriaSelect.value = { name: 'Seleccione una subcategoria', key: '' };
+  estadoSelect.value = { name: 'Seleccione un estado', key: '' };
+  year.value = '';
+  color.value = '';
+  nroChasis.value = '';
+  nroAbonado.value = '';
+  nroIMEI.value = '';
+  nroMotor.value = '';
+  nroSerie.value = '';
+  dominio.value = '';
+  // agregar cambios para reiniciar los valores al tocal el boton de agregar Nuevo. el valor del año se queda pegado
 };
 
 const handleCancelar = () => {
@@ -232,12 +281,27 @@ const handleModificarElemento = () => {
   let itemAEditar = {
     ...formData.value,
     id: formData.value.id,
-    estado: estadoSelect.value.name || '',
-    categoria: categoriaSelect.value.name || '',
-    marca: marcaSelect.value.name || '',
-    modelo: modeloSelect.value.name || '',
-    subcategoria: subCategoriaSelect.value.name || '',
-    tipo: tipoSelect.value?.name || '',
+    estado: {
+      name: estadoSelect.value.name || '',
+      key: estadoSelect.value.key,
+    },
+    categoria: {
+      name: categoriaSelect.value.name || '',
+      key: categoriaSelect.value.key,
+    },
+    marca: { name: marcaSelect.value.name || '', key: marcaSelect.value.key },
+    modelo: {
+      name: modeloSelect.value.name || '' || '',
+      key: modeloSelect.value.key,
+    },
+    subcategoria: {
+      name: subCategoriaSelect.value.name || '',
+      key: subCategoriaSelect.value.key,
+    },
+    tipo: {
+      name: tipoSelect.value?.name || '',
+      key: subCategoriaSelect.value.key,
+    },
     ...itemStateEncontrado,
   };
   editar(itemAEditar);
@@ -245,19 +309,21 @@ const handleModificarElemento = () => {
 watch(selectedItem, (newVal: any) => {
   if (!newVal) {
     formData.value = { ...initialValues };
-    tipoSelect.value = { name: 'Seleccione un tipo' };
-    marcaSelect.value = { name: 'Seleccione una marca' };
-    modeloSelect.value = { name: 'Seleccione un modelo' };
-    categoriaSelect.value = { name: 'Seleccione una categoria' };
-    subCategoriaSelect.value = { name: 'Seleccione una subcategoria' };
-    estadoSelect.value = { name: 'Seleccione un estado' };
+    tipoSelect.value = { name: 'Seleccione un tipo', key: '' };
+    marcaSelect.value = { name: 'Seleccione una marca', key: '' };
+    modeloSelect.value = { name: 'Seleccione un modelo', key: '' };
+    categoriaSelect.value = { name: 'Seleccione una categoria', key: '' };
+    subCategoriaSelect.value = { name: 'Seleccione una subcategoria', key: '' };
+    estadoSelect.value = { name: 'Seleccione un estado', key: '' };
+    year.value = '';
+    color.value = '';
+    nroChasis.value = '';
+    nroAbonado.value = '';
+    nroIMEI.value = '';
+    nroMotor.value = '';
+    nroSerie.value = '';
+    dominio.value = '';
   } else {
-    // selectedEstado.value = { name: newVal.estado };
-    // selectedCategoria.value = { name: newVal.categoria };
-    // selectedMarca.value = { name: newVal.marca };
-    // selectedModelo.value = { name: newVal.modelo };
-    // selectedSubcategoria.value = { name: newVal.subcategoria };
-    // selectedTipo.value = { name: newVal.tipo };
     formData.value = { ...newVal };
     updateDataWithForm();
   }
@@ -311,7 +377,9 @@ watch(selectedItem, (newVal: any) => {
             class="mt-2"
             :items="subcategoriasDropdown"
             v-model="subCategoriaSelect"
-            @change="(newValue) => handleDropdownChange('marca', newValue)"
+            @change="
+              (newValue) => handleDropdownChange('subcategoria', newValue)
+            "
             placeholder="Seleccione Sub-Categoría"
             filter
             :color="false"
@@ -331,7 +399,7 @@ watch(selectedItem, (newVal: any) => {
             class="mt-2"
             :items="tipoCategoriasDropdown"
             v-model="tipoSelect"
-            @change="(newValue) => handleDropdownChange('modelo', newValue)"
+            @change="(newValue) => handleDropdownChange('tipo', newValue)"
             placeholder="Seleccione Tipo"
             filter
             :color="false"
@@ -348,9 +416,7 @@ watch(selectedItem, (newVal: any) => {
             class="mt-2"
             :items="marcasCategoriasDropdown"
             v-model="marcaSelect"
-            @change="
-              (newValue) => handleDropdownChange('subcategoria', newValue)
-            "
+            @change="(newValue) => handleDropdownChange('marca', newValue)"
             placeholder="Seleccione Marca"
             filter
             :color="false"
@@ -367,7 +433,7 @@ watch(selectedItem, (newVal: any) => {
             class="mt-2"
             :items="modelosCategoriasDropdown"
             v-model="modeloSelect"
-            @change="(newValue) => handleDropdownChange('tipo', newValue)"
+            @change="(newValue) => handleDropdownChange('modelo', newValue)"
             placeholder="Seleccione Modelo"
             :color="false"
             filter
@@ -383,29 +449,29 @@ watch(selectedItem, (newVal: any) => {
           <MyInput
             type="text"
             class="mt-2"
-            :value="getInputValue('año')"
+            v-model="year"
             @input="handleInputChange('año', $event)"
             @blur="() => handleBlur('año')"
             :color="false"
           />
         </div>
         <div class="col-6">
-          <label for="nroChasis">Nroº Chasis</label>
+          <label for="nroChasis">Nroº nroChasis</label>
           <MyInput
             type="text"
             class="mt-2"
-            :value="getInputValue('nroChasis')"
+            v-model="nroChasis"
             @input="handleInputChange('nroChasis', $event)"
             @blur="() => handleBlur('nroChasis')"
             :color="false"
           />
         </div>
         <div class="col-6">
-          <label for="nroMotor">Nroº Motor</label>
+          <label for="nroMotor">Nroº nroMotor</label>
           <MyInput
             type="text"
             class="mt-2"
-            :value="getInputValue('nroMotor')"
+            v-model="nroMotor"
             @input="handleInputChange('nroMotor', $event)"
             @blur="() => handleBlur('nroMotor')"
             :color="false"
@@ -416,7 +482,7 @@ watch(selectedItem, (newVal: any) => {
           <MyInput
             type="text"
             class="mt-2"
-            :value="getInputValue('dominio')"
+            v-model="dominio"
             @input="handleInputChange('dominio', $event)"
             @blur="() => handleBlur('dominio')"
             :color="false"
@@ -427,7 +493,7 @@ watch(selectedItem, (newVal: any) => {
           <MyInput
             type="text"
             class="mt-2"
-            :value="getInputValue('nroSerie')"
+            v-model="nroSerie"
             @input="handleInputChange('nroSerie', $event)"
             @blur="() => handleBlur('nroSerie')"
             :color="false"
@@ -438,7 +504,7 @@ watch(selectedItem, (newVal: any) => {
           <MyInput
             type="text"
             class="mt-2"
-            :value="getInputValue('nroIMEI')"
+            v-model="nroIMEI"
             @input="handleInputChange('nroIMEI', $event)"
             @blur="() => handleBlur('nroIMEI')"
             :color="false"
@@ -449,7 +515,7 @@ watch(selectedItem, (newVal: any) => {
           <MyInput
             type="text"
             class="mt-2"
-            :value="getInputValue('nroAbonado')"
+            v-model="nroAbonado"
             @input="handleInputChange('nroAbonado', $event)"
             @blur="() => handleBlur('nroAbonado')"
             :color="false"
@@ -460,7 +526,7 @@ watch(selectedItem, (newVal: any) => {
           <MyInput
             type="text"
             class="mt-2"
-            :value="getInputValue('color')"
+            v-model="color"
             @input="handleInputChange('color', $event)"
             @blur="() => handleBlur('color')"
             :color="false"
@@ -494,11 +560,11 @@ watch(selectedItem, (newVal: any) => {
           </div>
         </div>
       </div>
-      <pre>
+      <!-- <pre>
           <span v-for="(id, pristine) in statesID" key="id">
             ID: {{id}}, Pristine: {{ pristine }}
           </span>
-        </pre>
+        </pre> -->
     </template>
   </Card>
 </template>

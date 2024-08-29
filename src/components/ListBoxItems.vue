@@ -140,26 +140,26 @@ onActivated(async () => {
             <div v-else-if="routeType === 'efectos'">
               <div class="text-row">
                 <span class="font-bold">{{
-                  option.subcategoria
-                    ? getUpperCase(option.subcategoria) + ' '
+                  option.subcategoria.name
+                    ? getUpperCase(option.subcategoria.name) + ' '
                     : ''
                 }}</span>
                 <span class="font-bold">{{
-                  option.categoria ? getUpperCase(option.categoria) + ',' : ''
+                  option.categoria.name ? getUpperCase(option.categoria.name) + ',' : ''
                 }}</span>
                 <span class="ml-2">{{
-                  option.marca ? getTitleCase(option.marca) : '-'
+                  option.marca.name ? getTitleCase(option.marca.name) : '-'
                 }}</span>
                 <span class="ml-2">{{
-                  option.modelo ? getTitleCase(option.modelo) : '-'
+                  option.modelo.name ? getTitleCase(option.modelo.name) : '-'
                 }}</span>
                 <span
-                  >, {{ option.tipo ? getTitleCase(option.tipo) : '-' }}</span
+                  >, {{ option.tipo.name ? getTitleCase(option.tipo.name) : '-' }}</span
                 >
                 <div class="tag-row">
                   <Tag
-                    :value="option.estado ? getTitleCase(option.estado) : '-'"
-                    :severity="getColorByEstado(option.estado)"
+                    :value="option.estado.name ? getTitleCase(option.estado.name) : '-'"
+                    :severity="getColorByEstado(option.estado.name)"
                   />
                 </div>
               </div>

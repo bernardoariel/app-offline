@@ -50,7 +50,7 @@ export const categorias = [
     },
     {
         "CategoriaID": "950b6a2c-144f-11ed-bb82-0eb8b69eb347",
-        "Nombre": "Instrumentos Musicales "
+        "Nombre": "Instrumentos Musicales"
     },
     {
         "CategoriaID": "b5c5f933-a3b8-11ed-9b80-0e87116d214b",
@@ -373,7 +373,7 @@ export const subcategorias = [
     },
     {
         "SubcategoriaID": "c04e870b-144f-11ed-bb82-0eb8b69eb347",
-        "categoria": "Instrumentos Musicales ",
+        "categoria": "Instrumentos Musicales",
         "id_categoria": "950b6a2c-144f-11ed-bb82-0eb8b69eb347",
         "Nombre": "Instrumentos de Cuerdas"
     },
@@ -397,7 +397,7 @@ export const subcategorias = [
     },
     {
         "SubcategoriaID": "cf23d57d-144f-11ed-bb82-0eb8b69eb347",
-        "categoria": "Instrumentos Musicales ",
+        "categoria": "Instrumentos Musicales",
         "id_categoria": "950b6a2c-144f-11ed-bb82-0eb8b69eb347",
         "Nombre": "Instrumentos de Viento"
     },
@@ -457,7 +457,7 @@ export const subcategorias = [
     },
     {
         "SubcategoriaID": "edc81750-144f-11ed-bb82-0eb8b69eb347",
-        "categoria": "Instrumentos Musicales ",
+        "categoria": "Instrumentos Musicales",
         "id_categoria": "950b6a2c-144f-11ed-bb82-0eb8b69eb347",
         "Nombre": "Instrumento De Percusi\u00f3n "
     },
@@ -1975,15 +1975,15 @@ export const tipoCategorias = [
 export const marcasCategorias = [
     {
         "MarcaID": "c940d0ec-9caf-11ed-9b80-0e87116d214b",
-        "nombre": " Blaupunnkt"
+        "nombre": "Blaupunnkt"
     },
     {
         "MarcaID": "8ebb594e-ff12-11ec-bb82-0eb8b69eb347",
-        "nombre": " Rockrider"
+        "nombre": "Rockrider"
     },
     {
         "MarcaID": "6cb5fb75-c501-11ee-8df7-0e3a1e34687f",
-        "nombre": " Siemens"
+        "nombre": "Siemens"
     },
     {
         "MarcaID": "6c778e81-aab2-11ec-816d-16c2a030bb97",
@@ -11884,7 +11884,7 @@ export const modelosCategorias = [
         "Nombre": "Segtt",
         "id_tipo": "SIN MARCA ",
         "tipo": null,
-        "categorias": "Instrumentos Musicales ",
+        "categorias": "Instrumentos Musicales",
         "subcategorias": "Instrumentos de Cuerdas"
     },
     {

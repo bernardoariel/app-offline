@@ -3,6 +3,8 @@ import { useDialog } from '@/composables/useDialog';
 import useFieldState from '@/composables/useFieldsState';
 import useLegalesState from '@/composables/useLegalesState';
 import type { DialogOptions } from '@/interfaces/dialogInterfaces'
+import useDatosLegales from '@/composables/useDatosLegales';
+import useDatosDiligencia from '@/composables/useDatosDiligencia';
 
 const { showDialog, dialogState } = useDialog();
 
@@ -11,10 +13,16 @@ const {
   areAnyFieldsModifiedGlobally,
   isNewRecordCreated,
   isRecordDeleted,
-  isDiligenciaChange
+  isDiligenciaChange,
+  resetUnsavedChanges,
+  resetNewRecordCreated,
+  resetRecordDeleted,
+  resetDiliginciaChange,
+  resetPristine,
+  resetModifiedData,
 } = useFieldState();
-
-const { isAnyFieldModified: isLegalModified } = useLegalesState()
+const { resetData: resetDatosLegales } = useDatosLegales();
+const { isAnyFieldModified: isLegalModified, resetFields: resetLegalFields } = useLegalesState()
 
 const isAnyChange = computed(() => {
   return isUnsavedChange.value ||
@@ -24,6 +32,17 @@ const isAnyChange = computed(() => {
     isLegalModified.value ||
     isDiligenciaChange.value;
 });
+
+const resetAllStates = () => {
+  resetUnsavedChanges();
+  resetNewRecordCreated();
+  resetRecordDeleted();
+  resetDiliginciaChange();
+  resetDatosLegales();
+  resetLegalFields();
+  resetPristine();
+  resetModifiedData();
+};
 
 const isSavedChanges = (to, from, next) => {
 
@@ -50,6 +69,7 @@ const isSavedChanges = (to, from, next) => {
       console.log('2.', dialogState.value.pendingRoute);
       return;
     }
+    resetAllStates()
   }
 
   /* cuando tengo una ruta pendiente a navegar luego de mostrar el modal */

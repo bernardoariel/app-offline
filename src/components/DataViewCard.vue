@@ -52,7 +52,6 @@ const editProduct = (productId: any) => {
 };
 
 const deleteItem = (productId: any) => {
-  console.log('productId', productId);
   const index = props.itemsCardValue.items.findIndex(
     (item) => item.id === productId
   );
@@ -89,14 +88,13 @@ const deleteModalButtons = ref<buttonProps[]>([
   },
 ]);
 const openDeleteConfirmation = (item, dataKey) => {
-  // console.log("askldjflkasdfjl")
   itemType.value = item;
   itemToDelete.value = item.id;
   visible.value = true;
   if (dataKey === 'efectos') {
     mensaje.value = `
-    <span class="font-semibold">${item.categoria}</span><span>, ${item.marca}</span><br/>
-    modelo <span class="font-semibold">${item.modelo}`;
+    <span class="font-semibold">${item.categoria.name}</span><span>, ${item.marca.name}</span><br/>
+    modelo <span class="font-semibold">${item.modelo.name}`;
     return;
   }
   if (dataKey === 'fecha') {
@@ -163,9 +161,9 @@ const handleSendRelato = (item, dataKey) => {
   }
   if (dataKey === 'efectos') {
     relato.value = `${relato.value} ${
-    item.estado.toUpperCase()}, ${item.categoria}, ${item.subcategoria} ${
-      item.marca
-    } ${item.modelo}, de tipo ${item.tipo}`;
+    item.estado.name.toUpperCase()}, ${item.categoria.name}, ${item.subcategoria.name} ${
+      item.marca.name
+    } ${item.modelo.name}, de tipo ${item.tipo.name}`;
   }
 };
 
@@ -462,16 +460,16 @@ const convertStringToPhrase = (key: string): string => {
 
               <div class="flex-items">
                 <span class="font-bold">{{
-                  getUpperCase(item.subcategoria)
+                  getUpperCase(item.subcategoria.name)
                 }}</span>
                 <span class="ml-2"
-                  >{{ getTitleCase(item.tipo) }}-{{
-                    getTitleCase(item.marca)
-                  }}-{{ getTitleCase(item.modelo) }}</span
+                  >{{ getTitleCase(item.tipo.name) }}-{{
+                    getTitleCase(item.marca.name)
+                  }}-{{ getTitleCase(item.modelo.name) }}</span
                 >
                 <Tag
-                  :value="item.estado"
-                  :severity="getColorByAfectado(item.estado)"
+                  :value="item.estado.name"
+                  :severity="getColorByAfectado(item.estado.name)"
                   class="ml-5"
                 />
               </div>

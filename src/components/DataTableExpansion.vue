@@ -262,15 +262,15 @@ const handleRejected = () => {
               <h2 class="uppercase">Efectos</h2>
             </div>
             <DataTable :value="slotProps.data.efectos">
-              <Column field="categoria" header="Categoría" sortable></Column>
-              <Column field="marca" header="Marca" sortable></Column>
-              <Column field="modelo" header="Modelo" sortable></Column>
+              <Column field="categoria.name" header="Categoría" sortable></Column>
+              <Column field="marca.name" header="Marca" sortable></Column>
+              <Column field="modelo.name" header="Modelo" sortable></Column>
               <Column
-                field="subcategoria"
+                field="subcategoria.name"
                 header="Subcategoría"
                 documento
               ></Column>
-              <Column field="tipo" header="Tipo" sortable></Column>
+              <Column field="tipo.name" header="Tipo" sortable></Column>
             </DataTable>
           </div>
           <div v-if="selectedOption === 'personalInterviniente'">

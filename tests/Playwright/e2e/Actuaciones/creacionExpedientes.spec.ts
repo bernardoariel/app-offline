@@ -3,8 +3,10 @@ import { cardAfectados } from "../../helpers/cardAfectados"
 import { cardEfectosDenunciado } from "../../helpers/cardEfectos"
 import { cardFecha } from "../../helpers/cardFecha"
 import { cardVinculados } from "../../helpers/cardVinculado"
+import { cardPersonalInterviniente } from "../../helpers/cardPersonalInterviniente"
 import { expedienteOficioLink , expedienteDenunciaLink } from "../../helpers/sidebar"
-import { datosLegalesSumarioDenuncia } from "../../helpers/datosLegales"
+import { datosLegalesExpedientes } from "../../helpers/datosLegales"
+import { actuacionInTable } from "../../helpers/actuacionRegistrada"
 import { initializeAuthorizedUser } from "../../helpers/initializeAuthorizedUser"
 import { pdfView , registrar } from "../../helpers/registrar"
 
@@ -17,7 +19,9 @@ test.describe("Creación de actuaciones tipo Expedientes", () => {
     await cardFecha(page)
     await cardEfectosDenunciado(page)    
     await cardVinculados(page)
-    await datosLegalesSumarioDenuncia(page)
+    await datosLegalesExpedientes(page)
+    await registrar(page)
+    await actuacionInTable(page)
   });
   test("Creación de Expediente Oficio", async ({ page }) => {   
     await initializeAuthorizedUser(page)
@@ -26,7 +30,8 @@ test.describe("Creación de actuaciones tipo Expedientes", () => {
     await cardFecha(page)
     await cardEfectosDenunciado(page)    
     await cardVinculados(page)
-    await datosLegalesSumarioDenuncia(page)
+    await cardPersonalInterviniente(page)
+    await datosLegalesExpedientes(page)
     // await pdfView(page)
     await registrar(page)
   });

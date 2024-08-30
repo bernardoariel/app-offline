@@ -8,6 +8,7 @@ import { cavigLink , aniviLink , informaticoDenunciaLink , informaticoOficioLink
 import { datosLegalesUFI } from "../../helpers/datosLegales"
 import { initializeAuthorizedUser } from "../../helpers/initializeAuthorizedUser"
 import { pdfView , registrar } from "../../helpers/registrar"
+import { actuacionInTable } from "../../helpers/actuacionRegistrada"
 
 
 test.describe("Creación de actuaciones tipo UFI", () => {
@@ -21,6 +22,7 @@ test.describe("Creación de actuaciones tipo UFI", () => {
     await cardPersonalInterviniente(page)
     await datosLegalesUFI(page)
     await registrar(page)
+    await actuacionInTable(page)
   });
   test("Creación de Ufi Genérica por Denuncia", async ({ page }) => {
     await initializeAuthorizedUser(page)
@@ -32,6 +34,7 @@ test.describe("Creación de actuaciones tipo UFI", () => {
     await datosLegalesUFI(page)
     // await pdfView(page)
     await registrar(page)
+    await actuacionInTable(page)
   });
 
   test("Creación de Ufi Genérica por Oficio", async ({ page }) => {
@@ -45,6 +48,7 @@ test.describe("Creación de actuaciones tipo UFI", () => {
     await datosLegalesUFI(page)
     // await pdfView(page)
     await registrar(page)
+    await actuacionInTable(page)
   });
 
   test("Creación de Ufi Contra la Propiedad por Denuncia", async ({ page }) => {
@@ -57,6 +61,7 @@ test.describe("Creación de actuaciones tipo UFI", () => {
     await datosLegalesUFI(page)
     // await pdfView(page)
     await registrar(page)
+    await actuacionInTable(page)
   });
 
   test("Creación de Ufi Contra la Propiedad por Oficio", async ({ page }) => {
@@ -70,6 +75,7 @@ test.describe("Creación de actuaciones tipo UFI", () => {
     await datosLegalesUFI(page)
     // await pdfView(page)
     await registrar(page)
+    await actuacionInTable(page)
   });
 
   test("Creación de Ufi Informáticos y Estafas por Denuncia", async ({ page }) => {
@@ -82,6 +88,7 @@ test.describe("Creación de actuaciones tipo UFI", () => {
     await datosLegalesUFI(page)
     // await pdfView(page)
     await registrar(page)
+    await actuacionInTable(page)
   });
 
   test("Creación de Ufi Informáticos y Estafas por Oficio", async ({ page }) => {
@@ -95,6 +102,7 @@ test.describe("Creación de actuaciones tipo UFI", () => {
     await datosLegalesUFI(page)
     // await pdfView(page)
     await registrar(page)
+    await actuacionInTable(page)
   });
 
   test("Creación de Ufi Cavig", async ({ page }) => {
@@ -108,6 +116,7 @@ test.describe("Creación de actuaciones tipo UFI", () => {
     await datosLegalesUFI(page)
     // await pdfView(page)
     await registrar(page)
+    await actuacionInTable(page)
   });
 
   test("Creación de Ufi Anivi", async ({ page }) => {
@@ -121,6 +130,7 @@ test.describe("Creación de actuaciones tipo UFI", () => {
     await datosLegalesUFI(page)
     // await pdfView(page)
     await registrar(page)
+    await actuacionInTable(page)
   });
 
 });

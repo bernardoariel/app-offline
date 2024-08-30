@@ -7,6 +7,7 @@ import { cardPersonalInterviniente } from "../../helpers/cardPersonalIntervinien
 import { sumarioOficioLink , sumarioDenunciaLink } from "../../helpers/sidebar"
 import { datosLegalesSumarioDenuncia } from "../../helpers/datosLegales"
 import { initializeAuthorizedUser } from "../../helpers/initializeAuthorizedUser"
+import { actuacionInTable } from "../../helpers/actuacionRegistrada"
 import { pdfView , registrar } from "../../helpers/registrar"
 
 
@@ -21,6 +22,7 @@ test.describe("Creación de actuaciones tipo sumario", () => {
     await cardPersonalInterviniente(page)
     await datosLegalesSumarioDenuncia(page)
     await registrar(page)
+    await actuacionInTable(page)
   });
   test("Creación de Sumario Denuncia", async ({ page }) => {
     await initializeAuthorizedUser(page)
@@ -32,6 +34,7 @@ test.describe("Creación de actuaciones tipo sumario", () => {
     await datosLegalesSumarioDenuncia(page)
     // await pdfView(page)
     await registrar(page)
+    await actuacionInTable(page)
   });
 
 });

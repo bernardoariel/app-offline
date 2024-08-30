@@ -52,8 +52,8 @@ export const actuacionInTable = async (page:any) =>{
   const juzgadoIntervinienteText = await page.getByRole('cell', { name: juzgadoInterviniente }).innerText();
   expect(juzgadoIntervinienteText).toBe(juzgadoInterviniente);
   
-  const ufiText = await page.getByRole('cell', { name: 'UFI - FLAGRANCIA' }).innerText(); // Si hay un valor constante, úsalo
-  expect(ufiText).toBe('UFI - FLAGRANCIA'); // Reemplaza con la constante correspondiente si existe
+  const actuacion = await page.getByRole('cell', { name: nombreActuacion }).innerText(); // Si hay un valor constante, úsalo
+  expect(actuacion).toBe(nombreActuacion); // Reemplaza con la constante correspondiente si existe
   
   const nroLegajoText = await page.getByRole('cell', { name: nroLegajoCompleto }).innerText();
   expect(nroLegajoText).toBe(nroLegajoCompleto);

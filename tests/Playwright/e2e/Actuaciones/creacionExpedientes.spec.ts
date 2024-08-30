@@ -34,6 +34,7 @@ test.describe("Creación de actuaciones tipo Expedientes", () => {
     await datosLegalesExpedientes(page)
     // await pdfView(page)
     await registrar(page)
+    await actuacionInTable(page)
   });
 
 });

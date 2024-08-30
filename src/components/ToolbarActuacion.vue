@@ -196,13 +196,6 @@ const handleSave = async () => {
     hasErrors.value = true;
   }
   if (
-    cardInformationKeys.value.includes('efectos') &&
-    (!efectos.value || efectos.value.length === 0)
-  ) {
-    missingFieldsEmpty.efectos = true;
-    hasErrors.value = true;
-  }
-  if (
     cardInformationKeys.value.includes('personalInterviniente') &&
     (!intervinientes.value || intervinientes.value.length === 0)
   ) {
@@ -210,24 +203,14 @@ const handleSave = async () => {
     hasErrors.value = true;
   }
 
-  if (hasErrors.value) {
-    alert(
-      `Los siguientes campos están vacíos: ${Object.keys(missingFieldsEmpty)
-        .filter(
-          (key) => missingFieldsEmpty[key as keyof typeof missingFieldsEmpty]
-        )
-        .join(', ')}`
-    );
-    return;
+  if (!hasErrors.value) {
+     await storeData();
+    isActuationInit.value = false;
+    currentEditId.value = null;
+    dialogState.value.allowNavigation = true;
+    resetAllStates();
+    await navigateSuccessfully();
   }
-
-  await storeData();
-
-  isActuationInit.value = false;
-  currentEditId.value = null;
-  dialogState.value.allowNavigation = true;
-  resetAllStates();
-  await navigateSuccessfully();
 };
 </script>
 

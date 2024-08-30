@@ -1,24 +1,41 @@
 import { ref } from "vue"
 import { useFetch } from "./useFetch"
-import { categorias, subcategorias, tipoCategorias, marcasCategorias, modelosCategorias, sitios, modusOperandi, causaCaratula, juzgadoInterviniente, articulosRelacionados, ayudanteFiscal, fiscalCargo, ufiNro, delitos, sexo, documentos, afectados, nacionalidad, estadoCivil, instruccion, jerarquia, tipoEfecto } from '@/data/actuacionNew'
+import { sitios, modusOperandi, causaCaratula, juzgadoInterviniente, articulosRelacionados, ayudanteFiscal, fiscalCargo, ufiNro, delitos } from '@/data/actuacionNew'
 
-const hardcodedData = { categorias, subcategorias, tipoCategorias, marcasCategorias, modelosCategorias, sitios, modusOperandi, causaCaratula, juzgadoInterviniente, articulosRelacionados, ayudanteFiscal, fiscalCargo, ufiNro, delitos, sexo, documentos, afectados, nacionalidad, estadoCivil, instruccion, jerarquia, tipoEfecto }
+const hardcodedData = { sitios, modusOperandi, causaCaratula, juzgadoInterviniente, articulosRelacionados, ayudanteFiscal, fiscalCargo, ufiNro, delitos }
 
 const apiUrl = import.meta.env.VITE_API_SW
 
-export async function useGetDropdowns () {
-    const dataActuacionNew = ref<any>(null);
+const customMap: { [key: string]: keyof typeof hardcodedData } = {
+    'tipo-sitio': 'sitios',
+    'tipo-modus-operandi': 'modusOperandi',
+    'tipo-causa-caratula': 'causaCaratula',
+    'articulos': 'articulosRelacionados',
+    'juzgado': 'juzgadoInterviniente',
+    'tipo-ufi': 'ufiNro',
+    'personalfiscal': 'ayudanteFiscal',
+    'fiscal-cargo': 'fiscalCargo',
+    'delitos': 'delitos',
+};
+
+function getData(name: string) {
+    const key = customMap[name];
+    return hardcodedData[key];
+}
+
+export async function useGetDropdowns (param: string) {
+    const dropdownData = ref<any>(null);
     const { data, fetchData } = useFetch<any>();
-    
+    const url = `${apiUrl}/${param}`
     try{
-        await fetchData(apiUrl as string)
-        dataActuacionNew.value = data.value || hardcodedData
+        await fetchData(url as string)
+        dropdownData.value = data.value || getData(param)
     }catch(error){
         console.log("Error fetching data from API, using hardcoded data.", error);
-        dataActuacionNew.value = hardcodedData;
+        dropdownData.value = hardcodedData;
     } 
     
     return{
-        dataActuacionNew
+        dropdownData
     }
 }

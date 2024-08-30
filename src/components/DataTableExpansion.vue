@@ -155,7 +155,7 @@ const handleRejected = () => {
             <div class="flex align-items-center">
               <RadioButton
                 v-model="selectedOption"
-                inputId="optionAfectados"
+                inputId="afectados"
                 name="options"
                 value="afectados"
               />
@@ -164,7 +164,7 @@ const handleRejected = () => {
             <div class="flex align-items-center">
               <RadioButton
                 v-model="selectedOption"
-                inputId="optionVinculados"
+                inputId="vinculados"
                 name="options"
                 value="vinculados"
               />
@@ -173,7 +173,7 @@ const handleRejected = () => {
             <div class="flex align-items-center">
               <RadioButton
                 v-model="selectedOption"
-                inputId="optionFechaUbicacion"
+                inputId="fechaUbicacion"
                 name="options"
                 value="fechaUbicacion"
               />
@@ -182,7 +182,7 @@ const handleRejected = () => {
             <div class="flex align-items-center">
               <RadioButton
                 v-model="selectedOption"
-                inputId="optionEfectos"
+                inputId="fechaEfectos"
                 name="options"
                 value="efectos"
               />
@@ -191,11 +191,11 @@ const handleRejected = () => {
             <div class="flex align-items-center">
               <RadioButton
                 v-model="selectedOption"
-                inputId="optionIntervinientes"
+                inputId="personalInterviniente"
                 name="options"
-                value="intervinientes"
+                value="personalInterviniente"
               />
-              <label for="intervinientes" class="ml-2">Intervinientes</label>
+              <label for="personalInterviniente" class="ml-2">Intervinientes</label>
             </div>
           </div>
           <div v-if="selectedOption === 'afectados'">
@@ -273,11 +273,11 @@ const handleRejected = () => {
               <Column field="tipo.name" header="Tipo" sortable></Column>
             </DataTable>
           </div>
-          <div v-if="selectedOption === 'intervinientes'">
+          <div v-if="selectedOption === 'personalInterviniente'">
             <div class="flex justify-content-center">
               <h2 class="uppercase">Intervinientes</h2>
             </div>
-            <DataTable :value="slotProps.data.intervinientes">
+            <DataTable :value="slotProps.data.personalInterviniente">
               <Column field="apellido" header="Apellido"></Column>
               <Column field="nombre" header="Nombre"></Column>
               <Column field="jerarquia" header="Jerarquía"></Column>

@@ -128,12 +128,6 @@ const handleRejected = () => {
               severity="success"
             ></Button>
             <Button
-              icon="pi pi-file-pdf"
-              square
-              @click="() => console.log(data)"
-              severity="success"
-            ></Button>
-            <Button
               icon="pi pi-pencil"
               @click="onEditActuacion(data.id, data.pathName)"
               square

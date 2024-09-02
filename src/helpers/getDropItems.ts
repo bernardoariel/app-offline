@@ -3,7 +3,7 @@ import { mapToDropDownEfectos, mapToDropdownItems } from './dropUtils';
 import { departamentosDropdown } from "@/data/municipios";
 import { dependencias } from "@/data/dependencia";
 import { useGetDropdowns } from "@/composables/useGetDropdowns";
-import { categorias, subcategorias, tipoCategorias, marcasCategorias, modelosCategorias, ayudanteFiscal, delitos, sexo, documentos, afectados, nacionalidad, estadoCivil, instruccion, jerarquia } from '@/data/actuacionNew'
+import { categorias, subcategorias, tipoCategorias, marcasCategorias, modelosCategorias, ayudanteFiscal, delitos, sexo, documentos, afectados, nacionalidad, estadoCivil, instruccion, jerarquia, typesHasEstudies, typesShowDocument} from '@/data/actuacionNew'
 
 const getItems = async (dropdownName:string) => {
     const { dropdownData: data } =  await useGetDropdowns(dropdownName)
@@ -19,6 +19,8 @@ export const instruccionDropdown = ref(mapToDropdownItems(instruccion));
 export const municipiosDropdown = ref(mapToDropdownItems(departamentosDropdown));
 export const jerarquiaDropdown = ref(mapToDropdownItems(jerarquia))
 export const dependenciaDropdown = ref(mapToDropdownItems(dependencias))
+export const showDocumentDropdown = ref(mapToDropdownItems(typesShowDocument))
+export const hasEstudiesDropdown = ref(mapToDropdownItems(typesHasEstudies))
 export const categoriasDropdown = ref(mapToDropDownEfectos(categorias, "categorias"))
 export const subcategoriasDropdown = ref(mapToDropDownEfectos(subcategorias, "sub-categorias"))
 export const tipoCategoriasDropdown = ref(mapToDropDownEfectos(tipoCategorias, "tipo-categorias"))

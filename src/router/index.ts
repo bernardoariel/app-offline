@@ -62,8 +62,8 @@ const router = createRouter({
           actuacionData
         }
       }
-    }
-
+    },
+    { path: '/:pathMatch(.*)*', redirect: '/actuaciones/list' }
   ]
 })
 

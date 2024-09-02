@@ -247,13 +247,13 @@ const handleSave = async () => {
           :fechaHasta="'today'"
           @update:modelValue="actualizarFechaCreacion"
         />
-        <Button
+        <!-- <Button
           label="Registrar"
           class="p-button"
           severity="primary"
           @click="handleSave"
           :disabled="!isDataValid()"
-        />
+        /> -->
       </div>
     </template>
   </Toolbar>

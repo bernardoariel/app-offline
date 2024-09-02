@@ -135,12 +135,6 @@ const handleRejected = () => {
               severity="warning"
             ></Button>
             <Button
-              icon="pi pi-pencil"
-              @click="() => console.log(data.fechaUbicacion)"
-              square
-              severity="warning"
-            ></Button>
-            <Button
               icon="pi pi-trash"
               @click="showConfirm($event, data.id)"
               square

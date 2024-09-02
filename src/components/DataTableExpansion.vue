@@ -2,6 +2,7 @@
 import { ref, onActivated } from 'vue';
 import { useToast } from 'primevue/usetoast';
 import { getColorByAfectado } from '@/helpers/getColorByAfectado';
+import { formatFecha } from '@/helpers/getFormatFecha';
 import useSaveData from '../composables/useSaveData';
 import { useViewPdf } from '@/composables/useViewPdf';
 import { useRouter } from 'vue-router';
@@ -134,6 +135,12 @@ const handleRejected = () => {
               severity="warning"
             ></Button>
             <Button
+              icon="pi pi-pencil"
+              @click="() => console.log(data.fechaUbicacion)"
+              square
+              severity="warning"
+            ></Button>
+            <Button
               icon="pi pi-trash"
               @click="showConfirm($event, data.id)"
               square
@@ -250,8 +257,16 @@ const handleRejected = () => {
               <h2 class="uppercase">Fecha Ubicacion</h2>
             </div>
             <DataTable :value="slotProps.data.fechaUbicacion">
-              <Column field="desdeFechaHora" header="Fecha desde"></Column>
-              <Column field="hastaFechaHora" header="Fecha hasta"></Column>
+              <Column field="desdeFechaHora" header="Fecha desde">
+                <template #body="slotProps">
+                  {{ formatFecha(slotProps.data.desdeFechaHora) }}
+                </template>
+              </Column>
+              <Column field="hastaFechaHora" header="Fecha hasta">
+                <template #body="slotProps">
+                  {{ formatFecha(slotProps.data.hastaFechaHora) }}
+                </template>
+              </Column>
               <Column field="calle" header="Calle"></Column>
               <Column field="numero" header="Número"></Column>
               <Column field="departamento" header="Departamento"></Column>

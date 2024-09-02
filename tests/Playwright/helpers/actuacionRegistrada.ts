@@ -60,8 +60,10 @@ export const actuacionInTable = async (page:any) =>{
   
   const fechaCreacionText = await page.getByRole('cell', { name: formattedFechaCreacion }).innerText();
   expect(fechaCreacionText).toBe(formattedFechaCreacion);
+};
+
+
+export const detailsActuacionInTable = async (page:any) =>{
+    
 }
-
-
-
 

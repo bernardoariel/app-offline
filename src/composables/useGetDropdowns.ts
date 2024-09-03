@@ -4,7 +4,22 @@ import { sitios, modusOperandi, causaCaratula, juzgadoInterviniente, articulosRe
 
 const hardcodedData = { sitios, modusOperandi, causaCaratula, juzgadoInterviniente, articulosRelacionados, ayudanteFiscal, fiscalCargo, ufiNro, delitos }
 
-const apiUrl = import.meta.env.VITE_API_SW
+// console.log(process.env.VUE_APP_BACKEND_ENVIRONMENT)
+
+// const environment = import.meta.env.VITE_ENV;
+// const apiUrl = (() => {
+//     switch (environment) {
+//         case 'production':
+//             return import.meta.env.VITE_API_SW_PRODUCTION;
+//         case 'testing':
+//             return import.meta.env.VITE_API_SW_TESTING;
+//         case 'development':
+//         default:
+//             return import.meta.env.VITE_API_SW_DEVELOP;
+//     }
+// })();
+
+const apiUrl = 'http://localhost/siis/api/v1'
 
 const customMap: { [key: string]: keyof typeof hardcodedData } = {
     'tipo-sitio': 'sitios',

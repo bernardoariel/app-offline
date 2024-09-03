@@ -62,11 +62,12 @@ const { resetFields: resetLegalFields, isAnyFieldModified: isLegalModified } =
   useLegalesState();
 const { addDataFake, resetData: resetDataLegal, nroLegajo } = useDatosLegales();
 
-setActuacionData(props.actuacionData);
 
+setActuacionData(props.actuacionData);
 onActivated(async () => {
   if (!props.id) {
     setLoading(false);
+    setActuacionData(props.actuacionData);
   }
   toogleDateActuacion();
   await handleFetchActuacion(props.id, props.actuacionName);
@@ -112,14 +113,14 @@ const resetBackStates = () => {
   resetModifiedData();
 };
 
-watch(
-  () => props.actuacionName,
-  (newValue) => {
-    setActuacionData(props.actuacionData);
-    actuacionName.value = newValue;
-    resetAllStates();
-  }
-);
+// watch(
+//   () => actuacionName, (newValue) => {
+//     console.log('props.actuacionName',props.actuacionName)
+//     console.log('newValue',newValue)
+//     setActuacionData(props.actuacionData);
+//     resetAllStates();
+//   }
+// );
 
 watch(
   () => props.id,

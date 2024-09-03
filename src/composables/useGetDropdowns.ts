@@ -9,27 +9,49 @@ const apiUrl = import.meta.env.VITE_API_SW
 const customMap: { [key: string]: keyof typeof hardcodedData } = {
     'tipo-sitio': 'sitios',
     'tipo-modus-operandi': 'modusOperandi',
-    'tipo-causa-caratula': 'causaCaratula',
+
+    'Causa Caratula': 'causaCaratula',
+    'Delito': 'delitos',
+    
     'articulos': 'articulosRelacionados',
     'juzgado': 'juzgadoInterviniente',
     'tipo-ufi': 'ufiNro',
-    'personalfiscal': 'ayudanteFiscal',
-    'fiscal-cargo': 'fiscalCargo',
-    'delitos': 'delitos',
+    
+    'ayudante': 'ayudanteFiscal',
+    'fiscal': 'fiscalCargo',
 };
 
-function getData(name: string) {
+function getData(name: string, search?:string) {
+    if(search){
+        const key = customMap[search];
+        return hardcodedData[key];
+    }
     const key = customMap[name];
     return hardcodedData[key];
+
 }
 
-export async function useGetDropdowns (param: string) {
+export async function useGetDropdowns (param: string, search?: string) {
     const dropdownData = ref<any>(null);
     const { data, fetchData } = useFetch<any>();
-    const url = `${apiUrl}/${param}`
+
+    const url = (() => {
+        switch (param) {
+            case 'tipo-causa-caratula':
+                return `${apiUrl}/parametros/${param}/?search={"TipoCaratula": [{"operator": "=", "value": "${search}"}]}`
+            case 'personalfiscal':
+                return `${apiUrl}/${param}/?search={"Jerarquia": [{"operator": "=", "value": "${search}"}]}`
+            case 'tipo-modus-operandi':
+                return `${apiUrl}/parametros/${param}`
+            default:
+                return `${apiUrl}/${param}`;
+        }
+    })()
+
+
     try{
         await fetchData(url as string)
-        dropdownData.value = data.value || getData(param)
+        dropdownData.value = data.value || getData(param, search)
     }catch(error){
         console.log("Error fetching data from API, using hardcoded data.", error);
         dropdownData.value = hardcodedData;

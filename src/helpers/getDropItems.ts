@@ -5,8 +5,8 @@ import { dependencias } from "@/data/dependencia";
 import { useGetDropdowns } from "@/composables/useGetDropdowns";
 import { categorias, subcategorias, tipoCategorias, marcasCategorias, modelosCategorias, ayudanteFiscal, delitos, sexo, documentos, afectados, nacionalidad, estadoCivil, instruccion, jerarquia, typesHasEstudies, typesShowDocument} from '@/data/actuacionNew'
 
-const getItems = async (dropdownName:string) => {
-    const { dropdownData: data } =  await useGetDropdowns(dropdownName)
+const getItems = async (dropdownName:string, searchParam?:string) => {
+    const { dropdownData: data } =  await useGetDropdowns(dropdownName, searchParam)
     return data.value
 }
 
@@ -28,11 +28,14 @@ export const marcasCategoriasDropdown = ref(mapToDropDownEfectos(marcasCategoria
 export const modelosCategoriasDropdown = ref(mapToDropDownEfectos(modelosCategorias, "modelo"))
 export const sitiosDropdwown = ref(mapToDropDownEfectos(await getItems('tipo-sitio')))
 export const modusOperandiDropdwown = ref(mapToDropDownEfectos(await getItems('tipo-modus-operandi')))
-export const causaCaratulaDropdwown = ref(mapToDropDownEfectos(await getItems('tipo-causa-caratula')))
+
+export const causaCaratulaDropdwown = ref(mapToDropDownEfectos(await getItems('tipo-causa-caratula', 'Causa Caratula')))
+export const delitosDropdown = ref(mapToDropDownEfectos(await getItems('tipo-causa-caratula', 'Delito')))
+
 export const articulosDropdwown = ref(mapToDropDownEfectos(await getItems('articulos')))
 export const juzgadoIntervinienteDropdwown = ref(mapToDropDownEfectos(await getItems('juzgado')))
 
-export const delitosDropdown = ref(mapToDropDownEfectos(delitos))
 export const ufiNroDropdown = ref(mapToDropDownEfectos(await getItems('tipo-ufi')))
-export const ayudanteFiscalDropdown = ref(mapToDropDownEfectos(ayudanteFiscal))
-export const fiscalCargoDropdown = ref(mapToDropDownEfectos(await getItems('personalfiscal')))
+
+export const ayudanteFiscalDropdown = ref(mapToDropDownEfectos(await getItems('personalfiscal', 'ayudante')))
+export const fiscalCargoDropdown = ref(mapToDropDownEfectos(await getItems('personalfiscal', 'fiscal')))

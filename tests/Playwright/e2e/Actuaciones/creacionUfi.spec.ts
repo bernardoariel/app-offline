@@ -8,7 +8,7 @@ import { cavigLink , aniviLink , informaticoDenunciaLink , informaticoOficioLink
 import { datosLegalesUFI } from "../../helpers/datosLegales"
 import { initializeAuthorizedUser } from "../../helpers/initializeAuthorizedUser"
 import { pdfView , registrar } from "../../helpers/registrar"
-import { actuacionInTable } from "../../helpers/actuacionRegistrada"
+import { actuacionInTable , detailsOfActuacionInTable } from "../../helpers/actuacionRegistrada"
 
 
 test.describe("Creación de actuaciones tipo UFI", () => {
@@ -23,6 +23,7 @@ test.describe("Creación de actuaciones tipo UFI", () => {
     await datosLegalesUFI(page)
     await registrar(page)
     await actuacionInTable(page)
+    await detailsOfActuacionInTable(page)
   });
   test("Creación de Ufi Genérica por Denuncia", async ({ page }) => {
     await initializeAuthorizedUser(page)

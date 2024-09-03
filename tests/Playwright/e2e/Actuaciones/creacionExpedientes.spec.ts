@@ -6,7 +6,7 @@ import { cardVinculados } from "../../helpers/cardVinculado"
 import { cardPersonalInterviniente } from "../../helpers/cardPersonalInterviniente"
 import { expedienteOficioLink , expedienteDenunciaLink } from "../../helpers/sidebar"
 import { datosLegalesExpedientes } from "../../helpers/datosLegales"
-import { actuacionInTable } from "../../helpers/actuacionRegistrada"
+import { actuacionInTable , detailsOfActuacionInTable } from "../../helpers/actuacionRegistrada"
 import { initializeAuthorizedUser } from "../../helpers/initializeAuthorizedUser"
 import { pdfView , registrar } from "../../helpers/registrar"
 
@@ -22,6 +22,7 @@ test.describe("Creación de actuaciones tipo Expedientes", () => {
     await datosLegalesExpedientes(page)
     await registrar(page)
     await actuacionInTable(page)
+    await detailsOfActuacionInTable(page)
   });
   test("Creación de Expediente Oficio", async ({ page }) => {   
     await initializeAuthorizedUser(page)

@@ -95,62 +95,66 @@ export const detailsOfActuacionInTable = async (page: any) => {
     });
   
     const { afectados , vinculados , fechaUbicacion , juzgadoInterviniente } = indexDBData[0]
-    // Ahora comparamos los datos de IndexedDB con los valores de la tabla
-    // const afectados = indexDBData.afectados; // Reemplaza con la estructura de tu base de datos
-    // const vinculados = indexDBData.vinculados; // Reemplaza con la estructura de tu base de datos
-    // const fecha = indexDBData.fechaUbicacion; // Reemplaza con la estructura de tu base de datos
-  
-    // Comparar con los elementos visibles en la tabla
-    const nameAfectado = await page.locator('#pv_id_95_0_expansion > td > div > div:nth-child(2) > div.p-datatable.p-component.p-datatable-responsive-scroll > div.p-datatable-wrapper > table > tbody > tr > td:nth-child(1)').innerText();
-    expect(nameAfectado).toBe(afectados[0].nombre);
-  
-    const lastnameAfectado = await page.locator('#pv_id_2_0_expansion > td > div > div:nth-child(2) > div.p-datatable.p-component.p-datatable-responsive-scroll > div.p-datatable-wrapper > table > tbody > tr > td:nth-child(2)').innerText();
-    expect(lastnameAfectado).toBe(afectados[0].apellido);
-  
-    const dniAfectado = await page.locator('#pv_id_2_0_expansion > td > div > div:nth-child(2) > div.p-datatable.p-component.p-datatable-responsive-scroll > div.p-datatable-wrapper > table > tbody > tr > td:nth-child(3)').innerText();
-    expect(dniAfectado).toBe(afectados[0].nroDocumento);
-  
-    const phoneAfectado = await page.locator('#pv_id_2_0_expansion > td > div > div:nth-child(2) > div.p-datatable.p-component.p-datatable-responsive-scroll > div.p-datatable-wrapper > table > tbody > tr > td:nth-child(4)').innerText();
-    expect(phoneAfectado).toBe(afectados[0].telefono);
-  
-    const tipoAfectado = await page.locator('#pv_id_2_0_expansion > td > div > div:nth-child(2) > div.p-datatable.p-component.p-datatable-responsive-scroll > div.p-datatable-wrapper > table > tbody > tr > td:nth-child(5)').innerText();
-    expect(tipoAfectado).toBe(afectados[0].typeAfectado);
+    const afectadosParsed = JSON.parse(afectados);
+    const vinculadosParsed = JSON.parse(vinculados);
+    const fechaUbicacionParsed = JSON.parse(fechaUbicacion);
+    // const juzgadoIntervinienteParsed = JSON.parse(juzgadoInterviniente);
+
+    const tableRow = await page.locator('#pv_id_95_0_expansion .p-datatable-wrapper tbody tr').first(); 
+
+    const nameAfectado = await tableRow.locator('td').nth(0).textContent();
+    console.log("Texto obtenido (Nombre del afectado):", nameAfectado);
+
+    expect(nameAfectado).not.toBeNull();
+    expect(nameAfectado.trim()).toBe(afectadosParsed[0].nombre);
+    
+    const lastnameAfectado = await tableRow.locator('td').nth(1).innerText();
+    expect(lastnameAfectado).toBe(afectadosParsed[0].apellido);
+    
+    const dniAfectado = await tableRow.locator('td').nth(2).innerText();
+    expect(dniAfectado).toBe(afectadosParsed[0].nroDocumento);
+    
+    const phoneAfectado = await tableRow.locator('td').nth(3).innerText();
+    expect(phoneAfectado).toBe(afectadosParsed[0].telefono);
+    
+    const tipoAfectado = await tableRow.locator('td').nth(4).innerText();
+    expect(tipoAfectado).toBe(afectadosParsed[0].typeAfectado);
   
     // Lo mismo para los vinculados y otros elementos en tu tabla...
     await page.locator('div').filter({ hasText: /^Vinculados$/ }).locator('div').nth(2).click();
-    const nameVinculado = await await page.locator('#pv_id_2_1_expansion > td > div > div:nth-child(2) > div.p-datatable.p-component.p-datatable-responsive-scroll > div.p-datatable-wrapper > table > tbody > tr:nth-child(1) > td:nth-child(1)').innerText();
-    expect(nameVinculado).toBe(vinculados[0].nombre);
+    const nameVinculado = await tableRow.locator('td').nth(0).textContent();
+    expect(nameVinculado).toBe(vinculadosParsed[0].nombre);
   
-    const lastnameVinculado = await page.locator('#pv_id_2_1_expansion > td > div > div:nth-child(2) > div.p-datatable.p-component.p-datatable-responsive-scroll > div.p-datatable-wrapper > table > tbody > tr:nth-child(1) > td:nth-child(2)').innerText();
-    expect(lastnameVinculado).toBe(vinculados[0].apellido);
+    const lastnameVinculado = await tableRow.locator('td').nth(1).innerText();
+    expect(lastnameVinculado).toBe(vinculadosParsed[0].apellido);
   
-    const dniVinculado = await page.locator('#pv_id_2_1_expansion > td > div > div:nth-child(2) > div.p-datatable.p-component.p-datatable-responsive-scroll > div.p-datatable-wrapper > table > tbody > tr:nth-child(1) > td:nth-child(2)').innerText();
-    expect(dniVinculado).toBe(vinculados[0].nroDocumento);
+    const dniVinculado = await tableRow.locator('td').nth(2).innerText();
+    expect(dniVinculado).toBe(vinculadosParsed[0].nroDocumento);
   
-    const phoneVinculado = await page.locator('#pv_id_2_1_expansion > td > div > div:nth-child(2) > div.p-datatable.p-component.p-datatable-responsive-scroll > div.p-datatable-wrapper > table > tbody > tr:nth-child(1) > td:nth-child(4)').innerText();
-    expect(phoneVinculado).toBe(vinculados[0].telefono);
+    const phoneVinculado = await tableRow.locator('td').nth(3).innerText();
+    expect(phoneVinculado).toBe(vinculadosParsed[0].telefono);
 
-    const apodoVinculado = await page.locator('#pv_id_2_1_expansion > td > div > div:nth-child(2) > div.p-datatable.p-component.p-datatable-responsive-scroll > div.p-datatable-wrapper > table > tbody > tr:nth-child(1) > td:nth-child(5)').innerText();
-    expect(apodoVinculado).toBe(vinculados[0].apodo);
+    const apodoVinculado = await tableRow.locator('td').nth(4).innerText();
+    expect(apodoVinculado).toBe(vinculadosParsed[0].apodo);
   
-    const tipoVinculado = await page.locator('#pv_id_2_1_expansion > td > div > div:nth-child(2) > div.p-datatable.p-component.p-datatable-responsive-scroll > div.p-datatable-wrapper > table > tbody > tr:nth-child(1) > td:nth-child(6)').innerText();
-    expect(tipoVinculado).toBe(vinculados[0].typeAfectado);
+    const tipoVinculado = await tableRow.locator('td').nth(5).innerText();
+    expect(tipoVinculado).toBe(vinculadosParsed[0].typeAfectado);
 
     await page.locator('div').filter({ hasText: /^Fecha y Ubicación$/ }).locator('div').nth(2).click();
-    const dateFrom = await page.locator('#pv_id_2_0_expansion > td > div > div:nth-child(2) > div.p-datatable.p-component.p-datatable-responsive-scroll > div.p-datatable-wrapper > table > tbody > tr > td:nth-child(1)').innerText();
-    expect(dateFrom).toBe(fechaUbicacion[0].desdeFechaHora);
+    const dateFrom = await tableRow.locator('td').nth(0).textContent();
+    expect(dateFrom).toBe(fechaUbicacionParsed[0].desdeFechaHora);
 
-    const dateTo = await page.locator('#pv_id_2_0_expansion > td > div > div:nth-child(2) > div.p-datatable.p-component.p-datatable-responsive-scroll > div.p-datatable-wrapper > table > tbody > tr > td:nth-child(2)').innerText();
-    expect(dateFrom).toBe(fechaUbicacion[0].hastaFechaHora);
+    const dateTo = await tableRow.locator('td').nth(1).innerText();
+    expect(dateFrom).toBe(fechaUbicacionParsed[0].hastaFechaHora);
 
-    const adress = await page.locator('#pv_id_2_0_expansion > td > div > div:nth-child(2) > div.p-datatable.p-component.p-datatable-responsive-scroll > div.p-datatable-wrapper > table > tbody > tr > td:nth-child(3)').innerText();
-    expect(adress).toBe(fechaUbicacion[0].calle);
+    const adress = await tableRow.locator('td').nth(2).innerText();
+    expect(adress).toBe(fechaUbicacionParsed[0].calle);
 
-    const adressNumber = await page.locator('#pv_id_2_0_expansion > td > div > div:nth-child(2) > div.p-datatable.p-component.p-datatable-responsive-scroll > div.p-datatable-wrapper > table > tbody > tr > td:nth-child(4)').innerText();
-    expect(adressNumber).toBe(fechaUbicacion[0].numero);
+    const adressNumber = await tableRow.locator('td').nth(3).innerText();
+    expect(adressNumber).toBe(fechaUbicacionParsed[0].numero);
 
-    const departament = await page.locator('#pv_id_2_0_expansion > td > div > div:nth-child(2) > div.p-datatable.p-component.p-datatable-responsive-scroll > div.p-datatable-wrapper > table > tbody > tr > td:nth-child(5)').innerText();
-    expect(departament).toBe(fechaUbicacion[0].departamento);
+    const departament = await tableRow.locator('td').nth(4).innerText();
+    expect(departament).toBe(fechaUbicacionParsed[0].departamento);
 
     await page.locator('div').filter({ hasText: /^Efectos$/ }).locator('div').nth(2).click();
 

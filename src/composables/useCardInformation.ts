@@ -17,7 +17,7 @@ const useCardInformation = (actuacionRef, actuacionData) => {
 
   const updateCardInformation = (data) => {
     if (!data || !data.tarjetas) {
-      console.warn('Data or tarjetas is not defined');
+      console.log('Data or tarjetas is not defined');
       return;
     }
 

@@ -1,4 +1,3 @@
-
 import { ref } from "vue"
 import { v4 as uuid } from 'uuid';
 
@@ -6,10 +5,8 @@ import type { Afectados, AfectadosForm } from '../interfaces/afectado.interface'
 import type { DropDownInterface } from "@/interfaces/dropdown.interface";
 import useFieldState from "./useFieldsState";
 import { afectadosFake as itemsFake } from '@/data/mock/datosActuacion'
-import useActuacion from './useActuacion';
-import useNewActuacion from './useNewActuacion';
 
-const { agregarIdState, guardarModificaciones, eliminarIdState, resetStates, statesID } = useFieldState();
+const { agregarIdState, guardarModificaciones, eliminarIdState } = useFieldState();
 
 let afectados = ref<Afectados[]>([]);
 let selectedType = ref<DropDownInterface>()
@@ -18,6 +15,8 @@ let selectedSexo = ref<DropDownInterface>()
 let selectedNacionalidad = ref<DropDownInterface>()
 let selectedEstadoCivil = ref<DropDownInterface>()
 let selectedInstruccion = ref<DropDownInterface>()
+let selectedShowDocument = ref<DropDownInterface>()
+let selectedHasEstudies = ref<DropDownInterface>()
 
 const initialValues: AfectadosForm = {
     nroDocumento: 0,
@@ -33,7 +32,10 @@ const initialValues: AfectadosForm = {
     typeSexo: { name: '' },
     nacionalidad: { name: '' },
     estadoCivil: { name: '' },
-    instruccion: { name: '' }
+    instruccion: { name: '' },
+    showDocument: { name: 'SI' },
+    hasEstudies: { name: 'SI' },
+    observaciones: ''
 };
 const useAfectados = () => {
 
@@ -83,6 +85,8 @@ const useAfectados = () => {
         selectedNacionalidad.value = null;
         selectedEstadoCivil.value = null;
         selectedInstruccion.value = null;
+        selectedShowDocument.value = undefined;
+        selectedHasEstudies.value = undefined;
     }
     const reset = () => {
         afectados.value = [];
@@ -115,6 +119,8 @@ const useAfectados = () => {
         selectedNacionalidad,
         selectedEstadoCivil,
         selectedInstruccion,
+        selectedHasEstudies,
+        selectedShowDocument,
         reset,
         resetAllDropdown,
         set,

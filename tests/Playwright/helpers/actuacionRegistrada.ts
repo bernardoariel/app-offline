@@ -1,5 +1,15 @@
 import { test, expect } from '@playwright/test';
 
+const formatDate = (isoDate: string) => {
+    const date = new Date(isoDate);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Meses empiezan desde 0 en JavaScript
+    const year = date.getFullYear();
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    return `${day}/${month}/${year} ${hours}:${minutes}`;
+};
+
 export const actuacionInTable = async (page:any) =>{
 //  // Navega a la página que usa IndexedDB
 //  await page.goto('https://tu-sitio.com');
@@ -63,7 +73,7 @@ export const actuacionInTable = async (page:any) =>{
 };
 
 
-export const detailsOfActuacionInTable = async (page: any) => {
+export const detailsOfActuacionInTable = async (page: any , typeActuacion:string) => {
     await page.getByLabel('Row Collapsed').click();
   
     // Obtener datos de IndexedDB
@@ -94,15 +104,16 @@ export const detailsOfActuacionInTable = async (page: any) => {
       });
     });
   
-    const { afectados , vinculados , fechaUbicacion , juzgadoInterviniente } = indexDBData[0]
+    const { afectados , vinculados , fechaUbicacion , efectos ,  personalInterviniente } = indexDBData[0]
     const afectadosParsed = JSON.parse(afectados);
     const vinculadosParsed = JSON.parse(vinculados);
     const fechaUbicacionParsed = JSON.parse(fechaUbicacion);
-    // const juzgadoIntervinienteParsed = JSON.parse(juzgadoInterviniente);
+    const efectosParsed = JSON.parse(efectos);
+    const personalIntervinienteParsed = JSON.parse(personalInterviniente);
 
-    const tableRow = await page.locator('#pv_id_95_0_expansion .p-datatable-wrapper tbody tr').first(); 
+    const tableRow = await page.locator('[data-pc-section="rowexpansion"] .p-datatable-wrapper tbody tr').first();
 
-    const nameAfectado = await tableRow.locator('td').nth(0).textContent();
+    const nameAfectado = await tableRow.locator('td').nth(0).innerText()
     console.log("Texto obtenido (Nombre del afectado):", nameAfectado);
 
     expect(nameAfectado).not.toBeNull();
@@ -141,11 +152,14 @@ export const detailsOfActuacionInTable = async (page: any) => {
     expect(tipoVinculado).toBe(vinculadosParsed[0].typeAfectado);
 
     await page.locator('div').filter({ hasText: /^Fecha y Ubicación$/ }).locator('div').nth(2).click();
-    const dateFrom = await tableRow.locator('td').nth(0).textContent();
-    expect(dateFrom).toBe(fechaUbicacionParsed[0].desdeFechaHora);
 
+    const formattedDateFrom = formatDate(fechaUbicacionParsed[0].desdeFechaHora);
+    const dateFrom = await tableRow.locator('td').nth(0).textContent();
+    expect(dateFrom).toBe(formattedDateFrom);
+
+    const formattedDateTo = formatDate(fechaUbicacionParsed[0].hastaFechaHora);
     const dateTo = await tableRow.locator('td').nth(1).innerText();
-    expect(dateFrom).toBe(fechaUbicacionParsed[0].hastaFechaHora);
+    expect(dateTo).toBe(formattedDateTo);
 
     const adress = await tableRow.locator('td').nth(2).innerText();
     expect(adress).toBe(fechaUbicacionParsed[0].calle);
@@ -157,9 +171,37 @@ export const detailsOfActuacionInTable = async (page: any) => {
     expect(departament).toBe(fechaUbicacionParsed[0].departamento);
 
     await page.locator('div').filter({ hasText: /^Efectos$/ }).locator('div').nth(2).click();
+    const categoria =await tableRow.locator('td').nth(0).textContent();
+    expect(categoria).toBe(efectosParsed[0].categoria.name);
 
+    const marca =await tableRow.locator('td').nth(1).textContent();
+    expect(marca).toBe(efectosParsed[0].marca.name);
 
-    await page.locator('div').filter({ hasText: /^Intervinientes$/ }).locator('div').nth(2).click();
+    const modelo =await tableRow.locator('td').nth(2).textContent();
+    expect(modelo).toBe(efectosParsed[0].modelo.name);
+
+    const subcategoria =await tableRow.locator('td').nth(3).textContent();
+    expect(subcategoria).toBe(efectosParsed[0].subcategoria.name);
+
+    const tipo =await tableRow.locator('td').nth(4).textContent();
+    expect(tipo).toBe(efectosParsed[0].tipo.name);
+    if(typeActuacion == "oficio"){
+       await page.locator('div').filter({ hasText: /^Intervinientes$/ }).locator('div').nth(2).click(); 
+       const lastname = await tableRow.locator('td').nth(0).innerText();
+       expect(lastname).toBe(personalIntervinienteParsed[0].apellido);
+
+       const name = await tableRow.locator('td').nth(1).innerText();
+       expect(name).toBe(personalIntervinienteParsed[0].nombre);
+
+       const jerarquia = await tableRow.locator('td').nth(2).innerText();
+       expect(jerarquia).toBe(personalIntervinienteParsed[0].jerarquia);
+
+       const dependencia = await tableRow.locator('td').nth(3).innerText();
+       expect(dependencia).toBe(personalIntervinienteParsed[0].dependencia);
+
+    }
+
+    
 
 
     // Continúa comparando los demás elementos de la tabla con los datos de IndexedDB...

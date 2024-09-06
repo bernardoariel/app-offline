@@ -33,11 +33,6 @@ const hardcodedData = {
     marcasCategorias,
 };
 
-
-const apiUrl = "http://localhost/siis/api/v1";
-
-// const apiUrl = 'http://localhost:3000'
-
 const customMap: { [key: string]: keyof typeof hardcodedData } = {
     'tipo-sitio': 'sitios',
     'tipo-modus-operandi': 'modusOperandi',
@@ -47,7 +42,7 @@ const customMap: { [key: string]: keyof typeof hardcodedData } = {
     'juzgado': "juzgadoInterviniente",
     'tipoufi': "ufiNro",
     'ayudante': "ayudanteFiscal",
-    'fiscal': "fiscalCargo", 
+    'fiscal': "fiscalCargo",
     //efectos
     'categorias': "categorias",
     "sub-categorias": "subcategorias",
@@ -64,9 +59,9 @@ function getData(name: string, search?: string) {
     return hardcodedData[key];
 }
 
-export async function useGetDropdowns(param: string, search?: string) {
+const failure = ref<boolean>(false)
+export async function useGetDropdowns(param: string, apiUrl: string, search?: string) {
     const dropdownData = ref<any>(null);
-
     const { data, fetchData } = useFetch<any>();
 
     const url = (() => {
@@ -89,24 +84,28 @@ export async function useGetDropdowns(param: string, search?: string) {
                 return `${apiUrl}/${param}/`;
         }
     })();
-
-    try {
-        await fetchData(url as string);
-
-        if (data.value) {
-            if (param === "tipoufi") {
-                dropdownData.value = addNameProp(data.value.data, "Numero");
-            } else if (param === "personalfiscal") {
-                dropdownData.value = addNameProp(data.value.data, "Denominacion");
+    if (failure.value) {
+        dropdownData.value = getData(param, search)
+    }else {
+        try {
+            await fetchData(url as string);
+            if (data.value) {
+                if (param === "tipoufi") {
+                    dropdownData.value = addNameProp(data.value.data, "Numero");
+                } else if (param === "personalfiscal") {
+                    dropdownData.value = addNameProp(data.value.data, "Denominacion");
+                } else {
+                    dropdownData.value = data.value.data;
+                }
             } else {
-                dropdownData.value = data.value.data;
+                failure.value = true
+                dropdownData.value = getData(param, search);
             }
-        } else {
+        } catch (error) {
+            console.log("Error fetching data from API, using hardcoded data.", error);
             dropdownData.value = getData(param, search);
+            failure.value = true
         }
-    } catch (error) {
-        console.log("Error fetching data from API, using hardcoded data.", error);
-        dropdownData.value = getData(param, search);
     }
 
     return {

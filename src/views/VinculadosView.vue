@@ -21,6 +21,8 @@ import {
   instruccionDropdown,
   nacionalidadDropdown,
   sexoDropdown,
+  showDocumentDropdown,
+  hasEstudiesDropdown,
 } from '@/helpers/getDropItems';
 import { useForm } from 'vee-validate';
 
@@ -29,6 +31,9 @@ const { editar, agregar, initialValues } = useVinculados();
 const { selectedItem } = useItemValue();
 const { obtenerTarjeta, actuacionData } = useActuacionData();
 const isPersonaDesconocida = ref<boolean>(false);
+const observaciones = ref<string | undefined>('');
+const showDocumentSelect = ref({name: 'SI'});
+const hasEstudiesSelect = ref({name:'SI'});
 // const textAreaDescription  = ref<string>("");
 
 const validationSchema = yup.object({
@@ -210,6 +215,13 @@ let formData = ref<VinculadosForm>({
   profesion: '',
   apodo: '',
   descripcionDesconocido: '',
+  observaciones: '',
+  hasEstudies: {
+    name: 'SI',
+  },
+  showDocument: {
+    name: 'SI',
+  },
 });
 const tarjetaValues = ref<string[]>([]);
 onActivated(() => {
@@ -246,6 +258,9 @@ const updateDataWithForm = () => {
       name: formData?.value?.instruccion || 'Instrucción',
     };
     nroDocumento.value = formData.value.nroDocumento;
+    observaciones.value = formData.value.observaciones;
+    hasEstudiesSelect.value = { name: formData.value.hasEstudies };
+    showDocumentSelect.value = { name: formData.value.showDocument };
     fechaNacimiento.value = formData.value.fecha;
     if (formData.value.descripcionDesconocido) {
       textAreaDescription.value = formData.value.descripcionDesconocido;
@@ -338,6 +353,9 @@ const handleAgregarElemento = () => {
       estadoCivil: '',
       instruccion: '',
       descripcionDesconocido: textAreaDescription.value,
+      observaciones: '',
+      showDocument: '',
+      hasEstudies: '',
     };
     isPersonaDesconocida.value = false;
   } else {
@@ -357,6 +375,9 @@ const handleAgregarElemento = () => {
       estadoCivil: estadoCivilSelect.value.name,
       instruccion: instruccionSelect.value.name,
       descripcionDesconocido: '',
+      observaciones: observaciones.value,
+      showDocument: showDocumentSelect.value.name,
+      hasEstudies: hasEstudiesSelect.value.name,
     };
   }
 
@@ -378,6 +399,9 @@ const handleAgregarElemento = () => {
   nroDocumento.value = '';
   fechaNacimiento.value = '';
   textAreaDescription.value = '';
+  observaciones.value = '';
+  showDocumentSelect.value = { name: 'SI' };
+  hasEstudiesSelect.value = { name: 'SI' };
 };
 
 const handleCancelar = () => {
@@ -423,6 +447,9 @@ const handleModificarElemento = () => {
         estadoCivil: estadoCivilSelect.value.name || '',
         instruccion: instruccionSelect.value.name || '',
         descripcionDesconocido: textAreaDescription.value || '',
+        observaciones: observaciones.value,
+        showDocument: showDocumentSelect.value.name || '',
+        hasEstudies: hasEstudiesSelect.value.name || '',
         ...itemStateEncontrado,
       };
     }
@@ -448,6 +475,9 @@ watch(selectedItem, (newVal: any) => {
     profesion.value = '';
     apodo.value = '';
     textAreaDescription.value = '';
+    observaciones.value = '';
+    showDocumentSelect.value = { name: 'SI' };
+    hasEstudiesSelect.value = { name: 'SI' };
     isPersonaDesconocida.value = false;
   } else {
     formData.value = { ...newVal };
@@ -503,7 +533,7 @@ watch(selectedItem, (newVal: any) => {
               {{ errors.tipoDocSelect }}
             </span>
           </div>
-          <div class="col-4">
+          <div class="col-3">
             <label for="dropdown">N° de doc.</label>
             <MyInput
               type="text"
@@ -517,7 +547,7 @@ watch(selectedItem, (newVal: any) => {
               @blur="() => handleBlur('nroDocumento')"
             />
           </div>
-          <div class="col-4">
+          <div class="col-3">
             <label for="dropdown">Sexo</label>
             <MyDropdown
               class="mt-2"
@@ -533,6 +563,18 @@ watch(selectedItem, (newVal: any) => {
             <span class="text-red-400" v-if="errors.sexoSelect ? true : false">
               {{ errors.sexoSelect }}
             </span>
+          </div>
+          <div class="col-2">
+            <label for="dropdown">¿Exhibe el Documento?</label>
+            <MyDropdown
+              class="mt-2"
+              :items="showDocumentDropdown"
+              v-model="showDocumentSelect"
+              placeholder="Seleccione SI/NO"
+              @change="handleDropdownChange('showDocument', $event)"
+              :color="false"
+              filter
+            />
           </div>
           <div class="col-6">
             <label for="dropdown">Apellido</label>
@@ -628,7 +670,7 @@ watch(selectedItem, (newVal: any) => {
               :error="errors.domicilio"
             />
           </div>
-          <div class="col-3">
+          <div class="col-2">
             <label for="dropdown">Teléfono</label>
             <MyInput
               type="number"
@@ -641,7 +683,7 @@ watch(selectedItem, (newVal: any) => {
             />
           </div>
 
-          <div class="col-3">
+          <div class="col-2">
             <label for="dropdown">Profesión</label>
             <MyInput
               type="text"
@@ -651,6 +693,18 @@ watch(selectedItem, (newVal: any) => {
               @input="handleInputChange('profesion', $event)"
               @blur="() => handleBlur('profesion')"
               :color="false"
+            />
+          </div>
+          <div class="col-2">
+            <label for="dropdown">Tiene Estudios?</label>
+            <MyDropdown
+              class="mt-2"
+              :items="hasEstudiesDropdown"
+              v-model="hasEstudiesSelect"
+              placeholder="Seleccione SI/NO"
+              @change="handleDropdownChange('hasEstudies', $event)"
+              :color="false"
+              filter
             />
           </div>
           <div class="col-3">
@@ -685,6 +739,17 @@ watch(selectedItem, (newVal: any) => {
               :color="false"
             />
           </div>
+          <div class="col-12">
+            <label for="dropdown">Observaciones</label>
+            <MyTextArea
+              class="mt-2 w-full"
+              placeholder="Ingrese observaciones"
+              @input="handleInputChange('observaciones', $event)"
+              @blur="() => handleBlur('observaciones')"
+              v-model="observaciones"
+              :color="false"
+            />
+          </div>
         </div>
         <div class="col-12" v-else>
           <p class="mb-0">Descripción:</p>
@@ -699,6 +764,7 @@ watch(selectedItem, (newVal: any) => {
             cols="60"
           />
         </div>
+        
         <div class="col-3">
           <div class="flex align-items-center">
             <Checkbox
@@ -740,11 +806,6 @@ watch(selectedItem, (newVal: any) => {
           </div>
         </div>
       </div>
-      <!-- <pre>
-          <span v-for="(id, pristine) in statesID" key="id">
-            ID: {{id}}, Pristine: {{ pristine }}
-          </span>
-        </pre> -->
     </template>
   </Card>
 </template>

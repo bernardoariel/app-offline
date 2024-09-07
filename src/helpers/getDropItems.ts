@@ -5,9 +5,8 @@ import { dependencias } from "@/data/dependencia";
 import { useGetDropdowns } from "@/composables/useGetDropdowns";
 import { sexo, documentos, afectados, nacionalidad, estadoCivil, instruccion, jerarquia, typesHasEstudies, typesShowDocument } from '@/data/actuacionNew'
 
-const getApiUrl = localStorage.getItem('apiUrl') || 'http://localhost:3000'
 const getItems = async (dropdownName: string, searchParam?: string) => {
-    const { dropdownData: data } = await useGetDropdowns(dropdownName, getApiUrl, searchParam)
+    const { dropdownData: data } = await useGetDropdowns(dropdownName, searchParam)
     return data.value
 }
 

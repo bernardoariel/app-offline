@@ -1,5 +1,4 @@
 import { ref } from "vue";
-import { useFetch } from "./useFetch";
 import {
     sitios,
     modusOperandi,
@@ -59,10 +58,22 @@ function getData(name: string, search?: string) {
     return hardcodedData[key];
 }
 
-const failure = ref<boolean>(false)
-export async function useGetDropdowns(param: string, apiUrl: string, search?: string) {
+async function getFromCache(url: string) {
+    return caches.open('dynamic-v10').then(function (cache) {
+        return cache.match(url).then(function (response) {
+            if (!response) {
+                throw new Error('No data in cache for this URL');
+            }
+            console.log(response.json())
+            return response.json();  // Devuelve la respuesta como JSON
+        });
+    });
+}
+
+const apiUrl = '/sis/api/V1'
+export async function useGetDropdowns(param: string, search?: string) {
     const dropdownData = ref<any>(null);
-    const { data, fetchData } = useFetch<any>();
+    // const { data, fetchData } = useFetch<any>();
 
     const url = (() => {
         switch (param) {
@@ -84,28 +95,23 @@ export async function useGetDropdowns(param: string, apiUrl: string, search?: st
                 return `${apiUrl}/${param}/`;
         }
     })();
-    if (failure.value) {
-        dropdownData.value = getData(param, search)
-    }else {
-        try {
-            await fetchData(url as string);
-            if (data.value) {
-                if (param === "tipoufi") {
-                    dropdownData.value = addNameProp(data.value.data, "Numero");
-                } else if (param === "personalfiscal") {
-                    dropdownData.value = addNameProp(data.value.data, "Denominacion");
-                } else {
-                    dropdownData.value = data.value.data;
-                }
+    try {
+        const data = await getFromCache(url as string);
+        console.log(data)
+        if (data) {
+            if (param === "tipoufi") {
+                dropdownData.value = addNameProp(data.data, "Numero");
+            } else if (param === "personalfiscal") {
+                dropdownData.value = addNameProp(data.data, "Denominacion");
             } else {
-                failure.value = true
-                dropdownData.value = getData(param, search);
+                dropdownData.value = data.data;
             }
-        } catch (error) {
-            console.log("Error fetching data from API, using hardcoded data.", error);
+        } else {
             dropdownData.value = getData(param, search);
-            failure.value = true
         }
+    } catch (error) {
+        console.log("Error fetching data from API, using hardcoded data.", error);
+        dropdownData.value = getData(param, search);
     }
 
     return {

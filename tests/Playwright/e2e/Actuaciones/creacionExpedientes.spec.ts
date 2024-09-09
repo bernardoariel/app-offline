@@ -33,7 +33,7 @@ test.describe("Creación de actuaciones tipo Expedientes", () => {
     await cardVinculados(page)
     await cardPersonalInterviniente(page)
     await datosLegalesExpedientes(page)
-    // await pdfView(page)
+    await pdfView(page)
     await registrar(page)
     await actuacionInTable(page)
     await detailsOfActuacionInTable(page , "oficio")

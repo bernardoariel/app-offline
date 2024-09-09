@@ -68,17 +68,17 @@ export const especialesEmergenciasLink = async (page:any) => {
 export const especialesSiniestroLink = async (page:any) => {
     await page.getByRole('button', { name: '' }).click();
     await page.locator('div').filter({ hasText: /^Especiales$/ }).click();
-    await page.getByRole('link', { name: ' Siniestro Vial' }).click();
+    await page.getByRole('link', { name: ' Siniestro Vial' }).first().click();
 }
 export const especialesSuicidioLink = async (page:any) => {
     await page.getByRole('button', { name: '' }).click();
     await page.locator('div').filter({ hasText: /^Especiales$/ }).click();
-    await page.getByRole('link', { name: ' Ahoracmiento o Suicidio' }).click();
+    await page.getByRole('link', { name: ' Ahorcamiento o Suicidio' }).click();
 }
 export const especialesIncendioLink = async (page:any) => {
     await page.getByRole('button', { name: '' }).click();
     await page.locator('div').filter({ hasText: /^Especiales$/ }).click();
-    await page.getByRole('link', { name: ' Incendio en Vivienda' }).click();
+    await page.getByRole('link', { name: ' Incendio en Vivienda' }).first().click();
 }
 export const especialesIntoxicacionLink = async (page:any) => {
     await page.getByRole('button', { name: '' }).click();
@@ -88,42 +88,48 @@ export const especialesIntoxicacionLink = async (page:any) => {
 
 export const preliminaresIncendioLink = async (page:any) => {
     await page.getByRole('button', { name: '' }).click();
-    await page.locator('div').filter({ hasText: /^PRELIMINARES$/ }).click();
+    await page.locator('div').filter({ hasText: /^UFI DELITOS$/ }).click();
     await page.getByRole('link', { name: ' Incendio en Vivienda' }).click();
 }
 
 export const preliminaresProcedenciaLink = async (page:any) => {
     await page.getByRole('button', { name: '' }).click();
-    await page.locator('div').filter({ hasText: /^PRELIMINARES$/ }).click();
+    // await page.locator('div').filter({ hasText: /^PRELIMINARES$/ }).click();
     await page.getByRole('link', { name: ' Establecer procedencia' }).click();
 }
 
 export const preliminaresFugaLink = async (page:any) => {
     await page.getByRole('button', { name: '' }).click();
-    await page.locator('div').filter({ hasText: /^PRELIMINARES$/ }).click();
+    // await page.locator('div').filter({ hasText: /^PRELIMINARES$/ }).click();
     await page.getByRole('link', { name: ' Fuga de Menor' }).click();
 }
 
 export const preliminaresSiniestroLink = async (page:any) => {
     await page.getByRole('button', { name: '' }).click();
-    await page.locator('div').filter({ hasText: /^PRELIMINARES$/ }).click();
+    // await page.locator('div').filter({ hasText: /^PRELIMINARES$/ }).click();
     await page.getByRole('link', { name: ' Siniestro Vial' }).click();
 }
 
 export const preliminaresIncendioAutomotorLink = async (page:any) => {
     await page.getByRole('button', { name: '' }).click();
-    await page.locator('div').filter({ hasText: /^PRELIMINARES$/ }).click();
+    // await page.locator('div').filter({ hasText: /^PRELIMINARES$/ }).click();
     await page.getByRole('link', { name: ' Incendio Automotor' }).click();
 }
 
 export const preliminaresTentativaLink = async (page:any) => {
     await page.getByRole('button', { name: '' }).click();
-    await page.locator('div').filter({ hasText: /^PRELIMINARES$/ }).click();
+    // await page.locator('div').filter({ hasText: /^PRELIMINARES$/ }).click();
     await page.getByRole('link', { name: ' Tentativa de Suicidio' }).click();
 }
 
 export const preliminaresOtrosLink = async (page:any) => {
     await page.getByRole('button', { name: '' }).click();
-    await page.locator('div').filter({ hasText: /^PRELIMINARES$/ }).click();
+    // await page.locator('div').filter({ hasText: /^PRELIMINARES$/ }).click();
     await page.getByRole('link', { name: ' Otros' }).click();
+}
+
+export const preliminaresCaidaLink = async (page:any) => {
+    await page.getByRole('button', { name: '' }).click();
+    // await page.locator('div').filter({ hasText: /^PRELIMINARES$/ }).click();
+    await page.getByRole('link', { name: ' Caída Casual' }).click();
 }

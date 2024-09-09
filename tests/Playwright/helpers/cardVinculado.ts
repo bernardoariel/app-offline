@@ -54,3 +54,40 @@ export const cardVinculados =  async (page:any) =>{
   // await expect(page.getByTestId('vinculadosname').getByText(lastName)).toBeVisible();  
   
 }
+
+export const cardExtraviado =  async (page:any) =>{
+  await page.getByTestId('Extraviado/aPlusButton').click();
+  await page.getByLabel('Seleccione tipo de denunciante').click();
+  await page.getByLabel('Extraviado').click();
+  await page.getByLabel('Seleccione tipo de doc.').click();
+  await page.getByLabel('DNI').click();
+  await page.getByPlaceholder('Ingrese N° de doc').click();
+  await page.getByPlaceholder('Ingrese N° de doc').fill(dni);
+  await page.getByLabel('Seleccione sexo').click();
+  await page.getByLabel('Masculino').click();
+  await page.getByPlaceholder('Ingrese apellido').click();
+  await page.getByPlaceholder('Ingrese apellido').fill(lastName);
+  await page.getByPlaceholder('Ingrese nombre').click();
+  await page.getByPlaceholder('Ingrese nombre').fill('321321');
+  await page.getByPlaceholder('Ingrese fecha').click();
+  await page.getByPlaceholder('Ingrese fecha').fill(birthDate);
+  await page.getByLabel('Nacionalidad').getByText('Nacionalidad').click();
+  await page.getByLabel('Argentina').click();
+  await page.getByLabel('Estado Civil').click();
+  await page.getByLabel('Casado/a').click();
+  await page.getByPlaceholder('Ingrese Domicilio de').click();
+  await page.getByPlaceholder('Ingrese Domicilio de').fill(adress);
+  await page.getByPlaceholder('Ingrese teléfono').click();
+  await page.getByPlaceholder('Ingrese teléfono').fill(phoneNumber);
+  await page.getByPlaceholder('Ingrese Profesión').click();
+  await page.getByPlaceholder('Ingrese Profesión').fill(profession);
+  await page.getByLabel('Instrucción').click();
+  await page.getByText('Secundaria').click();
+  await page.getByPlaceholder('Apodo').click();
+  await page.getByPlaceholder('Apodo').fill(nickname);  
+  await page.getByLabel('Agregar').click();
+  await page.getByRole('button', { name: '' }).click();
+  // await expect(page.getByTestId('vinculadosname')).toBeVisible();
+  // await expect(page.getByTestId('vinculadosname').getByText(lastName)).toBeVisible();  
+  
+}

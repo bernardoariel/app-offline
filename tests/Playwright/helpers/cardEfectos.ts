@@ -51,6 +51,7 @@ export const cardEfectosSecuestrado =  async (page:any) =>{
     await page.locator('div').filter({ hasText: /^Nroº IMEI$/ }).getByRole('textbox').click();
     await page.locator('div').filter({ hasText: /^Nroº IMEI$/ }).getByRole('textbox').fill('13213541321635121');
     await page.getByLabel('Agregar').click();
+    await page.getByRole('button', { name: '' }).click();
 }
 
 
@@ -74,4 +75,5 @@ export const cardEfectosRecuperado =  async (page:any) =>{
     await page.locator('div').filter({ hasText: /^Nroº IMEI$/ }).getByRole('textbox').click();
     await page.locator('div').filter({ hasText: /^Nroº IMEI$/ }).getByRole('textbox').fill('654654654');
     await page.getByLabel('Agregar').click();
+    await page.getByRole('button', { name: '' }).click();
 }

@@ -13,6 +13,7 @@ import {
     subcategorias,
     modelosCategorias,
     marcasCategorias,
+    tipoCategorias,
 } from "@/data/actuacionNew";
 import { addNameProp } from "@/helpers/dropUtils";
 
@@ -30,6 +31,7 @@ const hardcodedData = {
     subcategorias,
     modelosCategorias,
     marcasCategorias,
+    tipoCategorias
 };
 
 const customMap: { [key: string]: keyof typeof hardcodedData } = {
@@ -47,6 +49,7 @@ const customMap: { [key: string]: keyof typeof hardcodedData } = {
     "sub-categorias": "subcategorias",
     'marcas': "marcasCategorias",
     'modelos': "modelosCategorias",
+    'tipo-categorias': 'tipoCategorias'
 };
 
 function getData(name: string, search?: string) {
@@ -99,6 +102,8 @@ export async function useGetDropdowns(param: string, cacheInfo: string | null,se
                 return `${apiUrl.value}/${param}`;
             case "marcas":
                 return `${apiUrl.value}/parametros/${param}/`;
+            case "tipo-categorias":
+                return `${apiUrl.value}/parametros/tipo-depositos`
             default:
                 return `${apiUrl.value}/${param}/`;
         }

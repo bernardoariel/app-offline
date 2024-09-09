@@ -25,7 +25,7 @@ export const hasEstudiesDropdown = ref(mapToDropdownItems(typesHasEstudies))
 
 export const categoriasDropdown = ref(mapToDropDownEfectos(await getItems('categorias'), "categorias"))
 export const subcategoriasDropdown = ref(mapToDropDownEfectos(await getItems('sub-categorias'), "sub-categorias"))
-export const tipoCategoriasDropdown = ref(mapToDropDownEfectos(await getItems('categorias'), "tipo-categorias"))
+export const tipoCategoriasDropdown = ref(mapToDropDownEfectos(await getItems('tipo-categorias'), "tipo-categorias"))
 export const marcasCategoriasDropdown = ref(mapToDropDownEfectos(await getItems('marcas'), "marcas"))
 export const modelosCategoriasDropdown = ref(mapToDropDownEfectos(await getItems('modelos'), "modelo"))
 

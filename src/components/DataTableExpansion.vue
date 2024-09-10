@@ -118,7 +118,19 @@ const handleRejected = () => {
       <Column field="fechaCreacion" header="Fecha"></Column>
       <Column field="nroLegajoCompleto" header="Nro.de Actuación"></Column>
       <Column field="nombreActuacion" header="Actuaciones"></Column>
-      <Column field="juzgadoInterviniente" header="Juzgado"></Column>
+      <Column header="Juzgado">
+        <template #body="slotProps">
+          <p>
+            {{
+              slotProps.data.pathName.includes('ufi')
+              ? slotProps.data.datosLegales.selectUfiNro
+              : slotProps.data.pathName.includes('preliminares')
+              ? slotProps.data.datosLegales.selectJuzgadoInterviniente
+              : slotProps.data.juzgadoInterviniente
+            }}
+          </p>
+        </template>
+      </Column>
       <Column header="Acciones">
         <template #body="{ data }">
           <div class="flex gap-2">

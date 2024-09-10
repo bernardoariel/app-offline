@@ -51,6 +51,8 @@ const validationSchema = yup.object({
   tipoSelect: yup.object().shape({
     name: yup
       .string()
+      // .required('Seleccione un tipo')
+      // .oneOf(mapToArray(tipoCategoriasDropdown), 'Selecciones un tipo válido'),
   }),
   modeloSelect: yup.object().shape({
     name: yup

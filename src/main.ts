@@ -40,6 +40,7 @@ import Row from 'primevue/row';                   // optional
 import Toast from 'primevue/toast';
 import ConfirmPopup from 'primevue/confirmpopup';
 import Skeleton from 'primevue/skeleton';
+import Tooltip from 'primevue/tooltip';
 
 import 'primeflex/primeflex.css';
 import ConfirmationService from 'primevue/confirmationservice';
@@ -91,6 +92,8 @@ app.component('ConfirmPopup', ConfirmPopup);
 app.component('Skeleton', Skeleton);
 app.directive('ripple', Ripple);
 app.directive('styleclass', StyleClass);
+app.directive('tooltip', Tooltip);
+
 app.use(ConfirmationService);
 /* const db = new Dexie('my_database');
 db.version(1).stores({

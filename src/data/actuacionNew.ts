@@ -6,6 +6,8 @@ export const estadoCivil = ['Casado/a', 'Divorciado/a', 'Separado/a', 'Soltero/a
 export const instruccion = ['Primaria', 'Secundaria', 'Terciaria', 'Universitaria', 'Sabe leer y sabe firmar', 'No sabe leer, no sabe firmar', 'No sabe leer, si sabe firmar']
 export const jerarquia = ['Agente', 'Cabo', 'Cabo Primero', 'Sargento', 'Sargento Primero', 'Sargento Ayudante', 'Sub Oficial Mayor', 'Sub Oficial Principal', 'Oficial Ayudante', 'Oficial Sub Inspector', 'Oficial Inspector', 'Oficial Principal', 'Sub Comisario', 'Comisario', 'Comisario Inspector', 'Comisario Mayor', 'Comisario General'];
 export const tipoEfecto = ['Denunciado', 'Secuestrado', 'Recuperado']
+export const typesShowDocument = ['SI', 'NO']
+export const typesHasEstudies = ['SI', 'NO']
 
 export const categorias = [
     {

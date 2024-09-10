@@ -466,6 +466,10 @@ export const actuaciones: TipoActuaciones = {
         titulo: "Efectos",
         valor: ["Denunciado", "Recuperado", "Secuestrado"],
       },
+      personalInterviniente: {
+        titulo: "Personal Interviniente",
+        valor: null,
+      },
     },
     datosLegales: {
       items: [

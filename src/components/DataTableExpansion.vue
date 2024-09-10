@@ -2,6 +2,7 @@
 import { ref, onActivated } from 'vue';
 import { useToast } from 'primevue/usetoast';
 import { getColorByAfectado } from '@/helpers/getColorByAfectado';
+import { formatFecha } from '@/helpers/getFormatFecha';
 import useSaveData from '../composables/useSaveData';
 import { useViewPdf } from '@/composables/useViewPdf';
 import { useRouter } from 'vue-router';
@@ -117,7 +118,19 @@ const handleRejected = () => {
       <Column field="fechaCreacion" header="Fecha"></Column>
       <Column field="nroLegajoCompleto" header="Nro.de Actuación"></Column>
       <Column field="nombreActuacion" header="Actuaciones"></Column>
-      <Column field="juzgadoInterviniente" header="Juzgado"></Column>
+      <Column header="Juzgado">
+        <template #body="slotProps">
+          <p>
+            {{
+              slotProps.data.pathName.includes('ufi')
+              ? slotProps.data.datosLegales.selectUfiNro
+              : slotProps.data.pathName.includes('preliminares')
+              ? slotProps.data.datosLegales.selectJuzgadoInterviniente
+              : slotProps.data.juzgadoInterviniente
+            }}
+          </p>
+        </template>
+      </Column>
       <Column header="Acciones">
         <template #body="{ data }">
           <div class="flex gap-2">
@@ -155,7 +168,7 @@ const handleRejected = () => {
             <div class="flex align-items-center">
               <RadioButton
                 v-model="selectedOption"
-                inputId="optionAfectados"
+                inputId="afectados"
                 name="options"
                 value="afectados"
               />
@@ -164,7 +177,7 @@ const handleRejected = () => {
             <div class="flex align-items-center">
               <RadioButton
                 v-model="selectedOption"
-                inputId="optionVinculados"
+                inputId="vinculados"
                 name="options"
                 value="vinculados"
               />
@@ -173,7 +186,7 @@ const handleRejected = () => {
             <div class="flex align-items-center">
               <RadioButton
                 v-model="selectedOption"
-                inputId="optionFechaUbicacion"
+                inputId="fechaUbicacion"
                 name="options"
                 value="fechaUbicacion"
               />
@@ -182,7 +195,7 @@ const handleRejected = () => {
             <div class="flex align-items-center">
               <RadioButton
                 v-model="selectedOption"
-                inputId="optionEfectos"
+                inputId="fechaEfectos"
                 name="options"
                 value="efectos"
               />
@@ -191,11 +204,11 @@ const handleRejected = () => {
             <div class="flex align-items-center">
               <RadioButton
                 v-model="selectedOption"
-                inputId="optionIntervinientes"
+                inputId="personalInterviniente"
                 name="options"
-                value="intervinientes"
+                value="personalInterviniente"
               />
-              <label for="intervinientes" class="ml-2">Intervinientes</label>
+              <label for="personalInterviniente" class="ml-2">Intervinientes</label>
             </div>
           </div>
           <div v-if="selectedOption === 'afectados'">
@@ -250,8 +263,16 @@ const handleRejected = () => {
               <h2 class="uppercase">Fecha Ubicacion</h2>
             </div>
             <DataTable :value="slotProps.data.fechaUbicacion">
-              <Column field="desdeFechaHora" header="Fecha desde"></Column>
-              <Column field="hastaFechaHora" header="Fecha hasta"></Column>
+              <Column field="desdeFechaHora" header="Fecha desde">
+                <template #body="slotProps">
+                  {{ formatFecha(slotProps.data.desdeFechaHora) }}
+                </template>
+              </Column>
+              <Column field="hastaFechaHora" header="Fecha hasta">
+                <template #body="slotProps">
+                  {{ formatFecha(slotProps.data.hastaFechaHora) }}
+                </template>
+              </Column>
               <Column field="calle" header="Calle"></Column>
               <Column field="numero" header="Número"></Column>
               <Column field="departamento" header="Departamento"></Column>
@@ -262,22 +283,22 @@ const handleRejected = () => {
               <h2 class="uppercase">Efectos</h2>
             </div>
             <DataTable :value="slotProps.data.efectos">
-              <Column field="categoria" header="Categoría" sortable></Column>
-              <Column field="marca" header="Marca" sortable></Column>
-              <Column field="modelo" header="Modelo" sortable></Column>
+              <Column field="categoria.name" header="Categoría" sortable></Column>
+              <Column field="marca.name" header="Marca" sortable></Column>
+              <Column field="modelo.name" header="Modelo" sortable></Column>
               <Column
-                field="subcategoria"
+                field="subcategoria.name"
                 header="Subcategoría"
                 documento
               ></Column>
-              <Column field="tipo" header="Tipo" sortable></Column>
+              <Column field="tipo.name" header="Tipo" sortable></Column>
             </DataTable>
           </div>
-          <div v-if="selectedOption === 'intervinientes'">
+          <div v-if="selectedOption === 'personalInterviniente'">
             <div class="flex justify-content-center">
               <h2 class="uppercase">Intervinientes</h2>
             </div>
-            <DataTable :value="slotProps.data.intervinientes">
+            <DataTable :value="slotProps.data.personalInterviniente">
               <Column field="apellido" header="Apellido"></Column>
               <Column field="nombre" header="Nombre"></Column>
               <Column field="jerarquia" header="Jerarquía"></Column>

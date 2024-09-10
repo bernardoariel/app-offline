@@ -16,7 +16,10 @@ export interface VinculadosForm extends PrimaryAttributes{
     nacionalidad: {name:string},
     estadoCivil: {name:string},
     instruccion: {name:string},
-    descripcionDesconocido?: string
+    descripcionDesconocido?: string,
+    showDocument: { name: string },
+    hasEstudies: { name: string },
+    observaciones?: string,
 }
 export interface Vinculados extends PrimaryAttributes{
     typeAfectado: string,
@@ -25,7 +28,10 @@ export interface Vinculados extends PrimaryAttributes{
     nacionalidad: string,
     estadoCivil: string,
     instruccion: string,
-    descripcionDesconocido?: string
+    descripcionDesconocido?: string,
+    showDocument: string,
+    hasEstudies: string,
+    observaciones?: string,
 }  
 export interface Vinculado{
     titulo: string,

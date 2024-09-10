@@ -61,11 +61,11 @@ test.describe("Creación de actuaciones tipo Preliminares", () => {
     await cardFecha(page)
     await cardEfectosSecuestrado(page) 
     await cardPersonalInterviniente(page)    
-    await datosLegalesPreliminares(page)
-    // await pdfView(page)
+    await datosLegalesPreliminares(page)    
     await registrar(page)
     await actuacionInTable(page)
     await detailsOfActuacionInTable(page , "oficio")
+    await pdfView(page)
   });
 
   test("Creación de Preliminar Caida Casual", async ({ page }) => {
@@ -76,10 +76,10 @@ test.describe("Creación de actuaciones tipo Preliminares", () => {
     await cardEfectosSecuestrado(page) 
     await cardPersonalInterviniente(page)
     await datosLegalesPreliminares(page)
-    // await pdfView(page)
     await registrar(page)
     await actuacionInTable(page)
     await detailsOfActuacionInTable(page , "oficio")
+    await pdfView(page)
   });
 
   test("Creación de Preliminar Incendio Automotor", async ({ page }) => {
@@ -90,10 +90,10 @@ test.describe("Creación de actuaciones tipo Preliminares", () => {
     await cardEfectosSecuestrado(page)
     await cardPersonalInterviniente(page)    
     await datosLegalesPreliminares(page)
-    // await pdfView(page)
     await registrar(page)
     await actuacionInTable(page)
     await detailsOfActuacionInTable(page , "oficio")
+    await pdfView(page)
   });  
 
   test("Creación de Preliminar Tentativa de Suicidio", async ({ page }) => {
@@ -104,10 +104,10 @@ test.describe("Creación de actuaciones tipo Preliminares", () => {
     await cardEfectosSecuestrado(page)
     await cardPersonalInterviniente(page)    
     await datosLegalesPreliminares(page)
-    // await pdfView(page)
     await registrar(page)
     await actuacionInTable(page)
     await detailsOfActuacionInTable(page , "oficio")
+    await pdfView(page)
   }); 
 
   test("Creación de Preliminar Otros", async ({ page }) => {
@@ -118,10 +118,10 @@ test.describe("Creación de actuaciones tipo Preliminares", () => {
     await cardEfectosSecuestrado(page)
     await cardPersonalInterviniente(page)    
     await datosLegalesPreliminares(page)
-    // await pdfView(page)
     await registrar(page)
     await actuacionInTable(page)
     await detailsOfActuacionInTable(page , "oficio")
+    await pdfView(page)
   }); 
 
 });

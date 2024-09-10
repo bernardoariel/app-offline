@@ -23,6 +23,7 @@ test.describe("Creación de actuaciones tipo Expedientes", () => {
     await registrar(page)
     await actuacionInTable(page)
     await detailsOfActuacionInTable(page , "denuncia")
+    await pdfView(page)
   });
   test("Creación de Expediente Oficio", async ({ page }) => {   
     await initializeAuthorizedUser(page)
@@ -33,10 +34,10 @@ test.describe("Creación de actuaciones tipo Expedientes", () => {
     await cardVinculados(page)
     await cardPersonalInterviniente(page)
     await datosLegalesExpedientes(page)
-    await pdfView(page)
     await registrar(page)
     await actuacionInTable(page)
     await detailsOfActuacionInTable(page , "oficio")
+    await pdfView(page)
   });
 
 });

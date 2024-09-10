@@ -23,6 +23,7 @@ test.describe("Creación de actuaciones tipo UFI Delitos Especiales", () => {
     await registrar(page)
     await actuacionInTable(page)
     await detailsOfActuacionInTable(page , "denuncia")
+    await pdfView(page)
   });
   test("Creación de Ufi Emergencias Médicas", async ({ page }) => {
     await initializeAuthorizedUser(page)
@@ -32,10 +33,10 @@ test.describe("Creación de actuaciones tipo UFI Delitos Especiales", () => {
     await cardEfectosSecuestrado(page)       
     await cardPersonalInterviniente(page)
     await datosLegalesUFI(page)
-    // await pdfView(page)
     await registrar(page)
     await actuacionInTable(page)
     await detailsOfActuacionInTable(page , "oficio")
+    await pdfView(page)
   });
 
   test("Creación de Ufi Siniestro Vial", async ({ page }) => {
@@ -47,10 +48,10 @@ test.describe("Creación de actuaciones tipo UFI Delitos Especiales", () => {
     await cardVinculados(page)
     await cardPersonalInterviniente(page)
     await datosLegalesUFI(page)
-    // await pdfView(page)
     await registrar(page)
     await actuacionInTable(page)
     await detailsOfActuacionInTable(page , "oficio")
+    await pdfView(page)
   });
 
   test("Creación de Ufi Ahorcamiento o Suicidio", async ({ page }) => {
@@ -61,10 +62,10 @@ test.describe("Creación de actuaciones tipo UFI Delitos Especiales", () => {
     await cardEfectosSecuestrado(page) 
     await cardPersonalInterviniente(page)    
     await datosLegalesUFI(page)
-    // await pdfView(page)
     await registrar(page)
     await actuacionInTable(page)
     await detailsOfActuacionInTable(page , "oficio")
+    await pdfView(page)
   });
 
   test("Creación de Ufi Incendio en Vivienda", async ({ page }) => {
@@ -75,10 +76,10 @@ test.describe("Creación de actuaciones tipo UFI Delitos Especiales", () => {
     await cardEfectosSecuestrado(page) 
     await cardPersonalInterviniente(page)
     await datosLegalesUFI(page)
-    // await pdfView(page)
     await registrar(page)
     await actuacionInTable(page)
     await detailsOfActuacionInTable(page , "oficio")
+    await pdfView(page)
   });
 
   test("Creación de Ufi Intoxicación", async ({ page }) => {
@@ -89,10 +90,10 @@ test.describe("Creación de actuaciones tipo UFI Delitos Especiales", () => {
     await cardEfectosSecuestrado(page)
     await cardPersonalInterviniente(page)    
     await datosLegalesUFI(page)
-    // await pdfView(page)
     await registrar(page)
     await actuacionInTable(page)
     await detailsOfActuacionInTable(page , "oficio")
+    await pdfView(page)
   });  
 
 });

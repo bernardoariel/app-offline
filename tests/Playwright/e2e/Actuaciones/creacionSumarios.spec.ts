@@ -24,6 +24,7 @@ test.describe("Creación de actuaciones tipo sumario", () => {
     await registrar(page)
     await actuacionInTable(page)
     await detailsOfActuacionInTable(page , "oficio")
+    await pdfView(page)
   });
   test("Creación de Sumario Denuncia", async ({ page }) => {
     await initializeAuthorizedUser(page)
@@ -33,10 +34,10 @@ test.describe("Creación de actuaciones tipo sumario", () => {
     await cardEfectosDenunciado(page)    
     await cardVinculados(page)
     await datosLegalesSumarioDenuncia(page)
-    // await pdfView(page)
     await registrar(page)
     await actuacionInTable(page)
     await detailsOfActuacionInTable(page , "denuncia")
+    await pdfView(page)
   });
 
 });

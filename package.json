@@ -13,6 +13,7 @@
     "test": "vitest --watch=false"
   },
   "dependencies": {
+    "axios": "^1.7.5",
     "dexie": "^3.2.4",
     "pdfmake": "^0.2.10",
     "pdfobject": "^2.3.0",

@@ -406,7 +406,7 @@ const handleInputChange = (campo: string | number, event: Event) => {
         v-if="item !== 'listboxCausaCaratula' && item !== 'listboxArticulos'"
       >
         <label :for="item" class="capitalize">{{
-          separateCamelCase(item)
+            separateCamelCase(item === 'juzgadoInterviniente' ? 'Interviniente': item)
         }}</label>
         <MyDropdown
           :items="dropdownItems[getField(item)]"

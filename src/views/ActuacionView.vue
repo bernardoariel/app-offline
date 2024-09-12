@@ -303,6 +303,7 @@ watch(fechaCreacion, (newValue) => {
                       rounded
                       outlined
                       @click="handleNuevoItem(key as string)"
+                      :data-testid="cardInformation[key].titulo + 'PlusButton'"
                     />
                   </div>
                 </template>

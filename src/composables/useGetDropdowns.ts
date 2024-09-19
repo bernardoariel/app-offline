@@ -84,7 +84,6 @@ async function getFromCache(url: string, cachePrefix: string) {
         throw new Error('No data in cache for this URL');
     }
     const data = await response.json()
-    console.log(data)
     return data
 }
 
@@ -124,7 +123,6 @@ export async function useGetDropdowns(param: string, cacheInfo: string | null, s
     })();
     try {
         const cachedData = await getFromCache(url as string, 'dynamic');
-        console.log(cachedData)
         if (cachedData) {
             if (param === "tipoufi") {
                 dropdownData.value = addNameProp(cachedData.data, "Numero");

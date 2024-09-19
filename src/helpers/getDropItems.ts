@@ -5,7 +5,7 @@ import { dependencias } from "@/data/dependencia";
 import { useGetDropdowns } from "@/composables/useGetDropdowns";
 import { sexo, documentos, afectados, nacionalidad, estadoCivil, instruccion, jerarquia, typesHasEstudies, typesShowDocument } from '@/data/actuacionNew'
 
-const getApiUrl = localStorage.getItem('apiUrl') || 'http://localhost:3000'
+const getApiUrl = localStorage.getItem('cacheInfo')
 const getItems = async (dropdownName: string, searchParam?: string) => {
     const { dropdownData: data } = await useGetDropdowns(dropdownName, getApiUrl, searchParam)
     return data.value
@@ -25,7 +25,7 @@ export const hasEstudiesDropdown = ref(mapToDropdownItems(typesHasEstudies))
 
 export const categoriasDropdown = ref(mapToDropDownEfectos(await getItems('categorias'), "categorias"))
 export const subcategoriasDropdown = ref(mapToDropDownEfectos(await getItems('sub-categorias'), "sub-categorias"))
-export const tipoCategoriasDropdown = ref(mapToDropDownEfectos(await getItems('categorias'), "tipo-categorias"))
+export const tipoCategoriasDropdown = ref(mapToDropDownEfectos(await getItems('tipo-categorias'), "tipo-categorias"))
 export const marcasCategoriasDropdown = ref(mapToDropDownEfectos(await getItems('marcas'), "marcas"))
 export const modelosCategoriasDropdown = ref(mapToDropDownEfectos(await getItems('modelos'), "modelo"))
 

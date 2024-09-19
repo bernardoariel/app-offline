@@ -305,7 +305,7 @@ const convertStringToPhrase = (key: string): string => {
                 ></Button>
               </div>
 
-              <div :class="['flex-items',{ 'my-4': item.descripcionDesconocido || item.descripcionOrdenPublico }]">
+              <div :class="['flex-items',{ 'my-4': item.descripcionDesconocido || item.descripcionOrdenPublico }]" :data-testid="dataKey + 'name'">
                 <span  v-if="!item.descripcionDesconocido && !item.descripcionOrdenPublico" class="font-bold">{{
                   item.apellido ? getUpperCase(item.apellido) + ',' : ''
                 }}</span>
@@ -396,7 +396,7 @@ const convertStringToPhrase = (key: string): string => {
             </div>
           </div>
           <!-- Fecha -->
-          <div v-else-if="dataKey == 'fecha'">
+          <div v-else-if="dataKey == 'fecha'" :data-testid="dataKey + 'name'">
             <div
               class="flex-container"
               :class="{ 'border-top-1 surface-border': index !== 0 }"

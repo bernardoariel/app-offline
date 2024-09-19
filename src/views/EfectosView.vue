@@ -51,8 +51,8 @@ const validationSchema = yup.object({
   tipoSelect: yup.object().shape({
     name: yup
       .string()
-      .required('Seleccione un tipo')
-      .oneOf(mapToArray(tipoCategoriasDropdown), 'Selecciones un tipo válido'),
+      // .required('Seleccione un tipo')
+      // .oneOf(mapToArray(tipoCategoriasDropdown), 'Selecciones un tipo válido'),
   }),
   modeloSelect: yup.object().shape({
     name: yup
@@ -328,6 +328,17 @@ watch(selectedItem, (newVal: any) => {
     updateDataWithForm();
   }
 });
+
+function getByIdSubcategorias() {
+  if(subCategoriaSelect.value){
+  const tiposCategories = ref<any>()
+    tiposCategories.value = tipoCategoriasDropdown.value.filter(categoria =>
+      subCategoriaSelect.value.SubcategoriaID.includes(categoria.id_subcategoria)
+    );
+    return tiposCategories.value
+  }
+    return []
+}
 </script>
 <template>
   <Card>
@@ -397,7 +408,7 @@ watch(selectedItem, (newVal: any) => {
           <label for="tipoDropdown">Seleccione Tipo</label>
           <MyDropdown
             class="mt-2"
-            :items="tipoCategoriasDropdown"
+            :items="getByIdSubcategorias()"
             v-model="tipoSelect"
             @change="(newValue) => handleDropdownChange('tipo', newValue)"
             placeholder="Seleccione Tipo"

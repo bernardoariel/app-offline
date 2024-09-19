@@ -1,5 +1,4 @@
 import { ref } from "vue";
-import { useFetch } from "./useFetch";
 import {
     sitios,
     modusOperandi,
@@ -14,6 +13,7 @@ import {
     subcategorias,
     modelosCategorias,
     marcasCategorias,
+    tipoCategorias,
 } from "@/data/actuacionNew";
 import { addNameProp } from "@/helpers/dropUtils";
 
@@ -31,6 +31,7 @@ const hardcodedData = {
     subcategorias,
     modelosCategorias,
     marcasCategorias,
+    tipoCategorias
 };
 
 const customMap: { [key: string]: keyof typeof hardcodedData } = {
@@ -48,6 +49,7 @@ const customMap: { [key: string]: keyof typeof hardcodedData } = {
     "sub-categorias": "subcategorias",
     'marcas': "marcasCategorias",
     'modelos': "modelosCategorias",
+    'tipo-categorias': 'tipoCategorias'
 };
 
 function getData(name: string, search?: string) {
@@ -59,53 +61,70 @@ function getData(name: string, search?: string) {
     return hardcodedData[key];
 }
 
-const failure = ref<boolean>(false)
-export async function useGetDropdowns(param: string, apiUrl: string, search?: string) {
-    const dropdownData = ref<any>(null);
-    const { data, fetchData } = useFetch<any>();
+async function getFromCache(url: string, cacheName:string) {
+    const cache = await caches.open(cacheName)
+    const response = await cache.match(url)
+    if (!response) {
+        throw new Error('No data in cache for this URL');
+    }
+    const data = await response.json()
+    console.log(data)
+    return data
+}
 
+export async function useGetDropdowns(param: string, cacheInfo: string | null,search?: string) {
+    const dropdownData = ref<any>(null);
+    const apiUrl = ref<string | null>(null)
+    const cacheName = ref<string | null>(null)
+    
+    if (cacheInfo) {
+        const data = JSON.parse(cacheInfo);
+        apiUrl.value = data.api;
+        cacheName.value = data.cacheName;
+    }else {
+        dropdownData.value = getData(param, search);
+        return { dropdownData };
+    }
+    
     const url = (() => {
         switch (param) {
             case "tipo-causa-caratula":
-                return `${apiUrl}/parametros/${param}/?search={"TipoCaratula": [{"operator": "=", "value": "${search}"}]}`;
+                return `${apiUrl.value}/parametros/${param}/?search={"TipoCaratula": [{"operator": "=", "value": "${search}"}]}`;
             case "personalfiscal":
-                return `${apiUrl}/${param}?search={"Jerarquia": [{"operator": "=", "value": "${search}"}]}`;
+                return `${apiUrl.value}/${param}?search={"Jerarquia": [{"operator": "=", "value": "${search}"}]}`;
             case "tipo-modus-operandi":
             case "categorias":
             case "modelos":
             case "sub-categorias":
-                return `${apiUrl}/parametros/${param}`;
+                return `${apiUrl.value}/parametros/${param}`;
             case "tipo-sitio":
             case "articulos":
-                return `${apiUrl}/${param}`;
+                return `${apiUrl.value}/${param}`;
             case "marcas":
-                return `${apiUrl}/parametros/${param}/`;
+                return `${apiUrl.value}/parametros/${param}/`;
+            case "tipo-categorias":
+                return `${apiUrl.value}/parametros/tipo-depositos`
             default:
-                return `${apiUrl}/${param}/`;
+                return `${apiUrl.value}/${param}/`;
         }
     })();
-    if (failure.value) {
-        dropdownData.value = getData(param, search)
-    }else {
-        try {
-            await fetchData(url as string);
-            if (data.value) {
-                if (param === "tipoufi") {
-                    dropdownData.value = addNameProp(data.value.data, "Numero");
-                } else if (param === "personalfiscal") {
-                    dropdownData.value = addNameProp(data.value.data, "Denominacion");
-                } else {
-                    dropdownData.value = data.value.data;
-                }
+    try {
+        const cachedData = await getFromCache(url as string, cacheName.value as string);
+        console.log(cachedData)
+        if (cachedData) {
+            if (param === "tipoufi") {
+                dropdownData.value = addNameProp(cachedData.data, "Numero");
+            } else if (param === "personalfiscal") {
+                dropdownData.value = addNameProp(cachedData.data, "Denominacion");
             } else {
-                failure.value = true
-                dropdownData.value = getData(param, search);
+                dropdownData.value = cachedData.data;
             }
-        } catch (error) {
-            console.log("Error fetching data from API, using hardcoded data.", error);
+        } else {
             dropdownData.value = getData(param, search);
-            failure.value = true
         }
+    } catch (error) {
+        console.log("Error fetching data from API, using hardcoded data.", error);
+        dropdownData.value = getData(param, search);
     }
 
     return {

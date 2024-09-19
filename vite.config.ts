@@ -52,6 +52,7 @@ export default defineConfig({
       },
     },
     minify: false,
+    target: 'esnext',
   },
   optimizeDeps: {
     include: ["pdfmake/build/pdfmake", "pdfmake/build/vfs_fonts"],

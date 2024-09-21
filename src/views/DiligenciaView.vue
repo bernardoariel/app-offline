@@ -1,21 +1,23 @@
 <template>
-  <div class="surface-section px-2 py-5 md:px-6 lg:px-8 w-full">
+  <div class="surface-section px-6 py-5 w-full">
     <div class="text-700 text-justify">
-      <div class="flex justify-content-between align-items-center mb-3">
+      <div class="flex justify-content-between mb-3">
         <Skeleton
           v-if="isLoading()"
           width="10rem"
           class="mb-2"
           height="2rem"
         ></Skeleton>
-        <div v-else class="font-medium text-3xl text-900">
-          {{ primeradiligencia ? getUpperCase(primeradiligencia.titulo) : '' }}
+        <div v-else >
+          <p class="font-medium text-2xl text-left">
+            {{ primeradiligencia ? getUpperCase(primeradiligencia.titulo) : '' }}
+          </p>
         </div>
-        <div v-if="isLoading()" class="flex d-row">
+        <div v-if="isLoading()" class="flex">
           <Skeleton width="5rem" class="mr-2"></Skeleton>
           <Skeleton width="5rem" class="mb-2"></Skeleton>
         </div>
-        <div v-else>
+        <div v-else class="flex flex-row align-items-center">
           <ToggleButton
             v-model="isVisible"
             class="p-button-rounded mr-2"

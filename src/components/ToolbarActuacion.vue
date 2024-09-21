@@ -215,9 +215,9 @@ const handleSave = async () => {
 </script>
 
 <template>
-  <Toolbar class="flex px-6 py-4 align-items-stretch border-solid border-primary flex-nowrap">
+  <Toolbar class="flex px-6 py-4 align-items-stretch flex-nowrap">
     <template #start >
-      <div class="flex flex-column xl:gap-3 h-full justify-content-between border-solid border-primary">
+      <div class="flex flex-column xl:gap-3 h-full justify-content-between ">
         <div>
           <Button
           label="Cancelar"
@@ -235,13 +235,13 @@ const handleSave = async () => {
     </template>
 
     <template #center>
-        <div class="text-3xl font-bold xl:block hidden border-solid border-primary" @click="handleClick">
+        <div class="text-3xl font-bold xl:block hidden " @click="handleClick">
           {{ actuacionData?.titulo }}
         </div>
     </template>
 
     <template #end >
-      <div class="flex flex-end flex-column gap-3 border-solid border-primary" >
+      <div class="flex flex-end flex-column gap-3 " >
         <div class="text-xl font-bold xl:hidden block" @click="handleClick">
           {{ actuacionData?.titulo }}
         </div>

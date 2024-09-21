@@ -215,9 +215,9 @@ const handleSave = async () => {
 </script>
 
 <template>
-  <Toolbar class="flex px-6 py-4 align-items-stretch flex-nowrap">
+  <Toolbar class="flex px-5 py-4 align-items-stretch flex-nowrap">
     <template #start >
-      <div class="flex flex-column xl:gap-3 h-full justify-content-between ">
+      <div class="flex flex-column gap-3 h-full justify-content-between ">
         <div>
           <Button
           label="Cancelar"
@@ -242,7 +242,7 @@ const handleSave = async () => {
 
     <template #end >
       <div class="flex flex-end flex-column gap-3 " >
-        <div class="text-xl font-bold xl:hidden block" @click="handleClick">
+        <div class="text-2xl font-bold xl:hidden block white-space-nowrap" @click="handleClick">
           {{ actuacionData?.titulo }}
         </div>
         <div class="w-full flex justify-content-end">

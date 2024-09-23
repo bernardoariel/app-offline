@@ -230,10 +230,10 @@ const convertStringToPhrase = (key: string): string => {
           <Skeleton class="w-full" height="1rem"></Skeleton>
         </div>
         <div v-for="(item, index) in items" :key="index">
-          <!-- Afectados y Vinculados -->
+          <!-- Vinculados -->
           <div v-if="dataKey == 'vinculados'">
             <div
-              class="flex-container"
+              class="flex-container border-primary border-solid"
               :class="{ 'border-top-1 surface-border': index !== 0 }"
             >
               <div class="flex-items">
@@ -290,9 +290,10 @@ const convertStringToPhrase = (key: string): string => {
               <p class="text-xs">{{ item.domicilioResidencia }}</p>
             </div>
           </div>
+          <!-- AFECTADOS -->
           <div v-else-if="dataKey == 'afectados'">
             <div
-              class="flex-container"
+              class="flex flex-row flex-nowrap border-primary border-solid align-items-center mb-2"
               :class="{ 'border-top-1 surface-border': index !== 0 }"
             >
               <div class="flex-items">

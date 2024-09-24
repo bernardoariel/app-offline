@@ -230,13 +230,14 @@ const convertStringToPhrase = (key: string): string => {
           <Skeleton class="w-full" height="1rem"></Skeleton>
         </div>
         <div v-for="(item, index) in items" :key="index">
-          <!-- Vinculados -->
+
+          <!-- VINCULADOS -->
           <div v-if="dataKey == 'vinculados'">
             <div
-              class="flex-container border-primary border-solid"
+              class="flex flex-row flex-nowrap justify-content-between align-items-center"
               :class="{ 'border-top-1 surface-border': index !== 0 }"
             >
-              <div class="flex-items">
+              <div>
                 <Button
                   icon="pi pi-pencil"
                   @click="editProduct(item.id)"
@@ -245,39 +246,38 @@ const convertStringToPhrase = (key: string): string => {
                   style="font-size: 1rem"
                 ></Button>
               </div>
-
-              <div :class="['flex-items',{ 'my-4': item.descripcionDesconocido || item.descripcionOrdenPublico }]">
-                <span  v-if="!item.descripcionDesconocido && !item.descripcionOrdenPublico" class="font-bold">{{
-                  item.apellido ? getUpperCase(item.apellido) + ',' : ''
-                }}</span>
-                <span  v-if="!item.descripcionDesconocido && !item.descripcionOrdenPublico" class="ml-2">{{
-                  item.nombre ? getTitleCase(item.nombre) : 'Nuevo'
-                }}</span>
-                <span
-                  v-if="item.typeDocumento && item.nroDocumento"
-                  class="ml-5"
-                >
-                  <i>{{ item.typeDocumento + ': ' }}</i>
-                  <i>{{ item.nroDocumento }}</i>
-                </span>
-                <span  v-if="item.descripcionOrdenPublico" class="font-bold">
-                  Orden público: 
-                </span>
-                <span v-if="item.descripcionOrdenPublico">{{getTruncatedString(item.descripcionOrdenPublico, 20)}}</span>
-                <span v-if="item.descripcionDesconocido" class="font-bold">
-                  Persona de filiación desconocida: 
-                </span>
-                <span v-if="item.descripcionDesconocido">{{getTruncatedString(item.descripcionDesconocido, 20)}}</span>
-                <span v-if="item.typeAfectado && item.typeAfectado">
+              <div class="flex flex-column w-full p-2">
+                <div :class="['flex flex-column xl:flex-row w-full justify-content-between',{ 'my-4': item.descripcionDesconocido || item.descripcionOrdenPublico }]">
+                  <div class="mb-1 xl:mb-0">
+                    <span  v-if="!item.descripcionDesconocido && !item.descripcionOrdenPublico" class="font-bold">
+                      {{ item.apellido ? getUpperCase(item.apellido) + ',' : '' }}
+                    </span>
+                    <span  v-if="!item.descripcionDesconocido && !item.descripcionOrdenPublico">
+                      {{ item.nombre ? getTitleCase(item.nombre) : 'Nuevo' }}
+                    </span>
+                  </div>
+                  <div class="mb-2 xl:mb-0">
+                    <span v-if="item.typeDocumento && item.nroDocumento">
+                      <i>{{ item.typeDocumento + ': ' }}</i>
+                      <i>{{ item.nroDocumento }}</i>
+                    </span>
+                  </div>
+                  <span v-if="item.descripcionDesconocido" class="font-bold">
+                    Persona de filiación desconocida: 
+                  </span>
+                  <span v-if="item.descripcionDesconocido">{{getTruncatedString(item.descripcionDesconocido, 20)}}</span>
                   <Tag
+                    v-if="item.typeAfectado && item.typeAfectado"
                     :value="item.typeAfectado"
-                    class="ml-5"
+                    class="w-max"
                     :severity="getColorByAfectado(item.typeAfectado)"
                   ></Tag>
-                </span>
+                </div>
+                <div>
+                  <span class="text-xs">{{ item.domicilioResidencia }}</span>
+                </div>
               </div>
-
-              <div class="flex-items">
+              <div>
                 <ButtonOptions
                   :tarjetaNombre="item.title"
                   :item="item"
@@ -286,17 +286,15 @@ const convertStringToPhrase = (key: string): string => {
                 />
               </div>
             </div>
-            <div class="linea-2">
-              <p class="text-xs">{{ item.domicilioResidencia }}</p>
-            </div>
           </div>
+
           <!-- AFECTADOS -->
           <div v-else-if="dataKey == 'afectados'">
             <div
-              class="flex flex-row flex-nowrap border-primary border-solid align-items-center mb-2"
+              class="flex flex-row flex-nowrap justify-content-between align-items-center p-2"
               :class="{ 'border-top-1 surface-border': index !== 0 }"
             >
-              <div class="flex-items">
+              <div>
                 <Button
                   icon="pi pi-pencil"
                   @click="editProduct(item.id)"
@@ -305,58 +303,59 @@ const convertStringToPhrase = (key: string): string => {
                   style="font-size: 1rem"
                 ></Button>
               </div>
-
-              <div :class="['flex-items',{ 'my-4': item.descripcionDesconocido || item.descripcionOrdenPublico }]" :data-testid="dataKey + 'name'">
-                <span  v-if="!item.descripcionDesconocido && !item.descripcionOrdenPublico" class="font-bold">{{
-                  item.apellido ? getUpperCase(item.apellido) + ',' : ''
-                }}</span>
-                <span  v-if="!item.descripcionDesconocido && !item.descripcionOrdenPublico" class="ml-2">{{
-                  item.nombre ? getTitleCase(item.nombre) : 'Nuevo'
-                }}</span>
-                <span
-                  v-if="item.typeDocumento && item.nroDocumento"
-                  class="ml-5"
-                >
-                  <i>{{ item.typeDocumento + ': ' }}</i>
-                  <i>{{ item.nroDocumento }}</i>
-                </span>
-                <span  v-if="item.descripcionOrdenPublico" class="font-bold">
-                  Orden público: 
-                </span>
-                <span v-if="item.descripcionOrdenPublico">{{getTruncatedString(item.descripcionOrdenPublico, 20)}}</span>
-                <span v-if="item.descripcionDesconocido" class="font-bold">
-                  Persona de filiación desconocida: 
-                </span>
-                <span v-if="item.descripcionDesconocido">{{getTruncatedString(item.descripcionDesconocido, 20)}}</span>
-                <span v-if="item.typeAfectado && item.typeAfectado">
+              <div class="flex flex-column w-full">
+                <div :class="['flex flex-column xl:flex-row w-full justify-content-between',{ 'my-4': item.descripcionDesconocido || item.descripcionOrdenPublico }]" :data-testid="dataKey + 'name'">
+                  <div class="mb-1 xl:mb-0">
+                    <!-- Apellido-->
+                    <span  v-if="!item.descripcionDesconocido && !item.descripcionOrdenPublico" class="font-bold">
+                      {{ item.apellido ? getUpperCase(item.apellido) + ',' : '' }}
+                    </span>
+                    <!-- Nombre-->
+                    <span  v-if="!item.descripcionDesconocido && !item.descripcionOrdenPublico" class="ml-2">
+                      {{ item.nombre ? getTitleCase(item.nombre) : 'Nuevo' }}
+                    </span>
+                  </div>
+                  <!-- Documento-->
+                  <div class="mb-2 xl:mb-0">
+                    <span v-if="item.typeDocumento && item.nroDocumento">
+                      <i>{{ item.typeDocumento + ': ' }}</i>
+                      <i>{{ item.nroDocumento }}</i>
+                    </span>
+                  </div>
+                  <span  v-if="item.descripcionOrdenPublico" class="font-bold">
+                    Orden público: 
+                  </span>
+                  <span v-if="item.descripcionOrdenPublico">{{getTruncatedString(item.descripcionOrdenPublico, 20)}}</span>
                   <Tag
+                    v-if="item.typeAfectado && item.typeAfectado"
                     :value="item.typeAfectado"
-                    class="ml-5"
+                    class="w-max"
                     :severity="getColorByAfectado(item.typeAfectado)"
                   ></Tag>
-                </span>
+                </div>
+                <div>
+                  <span class="text-xs">{{ item.domicilioResidencia }}</span>
+                </div>
               </div>
-
-              <div class="flex-items">
-                <ButtonOptions
-                  :tarjetaNombre="item.title"
-                  :item="item"
-                  :deleteItem="() => openDeleteConfirmation(item, dataKey)"
-                  :sendRelato="() => handleSendRelato(item, dataKey)"
-                />
-              </div>
-            </div>
-            <div class="linea-2">
-              <p class="text-xs">{{ item.domicilioResidencia }}</p>
+            <div>
+              <ButtonOptions
+                :tarjetaNombre="item.title"
+                :item="item"
+                :deleteItem="() => openDeleteConfirmation(item, dataKey)"
+                :sendRelato="() => handleSendRelato(item, dataKey)"
+              />
             </div>
           </div>
-          <!-- personal Interviniente -->
+            
+          </div>
+
+          <!-- PERSONAL INTERVINIENTE -->
           <div v-else-if="dataKey === 'personalInterviniente'">
             <div
-              class="flex-container"
+              class="flex flex-row flex-nowrap justify-content-between align-items-center p-2 "
               :class="{ 'border-top-1 surface-border': index !== 0 }"
             >
-              <div class="flex-items">
+              <div>
                 <Button
                   icon="pi pi-pencil"
                   @click="editProduct(item.id)"
@@ -365,25 +364,28 @@ const convertStringToPhrase = (key: string): string => {
                   style="font-size: 1rem"
                 ></Button>
               </div>
-
-              <div class="flex-items">
-                <span class="font-bold">{{
-                  item.apellido ? getUpperCase(item.apellido) + ',' : ''
-                }}</span>
-                <span class="ml-2">{{
-                  item.nombre ? getTitleCase(item.nombre) : 'Nuevo'
-                }}</span>
-
-                <span v-if="item.jerarquia && item.jerarquia">
+              <div class="flex flex-column w-full">
+                <div class="flex flex-column xl:flex-row w-full justify-content-between">
+                  <div class="mb-1 xl:mb-0">
+                    <span class="font-bold">
+                      {{ item.apellido ? getUpperCase(item.apellido) + ',' : '' }}
+                    </span>
+                    <span class="ml-2">
+                      {{ item.nombre ? getTitleCase(item.nombre) : 'Nuevo' }}
+                    </span>
+                  </div>
                   <Tag
-                    :value="item.jerarquia"
-                    class="ml-5"
-                    :severity="getColorByAfectado(item.jerarquia)"
+                  v-if="item.jerarquia && item.jerarquia"
+                  :value="item.jerarquia"
+                  class="w-max"
+                  :severity="getColorByAfectado(item.jerarquia)"
                   ></Tag>
-                </span>
+                </div>
+              <div>
+                <span class="text-xs">{{ item.dependencia }}</span>
               </div>
-
-              <div class="flex-items">
+            </div>
+              <div>
                 <ButtonOptions
                   :tarjetaNombre="item.title"
                   :item="item"
@@ -392,17 +394,15 @@ const convertStringToPhrase = (key: string): string => {
                 />
               </div>
             </div>
-            <div class="linea-2">
-              <p class="text-xs">{{ item.dependencia }}</p>
-            </div>
           </div>
-          <!-- Fecha -->
+
+          <!-- FECHA -->
           <div v-else-if="dataKey == 'fecha'" :data-testid="dataKey + 'name'">
             <div
-              class="flex-container"
+              class="flex flex-row flex-nowrap justify-content-between align-items-center p-2s"
               :class="{ 'border-top-1 surface-border': index !== 0 }"
             >
-              <div class="flex-items">
+              <div>
                 <Button
                   icon="pi pi-pencil"
                   @click="editProduct(item.id)"
@@ -411,27 +411,35 @@ const convertStringToPhrase = (key: string): string => {
                   style="font-size: 1rem"
                 ></Button>
               </div>
-
-              <div class="flex-items">
-                <span class="font-bold">Entre </span>
-                <span>{{ formatFecha(item.desdeFechaHora) }}</span>
-                <span class="font-bold"> Y </span>
-                <span>{{ formatFecha(item.hastaFechaHora) }}</span>
-                <i
-                  class="pi pi-map-marker ml-5"
-                  :style="{ color: 'red', opacity: condicion ? 1 : 0.3 }"
-                ></i>
-
-                <span v-if="item.departamento && item.departamento">
-                  <Tag
-                    :value="item.departamento"
-                    class="ml-2"
-                    :severity="getColorByAfectado(item.departamento)"
-                  ></Tag>
-                </span>
+              <div class="flex flex-column w-full p-2">
+                <div class="flex flex-column xl:flex-row justify-content-between">
+                  <div class="flex flex-column xl:flex-row">
+                    <div>
+                      <span class="font-bold mr-2">Entre </span>
+                      <span>{{ formatFecha(item.desdeFechaHora) }}</span>
+                    </div>
+                    <div>
+                      <span class="font-bold xl:mx-2"> Y </span>
+                      <span>{{ formatFecha(item.hastaFechaHora) }}</span>
+                    </div>
+                  </div>
+                  <div>
+                    <i class="pi pi-map-marker"
+                      :style="{ color: 'red', opacity: condicion ? 1 : 0.3 }"
+                    ></i>
+                    <Tag 
+                      v-if="item.departamento && item.departamento"
+                      :value="item.departamento"
+                      class="w-max ml-2"
+                      :severity="getColorByAfectado(item.departamento)"
+                    ></Tag>
+                  </div> 
+                </div>
+                <div>
+                  <span class="text-xs">{{ item.calle + ' ' + item.numero }}</span>
+                </div>
               </div>
-
-              <div class="flex-items">
+              <div>
                 <ButtonOptions
                   :tarjetaNombre="item.title"
                   :item="item"
@@ -440,16 +448,15 @@ const convertStringToPhrase = (key: string): string => {
                 />
               </div>
             </div>
-            <div class="linea-2">
-              <p class="text-xs">{{ item.calle + ' ' + item.numero }}</p>
-            </div>
           </div>
+
+          <!-- EFECTOS -->
           <div v-else-if="dataKey == 'efectos'">
             <div
-              class="flex-container"
+              class="flex flex-row flex-nowrap justify-content-between align-items-center"
               :class="{ 'border-top-1 surface-border': index !== 0 }"
             >
-              <div class="flex-items">
+              <div>
                 <Button
                   icon="pi pi-pencil"
                   @click="editProduct(item.id)"
@@ -459,11 +466,11 @@ const convertStringToPhrase = (key: string): string => {
                 ></Button>
               </div>
 
-              <div class="flex-items">
+              <div class="flex flex-column xl:flex-row justify-content-between w-full p-2">
                 <span class="font-bold">{{
                   getUpperCase(item.subcategoria.name)
                 }}</span>
-                <span class="ml-2"
+                <span class="xl:mt-0 mt-2"
                   >{{ getTitleCase(item.tipo.name) }}-{{
                     getTitleCase(item.marca.name)
                   }}-{{ getTitleCase(item.modelo.name) }}</span
@@ -471,11 +478,10 @@ const convertStringToPhrase = (key: string): string => {
                 <Tag
                   :value="item.estado.name"
                   :severity="getColorByAfectado(item.estado.name)"
-                  class="ml-5"
+                  class="xl:mt-0 mt-2 w-max h-max"
                 />
               </div>
-
-              <div class="flex-items">
+              <div>
                 <ButtonOptions
                   :tarjetaNombre="item.title"
                   :item="item"
@@ -484,9 +490,6 @@ const convertStringToPhrase = (key: string): string => {
                 />
               </div>
             </div>
-            <!-- <div class="linea-2">
-              <p class="text-xs">{{ item.dependencia }}</p>
-            </div> -->
           </div>
         </div>
       </template>

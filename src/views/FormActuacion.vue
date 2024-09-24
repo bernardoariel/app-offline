@@ -58,7 +58,7 @@ onBeforeRouteLeave((to, from) => {
             ></Button>
           </template>
           <template #center>
-            <h3 >
+            <h3>
               {{
                 tipo != 'personalInterviniente'
                 ? getTitleCase(tipo as string)

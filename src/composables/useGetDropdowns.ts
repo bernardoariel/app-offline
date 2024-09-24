@@ -61,31 +61,44 @@ function getData(name: string, search?: string) {
     return hardcodedData[key];
 }
 
-async function getFromCache(url: string, cacheName:string) {
+async function getDynamicCacheName(prefix: string): Promise<string | null> {
+    const cacheNames = await caches.keys(); // Obtiene todos los nombres de cache
+    const dynamicCacheName = cacheNames.find((name) => name.startsWith(prefix));
+
+    if (!dynamicCacheName) {
+        console.error(`No cache found with prefix "${prefix}"`);
+        return null;
+    }
+
+    return dynamicCacheName;
+}
+
+async function getFromCache(url: string, cachePrefix: string) {
+    const cacheName = await getDynamicCacheName(cachePrefix);
+    if (!cacheName) {
+        throw new Error(`No cache found with prefix: ${cachePrefix}`);
+    }
     const cache = await caches.open(cacheName)
     const response = await cache.match(url)
     if (!response) {
         throw new Error('No data in cache for this URL');
     }
     const data = await response.json()
-    console.log(data)
     return data
 }
 
-export async function useGetDropdowns(param: string, cacheInfo: string | null,search?: string) {
+export async function useGetDropdowns(param: string, cacheInfo: string | null, search?: string) {
     const dropdownData = ref<any>(null);
     const apiUrl = ref<string | null>(null)
-    const cacheName = ref<string | null>(null)
-    
+
     if (cacheInfo) {
         const data = JSON.parse(cacheInfo);
         apiUrl.value = data.api;
-        cacheName.value = data.cacheName;
-    }else {
+    } else {
         dropdownData.value = getData(param, search);
         return { dropdownData };
     }
-    
+
     const url = (() => {
         switch (param) {
             case "tipo-causa-caratula":
@@ -109,8 +122,7 @@ export async function useGetDropdowns(param: string, cacheInfo: string | null,se
         }
     })();
     try {
-        const cachedData = await getFromCache(url as string, cacheName.value as string);
-        console.log(cachedData)
+        const cachedData = await getFromCache(url as string, 'dynamic');
         if (cachedData) {
             if (param === "tipoufi") {
                 dropdownData.value = addNameProp(cachedData.data, "Numero");

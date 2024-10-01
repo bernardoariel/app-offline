@@ -5,7 +5,7 @@ const props = defineProps<{
   tarjetaNombre?: string;
   item: any;
   deleteItem: (id: string) => void;
-  sendRelato?: (text:string) => void;
+  sendRelato?: (text: string) => void;
 }>();
 
 const menu = ref();
@@ -40,15 +40,7 @@ const toggle = (event: Event) => {
 </script>
 
 <template>
-  <Button
-    type="button"
-    icon="pi pi-ellipsis-v"
-    @click="toggle"
-    aria-haspopup="true"
-    aria-controls="overlay_menu"
-    text
-    rounded
-    severity="secondary"
-  />
+  <Button type="button" icon="pi pi-ellipsis-v" @click="toggle" aria-haspopup="true" aria-controls="overlay_menu" text
+    rounded severity="secondary" />
   <Menu ref="menu" id="overlay_menu" :model="items" :popup="true" />
 </template>

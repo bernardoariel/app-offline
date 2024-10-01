@@ -623,23 +623,20 @@ watch(selectedItem, (newVal: any) => {
             variant="filled" rows="5" cols="60" />
         </div>
 
-        <div class="col-3">
+        <div class="col-12">
           <div class="flex align-items-center">
             <Checkbox v-model="isPersonaDesconocida" :binary="true" value="filacionDesconocida" />
             <p class="ml-2">Persona de filiación desconocida</p>
           </div>
         </div>
-        <div class="col-6"></div>
-        <div class="col-3">
-          <div class="flex align-items-center justify-content-end">
-            <Button label="Agregar" v-if="!selectedItem" :disabled="hasErrors()" @click="handleAgregarElemento()">
-            </Button>
-            <div v-else>
-              <Button :disabled="isEditing(selectedItem!.id)" label="Cancelar" icon="pi pi-times" severity="secondary"
-                outlined aria-label="Cancel" class="mr-3" @click="handleCancelar"></Button>
-              <Button label="Guardar Cambios" :disabled="isEditing(selectedItem!.id)" @click="handleModificarElemento()"
-                severity="warning"></Button>
-            </div>
+        <div class=" col-12 flex align-items-center justify-content-end">
+          <Button label="Agregar" v-if="!selectedItem" :disabled="hasErrors()" @click="handleAgregarElemento()">
+          </Button>
+          <div v-else>
+            <!-- <Button :disabled="isEditing(selectedItem!.id)" label="Cancelar" icon="pi pi-times" severity="secondary"
+                outlined aria-label="Cancel" class="mr-3" @click="handleCancelar"></Button> -->
+            <Button label="Guardar Cambios" :disabled="isEditing(selectedItem!.id)" @click="handleModificarElemento()"
+              severity="warning"></Button>
           </div>
         </div>
       </div>

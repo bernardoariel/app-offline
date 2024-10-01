@@ -669,8 +669,8 @@ watch(tipoDenuncianteSelect, (newVal: any) => {
             </Button>
 
             <div v-else>
-              <Button :disabled="isEditing(selectedItem!.id)" label="Cancelar" icon="pi pi-times" severity="secondary"
-                outlined aria-label="Cancel" class="mr-3" @click="handleCancelar"></Button>
+              <!-- <Button :disabled="isEditing(selectedItem!.id)" label="Cancelar" icon="pi pi-times" severity="secondary"
+                outlined aria-label="Cancel" class="mr-3" @click="handleCancelar"></Button> -->
               <Button label="Guardar Cambios" :disabled="isEditing(selectedItem!.id)" @click="handleModificarElemento()"
                 severity="warning"></Button>
             </div>

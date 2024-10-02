@@ -240,8 +240,8 @@ watch(fechaCreacion, (newValue) => {
           </div>
           <TabView v-model:activeIndex="activeButtonTab">
             <TabPanel header="Datos Requeridos">
-              <div class="flex flex-wrap gap-2 justify-content-evenly lg:block">
-                <Card v-for="key in cardInformationKeys" :key="key" class="p-fluid mb-2 w-5 lg:w-full" :style="missingFieldsEmpty[key]
+              <div class="flex flex-wrap  gap-2 justify-content-evenly lg:block">
+                <Card v-for="key in cardInformationKeys" :key="key" class="p-fluid mb-2 w-full" :style="missingFieldsEmpty[key]
                   ? key === 'efectos'
                     ? 'borderBottom: 2px solid #f97316'
                     : 'borderBottom: 2px solid #dc3545'

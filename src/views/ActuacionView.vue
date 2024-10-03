@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, watch, onActivated, computed } from 'vue';
+import { ref, watch, onActivated, computed, onMounted, onUnmounted } from 'vue';
 import DataViewCard from '@/components/DataViewCard.vue';
 import DatosLegalesView from './DatosLegalesView.vue';
 import DiligenciaView from './DiligenciaView.vue';
@@ -200,11 +200,24 @@ watch(fechaCreacion, (newValue) => {
 });
 
 
-const isVisible = ref<boolean>(true)
 const toggleVisibility = (key: string | number) => {
   cardInformation[key].visible = !cardInformation[key].visible;
 }
 
+
+const isLargeScreen = ref(window.innerWidth >= 992);
+
+const handleResize = () => {
+  isLargeScreen.value = window.innerWidth >= 992;
+};
+
+onMounted(() => {
+  window.addEventListener('resize', handleResize);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', handleResize);
+});
 
 </script>
 
@@ -258,10 +271,12 @@ const toggleVisibility = (key: string | number) => {
                   <template #title>
                     <div class="flex justify-content-between align-items-center relative">
                       <div class="flex align-items-center">
-                        <Button v-if="cardInformation[key].visible" icon="pi pi-chevron-up" text rounded
-                          severity="secondary" @click="toggleVisibility(key)" />
-                        <Button v-else icon="pi pi-chevron-down" text rounded severity="secondary"
-                          @click="toggleVisibility(key)" />
+                        <div class="lg:hidden">
+                          <Button v-if="cardInformation[key].visible" icon="pi pi-chevron-up" text rounded
+                            severity="secondary" @click="toggleVisibility(key)" />
+                          <Button v-else icon="pi pi-chevron-down" text rounded severity="secondary"
+                            @click="toggleVisibility(key)" />
+                        </div>
                         <div class="font-medium text-3xl text-900">
                           {{ cardInformation[key]?.titulo }}
                         </div>
@@ -274,7 +289,7 @@ const toggleVisibility = (key: string | number) => {
                     </div>
                   </template>
                   <template #content>
-                    <div v-show="cardInformation[key]?.visible">
+                    <div :class="{ 'hidden': !cardInformation[key]?.visible && !isLargeScreen }">
                       <DataViewCard v-if="cardInformation[key]" :itemsCardValue="cardInformation[key]" :data-key="key"
                         :actuacion="actuacionName" />
                     </div>

@@ -198,6 +198,14 @@ const actualizarFechaCreacion = (fechaSeleccionada: Date) => {
 watch(fechaCreacion, (newValue) => {
   today.value = newValue ? new Date(newValue) : null;
 });
+
+
+const isVisible = ref<boolean>(true)
+const toggleVisibility = (key: string | number) => {
+  cardInformation[key].visible = !cardInformation[key].visible;
+}
+
+
 </script>
 
 <template>
@@ -249,8 +257,14 @@ watch(fechaCreacion, (newValue) => {
                   ">
                   <template #title>
                     <div class="flex justify-content-between align-items-center relative">
-                      <div class="font-medium text-3xl text-900">
-                        {{ cardInformation[key]?.titulo }}
+                      <div class="flex align-items-center">
+                        <Button v-if="cardInformation[key].visible" icon="pi pi-chevron-up" text rounded
+                          severity="secondary" @click="toggleVisibility(key)" />
+                        <Button v-else icon="pi pi-chevron-down" text rounded severity="secondary"
+                          @click="toggleVisibility(key)" />
+                        <div class="font-medium text-3xl text-900">
+                          {{ cardInformation[key]?.titulo }}
+                        </div>
                       </div>
                       <div>
                         <Button icon="pi pi-plus" severity="secondary" rounded outlined
@@ -260,8 +274,10 @@ watch(fechaCreacion, (newValue) => {
                     </div>
                   </template>
                   <template #content>
-                    <DataViewCard v-if="cardInformation[key]" :itemsCardValue="cardInformation[key]" :data-key="key"
-                      :actuacion="actuacionName" />
+                    <div v-show="cardInformation[key]?.visible">
+                      <DataViewCard v-if="cardInformation[key]" :itemsCardValue="cardInformation[key]" :data-key="key"
+                        :actuacion="actuacionName" />
+                    </div>
                   </template>
                 </Card>
               </div>

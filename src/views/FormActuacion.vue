@@ -48,7 +48,7 @@ onBeforeRouteLeave((to, from) => {
   <div class="grid">
     <div class="col-3">
       <div class="card mb-2">
-        <Toolbar>
+        <Toolbar class="flex flex-nowrap">
           <template #start>
             <Button
               icon="pi pi-arrow-left"
@@ -61,8 +61,8 @@ onBeforeRouteLeave((to, from) => {
             <h3>
               {{
                 tipo != 'personalInterviniente'
-                  ? getTitleCase(tipo as string)
-                  : getTitleCase('Personal Interviniente')
+                ? getTitleCase(tipo as string)
+                : getTitleCase('Personal Interviniente')
               }}
             </h3>
           </template>

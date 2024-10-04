@@ -215,16 +215,18 @@ const handleSave = async () => {
 </script>
 
 <template>
-  <Toolbar class="toolbar-custom ">
+  <Toolbar class="flex px-5 py-4 align-items-stretch flex-nowrap">
     <template #start >
-      <div class="flex">
-        <Button
+      <div class="flex flex-column gap-3 h-full justify-content-between ">
+        <div>
+          <Button
           label="Cancelar"
           icon="pi pi-arrow-circle-left"
           severity="secondary"
           rounded
           @click="$router.replace({ name: 'actuaciones' })"
-        />
+          />
+        </div>
         <small class="text-sm font-bold">
           <i class="">{{ actuacionData?.datosLegales?.items[0] }}</i>
           {{ nroLegajo ? ': ' + nroLegajo : '' }}
@@ -233,51 +235,33 @@ const handleSave = async () => {
     </template>
 
     <template #center>
-        <div class="text-3xl font-bold" @click="handleClick">
+        <div class="text-3xl font-bold xl:block hidden " @click="handleClick">
           {{ actuacionData?.titulo }}
         </div>
     </template>
 
     <template #end >
-      <div class="header-end" >
-        <MyCalendar
+      <div class="flex flex-end flex-column gap-3 " >
+        <div class="text-2xl font-bold xl:hidden block white-space-nowrap" @click="handleClick">
+          {{ actuacionData?.titulo }}
+        </div>
+        <div class="w-full flex justify-content-end">
+          <MyCalendar
           v-if="showCalendar"
           v-model="today"
           :fechaDesde="null"
           :fechaHasta="'today'"
           @update:modelValue="actualizarFechaCreacion"
-        />
-        <!-- <Button
+          />
+          <!-- <Button
           label="Registrar"
           class="p-button"
           severity="primary"
           @click="handleSave"
           :disabled="!isDataValid()"
-        /> -->
+          /> -->
+        </div>
       </div>
     </template>
   </Toolbar>
 </template>
-
-<style scoped>
-.toolbar-custom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.1rem;
-}
-
-.header-end {
-  display: flex;
-  align-items: center;
-  justify-content: end;
-  gap: 10px;
-  width: 400px;
-}
-
-.flex {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-</style>

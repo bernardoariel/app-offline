@@ -36,7 +36,7 @@ onActivated(async () => {
 const responsiveOptions = ref([
 
   {
-    breakpoint: '990',
+    breakpoint: '992px',
     numVisible: 3,
     numScroll: 1,
   },
@@ -51,6 +51,11 @@ const responsiveOptions = ref([
     numScroll: 1,
   },
 ]);
+
+const setSelectedItem = (item) => {
+  selectedItem.value = item
+};
+
 </script>
 <template>
   <div class="w-full">
@@ -196,13 +201,14 @@ const responsiveOptions = ref([
     </div>
     <!-- Carousel para <lg -->
     <div class="lg:hidden w-full">
-      <Carousel v-if="itemsComputados && itemsComputados.length > 0" :value="itemsComputados" v-model="itemsComputados"
+      <Carousel v-if="itemsComputados && itemsComputados.length > 0" :value="itemsComputados" v-model="selectedItem"
         :numVisible="3" :numScroll="3" circular class="w-full" :responsiveOptions="responsiveOptions">
         <template #item="{ data }">
           <div class="flex align-items-center justify-content-evenly w-full ">
 
             <!-- Afectados y vinculados -->
-            <div v-if="routeType === 'afectados' || routeType === 'vinculados'">
+            <div v-if="routeType === 'afectados' || routeType === 'vinculados'" @click="setSelectedItem(data)"
+              class="cursor-pointer hover:text-500">
               <div v-if="!data.descripcionDesconocido && !data.descripcionOrdenPublico" class="flex flex-column gap-1 ">
                 <div>
                   <span class="font-bold">{{ data.apellido ? getUpperCase(data.apellido) + ',' : '' }}</span>
@@ -229,6 +235,7 @@ const responsiveOptions = ref([
                   class="w-max h-max mt-2" />
               </div>
             </div>
+
 
             <!-- fecha -->
             <div v-if="routeType === 'fecha'">

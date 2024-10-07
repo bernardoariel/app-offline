@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, onActivated } from 'vue';
+import { ref, onActivated, onMounted, onBeforeUnmount } from 'vue';
 import { useToast } from 'primevue/usetoast';
 import { getColorByAfectado } from '@/helpers/getColorByAfectado';
 import { formatFecha } from '@/helpers/getFormatFecha';
@@ -101,113 +101,78 @@ const handleRejected = () => {
   console.log('Rejected');
   // Aquí puedes manejar la lógica cuando se hace clic en rechazar
 };
+
+const isDesktop = ref(window.innerWidth >= 992);
+const isTablet = ref(window.innerWidth >= 650);
+
+const checkScreenSize = () => {
+  isDesktop.value = window.innerWidth >= 992;
+  isTablet.value = window.innerWidth >= 650;
+};
+
+onMounted(() => {
+  window.addEventListener('resize', checkScreenSize);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', checkScreenSize);
+});
 </script>
 
 <template>
-  <div class="card">
-    <DataTable
-      class="my-custom-datatable"
-      v-model:expandedRows="expandedRows"
-      :value="actuacionesList"
-      dataKey="id"
-      @rowExpand="onRowExpand"
-      @rowCollapse="onRowCollapse"
-      tableStyle="min-width: 60rem"
-    >
-      <Column expander style="width: 5rem" />
+  <div class="p-5 border-round-xl bg-white mb-3 ">
+    <DataTable v-model:expandedRows="expandedRows" :value="actuacionesList" dataKey="id" @rowExpand="onRowExpand"
+      @rowCollapse="onRowCollapse">
+      <Column expander class="w-5rem" />
       <Column field="fechaCreacion" header="Fecha"></Column>
       <Column field="nroLegajoCompleto" header="Nro.de Actuación"></Column>
       <Column field="nombreActuacion" header="Actuaciones"></Column>
-      <Column header="Juzgado">
+      <Column header="Juzgado" v-if="isDesktop">
         <template #body="slotProps">
           <p>
             {{
               slotProps.data.pathName.includes('ufi')
-              ? slotProps.data.datosLegales.selectUfiNro
-              : slotProps.data.pathName.includes('preliminares')
-              ? slotProps.data.datosLegales.selectJuzgadoInterviniente
-              : slotProps.data.juzgadoInterviniente
+                ? slotProps.data.datosLegales.selectUfiNro
+                : slotProps.data.pathName.includes('preliminares')
+                  ? slotProps.data.datosLegales.selectJuzgadoInterviniente
+                  : slotProps.data.juzgadoInterviniente
             }}
           </p>
         </template>
       </Column>
-      <Column header="Acciones">
+      <Column header="Acciones" v-if="isDesktop">
         <template #body="{ data }">
           <div class="flex gap-2">
-            <Button
-              icon="pi pi-file-pdf"
-              square
-              @click="viewPdf(data.id)"
-              severity="success"
-            ></Button>
-            <Button
-              icon="pi pi-pencil"
-              @click="onEditActuacion(data.id, data.pathName)"
-              square
-              severity="warning"
-            ></Button>
-            <Button
-              icon="pi pi-trash"
-              @click="showConfirm($event, data.id)"
-              square
-              severity="danger"
-            ></Button>
+            <Button icon="pi pi-file-pdf" square @click="viewPdf(data.id)" severity="success"></Button>
+            <Button icon="pi pi-pencil" @click="onEditActuacion(data.id, data.pathName)" square
+              severity="warning"></Button>
+            <Button icon="pi pi-trash" @click="showConfirm($event, data.id)" square severity="danger"></Button>
             <span></span>
           </div>
         </template>
       </Column>
-
-      <!-- <Column header="Estado">
-                <template #body="slotProps">
-                    <Tag :value="slotProps.data.statusActuacion" :severity="getSeverity(slotProps.data) as string" />
-                </template>
-            </Column> -->
       <template #expansion="slotProps">
         <div class="p-3">
           <div class="flex flex-wrap gap-3">
             <div class="flex align-items-center">
-              <RadioButton
-                v-model="selectedOption"
-                inputId="afectados"
-                name="options"
-                value="afectados"
-              />
+              <RadioButton v-model="selectedOption" inputId="afectados" name="options" value="afectados" />
               <label for="afectados" class="ml-2">Afectados</label>
             </div>
             <div class="flex align-items-center">
-              <RadioButton
-                v-model="selectedOption"
-                inputId="vinculados"
-                name="options"
-                value="vinculados"
-              />
+              <RadioButton v-model="selectedOption" inputId="vinculados" name="options" value="vinculados" />
               <label for="vinculados" class="ml-2">Vinculados</label>
             </div>
             <div class="flex align-items-center">
-              <RadioButton
-                v-model="selectedOption"
-                inputId="fechaUbicacion"
-                name="options"
-                value="fechaUbicacion"
-              />
+              <RadioButton v-model="selectedOption" inputId="fechaUbicacion" name="options" value="fechaUbicacion" />
               <label for="fechaUbicacion" class="ml-2">Fecha y Ubicación</label>
             </div>
             <div class="flex align-items-center">
-              <RadioButton
-                v-model="selectedOption"
-                inputId="fechaEfectos"
-                name="options"
-                value="efectos"
-              />
+              <RadioButton v-model="selectedOption" inputId="fechaEfectos" name="options" value="efectos" />
               <label for="fechaEfectos" class="ml-2">Efectos</label>
             </div>
             <div class="flex align-items-center">
-              <RadioButton
-                v-model="selectedOption"
-                inputId="personalInterviniente"
-                name="options"
-                value="personalInterviniente"
-              />
+              <RadioButton v-model="selectedOption" inputId="personalInterviniente" name="options"
+                value="personalInterviniente" />
               <label for="personalInterviniente" class="ml-2">Intervinientes</label>
             </div>
           </div>
@@ -218,18 +183,12 @@ const handleRejected = () => {
             <DataTable :value="slotProps.data.afectados">
               <Column field="nombre" header="Nombre" sortable></Column>
               <Column field="apellido" header="Apellido" sortable></Column>
-              <Column
-                field="nroDocumento"
-                header="Nro.Documento"
-                sortable
-              ></Column>
-              <Column field="telefono" header="Teléfono" sortable></Column>
-              <Column header="Tipo de Afectado">
+              <Column field="nroDocumento" header="Nro.Documento" sortable></Column>
+              <Column field="telefono" header="Teléfono" sortable v-if="isDesktop"></Column>
+              <Column header="Tipo de Afectado" v-if='isTablet'>
                 <template #body="slotProps">
-                  <Tag
-                    :value="slotProps.data.typeAfectado"
-                    :severity="getColorByAfectado(slotProps.data.typeAfectado)"
-                  />
+                  <Tag :value="slotProps.data.typeAfectado"
+                    :severity="getColorByAfectado(slotProps.data.typeAfectado)" />
                 </template>
               </Column>
             </DataTable>
@@ -241,19 +200,13 @@ const handleRejected = () => {
             <DataTable :value="slotProps.data.vinculados">
               <Column field="nombre" header="Nombre" sortable></Column>
               <Column field="apellido" header="Apellido" sortable></Column>
-              <Column
-                field="nroDocumento"
-                header="Nro.Documento"
-                documento
-              ></Column>
-              <Column field="telefono" header="Teléfono" sortable></Column>
-              <Column field="apodo" header="Apodo" sortable></Column>
-              <Column header="Tipo de Vinculado">
+              <Column field="nroDocumento" header="Nro.Documento" documento></Column>
+              <Column field="telefono" header="Teléfono" sortable v-if="isDesktop"></Column>
+              <Column field="apodo" header="Apodo" sortable v-if='isTablet'></Column>
+              <Column header="Tipo de Vinculado" v-if='isTablet'>
                 <template #body="slotProps">
-                  <Tag
-                    :value="slotProps.data.typeAfectado"
-                    :severity="getColorByAfectado(slotProps.data.typeAfectado)"
-                  />
+                  <Tag :value="slotProps.data.typeAfectado"
+                    :severity="getColorByAfectado(slotProps.data.typeAfectado)" />
                 </template>
               </Column>
             </DataTable>
@@ -263,12 +216,12 @@ const handleRejected = () => {
               <h2 class="uppercase">Fecha Ubicacion</h2>
             </div>
             <DataTable :value="slotProps.data.fechaUbicacion">
-              <Column field="desdeFechaHora" header="Fecha desde">
+              <Column field="desdeFechaHora" header="Fecha desde" v-if='isTablet'>
                 <template #body="slotProps">
                   {{ formatFecha(slotProps.data.desdeFechaHora) }}
                 </template>
               </Column>
-              <Column field="hastaFechaHora" header="Fecha hasta">
+              <Column field="hastaFechaHora" header="Fecha hasta" v-if='isTablet'>
                 <template #body="slotProps">
                   {{ formatFecha(slotProps.data.hastaFechaHora) }}
                 </template>
@@ -285,12 +238,8 @@ const handleRejected = () => {
             <DataTable :value="slotProps.data.efectos">
               <Column field="categoria.name" header="Categoría" sortable></Column>
               <Column field="marca.name" header="Marca" sortable></Column>
-              <Column field="modelo.name" header="Modelo" sortable></Column>
-              <Column
-                field="subcategoria.name"
-                header="Subcategoría"
-                documento
-              ></Column>
+              <Column field="modelo.name" header="Modelo" sortable v-if='isTablet'></Column>
+              <Column field="subcategoria.name" header="Subcategoría" documento v-if='isTablet'></Column>
               <Column field="tipo.name" header="Tipo" sortable></Column>
             </DataTable>
           </div>
@@ -302,39 +251,18 @@ const handleRejected = () => {
               <Column field="apellido" header="Apellido"></Column>
               <Column field="nombre" header="Nombre"></Column>
               <Column field="jerarquia" header="Jerarquía"></Column>
-              <Column field="dependencia" header="Dependencia"></Column>
+              <Column field="dependencia" header="Dependencia" v-if='isTablet'></Column>
             </DataTable>
           </div>
         </div>
       </template>
       <template #empty>
-        <div style="display: flex; justify-content: center; padding: 2rem">
+        <div class="flex justify-content-center p-5">
           <h2>No existen registros offline</h2>
         </div>
       </template>
     </DataTable>
-    <MyConfirmPopup
-      :config="confirmConfig"
-      @accepted="handleAccepted"
-      @rejected="handleRejected"
-    />
+    <MyConfirmPopup :config="confirmConfig" @accepted="handleAccepted" @rejected="handleRejected" />
     <Toast />
   </div>
 </template>
-
-<style scoped>
-.card {
-  background: var(--surface-card);
-  padding: 2rem;
-  border-radius: 10px;
-  margin-bottom: 1rem;
-}
-.modal-body {
-  display: flex;
-  justify-content: space-between;
-  padding-top: 0.5rem;
-  padding-left: 3rem; /* Padding solo en los lados */
-  padding-right: 3rem; /* Padding solo en los lados */
-  /* gap: 1rem; */
-}
-</style>

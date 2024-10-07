@@ -1,14 +1,9 @@
 <template>
   <div class="surface-section px-6 py-5 w-full">
     <div class="text-700 text-justify">
-      <div class="flex justify-content-between mb-3">
-        <Skeleton
-          v-if="isLoading()"
-          width="10rem"
-          class="mb-2"
-          height="2rem"
-        ></Skeleton>
-        <div v-else >
+      <div class="flex justify-content-between mb-3 sm:flex-row flex-column">
+        <Skeleton v-if="isLoading()" width="10rem" class="mb-2" height="2rem"></Skeleton>
+        <div v-else>
           <p class="font-medium text-2xl text-left">
             {{ primeradiligencia ? getUpperCase(primeradiligencia.titulo) : '' }}
           </p>
@@ -18,19 +13,9 @@
           <Skeleton width="5rem" class="mb-2"></Skeleton>
         </div>
         <div v-else class="flex flex-row align-items-center">
-          <ToggleButton
-            v-model="isVisible"
-            class="p-button-rounded mr-2"
-            onLabel="Ocultar Pdf"
-            offLabel="Ver Pdf"
-          />
-          <Button
-            label="Registrar"
-            class="p-button"
-            @click="handleSave"
-            severity="warning"
-            :disabled="!isDataValid()"
-          />
+          <ToggleButton v-model="isVisible" class="p-button-rounded mr-2" onLabel="Ocultar Pdf" offLabel="Ver Pdf" />
+          <Button label="Registrar" class="p-button" @click="handleSave" severity="warning"
+            :disabled="!isDataValid()" />
         </div>
       </div>
 
@@ -45,100 +30,50 @@
           <Skeleton class="w-full mb-2" height="1rem"></Skeleton>
           <Skeleton class="w-full mb-2" height="1rem"></Skeleton>
         </div>
-        <li
-          v-else
-          class="flex align-items-center py-3 px-2 border-top-1 surface-border"
-          style="justify-content: space-between"
-        >
-          <div
-            v-if="!isEditingHeader && !isEditedHeader"
-            v-html="processedText.header"
-          ></div>
+        <li v-else class="flex align-items-center py-3 px-2 border-top-1 surface-border"
+          style="justify-content: space-between">
+          <div v-if="!isEditingHeader && !isEditedHeader" v-html="processedText.header"></div>
           <div v-else-if="!isEditingHeader && isEditedHeader">
             <Skeleton v-if="isLoading()" width="10rem" class="mb-2"></Skeleton>
             {{ headerContainer }}
           </div>
 
-          <Textarea
-            v-if="isEditingHeader"
-            v-model="headerTextComputed"
-            autoResize
-            @input="setDiliginciaChange()"
-            class="w-full"
-          />
+          <Textarea v-if="isEditingHeader" v-model="headerTextComputed" autoResize @input="setDiliginciaChange()"
+            class="w-full" />
 
           <div>
-            <Button
-              :class="{
-                'ml-3': true,
-                'p-button-rounded': true,
-                'p-button-warning': isEditingHeader,
-                'p-button-help': !isEditingHeader,
-              }"
-              :icon="isEditingHeader ? 'pi pi-check' : 'pi pi-pencil'"
-              @click="toggleHeader"
-            ></Button>
+            <Button :class="{
+              'ml-3': true,
+              'p-button-rounded': true,
+              'p-button-warning': isEditingHeader,
+              'p-button-help': !isEditingHeader,
+            }" :icon="isEditingHeader ? 'pi pi-check' : 'pi pi-pencil'" @click="toggleHeader"></Button>
           </div>
         </li>
         <li class="py-3 px-2 border-top-1 surface-border">
-          <Skeleton
-            v-if="isLoading()"
-            class="mb-2"
-            height="1rem"
-            width="5rem"
-          ></Skeleton>
+          <Skeleton v-if="isLoading()" class="mb-2" height="1rem" width="5rem"></Skeleton>
           <div v-else class="text-500 font-medium mb-2">Relato</div>
           <div>
-            <Skeleton
-              v-if="isLoading()"
-              class="w-full mb-2"
-              height="16rem"
-            ></Skeleton>
-            <Textarea
-              v-else
-              rows="10"
-              class="w-full"
-              v-model="relato"
-              name="relato"
-              @input="setDiliginciaChange()"
-            />
+            <Skeleton v-if="isLoading()" class="w-full mb-2" height="16rem"></Skeleton>
+            <Textarea v-else rows="10" class="w-full" v-model="relato" name="relato" @input="setDiliginciaChange()" />
           </div>
         </li>
-        <Skeleton
-          v-if="isLoading()"
-          class="w-full mb-2"
-          height="3rem"
-        ></Skeleton>
-        <li
-          v-else
-          class="flex align-items-center py-3 px-2 border-top-1 surface-border"
-          style="justify-content: space-between"
-        >
-          <div
-            v-if="!isEditingFooter && !isEditedFooter"
-            v-html="processedText.footer"
-          ></div>
+        <Skeleton v-if="isLoading()" class="w-full mb-2" height="3rem"></Skeleton>
+        <li v-else class="flex align-items-center py-3 px-2 border-top-1 surface-border"
+          style="justify-content: space-between">
+          <div v-if="!isEditingFooter && !isEditedFooter" v-html="processedText.footer"></div>
           <div v-else-if="!isEditingFooter && isEditedFooter">
             {{ footerContainer }}
           </div>
-          <Textarea
-            v-if="isEditingFooter"
-            v-model="footerTextComputed"
-            autoResize
-            @input="setDiliginciaChange()"
-            class="w-full"
-          />
+          <Textarea v-if="isEditingFooter" v-model="footerTextComputed" autoResize @input="setDiliginciaChange()"
+            class="w-full" />
           <div>
-            <Button
-              :class="{
-                'ml-3': true,
-                'p-button-rounded': true,
-                'p-button-warning': isEditingFooter,
-                'p-button-help': !isEditingFooter,
-              }"
-              :icon="isEditingFooter ? 'pi pi-check' : 'pi pi-pencil'"
-              @click="toggleFooter"
-            ></Button>
+            <Button :class="{
+              'ml-3': true,
+              'p-button-rounded': true,
+              'p-button-warning': isEditingFooter,
+              'p-button-help': !isEditingFooter,
+            }" :icon="isEditingFooter ? 'pi pi-check' : 'pi pi-pencil'" @click="toggleFooter"></Button>
           </div>
         </li>
       </ul>
@@ -350,7 +285,7 @@ const handleSave = async () => {
   }
 
   if (!hasErrors.value) {
-     await storeData();
+    await storeData();
     isActuationInit.value = false;
     currentEditId.value = null;
     dialogState.value.allowNavigation = true;

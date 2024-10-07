@@ -61,6 +61,17 @@ const onEditActuacion = (id: number, nombreActuacion: string) => {
     params: { id, actuacion: nombreActuacion },
   });
 };
+
+const onEditActuacionRow = (event) => {
+  if (!isDesktop.value) {
+    activateComponent();
+    const { id, pathName } = event.data
+    router.push({
+      name: 'editActuacion',
+      params: { id, actuacion: pathName },
+    });
+  }
+};
 const actuacionIdToDelete = ref<number | null>(null);
 
 const confirmConfig = ref({
@@ -122,7 +133,7 @@ onBeforeUnmount(() => {
 <template>
   <div class="p-5 border-round-xl bg-white mb-3 ">
     <DataTable v-model:expandedRows="expandedRows" :value="actuacionesList" dataKey="id" @rowExpand="onRowExpand"
-      @rowCollapse="onRowCollapse">
+      @rowCollapse="onRowCollapse" @rowClick="onEditActuacionRow">
       <Column expander class="w-5rem" />
       <Column field="fechaCreacion" header="Fecha"></Column>
       <Column field="nroLegajoCompleto" header="Nro.de Actuación"></Column>

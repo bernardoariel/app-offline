@@ -70,9 +70,10 @@ onBeforeRouteLeave((to, from) => {
       </div>
 
       <!-- de lg para abajo se mostrara este toolbar  con el listado de personas-->
-      <div class="grid align-items-center bg-gray-100 m-0 border-round-lg lg:hidden w-12 px-4">
+      <div
+        class="grid align-items-center justify-content-center bg-gray-100 m-0 border-round-lg lg:hidden w-full pr-4 ">
         <div class="col-1">
-          <Button clas="col-12" icon="pi pi-arrow-left" title="Volver" rounded @click="handleVolver"></Button>
+          <Button icon="pi pi-arrow-left" title="Volver" rounded @click="handleVolver"></Button>
         </div>
         <div class="col-10 flex flex-column align-items-center ">
           <h3>

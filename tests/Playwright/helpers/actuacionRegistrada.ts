@@ -44,11 +44,14 @@ export const actuacionInTable = async (page:any) =>{
  });
 
  console.log(data); // Aquí tendrás acceso a los datos obtenidos de IndexedDB
- const { fechaCreacion, nroLegajoCompleto, nombreActuacion, juzgadoInterviniente } = data[0]
+ const { fechaCreacion, nroLegajoCompleto, nombreActuacion, juzgadoInterviniente , datosLegales} = data[0]
  console.log(fechaCreacion); // Muestra la fecha de creación
  console.log(nroLegajoCompleto); // Muestra el número de legajo completo
  console.log(nombreActuacion); // Muestra el nombre de la actuación
  console.log(juzgadoInterviniente); // Muestra el juzgado interviniente
+ console.log(datosLegales)
+ const UFInum =datosLegales.selectUfiNro
+ console.log(UFInum)
  // Opcional: Realiza pruebas de validación sobre los datos
  expect(data).toBeTruthy(); // Ejemplo de verificación simple
 // Convertir la fecha de creación a un formato más legible, si es necesario
@@ -59,8 +62,15 @@ export const actuacionInTable = async (page:any) =>{
   });
   
   // Obtener el texto de las celdas y comparar con las constantes
-  const juzgadoIntervinienteText = await page.getByRole('cell', { name: juzgadoInterviniente }).innerText();
-  expect(juzgadoIntervinienteText).toBe(juzgadoInterviniente);
+  if(nombreActuacion.includes('UFI')){
+    const juzgadoIntervinienteText = await page.getByRole('cell', { name: UFInum }).innerText();
+    expect(juzgadoIntervinienteText).toBe(UFInum);
+  }else{
+    const juzgadoIntervinienteText = await page.getByRole('cell', { name: juzgadoInterviniente }).innerText();
+    expect(juzgadoIntervinienteText).toBe(juzgadoInterviniente);
+  }
+  
+  
   
   const actuacion = await page.getByRole('cell', { name: nombreActuacion }).innerText(); // Si hay un valor constante, úsalo
   expect(actuacion).toBe(nombreActuacion); // Reemplaza con la constante correspondiente si existe

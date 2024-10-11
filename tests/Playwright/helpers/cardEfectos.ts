@@ -10,7 +10,7 @@ export const cardEfectosDenunciado =  async (page:any) =>{
   await page.getByLabel('Seleccione Sub-Categoría').click();
   await page.getByLabel('auto').click();
   await page.getByLabel('Seleccione Tipo', { exact: true }).click();
-  await page.getByLabel('Todo terreno').click();
+  await page.getByLabel('Sedan').click();
   await page.getByLabel('Seleccione Marca').click();
   await page.getByLabel('BMW').click();
   await page.getByLabel('Seleccione Modelo').click();

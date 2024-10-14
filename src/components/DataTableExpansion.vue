@@ -23,22 +23,7 @@ onActivated(async () => {
   actuaciones = await fetchActuaciones();
   actuacionesList.value = actuaciones;
 });
-const onRowExpand = (event: { data: { name: any } }) => {
-  toast.add({
-    severity: 'info',
-    summary: 'Item Expandidos',
-    detail: event.data.name,
-    life: 3000,
-  });
-};
-const onRowCollapse = (event: { data: { name: any } }) => {
-  toast.add({
-    severity: 'success',
-    summary: 'Items Colapsados',
-    detail: event.data.name,
-    life: 3000,
-  });
-};
+
 const expandAll = () => {
   expandedRows.value = actuacionesList.value.reduce(
     (acc: { [x: string]: boolean }, p: { id: string | number }) =>
@@ -46,9 +31,11 @@ const expandAll = () => {
     {}
   );
 };
+
 const collapseAll = () => {
   expandedRows.value = [];
 };
+
 const viewPdf = async (id: string) => {
   await generatePdf(+id);
   window.open(pdfUrl.value, '_blank');
@@ -62,16 +49,6 @@ const onEditActuacion = (id: number, nombreActuacion: string) => {
   });
 };
 
-const onEditActuacionRow = (event) => {
-  if (!isDesktop.value) {
-    activateComponent();
-    const { id, pathName } = event.data
-    router.push({
-      name: 'editActuacion',
-      params: { id, actuacion: pathName },
-    });
-  }
-};
 const actuacionIdToDelete = ref<number | null>(null);
 
 const confirmConfig = ref({
@@ -132,12 +109,26 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="p-5 border-round-xl bg-white mb-3 ">
-    <DataTable v-model:expandedRows="expandedRows" :value="actuacionesList" dataKey="id" @rowExpand="onRowExpand"
-      @rowCollapse="onRowCollapse" @rowClick="onEditActuacionRow">
+    <DataTable v-model:expandedRows="expandedRows" :value="actuacionesList" dataKey="id">
       <Column expander class="w-5rem" />
-      <Column field="fechaCreacion" header="Fecha"></Column>
-      <Column field="nroLegajoCompleto" header="Nro.de Actuación"></Column>
-      <Column field="nombreActuacion" header="Actuaciones"></Column>
+      <Column field="fechaCreacion" header="Fecha">
+        <template #body="{ data }">
+          <div @click="onEditActuacion(data.id, data.pathName)" class="cursor-pointer">{{ data.fechaCreacion }}
+          </div>
+        </template>
+      </Column>
+      <Column field="nroLegajoCompleto" header="Nro.de Actuación">
+        <template #body="{ data }">
+          <div @click="onEditActuacion(data.id, data.pathName)" class="cursor-pointer">{{ data.nroLegajoCompleto }}
+          </div>
+        </template>
+      </Column>
+      <Column field="nombreActuacion" header="Actuaciones">
+        <template #body="{ data }">
+          <div @click="onEditActuacion(data.id, data.pathName)" class="cursor-pointer">{{ data.nombreActuacion }}
+          </div>
+        </template>
+      </Column>
       <Column header="Juzgado" v-if="isDesktop">
         <template #body="slotProps">
           <p>

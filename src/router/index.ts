@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, onBeforeRouteLeave } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import ActuacionView from '@/views/ActuacionView.vue'
 import FormActuacionVue from '@/views/FormActuacion.vue'
 import ActuacionesView from '@/views/ActuacionesView.vue'

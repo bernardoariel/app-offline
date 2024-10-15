@@ -51,7 +51,12 @@ onBeforeRouteLeave((to, from) => {
       <div class="mb-2 hidden lg:block">
         <Toolbar class="flex flex-nowrap justify-content-between">
           <template #start>
-            <Button icon="pi pi-arrow-left" title="Volver" rounded @click="handleVolver"></Button>
+            <Button
+              icon="pi pi-arrow-left"
+              title="Volver"
+              rounded
+              @click="handleVolver"
+            ></Button>
           </template>
           <template #center>
             <h3>
@@ -63,19 +68,31 @@ onBeforeRouteLeave((to, from) => {
             </h3>
           </template>
           <template #end>
-            <Button icon="pi pi-plus" title="Nuevo Item" outlined rounded class="ml-3"
-              @click="handleNuevoItem"></Button>
+            <Button
+              icon="pi pi-plus"
+              title="Nuevo Item"
+              outlined
+              rounded
+              class="ml-3"
+              @click="handleNuevoItem"
+            ></Button>
           </template>
         </Toolbar>
       </div>
 
       <!-- de lg para abajo se mostrara este toolbar  con el listado de personas-->
       <div
-        class="grid align-items-center justify-content-center bg-gray-100 m-0 border-round-lg lg:hidden w-full pr-4 ">
+        class="grid align-items-center justify-content-center bg-gray-100 m-0 border-round-lg lg:hidden w-full pr-4"
+      >
         <div class="col-1">
-          <Button icon="pi pi-arrow-left" title="Volver" rounded @click="handleVolver"></Button>
+          <Button
+            icon="pi pi-arrow-left"
+            title="Volver"
+            rounded
+            @click="handleVolver"
+          ></Button>
         </div>
-        <div class="col-10 flex flex-column align-items-center ">
+        <div class="col-10 flex flex-column align-items-center">
           <h3>
             {{
               tipo != 'personalInterviniente'
@@ -86,7 +103,13 @@ onBeforeRouteLeave((to, from) => {
           <ListBoxItems />
         </div>
         <div class="col-1">
-          <Button icon="pi pi-plus" title="Nuevo Item" outlined rounded @click="handleNuevoItem"></Button>
+          <Button
+            icon="pi pi-plus"
+            title="Nuevo Item"
+            outlined
+            rounded
+            @click="handleNuevoItem"
+          ></Button>
         </div>
       </div>
 

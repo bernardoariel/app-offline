@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import ActuacionView from '@/views/ActuacionView.vue'
-import FormActuacionVue from '@/views/FormActuacion.vue'
+import FormActuacionView from '@/views/FormActuacionView.vue'
 import ActuacionesView from '@/views/ActuacionesView.vue'
 import AccessDeniedView from '@/views/AccessDeniedView.vue'
 
@@ -25,12 +25,11 @@ const router = createRouter({
     {
       path: '/actuacion/personas/:tipo/:id?',
       name: 'formulario',
-      component: FormActuacionVue,
+      component: FormActuacionView,
       props: (route) => {
         const id = route.params.id ? +route.params.id : null;
         return { tipo: route.params.tipo, id };
       }
-
     },
     {
       path: '/actuaciones/new/:actuacion/initial',

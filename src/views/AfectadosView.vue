@@ -189,7 +189,6 @@ const firsDateChangeDone = ref(true);
 const { editar, agregar, resetAllDropdown, initialValues } = useAfectados();
 
 const { selectedItem } = useItemValue();
-console.log(selectedItem.value)
 const { resetIsEditedHeader } = useNewActuacion();
 
 const {
@@ -526,8 +525,8 @@ watch(tipoDenuncianteSelect, (newVal: any) => {
               {{ errors.tipoDenuncianteSelect }}
             </span>
           </div>
-          <div class="col-12 flex align-items-end">
-            <div class="col-4">
+          <div class="col-12 flex-wrap flex align-items-end">
+            <div class="md:col-4 col-6">
               <label for="dropdown">Tipo de doc.</label>
               <MyDropdown class="mt-2" :items="documentosDropdown" :color="false" v-model="tipoDocSelect"
                 v-bind="tipoDocSelectAttrs" :error="errors.tipoDocSelect" @change="(newValue) => handleDropdownChange('typeDocumento', newValue)
@@ -537,13 +536,13 @@ watch(tipoDenuncianteSelect, (newVal: any) => {
               </span>
             </div>
 
-            <div class="col-3">
+            <div class="md:col-3 col-6">
               <label for="dropdown">N° de doc.</label>
               <MyInput type="text" class="mt-2" v-model="nroDocumento" :color="false" v-bind="nroDocumentoAttrs"
                 :error="errors.nroDocumento" placeholder="Ingrese N° de doc"
                 @input="handleInputChange('nroDocumento', $event)" @blur="() => handleBlur('nroDocumento')" />
             </div>
-            <div class="col-3">
+            <div class="md:col-3 col-6">
               <label for="dropdown">Sexo</label>
               <MyDropdown class="mt-2" :items="sexoDropdown" v-model="sexoSelect" placeholder="Seleccione sexo"
                 @change="handleDropdownChange('typeSexo', $event)" :error="errors.sexoSelect" v-bind="sexoSelectAttrs"
@@ -552,7 +551,7 @@ watch(tipoDenuncianteSelect, (newVal: any) => {
                 {{ errors.sexoSelect }}
               </span>
             </div>
-            <div class="col-2">
+            <div class="md:col-2 col-6">
               <label for="dropdown">¿Exhibe el Documento?</label>
               <MyDropdown class="mt-2" :items="showDocumentDropdown" v-model="showDocumentSelect"
                 placeholder="Seleccione SI/NO" @change="handleDropdownChange('showDocument', $event)" :color="false"
@@ -566,6 +565,7 @@ watch(tipoDenuncianteSelect, (newVal: any) => {
               :error="errors.apellido" placeholder="Ingrese apellido" @input="handleInputChange('apellido', $event)"
               @blur="() => handleBlur('apellido')" />
           </div>
+
           <div class="col-6">
             <label for="dropdown">Nombre</label>
             <MyInput type="text" class="mt-2" @input="handleInputChange('nombre', $event)" v-model="nombre"
@@ -573,13 +573,13 @@ watch(tipoDenuncianteSelect, (newVal: any) => {
               @blur="() => handleBlur('nombre')" />
           </div>
 
-          <div class="col-3">
+          <div class="md:col-3 col-6">
             <label for="dropdown">Fecha de nac.</label>
             <MyInputMask class="mt-2 w-full" mask="99/99/9999" slotChar="dd/mm/yyyy" placeholder="Ingrese fecha"
               @update:modelValue="handleDateChange('fecha', $event)" v-model="fechaNacimiento"
               v-bind="fechaNacimientoAttrs" :color="false" :error="errors.fechaNacimiento" />
           </div>
-          <div class="col-3">
+          <div class="md:col-3 col-6">
             <label for="dropdown">Nacionalidad</label>
             <MyDropdown class="mt-2" :items="nacionalidadDropdown" v-model="nacionalidadSelect"
               v-bind="nacionalidadSelectAttrs" placeholder="Nacionalidad"
@@ -589,13 +589,13 @@ watch(tipoDenuncianteSelect, (newVal: any) => {
               {{ errors.nacionalidadSelect }}
             </span>
           </div>
-          <div class="col-3" v-if="showInputVinculo">
+          <div class="md:col-3 col-6" v-if="showInputVinculo">
             <label for="dropdown">Vínculo</label>
             <MyInput class="mt-2 w-full" placeholder="Ingrese vínculo con la victima"
               @input="handleInputChange('vinculo', $event)" @blur="() => handleBlur('vinculo')"
               v-model="vinculo as string" :color="false" />
           </div>
-          <div class="col-4">
+          <div class="md:col-4 col-6">
             <label for="dropdown">Estado Civil</label>
             <MyDropdown class="mt-2" :items="estadoCivilDropdown" v-model="estadoCivilSelect" placeholder="Estado Civil"
               @change="handleDropdownChange('estadoCivil', $event)" :error="errors.estadoCivilSelect" :color="false"
@@ -610,30 +610,30 @@ watch(tipoDenuncianteSelect, (newVal: any) => {
               @input="handleInputChange('domicilioResidencia', $event)" @blur="() => handleBlur('domicilioResidencia')"
               v-model="domicilio" :error="errors.domicilio" :color="false" />
           </div>
-          <div class="col-12 flex align-items-end">
-            <div class="col-2">
+          <div class="col-12 flex flex-wrap align-items-end">
+            <div class="md:col-2 col-6">
               <label for="dropdown">Teléfono</label>
               <MyInput type="number" class="mt-2" placeholder="Ingrese teléfono" v-model="telefono"
                 @input="handleInputChange('telefono', $event)" @blur="() => handleBlur('telefono')" :color="false"
                 :error="errors.telefono" />
             </div>
-            <div class="col-3">
+            <div class="md:col-3 col-6">
               <label for="dropdown">Email</label>
               <MyInput type="text" class="mt-2" placeholder="Ingrese email" v-model="email"
                 @input="handleInputChange('email', $event)" @blur="() => handleBlur('email')" :color="false" />
             </div>
-            <div class="col-2">
+            <div class="md:col-2 col-6">
               <label for="dropdown">Profesión</label>
               <MyInput type="text" class="mt-2" placeholder="Ingrese Profesión" v-model="profesion"
                 @input="handleInputChange('profesion', $event)" @blur="() => handleBlur('profesion')" :color="false" />
             </div>
-            <div class="col-2">
+            <div class="md:col-2 col-6">
               <label for="dropdown">¿Tiene Estudios?</label>
               <MyDropdown class="mt-2" :items="hasEstudiesDropdown" v-model="hasEstudiesSelect"
                 placeholder="Seleccione SI/NO" @change="handleDropdownChange('hasEstudies', $event)" :color="false"
                 filter />
             </div>
-            <div class="col-3">
+            <div class="md:col-3 col-6">
               <label for="dropdown">Instrucción</label>
               <MyDropdown class="mt-2" :items="instruccionDropdown" v-model="instruccionSelect"
                 placeholder="Instrucción" @change="handleDropdownChange('instruccion', $event)"
@@ -662,8 +662,7 @@ watch(tipoDenuncianteSelect, (newVal: any) => {
             <p class="ml-2">Orden Público</p>
           </div>
         </div>
-        <div class="col-6"></div>
-        <div class="col-3">
+        <div class="col-12">
           <div class="flex align-items-center justify-content-end">
             <Button label="Agregar" :disabled="hasErrors()" v-if="!selectedItem" @click="handleAgregarElemento()">
             </Button>

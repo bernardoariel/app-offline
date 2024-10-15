@@ -43,19 +43,17 @@ const checkRoute = () => {
       <SidebarRight icono="pi-bars" position="right" color-icono="secondary" />
     </template> -->
     <template #end>
-      <div 
-        v-tooltip.bottom="{
-          value:'Se ha perdido la conexión a internet. Es posible que algunas funcionalidades no esten disponibles. Solamente podrá crear actuaciones de manera offline, y requerirá de su parte subirlas al Online.',
-          pt: {
-            arrow: {
-                style: {
-                    borderBottomColor: 'var(--primary-color)'
-                }
-            },
-            text: 'bg-primary font-medium'
-          }}" 
-        class="flex justify-center align-items-center mr-5"
-      >
+      <div v-tooltip.bottom="{
+        value: 'Se ha perdido la conexión a internet. Es posible que algunas funcionalidades no esten disponibles. Solamente podrá crear actuaciones de manera offline, y requerirá de su parte subirlas al Online.',
+        pt: {
+          arrow: {
+            style: {
+              borderBottomColor: 'var(--primary-color)'
+            }
+          },
+          text: 'bg-primary font-medium'
+        }
+      }" class="flex justify-center align-items-center mr-5">
         <i class="pi pi-wifi" style="font-size: 2rem; position: relative">
           <span style="
           position: absolute;
@@ -65,10 +63,10 @@ const checkRoute = () => {
           width: 2.3rem;
           height: 2px;
           background-color: #343a40;">
-        </span>
-      </i>
-      <span style="margin-left: 10px;">Modo Offline</span>
-    </div>
+          </span>
+        </i>
+        <span class="ml-2 md:block hidden">Modo Offline</span>
+      </div>
     </template>
   </Toolbar>
 </template>

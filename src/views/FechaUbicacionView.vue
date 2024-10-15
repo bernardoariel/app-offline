@@ -248,78 +248,35 @@ watch(selectedItem, (newVal: any) => {
           <label for="hastaFechaHoraRef">Hasta</label>
           <MyCalendar v-model="formData.hastaFechaHora" />
         </div>
-        <div class="col-4">
+        <div class="md:col-4 col-6">
           <label for="calle">Calle</label>
-          <MyInput
-            type="text"
-            class="mt-2"
-            v-model="calle"
-            :color="false"
-            v-bind="calleAttrs"
-            :error="errors.calle"
-            placeholder="ingrese una calle"
-            @input="handleInputChange('calle', $event)"
-            @blur="() => handleBlur('calle')"
-          />
+          <MyInput type="text" class="mt-2" v-model="calle" :color="false" v-bind="calleAttrs" :error="errors.calle"
+            placeholder="ingrese una calle" @input="handleInputChange('calle', $event)"
+            @blur="() => handleBlur('calle')" />
         </div>
-        <div class="col-4">
+        <div class="md:col-4 col-6">
           <label for="numero">Número</label>
-          <MyInput
-            type="number"
-            class="mt-2"
-            v-model="numero"
-            :color="false"
-            v-bind="numeroAttrs"
-            :error="errors.numero"
-            placeholder="ingrese un número"
-            @input="handleInputChange('numero', $event)"
-            @blur="() => handleBlur('numero')"
-          />
+          <MyInput type="number" class="mt-2" v-model="numero" :color="false" v-bind="numeroAttrs"
+            :error="errors.numero" placeholder="ingrese un número" @input="handleInputChange('numero', $event)"
+            @blur="() => handleBlur('numero')" />
         </div>
-        <div class="col-4">
+        <div class="md:col-4 col-6">
           <label for="departamento">Departamento</label>
-          <MyDropdown
-            class="mt-2"
-            :items="municipiosDropdown"
-            filter
-            v-model="departamentoSelect"
-            placeholder="Seleccione departamento"
-            @change="handleDropdownChange('departamento', $event)"
-            :error="errors.departamentoSelect"
-            v-bind="departamentoSelectAttrs"
-            :color="false"
-          />
-          <span
-            class="text-red-400"
-            v-if="errors.departamentoSelect ? true : false"
-          >
+          <MyDropdown class="mt-2" :items="municipiosDropdown" filter v-model="departamentoSelect"
+            placeholder="Seleccione departamento" @change="handleDropdownChange('departamento', $event)"
+            :error="errors.departamentoSelect" v-bind="departamentoSelectAttrs" :color="false" />
+          <span class="text-red-400" v-if="errors.departamentoSelect ? true : false">
             {{ errors.departamentoSelect }}
           </span>
         </div>
-        <div class="ml-auto mt-2 p-0">
-          <Button
-            label="Agregar"
-            :disabled="hasErrors()"
-            v-if="!selectedItem"
-            @click="handleAgregarElemento()"
-          ></Button>
+        <div class="col-12 flex align-items-center justify-content-end">
+          <Button label="Agregar" :disabled="hasErrors()" v-if="!selectedItem"
+            @click="handleAgregarElemento()"></Button>
           <div v-else>
-            <Button
-              :disabled="isEditing(selectedItem!.id)"
-              label="Cancelar"
-              icon="pi pi-times"
-              severity="secondary"
-              outlined
-              aria-label="Cancel"
-              class="mr-3"
-              @click="handleCancelar"
-            ></Button>
-            <Button
-              label="Guardar Cambios"
-              :disabled="isEditing(selectedItem!.id)"
-              @click="handleModificarElemento()"
-              severity="warning"
-            ></Button>
+            <Button :disabled="isEditing(selectedItem!.id)" label="Cancelar" icon="pi pi-times" severity="secondary"
+              outlined aria-label="Cancel" class="mr-3" @click="handleCancelar"></Button>
+            <Button label="Guardar Cambios" :disabled="isEditing(selectedItem!.id)" @click="handleModificarElemento()"
+              severity="warning"></Button>
           </div>
         </div>
       </div>

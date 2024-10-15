@@ -41,7 +41,7 @@ const {
   selectedDelito,
 } = useDatosLegales();
 
-const {isDataValid} = useValidacionDatosLegales()
+const { isDataValid } = useValidacionDatosLegales()
 const { fechaCreacion, setFechaCreacion, isActuationInit, currentEditId } =
   useActuacion();
 const {
@@ -204,7 +204,7 @@ const handleSave = async () => {
   }
 
   if (!hasErrors.value) {
-     await storeData();
+    await storeData();
     isActuationInit.value = false;
     currentEditId.value = null;
     dialogState.value.allowNavigation = true;
@@ -215,19 +215,14 @@ const handleSave = async () => {
 </script>
 
 <template>
-  <Toolbar class="flex px-5 py-4 align-items-stretch flex-nowrap">
-    <template #start >
-      <div class="flex flex-column gap-3 h-full justify-content-between ">
+  <Toolbar class="flex flex-column lg:flex-row px-5 py-4 lg:align-items-stretch align-items-center flex-nowrap">
+    <template #start>
+      <div class="flex flex-column gap-3 h-full lg:justify-content-between align-items-center lg:align-items-start">
         <div>
-          <Button
-          label="Cancelar"
-          icon="pi pi-arrow-circle-left"
-          severity="secondary"
-          rounded
-          @click="$router.replace({ name: 'actuaciones' })"
-          />
+          <Button label="Cancelar" icon="pi pi-arrow-circle-left" severity="secondary" rounded
+            @click="$router.replace({ name: 'actuaciones' })" />
         </div>
-        <small class="text-sm font-bold">
+        <small class="text-sm font-bold text-center">
           <i class="">{{ actuacionData?.datosLegales?.items[0] }}</i>
           {{ nroLegajo ? ': ' + nroLegajo : '' }}
         </small>
@@ -235,24 +230,19 @@ const handleSave = async () => {
     </template>
 
     <template #center>
-        <div class="text-3xl font-bold xl:block hidden " @click="handleClick">
-          {{ actuacionData?.titulo }}
-        </div>
+      <div class="text-3xl font-bold xl:block hidden text-center" @click="handleClick">
+        {{ actuacionData?.titulo }}
+      </div>
     </template>
 
-    <template #end >
-      <div class="flex flex-end flex-column gap-3 " >
-        <div class="text-2xl font-bold xl:hidden block white-space-nowrap" @click="handleClick">
+    <template #end>
+      <div class="flex flex-end flex-column gap-3 ">
+        <div class="text-2xl font-bold xl:hidden block md:white-space-nowrap text-center" @click="handleClick">
           {{ actuacionData?.titulo }}
         </div>
-        <div class="w-full flex justify-content-end">
-          <MyCalendar
-          v-if="showCalendar"
-          v-model="today"
-          :fechaDesde="null"
-          :fechaHasta="'today'"
-          @update:modelValue="actualizarFechaCreacion"
-          />
+        <div class="w-full flex lg:justify-content-end justify-content-center">
+          <MyCalendar v-if="showCalendar" v-model="today" :fechaDesde="null" :fechaHasta="'today'"
+            @update:modelValue="actualizarFechaCreacion" />
           <!-- <Button
           label="Registrar"
           class="p-button"

@@ -32,225 +32,297 @@ onActivated(async () => {
     await handleFetchActuacion(+id.value);
   }
 });
+
+const responsiveOptions = ref([
+
+  {
+    breakpoint: '992px',
+    numVisible: 3,
+    numScroll: 1,
+  },
+  {
+    breakpoint: '845px',
+    numVisible: 2,
+    numScroll: 1,
+  },
+  {
+    breakpoint: '655px',
+    numVisible: 1,
+    numScroll: 1,
+  },
+]);
+
+const setSelectedItem = (item) => {
+  selectedItem.value = item
+};
+
 </script>
 <template>
-  <div class="card flex flex-column justify-content-center">
-    <Listbox
-      v-if="itemsComputados && itemsComputados.length > 0"
-      v-model="selectedItem"
-      :options="itemsComputados"
-      optionLabel="nombre"
-      class="w-full listbox-lower"
-    >
-      <template #option="{ option }">
-        <div class="listbox-item fixed-height">
-          <div class="left-column">
+  <div class="w-full">
+    <!-- Listbox para >lg -->
+    <div class="lg:flex lg:justify-content-center">
+      <div class="hidden lg:block w-full">
+        <Listbox v-if="itemsComputados && itemsComputados.length > 0" v-model="selectedItem" :options="itemsComputados"
+          optionLabel="nombre" class="w-full">
+          <template #option="{ option }">
+            <div class="flex align-items-start justify-content-between">
+              <div>
+                <!-- Afectados y vinculados -->
+                <div v-if="routeType === 'afectados' || routeType === 'vinculados'">
+                  <div v-if="
+                    !option.descripcionDesconocido &&
+                    !option.descripcionOrdenPublico
+                  " class="flex flex-column xl:flex-row xl:gap-0 gap-1 ">
+                    <div>
+                      <span class="font-bold">
+                        {{ option.apellido ? getUpperCase(option.apellido) + ',' : '' }}
+                      </span>
+                      <span class="ml-2">
+                        {{ option.nombre ? getTitleCase(option.nombre) : '' }}
+                      </span>
+                    </div>
+                    <span class="ml-0 xl:ml-5">
+                      <i v-if="option.typeDocumento">{{
+                        option.typeDocumento + ': '
+                      }}</i>
+                      <i v-if="option.nroDocumento">{{ option.nroDocumento }}</i>
+                    </span>
+                  </div>
+                  <div v-if="option.descripcionDesconocido">
+                    <span class="font-bold">
+                      Persona de filiación desconocida:
+                    </span>
+                    <span class="ml-2">{{
+                      getTruncatedString(option.descripcionDesconocido, 40)
+                    }}</span>
+                  </div>
+                  <div v-if="option.descripcionOrdenPublico">
+                    <span class="font-bold"> Orden público: </span>
+                    <span class="ml-2">{{
+                      getTruncatedString(option.descripcionOrdenPublico, 40)
+                    }}</span>
+                  </div>
+                  <div>
+                    <Tag :value="option.typeAfectado" :severity="getColorByAfectado(option.typeAfectado)"
+                      class="w-max h-max mt-2" />
+                  </div>
+                </div>
+
+                <!-- fecha -->
+                <div v-if="option && routeType === 'fecha'">
+                  <div>
+                    <span class="font-bold">Entre </span>
+                    <span>
+                      {{
+                        option.desdeFechaHora
+                          ? formatFecha(option.desdeFechaHora)
+                          : ''
+                      }}
+                      y
+                      {{
+                        option.desdeFechaHora
+                          ? formatFecha(option.hastaFechaHora)
+                          : ''
+                      }}
+                    </span>
+                  </div>
+                  <div class="tag-row">
+                    <Tag :value="option.departamento" :severity="getColorByAfectado(option.departamento)"
+                      class="w-max h-max mt-2" />
+                  </div>
+                </div>
+
+                <!-- personal interviniente -->
+                <div v-else-if="routeType === 'personalInterviniente'">
+                  <div>
+                    <span class="font-bold">
+                      {{ option.apellido ? getUpperCase(option.apellido) + ',' : '' }}
+                    </span>
+                    <span class="ml-2">
+                      {{ option.nombre ? getTitleCase(option.nombre) : '-' }}
+                    </span>
+                  </div>
+                  <div>
+                    <Tag :value="option.jerarquia" :severity="getColorByAfectado(option.jerarquia)"
+                      class="w-max h-max mt-2" />
+                  </div>
+                  <p class="text-xs">{{ option.dependencia }}</p>
+                </div>
+
+                <!-- Efectos -->
+                <div v-else-if="routeType === 'efectos'">
+                  <div class="flex flex-column xl:flex-row flex-wrap xl:align-items-center">
+                    <span class="font-bold ">
+                      {{ option.subcategoria.name ? getUpperCase(option.subcategoria.name) + ' ' : '' }}
+                    </span>
+                    <span class="font-bold ">
+                      {{ option.categoria.name ? getUpperCase(option.categoria.name) + ',' : '' }}
+                    </span>
+                    <div>
+                      <span>
+                        {{ option.marca.name ? getTitleCase(option.marca.name) : '-' }}
+                      </span>
+                      <span>
+                        {{ (option.modelo.name ? getTitleCase(option.modelo.name) : '-') + ', ' }}
+                      </span>
+                    </div>
+                    <span>
+                      {{ option.tipo.name ? getTitleCase(option.tipo.name) : '-' }}
+                    </span>
+
+                  </div>
+                  <div>
+                    <Tag :value="option.estado.name ? getTitleCase(option.estado.name) : '-'"
+                      :severity="getColorByEstado(option.estado.name)" class="h-max w-max mt-2" />
+                  </div>
+                  <div class="w-full">
+                    <p class="ml-5 text-xs">{{ option.dependencia }}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <!-- <Button icon="pi pi-trash" severity="danger" @click="eliminarItem(option.id)" /> -->
+                <Button v-if="option && option.code === 'new-item'" icon="pi pi-plus" rounded aria-label="Agregar"
+                  outlined severity="primary" />
+                <div class="button-and-dot-container" v-else-if="selectedItem === option && option.id">
+                  <div v-if="!getPristineById(option.id)" class="uncommited-dot bg-blue-400"></div>
+                  <Button icon="pi pi-trash" severity="danger" @click="eliminarItem(option.id)" />
+                </div>
+                <div class="button-and-dot-container" v-else>
+                  <div class="uncommited-dot bg-blue-400" v-if="!getPristineById(option.id)"></div>
+                  <Button icon="pi pi-trash" severity="danger" disabled />
+                </div>
+              </div>
+            </div>
+          </template>
+        </Listbox>
+      </div>
+    </div>
+    <!-- Carousel para <lg -->
+    <div class="lg:hidden w-full">
+      <Carousel v-if="itemsComputados && itemsComputados.length > 0" :value="itemsComputados" v-model="selectedItem"
+        :numVisible="3" :numScroll="3" circular class="w-full" :responsiveOptions="responsiveOptions">
+        <template #item="{ data }">
+          <div class="flex align-items-center justify-content-evenly w-full ">
+
             <!-- Afectados y vinculados -->
-            <div v-if="routeType === 'afectados' || routeType === 'vinculados'">
-              <div
-                v-if="
-                  !option.descripcionDesconocido &&
-                  !option.descripcionOrdenPublico
-                "
-                class="text-row"
-              >
-                <span class="font-bold">{{
-                  option.apellido ? getUpperCase(option.apellido) + ',' : ''
-                }}</span>
-                <span class="ml-2">{{
-                  option.nombre ? getTitleCase(option.nombre) : ''
-                }}</span>
-                <span class="ml-5">
-                  <i v-if="option.typeDocumento">{{
-                    option.typeDocumento + ': '
-                  }}</i>
-                  <i v-if="option.nroDocumento">{{ option.nroDocumento }}</i>
+            <div v-if="routeType === 'afectados' || routeType === 'vinculados'" @click="setSelectedItem(data)"
+              class="cursor-pointer hover:text-500">
+              <div v-if="!data.descripcionDesconocido && !data.descripcionOrdenPublico" class="flex flex-column gap-1 ">
+                <div>
+                  <span class="font-bold">{{ data.apellido ? getUpperCase(data.apellido) + ',' : '' }}</span>
+                  <span class="ml-2">{{ data.nombre ? getTitleCase(data.nombre) : '' }}</span>
+                </div>
+                <span class="ml-0 xl:ml-5">
+                  <i v-if="data.typeDocumento">{{ data.typeDocumento + ': ' }}</i>
+                  <i v-if="data.nroDocumento">{{ data.nroDocumento }}</i>
                 </span>
               </div>
-              <div v-if="option.descripcionDesconocido" class="text-row">
-                <span class="font-bold">
-                  Persona de filiación desconocida:
-                </span>
-                <span class="ml-2">{{
-                  getTruncatedString(option.descripcionDesconocido, 40)
-                }}</span>
+
+              <div v-if="data.descripcionDesconocido">
+                <span class="font-bold">Persona de filiación desconocida:</span>
+                <span class="ml-2">{{ getTruncatedString(data.descripcionDesconocido, 40) }}</span>
               </div>
-              <div v-if="option.descripcionOrdenPublico" class="text-row">
-                <span class="font-bold"> Orden público: </span>
-                <span class="ml-2">{{
-                  getTruncatedString(option.descripcionOrdenPublico, 40)
-                }}</span>
+
+              <div v-if="data.descripcionOrdenPublico">
+                <span class="font-bold">Orden público:</span>
+                <span class="ml-2">{{ getTruncatedString(data.descripcionOrdenPublico, 40) }}</span>
               </div>
-              <div class="tag-row">
-                <Tag
-                  :value="option.typeAfectado"
-                  :severity="getColorByAfectado(option.typeAfectado)"
-                />
+
+              <div>
+                <Tag :value="data.typeAfectado" :severity="getColorByAfectado(data.typeAfectado)"
+                  class="w-max h-max mt-2" />
               </div>
             </div>
 
+
             <!-- fecha -->
-            <div v-if="option && routeType === 'fecha'">
-              <div class="text-row">
-                <span class="font-bold">Entre </span
-                ><span
-                  >{{
-                    option.desdeFechaHora
-                      ? formatFecha(option.desdeFechaHora)
+            <div v-if="routeType === 'fecha'">
+              <div>
+                <span class="font-bold">Entre </span>
+                <span>
+                  {{
+                    data.desdeFechaHora
+                      ? formatFecha(data.desdeFechaHora)
                       : ''
                   }}
                   y
                   {{
-                    option.desdeFechaHora
-                      ? formatFecha(option.hastaFechaHora)
+                    data.desdeFechaHora
+                      ? formatFecha(data.hastaFechaHora)
                       : ''
-                  }}</span
-                >
+                  }}
+                </span>
               </div>
               <div class="tag-row">
-                <Tag
-                  :value="option.departamento"
-                  :severity="getColorByAfectado(option.departamento)"
-                />
+                <Tag :value="data.departamento" :severity="getColorByAfectado(data.departamento)"
+                  class="w-max h-max mt-2" />
               </div>
             </div>
 
             <!-- personal interviniente -->
             <div v-else-if="routeType === 'personalInterviniente'">
-              <div class="text-row">
-                <span class="font-bold">{{
-                  option.apellido ? getUpperCase(option.apellido) + ',' : ''
-                }}</span>
-                <span class="ml-2">{{
-                  option.nombre ? getTitleCase(option.nombre) : '-'
-                }}</span>
+              <div>
+                <span class="font-bold">
+                  {{ data.apellido ? getUpperCase(data.apellido) + ',' : '' }}
+                </span>
+                <span class="ml-2">
+                  {{ data.nombre ? getTitleCase(data.nombre) : '-' }}
+                </span>
               </div>
-              <div class="tag-row">
-                <Tag
-                  :value="option.jerarquia"
-                  :severity="getColorByAfectado(option.jerarquia)"
-                />
+              <div>
+                <Tag :value="data.jerarquia" :severity="getColorByAfectado(data.jerarquia)" class="w-max h-max mt-2" />
               </div>
-              <div class="w-full" style="margin-top: -30px; margin-left: 55px">
-                <p class="ml-5 text-xs">{{ option.dependencia }}</p>
-              </div>
+              <p class="text-xs">{{ data.dependencia }}</p>
             </div>
 
             <!-- Efectos -->
             <div v-else-if="routeType === 'efectos'">
-              <div class="text-row">
-                <span class="font-bold">{{
-                  option.subcategoria.name
-                    ? getUpperCase(option.subcategoria.name) + ' '
-                    : ''
-                }}</span>
-                <span class="font-bold">{{
-                  option.categoria.name ? getUpperCase(option.categoria.name) + ',' : ''
-                }}</span>
-                <span class="ml-2">{{
-                  option.marca.name ? getTitleCase(option.marca.name) : '-'
-                }}</span>
-                <span class="ml-2">{{
-                  option.modelo.name ? getTitleCase(option.modelo.name) : '-'
-                }}</span>
-                <span
-                  >, {{ option.tipo.name ? getTitleCase(option.tipo.name) : '-' }}</span
-                >
-                <div class="tag-row">
-                  <Tag
-                    :value="option.estado.name ? getTitleCase(option.estado.name) : '-'"
-                    :severity="getColorByEstado(option.estado.name)"
-                  />
+              <div class="flex flex-column xl:flex-row flex-wrap xl:align-items-center">
+                <span class="font-bold ">
+                  {{ data.subcategoria.name ? getUpperCase(data.subcategoria.name) + ' ' : '' }}
+                </span>
+                <span class="font-bold ">
+                  {{ data.categoria.name ? getUpperCase(data.categoria.name) + ',' : '' }}
+                </span>
+                <div>
+                  <span>
+                    {{ data.marca.name ? getTitleCase(data.marca.name) : '-' }}
+                  </span>
+                  <span>
+                    {{ (data.modelo.name ? getTitleCase(data.modelo.name) : '-') + ', ' }}
+                  </span>
                 </div>
-              </div>
-              <div class="w-full" style="margin-top: -30px; margin-left: 55px">
-                <p class="ml-5 text-xs">{{ option.dependencia }}</p>
-              </div>
-            </div>
-          </div>
+                <span>
+                  {{ data.tipo.name ? getTitleCase(data.tipo.name) : '-' }}
+                </span>
 
-          <div class="right-column">
-            <!-- <Button icon="pi pi-trash" severity="danger" @click="eliminarItem(option.id)" /> -->
-            <Button
-              v-if="option && option.code === 'new-item'"
-              icon="pi pi-plus"
-              rounded
-              aria-label="Agregar"
-              outlined
-              severity="primary"
-            />
-            <div
-              class="button-and-dot-container"
-              v-else-if="selectedItem === option && option.id"
-            >
-              <div
-                v-if="!getPristineById(option.id)"
-                class="uncommited-dot bg-blue-400"
-              ></div>
-              <Button
-                icon="pi pi-trash"
-                severity="danger"
-                @click="eliminarItem(option.id)"
-              />
+              </div>
+              <div>
+                <Tag :value="data.estado.name ? getTitleCase(data.estado.name) : '-'"
+                  :severity="getColorByEstado(data.estado.name)" class="h-max w-max mt-2" />
+              </div>
+              <div class="w-full">
+                <p class="ml-5 text-xs">{{ data.dependencia }}</p>
+              </div>
             </div>
-            <div class="button-and-dot-container" v-else>
-              <div
-                class="uncommited-dot bg-blue-400"
-                v-if="!getPristineById(option.id)"
-              ></div>
-              <Button icon="pi pi-trash" severity="danger" disabled />
+            <div>
+              <!-- <Button icon="pi pi-trash" severity="danger" @click="eliminarItem(option.id)" /> -->
+              <Button v-if="data && data.code === 'new-item'" icon="pi pi-plus" rounded aria-label="Agregar" outlined
+                severity="primary" />
+              <div class="button-and-dot-container" v-else-if="selectedItem === data && data.id">
+                <div v-if="!getPristineById(data.id)" class="uncommited-dot bg-blue-400"></div>
+                <Button icon="pi pi-trash" severity="danger" @click="eliminarItem(data.id)" />
+              </div>
+              <div class="button-and-dot-container" v-else>
+                <div class="uncommited-dot bg-blue-400" v-if="!getPristineById(data.id)"></div>
+                <Button icon="pi pi-trash" severity="danger" disabled />
+              </div>
             </div>
           </div>
-        </div>
-      </template>
-    </Listbox>
+        </template>
+      </Carousel>
+    </div>
   </div>
 </template>
-
-<style scoped>
-.fixed-height {
-  height: 60px; /* o cualquier otro alto fijo que necesites */
-}
-.listbox-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start; /* Alinea los elementos al principio del contenedor */
-  padding: 8px;
-}
-
-.left-column {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.right-column {
-  /* Estilos para la columna de botones, si es necesario */
-  flex-shrink: 0;
-  display: flex;
-  align-items: center; /* Centra el botón verticalmente */
-}
-
-.button-and-dot-container {
-  display: flex;
-  align-items: center; /* Alinea verticalmente el botón y el círculo */
-}
-
-.uncommited-dot {
-  width: 12px; /* Tamaño del círculo */
-  height: 12px; /* Tamaño del círculo */
-  /* Color del círculo */
-  border-radius: 50%; /* Hace que sea redondo */
-  margin-right: 15px; /* Espacio entre el botón y el círculo */
-}
-.tag-row {
-  margin-top: 4px; /* Espacio arriba del tag */
-}
-
-.right-column {
-  /* Estilos para la columna de botones, si es necesario */
-  flex-shrink: 0;
-  display: flex;
-  align-items: center; /* Centra el botón verticalmente */
-}
-</style>

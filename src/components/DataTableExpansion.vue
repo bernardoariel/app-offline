@@ -24,18 +24,6 @@ onActivated(async () => {
   actuacionesList.value = actuaciones;
 });
 
-const expandAll = () => {
-  expandedRows.value = actuacionesList.value.reduce(
-    (acc: { [x: string]: boolean }, p: { id: string | number }) =>
-      (acc[p.id] = true) && acc,
-    {}
-  );
-};
-
-const collapseAll = () => {
-  expandedRows.value = [];
-};
-
 const viewPdf = async (id: string) => {
   await generatePdf(+id);
   window.open(pdfUrl.value, '_blank');

@@ -16,11 +16,9 @@ describe('VinculadosView.vue', () => {
   test('should render VinculadosForm inside a div without any class', () => {
     const wrapper = shallowMount(VinculadosView);
 
-    // Busca el primer div
     const div = wrapper.find('div');
 
-    // Verifica que el div no tiene clases
-    expect(div.attributes('class')).toBe(undefined); // Si no hay clases, el atributo 'class' no existirá
+    expect(div.attributes('class')).toBe(undefined); 
 
   });
   test('should render VinculadosForm and other elements inside a div', () => {

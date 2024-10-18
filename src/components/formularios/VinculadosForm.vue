@@ -96,7 +96,7 @@ const validationSchema = yup.object({
             .string()
             .required('Seleccione un tipo de denunciante')
             .oneOf(
-                actuacionData.value?.tarjetas['vinculados']['valor'],
+                actuacionData.value?.tarjetas['vinculados']?['valor'] : [],
                 'Selecciones un tipo válido'
             ),
     }),

@@ -3,7 +3,7 @@ import { ref, watch, onActivated } from 'vue';
 import { useRoute } from 'vue-router';
 import { ActuacionCards, ToolbarActuacion } from '@/components/index';
 import { MyModal } from '@/components/elementos/index';
-import DiligenciaView from './DiligenciaView.vue';
+import { DiligenciaComponent } from '@/components/index';
 import {
   useActuacion,
   useDatosLegales,
@@ -14,7 +14,7 @@ import {
   useLegalesState,
   useActuacionLoading
 } from '@/composables/index'
-import { handleFetchActuacion } from '@/helpers/handleFetchActuacion';
+import { handleFetchActuacion, dialogButtons } from '@/helpers/index';
 
 interface Props {
   id?: number;
@@ -22,15 +22,13 @@ interface Props {
   actuacionData: any;
 }
 const props = defineProps<Props>();
-const actuacionData = ref(props.actuacionData);
-const actuacionName = ref(props.actuacionName);
 
 const router = useRoute();
+
 const { dialogState, confirmNavigation, hideDialog } = useDialog();
-const { toogleDateActuacion, fechaCreacion } = useActuacion();
+const { toogleDateActuacion } = useActuacion();
 const { set: setActuacionData } = useActuacionData();
 const { setLoading } = useActuacionLoading();
-
 const {
   resetNewRecordCreated,
   resetUnsavedChanges,
@@ -39,7 +37,6 @@ const {
   resetPristine,
   resetModifiedData,
 } = useFieldsState();
-
 const { resetFields: resetLegalFields } = useLegalesState();
 const { resetData: resetDataLegal } = useDatosLegales();
 const { isEditingHeader, resetRelato } = useDatosDiligencia(props.actuacionName);
@@ -74,23 +71,6 @@ const resetBackStates = () => {
   resetModifiedData();
 };
 
-const dialogButtons = [
-  {
-    label: 'Aceptar',
-    class: 'p-button-primary',
-    icon: 'pi pi-check',
-    action: 'accept',
-    focus: false,
-  },
-  {
-    label: 'Cancelar',
-    class: 'p-button-secondary',
-    icon: 'pi pi-times',
-    action: 'cancel',
-    focus: true,
-  },
-];
-
 const handleButtonClick = (action: string) => {
   if (action !== 'accept') {
     hideDialog();
@@ -112,19 +92,6 @@ watch(
     if (newVal === false) dialogState.value.pendingRoute = null;
   }
 );
-
-watch(
-  () => props.actuacionData,
-  (newData) => {
-    actuacionData.value = newData;
-  }
-);
-
-const today = ref<Date | null>(new Date());
-
-watch(fechaCreacion, (newValue) => {
-  today.value = newValue ? new Date(newValue) : null;
-});
 
 </script>
 
@@ -148,7 +115,7 @@ watch(fechaCreacion, (newValue) => {
 
   <div class="grid">
     <div class="col-12">
-      <ToolbarActuacion :actuacion="actuacionName" :id="id" />
+      <ToolbarActuacion :actuacion="props.actuacionName" :id="id" />
     </div>
 
     <div class="lg:col-5 col-12">
@@ -156,7 +123,7 @@ watch(fechaCreacion, (newValue) => {
     </div>
 
     <div class="lg:col-7 col-12">
-      <DiligenciaView :actuacion="actuacionName" :id="props.id" />
+      <DiligenciaComponent :actuacion="props.actuacionName" :id="props.id" />
     </div>
   </div>
 </template>

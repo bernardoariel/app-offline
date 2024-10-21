@@ -40,6 +40,7 @@ const validationSchema = yup.object({
   nombre: yup.string().required().min(3),
   apellido: yup.string().required().min(3),
   domicilio: yup.string().required().min(8),
+  email: yup.string().email('Debe ser un correo válido'),
   textAreaDescription: yup
     .string()
     .test(
@@ -166,6 +167,7 @@ let [instruccionSelect, instruccionSelectAttrs] =
 let [fechaNacimiento, fechaNacimientoAttrs] = defineField('fechaNacimiento');
 let [telefono] = defineField('telefono');
 let [apodo] = defineField('apodo');
+let [email] = defineField('email');
 let [profesion] = defineField('profesion');
 let [textAreaDescription, textAreaDescriptionAtrrs] = defineField(
   'textAreaDescription'
@@ -209,6 +211,7 @@ let formData = ref<VinculadosForm>({
   nroDocumento: '',
   apellido: '',
   nombre: '',
+  email: '',
   fecha: '',
   domicilioResidencia: '',
   telefono: '',
@@ -241,6 +244,7 @@ const updateDataWithForm = () => {
     apellido.value = formData.value.apellido;
     nombre.value = formData.value.nombre;
     domicilio.value = formData.value.domicilioResidencia;
+    email.value = formData.value.email;
     sexoSelect.value = { name: formData.value.typeSexo || 'Seleccione sexo' };
     tipoDenuncianteSelect.value = {
       name: formData?.value?.typeAfectado || 'Seleccione tipo',
@@ -356,6 +360,7 @@ const handleAgregarElemento = () => {
       observaciones: '',
       showDocument: '',
       hasEstudies: '',
+      email: ''
     };
     isPersonaDesconocida.value = false;
   } else {
@@ -378,6 +383,7 @@ const handleAgregarElemento = () => {
       observaciones: observaciones.value,
       showDocument: showDocumentSelect.value.name,
       hasEstudies: hasEstudiesSelect.value.name,
+      email: formData.value.email
     };
   }
 
@@ -390,6 +396,7 @@ const handleAgregarElemento = () => {
   apodo.value = '';
   nombre.value = '';
   domicilio.value = '';
+  email.value = '';
   sexoSelect.value = { name: 'Seleccione sexo' };
   tipoDenuncianteSelect.value = { name: 'Seleccione tipo' };
   tipoDocSelect.value = { name: 'Seleccione tipo' };
@@ -432,6 +439,7 @@ const handleModificarElemento = () => {
         nroDocumento: nroDocumento.value || '',
         apellido: apellido.value || '',
         nombre: nombre.value || '',
+        email: formData.value.email || '',
         fecha: fechaNacimiento.value || '',
         domicilioResidencia: domicilio.value || '',
         telefono: formData.value.telefono || '',
@@ -463,6 +471,7 @@ watch(selectedItem, (newVal: any) => {
     apellido.value = '';
     nombre.value = '';
     domicilio.value = '';
+    email.value = '';
     sexoSelect.value = { name: 'Seleccione sexo' };
     tipoDenuncianteSelect.value = { name: 'Seleccione tipo' };
     tipoDocSelect.value = { name: 'Seleccione tipo' };
@@ -569,6 +578,12 @@ watch(selectedItem, (newVal: any) => {
             <span class="text-red-400" v-if="errors.estadoCivilSelect ? true : false">
               {{ errors.estadoCivilSelect }}
             </span>
+          </div>
+          <div class="md:col-3 col-6">
+            <label for="dropdown">Email</label>
+            <MyInput type="text" class="mt-2" placeholder="Ingrese email" v-model="email"
+              @input="handleInputChange('email', $event)" @blur="() => handleBlur('email')" :color="false"
+              :error="errors.email" />
           </div>
           <div class="col-12">
             <label for="dropdown">Domicilio de residencia</label>

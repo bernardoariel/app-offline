@@ -1,80 +1,80 @@
-import { createRouter, createWebHistory, onBeforeRouteLeave } from 'vue-router'
-import ActuacionView from '@/views/ActuacionView.vue'
-import FormActuacionVue from '@/views/FormActuacion.vue'
-import ActuacionesView from '@/views/ActuacionesView.vue'
-import AccessDeniedView from '@/views/AccessDeniedView.vue'
+import { createRouter, createWebHistory } from "vue-router";
+import {
+  ActuacionView,
+  FormActuacionView,
+  ActuacionesView,
+  AccessDeniedView,
+} from "@/views/index";
 
-import isSavedChanges from '@/guards/isSavedChanges';
-import isUserAllowed from '@/guards/isUserAllowed'
-import isUserAccessValid from '@/guards/isUserAccessValid'
-import { actuaciones } from '../data/tipoActuaciones';
+import isSavedChanges from "@/guards/isSavedChanges";
+import isUserAllowed from "@/guards/isUserAllowed";
+import isUserAccessValid from "@/guards/isUserAccessValid";
+import { actuaciones } from "../data/tipoActuaciones";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
-      redirect: '/actuaciones/list',
+      path: "/",
+      redirect: "/actuaciones/list",
     },
     {
-      path: '/actuaciones/list',
-      name: 'actuaciones',
+      path: "/actuaciones/list",
+      name: "actuaciones",
       beforeEnter: [isUserAllowed],
       component: ActuacionesView,
     },
     {
-      path: '/actuacion/personas/:tipo/:id?',
-      name: 'formulario',
-      component: FormActuacionVue,
+      path: "/actuacion/personas/:tipo/:id?",
+      name: "formulario",
+      component: FormActuacionView,
       props: (route) => {
         const id = route.params.id ? +route.params.id : null;
         return { tipo: route.params.tipo, id };
-      }
-
+      },
     },
     {
-      path: '/actuaciones/new/:actuacion/initial',
-      name: 'newActuacion',
+      path: "/actuaciones/new/:actuacion/initial",
+      name: "newActuacion",
       component: ActuacionView,
       props: (route) => {
-        const actuacionKey = route.params.actuacion
+        const actuacionKey = route.params.actuacion;
         const actuacionData = actuaciones[actuacionKey] || {};
-        return { actuacionName: route.params.actuacion, actuacionData }
-      }
+        return { actuacionName: route.params.actuacion, actuacionData };
+      },
     },
     {
-      path: '/denegado',
-      name: 'denegado',
+      path: "/denegado",
+      name: "denegado",
       beforeEnter: [isUserAccessValid],
       component: AccessDeniedView,
     },
     {
-      path: '/actuaciones/edit/:actuacion/initial/:id',
-      name: 'editActuacion',
+      path: "/actuaciones/edit/:actuacion/initial/:id",
+      name: "editActuacion",
       component: ActuacionView,
       props: (route) => {
-        const actuacionKey = route.params.actuacion
+        const actuacionKey = route.params.actuacion;
         const actuacionData = actuaciones[actuacionKey] || {};
-        const { id, actuacion } = route.params
+        const { id, actuacion } = route.params;
         return {
           id: +id,
           actuacionName: actuacion,
-          actuacionData
-        }
-      }
+          actuacionData,
+        };
+      },
     },
-    { path: '/:pathMatch(.*)*', redirect: '/actuaciones/list' }
-  ]
-})
+    { path: "/:pathMatch(.*)*", redirect: "/actuaciones/list" },
+  ],
+});
 
 router.beforeEach((to, from, next) => {
-
-  if (to.name === 'actuaciones') {
+  if (to.name === "actuaciones") {
     isSavedChanges(to, from, next);
     return;
   }
 
-  if (!to.params.id && from.params.id && to.name !== 'newActuacion') {
+  if (!to.params.id && from.params.id && to.name !== "newActuacion") {
     next({
       name: to.name,
       params: { ...to.params, id: from.params.id },
@@ -86,6 +86,4 @@ router.beforeEach((to, from, next) => {
   next();
 });
 
-
-
-export default router
+export default router;

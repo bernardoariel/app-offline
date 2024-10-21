@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, watch, onActivated } from 'vue';
+import { watch, onActivated } from 'vue';
 import { useRoute } from 'vue-router';
 import { ActuacionCards, ToolbarActuacion } from '@/components/index';
 import { MyModal } from '@/components/elementos/index';

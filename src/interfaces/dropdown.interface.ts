@@ -1,3 +1,3 @@
 export interface DropDownInterface {
-    name: string | null
+  name: string | null;
 }

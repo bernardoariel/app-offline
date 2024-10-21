@@ -6,11 +6,9 @@
 import { onActivated } from 'vue';
 import DataTableExpansion from '@/components/DataTableExpansion.vue';
 import useActuacion from '@/composables/useActuacion';
-
-const { isActuationInit, currentEditId } = useActuacion();
-
+const { isActuationInit, currentEditId } = useActuacion()
 onActivated(() => {
-  isActuationInit.value = false;
-  currentEditId.value = null;
-});
+  isActuationInit.value = false
+  currentEditId.value = null
+})
 </script>

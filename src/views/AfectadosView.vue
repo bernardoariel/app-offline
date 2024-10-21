@@ -42,7 +42,14 @@ const validationSchema = yup.object({
   nombre: yup.string().required().min(3),
   apellido: yup.string().required().min(3),
   domicilio: yup.string().required().min(8),
-  email: yup.string().email('Debe ser un correo válido'),
+  email: yup
+    .string()
+    .email('Debe ser un correo válido')
+    .when('tipoDenuncianteSelect.name', {
+      is: 'Denunciante',
+      then: (schema) => schema.required('El correo es obligatorio para Afectados tipo Denunciante'),
+      otherwise: (schema) => schema.notRequired(),
+    }),
   // nroDocumento: yup
   //   .number()
   //   .required('Ingrese un número documento válido')

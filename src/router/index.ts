@@ -6,9 +6,11 @@ import {
   AccessDeniedView,
 } from "@/views/index";
 
-import isSavedChanges from "@/guards/isSavedChanges";
-import isUserAllowed from "@/guards/isUserAllowed";
-import isUserAccessValid from "@/guards/isUserAccessValid";
+import {
+  isSavedChanges,
+  isUserAccessValid,
+  isUserAllowed,
+} from "@/guards/index";
 import { actuaciones } from "../data/tipoActuaciones";
 
 const router = createRouter({

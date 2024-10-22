@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import MyInput from '@/components/elementos/MyInput.vue';
-import { getYearsDrop } from '@/helpers/getYearsDrop';
-import MyDropdown from '@/components/elementos/MyDropdown.vue';
-import { mapToDropdownItems } from '@/helpers/dropUtils';
-import * as yup from 'yup';
 import { computed, ref, watch } from 'vue';
+import * as yup from 'yup';
+import { useForm } from 'vee-validate';
+import { MyInput, MyDropdown } from '@/components/elementos/index';
 import {
-  sitiosDropdwown,
+  getYearsDrop, mapToDropdownItems, sitiosDropdwown,
   modusOperandiDropdwown,
   causaCaratulaDropdwown,
   juzgadoIntervinienteDropdwown,
@@ -14,24 +12,17 @@ import {
   delitosDropdown,
   ufiNroDropdown,
   fiscalCargoDropdown,
-  ayudanteFiscalDropdown,
-} from '../helpers/getDropItems';
-import { getUpperCase } from '@/helpers/stringUtils';
-import useDatosLegales from '../composables/useDatosLegales';
-import type { DatosLegalesForm } from '../interfaces/datosLegalesForm.interface';
-import useLegalesState from '@/composables/useLegalesState';
-import useFieldState from '@/composables/useFieldsState';
-import { separateCamelCase } from '../helpers/stringUtils';
-import { useForm } from 'vee-validate';
-import Listbox from 'primevue/listbox';
-import useValidacionDatosLegales from '@/composables/useValidacionDatosLegales';
+  ayudanteFiscalDropdown, getUpperCase, separateCamelCase
+} from '@/helpers/index';
+import type { DatosLegalesForm } from '@/interfaces/index';
+import { useLegalesState, useDatosLegales, useFieldsState, useValidacionDatosLegales } from '@/composables/index';
 
 interface Props {
   datosLegalesItems?: string[];
 }
 const { setValidValue } = useValidacionDatosLegales();
 const props = defineProps<Props>();
-const { markRecordDeleted } = useFieldState();
+const { markRecordDeleted } = useFieldsState();
 const {
   selectedYear,
   selectedSitio,
@@ -114,15 +105,6 @@ const getDynamicValidationSchema = () => {
           }),
         });
       }
-      // else{
-      //   schema = schema.shape({
-      //   [item]: yup.object().shape({
-      //   name: yup
-      //     .string()
-      //     .required('Seleccione una opción válida')
-      //   }),
-      // });
-      // }
     }
   });
   return schema;

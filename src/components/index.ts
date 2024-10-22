@@ -9,3 +9,5 @@ export { default as SidebarMenu } from "./SidebarMenu.vue";
 export { default as SidebarRight } from "./SidebarRight.vue";
 export { default as ToolbarActuacion } from "./ToolbarActuacion.vue";
 export { default as ToolbarComponent } from "./ToolbarComponent.vue";
+export { default as DiligenciaComponent } from "./DiligenciaComponent.vue";
+export { default as DatosLegalesComponent } from "./DatosLegalesComponent.vue";

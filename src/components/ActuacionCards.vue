@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue';
-import DataViewCard from '@/components/DataViewCard.vue';
-import DatosLegalesView from '@/views/DatosLegalesView.vue';
+import { DatosLegalesComponent, DataViewCard } from '@/components/index';
 
 import {
     useActuacion,
@@ -144,7 +143,7 @@ onUnmounted(() => {
                         </div>
                     </TabPanel>
                     <TabPanel header="Datos Legales">
-                        <DatosLegalesView v-if="props.actuacionData?.datosLegales"
+                        <DatosLegalesComponent v-if="props.actuacionData?.datosLegales"
                             :datosLegalesItems="props.actuacionData.datosLegales.items" />
                     </TabPanel>
                 </TabView>

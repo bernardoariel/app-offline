@@ -3,9 +3,12 @@ import { useRoute } from 'vue-router';
 import SidebarMenu from './SidebarMenu.vue';
 import SidebarRight from './SidebarRight.vue';
 import { ref, watch, onActivated } from 'vue';
+import useActuacionData from '@/composables/useActuacionData';
 
 const route = useRoute();
+const { actuacionData } = useActuacionData();
 const isNewActuacion = ref(false);
+const isFormulario = ref(false);
 const today = ref<Date | null>(null);
 
 onActivated(() => {
@@ -14,11 +17,17 @@ onActivated(() => {
 
 watch(route, () => {
   checkRoute();
+  checkIsFormulario()
 });
 
 const checkRoute = () => {
   isNewActuacion.value = route.name === 'newActuacion';
 };
+
+const checkIsFormulario = () => {
+  isFormulario.value = route.name === 'formulario';
+};
+
 </script>
 
 <template>
@@ -33,6 +42,9 @@ const checkRoute = () => {
       </div>
       <div v-else-if="isNewActuacion" class="p-d-flex p-flex-column text-3xl">
         Nueva Actuación
+      </div>
+      <div v-else-if="isFormulario" class="p-d-flex p-flex-column text-3xl">
+        {{ actuacionData?.titulo }}
       </div>
       <div v-else class="p-d-flex p-flex-column text-3xl">
         Edición de actuación

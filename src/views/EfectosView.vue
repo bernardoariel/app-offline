@@ -51,8 +51,8 @@ const validationSchema = yup.object({
   tipoSelect: yup.object().shape({
     name: yup
       .string()
-      // .required('Seleccione un tipo')
-      // .oneOf(mapToArray(tipoCategoriasDropdown), 'Selecciones un tipo válido'),
+    // .required('Seleccione un tipo')
+    // .oneOf(mapToArray(tipoCategoriasDropdown), 'Selecciones un tipo válido'),
   }),
   modeloSelect: yup.object().shape({
     name: yup
@@ -330,14 +330,14 @@ watch(selectedItem, (newVal: any) => {
 });
 
 function getByIdSubcategorias() {
-  if(subCategoriaSelect.value){
-  const tiposCategories = ref<any>()
+  if (subCategoriaSelect.value) {
+    const tiposCategories = ref<any>()
     tiposCategories.value = tipoCategoriasDropdown.value.filter(categoria =>
-      subCategoriaSelect.value.SubcategoriaID.includes(categoria.id_subcategoria)
+      subCategoriaSelect.value.key.includes(categoria.id_subcategoria)
     );
     return tiposCategories.value
   }
-    return []
+  return []
 }
 </script>
 <template>
@@ -347,227 +347,107 @@ function getByIdSubcategorias() {
       <div class="grid">
         <div class="col-6">
           <label for="categoriaDropdown">Seleccione tipo de efecto</label>
-          <MyDropdown
-            class="mt-2"
-            :items="tarjetaValues ? mapToDropdownItems(tarjetaValues) : ''"
-            v-model="estadoSelect"
-            @change="(newValue) => handleDropdownChange('estado', newValue)"
-            placeholder="Seleccione tipo de efecto"
-            filter
-            :color="false"
-            :error="errors.estadoSelect"
-            v-bind="estadoSelectAttrs"
-          />
+          <MyDropdown class="mt-2" :items="tarjetaValues ? mapToDropdownItems(tarjetaValues) : ''"
+            v-model="estadoSelect" @change="(newValue) => handleDropdownChange('estado', newValue)"
+            placeholder="Seleccione tipo de efecto" filter :color="false" :error="errors.estadoSelect"
+            v-bind="estadoSelectAttrs" />
           <span class="text-red-400" v-if="errors.estadoSelect ? true : false">
             {{ errors.estadoSelect }}
           </span>
         </div>
         <div class="col-6">
           <label for="categoriaDropdown">Seleccione Categoría</label>
-          <MyDropdown
-            class="mt-2"
-            :items="categoriasDropdown"
-            v-model="categoriaSelect"
-            @change="handleDropdownChange('categoria', $event)"
-            placeholder="Seleccione Categoría"
-            filter
-            :color="false"
-            :error="errors.categoriaSelect"
-            v-bind="categoriaSelectAttrs"
-          />
-          <span
-            class="text-red-400"
-            v-if="errors.categoriaSelect ? true : false"
-          >
+          <MyDropdown class="mt-2" :items="categoriasDropdown" v-model="categoriaSelect"
+            @change="handleDropdownChange('categoria', $event)" placeholder="Seleccione Categoría" filter :color="false"
+            :error="errors.categoriaSelect" v-bind="categoriaSelectAttrs" />
+          <span class="text-red-400" v-if="errors.categoriaSelect ? true : false">
             {{ errors.categoriaSelect }}
           </span>
         </div>
         <div class="col-6">
           <label for="subcategoriaDropdown">Seleccione Sub-Categoría</label>
-          <MyDropdown
-            class="mt-2"
-            :items="subcategoriasDropdown"
-            v-model="subCategoriaSelect"
-            @change="
-              (newValue) => handleDropdownChange('subcategoria', newValue)
-            "
-            placeholder="Seleccione Sub-Categoría"
-            filter
-            :color="false"
-            :error="errors.subCategoriaSelect"
-            v-bind="subCategoriaSelectAttrs"
-          />
-          <span
-            class="text-red-400"
-            v-if="errors.subCategoriaSelect ? true : false"
-          >
+          <MyDropdown class="mt-2" :items="subcategoriasDropdown" v-model="subCategoriaSelect" @change="(newValue) => handleDropdownChange('subcategoria', newValue)
+            " placeholder="Seleccione Sub-Categoría" filter :color="false" :error="errors.subCategoriaSelect"
+            v-bind="subCategoriaSelectAttrs" />
+          <span class="text-red-400" v-if="errors.subCategoriaSelect ? true : false">
             {{ errors.subCategoriaSelect }}
           </span>
         </div>
         <div class="col-6">
           <label for="tipoDropdown">Seleccione Tipo</label>
-          <MyDropdown
-            class="mt-2"
-            :items="getByIdSubcategorias()"
-            v-model="tipoSelect"
-            @change="(newValue) => handleDropdownChange('tipo', newValue)"
-            placeholder="Seleccione Tipo"
-            filter
-            :color="false"
-            :error="errors.tipoSelect"
-            v-bind="tipoSelectAttrs"
-          />
+          <MyDropdown class="mt-2" :items="getByIdSubcategorias()" v-model="tipoSelect"
+            @change="(newValue) => handleDropdownChange('tipo', newValue)" placeholder="Seleccione Tipo" filter
+            :color="false" :error="errors.tipoSelect" v-bind="tipoSelectAttrs" />
           <span class="text-red-400" v-if="errors.tipoSelect ? true : false">
             {{ errors.tipoSelect }}
           </span>
         </div>
         <div class="col-6">
           <label for="marcaDropdown">Seleccione Marca</label>
-          <MyDropdown
-            class="mt-2"
-            :items="marcasCategoriasDropdown"
-            v-model="marcaSelect"
-            @change="(newValue) => handleDropdownChange('marca', newValue)"
-            placeholder="Seleccione Marca"
-            filter
-            :color="false"
-            :error="errors.marcaSelect"
-            v-bind="marcaSelectAttrs"
-          />
+          <MyDropdown class="mt-2" :items="marcasCategoriasDropdown" v-model="marcaSelect"
+            @change="(newValue) => handleDropdownChange('marca', newValue)" placeholder="Seleccione Marca" filter
+            :color="false" :error="errors.marcaSelect" v-bind="marcaSelectAttrs" />
           <span class="text-red-400" v-if="errors.marcaSelect ? true : false">
             {{ errors.marcaSelect }}
           </span>
         </div>
         <div class="col-6">
           <label for="modeloDropdown">Seleccione Modelo</label>
-          <MyDropdown
-            class="mt-2"
-            :items="modelosCategoriasDropdown"
-            v-model="modeloSelect"
-            @change="(newValue) => handleDropdownChange('modelo', newValue)"
-            placeholder="Seleccione Modelo"
-            :color="false"
-            filter
-            :error="errors.modeloSelect"
-            v-bind="modeloSelectAttrs"
-          />
+          <MyDropdown class="mt-2" :items="modelosCategoriasDropdown" v-model="modeloSelect"
+            @change="(newValue) => handleDropdownChange('modelo', newValue)" placeholder="Seleccione Modelo"
+            :color="false" filter :error="errors.modeloSelect" v-bind="modeloSelectAttrs" />
           <span class="text-red-400" v-if="errors.modeloSelect ? true : false">
             {{ errors.modeloSelect }}
           </span>
         </div>
         <div class="col-6">
           <label for="año">Año</label>
-          <MyInput
-            type="text"
-            class="mt-2"
-            v-model="year"
-            @input="handleInputChange('año', $event)"
-            @blur="() => handleBlur('año')"
-            :color="false"
-          />
+          <MyInput type="text" class="mt-2" v-model="year" @input="handleInputChange('año', $event)"
+            @blur="() => handleBlur('año')" :color="false" />
         </div>
         <div class="col-6">
           <label for="nroChasis">Nroº nroChasis</label>
-          <MyInput
-            type="text"
-            class="mt-2"
-            v-model="nroChasis"
-            @input="handleInputChange('nroChasis', $event)"
-            @blur="() => handleBlur('nroChasis')"
-            :color="false"
-          />
+          <MyInput type="text" class="mt-2" v-model="nroChasis" @input="handleInputChange('nroChasis', $event)"
+            @blur="() => handleBlur('nroChasis')" :color="false" />
         </div>
         <div class="col-6">
           <label for="nroMotor">Nroº nroMotor</label>
-          <MyInput
-            type="text"
-            class="mt-2"
-            v-model="nroMotor"
-            @input="handleInputChange('nroMotor', $event)"
-            @blur="() => handleBlur('nroMotor')"
-            :color="false"
-          />
+          <MyInput type="text" class="mt-2" v-model="nroMotor" @input="handleInputChange('nroMotor', $event)"
+            @blur="() => handleBlur('nroMotor')" :color="false" />
         </div>
         <div class="col-6">
           <label for="dominio">Dominio</label>
-          <MyInput
-            type="text"
-            class="mt-2"
-            v-model="dominio"
-            @input="handleInputChange('dominio', $event)"
-            @blur="() => handleBlur('dominio')"
-            :color="false"
-          />
+          <MyInput type="text" class="mt-2" v-model="dominio" @input="handleInputChange('dominio', $event)"
+            @blur="() => handleBlur('dominio')" :color="false" />
         </div>
         <div class="col-6">
           <label for="nroSerie">Nroº Serie</label>
-          <MyInput
-            type="text"
-            class="mt-2"
-            v-model="nroSerie"
-            @input="handleInputChange('nroSerie', $event)"
-            @blur="() => handleBlur('nroSerie')"
-            :color="false"
-          />
+          <MyInput type="text" class="mt-2" v-model="nroSerie" @input="handleInputChange('nroSerie', $event)"
+            @blur="() => handleBlur('nroSerie')" :color="false" />
         </div>
         <div class="col-6">
           <label for="nroIMEI">Nroº IMEI</label>
-          <MyInput
-            type="text"
-            class="mt-2"
-            v-model="nroIMEI"
-            @input="handleInputChange('nroIMEI', $event)"
-            @blur="() => handleBlur('nroIMEI')"
-            :color="false"
-          />
+          <MyInput type="text" class="mt-2" v-model="nroIMEI" @input="handleInputChange('nroIMEI', $event)"
+            @blur="() => handleBlur('nroIMEI')" :color="false" />
         </div>
         <div class="col-6">
           <label for="nroAbonado">Nroº Abonado</label>
-          <MyInput
-            type="text"
-            class="mt-2"
-            v-model="nroAbonado"
-            @input="handleInputChange('nroAbonado', $event)"
-            @blur="() => handleBlur('nroAbonado')"
-            :color="false"
-          />
+          <MyInput type="text" class="mt-2" v-model="nroAbonado" @input="handleInputChange('nroAbonado', $event)"
+            @blur="() => handleBlur('nroAbonado')" :color="false" />
         </div>
         <div class="col-6">
           <label for="color">color</label>
-          <MyInput
-            type="text"
-            class="mt-2"
-            v-model="color"
-            @input="handleInputChange('color', $event)"
-            @blur="() => handleBlur('color')"
-            :color="false"
-          />
+          <MyInput type="text" class="mt-2" v-model="color" @input="handleInputChange('color', $event)"
+            @blur="() => handleBlur('color')" :color="false" />
         </div>
         <div class="ml-auto mt-2 p-0">
-          <Button
-            label="Agregar"
-            v-if="!selectedItem"
-            :disabled="hasErrors()"
-            @click="handleAgregarElemento()"
-          >
+          <Button label="Agregar" v-if="!selectedItem" :disabled="hasErrors()" @click="handleAgregarElemento()">
           </Button>
           <div v-else>
-            <Button
-              :disabled="isEditing(selectedItem!.id)"
-              label="Cancelar"
-              icon="pi pi-times"
-              severity="secondary"
-              outlined
-              aria-label="Cancel"
-              class="mr-3"
-              @click="handleCancelar"
-            ></Button>
-            <Button
-              label="Guardar Cambios"
-              :disabled="isEditing(selectedItem!.id)"
-              @click="handleModificarElemento()"
-              severity="warning"
-            ></Button>
+            <Button :disabled="isEditing(selectedItem!.id)" label="Cancelar" icon="pi pi-times" severity="secondary"
+              outlined aria-label="Cancel" class="mr-3" @click="handleCancelar"></Button>
+            <Button label="Guardar Cambios" :disabled="isEditing(selectedItem!.id)" @click="handleModificarElemento()"
+              severity="warning"></Button>
           </div>
         </div>
       </div>

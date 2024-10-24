@@ -45,6 +45,14 @@ const validationSchema = yup.object({
     nombre: yup.string().required().min(3),
     apellido: yup.string().required().min(3),
     domicilio: yup.string().required().min(8),
+    email: yup
+        .string()
+        .email('Debe ser un correo válido')
+        .when('tipoDenuncianteSelect.name', {
+            is: 'Denunciante',
+            then: (schema) => schema.required('El correo es obligatorio para Afectados tipo Denunciante'),
+            otherwise: (schema) => schema.notRequired(),
+        }),
     textAreaDescription: yup
         .string()
         .test(
@@ -596,7 +604,7 @@ watch(tipoDenuncianteSelect, (newVal: any) => {
                             <label for="dropdown">Email</label>
                             <MyInput type="text" class="mt-2" placeholder="Ingrese email" v-model="email"
                                 @input="handleInputChange('email', $event)" @blur="() => handleBlur('email')"
-                                :color="false" />
+                                :color="false" :error="errors.email" />
                         </div>
                         <div class="md:col-2 col-6">
                             <label for="dropdown">Profesión</label>

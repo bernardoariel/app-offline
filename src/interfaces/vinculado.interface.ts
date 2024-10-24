@@ -8,6 +8,7 @@ interface PrimaryAttributes {
   telefono: string;
   profesion: string;
   apodo: string;
+  email: string;
 }
 export interface VinculadosForm extends PrimaryAttributes {
   typeAfectado: { name: string };

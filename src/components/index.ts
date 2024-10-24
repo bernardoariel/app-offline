@@ -1,0 +1,13 @@
+export { default as ActuacionCards } from "./ActuacionCards.vue";
+export { default as ButtonOptions } from "./ButtonOptions.vue";
+export { default as DataTableExpansion } from "./DataTableExpansion.vue";
+export { default as DataViewCard } from "./DataViewCard.vue";
+export { default as ListBoxItems } from "./ListBoxItems.vue";
+export { default as SetColorMode } from "./SetColorMode.vue";
+export { default as SetScaleSystem } from "./SetScaleSystem.vue";
+export { default as SidebarMenu } from "./SidebarMenu.vue";
+export { default as SidebarRight } from "./SidebarRight.vue";
+export { default as ToolbarActuacion } from "./ToolbarActuacion.vue";
+export { default as ToolbarComponent } from "./ToolbarComponent.vue";
+export { default as DiligenciaComponent } from "./DiligenciaComponent.vue";
+export { default as DatosLegalesComponent } from "./DatosLegalesComponent.vue";

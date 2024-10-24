@@ -32,6 +32,8 @@
     "@faker-js/faker": "^8.4.1",
     "@playwright/test": "^1.45.0",
     "@tsconfig/node18": "^18.2.2",
+    "@types/jest": "^29.5.13",
+    "@types/mocha": "^10.0.9",
     "@types/node": "^18.19.3",
     "@types/pdfobject": "^2.2.5",
     "@types/uuid": "^9.0.8",

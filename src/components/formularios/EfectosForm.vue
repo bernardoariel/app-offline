@@ -317,7 +317,7 @@ function getByIdSubcategorias() {
     if (subCategoriaSelect.value) {
         const tiposCategories = ref<any>()
         tiposCategories.value = tipoCategoriasDropdown.value.filter(categoria =>
-            subCategoriaSelect.value.SubcategoriaID.includes(categoria.id_subcategoria)
+            subCategoriaSelect.value.key.includes(categoria.id_subcategoria)
         );
         return tiposCategories.value
     }

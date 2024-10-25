@@ -3,9 +3,12 @@ import { useRoute } from 'vue-router';
 import SidebarMenu from './SidebarMenu.vue';
 import SidebarRight from './SidebarRight.vue';
 import { ref, watch, onActivated } from 'vue';
+import useActuacionData from '@/composables/useActuacionData';
 
 const route = useRoute();
+const { actuacionData } = useActuacionData();
 const isNewActuacion = ref(false);
+const isFormulario = ref(false);
 const today = ref<Date | null>(null);
 
 onActivated(() => {
@@ -14,11 +17,17 @@ onActivated(() => {
 
 watch(route, () => {
   checkRoute();
+  checkIsFormulario()
 });
 
 const checkRoute = () => {
   isNewActuacion.value = route.name === 'newActuacion';
 };
+
+const checkIsFormulario = () => {
+  isFormulario.value = route.name === 'formulario';
+};
+
 </script>
 
 <template>
@@ -34,6 +43,9 @@ const checkRoute = () => {
       <div v-else-if="isNewActuacion" class="p-d-flex p-flex-column text-3xl">
         Nueva Actuación
       </div>
+      <div v-else-if="isFormulario" class="p-d-flex p-flex-column text-3xl">
+        {{ actuacionData?.titulo }}
+      </div>
       <div v-else class="p-d-flex p-flex-column text-3xl">
         Edición de actuación
       </div>
@@ -43,19 +55,17 @@ const checkRoute = () => {
       <SidebarRight icono="pi-bars" position="right" color-icono="secondary" />
     </template> -->
     <template #end>
-      <div 
-        v-tooltip.bottom="{
-          value:'Se ha perdido la conexión a internet. Es posible que algunas funcionalidades no esten disponibles. Solamente podrá crear actuaciones de manera offline, y requerirá de su parte subirlas al Online.',
-          pt: {
-            arrow: {
-                style: {
-                    borderBottomColor: 'var(--primary-color)'
-                }
-            },
-            text: 'bg-primary font-medium'
-          }}" 
-        class="flex justify-center align-items-center mr-5"
-      >
+      <div v-tooltip.bottom="{
+        value: 'Se ha perdido la conexión a internet. Es posible que algunas funcionalidades no esten disponibles. Solamente podrá crear actuaciones de manera offline, y requerirá de su parte subirlas al Online.',
+        pt: {
+          arrow: {
+            style: {
+              borderBottomColor: 'var(--primary-color)'
+            }
+          },
+          text: 'bg-primary font-medium'
+        }
+      }" class="flex justify-center align-items-center mr-5">
         <i class="pi pi-wifi" style="font-size: 2rem; position: relative">
           <span style="
           position: absolute;
@@ -65,10 +75,10 @@ const checkRoute = () => {
           width: 2.3rem;
           height: 2px;
           background-color: #343a40;">
-        </span>
-      </i>
-      <span style="margin-left: 10px;">Modo Offline</span>
-    </div>
+          </span>
+        </i>
+        <span class="ml-2 md:block hidden">Modo Offline</span>
+      </div>
     </template>
   </Toolbar>
 </template>

@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import { ref, onActivated } from 'vue';
+import { ref, onActivated, onMounted, onBeforeUnmount } from 'vue';
+import { useRouter } from 'vue-router';
 import { useToast } from 'primevue/usetoast';
 import { getColorByAfectado } from '@/helpers/getColorByAfectado';
 import { formatFecha } from '@/helpers/getFormatFecha';
-import useSaveData from '../composables/useSaveData';
+import useSaveData from '@/composables/useSaveData';
 import { useViewPdf } from '@/composables/useViewPdf';
-import { useRouter } from 'vue-router';
 import useActuacion from '@/composables/useActuacion';
 import MyConfirmPopup from './elementos/MyConfirmPopup.vue';
 
@@ -23,32 +23,7 @@ onActivated(async () => {
   actuaciones = await fetchActuaciones();
   actuacionesList.value = actuaciones;
 });
-const onRowExpand = (event: { data: { name: any } }) => {
-  toast.add({
-    severity: 'info',
-    summary: 'Item Expandidos',
-    detail: event.data.name,
-    life: 3000,
-  });
-};
-const onRowCollapse = (event: { data: { name: any } }) => {
-  toast.add({
-    severity: 'success',
-    summary: 'Items Colapsados',
-    detail: event.data.name,
-    life: 3000,
-  });
-};
-const expandAll = () => {
-  expandedRows.value = actuacionesList.value.reduce(
-    (acc: { [x: string]: boolean }, p: { id: string | number }) =>
-      (acc[p.id] = true) && acc,
-    {}
-  );
-};
-const collapseAll = () => {
-  expandedRows.value = [];
-};
+
 const viewPdf = async (id: string) => {
   await generatePdf(+id);
   window.open(pdfUrl.value, '_blank');
@@ -61,6 +36,7 @@ const onEditActuacion = (id: number, nombreActuacion: string) => {
     params: { id, actuacion: nombreActuacion },
   });
 };
+
 const actuacionIdToDelete = ref<number | null>(null);
 
 const confirmConfig = ref({
@@ -101,37 +77,76 @@ const handleRejected = () => {
   console.log('Rejected');
   // Aquí puedes manejar la lógica cuando se hace clic en rechazar
 };
+
+const isDesktop = ref(window.innerWidth >= 992);
+const isTablet = ref(window.innerWidth >= 650);
+
+const checkScreenSize = () => {
+  isDesktop.value = window.innerWidth >= 992;
+  isTablet.value = window.innerWidth >= 650;
+};
+
+onMounted(() => {
+  window.addEventListener('resize', checkScreenSize);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', checkScreenSize);
+});
 </script>
 
 <template>
-  <div class="card">
+  <div class="p-5 border-round-xl bg-white mb-3">
     <DataTable
-      class="my-custom-datatable"
       v-model:expandedRows="expandedRows"
       :value="actuacionesList"
       dataKey="id"
-      @rowExpand="onRowExpand"
-      @rowCollapse="onRowCollapse"
-      tableStyle="min-width: 60rem"
     >
-      <Column expander style="width: 5rem" />
-      <Column field="fechaCreacion" header="Fecha"></Column>
-      <Column field="nroLegajoCompleto" header="Nro.de Actuación"></Column>
-      <Column field="nombreActuacion" header="Actuaciones"></Column>
-      <Column header="Juzgado">
+      <Column expander class="w-5rem" />
+      <Column field="fechaCreacion" header="Fecha">
+        <template #body="{ data }">
+          <div
+            @click="onEditActuacion(data.id, data.pathName)"
+            class="cursor-pointer"
+          >
+            {{ data.fechaCreacion }}
+          </div>
+        </template>
+      </Column>
+      <Column field="nroLegajoCompleto" header="Nro.de Actuación">
+        <template #body="{ data }">
+          <div
+            @click="onEditActuacion(data.id, data.pathName)"
+            class="cursor-pointer"
+          >
+            {{ data.nroLegajoCompleto }}
+          </div>
+        </template>
+      </Column>
+      <Column field="nombreActuacion" header="Actuaciones">
+        <template #body="{ data }">
+          <div
+            @click="onEditActuacion(data.id, data.pathName)"
+            class="cursor-pointer"
+          >
+            {{ data.nombreActuacion }}
+          </div>
+        </template>
+      </Column>
+      <Column header="Juzgado" v-if="isDesktop">
         <template #body="slotProps">
           <p>
             {{
               slotProps.data.pathName.includes('ufi')
-              ? slotProps.data.datosLegales.selectUfiNro
-              : slotProps.data.pathName.includes('preliminares')
-              ? slotProps.data.datosLegales.selectJuzgadoInterviniente
-              : slotProps.data.juzgadoInterviniente
+                ? slotProps.data.datosLegales.selectUfiNro
+                : slotProps.data.pathName.includes('preliminares')
+                ? slotProps.data.datosLegales.selectJuzgadoInterviniente
+                : slotProps.data.juzgadoInterviniente
             }}
           </p>
         </template>
       </Column>
-      <Column header="Acciones">
+      <Column header="Acciones" v-if="isDesktop">
         <template #body="{ data }">
           <div class="flex gap-2">
             <Button
@@ -156,12 +171,6 @@ const handleRejected = () => {
           </div>
         </template>
       </Column>
-
-      <!-- <Column header="Estado">
-                <template #body="slotProps">
-                    <Tag :value="slotProps.data.statusActuacion" :severity="getSeverity(slotProps.data) as string" />
-                </template>
-            </Column> -->
       <template #expansion="slotProps">
         <div class="p-3">
           <div class="flex flex-wrap gap-3">
@@ -208,7 +217,9 @@ const handleRejected = () => {
                 name="options"
                 value="personalInterviniente"
               />
-              <label for="personalInterviniente" class="ml-2">Intervinientes</label>
+              <label for="personalInterviniente" class="ml-2"
+                >Intervinientes</label
+              >
             </div>
           </div>
           <div v-if="selectedOption === 'afectados'">
@@ -223,8 +234,13 @@ const handleRejected = () => {
                 header="Nro.Documento"
                 sortable
               ></Column>
-              <Column field="telefono" header="Teléfono" sortable></Column>
-              <Column header="Tipo de Afectado">
+              <Column
+                field="telefono"
+                header="Teléfono"
+                sortable
+                v-if="isDesktop"
+              ></Column>
+              <Column header="Tipo de Afectado" v-if="isTablet">
                 <template #body="slotProps">
                   <Tag
                     :value="slotProps.data.typeAfectado"
@@ -246,9 +262,19 @@ const handleRejected = () => {
                 header="Nro.Documento"
                 documento
               ></Column>
-              <Column field="telefono" header="Teléfono" sortable></Column>
-              <Column field="apodo" header="Apodo" sortable></Column>
-              <Column header="Tipo de Vinculado">
+              <Column
+                field="telefono"
+                header="Teléfono"
+                sortable
+                v-if="isDesktop"
+              ></Column>
+              <Column
+                field="apodo"
+                header="Apodo"
+                sortable
+                v-if="isTablet"
+              ></Column>
+              <Column header="Tipo de Vinculado" v-if="isTablet">
                 <template #body="slotProps">
                   <Tag
                     :value="slotProps.data.typeAfectado"
@@ -263,12 +289,20 @@ const handleRejected = () => {
               <h2 class="uppercase">Fecha Ubicacion</h2>
             </div>
             <DataTable :value="slotProps.data.fechaUbicacion">
-              <Column field="desdeFechaHora" header="Fecha desde">
+              <Column
+                field="desdeFechaHora"
+                header="Fecha desde"
+                v-if="isTablet"
+              >
                 <template #body="slotProps">
                   {{ formatFecha(slotProps.data.desdeFechaHora) }}
                 </template>
               </Column>
-              <Column field="hastaFechaHora" header="Fecha hasta">
+              <Column
+                field="hastaFechaHora"
+                header="Fecha hasta"
+                v-if="isTablet"
+              >
                 <template #body="slotProps">
                   {{ formatFecha(slotProps.data.hastaFechaHora) }}
                 </template>
@@ -283,13 +317,23 @@ const handleRejected = () => {
               <h2 class="uppercase">Efectos</h2>
             </div>
             <DataTable :value="slotProps.data.efectos">
-              <Column field="categoria.name" header="Categoría" sortable></Column>
+              <Column
+                field="categoria.name"
+                header="Categoría"
+                sortable
+              ></Column>
               <Column field="marca.name" header="Marca" sortable></Column>
-              <Column field="modelo.name" header="Modelo" sortable></Column>
+              <Column
+                field="modelo.name"
+                header="Modelo"
+                sortable
+                v-if="isTablet"
+              ></Column>
               <Column
                 field="subcategoria.name"
                 header="Subcategoría"
                 documento
+                v-if="isTablet"
               ></Column>
               <Column field="tipo.name" header="Tipo" sortable></Column>
             </DataTable>
@@ -302,13 +346,17 @@ const handleRejected = () => {
               <Column field="apellido" header="Apellido"></Column>
               <Column field="nombre" header="Nombre"></Column>
               <Column field="jerarquia" header="Jerarquía"></Column>
-              <Column field="dependencia" header="Dependencia"></Column>
+              <Column
+                field="dependencia"
+                header="Dependencia"
+                v-if="isTablet"
+              ></Column>
             </DataTable>
           </div>
         </div>
       </template>
       <template #empty>
-        <div style="display: flex; justify-content: center; padding: 2rem">
+        <div class="flex justify-content-center p-5">
           <h2>No existen registros offline</h2>
         </div>
       </template>
@@ -321,20 +369,3 @@ const handleRejected = () => {
     <Toast />
   </div>
 </template>
-
-<style scoped>
-.card {
-  background: var(--surface-card);
-  padding: 2rem;
-  border-radius: 10px;
-  margin-bottom: 1rem;
-}
-.modal-body {
-  display: flex;
-  justify-content: space-between;
-  padding-top: 0.5rem;
-  padding-left: 3rem; /* Padding solo en los lados */
-  padding-right: 3rem; /* Padding solo en los lados */
-  /* gap: 1rem; */
-}
-</style>

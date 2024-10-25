@@ -1,26 +1,32 @@
-import type { Afectados } from "./afectado.interface";
-import type { Efectos } from "./efecto.interface";
-import type { FechaUbicacion } from "./fecha.interface";
-import type { PersonalInterviniente } from "./personalInterviniente";
-import type { Vinculados } from "./vinculado.interface";
+import type {
+  Afectados,
+  Efectos,
+  FechaUbicacion,
+  PersonalInterviniente,
+  Vinculados,
+} from "./index";
 
-type Item = Afectados | Vinculados | PersonalInterviniente |FechaUbicacion | Efectos;
+type Item =
+  | Afectados
+  | Vinculados
+  | PersonalInterviniente
+  | FechaUbicacion
+  | Efectos;
 
 interface CardInformationArrayItem {
-    titulo: string;
-    items: Item[]; // Cambiar "any[]" por el tipo específico según corresponda
-  }
-  
-  // Define un tipo para el elemento que es un objeto único
-  interface CardInformationSingleItem {
-    titulo: string;
-    item: any; // Cambiar "any" por el tipo específico, en este caso, FechaUbicacion
-  }
-  
-  // Usamos un tipo unión para manejar ambos casos
-  type CardInformationItem = CardInformationArrayItem | CardInformationSingleItem;
-  
-  // Define un tipo que incluya todos los posibles casos
+  titulo: string;
+  items: Item[];
+  visible?: boolean;
+}
+
+interface CardInformationSingleItem {
+  titulo: string;
+  item: any;
+  visible?: boolean;
+}
+
+type CardInformationItem = CardInformationArrayItem | CardInformationSingleItem;
+
 export type CardInformation = {
-    [key: string]: CardInformationItem;
-  };
+  [key: string]: CardInformationItem;
+};

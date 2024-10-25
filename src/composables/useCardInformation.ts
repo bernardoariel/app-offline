@@ -6,18 +6,40 @@ const useCardInformation = (actuacionRef, actuacionData) => {
   const itemsCollection = useItems();
 
   const cardInformation: CardInformation = reactive({
-    afectados: { titulo: 'Afectados', items: itemsCollection.afectados || [] },
-    vinculados: { titulo: 'Vinculados', items: itemsCollection.vinculados || [] },
-    fecha: { titulo: 'Fecha', items: itemsCollection.fechaUbicacion || [] },
-    efectos: { titulo: 'Efectos', items: itemsCollection.efectos || [] },
-    personalInterviniente: { titulo: 'Personal Interviniente', items: itemsCollection.intervinientes || [] }
+    afectados: {
+      titulo: "Afectados",
+      items: itemsCollection.afectados || [],
+      visible: false,
+    },
+    vinculados: {
+      titulo: "Vinculados",
+      items: itemsCollection.vinculados || [],
+      visible: false,
+    },
+    fecha: {
+      titulo: "Fecha",
+      items: itemsCollection.fechaUbicacion || [],
+      visible: false,
+    },
+    efectos: {
+      titulo: "Efectos",
+      items: itemsCollection.efectos || [],
+      visible: false,
+    },
+    personalInterviniente: {
+      titulo: "Personal Interviniente",
+      items: itemsCollection.intervinientes || [],
+      visible: false,
+    },
   });
 
-  const cardInformationKeys = ref(Object.keys(cardInformation) as (keyof typeof cardInformation)[]);
+  const cardInformationKeys = ref(
+    Object.keys(cardInformation) as (keyof typeof cardInformation)[]
+  );
 
   const updateCardInformation = (data) => {
     if (!data || !data.tarjetas) {
-      console.log('Data or tarjetas is not defined');
+      console.log("Data or tarjetas is not defined");
       return;
     }
 
@@ -36,18 +58,20 @@ const useCardInformation = (actuacionRef, actuacionData) => {
       } else {
         cardInformation[key] = {
           titulo: data.tarjetas[key].titulo,
-          items: itemsCollection[key] || []
+          items: itemsCollection[key] || [],
         };
       }
     }
-    cardInformationKeys.value = Object.keys(cardInformation) as (keyof typeof cardInformation)[];
+    cardInformationKeys.value = Object.keys(
+      cardInformation
+    ) as (keyof typeof cardInformation)[];
   };
 
   // Llamada inicial
   if (actuacionData?.value) {
     updateCardInformation(actuacionData.value);
   } else {
-    console.error('actuacionData is undefined or has no value');
+    console.error("actuacionData is undefined or has no value");
   }
 
   // Observar cambios en actuacionData
@@ -57,16 +81,22 @@ const useCardInformation = (actuacionRef, actuacionData) => {
       if (newData) {
         updateCardInformation(newData);
       } else {
-        console.error('New data is undefined or has no value');
+        console.error("New data is undefined or has no value");
       }
     },
     { immediate: true, deep: true }
   );
 
   // Observar cambios en cardInformation para actualizar cardInformationKeys
-  watch(cardInformation, () => {
-    cardInformationKeys.value = Object.keys(cardInformation) as (keyof typeof cardInformation)[];
-  }, { deep: true });
+  watch(
+    cardInformation,
+    () => {
+      cardInformationKeys.value = Object.keys(
+        cardInformation
+      ) as (keyof typeof cardInformation)[];
+    },
+    { deep: true }
+  );
 
   return {
     cardInformationKeys,

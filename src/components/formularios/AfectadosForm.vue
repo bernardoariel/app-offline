@@ -16,6 +16,7 @@ import {
     hasEstudiesDropdown,
     mapToArray, mapToDropdownItems
 } from '@/helpers/index';
+import { useToast } from 'primevue/usetoast';
 
 const isOrdenPublico = ref<boolean>(false);
 const actuacionHasOrdenPublico = ref<boolean>(false);
@@ -26,6 +27,7 @@ const vinculo = ref<string | undefined>('')
 const showInputVinculo = ref<boolean>(false)
 const firsDateChangeDone = ref(true);
 
+const toast = useToast();
 const { obtenerTarjeta, actuacionData } = useActuacionData();
 const { setField } = useCardValidations();
 const { editar, agregar, resetAllDropdown, initialValues } = useAfectados();
@@ -381,6 +383,11 @@ const handleAgregarElemento = () => {
 
     agregar(nuevoItem);
     markNewRecordCreated();
+    toast.add({
+        severity: 'success',
+        summary: 'Afectado Creado',
+        life: 2000,
+    });
     setField('afectados', false);
     formData.value = { ...initialValues };
     apellido.value = '';

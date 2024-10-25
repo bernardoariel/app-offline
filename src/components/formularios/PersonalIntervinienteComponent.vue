@@ -13,6 +13,7 @@ import type {
 import { dependenciaDropdown, jerarquiaDropdown } from '@/helpers/getDropItems';
 import { useForm } from 'vee-validate';
 import { mapToArray } from '@/helpers/dropUtils';
+import { useToast } from 'primevue/usetoast';
 
 const validationSchema = yup.object({
   jerarquiaSelect: yup.object().shape({
@@ -50,7 +51,7 @@ const {
   selectedJerarquiaDrop,
   selectedDependenciaDrop,
 } = usePersonalInterviniente();
-
+const toast = useToast()
 const { selectedItem } = useItemValue();
 
 const {
@@ -148,6 +149,11 @@ const handleAgregarElemento = () => {
 
   agregar(nuevoPersonalInterviniente);
   markNewRecordCreated();
+  toast.add({
+    severity: 'success',
+    summary: 'Interviniente Creado',
+    life: 2000,
+  });
   formData.value = { ...initialValues };
   jerarquiaSelect.value = { name: 'Seleccione una jerarquie' };
   dependenciaSelect.value = { name: 'Seleccione una dependencia' };

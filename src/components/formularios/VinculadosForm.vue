@@ -20,8 +20,9 @@ import {
     mapToArray,
     mapToDropdownItems
 } from '@/helpers/index';
+import { useToast } from 'primevue/usetoast';
 
-
+const toast = useToast();
 const { editar, agregar, initialValues } = useVinculados();
 const { selectedItem } = useItemValue();
 const { obtenerTarjeta, actuacionData } = useActuacionData();
@@ -389,6 +390,11 @@ const handleAgregarElemento = () => {
 
     agregar(nuevoItem);
     markNewRecordCreated();
+    toast.add({
+        severity: 'success',
+        summary: 'Vinculado Creado',
+        life: 2000,
+    });
     formData.value = { ...initialValues };
     apellido.value = '';
     telefono.value = '';

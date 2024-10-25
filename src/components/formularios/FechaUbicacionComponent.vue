@@ -188,11 +188,11 @@ watch(selectedItem, (newVal: any) => {
             <div class="grid">
                 <div class="col-6">
                     <label for="desdeFechaHoraRef">Desde</label>
-                    <MyCalendar v-model="formData.desdeFechaHora" />
+                    <MyCalendar v-model="formData.desdeFechaHora" :maxDate="formData.hastaFechaHora" />
                 </div>
                 <div class="col-6">
                     <label for="hastaFechaHoraRef">Hasta</label>
-                    <MyCalendar v-model="formData.hastaFechaHora" />
+                    <MyCalendar v-model="formData.hastaFechaHora" :minDate="formData.desdeFechaHora" />
                 </div>
                 <div class="md:col-4 col-6">
                     <label for="calle">Calle</label>

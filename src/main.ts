@@ -49,58 +49,12 @@ import ConfirmationService from "primevue/confirmationservice";
 import "primeicons/primeicons.css";
 import useTheme from "./composables/useTheme";
 import { useStorageData } from "./composables/useStorageData";
+import { localConfig } from "./helpers/index";
 
 const app = createApp(App);
 
 app.use(createPinia());
-app.use(PrimeVue, {
-  locale: {
-    firstDayOfWeek: 1,
-    dayNamesShort: ["dom", "lun", "mar", "mié", "jue", "vie", "sáb"],
-    today: "Hoy",
-    clear: "Limpiar",
-    dateFormat: "dd/mm/yy",
-    weekHeader: "Sem",
-    monthNamesShort: [
-      "ene",
-      "feb",
-      "mar",
-      "abr",
-      "may",
-      "jun",
-      "jul",
-      "ago",
-      "sep",
-      "oct",
-      "nov",
-      "dic",
-    ],
-    dayNames: [
-      "domingo",
-      "lunes",
-      "martes",
-      "miércoles",
-      "jueves",
-      "viernes",
-      "sábado",
-    ],
-    dayNamesMin: ["D", "L", "M", "X", "J", "V", "S"],
-    monthNames: [
-      "Enero",
-      "Febrero",
-      "Marzo",
-      "Abril",
-      "Mayo",
-      "Junio",
-      "Julio",
-      "Agosto",
-      "Septiembre",
-      "Octubre",
-      "Noviembre",
-      "Diciembre",
-    ],
-  },
-});
+app.use(PrimeVue, localConfig);
 app.use(ToastService);
 
 app.use(router);

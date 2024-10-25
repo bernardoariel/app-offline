@@ -52,3 +52,4 @@ export {
   separateCamelCase,
 } from "./stringUtils";
 export { dialogButtons } from "./dialogButtons";
+export { localConfig } from "./localConfig";

@@ -252,6 +252,7 @@ const handleDropdownChange = (
 
     setFieldModified(campo, true);
   }
+
   if (campo === 'sitio') {
     selectedSitio.value = newValue.value;
   } else if (campo === 'modusOperandi') {
@@ -270,6 +271,8 @@ const handleDropdownChange = (
     selectedUfiNro.value = newValue.value;
   } else if (campo === 'fiscalCargo') {
     selectedFiscalCargo.value = newValue.value;
+  } else if (campo === 'ayudanteFiscal') {
+    selectedAyudanteFiscal.value = newValue.value
   }
 };
 

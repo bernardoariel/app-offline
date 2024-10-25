@@ -123,7 +123,8 @@ onUnmounted(() => {
                                                     severity="secondary" @click="toggleVisibility(key)" />
                                             </div>
                                             <div class="font-medium text-3xl text-900">
-                                                {{ cardInformation[key]?.titulo }}
+                                                {{ cardInformation[key]?.titulo === 'Fecha' ? 'Fecha, Hora y Ubicación' :
+                                                cardInformation[key]?.titulo }}
                                             </div>
                                         </div>
                                         <div>

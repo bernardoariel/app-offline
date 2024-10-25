@@ -49,7 +49,7 @@ const validationSchema = yup.object({
         .string()
         .email('Debe ser un correo válido')
         .when('tipoDenuncianteSelect.name', {
-            is: 'Denunciante',
+            is: (value: string) => ['Denunciante', 'Denunciante y Damnificado'].includes(value),
             then: (schema) => schema.required('El correo es obligatorio para Afectados tipo Denunciante'),
             otherwise: (schema) => schema.notRequired(),
         }),

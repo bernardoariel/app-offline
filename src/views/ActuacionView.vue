@@ -99,7 +99,7 @@ watch(
   <MyModal :visible="dialogState.isDialogVisible" :title="dialogState.header.title" :buttons="dialogButtons"
     @update:visible="dialogState.isDialogVisible = $event" @button-click="handleButtonClick">
     <template #body>
-      <div class="justify-content-center flex flex-col items-center w-full" style="padding: 0">
+      <div class="justify-content-center flex flex-column items-center w-full" style="padding: 0">
         <div class="flex items-center w-full justify-between">
           <i class="text-7xl mt-3 ml-5" :class="[dialogState.body.colorClass, dialogState.body.icon]"></i>
           <p class="font-bold text-xl ml-4">

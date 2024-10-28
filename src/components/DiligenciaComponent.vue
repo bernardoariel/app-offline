@@ -255,28 +255,28 @@ const handleSave = async () => {
   hasErrors.value = false;
 
   if (
-    props.cardInformationKeys.value.includes('afectados') &&
+    props.cardInformationKeys.includes('afectados') &&
     (!afectados.value || afectados.value.length === 0)
   ) {
     setField('afectados', true);
     hasErrors.value = true;
   }
   if (
-    props.cardInformationKeys.value.includes('vinculados') &&
+    props.cardInformationKeys.includes('vinculados') &&
     (!vinculados.value || vinculados.value.length === 0)
   ) {
     missingFieldsEmpty.vinculados = true;
     hasErrors.value = true;
   }
   if (
-    props.cardInformationKeys.value.includes('fecha') &&
+    props.cardInformationKeys.includes('fecha') &&
     (!fechaUbicacion.value || fechaUbicacion.value.length === 0)
   ) {
     missingFieldsEmpty.fecha = true;
     hasErrors.value = true;
   }
   if (
-    props.cardInformationKeys.value.includes('personalInterviniente') &&
+    props.cardInformationKeys.includes('personalInterviniente') &&
     (!intervinientes.value || intervinientes.value.length === 0)
   ) {
     missingFieldsEmpty.personalInterviniente = true;

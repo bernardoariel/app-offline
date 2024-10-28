@@ -14,7 +14,9 @@ import {
     mapToArray,
     mapToDropdownItems
 } from '@/helpers/index';
+import { useToast } from 'primevue/usetoast';
 
+const toast = useToast();
 const { obtenerTarjeta, actuacionData } = useActuacionData();
 
 const validationSchema = yup.object({
@@ -233,6 +235,11 @@ const handleAgregarElemento = () => {
 
     agregar(nuevoEfecto);
     markNewRecordCreated();
+    toast.add({
+        severity: 'success',
+        summary: 'Efecto creado',
+        life: 2000,
+    });
     formData.value = { ...initialValues };
     tipoSelect.value = { name: 'Seleccione un tipo', key: '' };
     marcaSelect.value = { name: 'Seleccione una marca', key: '' };

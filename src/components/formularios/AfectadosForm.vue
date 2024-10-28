@@ -39,7 +39,6 @@ const {
     setModifiedData,
     guardarModificaciones,
     isEditing,
-    cancelarModificaciones,
     markNewRecordCreated,
 } = useFieldsState();
 
@@ -385,7 +384,7 @@ const handleAgregarElemento = () => {
     markNewRecordCreated();
     toast.add({
         severity: 'success',
-        summary: 'Afectado Creado',
+        summary: 'Afectado creado',
         life: 2000,
     });
     setField('afectados', false);

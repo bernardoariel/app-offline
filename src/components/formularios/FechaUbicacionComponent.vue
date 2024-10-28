@@ -8,7 +8,9 @@ import type {
     FechaUbicacionForm, FechaUbicacion
 } from '@/interfaces/index';
 import { municipiosDropdown, mapToArray } from '@/helpers/index';
+import { useToast } from 'primevue/usetoast';
 
+const toast = useToast();
 const { agregar, editar, initialValues, selectedMunicipioDrop } = useFecha();
 
 const validationSchema = yup.object({
@@ -132,6 +134,11 @@ const handleAgregarElemento = () => {
 
     agregar(nuevoItem);
     markNewRecordCreated();
+    toast.add({
+        severity: 'success',
+        summary: 'Fecha y ubicación creada',
+        life: 2000,
+    });
     formData.value = { ...initialValues };
     calle.value = '';
     numero.value = '';

@@ -2,7 +2,7 @@ import { reactive, ref, watch } from "vue";
 import type { CardInformation } from "@/interfaces/cardInformation.interface";
 import useItems from "./useItems";
 
-const useCardInformation = (actuacionRef, actuacionData) => {
+const useCardInformation = (actuacionRef: string, actuacionData) => {
   const itemsCollection = useItems();
 
   const cardInformation: CardInformation = reactive({
@@ -68,15 +68,15 @@ const useCardInformation = (actuacionRef, actuacionData) => {
   };
 
   // Llamada inicial
-  if (actuacionData?.value) {
-    updateCardInformation(actuacionData.value);
+  if (actuacionData) {
+    updateCardInformation(actuacionData);
   } else {
     console.error("actuacionData is undefined or has no value");
   }
 
   // Observar cambios en actuacionData
   watch(
-    () => actuacionData?.value,
+    () => actuacionData,
     (newData) => {
       if (newData) {
         updateCardInformation(newData);

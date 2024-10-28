@@ -195,11 +195,11 @@ watch(selectedItem, (newVal: any) => {
             <div class="grid">
                 <div class="col-6">
                     <label for="desdeFechaHoraRef">Desde</label>
-                    <MyCalendar v-model="formData.desdeFechaHora" />
+                    <MyCalendar v-model="formData.desdeFechaHora" :maxDate="formData.hastaFechaHora" />
                 </div>
                 <div class="col-6">
                     <label for="hastaFechaHoraRef">Hasta</label>
-                    <MyCalendar v-model="formData.hastaFechaHora" />
+                    <MyCalendar v-model="formData.hastaFechaHora" :minDate="formData.desdeFechaHora" />
                 </div>
                 <div class="md:col-4 col-6">
                     <label for="calle">Calle</label>
@@ -226,9 +226,6 @@ watch(selectedItem, (newVal: any) => {
                     <Button label="Agregar" :disabled="hasErrors()" v-if="!selectedItem"
                         @click="handleAgregarElemento()"></Button>
                     <div v-else>
-                        <Button :disabled="isEditing(selectedItem!.id)" label="Cancelar" icon="pi pi-times"
-                            severity="secondary" outlined aria-label="Cancel" class="mr-3"
-                            @click="handleCancelar"></Button>
                         <Button label="Guardar Cambios" :disabled="isEditing(selectedItem!.id)"
                             @click="handleModificarElemento()" severity="warning"></Button>
                     </div>

@@ -49,11 +49,12 @@ import ConfirmationService from "primevue/confirmationservice";
 import "primeicons/primeicons.css";
 import useTheme from "./composables/useTheme";
 import { useStorageData } from "./composables/useStorageData";
+import { localConfig } from "./helpers/index";
 
 const app = createApp(App);
 
 app.use(createPinia());
-app.use(PrimeVue);
+app.use(PrimeVue, localConfig);
 app.use(ToastService);
 
 app.use(router);

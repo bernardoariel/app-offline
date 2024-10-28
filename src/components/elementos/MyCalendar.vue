@@ -47,8 +47,11 @@ const computedMaxDate = computed(() => {
 });
 
 function setToNow() {
-  innerValue.value = new Date();
-  emits('update:modelValue', innerValue.value);
+  const now = new Date();
+  if (innerValue.value?.getTime() !== now.getTime()) {
+    innerValue.value = now;
+    emits('update:modelValue', now);
+  }
 }
 
 function closeCalendar() {
@@ -58,10 +61,14 @@ function closeCalendar() {
 }
 
 watch(innerValue, (newValue) => {
-  emits('update:modelValue', newValue);
+  if (newValue?.getTime() !== props.modelValue?.getTime()) {
+    emits('update:modelValue', newValue);
+  }
 });
 
 watch(() => props.modelValue, (newValue) => {
-  innerValue.value = newValue;
+  if (newValue?.getTime() !== innerValue.value?.getTime()) {
+    innerValue.value = newValue;
+  }
 });
 </script>

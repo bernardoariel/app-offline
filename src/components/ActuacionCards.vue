@@ -4,7 +4,6 @@ import { DatosLegalesComponent, DataViewCard } from '@/components/index';
 
 import {
     useActuacion,
-    useCardInformation,
     useItems,
     useDatosLegales,
     useDatosDiligencia,
@@ -18,6 +17,8 @@ interface Props {
     id?: number;
     actuacionName: string;
     actuacionData: any;
+    cardInformation: any;
+    cardInformationKeys: any
 }
 const props = defineProps<Props>();
 const activeButtonTab = ref(0);
@@ -35,7 +36,6 @@ const { isAnyFieldModified: isLegalModified } = useLegalesState();
 const { addDataFake } = useDatosLegales();
 const { setAll } = useItems();
 const { relato } = useDatosDiligencia(props.actuacionName);
-const { cardInformationKeys, cardInformation } = useCardInformation(props.actuacionName, props.actuacionData);
 const { missingFieldsEmpty } = useCardValidations();
 const { prepararNuevoItem } = useItemValue();
 
@@ -65,7 +65,7 @@ const isAnyChange = computed(() => {
 });
 
 const toggleVisibility = (key: string | number) => {
-    cardInformation[key].visible = !cardInformation[key].visible;
+    props.cardInformation[key].visible = !props.cardInformation[key].visible;
 }
 
 const isLargeScreen = ref(window.innerWidth >= 992);
@@ -81,6 +81,7 @@ onMounted(() => {
 onUnmounted(() => {
     window.removeEventListener('resize', handleResize);
 });
+
 
 </script>
 
@@ -107,37 +108,42 @@ onUnmounted(() => {
                 <TabView v-model:activeIndex="activeButtonTab">
                     <TabPanel header="Datos Requeridos">
                         <div class="flex flex-wrap  gap-2 justify-content-evenly lg:block">
-                            <Card v-for="key in cardInformationKeys" :key="key" class="p-fluid mb-2 w-full" :style="missingFieldsEmpty[key]
-                                ? key === 'efectos'
-                                    ? 'borderBottom: 2px solid #f97316'
-                                    : 'borderBottom: 2px solid #dc3545'
-                                : null
-                                ">
+                            <Card v-for="key in props.cardInformationKeys" :key="key" class="p-fluid mb-2 w-full"
+                                :style="missingFieldsEmpty[key]
+                                    ? key === 'efectos'
+                                        ? 'borderBottom: 2px solid #f97316'
+                                        : 'borderBottom: 2px solid #dc3545'
+                                    : null
+                                    ">
                                 <template #title>
                                     <div class="flex justify-content-between align-items-center relative">
                                         <div class="flex align-items-center">
                                             <div class="lg:hidden">
-                                                <Button v-if="cardInformation[key].visible" icon="pi pi-chevron-up" text
-                                                    rounded severity="secondary" @click="toggleVisibility(key)" />
+                                                <Button v-if="props.cardInformation[key].visible"
+                                                    icon="pi pi-chevron-up" text rounded severity="secondary"
+                                                    @click="toggleVisibility(key)" />
                                                 <Button v-else icon="pi pi-chevron-down" text rounded
                                                     severity="secondary" @click="toggleVisibility(key)" />
                                             </div>
                                             <div class="font-medium text-3xl text-900">
-                                                {{ cardInformation[key]?.titulo === 'Fecha' ? 'Fecha, Hora y Ubicación' :
-                                                cardInformation[key]?.titulo }}
+                                                {{ props.cardInformation[key]?.titulo ===
+                                                    'Fecha' ? 'Fecha, Hora y Ubicación'
+                                                    :
+                                                    props.cardInformation[key]?.titulo }}
                                             </div>
                                         </div>
                                         <div>
                                             <Button icon="pi pi-plus" severity="secondary" rounded outlined
                                                 @click="handleNuevoItem(key as string)"
-                                                :data-testid="cardInformation[key].titulo + 'PlusButton'" />
+                                                :data-testid="props.cardInformation[key].titulo + 'PlusButton'" />
                                         </div>
                                     </div>
                                 </template>
                                 <template #content>
-                                    <div :class="{ 'hidden': !cardInformation[key]?.visible && !isLargeScreen }">
-                                        <DataViewCard v-if="cardInformation[key]" :itemsCardValue="cardInformation[key]"
-                                            :data-key="key" :actuacion="actuacionName" />
+                                    <div :class="{ 'hidden': !props.cardInformation[key]?.visible && !isLargeScreen }">
+                                        <DataViewCard v-if="props.cardInformation[key]"
+                                            :itemsCardValue="props.cardInformation[key]" :data-key="key"
+                                            :actuacion="actuacionName" />
                                     </div>
                                 </template>
                             </Card>

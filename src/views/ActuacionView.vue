@@ -12,7 +12,8 @@ import {
   useDialog,
   useFieldsState,
   useLegalesState,
-  useActuacionLoading
+  useActuacionLoading,
+  useCardInformation
 } from '@/composables/index'
 import { handleFetchActuacion, dialogButtons } from '@/helpers/index';
 
@@ -25,6 +26,7 @@ const props = defineProps<Props>();
 
 const router = useRoute();
 
+const { cardInformationKeys, cardInformation } = useCardInformation(props.actuacionName, props.actuacionData);
 const { dialogState, confirmNavigation, hideDialog } = useDialog();
 const { toogleDateActuacion } = useActuacion();
 const { set: setActuacionData } = useActuacionData();
@@ -93,6 +95,7 @@ watch(
   }
 );
 
+
 </script>
 
 <template>
@@ -115,15 +118,16 @@ watch(
 
   <div class="grid">
     <div class="col-12">
-      <ToolbarActuacion :actuacion="props.actuacionName" :id="id" />
+      <ToolbarActuacion :actuacion="props.actuacionName" :id="id" :cardInformationKeys=cardInformationKeys />
     </div>
 
     <div class="lg:col-5 col-12">
-      <ActuacionCards :id=props.id :actuacionName=props.actuacionName :actuacionData=props.actuacionData />
+      <ActuacionCards :id=props.id :actuacionName=props.actuacionName :actuacionData=props.actuacionData
+        :cardInformationKeys=cardInformationKeys :cardInformation=cardInformation />
     </div>
 
     <div class="lg:col-7 col-12">
-      <DiligenciaComponent :actuacion="props.actuacionName" :id="props.id" />
+      <DiligenciaComponent :actuacion="props.actuacionName" :id="props.id" :cardInformationKeys=cardInformationKeys />
     </div>
   </div>
 </template>

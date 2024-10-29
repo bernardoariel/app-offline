@@ -71,7 +71,7 @@ const dropdownItems: { [key: string]: any } = {
 const yearsActuacionStrings = yearsActuacion.map((year) => year.toString());
 
 const baseValidationSchema = yup.object({
-  legajo: yup.string().required(),
+  legajo: yup.number().required(),
   year: yup.object().shape({
     name: yup
       .string()
@@ -345,8 +345,8 @@ const eliminarItem = (name: string, type: string) => {
 const handleInputChange = (campo: string | number, event: Event) => {
   const valor = (event.target as HTMLInputElement).value;
   if (campo === 'nroLegajo') {
-    nroLegajo.value = valor;
-    legajo.value = valor;
+    nroLegajo.value = +valor;
+    legajo.value = +valor;
   }
   formData.value = { ...formData.value, [campo]: valor };
   addField(campo.toString(), valor);
@@ -357,7 +357,7 @@ const handleInputChange = (campo: string | number, event: Event) => {
   <div class="grid">
     <div class="xl:col-9 col-12">
       <label for="dropdown">Legajo N° / N° de extracto</label>
-      <MyInput type="text" class="mt-2" v-model="legajo" v-bind="legajoAttrs" :error="errors.legajo"
+      <MyInput type="number" class="mt-2" v-model="legajo" v-bind="legajoAttrs" :error="errors.legajo"
         @input="handleInputChange('nroLegajo', $event)" color />
     </div>
     <div class="xl:col-3 col-12">

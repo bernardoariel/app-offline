@@ -11,7 +11,6 @@ import useDatosDiligencia from '@/composables/useDatosDiligencia';
 import useActuacionData from '@/composables/useActuacionData';
 import useCardValidation from '@/composables/useCardValidations';
 import { useDialog } from '@/composables/useDialog';
-import useCardInformation from '@/composables/useCardInformation';
 import useLegalesState from '@/composables/useLegalesState';
 import useSaveData from '@/composables/useSaveData';
 import type { dataActuacion } from '@/composables/useSaveData';
@@ -21,6 +20,7 @@ import useValidacionDatosLegales from '@/composables/useValidacionDatosLegales';
 interface Props {
   actuacion: string;
   id?: number;
+  cardInformationKeys: any
 }
 const props = defineProps<Props>();
 
@@ -54,10 +54,7 @@ const {
 } = useItem();
 const { setField, missingFieldsEmpty, hasErrors } = useCardValidation();
 const { actuacionData } = useActuacionData();
-const { cardInformationKeys } = useCardInformation(
-  props.actuacion,
-  actuacionData
-);
+
 const { dialogState } = useDialog();
 const { addDataFake, nroLegajo } = useDatosLegales();
 const {
@@ -175,28 +172,28 @@ const handleSave = async () => {
   hasErrors.value = false;
 
   if (
-    cardInformationKeys.value.includes('afectados') &&
+    props.cardInformationKeys.value.includes('afectados') &&
     (!afectados.value || afectados.value.length === 0)
   ) {
     setField('afectados', true);
     hasErrors.value = true;
   }
   if (
-    cardInformationKeys.value.includes('vinculados') &&
+    props.cardInformationKeys.value.includes('vinculados') &&
     (!vinculados.value || vinculados.value.length === 0)
   ) {
     missingFieldsEmpty.vinculados = true;
     hasErrors.value = true;
   }
   if (
-    cardInformationKeys.value.includes('fecha') &&
+    props.cardInformationKeys.value.includes('fecha') &&
     (!fechaUbicacion.value || fechaUbicacion.value.length === 0)
   ) {
     missingFieldsEmpty.fecha = true;
     hasErrors.value = true;
   }
   if (
-    cardInformationKeys.value.includes('personalInterviniente') &&
+    props.cardInformationKeys.value.includes('personalInterviniente') &&
     (!intervinientes.value || intervinientes.value.length === 0)
   ) {
     missingFieldsEmpty.personalInterviniente = true;

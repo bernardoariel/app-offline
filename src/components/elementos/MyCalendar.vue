@@ -1,29 +1,11 @@
 <template>
-  <Calendar
-    ref="calendarRef"
-    v-model="value"
-    :dateFormat="'dd/mm/yy'"
-    :manualInput="false"
-    :minDate="minDate"
-    :maxDate="maxDate"
-    showTime
-    showIcon
-  >
+  <Calendar ref="calendarRef" v-model="innerValue" :dateFormat="'dd/mm/yy'" :manualInput="false"
+    :minDate="computedMinDate" :maxDate="computedMaxDate" showTime showIcon>
     <template #footer>
       <div class="flex justify-content-between">
-        <Button
-          label="Hoy"
-          icon="pi pi-check"
-          class="p-button-text"
-          @click="setToNow"
-        />
+        <Button label="Hoy" icon="pi pi-check" class="p-button-text" @click="setToNow" />
         <div class="flex-grow-1"></div>
-        <Button
-          label="Cerrar"
-          icon="pi pi-times"
-          class="p-button-text"
-          @click="closeCalendar"
-        />
+        <Button label="Cerrar" icon="pi pi-times" class="p-button-text" @click="closeCalendar" />
       </div>
     </template>
   </Calendar>
@@ -37,40 +19,40 @@ interface PrimeVueCalendar extends ComponentPublicInstance {
   overlayVisible: boolean;
 }
 
-// Define el tipo explícitamente para modelValue
 type ModelValue = Date | null;
 
 const props = defineProps<{
   modelValue: ModelValue;
-  fechaDesde?: null | 'today' | number;
-  fechaHasta?: null | 'today' | number;
+  minDate?: Date | 'today' | number | null;
+  maxDate?: Date | 'today' | number | null;
 }>();
 
 const emits = defineEmits(['update:modelValue']);
 
 const calendarRef = ref<PrimeVueCalendar | null>(null);
-const value = ref<ModelValue>(props.modelValue);
+const innerValue = ref<ModelValue>(props.modelValue);
+
+const computedMinDate = computed(() => {
+  if (props.minDate === 'today') return new Date();
+  if (typeof props.minDate === 'number')
+    return new Date(Date.now() - props.minDate * 24 * 60 * 60 * 1000);
+  return props.minDate ?? undefined;
+});
+
+const computedMaxDate = computed(() => {
+  if (props.maxDate === 'today') return new Date();
+  if (typeof props.maxDate === 'number')
+    return new Date(Date.now() + props.maxDate * 24 * 60 * 60 * 1000);
+  return props.maxDate ?? undefined;
+});
 
 function setToNow() {
-  value.value = new Date();
-  emits('update:modelValue', value.value);
+  const now = new Date();
+  if (innerValue.value?.getTime() !== now.getTime()) {
+    innerValue.value = now;
+    emits('update:modelValue', now);
+  }
 }
-
-const minDate = computed(() => {
-  if (props.fechaDesde === 'today') return new Date();
-  if (typeof props.fechaDesde === 'number')
-    return new Date(Date.now() - props.fechaDesde * 24 * 60 * 60 * 1000);
-
-  return undefined;
-});
-
-const maxDate = computed(() => {
-  if (props.fechaHasta === 'today') return new Date();
-  if (typeof props.fechaHasta === 'number')
-    return new Date(Date.now() + props.fechaHasta * 24 * 60 * 60 * 1000);
-
-  return undefined;
-});
 
 function closeCalendar() {
   if (calendarRef.value) {
@@ -78,11 +60,15 @@ function closeCalendar() {
   }
 }
 
-watch(value, (newValue) => {
-  emits('update:modelValue', newValue);
+watch(innerValue, (newValue) => {
+  if (newValue?.getTime() !== props.modelValue?.getTime()) {
+    emits('update:modelValue', newValue);
+  }
+});
+
+watch(() => props.modelValue, (newValue) => {
+  if (newValue?.getTime() !== innerValue.value?.getTime()) {
+    innerValue.value = newValue;
+  }
 });
 </script>
-
-<style scoped>
-/* Estilos específicos para el calendario si es necesario */
-</style>

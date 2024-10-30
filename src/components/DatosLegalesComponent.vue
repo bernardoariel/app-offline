@@ -2,7 +2,7 @@
 import { computed, ref, watch } from 'vue';
 import * as yup from 'yup';
 import { useForm } from 'vee-validate';
-import { MyInput, MyDropdown } from '@/components/elementos/index';
+import { MyInputNumber, MyDropdown } from '@/components/elementos/index';
 import {
   getYearsDrop, mapToDropdownItems, sitiosDropdwown,
   modusOperandiDropdwown,
@@ -71,7 +71,7 @@ const dropdownItems: { [key: string]: any } = {
 const yearsActuacionStrings = yearsActuacion.map((year) => year.toString());
 
 const baseValidationSchema = yup.object({
-  legajo: yup.string().required(),
+  legajo: yup.number().required(),
   year: yup.object().shape({
     name: yup
       .string()
@@ -286,7 +286,7 @@ watch(selectedCausaCaratula, () => {
   validateData();
 });
 watch(nroLegajo, () => {
-  legajo.value = nroLegajo.value ? nroLegajo.value : '';
+  legajo.value = nroLegajo.value ? Number(nroLegajo.value) : null;
   sitio.value = selectedSitio.value
     ? selectedSitio.value
     : { name: 'Seleccione una opción' };
@@ -342,23 +342,22 @@ const eliminarItem = (name: string, type: string) => {
   markRecordDeleted();
 };
 
-const handleInputChange = (campo: string | number, event: Event) => {
-  const valor = (event.target as HTMLInputElement).value;
+const handleInputChange = (campo: string, valor: number) => {
   if (campo === 'nroLegajo') {
     nroLegajo.value = valor;
     legajo.value = valor;
   }
   formData.value = { ...formData.value, [campo]: valor };
-  addField(campo.toString(), valor);
-  setFieldModified(campo.toString(), true);
+  addField(campo, valor);
+  setFieldModified(campo, true);
 };
 </script>
 <template>
   <div class="grid">
     <div class="xl:col-9 col-12">
       <label for="dropdown">Legajo N° / N° de extracto</label>
-      <MyInput type="text" class="mt-2" v-model="legajo" v-bind="legajoAttrs" :error="errors.legajo"
-        @input="handleInputChange('nroLegajo', $event)" color />
+      <MyInputNumber class="mt-2" v-model="legajo" v-bind="legajoAttrs" :error="errors.legajo"
+        @update:model-value="(event) => handleInputChange('nroLegajo', +event)" color />
     </div>
     <div class="xl:col-3 col-12">
       <label for="dropdown">Año</label>

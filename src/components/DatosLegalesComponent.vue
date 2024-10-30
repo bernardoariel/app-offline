@@ -286,7 +286,7 @@ watch(selectedCausaCaratula, () => {
   validateData();
 });
 watch(nroLegajo, () => {
-  legajo.value = nroLegajo.value ? Number(nroLegajo.value) : 0;
+  legajo.value = nroLegajo.value ? Number(nroLegajo.value) : null;
   sitio.value = selectedSitio.value
     ? selectedSitio.value
     : { name: 'Seleccione una opción' };

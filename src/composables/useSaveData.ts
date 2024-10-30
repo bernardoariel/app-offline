@@ -73,9 +73,14 @@ const useSaveData = () => {
   };
 
   const deleteActuacion = async (id: number) => {
-    const result = await dbOperations.deleteActuacion(id);
-    success.value = result.success;
-    error.value = result.error;
+    try {
+      const result = await dbOperations.deleteActuacion(id); // Aquí debe retornar success
+      success.value = result.success;
+      error.value = result.error || null;
+    } catch (e) {
+      error.value = `Delete error: ${e}`;
+      success.value = false;
+    }
   };
 
   return {

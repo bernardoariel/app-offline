@@ -22,7 +22,7 @@ let nombreActuacion = ref<string>("Sumario por denuncia");
 
 const useDatosLegales = () => {
   const initialValuesDatosLegales: DatosLegalesForm = {
-    nroLegajo: 0,
+    nroLegajo: null,
     selectYear: { name: "" },
     selectSitio: { name: "" },
     selectUfiNro: { name: "" },

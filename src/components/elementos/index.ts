@@ -1,5 +1,4 @@
 export { default as MyCalendar } from "./MyCalendar.vue";
-export { default as MyCalendar2 } from "./MyCalendar2.vue";
 export { default as MyConfirmPopup } from "./MyConfirmPopup.vue";
 export { default as MyDropdown } from "./MyDropdown.vue";
 export { default as MyInput } from "./MyInput.vue";

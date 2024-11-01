@@ -1,5 +1,5 @@
 import { mount } from "@vue/test-utils";
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import { MyInput } from "@/components/elementos/index";
 import InputText from "primevue/inputtext";
 import PrimeVue from "primevue/config";
@@ -12,12 +12,20 @@ vi.mock("primevue/inputtext", () => ({
 }));
 
 describe("MyInput Component", () => {
-  it("renders the input with the correct placeholder", () => {
-    const wrapper = mount(MyInput, {
+  let globalConfig: any;
+
+  beforeEach(() => {
+    globalConfig = {
       global: {
         plugins: [PrimeVue],
         components: { InputText },
       },
+    };
+  });
+
+  it("renders the input with the correct placeholder", () => {
+    const wrapper = mount(MyInput, {
+      ...globalConfig,
       props: {
         modelValue: "Test value",
         type: "text",
@@ -40,11 +48,7 @@ describe("MyInput Component", () => {
 
   it("updates modelValue on text input", async () => {
     const wrapper = mount(MyInput, {
-      global: {
-        plugins: [PrimeVue],
-        components: { InputText },
-      },
-
+      ...globalConfig,
       props: {
         modelValue: "",
         type: "text",
@@ -62,10 +66,7 @@ describe("MyInput Component", () => {
 
   it("updates modelValue on number input", async () => {
     const wrapper = mount(MyInput, {
-      global: {
-        plugins: [PrimeVue],
-        components: { InputText },
-      },
+      ...globalConfig,
       props: {
         modelValue: "",
         type: "number",
@@ -83,10 +84,7 @@ describe("MyInput Component", () => {
 
   it("emits blur event when input loses focus", async () => {
     const wrapper = mount(MyInput, {
-      global: {
-        plugins: [PrimeVue],
-        components: { InputText },
-      },
+      ...globalConfig,
     });
     const input = wrapper.find("input");
 
@@ -96,10 +94,7 @@ describe("MyInput Component", () => {
 
   it("displays error message when error prop is set", () => {
     const wrapper = mount(MyInput, {
-      global: {
-        plugins: [PrimeVue],
-        components: { InputText },
-      },
+      ...globalConfig,
       props: {
         modelValue: "",
         error: "This is an error",
@@ -115,10 +110,7 @@ describe("MyInput Component", () => {
 
   it("applies surface-100 class when color is true", () => {
     const wrapper = mount(MyInput, {
-      global: {
-        plugins: [PrimeVue],
-        components: { InputText },
-      },
+      ...globalConfig,
       props: { color: true },
     });
 
@@ -128,10 +120,7 @@ describe("MyInput Component", () => {
 
   it("applies border-red-500 class when there is an error", () => {
     const wrapper = mount(MyInput, {
-      global: {
-        plugins: [PrimeVue],
-        components: { InputText },
-      },
+      ...globalConfig,
       props: { error: "Error", color: true },
     });
 

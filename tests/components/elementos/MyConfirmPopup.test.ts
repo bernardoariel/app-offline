@@ -10,7 +10,15 @@ vi.mock("primevue/useconfirm", () => ({
 }));
 
 describe("MyConfirmPopup Component", () => {
+  let globalConfig: any;
+
   beforeEach(() => {
+    globalConfig = {
+      global: {
+        components: { MyConfirmPopup },
+        plugins: [PrimeVue],
+      },
+    };
     useConfirm.mockReturnValue({
       require: vi.fn(),
     });
@@ -45,12 +53,7 @@ describe("MyConfirmPopup Component", () => {
       options.accept();
     });
 
-    const wrapper = mount(ParentComponent, {
-      global: {
-        components: { MyConfirmPopup },
-        plugins: [PrimeVue],
-      },
-    });
+    const wrapper = mount(ParentComponent, { ...globalConfig });
 
     await wrapper.find("button").trigger("click");
     expect(wrapper.emitted("accepted")).toBeTruthy();
@@ -62,12 +65,7 @@ describe("MyConfirmPopup Component", () => {
       options.reject();
     });
 
-    const wrapper = mount(ParentComponent, {
-      global: {
-        components: { MyConfirmPopup },
-        plugins: [PrimeVue],
-      },
-    });
+    const wrapper = mount(ParentComponent, { ...globalConfig });
 
     await wrapper.find("button").trigger("click");
     expect(wrapper.emitted("rejected")).toBeTruthy();

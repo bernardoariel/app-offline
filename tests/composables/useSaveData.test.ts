@@ -1,14 +1,10 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { ref } from 'vue';
-import Dexie from 'dexie';
-import useSaveData from '@/composables/useSaveData';
-import useActuacion from '@/composables/useActuacion';
-import useDatosLegales from '@/composables/useDatosLegales';
-import { useFormCompleted } from '@/composables/useFormCompleted';
-import { getDependenciaData } from '@/helpers/getDependencia';
-import { formatFecha } from '@/helpers/getFormatFecha';
+import { describe, it, expect, beforeEach, vi } from "vitest";
+import { ref } from "vue";
+import { useSaveData } from "@/composables/index";
 
-vi.mock('dexie', () => {
+type UseSaveDataReturn = ReturnType<typeof useSaveData>;
+
+vi.mock("dexie", () => {
   const DexieMock = vi.fn().mockImplementation(() => {
     return {
       version: vi.fn().mockReturnThis(),
@@ -19,68 +15,58 @@ vi.mock('dexie', () => {
         update: vi.fn().mockResolvedValue(),
         toArray: vi.fn().mockResolvedValue([]),
         get: vi.fn().mockResolvedValue({}),
-        delete: vi.fn().mockResolvedValue(),
+        delete: vi.fn().mockResolvedValue({ success: true }),
         where: vi.fn().mockReturnThis(),
-        first: vi.fn().mockResolvedValue({ id: 1 })
-      }
+        first: vi.fn().mockResolvedValue({ id: 1 }),
+      },
     };
   });
   return { default: DexieMock };
 });
 
-vi.mock('@/composables/useActuacion', () => {
+vi.mock("@/composables/useActuacion", () => {
   return {
     default: vi.fn(() => {
       return {
-        fechaCreacion: ref('2023-07-25'),
-        getFormattedDate: vi.fn()
+        fechaCreacion: ref("2023-07-25"),
+        getFormattedDate: vi.fn(),
       };
-    })
+    }),
   };
 });
 
-vi.mock('@/composables/useDatosLegales', () => {
+vi.mock("@/composables/useDatosLegales", () => {
   return {
     default: vi.fn(() => {
       return {
-        nombreActuacion: ref('Test Actuacion'),
-        nroLegajo: ref('123456'),
-        selectedJuzgadoInterviniente: ref({ name: 'Test Juzgado' })
+        nombreActuacion: ref("Test Actuacion"),
+        nroLegajo: ref("123456"),
+        selectedJuzgadoInterviniente: ref({ name: "Test Juzgado" }),
       };
-    })
+    }),
   };
 });
 
-vi.mock('@/composables/useFormCompleted', () => {
+vi.mock("@/helpers/getDependencia", () => {
   return {
-    useFormCompleted: vi.fn(() => {
-      return {
-        validateForm: vi.fn().mockReturnValue(true)
-      };
-    })
+    getDependenciaData: vi.fn().mockReturnValue({ dependencia: "test" }),
   };
 });
 
-vi.mock('@/helpers/getDependencia', () => {
+vi.mock("@/helpers/getFormatFecha", () => {
   return {
-    getDependenciaData: vi.fn().mockReturnValue({ dependencia: 'test' })
+    formatFecha: vi.fn().mockReturnValue("2023-07-25"),
   };
 });
 
-vi.mock('@/helpers/getFormatFecha', () => {
-  return {
-    formatFecha: vi.fn().mockReturnValue('2023-07-25')
-  };
-});
-
-describe('useSaveData composable', () => {
-  let composable;
+describe("useSaveData composable", () => {
+  let composable: UseSaveDataReturn;
 
   beforeEach(() => {
     composable = useSaveData();
   });
 
-  it('should save data successfully', async () => {
+  it("should save data successfully", async () => {
     const data = {
       afectados: [],
       vinculados: [],
@@ -88,7 +74,7 @@ describe('useSaveData composable', () => {
       efectos: [],
       datosLegales: {},
       personalInterviniente: [],
-      relato: 'Test Relato'
+      relato: "Test Relato",
     };
 
     await composable.saveData(data);
@@ -96,7 +82,7 @@ describe('useSaveData composable', () => {
     expect(composable.success.value).toBe(true);
   });
 
-  it('should update data successfully', async () => {
+  it("should update data successfully", async () => {
     const data = {
       id: 1,
       afectados: [],
@@ -105,7 +91,7 @@ describe('useSaveData composable', () => {
       efectos: [],
       datosLegales: {},
       personalInterviniente: [],
-      relato: 'Test Relato'
+      relato: "Test Relato",
     };
 
     await composable.updateData(data);
@@ -113,40 +99,22 @@ describe('useSaveData composable', () => {
     expect(composable.success.value).toBe(true);
   });
 
-  it('should fetch actuaciones successfully', async () => {
+  it("should fetch actuaciones successfully", async () => {
     const actuaciones = await composable.fetchActuaciones();
 
     expect(actuaciones).toEqual([]);
   });
 
-  it('should fetch actuacion by id successfully', async () => {
+  it("should fetch actuacion by id successfully", async () => {
     const actuacion = await composable.fetchActuacionById(1);
 
     expect(actuacion).toEqual({});
   });
 
-  it('should delete actuacion successfully', async () => {
+  it("should delete actuacion successfully", async () => {
     await composable.deleteActuacion(1);
 
+    expect(composable.success.value).toBe(true);
     expect(composable.error.value).toBe(null);
   });
-
-//   it('should handle save data validation failure', async () => {
-//     const validateForm = useFormCompleted().validateForm;
-//     validateForm.mockReturnValueOnce(false);
-
-//     const data = {
-//       afectados: [],
-//       vinculados: [],
-//       fechaUbicacion: {},
-//       efectos: [],
-//       datosLegales: {},
-//       personalInterviniente: [],
-//       relato: 'Test Relato'
-//     };
-
-//     await composable.saveData(data);
-
-//     expect(composable.success.value).toBe(false);
-//   });
 });

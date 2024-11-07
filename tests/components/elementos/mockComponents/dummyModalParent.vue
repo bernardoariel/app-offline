@@ -13,13 +13,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import { MyModal } from "@/components/elementos/index";
+import { ref } from 'vue';
+import { MyModal } from '@/components/elementos/index';
 
 const modalVisible = ref(false);
 const buttons = [
-  { label: "Aceptar", action: "accept", focus: true },
-  { label: "Cancelar", action: "cancel", focus: false },
+  { label: 'Aceptar', action: 'accept', focus: true },
+  { label: 'Cancelar', action: 'cancel', focus: false },
 ];
 
 const updateVisible = (value: boolean) => {

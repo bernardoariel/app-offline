@@ -86,6 +86,4 @@ describe("MyModal", () => {
 
     expect(wrapper.emitted("update:visible")).toBeTruthy();
   });
-
-
 });

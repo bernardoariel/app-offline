@@ -13,8 +13,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, defineEmits } from 'vue';
 import { MyModal } from '@/components/elementos/index';
+
+const emit = defineEmits(['button-click', 'update:visible']);
 
 const modalVisible = ref(false);
 const buttons = [
@@ -24,9 +26,11 @@ const buttons = [
 
 const updateVisible = (value: boolean) => {
   modalVisible.value = value;
+  emit('update:visible', value);
 };
 
 const buttonClick = (action: string) => {
   console.log(`Botón clicado: ${action}`);
+  emit('button-click', action);
 };
 </script>

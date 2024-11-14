@@ -27,3 +27,4 @@ export { default as useValidacionDatosLegales } from "./useValidacionDatosLegale
 export { useViewPdf } from "./useViewPdf";
 export { default as useVinculados } from "./useVinculados";
 export { default as useVinculadosForm } from "./useVinculadosForm";
+export { useOnlineStatus } from './useOnlineStatus'

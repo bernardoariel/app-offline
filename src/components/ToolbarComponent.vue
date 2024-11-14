@@ -3,13 +3,22 @@ import { useRoute } from 'vue-router';
 import SidebarMenu from './SidebarMenu.vue';
 import SidebarRight from './SidebarRight.vue';
 import { ref, watch, onActivated } from 'vue';
-import useActuacionData from '@/composables/useActuacionData';
+import { useActuacionData, useOnlineStatus } from '@/composables/index';
 
 const route = useRoute();
+const { isOnline } = useOnlineStatus();
 const { actuacionData } = useActuacionData();
 const isNewActuacion = ref(false);
 const isFormulario = ref(false);
 const today = ref<Date | null>(null);
+
+watch(isOnline, () => {
+  console.log('isOnline.value', isOnline.value);
+  if (isOnline.value && route.name !== 'newActuacion') {
+    console.log('estoy online', isOnline.value);
+    console.log('me voy al online', route.name);
+  }
+});
 
 onActivated(() => {
   checkRoute();
@@ -17,7 +26,7 @@ onActivated(() => {
 
 watch(route, () => {
   checkRoute();
-  checkIsFormulario()
+  checkIsFormulario();
 });
 
 const checkRoute = () => {
@@ -27,7 +36,6 @@ const checkRoute = () => {
 const checkIsFormulario = () => {
   isFormulario.value = route.name === 'formulario';
 };
-
 </script>
 
 <template>
@@ -37,7 +45,10 @@ const checkIsFormulario = () => {
     </template>
 
     <template #center>
-      <div v-if="route.name === 'actuaciones'" class="flex align-items-center gap-2">
+      <div
+        v-if="route.name === 'actuaciones'"
+        class="flex align-items-center gap-2"
+      >
         <div class="text-3xl">Actuaciones</div>
       </div>
       <div v-else-if="isNewActuacion" class="p-d-flex p-flex-column text-3xl">
@@ -55,29 +66,37 @@ const checkIsFormulario = () => {
       <SidebarRight icono="pi-bars" position="right" color-icono="secondary" />
     </template> -->
     <template #end>
-      <div v-tooltip.bottom="{
-        value: 'Se ha perdido la conexión a internet. Es posible que algunas funcionalidades no esten disponibles. Solamente podrá crear actuaciones de manera offline, y requerirá de su parte subirlas al Online.',
-        pt: {
-          arrow: {
-            style: {
-              borderBottomColor: 'var(--primary-color)'
-            }
+      <div
+        v-tooltip.bottom="{
+          value:
+            'Se ha perdido la conexión a internet. Es posible que algunas funcionalidades no esten disponibles. Solamente podrá crear actuaciones de manera offline, y requerirá de su parte subirlas al Online.',
+          pt: {
+            arrow: {
+              style: {
+                borderBottomColor: 'var(--primary-color)',
+              },
+            },
+            text: 'bg-primary font-medium',
           },
-          text: 'bg-primary font-medium'
-        }
-      }" class="flex justify-center align-items-center mr-5">
+        }"
+        class="flex justify-center align-items-center mr-5"
+      >
         <i class="pi pi-wifi" style="font-size: 2rem; position: relative">
-          <span style="
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%) rotate(-45deg);
-          width: 2.3rem;
-          height: 2px;
-          background-color: #343a40;">
+          <span
+            style="
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%) rotate(-45deg);
+              width: 2.3rem;
+              height: 2px;
+              background-color: #343a40;
+            "
+          >
           </span>
         </i>
-        <span class="ml-2 md:block hidden">Modo Offline</span>
+        <span class="ml-2 md:block hidden" v-if="isOnline">Modo Online</span>
+        <span class="ml-2 md:block hidden" v-else>Modo Offline</span>
       </div>
     </template>
   </Toolbar>

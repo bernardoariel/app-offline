@@ -34,7 +34,7 @@ const validationSchema = yup.object({
   nombre: yup.string().required().min(3),
   apellido: yup.string().required().min(3),
 });
-const { defineField, values, errors } = useForm({
+const { defineField, values, errors, meta, resetForm } = useForm({
   validationSchema,
 });
 
@@ -51,7 +51,7 @@ const {
   selectedJerarquiaDrop,
   selectedDependenciaDrop,
 } = usePersonalInterviniente();
-const toast = useToast()
+const toast = useToast();
 const { selectedItem } = useItemValue();
 
 const {
@@ -188,6 +188,7 @@ const handleModificarElemento = () => {
 watch(selectedItem, (newVal: any) => {
   if (!newVal) {
     formData.value = { ...initialValues };
+    resetForm();
     jerarquiaSelect.value = { name: 'Seleccione una jerarquia' };
     dependenciaSelect.value = { name: 'Seleccione una dependencia' };
     nombre.value = '';
@@ -207,36 +208,87 @@ watch(selectedItem, (newVal: any) => {
       <div class="grid">
         <div class="col-6">
           <label for="dropdown">Apellido</label>
-          <MyInput type="text" class="mt-2" placeholder="Ingrese apellido"
-            @input="handleInputChange('apellido', $event)" @blur="() => handleBlur('apellido')" v-model="apellido"
-            :color="false" :error="errors.apellido" v-bind="apellidoAttrs" />
+          <MyInput
+            type="text"
+            class="mt-2"
+            placeholder="Ingrese apellido"
+            @input="handleInputChange('apellido', $event)"
+            @blur="() => handleBlur('apellido')"
+            v-model="apellido"
+            :color="false"
+            :error="errors.apellido"
+            v-bind="apellidoAttrs"
+          />
         </div>
         <div class="col-6">
           <label for="dropdown">Nombre</label>
-          <MyInput type="text" class="mt-2" placeholder="Ingrese nombre" @input="handleInputChange('nombre', $event)"
-            @blur="() => handleBlur('nombre')" v-model="nombre" :color="false" :error="errors.nombre"
-            v-bind="nombreAttrs" />
+          <MyInput
+            type="text"
+            class="mt-2"
+            placeholder="Ingrese nombre"
+            @input="handleInputChange('nombre', $event)"
+            @blur="() => handleBlur('nombre')"
+            v-model="nombre"
+            :color="false"
+            :error="errors.nombre"
+            v-bind="nombreAttrs"
+          />
         </div>
         <div class="col-6">
           <label for="dropdown">Seleccione Jerarquia</label>
-          <MyDropdown class="mt-2" :items="jerarquiaDropdown" v-model="jerarquiaSelect"
-            @change="(newValue) => handleDropdownChange('jerarquia', newValue)" placeholder="Seleccione la Jerarquia"
-            filter :color="false" :error="errors.jerarquiaSelect" v-bind="jerarquiaSelectAttrs" />
+          <MyDropdown
+            class="mt-2"
+            :items="jerarquiaDropdown"
+            v-model="jerarquiaSelect"
+            @change="(newValue) => handleDropdownChange('jerarquia', newValue)"
+            placeholder="Seleccione la Jerarquia"
+            filter
+            :color="false"
+            :error="errors.jerarquiaSelect"
+            v-bind="jerarquiaSelectAttrs"
+          />
         </div>
         <div class="col-6">
           <label for="dropdown">Seleccione Dependencia</label>
-          <MyDropdown class="mt-2" :items="dependenciaDropdown" v-model="dependenciaSelect" @change="(newValue) => handleDropdownChange('dependencia', newValue)
-            " placeholder="Seleccione la Dependencia" filter :color="false" :error="errors.dependenciaSelect"
-            v-bind="dependenciaSelectAttrs" />
+          <MyDropdown
+            class="mt-2"
+            :items="dependenciaDropdown"
+            v-model="dependenciaSelect"
+            @change="
+              (newValue) => handleDropdownChange('dependencia', newValue)
+            "
+            placeholder="Seleccione la Dependencia"
+            filter
+            :color="false"
+            :error="errors.dependenciaSelect"
+            v-bind="dependenciaSelectAttrs"
+          />
         </div>
         <div class="ml-auto mt-2 p-0">
-          <Button label="Agregar" v-if="!selectedItem" @click="handleAgregarElemento()">
+          <Button
+            label="Agregar"
+            v-if="!selectedItem"
+            :disabled="hasErrors() || !meta.valid"
+            @click="handleAgregarElemento()"
+          >
           </Button>
           <div v-else>
-            <Button :disabled="isEditing(selectedItem!.id)" label="Cancelar" icon="pi pi-times" severity="secondary"
-              outlined aria-label="Cancel" class="mr-3" @click="handleCancelar"></Button>
-            <Button label="Guardar Cambios" :disabled="isEditing(selectedItem!.id)" @click="handleModificarElemento()"
-              severity="warning"></Button>
+            <Button
+              :disabled="isEditing(selectedItem!.id)"
+              label="Cancelar"
+              icon="pi pi-times"
+              severity="secondary"
+              outlined
+              aria-label="Cancel"
+              class="mr-3"
+              @click="handleCancelar"
+            ></Button>
+            <Button
+              label="Guardar Cambios"
+              :disabled="isEditing(selectedItem!.id)"
+              @click="handleModificarElemento()"
+              severity="warning"
+            ></Button>
           </div>
         </div>
       </div>

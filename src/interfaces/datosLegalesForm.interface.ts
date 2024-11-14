@@ -1,6 +1,6 @@
 interface PrimaryAttributes {
   id?: string;
-  nroLegajo: string;
+  nroLegajo: number | null;
 }
 
 export interface DatosLegalesForm extends PrimaryAttributes {

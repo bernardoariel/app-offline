@@ -241,6 +241,7 @@ const handleAgregarElemento = () => {
     life: 2000,
   });
   formData.value = { ...initialValues };
+  resetForm();
   tipoSelect.value = { name: 'Seleccione un tipo', key: '' };
   marcaSelect.value = { name: 'Seleccione una marca', key: '' };
   modeloSelect.value = { name: 'Seleccione un modelo', key: '' };

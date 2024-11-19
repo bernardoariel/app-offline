@@ -410,6 +410,7 @@ const handleAgregarElemento = () => {
   });
   setField('afectados', false);
   formData.value = { ...initialValues };
+  resetForm();
   apellido.value = '';
   nombre.value = '';
   domicilio.value = '';

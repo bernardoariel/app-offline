@@ -155,6 +155,7 @@ const handleAgregarElemento = () => {
     life: 2000,
   });
   formData.value = { ...initialValues };
+  resetForm();
   jerarquiaSelect.value = { name: 'Seleccione una jerarquie' };
   dependenciaSelect.value = { name: 'Seleccione una dependencia' };
   nombre.value = '';

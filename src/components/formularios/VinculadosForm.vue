@@ -406,6 +406,7 @@ const handleAgregarElemento = () => {
     life: 2000,
   });
   formData.value = { ...initialValues };
+  resetForm();
   apellido.value = '';
   telefono.value = '';
   profesion.value = '';

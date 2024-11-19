@@ -138,6 +138,7 @@ const handleAgregarElemento = () => {
     life: 2000,
   });
   formData.value = { ...initialValues };
+  resetForm();
   calle.value = '';
   numero.value = '';
   departamentoSelect.value = { name: 'Seleccione departamento' };

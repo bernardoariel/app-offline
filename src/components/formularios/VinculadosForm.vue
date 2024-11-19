@@ -820,7 +820,11 @@ watch(selectedItem, (newVal: any) => {
           <Button
             label="Agregar"
             v-if="!selectedItem"
-            :disabled="hasErrors() || !meta.valid"
+            :disabled="
+              hasErrors() ||
+              (isPersonaDesconocida && hasErrors()) ||
+              (!isPersonaDesconocida && !hasErrors() && !meta.valid)
+            "
             @click="handleAgregarElemento()"
           >
           </Button>

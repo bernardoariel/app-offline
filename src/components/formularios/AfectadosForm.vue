@@ -835,7 +835,11 @@ watch(tipoDenuncianteSelect, (newVal: any) => {
           <div class="flex align-items-center justify-content-end">
             <Button
               label="Agregar"
-              :disabled="hasErrors() || !meta.valid"
+              :disabled="
+                hasErrors() ||
+                (isOrdenPublico && hasErrors()) ||
+                (!isOrdenPublico && !hasErrors() && !meta.valid)
+              "
               v-if="!selectedItem"
               @click="handleAgregarElemento()"
             >

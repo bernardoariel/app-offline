@@ -24,8 +24,7 @@ export const useItem = () => {
         resetEfecto()
         resetInterviniente()
     };
-    const setAll = (data = null) => {
-
+    const setAll = (data: any) => {
         if (!data) {
             setAfectado();
             setVinculado();

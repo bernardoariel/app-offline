@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import InputMask from "primevue/inputmask";
-import { ref, watch } from "vue";
+import InputMask from 'primevue/inputmask';
+import { ref, watch } from 'vue';
 
 interface Props {
   modelValue?: string;
@@ -13,7 +13,7 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const emits = defineEmits(["update:modelValue"]);
+const emits = defineEmits(['update:modelValue']);
 
 const localValue = ref(props.modelValue);
 
@@ -27,7 +27,7 @@ watch(
 const updateValue = (event: Event) => {
   const target = event.target as HTMLInputElement;
   localValue.value = target.value; // Actualiza localValue antes de emitir el evento
-  emits("update:modelValue", target.value); // Emite el evento con el valor actual
+  emits('update:modelValue', target.value); // Emite el evento con el valor actual
 };
 </script>
 
@@ -35,7 +35,7 @@ const updateValue = (event: Event) => {
   <div>
     <InputMask
       v-model="localValue"
-      @input="updateValue"
+      @blur="updateValue"
       :placeholder="props.placeholder"
       :mask="props.mask"
       :slotChar="props.slotChar"

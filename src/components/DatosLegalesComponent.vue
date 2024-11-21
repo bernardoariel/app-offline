@@ -4,7 +4,9 @@ import * as yup from 'yup';
 import { useForm } from 'vee-validate';
 import { MyInputNumber, MyDropdown } from '@/components/elementos/index';
 import {
-  getYearsDrop, mapToDropdownItems, sitiosDropdwown,
+  getYearsDrop,
+  mapToDropdownItems,
+  sitiosDropdwown,
   modusOperandiDropdwown,
   causaCaratulaDropdwown,
   juzgadoIntervinienteDropdwown,
@@ -12,10 +14,17 @@ import {
   delitosDropdown,
   ufiNroDropdown,
   fiscalCargoDropdown,
-  ayudanteFiscalDropdown, getUpperCase, separateCamelCase
+  ayudanteFiscalDropdown,
+  getUpperCase,
+  separateCamelCase,
 } from '@/helpers/index';
 import type { DatosLegalesForm } from '@/interfaces/index';
-import { useLegalesState, useDatosLegales, useFieldsState, useValidacionDatosLegales } from '@/composables/index';
+import {
+  useLegalesState,
+  useDatosLegales,
+  useFieldsState,
+  useValidacionDatosLegales,
+} from '@/composables/index';
 
 interface Props {
   datosLegalesItems?: string[];
@@ -216,15 +225,15 @@ const validateData = () => {
   if (props.datosLegalesItems?.includes('listboxArticulos')) {
     setValidValue(
       Object.keys(errors.value).length === 0 &&
-      areKeysEqual &&
-      !isListArticulosRelacionadosEmpty.value
+        areKeysEqual &&
+        !isListArticulosRelacionadosEmpty.value
     );
     return;
   } else if (props.datosLegalesItems?.includes('listboxCausaCaratula')) {
     setValidValue(
       Object.keys(errors.value).length === 0 &&
-      areKeysEqual &&
-      !isListCausasCaratulaEmpty.value
+        areKeysEqual &&
+        !isListCausasCaratulaEmpty.value
     );
     return;
   }
@@ -252,7 +261,6 @@ const handleDropdownChange = (
 
     setFieldModified(campo, true);
   }
-
   if (campo === 'sitio') {
     selectedSitio.value = newValue.value;
   } else if (campo === 'modusOperandi') {
@@ -272,7 +280,9 @@ const handleDropdownChange = (
   } else if (campo === 'fiscalCargo') {
     selectedFiscalCargo.value = newValue.value;
   } else if (campo === 'ayudanteFiscal') {
-    selectedAyudanteFiscal.value = newValue.value
+    selectedAyudanteFiscal.value = newValue.value;
+  } else if (campo === 'selectYear') {
+    selectedYear.value = newValue.value;
   }
 };
 
@@ -356,41 +366,83 @@ const handleInputChange = (campo: string, valor: number) => {
   <div class="grid">
     <div class="xl:col-9 col-12">
       <label for="dropdown">Legajo N° / N° de extracto</label>
-      <MyInputNumber class="mt-2" v-model="legajo" v-bind="legajoAttrs" :error="errors.legajo"
-        @update:model-value="(event) => handleInputChange('nroLegajo', +event)" color />
+      <MyInputNumber
+        class="mt-2"
+        v-model="legajo"
+        v-bind="legajoAttrs"
+        :error="errors.legajo"
+        @update:model-value="(event) => handleInputChange('nroLegajo', +event)"
+        color
+      />
     </div>
     <div class="xl:col-3 col-12">
       <label for="dropdown">Año</label>
-      <MyDropdown class="w-full mt-2" :items="mapToDropdownItems(yearsActuacion)" v-model="year" v-bind="yearAttrs"
-        :error="errors.year" :placeholder="yearsActuacion[0].toString()" optionLabel="name" :filter="false" color
-        @change="(newValue) => handleDropdownChange('selectYear', newValue)" />
+      <MyDropdown
+        class="w-full mt-2"
+        :items="mapToDropdownItems(yearsActuacion)"
+        v-model="year"
+        v-bind="yearAttrs"
+        :error="errors.year"
+        :placeholder="yearsActuacion[0].toString()"
+        optionLabel="name"
+        :filter="false"
+        color
+        @change="(newValue) => handleDropdownChange('selectYear', newValue)"
+      />
     </div>
-    <div v-for="(item, index) in props.datosLegalesItems!.slice(1)" :key="index" class="col-12">
-      <template v-if="item !== 'listboxCausaCaratula' && item !== 'listboxArticulos'">
+    <div
+      v-for="(item, index) in props.datosLegalesItems!.slice(1)"
+      :key="index"
+      class="col-12"
+    >
+      <template
+        v-if="item !== 'listboxCausaCaratula' && item !== 'listboxArticulos'"
+      >
         <label :for="item" class="capitalize">{{
-          separateCamelCase(item === 'juzgadoInterviniente' ? 'Interviniente' : item)
+          separateCamelCase(
+            item === 'juzgadoInterviniente' ? 'Interviniente' : item
+          )
         }}</label>
-        <MyDropdown :items="dropdownItems[getField(item)]" v-model="getDropdownModel(item).value"
-          v-bind="getNameAttrs(item).value" :placeholder="'Seleccione ' + separateCamelCase(item)" optionLabel="name"
-          filter :error="errors[getField(item)]" color
-          @change="(newValue) => handleDropdownChange(getField(item), newValue)" class="w-full mt-2" />
+        <MyDropdown
+          :items="dropdownItems[getField(item)]"
+          v-model="getDropdownModel(item).value"
+          v-bind="getNameAttrs(item).value"
+          :placeholder="'Seleccione ' + separateCamelCase(item)"
+          optionLabel="name"
+          filter
+          :error="errors[getField(item)]"
+          color
+          @change="(newValue) => handleDropdownChange(getField(item), newValue)"
+          class="w-full mt-2"
+        />
         <span class="text-red-400" v-if="errors[getField(item)] ? true : false">
           {{ errors[getField(item)] }}
         </span>
       </template>
       <div v-else-if="item === 'listboxCausaCaratula'">
-        <Listbox v-model="selectedCausaCaratulaList" :options="itemsCausaCaratula"
-          :class="{ 'is-invalid': isListCausasCaratulaEmpty }" optionLabel="name"
-          emptyMessage="No hay opciones seleccionadas" class="w-full">
+        <Listbox
+          v-model="selectedCausaCaratulaList"
+          :options="itemsCausaCaratula"
+          :class="{ 'is-invalid': isListCausasCaratulaEmpty }"
+          optionLabel="name"
+          emptyMessage="No hay opciones seleccionadas"
+          class="w-full"
+        >
           <template #option="{ option }">
-            <div class="flex align-content-center justify-content-between flex-wrap">
+            <div
+              class="flex align-content-center justify-content-between flex-wrap"
+            >
               <div class="justify-content-between">
                 <span class="font-bold">
                   {{ option.name ? getUpperCase(option.name) : '' }}
                 </span>
               </div>
               <div class="justify-content-between">
-                <Button icon="pi pi-trash" severity="danger" @click="eliminarItem(option.name, 'caratula')" />
+                <Button
+                  icon="pi pi-trash"
+                  severity="danger"
+                  @click="eliminarItem(option.name, 'caratula')"
+                />
               </div>
             </div>
           </template>
@@ -400,18 +452,29 @@ const handleInputChange = (campo: string, valor: number) => {
         </span>
       </div>
       <div v-else>
-        <Listbox v-model="selectedArticulosRelacionadosList" :options="itemsArticulosRelacionados"
-          :class="{ 'is-invalid': isListArticulosRelacionadosEmpty }" optionLabel="name"
-          emptyMessage="No hay opciones seleccionadas" class="w-full">
+        <Listbox
+          v-model="selectedArticulosRelacionadosList"
+          :options="itemsArticulosRelacionados"
+          :class="{ 'is-invalid': isListArticulosRelacionadosEmpty }"
+          optionLabel="name"
+          emptyMessage="No hay opciones seleccionadas"
+          class="w-full"
+        >
           <template #option="{ option }">
-            <div class="flex align-content-center justify-content-between flex-wrap">
+            <div
+              class="flex align-content-center justify-content-between flex-wrap"
+            >
               <div class="justify-content-between">
                 <span class="font-bold">
                   {{ option.name ? getUpperCase(option.name) : '' }}
                 </span>
               </div>
               <div class="justify-content-between">
-                <Button icon="pi pi-trash" severity="danger" @click="eliminarItem(option.name, 'articulos')" />
+                <Button
+                  icon="pi pi-trash"
+                  severity="danger"
+                  @click="eliminarItem(option.name, 'articulos')"
+                />
               </div>
             </div>
           </template>

@@ -13,8 +13,8 @@ import {
   useFieldsState,
   useLegalesState,
   useActuacionLoading,
-  useCardInformation
-} from '@/composables/index'
+  useCardInformation,
+} from '@/composables/index';
 import { handleFetchActuacion, dialogButtons } from '@/helpers/index';
 
 interface Props {
@@ -26,9 +26,12 @@ const props = defineProps<Props>();
 
 const router = useRoute();
 
-const { cardInformationKeys, cardInformation } = useCardInformation(props.actuacionName, props.actuacionData);
+const { cardInformationKeys, cardInformation } = useCardInformation(
+  props.actuacionName,
+  props.actuacionData
+);
 const { dialogState, confirmNavigation, hideDialog } = useDialog();
-const { toogleDateActuacion } = useActuacion();
+const { toogleDateActuacion, activateComponent } = useActuacion();
 const { set: setActuacionData } = useActuacionData();
 const { setLoading } = useActuacionLoading();
 const {
@@ -41,7 +44,9 @@ const {
 } = useFieldsState();
 const { resetFields: resetLegalFields } = useLegalesState();
 const { resetData: resetDataLegal } = useDatosLegales();
-const { isEditingHeader, resetRelato } = useDatosDiligencia(props.actuacionName);
+const { isEditingHeader, resetRelato } = useDatosDiligencia(
+  props.actuacionName
+);
 
 setActuacionData(props.actuacionData);
 
@@ -85,6 +90,7 @@ const handleButtonClick = (action: string) => {
   } else {
     resetAllStates();
   }
+  activateComponent();
   confirmNavigation();
 };
 
@@ -94,22 +100,34 @@ watch(
     if (newVal === false) dialogState.value.pendingRoute = null;
   }
 );
-
-
 </script>
 
 <template>
-  <MyModal :visible="dialogState.isDialogVisible" :title="dialogState.header.title" :buttons="dialogButtons"
-    @update:visible="dialogState.isDialogVisible = $event" @button-click="handleButtonClick">
+  <MyModal
+    :visible="dialogState.isDialogVisible"
+    :title="dialogState.header.title"
+    :buttons="dialogButtons"
+    @update:visible="dialogState.isDialogVisible = $event"
+    @button-click="handleButtonClick"
+  >
     <template #body>
-      <div class="justify-content-center flex flex-column items-center w-full" style="padding: 0">
+      <div
+        class="justify-content-center flex flex-column items-center w-full"
+        style="padding: 0"
+      >
         <div class="flex items-center w-full justify-between">
-          <i class="text-7xl mt-3 ml-5" :class="[dialogState.body.colorClass, dialogState.body.icon]"></i>
+          <i
+            class="text-7xl mt-3 ml-5"
+            :class="[dialogState.body.colorClass, dialogState.body.icon]"
+          ></i>
           <p class="font-bold text-xl ml-4">
             {{ dialogState.body.answer }}
           </p>
         </div>
-        <p class="text-lg ml-8 text-center text-gray-600" style="margin-top: -20px">
+        <p
+          class="text-lg ml-8 text-center text-gray-600"
+          style="margin-top: -20px"
+        >
           {{ dialogState.body.comments }}
         </p>
       </div>
@@ -118,16 +136,29 @@ watch(
 
   <div class="grid">
     <div class="col-12">
-      <ToolbarActuacion :actuacion="props.actuacionName" :id="id" :cardInformationKeys=cardInformationKeys />
+      <ToolbarActuacion
+        :actuacion="props.actuacionName"
+        :id="id"
+        :cardInformationKeys="cardInformationKeys"
+      />
     </div>
 
     <div class="lg:col-5 col-12">
-      <ActuacionCards :id=props.id :actuacionName=props.actuacionName :actuacionData=props.actuacionData
-        :cardInformationKeys=cardInformationKeys :cardInformation=cardInformation />
+      <ActuacionCards
+        :id="props.id"
+        :actuacionName="props.actuacionName"
+        :actuacionData="props.actuacionData"
+        :cardInformationKeys="cardInformationKeys"
+        :cardInformation="cardInformation"
+      />
     </div>
 
     <div class="lg:col-7 col-12">
-      <DiligenciaComponent :actuacion="props.actuacionName" :id="props.id" :cardInformationKeys=cardInformationKeys />
+      <DiligenciaComponent
+        :actuacion="props.actuacionName"
+        :id="props.id"
+        :cardInformationKeys="cardInformationKeys"
+      />
     </div>
   </div>
 </template>

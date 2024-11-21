@@ -3,6 +3,7 @@ import { sidebarLinks } from '@/data/sideBarLinks';
 import { computed, ref, onMounted } from 'vue';
 import useActuacion from '@/composables/useActuacion';
 import { useStorageData } from '../composables/useStorageData';
+import { isAnyChange } from '@/guards/isItemsSaved';
 
 type SidebarPosition = 'left' | 'right' | 'top' | 'bottom' | 'full';
 const visible = ref(false);
@@ -70,6 +71,11 @@ const groupedLinks = computed(() => {
 });
 
 const onHandleClick = () => {
+  // activateComponent();
+  if (isAnyChange.value) {
+    closeSidebar();
+    return;
+  }
   activateComponent();
   closeSidebar();
 };

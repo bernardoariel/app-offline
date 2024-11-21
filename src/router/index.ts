@@ -12,6 +12,7 @@ import {
   isUserAllowed,
 } from "@/guards/index";
 import { actuaciones } from "../data/tipoActuaciones";
+import isItemsSaved from "@/guards/isItemsSaved";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -74,6 +75,14 @@ router.beforeEach((to, from, next) => {
   if (to.name === "actuaciones") {
     isSavedChanges(to, from, next);
     return;
+  }
+
+  if (to.name === 'newActuacion') {
+    const toActuacion = to.params.actuacion;
+    const fromActuacion = from.params.actuacion;
+    if (toActuacion !== fromActuacion) {
+      return isItemsSaved(to, from, next);
+    }
   }
 
   if (!to.params.id && from.params.id && to.name !== "newActuacion") {

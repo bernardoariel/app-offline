@@ -1,8 +1,8 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import type { DialogOptions } from '@/interfaces/dialogInterfaces';
+import type { DialogOptions, DialogState } from '@/interfaces/dialogInterfaces';
 
-const dialogState = ref({
+const dialogState = ref<DialogState>({
   isDialogVisible: false,
   pendingRoute: null as string | null,
   routeProp: null as string | null,

@@ -50,7 +50,7 @@ const isSavedChanges = (to, from, next) => {
   const pathIncludesGuard = pathFindGuard.some(keyword => from.path.includes(keyword));
 
   /* cuando quiero salir del la edicion o la creacion */
-  if (pathIncludesGuard && dialogState.value.pendingRoute === null && !dialogState.allowNavigation) {
+  if (pathIncludesGuard && dialogState.value.pendingRoute === null && !dialogState.value.allowNavigation) {
     if (isAnyChange.value) {
       const optionDialog: DialogOptions = {
         nameRouteToRedirect: to.name,

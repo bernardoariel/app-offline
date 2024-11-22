@@ -77,7 +77,7 @@ router.beforeEach((to, from, next) => {
     return;
   }
 
-  if (to.name === 'newActuacion') {
+  if (to.name === 'newActuacion' && from.name !== 'formulario' && from.name !== 'actuaciones') {
     const toActuacion = to.params.actuacion;
     const fromActuacion = from.params.actuacion;
     if (toActuacion !== fromActuacion) {

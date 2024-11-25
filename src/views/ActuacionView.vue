@@ -90,7 +90,9 @@ const handleButtonClick = (action: string) => {
   } else {
     resetAllStates();
   }
-  activateComponent();
+  if (router.name === 'newActuacion') {
+    activateComponent();
+  }
   confirmNavigation();
 };
 

@@ -5,6 +5,8 @@ import { RouterView, useRoute } from 'vue-router';
 import { usePrimeVue } from 'primevue/config';
 import ToolbarComponent from './components/ToolbarComponent.vue';
 import useTheme from './composables/useTheme';
+import { useOnlineStatus } from '@/composables/useOnlineStatus';
+
 
 const PrimeVue = usePrimeVue();
 const { changeThemeCurrent, loadFontSize } = useTheme();
@@ -25,6 +27,7 @@ if (themeLink) {
 } else {
   console.error('No se encontró el enlace del tema en el DOM.');
 }
+const { isOnline } = useOnlineStatus();
 
 onMounted(() => {
   loadFontSize();
@@ -39,6 +42,11 @@ onMounted(() => {
   PrimeVue.changeTheme('lara-light-blue', themeName, 'theme-link', () => {
     isLoading.value = false;
   });
+  if (isOnline.value) {
+    console.log('El sistema está en línea al iniciar.');
+  } else {
+    console.log('El sistema está fuera de línea al iniciar.');
+  }
 });
 </script>
 

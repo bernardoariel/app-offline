@@ -1,18 +1,37 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { RouterView, useRoute } from 'vue-router';
 
 import { usePrimeVue } from 'primevue/config';
 import ToolbarComponent from './components/ToolbarComponent.vue';
 import useTheme from './composables/useTheme';
 import { useOnlineStatus } from '@/composables/useOnlineStatus';
+import MyModal from './components/elementos/MyModal.vue';
+import { shouldTransformRef } from 'vue/compiler-sfc';
 
 
+
+
+interface buttonProps {
+  label: string;
+  class?: string;
+  icon?: string;
+  iconPos?: 'left' | 'right' | 'top' | 'bottom';
+  action: string;
+}
 const PrimeVue = usePrimeVue();
 const { changeThemeCurrent, loadFontSize } = useTheme();
 const route = useRoute();
 const isLoading = ref(false); // Estado de carga
 const themeLink = document.querySelector('link#theme-link');
+const ModalButtons = ref<buttonProps[]>([
+  {
+    label: 'Aceptar',
+    class: 'p-button-primary',
+    iconPos: 'right',
+    action: 'accept',
+  },
+]);
 
 if (themeLink) {
   // Verificar si el atributo href está presente y no está vacío
@@ -28,6 +47,7 @@ if (themeLink) {
   console.error('No se encontró el enlace del tema en el DOM.');
 }
 const { isOnline } = useOnlineStatus();
+let ShowModal=false;
 
 onMounted(() => {
   loadFontSize();
@@ -42,22 +62,55 @@ onMounted(() => {
   PrimeVue.changeTheme('lara-light-blue', themeName, 'theme-link', () => {
     isLoading.value = false;
   });
-  if (isOnline.value) {
-    console.log('El sistema está en línea al iniciar.');
-  } else {
-    console.log('El sistema está fuera de línea al iniciar.');
+});
+
+const handleConfirmation = async (action: string) => {
+  location.reload();
+};
+watch(route, (newValue) => {
+  if(newValue.fullPath.startsWith("/actuaciones/list")&&!isOnline.value){
+    ShowModal=true
+  }else{
+    ShowModal=false
   }
 });
+
+watch(isOnline, () => {
+  if(route.fullPath.startsWith("/actuaciones/list")&&!isOnline.value){
+    ShowModal=true
+  }else{
+    ShowModal=false
+  }
+});
+
 </script>
 
 <template>
   <div v-if="!isLoading">
+    
+    
     <template v-if="route.name !== 'denegado'">
       <div class="toolbar-container">
         <ToolbarComponent />
       </div>
     </template>
     <div class="router-view-container">
+      <p>holaaaa</p>
+      <p>{{isOnline}}</p>
+      <p>arriba deberia estar la flag</p>
+      <p>testz</p>
+      <MyModal v-model:visible="ShowModal" title="Conexión Restablecida" :buttons="ModalButtons"
+      :closable="false"
+      @button-click="handleConfirmation">
+      <template #body>
+        <div class="modal-body">
+          <!-- <i class="pi pi-info-circle" :style="{ fontSize: '3rem', color: 'blue' }"></i> -->
+          <div class="flex justify-content-center py-4" style="width: 100%">
+            Tu conexión a internet ha sido restablecida. Serás redirigido automáticamente al sistema SIIS en línea.
+          </div>
+        </div>
+      </template>
+    </MyModal>
       <RouterView v-slot="{ Component, route }">
         <keep-alive>
           <component :is="Component" :key="route.fullPath" />

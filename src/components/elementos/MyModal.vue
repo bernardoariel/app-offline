@@ -4,14 +4,14 @@
     :header="title"
     modal
     :style="{ width: '500px' }"
-    closable
+    :closable="closable"
   >
     <template #header></template>
 
     <slot name="body" />
 
     <template #footer>
-      <div class="modal-footer">
+      <div class="modal-footer pt-2">
         <Button
           v-for="(button, index) in buttons"
           :key="index"
@@ -39,12 +39,16 @@ interface buttonProps {
   focus: boolean;
 }
 
-interface Props {
-  visible: boolean;
-  title: string;
-  buttons: buttonProps[];
-}
-const props = defineProps<Props>();
+
+
+const props = defineProps({
+  visible: { type: Boolean, required: true },
+  title: { type: String, required: true },
+  buttons: { type: Array as () => buttonProps[], required: true },
+  closable: { type: Boolean, default: true }, 
+});
+
+// const props = defineProps<Props>();
 const emit = defineEmits(['update:visible', 'button-click']);
 
 const isVisible = ref(props.visible);

@@ -47,7 +47,7 @@ if (themeLink) {
   console.error('No se encontró el enlace del tema en el DOM.');
 }
 const { isOnline } = useOnlineStatus();
-let ShowModal=false;
+const ShowModal = ref(false);
 
 onMounted(() => {
   loadFontSize();
@@ -69,19 +69,22 @@ const handleConfirmation = async (action: string) => {
 };
 watch(route, (newValue) => {
   if(newValue.fullPath.startsWith("/actuaciones/list")&&!isOnline.value){
-    ShowModal=true
+    ShowModal.value=true
   }else{
-    ShowModal=false
+    ShowModal.value=false
   }
 });
 
 watch(isOnline, () => {
+  console.log("ajajja",route.fullPath.startsWith("/actuaciones/list"),!isOnline.value)
   if(route.fullPath.startsWith("/actuaciones/list")&&!isOnline.value){
-    ShowModal=true
+    console.log("hola")
+    ShowModal.value=true
   }else{
-    ShowModal=false
+    ShowModal.value=false
   }
 });
+
 
 </script>
 
@@ -95,7 +98,7 @@ watch(isOnline, () => {
       </div>
     </template>
     <div class="router-view-container">
-      <MyModal v-model:visible="ShowModal" title="Conexión Restablecida" :buttons="ModalButtons"
+      <MyModal :visible="ShowModal" title="Conexión Restablecida" :buttons="ModalButtons"
       :closable="false"
       @button-click="handleConfirmation">
       <template #body>

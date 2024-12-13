@@ -95,10 +95,6 @@ watch(isOnline, () => {
       </div>
     </template>
     <div class="router-view-container">
-      <p>holaaaa</p>
-      <p>{{isOnline}}</p>
-      <p>arriba deberia estar la flag</p>
-      <p>testz</p>
       <MyModal v-model:visible="ShowModal" title="Conexión Restablecida" :buttons="ModalButtons"
       :closable="false"
       @button-click="handleConfirmation">

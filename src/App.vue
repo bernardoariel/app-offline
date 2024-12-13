@@ -68,7 +68,7 @@ const handleConfirmation = async (action: string) => {
   location.reload();
 };
 watch(route, (newValue) => {
-  if(newValue.fullPath.startsWith("/actuaciones/list")&&!isOnline.value){
+  if(newValue.fullPath.startsWith("/actuaciones/list")&&isOnline.value){
     ShowModal.value=true
   }else{
     ShowModal.value=false
@@ -76,8 +76,8 @@ watch(route, (newValue) => {
 });
 
 watch(isOnline, () => {
-  console.log("ajajja",route.fullPath.startsWith("/actuaciones/list"),!isOnline.value)
-  if(route.fullPath.startsWith("/actuaciones/list")&&!isOnline.value){
+  console.log("ajajja",route.fullPath.startsWith("/actuaciones/list"),isOnline.value)
+  if(route.fullPath.startsWith("/actuaciones/list")&&isOnline.value){
     console.log("hola")
     ShowModal.value=true
   }else{

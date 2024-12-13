@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, watch } from 'vue';
-import { RouterView, useRoute ,useRouter} from 'vue-router';
+import { RouterView, useRoute } from 'vue-router';
 
 import { usePrimeVue } from 'primevue/config';
 import ToolbarComponent from './components/ToolbarComponent.vue';
@@ -22,7 +22,6 @@ interface buttonProps {
 const PrimeVue = usePrimeVue();
 const { changeThemeCurrent, loadFontSize } = useTheme();
 const route = useRoute();
-const router= useRouter();
 const isLoading = ref(false); // Estado de carga
 const themeLink = document.querySelector('link#theme-link');
 const ModalButtons = ref<buttonProps[]>([
@@ -65,8 +64,8 @@ onMounted(() => {
   });
 });
 
-const handleConfirmation = async () => {
-  router.push("/")
+const handleConfirmation = async (action: string) => {
+  location.reload();
 };
 watch(route, (newValue) => {
   if(newValue.fullPath.startsWith("/actuaciones/list")&&isOnline.value){

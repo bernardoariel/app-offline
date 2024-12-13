@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, watch } from 'vue';
-import { RouterView, useRoute } from 'vue-router';
+import { RouterView, useRoute ,useRouter} from 'vue-router';
 
 import { usePrimeVue } from 'primevue/config';
 import ToolbarComponent from './components/ToolbarComponent.vue';
@@ -22,6 +22,7 @@ interface buttonProps {
 const PrimeVue = usePrimeVue();
 const { changeThemeCurrent, loadFontSize } = useTheme();
 const route = useRoute();
+const router= useRouter();
 const isLoading = ref(false); // Estado de carga
 const themeLink = document.querySelector('link#theme-link');
 const ModalButtons = ref<buttonProps[]>([
@@ -64,8 +65,8 @@ onMounted(() => {
   });
 });
 
-const handleConfirmation = async (action: string) => {
-  location.reload();
+const handleConfirmation = async () => {
+  router.push("/")
 };
 watch(route, (newValue) => {
   if(newValue.fullPath.startsWith("/actuaciones/list")&&isOnline.value){
@@ -76,9 +77,7 @@ watch(route, (newValue) => {
 });
 
 watch(isOnline, () => {
-  console.log("ajajja",route.fullPath.startsWith("/actuaciones/list"),isOnline.value)
   if(route.fullPath.startsWith("/actuaciones/list")&&isOnline.value){
-    console.log("hola")
     ShowModal.value=true
   }else{
     ShowModal.value=false

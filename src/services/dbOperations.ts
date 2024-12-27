@@ -9,6 +9,11 @@ import type { DatosLegales } from "../interfaces/datosLegalesForm.interface";
 
 import { getDependenciaData } from "@/helpers/getDependencia";
 import { formatFecha } from "@/helpers/getFormatFecha";
+import { useDatosLegales } from "@/composables/index";
+
+const {
+  resetData
+} = useDatosLegales()
 
 export interface dataActuacionForSave {
   id?: number;
@@ -53,6 +58,7 @@ const dbOperations = {
         relato: JSON.stringify(data.relato),
         dependenciaData: JSON.stringify(getDependenciaData()),
       });
+      resetData()
       return { success: true };
     } catch (err) {
       console.error("Error al guardar datos:", err);

@@ -11,9 +11,7 @@ import { getDependenciaData } from "@/helpers/getDependencia";
 import { formatFecha } from "@/helpers/getFormatFecha";
 import { useDatosLegales } from "@/composables/index";
 
-const {
-  resetData
-} = useDatosLegales()
+const { resetData } = useDatosLegales();
 
 export interface dataActuacionForSave {
   id?: number;
@@ -58,7 +56,7 @@ const dbOperations = {
         relato: JSON.stringify(data.relato),
         dependenciaData: JSON.stringify(getDependenciaData()),
       });
-      resetData()
+      resetData();
       return { success: true };
     } catch (err) {
       console.error("Error al guardar datos:", err);
@@ -83,6 +81,8 @@ const dbOperations = {
         pathName: JSON.stringify(data.pathName),
         relato: JSON.stringify(data.relato),
       });
+      resetData();
+
       return { success: true };
     } catch (err) {
       console.error("Error al actualizar datos:", err);

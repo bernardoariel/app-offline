@@ -82,7 +82,6 @@ const dbOperations = {
         relato: JSON.stringify(data.relato),
       });
       resetData();
-
       return { success: true };
     } catch (err) {
       console.error("Error al actualizar datos:", err);
